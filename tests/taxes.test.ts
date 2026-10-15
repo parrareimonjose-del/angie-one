@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import { autoGenerate, inSeason, taxYear, daysToSeason, INIT_TAX } from '../src/taxes';
+import { INIT_DATA } from '../src/datos';
+const ok = (n: string, f: () => void) => { try { f(); console.log('PASS', n); } catch (e) { console.log('FAIL', n, e); process.exitCode = 1; } };
+const rec = (id: string, date: string, total: number, category = 'groceries') => [id, { id, source: 'receipt', at: 0, receipt: { store: 'X', date, category, total, currency: 'USD', items: [] } }];
+const d: any = { ...INIT_DATA, consent: true, master: Object.fromEntries([rec('a', '2026-09-03', 40), rec('b', '2026-09-20', 10), rec('c', '2026-10-02', 5), rec('e', '2025-06-01', 100, 'pharmacy')]) };
+ok('temporada EE. UU. 15-feb sí, 1-may no', () => { assert.equal(inSeason(new Date(2026, 1, 15)), true); assert.equal(inSeason(new Date(2026, 4, 1)), false); });
+ok('año fiscal = anterior', () => assert.equal(taxYear(new Date(2026, 1, 15)), '2025'));
+ok('cuenta atrás', () => { assert.equal(daysToSeason(new Date(2026, 1, 15)), 0); assert.ok(daysToSeason(new Date(2026, 9, 15)) > 90); });
+ok('mensual solo de meses cerrados', () => { const r = autoGenerate(d, INIT_TAX, new Date(2026, 9, 15)); assert.deepEqual(r.fresh.map((x) => x.period), ['2025-06', '2026-09']); assert.equal(r.fresh[1].total, 50); });
+ok('idempotente', () => { const a = autoGenerate(d, INIT_TAX, new Date(2026, 9, 15)); const b = autoGenerate(d, a.tx, new Date(2026, 9, 16)); assert.equal(b.fresh.length, 0); });
+ok('anual en temporada con deducciones', () => { const r = autoGenerate(d, INIT_TAX, new Date(2026, 1, 15)); const y = r.fresh.find((x) => x.kind === 'year')!; assert.equal(y.period, '2025'); assert.equal(y.count, 1); });
+ok('anual fuera de temporada no', () => assert.ok(!autoGenerate(d, INIT_TAX, new Date(2026, 9, 15)).fresh.some((x) => x.kind === 'year')));
+ok('otro país (MX abril)', () => { assert.equal(inSeason(new Date(2026, 3, 10), 'MX'), true); assert.equal(inSeason(new Date(2026, 1, 15), 'MX'), false); });

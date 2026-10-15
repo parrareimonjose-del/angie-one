@@ -1,21 +1,33 @@
 import { router } from 'expo-router';
+import { Text } from 'react-native';
+import { TaxesCard } from '../src/taxes-ui';
 import { useTranslation } from 'react-i18next';
-import { Screen, Btn } from '../src/ui';
+import { Screen, Btn, Card, ListRow, s } from '../src/ui';
+/** «Más» agrupado en listas de vidrio con filas de 60 px (rediseño). */
 export default function More() {
   const { t } = useTranslation();
+  const go = (p: string) => () => router.push(p as any);
   return (
     <Screen title={t('more.title')}>
-      <Btn label={`🌱  ${t('p2.hub')}`} onPress={() => router.push('/plus')} />
-      <Btn kind="accent" label={`✨  ${t('x.explore')}`} onPress={() => router.push('/explore')} />
-      <Btn kind="secondary" testID="more-tut" label={`🎬  ${t('tu.title')}`} onPress={() => router.push('/tutoriales' as any)} />
-      <Btn kind="secondary" testID="more-clone" label={`🧬  ${t('cl.title')}`} onPress={() => router.push('/clon' as any)} />
-      <Btn label={`💪  ${t('coach.title')}`} onPress={() => router.push('/coach')} />
-      <Btn label={`🏷️  ${t('more.barcode')}`} onPress={() => router.push('/barcode')} />
-      <Btn kind="secondary" label={`✍️  ${t('more.manual')}`} onPress={() => router.push('/manual')} />
-      <Btn kind="secondary" label={`🧾  ${t('dt.title')}`} onPress={() => router.push('/datos' as any)} />
-      <Btn kind="accent" label={`⭐  ${t('more.premium')}`} onPress={() => router.push('/paywall')} />
-      <Btn kind="ghost" label={`⚙️  ${t('more.settings')}`} onPress={() => router.push('/settings')} />
-      <Btn kind="ghost" label={`👑  ${t('more.founder')}`} onPress={() => router.push('/founder')} />
+      <Btn kind="accent" label={`⭐  ${t('more.premium')}`} onPress={go('/paywall')} />
+      <Card style={{ gap: 2 }}>
+        <ListRow icon="🌱" label={t('p2.hub')} onPress={go('/plus')} />
+        <ListRow icon="✨" label={t('x.explore')} onPress={go('/explore')} />
+        <ListRow icon="💪" label={t('coach.title')} onPress={go('/coach')} />
+        <ListRow testID="more-clone" icon="🧬" label={t('cl.title')} onPress={go('/clon')} />
+        <ListRow testID="more-tut" icon="🎬" label={t('tu.title')} onPress={go('/tutoriales')} />
+      </Card>
+      <Card style={{ gap: 2 }}>
+        <ListRow icon="🏷️" label={t('more.barcode')} onPress={go('/barcode')} />
+        <ListRow icon="✍️" label={t('more.manual')} onPress={go('/manual')} />
+      </Card>
+      <TaxesCard />
+      <Card style={{ gap: 2 }}>
+        <ListRow icon="🧾" label={t('dt.title')} onPress={go('/datos')} />
+        <ListRow icon="⚙️" label={t('more.settings')} onPress={go('/settings')} />
+        <ListRow icon="👑" label={t('more.founder')} onPress={go('/founder')} />
+      </Card>
+      <Text style={[s.muted, { textAlign: 'center' }]}>Angie One</Text>
     </Screen>
   );
 }

@@ -84,7 +84,7 @@ export function TutorialPlayer() {
       <Btn small kind="secondary" style={{ flex: 1.4 }} testID="tut-pause" label={paused ? `▶ ${t('tu.resume')}` : `⏸ ${t('tu.pause')}`} onPress={() => { if (!paused) Speech.stop(); setPaused(!paused); }} />
       <Btn small kind="ghost" style={{ flex: 1 }} label="⏭" a11y={t('tu.next')} onPress={() => setStep(step + 1)} /></View>}
     <Btn small kind="ghost" label={voice ? `🔊 ${t('tu.voiceOn')}` : `🔇 ${t('tu.voiceOff')}`} onPress={() => { if (voice) Speech.stop(); setVoice(!voice); }} />
-    {step > 2 && <Card style={{ backgroundColor: '#EDE9FE' }}><T style={{ fontWeight: '800' }}>✅ {t('tu.done')}</T></Card>}
+    {step > 2 && <Card style={{ backgroundColor: C.tint }}><T style={{ fontWeight: '800' }}>✅ {t('tu.done')}</T></Card>}
     <Btn testID="tut-try" label={`👉  ${t('tu.try')}`} onPress={() => { Speech.stop(); router.push(tut.route as any); }} />
     <Btn kind="ghost" label={`🎬  ${t('tu.all')}`} onPress={() => { Speech.stop(); router.push('/tutoriales' as any); }} />
   </Screen>;

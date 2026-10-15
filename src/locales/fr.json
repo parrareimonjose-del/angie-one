@@ -1872,5 +1872,46 @@
       "badcode": "Le code comporte 20 lettres et chiffres.",
       "server": "Le cloud est occupé. Réessaie dans un moment."
     }
+  },
+  "ui": {
+    "theme": "Apparence",
+    "system": "Automatique",
+    "light": "Clair",
+    "dark": "Sombre"
+  },
+  "tx": {
+    "title": "Impôts",
+    "short": "Vos reçus prêts pour les impôts",
+    "open": "Ouvrir Impôts",
+    "includes": "Ce qui est inclus",
+    "f1": "Reçus en photo ou PDF",
+    "f1d": "L’IA les lit et les classe",
+    "f2": "Points",
+    "f2d": "3 par reçu, 2 par sondage",
+    "f3": "Rapport mensuel",
+    "f3d": "Vos dépenses du mois (15-20 points)",
+    "f4": "Rapport fiscal annuel",
+    "f4d": "Dépenses de l’année et déductions possibles (100 points)",
+    "f5": "Questions du comptable",
+    "f5d": "L’IA demande ce dont votre comptable a besoin",
+    "f6": "PDF et envoi au comptable",
+    "f6d": "Téléchargez-le ou envoyez-le à votre comptable",
+    "sample": "EXEMPLE",
+    "sampleT": "Rapport annuel 2026",
+    "sampleDed": "Déductions possibles : 575 $",
+    "cta": "Débloquer avec Premium",
+    "heroT": "Vos impôts sans stress",
+    "season": "Saison des impôts",
+    "seasonIn": "C’est la saison des impôts ! Fin le {{end}}",
+    "seasonDays": "Encore {{n}} jours",
+    "timeline": "Vos rapports",
+    "auto": "L’IA prépare votre rapport à la fin de chaque mois, et l’annuel pendant la saison des impôts. On vous prévient quand il est prêt.",
+    "readyM": "Votre rapport de {{p}} est prêt",
+    "readyY": "Votre rapport fiscal annuel {{p}} est prêt",
+    "none": "Pas encore de rapport. Ajoutez des reçus et l’IA s’en charge.",
+    "country": "Pays",
+    "sum": "{{n}} reçus · {{total}}",
+    "dedL": "Déductions possibles : {{v}}",
+    "view": "Voir le rapport"
   }
 }

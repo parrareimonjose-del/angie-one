@@ -1872,5 +1872,46 @@
       "badcode": "The code has 20 letters and numbers.",
       "server": "The cloud is busy. Try again in a while."
     }
+  },
+  "ui": {
+    "theme": "Appearance",
+    "system": "Automatic",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "tx": {
+    "title": "Taxes",
+    "short": "Your receipts ready for tax time",
+    "open": "Open Taxes",
+    "includes": "What’s included",
+    "f1": "Receipts by photo or PDF",
+    "f1d": "AI reads and sorts them",
+    "f2": "Points",
+    "f2d": "3 per receipt, 2 per survey",
+    "f3": "Monthly report",
+    "f3d": "Your spending this month (15-20 points)",
+    "f4": "Annual tax report",
+    "f4d": "Year’s spending and possible deductions (100 points)",
+    "f5": "Accountant questions",
+    "f5d": "AI asks what your accountant needs",
+    "f6": "PDF and send to accountant",
+    "f6d": "Download it or send it to your accountant",
+    "sample": "SAMPLE",
+    "sampleT": "Annual report 2026",
+    "sampleDed": "Possible deductions: $575",
+    "cta": "Unlock with Premium",
+    "heroT": "Your taxes, stress-free",
+    "season": "Tax season",
+    "seasonIn": "It’s tax season! It ends {{end}}",
+    "seasonDays": "{{n}} days to go",
+    "timeline": "Your reports",
+    "auto": "AI prepares your report when each month closes, and your annual one in tax season. We’ll tell you when it’s ready.",
+    "readyM": "Your {{p}} report is ready",
+    "readyY": "Your {{p}} annual tax report is ready",
+    "none": "No reports yet. Upload receipts and AI prepares them for you.",
+    "country": "Country",
+    "sum": "{{n}} receipts · {{total}}",
+    "dedL": "Possible deductions: {{v}}",
+    "view": "View report"
   }
 }

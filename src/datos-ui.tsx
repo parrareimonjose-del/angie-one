@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { View, Text, TextInput, Pressable, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { router } from 'expo-router';
+import { router, useLocalSearchParams } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
 import { Screen, Card, Btn, T, Bar, s } from './ui';
@@ -14,6 +14,7 @@ import { isPremium } from './coach';
 import { useExt, Pending, Example, Note } from './ext';
 import { AI_URL } from './ai';
 import { shrinkForUpload } from './img';
+import { DatosTabs } from './taxes-ui';
 import { INIT_DATA, DataState, grant, revoke, ingest, receiptsToday, MAX_RECEIPTS_DAY, monthReceipts, summarize, monthlyCost, monthGap, canRedeem, redeem,
   gapSurveyId, deductions, ACCOUNTANT_QS, LISTS, ListId, listInfo, SAMPLE_USERS, filteredView, decideList, Decision, MIN_GROUP, Receipt, danglingPointers } from './datos';
 
@@ -28,7 +29,7 @@ const SAMPLE: Receipt = { store: 'Supermercado Ejemplo', date: new Date().toISOS
 
 function PremLock() {
   const { t } = useTranslation();
-  return <Card style={{ backgroundColor: C.secondary }} testID="locked"><Text style={[s.h2, { color: C.white }]}>🔒 {t('p2.lockT')}</Text>
+  return <Card style={{ backgroundColor: C.mode === 'dark' ? '#2A1F4A' : '#7C3AED' }} testID="locked"><Text style={[s.h2, { color: C.white }]}>🔒 {t('p2.lockT')}</Text>
     <Text style={[s.t, { color: C.white }]}>{t('dt.lock')}</Text><Btn kind="accent" label={`⭐ ${t('coach.unlock')}`} onPress={() => router.push('/paywall')} /></Card>;
 }
 const Health = () => { const { t } = useTranslation(); return <Card testID="no-health" style={{ borderWidth: 2, borderColor: C.success }}><T style={{ fontWeight: '800' }}>🛡️ {t('dt.noHealth')}</T></Card>; };
@@ -43,7 +44,7 @@ function Survey({ id, onDone }: { id: string; onDone: (a: string) => void }) {
 export function Datos() {
   const { t } = useTranslation(); const { s: st } = useStore(); const [d, setD] = useData();
   const [box, setBox] = useState(false); const [msg, setMsg] = useState(''); const [busy, setBusy] = useState(false);
-  if (!isPremium(st)) return <Screen title={`🧾 ${t('dt.title')}`}><PremLock /><Health /></Screen>;
+  if (!isPremium(st)) return <Screen title={`🧾 ${t('dt.title')}`}><DatosTabs /><PremLock /><Health /></Screen>;
   const add = (src: 'receipt' | 'survey', payload: any) => {
     const r = ingest(d, src, payload, uid()); if (r.error) { setMsg(t('dt.err.' + (['limit', 'done', 'no_consent'].includes(r.error) ? r.error : 'bad'))); return; }
     setD(() => r.d); setMsg(t('dt.plus', { n: r.pts }));
@@ -61,7 +62,7 @@ export function Datos() {
     inp.onchange = () => { const f = inp.files?.[0]; if (!f) return; if (f.size > 2.8e6) { setMsg(t('dt.err.big')); return; } const fr = new FileReader(); fr.onload = () => read(String(fr.result).split(',')[1], 'application/pdf'); fr.readAsDataURL(f); }; inp.click(); };
   const done = new Set(Object.values(d.master).map((m) => m.survey?.id));
   return <Screen title={`🧾 ${t('dt.title')}`}>
-    <Example /><Pending what={t('dt.server')} /><Health />
+    <DatosTabs /><Example /><Pending what={t('dt.server')} /><Health />
     <Card testID="consent"><Text style={s.h2}>✋ {t('dt.consentT')}</Text>
       {d.consent ? <><T testID="consent-on">✓ {t('dt.consentOn')}</T>
         <Btn kind="danger" label={t('dt.revoke')} onPress={() => { setD((x) => revoke(x)); setMsg(t('dt.revoked')); }} />
@@ -92,9 +93,10 @@ export function Datos() {
 }
 
 function ReportScreen({ kind }: { kind: 'month' | 'year' }) {
-  const { t } = useTranslation(); const { s: st } = useStore(); const [d, setD] = useData(); const [ans, setAns] = useState<Record<string, string>>({});
+  const { t } = useTranslation(); const { s: st } = useStore(); const [d, setD] = useData(); const [ans, setAns] = useState<Record<string, string>>({}); const qp = useLocalSearchParams<{ period?: string }>();
   if (!isPremium(st)) return <Screen title={`📅 ${t(kind === 'month' ? 'dt.month' : 'dt.year')}`}><PremLock /></Screen>;
-  const period = kind === 'month' ? thisMonth() : thisYear();
+  const want = typeof qp.period === 'string' && (kind === 'month' ? /^\d{4}-\d{2}$/ : /^\d{4}$/).test(qp.period) ? qp.period : '';
+  const period = want || (kind === 'month' ? thisMonth() : thisYear());
   const rs = Object.values(d.master).filter((m) => m.source === 'receipt' && m.receipt!.date.startsWith(period)).map((m) => m.receipt!);
   const sum = summarize(rs); const c = canRedeem(d, kind, period); const have = d.reports.some((r) => r.kind === kind && r.period === period);
   const gap = kind === 'month' ? monthGap(d, period) : Math.max(0, 100 - d.points);
@@ -163,7 +165,7 @@ export function FounderData() {
   return <Card testID="founder-data"><Text style={s.h2}>🗂️ {t('dt.foT')}</Text><Example /><Pending what={t('dt.server')} />
     <T>{t('dt.foMaster', { n: Object.keys(d.master).length, p: pointers, bad: danglingPointers(d).length })}</T>
     <T>{t('dt.foConsent', { g: d.log.filter((x) => x.action === 'grant').length, r: d.log.filter((x) => x.action !== 'grant').length })}</T>
-    {ready.length ? <View testID="ready-notice" style={{ backgroundColor: '#FFF1DC', borderRadius: 12, padding: 10, gap: 4 }}><Text style={[s.h2, { color: C.warning }]}>🔔 {t('dt.readyN', { n: ready.length })}</Text></View> : null}
+    {ready.length ? <View testID="ready-notice" style={{ backgroundColor: C.warnBg, borderRadius: 12, padding: 10, gap: 4 }}><Text style={[s.h2, { color: C.warning }]}>🔔 {t('dt.readyN', { n: ready.length })}</Text></View> : null}
     {infos.map((i) => <View key={i.id} style={{ gap: 6, borderTopWidth: 1, borderColor: C.border, paddingTop: 8 }} testID={'list-' + i.id}>
       <Pressable accessibilityRole="button" onPress={() => setOpen(open === i.id ? null : i.id)} style={{ minHeight: 48, justifyContent: 'center' }}>
         <Text style={[s.h2, { fontSize: 18 }]}>{i.ready ? '🟢' : '🟡'} {t('dt.list.' + i.id)}</Text>

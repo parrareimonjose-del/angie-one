@@ -1872,5 +1872,46 @@
       "badcode": "Der Code besteht aus 20 Buchstaben und Zahlen.",
       "server": "Die Cloud ist beschäftigt. Versuche es gleich noch einmal."
     }
+  },
+  "ui": {
+    "theme": "Erscheinungsbild",
+    "system": "Automatisch",
+    "light": "Hell",
+    "dark": "Dunkel"
+  },
+  "tx": {
+    "title": "Steuern",
+    "short": "Deine Belege bereit für die Steuer",
+    "open": "Steuern öffnen",
+    "includes": "Was enthalten ist",
+    "f1": "Belege per Foto oder PDF",
+    "f1d": "Die KI liest und sortiert sie",
+    "f2": "Punkte",
+    "f2d": "3 pro Beleg, 2 pro Umfrage",
+    "f3": "Monatsbericht",
+    "f3d": "Deine Ausgaben im Monat (15-20 Punkte)",
+    "f4": "Jährlicher Steuerbericht",
+    "f4d": "Ausgaben des Jahres und mögliche Abzüge (100 Punkte)",
+    "f5": "Fragen des Steuerberaters",
+    "f5d": "Die KI fragt, was dein Steuerberater braucht",
+    "f6": "PDF und an Steuerberater senden",
+    "f6d": "Herunterladen oder an den Steuerberater senden",
+    "sample": "BEISPIEL",
+    "sampleT": "Jahresbericht 2026",
+    "sampleDed": "Mögliche Abzüge: 575 $",
+    "cta": "Mit Premium freischalten",
+    "heroT": "Steuern ohne Stress",
+    "season": "Steuersaison",
+    "seasonIn": "Es ist Steuersaison! Endet am {{end}}",
+    "seasonDays": "Noch {{n}} Tage",
+    "timeline": "Deine Berichte",
+    "auto": "Die KI erstellt deinen Bericht zum Monatsende und den Jahresbericht in der Steuersaison. Wir sagen dir Bescheid.",
+    "readyM": "Dein Bericht für {{p}} ist fertig",
+    "readyY": "Dein Jahressteuerbericht {{p}} ist fertig",
+    "none": "Noch keine Berichte. Lade Belege hoch, die KI erledigt den Rest.",
+    "country": "Land",
+    "sum": "{{n}} Belege · {{total}}",
+    "dedL": "Mögliche Abzüge: {{v}}",
+    "view": "Bericht ansehen"
   }
 }

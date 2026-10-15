@@ -112,7 +112,7 @@ export function Clone() {
   };
   // 1) Permiso aparte (casillas sin marcar) y mayor de edad
   if (!c && i === -1) return <Screen title={`🧬 ${t('cl.title')}`}>
-    <Card style={{ backgroundColor: '#EDE9FE' }}><T style={{ fontWeight: '800' }}>{t('cl.intro')}</T><T>{t('cl.how')}</T></Card>
+    <Card style={{ backgroundColor: C.tint }}><T style={{ fontWeight: '800' }}>{t('cl.intro')}</T><T>{t('cl.how')}</T></Card>
     <Card><Text style={s.h2}>🔒 {t('cl.rule')}</Text><T>{t('cl.ruleTxt')}</T><T>👕 {t('cl.clothes')}</T></Card>
     <Check testID="cl-consent" on={consent} label={t('cl.consent')} onPress={() => setConsent(!consent)} />
     <Check testID="cl-adult" on={adult} label={t('cl.adult')} onPress={() => setAdult(!adult)} />
@@ -146,7 +146,7 @@ export function Clone() {
   const diff = Math.round((kgNow - kg0) * 10) / 10;
   return <Screen title={`🧬 ${t('cl.title')}`}>
     <View style={{ alignSelf: 'flex-start', backgroundColor: c.traits.source === 'ai' ? C.secondary : C.accent, borderRadius: 12, paddingHorizontal: 10, paddingVertical: 6 }}><Text style={{ color: c.traits.source === 'ai' ? C.white : C.onAccent, fontWeight: '800' }}>{t(c.traits.source === 'ai' ? 'cl.byAi' : 'cl.byPhone')}</Text></View>
-    <Card testID="clone" style={{ backgroundColor: '#EDE9FE' }}><View style={[s.row, { justifyContent: 'space-around', alignItems: 'flex-end' }]}>
+    <Card testID="clone" style={{ backgroundColor: C.tint }}><View style={[s.row, { justifyContent: 'space-around', alignItems: 'flex-end' }]}>
       {cols.map(([k, kg, str]) => <View key={k} style={{ alignItems: 'center' }}><Avatar id={k} body={bodyOf(kg, cm, sex, str, c.traits!)} tr={c.traits!} face={c.photos.faceFront} view={view} w={k === 'now' ? 104 : 86} />
         <Text style={{ fontWeight: '900', fontSize: 17, color: k === 'now' ? C.primary : C.text }}>{t(`cl.${k}`)}</Text><Text testID={`cl-kg-${k}`} style={s.muted}>{fmtNum(kg, 1)} kg</Text></View>)}</View>
       <T style={{ textAlign: 'center', fontWeight: '700' }}>{diff ? t(diff < 0 ? 'cl.down' : 'cl.up', { kg: fmtNum(Math.abs(diff), 1) }) : t('cl.same')} · 💪 {fmtNum(Math.round(strNow * 100))}%</T></Card>
@@ -166,6 +166,6 @@ export function Clone() {
 export function CloneNudge() {
   const { t } = useTranslation(); const [c, , ready] = useClone(); const [off, setOff] = useExt<boolean>('cloneNudgeOff', false);
   if (!ready || off || c?.traits) return null;
-  return <Card testID="clone-nudge" style={{ backgroundColor: '#EDE9FE' }}><T style={{ fontWeight: '800' }}>🧬 {t('cl.nudge')}</T>
+  return <Card testID="clone-nudge" style={{ backgroundColor: C.tint }}><T style={{ fontWeight: '800' }}>🧬 {t('cl.nudge')}</T>
     <View style={[s.row, { gap: 8 }]}><Btn small style={{ flex: 1 }} label={t('cl.nudgeGo')} onPress={() => router.push('/clon' as any)} /><Btn small kind="ghost" style={{ flex: 1 }} label={t('cl.notNow')} onPress={() => setOff(() => true)} /></View></Card>;
 }

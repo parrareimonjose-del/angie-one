@@ -1872,5 +1872,46 @@
       "badcode": "El código tiene 20 letras y números.",
       "server": "La nube está ocupada. Inténtalo en un rato."
     }
+  },
+  "ui": {
+    "theme": "Apariencia",
+    "system": "Automático",
+    "light": "Claro",
+    "dark": "Oscuro"
+  },
+  "tx": {
+    "title": "Taxes e impuestos",
+    "short": "Tus recibos listos para tus impuestos",
+    "open": "Abrir Taxes",
+    "includes": "Qué incluye",
+    "f1": "Recibos con foto o PDF",
+    "f1d": "La IA los lee y los ordena",
+    "f2": "Puntos",
+    "f2d": "3 por recibo y 2 por encuesta",
+    "f3": "Informe mensual",
+    "f3d": "Tus gastos del mes (15-20 puntos)",
+    "f4": "Informe anual de impuestos",
+    "f4d": "Gastos del año y posibles deducciones (100 puntos)",
+    "f5": "Preguntas del contador",
+    "f5d": "La IA te pregunta lo que pide tu contador",
+    "f6": "PDF y enviar al contador",
+    "f6d": "Descárgalo o mándalo a tu contador",
+    "sample": "EJEMPLO",
+    "sampleT": "Informe anual 2026",
+    "sampleDed": "Posibles deducciones: $575",
+    "cta": "Desbloquear con Premium",
+    "heroT": "Tus impuestos, sin estrés",
+    "season": "Temporada de taxes",
+    "seasonIn": "¡Es temporada de taxes! Termina el {{end}}",
+    "seasonDays": "Faltan {{n}} días",
+    "timeline": "Tus informes",
+    "auto": "La IA prepara tu informe al cerrar cada mes y el anual en temporada de taxes. Te avisamos cuando esté listo.",
+    "readyM": "Tu informe de {{p}} está listo",
+    "readyY": "Tu informe anual de taxes {{p}} está listo",
+    "none": "Aún no hay informes. Sube recibos y la IA los prepara sola.",
+    "country": "País",
+    "sum": "{{n}} recibos · {{total}}",
+    "dedL": "Posibles deducciones: {{v}}",
+    "view": "Ver informe"
   }
 }

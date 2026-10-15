@@ -91,7 +91,7 @@ export default function Player() {
     <Screen nav={false}>
       <Bar value={i} max={steps.length} color={C.primary} />
       <Text style={s.muted}>{t('coach.stepOf', { a: i + 1, b: steps.length })} · 🔥 {fmtNum(Math.round(burn))} {t('u.kcal')}</Text>
-      <Card style={{ alignItems: 'center', gap: 12, backgroundColor: rest ? '#EDE9FE' : C.card, paddingVertical: 28 }}>
+      <Card style={{ alignItems: 'center', gap: 12, backgroundColor: rest ? C.tint : C.card, paddingVertical: 28 }}>
         <Text style={[s.muted, { fontWeight: '800', fontSize: 18 }]}>{rest ? `😮‍💨 ${t('coach.rest')}` : t('coach.setOf', { a: step.set, b: step.sets })}</Text>
         <Text style={[s.h1, { textAlign: 'center' }]} testID="step-name">{rest ? t('coach.breathe') : N.ex(step.ex)}</Text>
         {step.secs ? <Text testID="timer" style={{ fontSize: 72, fontWeight: '900', color: rest ? C.secondary : C.primary }}>{left >= 60 ? `${Math.floor(left / 60)}:${String(left % 60).padStart(2, '0')}` : `${left}s`}</Text>

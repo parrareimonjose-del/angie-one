@@ -33,7 +33,7 @@ export default function Paywall() {
       {opt('y', t('pay.yearly'), t('pay.yearlySave'))}
       {opt('m', t('pay.monthly'))}
       <Text style={[s.muted, { textAlign: 'center' }]}>{t('pay.latam')}</Text>
-      <Card style={{ backgroundColor: '#FFF1DC' }}><T>⏳ {t('pay.offer')}</T>
+      <Card style={{ backgroundColor: C.warnBg }}><T>⏳ {t('pay.offer')}</T>
         <T style={{ fontWeight: '800', color: tp.phase === 'offer' ? C.primary : C.text }}>{tp.phase === 'offer' ? t('pay.offerLive', { time: fmtCountdown(tp.offerMsLeft) }) : tp.phase === 'free' ? t('pay.offerGone') : t('pay.offerAfter')}</T></Card>
       <Card testID="sub-terms"><Text style={s.h2}>📋 {t('fx.termsT')}</Text>
         <T>{t('fx.terms', { price: plan === 'y' ? '$' + PLANS.yearly.usd : '$' + PLANS.monthly.usd, period: t(plan === 'y' ? 'fx.perYear' : 'fx.perMonth'), store: prov.name })}</T>

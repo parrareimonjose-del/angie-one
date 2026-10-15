@@ -10,6 +10,7 @@
     "expo": "~57.0.29",
     "expo-camera": "~57.0.6",
     "expo-constants": "~57.0.22",
+    "expo-haptics": "~57.0.0",
     "expo-image-picker": "~57.0.20",
     "expo-linking": "~57.0.13",
     "expo-localization": "~57.0.2",
@@ -41,11 +42,12 @@
     "check:i18n": "node scripts/check-i18n.js",
     "test:safety": "node tests/run.mjs tests/safety.test.ts",
     "test:datos": "node tests/run.mjs tests/datos.test.ts",
-    "test": "npm run -s test:safety && npm run -s test:datos && npm run -s test:faltantes && npm run -s test:clone && npm run -s test:mfp5 && npm run -s test:fooddb",
+    "test": "npm run -s test:safety && npm run -s test:datos && npm run -s test:faltantes && npm run -s test:clone && npm run -s test:mfp5 && npm run -s test:fooddb && npm run -s test:taxes",
     "test:mfp5": "node tests/run.mjs tests/mfp5.test.ts",
     "test:faltantes": "node tests/run.mjs tests/faltantes.test.ts",
     "test:clone": "node tests/run.mjs tests/clone.test.ts",
-    "test:fooddb": "node tests/run.mjs tests/fooddb.test.ts"
+    "test:fooddb": "node tests/run.mjs tests/fooddb.test.ts",
+    "test:taxes": "node tests/run.mjs tests/taxes.test.ts"
   },
   "private": true
 }

@@ -3,7 +3,7 @@ import { View, Text, Image } from 'react-native';
 import { Redirect, router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import * as Speech from 'expo-speech';
-import { Screen, Card, Btn, Ring, T, s } from '../src/ui';
+import { Screen, Card, Btn, Ring, T, s, HeroPhoto, FOOD, celebrate, IconBtn } from '../src/ui';
 import { fmtLocale, fmtNum } from '../src/i18n';
 import { useStore, today, trialPhase, fmtCountdown, streak } from '../src/store';
 import { C } from '../src/theme';
@@ -11,6 +11,7 @@ import { SmartTips } from '../src/p2';
 import { SecurityNudge } from '../src/faltantes-ui';
 import { CloneNudge } from '../src/clone-ui';
 import { MacroRings } from '../src/mfp5-ui';
+import { TaxesCard } from '../src/taxes-ui';
 import { BillingReminder, UpsellNudge } from '../src/honest-ui';
 import { dayGoals } from '../src/mfp5';
 import { coachTarget, coachOf, burnedOn, isPremium, weekday } from '../src/coach';
@@ -33,11 +34,14 @@ export default function Home() {
     <Screen>
       <View style={[s.row, { justifyContent: 'space-between' }]}>
         <View style={s.row}><Image source={require('../assets/logo-icon.png')} style={{ width: 44, height: 44, borderRadius: 12 }} /><Text style={[s.h2, { fontSize: 24 }]}>Angie One</Text></View>
-        <Btn small kind="ghost" label={'🔊'} a11y={t('home.readAloud')} onPress={speak} style={{ width: 56 }} />
+        <View style={s.row}><Btn small kind="ghost" label={'🔊'} a11y={t('home.readAloud')} onPress={speak} style={{ width: 56 }} /><IconBtn testID="more-btn" icon="☰" a11y={t('nav.more')} onPress={() => router.push('/more')} /></View>
       </View>
-      <Text style={[s.t, { fontWeight: '700' }]}>{t('home.hello')} ✨</Text>
+      <HeroPhoto source={FOOD.bowl} height={150} testID="home-hero">
+        <Text style={{ color: '#fff', fontSize: 26, fontWeight: '800' }}>{t('home.hello')} ✨</Text>
+        <Text style={{ color: '#fff', fontSize: 16, fontWeight: '600' }}>{t('sp.tag')}</Text>
+      </HeroPhoto>
       <Btn kind="accent" small label={tp.phase === 'trial' ? `⭐ ${t('home.trialDays', { n: left })}` : tp.phase === 'offer' ? t('trial.offer', { time: fmtCountdown(tp.offerMsLeft) }) : t('home.trialOver')} onPress={() => router.push('/paywall')} />
-      {tp.phase === 'trial' && left <= 2 ? <Card style={{ backgroundColor: '#FFF1DC' }}><T style={{ fontWeight: '700' }}>{t(left === 2 ? 'trial.remind2' : 'trial.remind1')}</T></Card> : null}
+      {tp.phase === 'trial' && left <= 2 ? <Card style={{ backgroundColor: C.warnBg }}><T style={{ fontWeight: '700' }}>{t(left === 2 ? 'trial.remind2' : 'trial.remind1')}</T></Card> : null}
       <Card style={{ alignItems: 'center' }}>
         <Ring value={sum.kcal} max={target.kcal + burned} size={220}>
           <Text style={{ fontSize: 44, fontWeight: '900', color: C.text }}>{fmtNum(Math.max(0, target.kcal + burned - Math.round(sum.kcal)))}</Text>
@@ -61,7 +65,7 @@ export default function Home() {
           <T>{ch}</T>
           {st.streakOff ? null : <Text testID="streak" style={[s.muted, { fontWeight: '700' }]}>{t('home.streak', { n: streak(st.challengeDays) })}</Text>}
           {doneToday ? <Text style={{ color: C.success, fontWeight: '800', fontSize: 16 }}>✓ {t('home.challengeDone')}</Text>
-            : <Btn small kind="primary" label={t('home.markDone')} onPress={() => set((x) => ({ ...x, challengeDays: [...x.challengeDays, d] }))} />}
+            : <Btn small kind="primary" label={t('home.markDone')} onPress={() => { set((x) => ({ ...x, challengeDays: [...x.challengeDays, d] })); celebrate(); }} />}
         </Card>
       </View>
       {isPremium(st) && co.plan && !co.plan.workout.days[weekday()].rest && !co.workouts.some((w) => w.date === d) ? <Btn kind="secondary" label={`🏋️  ${t('coach.startToday')}`} onPress={() => router.push({ pathname: '/player', params: { day: String(weekday()) } })} /> : null}
@@ -69,6 +73,7 @@ export default function Home() {
       <UpsellNudge />
       <SecurityNudge />
       <CloneNudge />
+      <TaxesCard />
       <SmartTips />
       <Btn label={`📸  ${t('nav.scan')}`} onPress={() => router.push('/scan')} />
       <Btn kind="ghost" label={`🌱  ${t('p2.hub')}`} onPress={() => router.push('/plus')} />

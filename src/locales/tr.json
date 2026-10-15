@@ -1872,5 +1872,46 @@
       "badcode": "Kod 20 harf ve rakamdan oluşur.",
       "server": "Bulut şu an yoğun. Birazdan tekrar dene."
     }
+  },
+  "ui": {
+    "theme": "Görünüm",
+    "system": "Otomatik",
+    "light": "Açık",
+    "dark": "Koyu"
+  },
+  "tx": {
+    "title": "Vergiler",
+    "short": "Fişleriniz vergi için hazır",
+    "open": "Vergileri aç",
+    "includes": "Neler var",
+    "f1": "Fotoğraf veya PDF fiş",
+    "f1d": "Yapay zekâ okur ve düzenler",
+    "f2": "Puanlar",
+    "f2d": "Fiş başına 3, anket başına 2",
+    "f3": "Aylık rapor",
+    "f3d": "Bu ayki harcamalar (15-20 puan)",
+    "f4": "Yıllık vergi raporu",
+    "f4d": "Yılın harcamaları ve olası indirimler (100 puan)",
+    "f5": "Muhasebeci soruları",
+    "f5d": "Yapay zekâ muhasebecinin ihtiyacını sorar",
+    "f6": "PDF ve muhasebeciye gönder",
+    "f6d": "İndirin veya muhasebecinize gönderin",
+    "sample": "ÖRNEK",
+    "sampleT": "2026 yıllık rapor",
+    "sampleDed": "Olası indirimler: 575 $",
+    "cta": "Premium ile aç",
+    "heroT": "Stressiz vergi",
+    "season": "Vergi sezonu",
+    "seasonIn": "Vergi sezonu! {{end}} tarihinde bitiyor",
+    "seasonDays": "{{n}} gün kaldı",
+    "timeline": "Raporların",
+    "auto": "Yapay zekâ her ay sonunda aylık raporu, vergi sezonunda yıllık raporu hazırlar. Hazır olunca haber veririz.",
+    "readyM": "{{p}} raporun hazır",
+    "readyY": "{{p}} yıllık vergi raporun hazır",
+    "none": "Henüz rapor yok. Fiş yükle, yapay zekâ hazırlasın.",
+    "country": "Ülke",
+    "sum": "{{n}} fiş · {{total}}",
+    "dedL": "Olası indirimler: {{v}}",
+    "view": "Raporu gör"
   }
 }

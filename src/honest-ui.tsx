@@ -22,7 +22,7 @@ export function BillingReminder() {
   const msg = r ? t(r.kind === 'trial' ? 'hb.remTrial' : 'hb.remRenew', { date: fmtDate(new Date(r.at)) }) : '';
   useEffect(() => { if (r) notifyOnce('Angie One', msg, today()); }, [!!r, perm]);
   if (!r) return null;
-  return <Card testID="bill-reminder" style={{ backgroundColor: '#FFF1DC', borderWidth: 2, borderColor: C.warning }}>
+  return <Card testID="bill-reminder" style={{ backgroundColor: C.warnBg, borderWidth: 2, borderColor: C.warning }}>
     <T style={{ fontWeight: '800' }}>⏰ {msg}</T><Text style={s.muted}>{t('hb.remNoSurprise')}</Text>
     <Row><Btn small kind="secondary" testID="bill-manage" label={t('hb.manage')} onPress={() => router.push('/subscription')} />
       {perm === 'default' ? <Btn small kind="ghost" label={`🔔 ${t('hb.notifOn')}`} onPress={async () => setPerm(await Notification.requestPermission())} /> : null}</Row></Card>;

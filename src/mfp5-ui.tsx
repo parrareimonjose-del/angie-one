@@ -225,7 +225,7 @@ export function HealthSyncScreen() {
   return <Screen title={`❤️ ${t('mf.health')}`}>
     <Card testID="native-card"><Text style={s.h2}>📱 {sourceName()}</Text>
       {native ? <Btn label={t('mf.hConnect')} onPress={async () => { if (await native.requestRead()) run('native.json', ''); }} />
-        : <View testID="native-only" style={{ alignSelf: 'flex-start', backgroundColor: '#FFF1DC', borderColor: C.warning, borderWidth: 2, borderRadius: 12, paddingHorizontal: 10, paddingVertical: 6 }}>
+        : <View testID="native-only" style={{ alignSelf: 'flex-start', backgroundColor: C.warnBg, borderColor: C.warning, borderWidth: 2, borderRadius: 12, paddingHorizontal: 10, paddingVertical: 6 }}>
           <Text style={{ color: C.warning, fontWeight: '800' }}>📲 {t('mf.phoneOnly')}</Text></View>}
       <Text style={s.muted}>{t('mf.hReads')}</Text></Card>
     <Card><Text style={s.h2}>📂 {t('mf.hImport')}</Text><T>{t('mf.hApple')}</T><T>{t('mf.hGoogle')}</T>

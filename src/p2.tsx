@@ -264,7 +264,7 @@ export function Craving() {
   return <Screen title={`🍫 ${t('p2.t.craving')}`}>
     <T>{t('p2.crHow')}</T>
     <View style={[s.row, { flexWrap: 'wrap' }]}>{CRAVINGS.map(([k]) => <Chip key={k} label={t(`p2.cr.${k}.n`)} active={sel === k} onPress={() => { setSel(k); setAdded(false); }} />)}</View>
-    {c ? <Card testID="swap" style={{ backgroundColor: '#EDE9FE' }}><Text style={s.h2}>✨ {t(`p2.cr.${c[0]}.s`)}</Text>
+    {c ? <Card testID="swap" style={{ backgroundColor: C.tint }}><Text style={s.h2}>✨ {t(`p2.cr.${c[0]}.s`)}</Text>
       <T>{t('p2.crSave', { a: c[1], b: c[2], d: c[1] - c[2] })}</T><Text style={s.muted}>{t('p2.crKind')}</Text>
       {added ? <Text style={{ color: C.success, fontWeight: '800' }}>✓ {t('p2.vSaved')}</Text> : <Btn small label={`＋ ${t('p2.toDiary')}`} onPress={() => { set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: t(`p2.cr.${c[0]}.s`), kcal: c[2], p: 0, c: 0, f: 0, source: 'manual' }] })); setAdded(true); }} />}</Card> : null}
     <Note k="p2.crNote" /></Screen>;
@@ -305,7 +305,7 @@ export function SmartTips() {
   const { t } = useTranslation(); const { s: st } = useStore(); const [rem] = useExt<Rem>('rem', REM0); const [sl] = useExt<Sleep[]>('sleep', []);
   const tips = smartTips(st, rem, sl); if (!tips.length) return null;
   return <>{tips.map((x) => <Pressable key={x.k} testID="smart-tip" accessibilityRole="button" onPress={() => router.push(x.href as any)}
-    style={{ backgroundColor: '#FFF1DC', borderRadius: 18, padding: 14, minHeight: 64, justifyContent: 'center' }}><Text style={[s.t, { fontWeight: '700' }]}>🔔 {t('p2.r.' + x.k)}</Text></Pressable>)}</>;
+    style={{ backgroundColor: C.warnBg, borderRadius: 18, padding: 14, minHeight: 64, justifyContent: 'center' }}><Text style={[s.t, { fontWeight: '700' }]}>🔔 {t('p2.r.' + x.k)}</Text></Pressable>)}</>;
 }
 export function Reminders() {
   const { t } = useTranslation(); const [rem, setRem] = useExt<Rem>('rem', REM0);
@@ -376,7 +376,7 @@ export function Avatar() {
   const d = today(); const eaten = st.entries.some((e) => e.date === d) || (st.water[d] || 0) > 0;
   const say = () => speak(eaten ? t('p2.avSayGood') : t('p2.avSayStart'));
   return <Screen title={`🙂 ${t('p2.t.avatar')}`}>
-    <Card style={{ alignItems: 'center', backgroundColor: '#EDE9FE' }}><AvatarSvg av={av} /><T style={{ textAlign: 'center' }}>{eaten ? t('p2.avSayGood') : t('p2.avSayStart')}</T>
+    <Card style={{ alignItems: 'center', backgroundColor: C.tint }}><AvatarSvg av={av} /><T style={{ textAlign: 'center' }}>{eaten ? t('p2.avSayGood') : t('p2.avSayStart')}</T>
       <Btn small kind="ghost" label="🔊" a11y={t('home.readAloud')} onPress={say} style={{ width: 64 }} /></Card>
     {!prem ? <Locked k="p2.avLocked" /> : <>
       <Card><Text style={s.h2}>{t('p2.avSkin')}</Text><Row>{SKIN.map((c, i) => <Pressable key={c} accessibilityRole="button" accessibilityLabel={`${t('p2.avSkin')} ${i + 1}`} onPress={() => setAv((v) => ({ ...v, skin: i }))} style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: c, borderWidth: av.skin === i ? 4 : 0, borderColor: C.secondary }} />)}</Row>

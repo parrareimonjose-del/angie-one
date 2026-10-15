@@ -1872,5 +1872,46 @@
       "badcode": "Il codice è composto da 20 lettere e numeri.",
       "server": "Il cloud è occupato. Riprova tra poco."
     }
+  },
+  "ui": {
+    "theme": "Aspetto",
+    "system": "Automatico",
+    "light": "Chiaro",
+    "dark": "Scuro"
+  },
+  "tx": {
+    "title": "Tasse",
+    "short": "I tuoi scontrini pronti per le tasse",
+    "open": "Apri Tasse",
+    "includes": "Cosa include",
+    "f1": "Scontrini con foto o PDF",
+    "f1d": "L’IA li legge e li ordina",
+    "f2": "Punti",
+    "f2d": "3 per scontrino, 2 per sondaggio",
+    "f3": "Report mensile",
+    "f3d": "Le tue spese del mese (15-20 punti)",
+    "f4": "Report fiscale annuale",
+    "f4d": "Spese dell’anno e possibili detrazioni (100 punti)",
+    "f5": "Domande del commercialista",
+    "f5d": "L’IA chiede ciò che serve al commercialista",
+    "f6": "PDF e invio al commercialista",
+    "f6d": "Scaricalo o invialo al commercialista",
+    "sample": "ESEMPIO",
+    "sampleT": "Report annuale 2026",
+    "sampleDed": "Possibili detrazioni: 575 $",
+    "cta": "Sblocca con Premium",
+    "heroT": "Le tue tasse senza stress",
+    "season": "Stagione delle tasse",
+    "seasonIn": "È la stagione delle tasse! Finisce il {{end}}",
+    "seasonDays": "Mancano {{n}} giorni",
+    "timeline": "I tuoi report",
+    "auto": "L’IA prepara il report alla chiusura di ogni mese e quello annuale nella stagione delle tasse. Ti avvisiamo quando è pronto.",
+    "readyM": "Il report di {{p}} è pronto",
+    "readyY": "Il report fiscale annuale {{p}} è pronto",
+    "none": "Nessun report ancora. Carica scontrini e l’IA li prepara.",
+    "country": "Paese",
+    "sum": "{{n}} scontrini · {{total}}",
+    "dedL": "Possibili detrazioni: {{v}}",
+    "view": "Vedi report"
   }
 }

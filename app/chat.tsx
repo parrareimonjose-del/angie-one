@@ -34,7 +34,7 @@ export default function Chat() {
   const last = [...c.chat].reverse().find((m) => m.role === 'coach');
   return (
     <Screen title={`💬 ${t('coach.chat')}`}>
-      <Card style={{ backgroundColor: '#FFF1DC' }}><T>ℹ️ {t('chat.disclaimer')}</T></Card>
+      <Card style={{ backgroundColor: C.warnBg }}><T>ℹ️ {t('chat.disclaimer')}</T></Card>
       {!c.chat.length && <Card><T>👋 {t('chat.hello')}</T></Card>}
       {c.chat.map((m, i) => (
         <View key={i} testID={m.role === 'coach' ? 'chat-reply' : undefined} style={{ alignSelf: m.role === 'user' ? 'flex-end' : 'flex-start', maxWidth: '88%', backgroundColor: m.role === 'user' ? C.secondary : C.card, borderRadius: 20, padding: 14 }}>

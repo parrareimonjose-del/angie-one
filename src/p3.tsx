@@ -75,7 +75,7 @@ function MoveAnim({ m }: { m: typeof MOVES[number] }) {
   useEffect(() => { const a = Animated.loop(Animated.sequence([Animated.timing(v, { toValue: 1, duration: 900, easing: Easing.inOut(Easing.quad), useNativeDriver: false }), Animated.timing(v, { toValue: 0, duration: 900, useNativeDriver: false })])); a.start(); return () => a.stop(); }, []);
   const ty = v.interpolate({ inputRange: [0, 1], outputRange: [0, m === 'squat' ? 28 : m === 'pushup' ? 14 : m === 'jack' ? -16 : 2] });
   const sc = v.interpolate({ inputRange: [0, 1], outputRange: [1, m === 'jack' ? 1.25 : 1] });
-  return <View accessibilityLabel="animation" style={{ height: 150, alignItems: 'center', justifyContent: 'center', backgroundColor: '#FFE4E8', borderRadius: 20 }}>
+  return <View accessibilityLabel="animation" style={{ height: 150, alignItems: 'center', justifyContent: 'center', backgroundColor: C.primarySoft, borderRadius: 20 }}>
     <Animated.View style={{ transform: [{ translateY: ty }, { scaleX: sc }, { rotate: m === 'pushup' || m === 'plank' ? '90deg' : '0deg' }] }}>
       <Svg width={80} height={120}><Circle cx={40} cy={16} r={13} fill={C.primary} /><Rect x={30} y={32} width={20} height={44} rx={8} fill={C.secondary} />
         <Rect x={8} y={36} width={22} height={9} rx={4} fill={C.secondary} /><Rect x={50} y={36} width={22} height={9} rx={4} fill={C.secondary} />
@@ -108,7 +108,7 @@ export function Fasting() {
   const { s: st } = useStore(); const p = st.profile; const risky = !!p && p.age < 18;
   const el = f.start ? (now - f.start) / 3600e3 : 0;
   return <Screen title={`⏱️ ${t('x.t.fasting')}`}>
-    {risky ? <Card style={{ backgroundColor: '#FFF1DC' }}><T style={{ fontWeight: '800' }}>💛 {t('x.fastBlocked')}</T></Card> : <>
+    {risky ? <Card style={{ backgroundColor: C.warnBg }}><T style={{ fontWeight: '800' }}>💛 {t('x.fastBlocked')}</T></Card> : <>
       <Row>{[12, 14, 16].map((h) => <Chip key={h} label={`${h}:${24 - h}`} active={f.hours === h} onPress={() => setF((x) => ({ ...x, hours: h }))} />)}</Row>
       <Card style={{ alignItems: 'center' }}><Text testID="fast-timer" style={{ fontSize: 48, fontWeight: '900', color: C.secondary }}>{Math.floor(el)}h {String(Math.floor((el % 1) * 60)).padStart(2, '0')}m</Text>
         <Bar value={el} max={f.hours} color={C.secondary} /><Text style={s.muted}>{t('x.fastGoal', { h: f.hours })}</Text></Card>
@@ -129,7 +129,7 @@ export function Twin() {
   const go = (k: typeof act) => { setAct(k); speak(t(`x.tw.${k}`, { kcal: coachTarget(st).kcal })); };
   return <Screen title={`🧍 ${t('x.t.twin')}`}>
     <View style={{ alignSelf: 'flex-start', backgroundColor: C.secondary, borderRadius: 12, paddingHorizontal: 10, paddingVertical: 6 }}><Text style={{ color: C.white, fontWeight: '800' }}>Premium Plus · {t('x.preview')}</Text></View>
-    <Card style={{ alignItems: 'center', backgroundColor: '#EDE9FE' }}>
+    <Card style={{ alignItems: 'center', backgroundColor: C.tint }}>
       <Animated.View testID="twin" style={{ transform: [{ translateY: ty }] }}><Svg width={140} height={200}>
         <Ellipse cx={70} cy={192} rx={44} ry={7} fill="#0002" /><Circle cx={70} cy={36} r={26} fill="#F2C7A5" />
         <Circle cx={61} cy={33} r={3} fill={C.text} /><Circle cx={79} cy={33} r={3} fill={C.text} /><Path d={act === 'talk' || act === 'eat' ? 'M60 46 Q70 56 80 46' : 'M62 47 L78 47'} stroke={C.primary} strokeWidth={3} fill="none" />
@@ -165,7 +165,7 @@ export function Health() {
   const tog = (m: string) => setModes((a0) => { const a = cleanModes(a0); return a.includes(m) ? a.filter((x) => x !== m) : [...a, m]; });
   const nextP = cyc.last ? new Date(new Date(cyc.last + 'T12:00:00').getTime() + cyc.len * DAY) : null;
   return <Screen title={`🥗 ${t('x.t.health')}`}>
-    <Card style={{ backgroundColor: '#FFF1DC' }}><T style={{ fontWeight: '800' }}>⚠️ {t('x.healthWarn')}</T></Card>
+    <Card style={{ backgroundColor: C.warnBg }}><T style={{ fontWeight: '800' }}>⚠️ {t('x.healthWarn')}</T></Card>
     {MODES.map((m) => <Card key={m}><Row><Text style={[s.h2, { flex: 1 }]}>{t(`x.m.${m}`)}</Text><Btn small kind={modes.includes(m) ? 'secondary' : 'ghost'} label={modes.includes(m) ? '✓ ' + t('x.on') : t('x.off')} onPress={() => tog(m)} /></Row>
       {modes.includes(m) && <T testID={`mode-${m}`}>{t(`x.md.${m}`)}</T>}
       {m === 'cycle' && modes.includes(m) && <><Btn small kind="ghost" label={t('x.periodToday')} onPress={() => setCyc((c) => ({ ...c, last: today() }))} />

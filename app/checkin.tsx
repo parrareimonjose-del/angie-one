@@ -27,7 +27,7 @@ export default function CheckInScreen() {
       <Card style={{ backgroundColor: C.secondary }}><Text style={[s.h2, { color: C.white }]}>{t('ci.' + res.msg)}</Text>
         <Text testID="ci-target" style={[s.t, { color: C.white, fontWeight: '800' }]}>{t('ci.newTarget', { kcal: fmtNum(res.kcal) })}</Text>
         <Text style={[s.t, { color: C.white }]}>{t('ci.' + res.train)}</Text></Card>
-      {res.warn && <Card style={{ backgroundColor: '#FFF1DC' }} ><Text testID="ci-warn" style={[s.h2, { color: C.warning }]}>💛 {t('ci.warnTitle')}</Text><T>{t('ci.warnBody')}</T></Card>}
+      {res.warn && <Card style={{ backgroundColor: C.warnBg }} ><Text testID="ci-warn" style={[s.h2, { color: C.warning }]}>💛 {t('ci.warnTitle')}</Text><T>{t('ci.warnBody')}</T></Card>}
       <Btn label={`💪 ${t('coach.title')}`} onPress={() => router.replace('/coach')} />
       <Disclaimer />
     </Screen>

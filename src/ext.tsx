@@ -15,7 +15,7 @@ export function useExt<V>(key: string, init: V): [V, (fn: (v: V) => V) => void] 
 }
 /** Insignia visible para todo lo que necesita una cuenta, clave o socio que aún no existe. */
 export const Pending = ({ what }: { what?: string }) => { const { t } = useTranslation(); return (
-  <View testID="pending" style={{ alignSelf: 'flex-start', backgroundColor: '#FFF1DC', borderColor: C.warning, borderWidth: 2, borderRadius: 12, paddingHorizontal: 10, paddingVertical: 6 }}>
+  <View testID="pending" style={{ alignSelf: 'flex-start', backgroundColor: C.warnBg, borderColor: C.warning, borderWidth: 2, borderRadius: 12, paddingHorizontal: 10, paddingVertical: 6 }}>
     <Text style={{ color: C.warning, fontWeight: '800' }}>⏳ {t('x.pending')}{what ? ` · ${what}` : ''}</Text></View>); };
 export const Example = () => { const { t } = useTranslation(); return (
   <View style={{ alignSelf: 'flex-start', backgroundColor: C.accent, borderRadius: 12, paddingHorizontal: 10, paddingVertical: 6 }}><Text style={{ color: C.onAccent, fontWeight: '800' }}>{t('x.example')}</Text></View>); };

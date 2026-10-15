@@ -26,7 +26,7 @@ export function Splash({ children }: { children: React.ReactNode }) {
     return () => clearTimeout(tm);
   }, [show]);
   return <>{children}{show && (
-    <Animated.View testID="splash" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: '#FFFFFF', alignItems: 'center', justifyContent: 'center', opacity: out, zIndex: 999 }}>
+    <Animated.View testID="splash" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: C.bg, alignItems: 'center', justifyContent: 'center', opacity: out, zIndex: 999 }}>
       <Pressable accessibilityRole="button" accessibilityLabel={t('sp.skip')} onPress={close} style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, alignItems: 'center', justifyContent: 'center', gap: 18 }}>
         <Animated.Image source={require('../assets/logo-mark.png')} accessibilityIgnoresInvertColors style={{ width: 168, height: 168, opacity: op, transform: [{ scale: sc }] }} />
         <Animated.View style={{ opacity: tx, transform: [{ translateY: tx.interpolate({ inputRange: [0, 1], outputRange: [14, 0] }) }], alignItems: 'center' }}>

@@ -1872,5 +1872,46 @@
       "badcode": "O código tem 20 letras e números.",
       "server": "A nuvem está ocupada. Tente daqui a pouco."
     }
+  },
+  "ui": {
+    "theme": "Aparência",
+    "system": "Automático",
+    "light": "Claro",
+    "dark": "Escuro"
+  },
+  "tx": {
+    "title": "Impostos",
+    "short": "Seus recibos prontos para os impostos",
+    "open": "Abrir Impostos",
+    "includes": "O que inclui",
+    "f1": "Recibos por foto ou PDF",
+    "f1d": "A IA lê e organiza",
+    "f2": "Pontos",
+    "f2d": "3 por recibo e 2 por pesquisa",
+    "f3": "Relatório mensal",
+    "f3d": "Seus gastos do mês (15-20 pontos)",
+    "f4": "Relatório anual de impostos",
+    "f4d": "Gastos do ano e possíveis deduções (100 pontos)",
+    "f5": "Perguntas do contador",
+    "f5d": "A IA pergunta o que o contador precisa",
+    "f6": "PDF e enviar ao contador",
+    "f6d": "Baixe ou envie ao seu contador",
+    "sample": "EXEMPLO",
+    "sampleT": "Relatório anual 2026",
+    "sampleDed": "Possíveis deduções: $575",
+    "cta": "Desbloquear com Premium",
+    "heroT": "Seus impostos sem estresse",
+    "season": "Temporada de impostos",
+    "seasonIn": "É temporada de impostos! Termina em {{end}}",
+    "seasonDays": "Faltam {{n}} dias",
+    "timeline": "Seus relatórios",
+    "auto": "A IA prepara seu relatório ao fechar cada mês e o anual na temporada de impostos. Avisamos quando estiver pronto.",
+    "readyM": "Seu relatório de {{p}} está pronto",
+    "readyY": "Seu relatório anual de impostos {{p}} está pronto",
+    "none": "Ainda sem relatórios. Envie recibos e a IA prepara sozinha.",
+    "country": "País",
+    "sum": "{{n}} recibos · {{total}}",
+    "dedL": "Possíveis deduções: {{v}}",
+    "view": "Ver relatório"
   }
 }

@@ -1,6 +1,7 @@
 /** Escáner de códigos de barras con la cámara en la web (iPhone Safari incluido).
  * Usa BarcodeDetector si el navegador lo trae; si no, @zxing/browser (gratis, sin servidor). */
 import { createElement, useEffect, useRef } from 'react';
+import { ScanLine } from './ui';
 import { View } from 'react-native';
 
 export default function WebScanner({ onCode, onError }: { onCode: (c: string) => void; onError: (e: 'denied' | 'nocam') => void }) {
@@ -31,6 +32,6 @@ export default function WebScanner({ onCode, onError }: { onCode: (c: string) =>
   }, []);
   return <View testID="web-scanner" style={{ height: 280, borderRadius: 24, overflow: 'hidden', backgroundColor: '#000' }}>
     {createElement('video', { ref: vid, playsInline: true, muted: true, autoPlay: true, style: { width: '100%', height: '100%', objectFit: 'cover' } })}
-    <View pointerEvents="none" style={{ position: 'absolute', left: '10%', right: '10%', top: '42%', height: 3, backgroundColor: '#FF5A5F' }} />
+    <ScanLine height={280} />
   </View>;
 }

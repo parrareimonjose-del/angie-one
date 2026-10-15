@@ -27,7 +27,7 @@ export default function CoachSetup() {
       <ActivityIndicator size="large" color={C.primary} /><Text style={s.h2}>{t('coach.building')}</Text><T>{t('coach.buildingSub')}</T></Card></Screen>
   );
   if (note) return (
-    <Screen nav={false}><Card style={{ backgroundColor: '#FFF1DC' }}><T style={{ fontWeight: '700' }}>{note}</T></Card>
+    <Screen nav={false}><Card style={{ backgroundColor: C.warnBg }}><T style={{ fontWeight: '700' }}>{note}</T></Card>
       <Btn label={t('coach.seePlan')} onPress={() => router.replace('/coach')} /><Btn kind="ghost" label={t('coach.tryAgain')} onPress={generate} /></Screen>
   );
   return (

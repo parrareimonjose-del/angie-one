@@ -1,7 +1,7 @@
 import { View, Text, Switch, Platform, Alert } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Screen, Card, Btn, Chip, T, s } from '../src/ui';
+import { Screen, Card, Btn, Chip, T, s, ThemePicker } from '../src/ui';
 import { useStore } from '../src/store';
 import i18n, { deviceLang, Lang, SUPPORTED, NATIVE } from '../src/i18n';
 import { C } from '../src/theme';
@@ -21,6 +21,7 @@ export default function Settings() {
       <Btn testID="go-sub" kind="secondary" label={`💳 ${t('hb.title')}`} onPress={() => router.push('/subscription')} />
       <Btn testID="go-backup" kind="secondary" label={`☁️ ${t('bk.title')}`} onPress={() => router.push('/backup')} />
       <Btn testID="go-security" kind="secondary" label={`🔐 ${t('fx.secTitle')}`} onPress={() => router.push('/security')} />
+      <ThemePicker />
       <Card>
         <Text style={s.h2}>🌐 {t('set.language')}</Text>
         <Chip label={`${t('set.auto')} · ${NATIVE[deviceLang()]}`} active={!st.langOverride} onPress={() => setLang(null)} />
