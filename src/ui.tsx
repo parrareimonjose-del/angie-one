@@ -10,12 +10,11 @@ export function Screen({ children, nav = true, title }: { children: React.ReactN
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: C.bg }} edges={['top', 'left', 'right']}>
       <View style={{ flex: 1, width: '100%', maxWidth: 520, alignSelf: 'center' }}>
-        <ScrollView contentContainerStyle={{ padding: 18, paddingBottom: nav ? 200 : 48, gap: 14 }}>
+        <ScrollView contentContainerStyle={{ padding: 18, paddingBottom: nav ? 130 : 48, gap: 14 }}>
           <BackBtn />
           {title ? <Text style={s.h1} accessibilityRole="header">{title}</Text> : null}
           {children}
         </ScrollView>
-        {nav ? <VoiceFab /> : null}
         {nav ? <BottomBar /> : null}
       </View>
     </SafeAreaView>
@@ -76,16 +75,25 @@ function BackBtn() {
 
 function BottomBar() {
   const { t } = useTranslation(); const path = usePathname();
-  const items = [{ k: 'home', href: '/', icon: '🏠' }, { k: 'scan', href: '/scan', icon: '📸' }, { k: 'coach', href: '/coach', icon: '💪' }, { k: 'diary', href: '/diary', icon: '📖' }, { k: 'more', href: '/more', icon: '☰' }];
+  const items = [{ k: 'home', href: '/', icon: '🏠' }, { k: 'scan', href: '/scan', icon: '📸' }, { k: 'voice', href: '/voice', icon: '🎙️' }, { k: 'coach', href: '/coach', icon: '💪' }, { k: 'diary', href: '/diary', icon: '📖' }, { k: 'more', href: '/more', icon: '☰' }];
   return (
-    <View style={s.bar}>
+    <View style={s.bar} testID="bottom-bar">
       {items.map((i) => {
+        if (i.k === 'voice') return (
+          /* Fase 2 + pulido: botón de voz dentro de la barra (centro, 64px, nunca tapa contenido) */
+          <Pressable key="voice" testID="voice-fab" accessibilityRole="button" accessibilityLabel={t('nav.voiceA11y')} onPress={() => router.push('/voice' as any)}
+            style={({ pressed }) => ({ width: 64, minHeight: 68, alignItems: 'center', justifyContent: 'center', opacity: pressed ? 0.85 : 1 })}>
+            <View style={{ width: 64, height: 64, borderRadius: 32, backgroundColor: C.secondary, alignItems: 'center', justifyContent: 'center', shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 8, elevation: 4 }}>
+              <Text style={{ fontSize: 30 }}>🎙️</Text>
+            </View>
+          </Pressable>
+        );
         const active = path === i.href;
         return (
           <Pressable key={i.k} accessibilityRole="tab" accessibilityState={{ selected: active }} accessibilityLabel={t(`nav.${i.k}`)} onPress={() => router.replace(i.href as any)}
             style={{ flex: 1, minHeight: 68, alignItems: 'center', justifyContent: 'center', borderRadius: 20, backgroundColor: active ? '#FFE4E8' : 'transparent' }}>
-            <Text style={{ fontSize: i.k === 'scan' ? 28 : 22 }}>{i.icon}</Text>
-            <Text style={{ fontSize: 14, fontWeight: '800', color: active ? C.primary : C.muted }}>{t(`nav.${i.k}`)}</Text>
+            <Text style={{ fontSize: i.k === 'scan' ? 26 : 22 }}>{i.icon}</Text>
+            <Text numberOfLines={1} style={{ fontSize: 13, fontWeight: '800', color: active ? C.primary : C.muted }}>{t(`nav.${i.k}`)}</Text>
           </Pressable>
         );
       })}
@@ -101,13 +109,6 @@ export const s = StyleSheet.create({
   card: { backgroundColor: C.card, borderRadius: R.card, padding: 18, gap: 10, shadowColor: '#E11D48', shadowOpacity: 0.08, shadowRadius: 16, shadowOffset: { width: 0, height: 6 }, elevation: 3 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   input: { minHeight: 58, borderRadius: 16, borderWidth: 2, borderColor: C.border, backgroundColor: C.card, paddingHorizontal: 16, fontSize: 18, color: C.text },
-  bar: { position: 'absolute', left: 10, right: 10, bottom: 12, flexDirection: 'row', gap: 6, padding: 6, backgroundColor: C.card, borderRadius: 28, shadowColor: '#000', shadowOpacity: 0.12, shadowRadius: 20, elevation: 8 },
+  bar: { position: 'absolute', left: 10, right: 10, bottom: 12, flexDirection: 'row', gap: 4, padding: 6, alignItems: 'center', backgroundColor: C.card, borderRadius: 28, shadowColor: '#000', shadowOpacity: 0.12, shadowRadius: 20, elevation: 8 },
 });
 
-/** Fase 2: botón de voz flotante en todas las pantallas con barra (registrar comida hablando). */
-function VoiceFab() {
-  const { t } = useTranslation();
-  return <Pressable testID="voice-fab" accessibilityRole="button" accessibilityLabel={t('p2.t.voice')} onPress={() => router.push('/voice' as any)}
-    style={{ position: 'absolute', right: 18, bottom: 100, width: 64, height: 64, borderRadius: 32, backgroundColor: C.secondary, alignItems: 'center', justifyContent: 'center', shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 10, elevation: 6 }}>
-    <Text style={{ fontSize: 28 }}>🎙️</Text></Pressable>;
-}

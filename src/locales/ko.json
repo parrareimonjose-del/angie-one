@@ -63,7 +63,8 @@
     "scan": "사진",
     "diary": "일기",
     "more": "더보기",
-    "coach": "코치"
+    "coach": "코치",
+    "voiceA11y": "음성으로 음식 기록"
   },
   "scan": {
     "title": "식단 사진",

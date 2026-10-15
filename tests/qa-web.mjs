@@ -71,17 +71,23 @@ for (const lang of (process.env.LANGS || 'es,en').split(',')) {
   await shot('19-chat-memoria');
   await go('/memory'); ok(`${lang} memory screen shows learned fact`, await has(L ? /alérgica al maní/ : /allergic to peanuts/)); await shot('20-memoria-aprendida');
   // Pulido: el botón 🎙️ no tapa el final del contenido
-  for (const r of ['/', '/plus', '/settings', '/weight']) {
+  for (const r of ['/', '/plus', '/settings', '/weight', '/memory']) {
     await go(r); await p.mouse.wheel(0, 20000); await p.waitForTimeout(500);
     const ov = await p.evaluate(() => { const fab = document.querySelector('[data-testid="voice-fab"]'); if (!fab) return 'nofab'; const fr = fab.getBoundingClientRect();
       const els = [...document.querySelectorAll('[role="button"],input,textarea')].filter((e) => !e.closest('[data-testid="voice-fab"]') && e !== fab);
       const sv = fab.parentElement.querySelector('div[style*="overflow"]') ; 
-      const bar = fab.nextElementSibling ? fab.nextElementSibling.getBoundingClientRect() : { top: 1e9 };
+      const bb = document.querySelector('[data-testid="bottom-bar"]'); const bar = bb ? bb.getBoundingClientRect() : { top: 1e9 };
       const bad = els.filter((e) => { const b = e.getBoundingClientRect(); if (e.closest('[data-testid="voice-fab"]') || b.top >= bar.top - 1) return false; return b.bottom > fr.top && b.top < fr.bottom && b.right > fr.left && b.left < fr.right; });
       return bad.map((e) => (e.innerText || e.getAttribute('aria-label') || '').slice(0, 30)).join('|'); });
     ok(`${lang} fab no overlap ${r}`, ov === '', ov);
   }
   await go('/settings'); await p.mouse.wheel(0, 20000); await p.waitForTimeout(400); await shot('21-final-sin-tapar');
+  // Micro en la barra: dentro de la barra, >=56px, etiqueta accesible, abre /voz
+  const mic = await p.evaluate(() => { const f = document.querySelector('[data-testid="voice-fab"]'); const bb = document.querySelector('[data-testid="bottom-bar"]'); if (!f || !bb) return null; const r = f.getBoundingClientRect(); return { inBar: bb.contains(f), w: r.width, h: r.height, label: f.getAttribute('aria-label') }; });
+  ok(`${lang} mic inside bar`, !!mic && mic.inBar, JSON.stringify(mic)); ok(`${lang} mic >=56px`, !!mic && mic.w >= 56 && mic.h >= 56); ok(`${lang} mic a11y label`, !!mic && mic.label === (L ? 'Registrar comida con la voz' : 'Log food by voice'));
+  await go('/memory'); await p.mouse.wheel(0, 20000); await p.waitForTimeout(400); if (shots) await p.screenshot({ path: `${OUT}micro-barra-${lang}-memoria.png` });
+  await go('/'); if (shots) await p.screenshot({ path: `${OUT}micro-barra-${lang}-inicio.png` });
+  await p.getByTestId('voice-fab').click(); await p.waitForTimeout(600); ok(`${lang} mic opens voice`, p.url().includes('/voice')); if (shots) await p.screenshot({ path: `${OUT}micro-barra-${lang}-voz.png` });
   // Pulido: botones grandes (>=48px)
   const small = await p.evaluate(() => [...document.querySelectorAll('[role="button"]')].filter((e) => { const b = e.getBoundingClientRect(); return b.height > 0 && b.height < 44; }).map((e) => (e.innerText || e.getAttribute('aria-label') || '?').slice(0, 20)));
   ok(`${lang} tap targets >=44px on settings`, small.length === 0, small.join('|'));

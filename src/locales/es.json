@@ -63,7 +63,8 @@
     "scan": "Foto",
     "diary": "Diario",
     "more": "Más",
-    "coach": "Coach"
+    "coach": "Coach",
+    "voiceA11y": "Registrar comida con la voz"
   },
   "scan": {
     "title": "Foto del plato",

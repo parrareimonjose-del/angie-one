@@ -63,7 +63,8 @@
     "scan": "Photo",
     "diary": "Journal",
     "more": "Plus",
-    "coach": "Coach"
+    "coach": "Coach",
+    "voiceA11y": "Enregistrer un repas à la voix"
   },
   "scan": {
     "title": "Photo du repas",

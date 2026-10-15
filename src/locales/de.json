@@ -63,7 +63,8 @@
     "scan": "Foto",
     "diary": "Tagebuch",
     "more": "Mehr",
-    "coach": "Coach"
+    "coach": "Coach",
+    "voiceA11y": "Essen per Sprache erfassen"
   },
   "scan": {
     "title": "Mahlzeiten-Foto",

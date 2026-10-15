@@ -63,7 +63,8 @@
     "scan": "Fotoğraf",
     "diary": "Günlük",
     "more": "Daha fazla",
-    "coach": "Koç"
+    "coach": "Koç",
+    "voiceA11y": "Yemeği sesle kaydet"
   },
   "scan": {
     "title": "Yemek fotoğrafı",

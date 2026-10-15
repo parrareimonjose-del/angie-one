@@ -63,7 +63,8 @@
     "scan": "Foto",
     "diary": "Diário",
     "more": "Mais",
-    "coach": "Treinador"
+    "coach": "Treinador",
+    "voiceA11y": "Registrar comida por voz"
   },
   "scan": {
     "title": "Foto do prato",

@@ -63,7 +63,8 @@
     "scan": "拍照",
     "diary": "日记",
     "more": "更多",
-    "coach": "教练"
+    "coach": "教练",
+    "voiceA11y": "用语音记录饮食"
   },
   "scan": {
     "title": "餐食照片",
