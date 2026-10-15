@@ -13,7 +13,7 @@ import { C } from '../src/theme';
 export default function Manual() {
   const { t, i18n } = useTranslation(); const { s: st, set } = useStore();
   const fname = (id: string) => t(`foods.${id}`);
-  const [q, setQ] = useState(''); const [name, setName] = useState(''); const [kcal, setKcal] = useState('');
+  const [q, setQ] = useState(''); const [bad, setBad] = useState(false); const [name, setName] = useState(''); const [kcal, setKcal] = useState('');
   const [desc, setDesc] = useState(''); const [busy, setBusy] = useState(false); const [err, setErr] = useState(''); const [est, setEst] = useState<Estimate | null>(null);
   const add = (e: { name: string; kcal: number; p?: number; c?: number; f?: number }) => {
     set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: e.name, kcal: e.kcal, p: e.p || 0, c: e.c || 0, f: e.f || 0, source: 'manual' }] }));
@@ -53,7 +53,8 @@ export default function Manual() {
         <Text style={s.h2}>✍️ {t('manual.exact')}</Text>
         <TextInput accessibilityLabel={t('manual.name')} style={s.input} placeholder={t('manual.name')} value={name} onChangeText={setName} />
         <TextInput accessibilityLabel={t('manual.kcal')} style={s.input} placeholder={t('manual.kcal')} keyboardType="numeric" value={kcal} onChangeText={(v) => setKcal(v.replace(/[^0-9]/g, ''))} />
-        <Btn label={t('add')} onPress={() => name.trim() && +kcal > 0 && +kcal < 5000 && add({ name: name.trim(), kcal: +kcal })} />
+        {bad ? <T style={{ color: C.primary, fontWeight: '700' }}>{t('manual.badKcal')}</T> : null}
+        <Btn label={t('add')} onPress={() => { if (name.trim() && +kcal > 0 && +kcal < 5000) add({ name: name.trim(), kcal: +kcal }); else setBad(true); }} />
       </Card>
     </Screen>
   );

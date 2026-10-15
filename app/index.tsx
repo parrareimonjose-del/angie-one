@@ -33,7 +33,7 @@ export default function Home() {
       <Btn kind="accent" small label={tp.phase === 'trial' ? `⭐ ${t('home.trialDays', { n: left })}` : tp.phase === 'offer' ? t('trial.offer', { time: fmtCountdown(tp.offerMsLeft) }) : t('home.trialOver')} onPress={() => router.push('/paywall')} />
       {tp.phase === 'trial' && left <= 2 ? <Card style={{ backgroundColor: '#FFF1DC' }}><T style={{ fontWeight: '700' }}>{t(left === 2 ? 'trial.remind2' : 'trial.remind1')}</T></Card> : null}
       <Card style={{ alignItems: 'center' }}>
-        <Ring value={sum.kcal} max={target.kcal} size={220}>
+        <Ring value={sum.kcal} max={target.kcal + burned} size={220}>
           <Text style={{ fontSize: 44, fontWeight: '900', color: C.text }}>{fmtNum(Math.max(0, target.kcal + burned - Math.round(sum.kcal)))}</Text>
           <Text style={s.muted}>{t('u.kcal')} {t('home.left')}</Text>
         </Ring>

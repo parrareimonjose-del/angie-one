@@ -3,7 +3,8 @@ import { View, Text } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Screen, Card, Btn, T, s } from '../src/ui';
-import { useStore, today, dailyTarget } from '../src/store';
+import { useStore, today } from '../src/store';
+import { coachTarget } from '../src/coach';
 import { fmtDate, fmtTime, fmtNum } from '../src/i18n';
 import { C } from '../src/theme';
 
@@ -22,7 +23,7 @@ export default function Diary() {
         <Btn small kind="ghost" label="▶" a11y={t('diary.nextDay')} onPress={() => off < 0 && setOff(off + 1)} style={{ width: 64 }} />
       </View>
       <Card style={{ backgroundColor: C.primary }}>
-        <Text style={[s.h2, { color: C.white }]}>{t('diary.total')}: {fmtNum(total)} / {fmtNum(dailyTarget(st.profile).kcal)} {t('u.kcal')}</Text>
+        <Text style={[s.h2, { color: C.white }]}>{t('diary.total')}: {fmtNum(total)} / {fmtNum(coachTarget(st).kcal)} {t('u.kcal')}</Text>
       </Card>
       {ents.length === 0 ? <Card><T>{t('diary.empty')}</T><Btn label={`📸  ${t('nav.scan')}`} onPress={() => router.push('/scan')} /></Card>
         : ents.map((e) => (

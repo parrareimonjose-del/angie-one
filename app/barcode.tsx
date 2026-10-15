@@ -17,8 +17,11 @@ export default function Barcode() {
   const [msg, setMsg] = useState(''); const [grams, setGrams] = useState(100); const [cam, setCam] = useState(false);
   const [perm, ask] = useCameraPermissions();
   const search = async (c = code) => {
-    setMsg('…'); setProd(null);
-    try { const p = await lookupBarcode(c.trim(), curLang(), region()); setProd(p); setMsg(p ? '' : t('bar.notFound')); } catch { setMsg(t('bar.notFound')); }
+    setProd(null);
+    if (!/^\d{6,14}$/.test(c.trim())) { setMsg(t('bar.badCode')); return; }
+    if (typeof navigator !== 'undefined' && navigator.onLine === false) { setMsg(t('aiErr.offline')); return; }
+    setMsg(`⏳ ${t('bar.searching')}`);
+    try { const p = await lookupBarcode(c.trim(), curLang(), region()); setProd(p); setMsg(p ? '' : t('bar.notFound')); } catch { setMsg(typeof navigator !== 'undefined' && navigator.onLine === false ? t('aiErr.offline') : t('bar.notFound')); }
   };
   const k = grams / 100;
   const log = () => { if (!prod) return; set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: prod.name, kcal: Math.round(prod.kcal100 * k), p: Math.round(prod.p100 * k), c: Math.round(prod.c100 * k), f: Math.round(prod.f100 * k), source: 'barcode' }] })); router.replace('/diary'); };

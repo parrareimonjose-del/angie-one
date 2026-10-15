@@ -34,7 +34,7 @@ export default function Settings() {
       <Card><T>🔒 {t('set.privacy')}</T><Text style={s.h2}>📄 {t('legal.section')}</Text><LegalLinks /></Card>
       <Btn kind="ghost" label={t('set.profile')} onPress={() => router.push('/onboarding')} />
       <Btn kind="danger" label={t('set.reset')} onPress={doReset} />
-      <Text style={[s.muted, { textAlign: 'center' }]}>Angie One · {t('set.version')} 0.2.0 · Parra Apps</Text>
+      <Text style={[s.muted, { textAlign: 'center' }]}>Angie One · {t('set.version')} 0.4.0 · Parra Apps</Text>
     </Screen>
   );
 }

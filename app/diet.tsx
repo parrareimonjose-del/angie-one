@@ -30,7 +30,7 @@ export default function Diet() {
         <Text style={s.h2}>{dayName(d, true)} · {fmtNum(total)} {t('u.kcal')}</Text>
         <Btn small kind="ghost" label="🔊" a11y={t('home.readAloud')} style={{ width: 56 }} onPress={() => speak(meals.map((m, i) => `${slots[i] || ''}: ${N.meal(m)}, ${sc(m).kcal} ${t('u.kcal')}`).join('. '))} />
       </View>
-      {meals.map((m, i) => { const v = sc(m); const ok = added.includes(`${d}-${i}`); return (
+      {meals.map((m, i) => { const v = sc(m); const ok = added.includes(`${d}-${i}`) || st.entries.some((e) => e.date === today() && e.name === N.meal(m) && e.kcal === v.kcal); return (
         <Card key={i}>
           <Text style={[s.muted, { fontWeight: '800' }]}>{slots[i] || ''}</Text>
           {N.meal(m) !== slots[i] && <Text style={s.h2}>{N.meal(m)}</Text>}

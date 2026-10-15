@@ -11,6 +11,7 @@ export function Screen({ children, nav = true, title }: { children: React.ReactN
     <SafeAreaView style={{ flex: 1, backgroundColor: C.bg }} edges={['top', 'left', 'right']}>
       <View style={{ flex: 1, width: '100%', maxWidth: 520, alignSelf: 'center' }}>
         <ScrollView contentContainerStyle={{ padding: 18, paddingBottom: 140, gap: 14 }}>
+          <BackBtn />
           {title ? <Text style={s.h1} accessibilityRole="header">{title}</Text> : null}
           {children}
         </ScrollView>
@@ -32,8 +33,8 @@ export function Btn({ label, onPress, kind = 'primary', style, small, a11y }: { 
   );
 }
 
-export const Card = ({ children, style }: { children: React.ReactNode; style?: ViewStyle }) => <View style={[s.card, style]}>{children}</View>;
-export const T = ({ children, style }: { children: React.ReactNode; style?: TextStyle | TextStyle[] }) => <Text style={[s.t, style as any]}>{children}</Text>;
+export const Card = ({ children, style, testID }: { children: React.ReactNode; style?: ViewStyle; testID?: string }) => <View testID={testID} style={[s.card, style]}>{children}</View>;
+export const T = ({ children, style, testID }: { children: React.ReactNode; style?: TextStyle | TextStyle[]; testID?: string }) => <Text testID={testID} style={[s.t, style as any]}>{children}</Text>;
 
 export function Chip({ label, active, onPress }: { label: string; active?: boolean; onPress: () => void }) {
   return (
@@ -61,6 +62,15 @@ export function Ring({ value, max, size = 200, stroke = 18, children }: { value:
 
 export function Bar({ value, max, color }: { value: number; max: number; color: string }) {
   return <View style={{ height: 12, borderRadius: 6, backgroundColor: C.border, overflow: 'hidden' }}><View style={{ width: `${Math.min(100, max ? (value / max) * 100 : 0)}%`, height: '100%', backgroundColor: color }} /></View>;
+}
+
+const TABS = ['/', '/scan', '/coach', '/diary', '/more', '/onboarding'];
+function BackBtn() {
+  const { t, i18n } = useTranslation(); const path = usePathname();
+  if (TABS.includes(path)) return null;
+  const rtl = i18n.dir?.(i18n.language) === 'rtl';
+  return <Btn small kind="ghost" label={`${rtl ? '→' : '←'}  ${t('back')}`} a11y={t('back')} style={{ alignSelf: 'flex-start' }}
+    onPress={() => (router.canGoBack() ? router.back() : router.replace('/more' as any))} />;
 }
 
 function BottomBar() {

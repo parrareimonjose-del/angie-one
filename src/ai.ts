@@ -12,6 +12,7 @@ const TIMEOUT_MS = 30000;
 
 async function once(body: string): Promise<Estimate> {
   const ctl = new AbortController(); const timer = setTimeout(() => ctl.abort(), TIMEOUT_MS);
+  if (typeof navigator !== 'undefined' && navigator.onLine === false) { clearTimeout(timer); throw new AIError('offline'); }
   let res: Response;
   try { res = await fetch(AI_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, signal: ctl.signal }); }
   catch { throw new AIError('offline'); }
