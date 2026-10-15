@@ -21,11 +21,11 @@ export function Screen({ children, nav = true, title }: { children: React.ReactN
   );
 }
 
-export function Btn({ label, onPress, kind = 'primary', style, small, a11y }: { label: string; onPress?: () => void; kind?: 'primary' | 'secondary' | 'accent' | 'ghost' | 'danger'; style?: ViewStyle; small?: boolean; a11y?: string }) {
+export function Btn({ label, onPress, kind = 'primary', style, small, a11y, testID }: { testID?: string; label: string; onPress?: () => void; kind?: 'primary' | 'secondary' | 'accent' | 'ghost' | 'danger'; style?: ViewStyle; small?: boolean; a11y?: string }) {
   const bg = { primary: C.primary, secondary: C.secondary, accent: C.accent, ghost: C.card, danger: C.card }[kind];
   const fg = kind === 'accent' ? C.onAccent : kind === 'ghost' ? C.secondary : kind === 'danger' ? C.primary : C.white;
   return (
-    <Pressable accessibilityRole="button" accessibilityLabel={a11y || label} onPress={onPress}
+    <Pressable testID={testID} accessibilityRole="button" accessibilityLabel={a11y || label} onPress={onPress}
       style={({ pressed }) => [{ minHeight: small ? 56 : MIN_TAP, borderRadius: R.btn, backgroundColor: bg, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18, opacity: pressed ? 0.85 : 1,
         borderWidth: kind === 'ghost' || kind === 'danger' ? 2 : 0, borderColor: kind === 'danger' ? C.primary : C.border }, style]}>
       <Text style={{ color: fg, fontSize: small ? 16 : 18, fontWeight: '800' }}>{label}</Text>

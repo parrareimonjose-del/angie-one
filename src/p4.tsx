@@ -57,7 +57,6 @@ export function Store() {
       {PRODUCTS.map((p) => <Card key={p.id} style={{ width: '47%', alignItems: 'center', padding: 10 }}><Mock id={p.id} /><T style={{ fontWeight: '800', textAlign: 'center' }}>{t(`x.prod.${p.id}`)}</T><Text style={s.muted}>${p.price}</Text></Card>)}
     </View>
     <Btn label={`🛒 ${t('x.openEtsy')}`} onPress={() => alertPending(t)} />
-    <Btn kind="ghost" label={`💗 ${t('x.t.impact')}`} onPress={() => router.push('/impact')} />
     <Note k="x.storeNote" /></Screen>;
 }
 

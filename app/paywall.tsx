@@ -6,13 +6,16 @@ import { Screen, Card, Btn, T, s } from '../src/ui';
 import { C } from '../src/theme';
 import { useStore, trialPhase, fmtCountdown } from '../src/store';
 import { LegalLinks } from '../src/legal-links';
+import { providerFor, purchase, restore, PLANS } from '../src/payments';
+import { Pending } from '../src/ext';
 
-// TODO: integrar RevenueCat (plan gratuito hasta 2.500 $/mes de ingresos) + App Store / Google Play Billing. Hoy NO cobra nada.
+// Pagos por plataforma (src/payments.ts): web Stripe, Android Google Play Billing, iPhone Apple IAP. Hoy NO cobra nada.
 export default function Paywall() {
   const { t } = useTranslation(); const [plan, setPlan] = useState<'y' | 'm'>('y'); const [note, setNote] = useState(false);
   const { s: st } = useStore(); const [now, setNow] = useState(Date.now());
   useEffect(() => { const i = setInterval(() => setNow(Date.now()), 30000); return () => clearInterval(i); }, []);
-  const tp = trialPhase(st.trialStart, now);
+  const tp = trialPhase(st.trialStart, now); const prov = providerFor();
+  const buy = async () => { const r = await purchase(plan === 'y' ? 'yearly' : 'monthly'); if (r.ok && r.url && typeof window !== 'undefined') window.open(r.url, '_blank'); else setNote(true); };
   const opt = (k: 'y' | 'm', label: string, extra?: string) => (
     <Pressable accessibilityRole="radio" accessibilityState={{ checked: plan === k }} onPress={() => setPlan(k)}
       style={{ minHeight: 72, borderRadius: 20, borderWidth: 3, borderColor: plan === k ? C.primary : C.border, backgroundColor: C.card, padding: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -32,9 +35,13 @@ export default function Paywall() {
       <Text style={[s.muted, { textAlign: 'center' }]}>{t('pay.latam')}</Text>
       <Card style={{ backgroundColor: '#FFF1DC' }}><T>⏳ {t('pay.offer')}</T>
         <T style={{ fontWeight: '800', color: tp.phase === 'offer' ? C.primary : C.text }}>{tp.phase === 'offer' ? t('pay.offerLive', { time: fmtCountdown(tp.offerMsLeft) }) : tp.phase === 'free' ? t('pay.offerGone') : t('pay.offerAfter')}</T></Card>
-      <Text style={[s.muted, { fontSize: 15 }]}>{t('pay.renew')}</Text>
-      <Btn label={t('pay.cta')} onPress={() => setNote(true)} />
-      {note && <Card><T style={{ color: C.warning, fontWeight: '700' }}>{t('pay.soon')}</T></Card>}
+      <Card testID="sub-terms"><Text style={s.h2}>📋 {t('fx.termsT')}</Text>
+        <T>{t('fx.terms', { price: plan === 'y' ? '$' + PLANS.yearly.usd : '$' + PLANS.monthly.usd, period: t(plan === 'y' ? 'fx.perYear' : 'fx.perMonth'), store: prov.name })}</T>
+        <Text style={[s.muted, { fontSize: 15 }]}>{t('pay.renew')}</Text><Text style={[s.muted, { fontSize: 15 }]}>⚕️ {t('fx.healthDisc')}</Text></Card>
+      <Text testID="pay-provider" style={[s.muted, { textAlign: 'center' }]}>🔒 {t('fx.payVia', { store: prov.name })}</Text>
+      <Btn label={t('pay.cta')} onPress={buy} />
+      {note && <Card><Pending /><T style={{ color: C.warning, fontWeight: '700' }}>{t('pay.soon')}</T></Card>}
+      {prov.canRestore ? <Btn kind="ghost" label={t('fx.restore')} onPress={async () => { await restore(); setNote(true); }} /> : null}
       <Btn kind="ghost" label={t('pay.free')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))} />
       <LegalLinks />
     </Screen>

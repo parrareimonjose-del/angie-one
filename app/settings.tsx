@@ -18,6 +18,7 @@ export default function Settings() {
   };
   return (
     <Screen title={t('set.title')}>
+      <Btn testID="go-security" kind="secondary" label={`🔐 ${t('fx.secTitle')}`} onPress={() => router.push('/security')} />
       <Card>
         <Text style={s.h2}>🌐 {t('set.language')}</Text>
         <Chip label={`${t('set.auto')} · ${NATIVE[deviceLang()]}`} active={!st.langOverride} onPress={() => setLang(null)} />

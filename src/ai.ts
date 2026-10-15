@@ -7,7 +7,8 @@ export type Estimate = { name: string; kcalMin: number; kcalMax: number; p: numb
 export type AIErrorCode = 'offline' | 'busy' | 'tooLarge' | 'notFood' | 'server';
 export class AIError extends Error { constructor(public code: AIErrorCode) { super(code); } }
 
-export const AI_URL = 'https://angie-one-ai.angieoneapp-support.workers.dev/estimate';
+import { aiUrl } from './ai-config';
+export const AI_URL = aiUrl('estimate');
 const TIMEOUT_MS = 30000;
 
 async function once(body: string): Promise<Estimate> {

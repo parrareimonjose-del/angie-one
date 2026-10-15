@@ -12,13 +12,15 @@ import { useStore, today, uid, DAY, trialPhase } from './store';
 import { fmtNum, fmtDate } from './i18n';
 import { coachTarget, coachOf, burnedOn } from './coach';
 import { speak, Row, Disclaimer } from './coach-ui';
+import { FEATURES } from './flags';
 import { useExt, Pending, Example, Note, Sponsored, Tile } from './ext';
 
 export function Explore() {
   const { t } = useTranslation();
   const p3: [string, string, string, boolean?][] = [['🤳', 'social', '/social'], ['🍲', 'recipes', '/recipes'], ['🏋️', 'gym', '/gym'], ['⌚', 'connect', '/connect', true], ['⏱️', 'fasting', '/fasting'], ['🧍', 'twin', '/twin'],
     ['🎬', 'video', '/video'], ['🩺', 'health', '/health'], ['👨‍👩‍👧', 'family', '/family'], ['📄', 'report', '/report'], ['🛒', 'shop', '/shopping', true], ['✈️', 'travel', '/travel'], ['🧑‍🏫', 'b2b', '/b2b']];
-  const p4: [string, string, string, boolean?][] = [['🧑‍⚕️', 'market', '/market', true], ['🏢', 'corp', '/corporate'], ['🛍️', 'store', '/store', true], ['💗', 'impact', '/impact'], ['🐶', 'pet', '/pet'], ['💬', 'whatsapp', '/whatsapp', true], ['🎁', 'tips', '/tips', true]];
+  const p4: [string, string, string, boolean?][] = [['🧑‍⚕️', 'market', '/market', true], ['🏢', 'corp', '/corporate'], ['🐶', 'pet', '/pet'], ['💬', 'whatsapp', '/whatsapp', true]];
+  if (FEATURES.purposeStore) p4.splice(2, 0, ['🛍️', 'store', '/store', true]);
   const grid = (a: typeof p3) => <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, justifyContent: 'space-between' }}>{a.map(([i, k, h, p]) => <Tile key={k} icon={i} label={t(`x.t.${k}`)} pending={p} onPress={() => router.push(h as any)} />)}</View>;
   return <Screen title={`✨ ${t('x.explore')}`}>{grid(p3)}<Text style={s.h2}>{t('x.more4')}</Text>{grid(p4)}<Note k="x.pendingLegend" /></Screen>;
 }

@@ -5,10 +5,10 @@ import { useStore } from '../src/store';
 import { C } from '../src/theme';
 import { router } from 'expo-router';
 import { fmtNum } from '../src/i18n';
-import { useFund } from '../src/p4';
 import { ADS } from '../src/ext';
 import { DevAI } from '../src/p2';
 import { FounderData } from '../src/datos-ui';
+import { LedgerCard, PanelMaestroCard, AdminAICard } from '../src/faltantes-ui';
 export const split = (net: number) => ({ ops: Math.round(net * 60) / 100, growth: Math.round(net * 25) / 100, social: Math.round(net * 15) / 100 });
 
 // Panel del Fundador v1 (placeholder): la IA Administrativa propone, Jose aprueba. Nunca mueve dinero.
@@ -16,10 +16,6 @@ const CARD_IDS = ['c1', 'c2', 'c3'];
 export default function Founder() {
   const { t, i18n } = useTranslation(); const { s: st, set } = useStore();
   const cards = CARD_IDS.map((id) => ({ id, title: t(`foCards.${id}.title`), body: t(`foCards.${id}.body`) }));
-  const [fund, setFund] = useFund();
-  const decideD = (id: string, v: 'approved' | 'rejected') => setFund((f) => { const n = f.list.filter((x) => x.receipt).length + 1;
-    const d = f.list.find((x) => x.id === id)!; if (v === 'approved' && d.amount > f.raised) return f; return { ...f, raised: v === 'approved' ? Math.max(0, f.raised - d.amount) : f.raised,
-      list: f.list.map((x) => (x.id === id ? { ...x, status: v, receipt: v === 'approved' ? `R-${String(n).padStart(4, '0')}` : undefined, date: new Date().toISOString().slice(0, 10) } : x)) }; });
   const decide = (id: string, v: 'approved' | 'rejected') => set((x) => ({ ...x, founder: { ...x.founder, [id]: v } }));
   return (
     <Screen title={`👑 ${t('fo.title')}`}>
@@ -32,15 +28,12 @@ export default function Founder() {
         </View>
       </Card>
       <Card testID="split"><Text style={s.h2}>{t('x.splitTitle')}</Text>
-        {(() => { const sp = split(1000); return <><T>60% · {t('x.sOps')}: ${fmtNum(sp.ops)}</T><T>25% · {t('x.sGrowth')}: ${fmtNum(sp.growth)}</T><T>15% · {t('x.sSocial')}: ${fmtNum(sp.social)}</T></>; })()}
+        {(() => { const sp = split(1000); return <><T>60% · {t('fx.sFounder')}: ${fmtNum(sp.ops)}</T><T>25% · {t('fx.sApp')}: ${fmtNum(sp.growth)}</T><T>15% · {t('fx.sTaxes')}: ${fmtNum(sp.social)}</T></>; })()}
         <Text style={s.muted}>{t('x.splitNote')}</Text></Card>
-      <Card><Text style={s.h2}>💗 {t('x.disbTitle')}</Text>
-        {fund.list.filter((d) => d.status !== 'approved' || d.id.startsWith('p')).map((d) => <View key={d.id} style={{ gap: 6 }}>
-          <T>{d.who} · {t(`x.reason.${d.reason}`)} · ${fmtNum(d.amount)}</T>
-          {d.status === 'proposed' ? <View style={s.row}><Btn label={t('fo.approve')} onPress={() => decideD(d.id, 'approved')} style={{ flex: 1, backgroundColor: C.success }} /><Btn kind="danger" label={t('fo.reject')} onPress={() => decideD(d.id, 'rejected')} style={{ flex: 1 }} /></View>
-            : <Text testID="disb-status" style={{ fontWeight: '900', color: d.status === 'approved' ? C.success : C.primary }}>{d.status === 'approved' ? `✓ ${t('fo.approved')} · 🧾 ${d.receipt}` : '✕ ' + t('fo.rejected')}</Text>}</View>)}
-        <Text style={s.muted}>{t('x.disbNote')}</Text></Card>
       <Card><Text style={s.h2}>{t('x.adsTitle')}</Text>{ADS.map((a) => <T key={a.id}>✓ {a.brand}</T>)}<Text style={s.muted}>{t('x.adWhy')}</Text></Card>
+      <LedgerCard />
+      <AdminAICard />
+      <PanelMaestroCard />
       <FounderData />
       <DevAI />
       <Btn kind="ghost" label={`📊 ${t('x.aggTitle')}`} onPress={() => router.push('/aggregate')} />
