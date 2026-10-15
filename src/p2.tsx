@@ -105,7 +105,7 @@ function WeightInner() {
 // ---------- Memoria por usuario (solo en el dispositivo) ----------
 export type Mem = { on: boolean; facts: { id: string; text: string }[] };
 export const MEM0: Mem = { on: true, facts: [] };
-const LEARN = /(no me gusta|no como|soy al[eé]rgic|soy vegetarian|soy vegan|no tomo|odio|i don'?t (like|eat)|i'?m (allergic|vegetarian|vegan)|i am (allergic|vegetarian|vegan)|i hate|não gosto|sou vegetarian|je n'aime pas|ich mag kein)/i;
+const LEARN = /(no me gusta|no como|soy al[eé]rgic|soy vegetarian|soy vegan|no tomo|odio|i don'?t (like|eat)|i'?m (allergic|vegetarian|vegan)|i am (allergic|vegetarian|vegan)|i hate|soy cel[ií]ac|tengo diabetes|soy diab[eé]tic|intoleran|i'?m (celiac|diabetic|lactose)|i have diabetes|não gosto|sou vegetarian|je n'aime pas|ich mag kein)/i;
 export const learnFact = (text: string) => (LEARN.test(text) ? text.trim().slice(0, 120) : null);
 export const memContext = (m?: Mem) => (m && m.on && m.facts.length ? ' Remember about user: ' + m.facts.map((f) => f.text).join('; ').slice(0, 350) : '');
 export function Memory() {

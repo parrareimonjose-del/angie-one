@@ -32,7 +32,7 @@ export default function Paywall() {
       <Text style={[s.muted, { textAlign: 'center' }]}>{t('pay.latam')}</Text>
       <Card style={{ backgroundColor: '#FFF1DC' }}><T>⏳ {t('pay.offer')}</T>
         <T style={{ fontWeight: '800', color: tp.phase === 'offer' ? C.primary : C.text }}>{tp.phase === 'offer' ? t('pay.offerLive', { time: fmtCountdown(tp.offerMsLeft) }) : tp.phase === 'free' ? t('pay.offerGone') : t('pay.offerAfter')}</T></Card>
-      <Text style={[s.muted, { fontSize: 13 }]}>{t('pay.renew')}</Text>
+      <Text style={[s.muted, { fontSize: 15 }]}>{t('pay.renew')}</Text>
       <Btn label={t('pay.cta')} onPress={() => setNote(true)} />
       {note && <Card><T style={{ color: C.warning, fontWeight: '700' }}>{t('pay.soon')}</T></Card>}
       <Btn kind="ghost" label={t('pay.free')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))} />

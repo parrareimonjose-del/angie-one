@@ -10,7 +10,7 @@ export function Screen({ children, nav = true, title }: { children: React.ReactN
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: C.bg }} edges={['top', 'left', 'right']}>
       <View style={{ flex: 1, width: '100%', maxWidth: 520, alignSelf: 'center' }}>
-        <ScrollView contentContainerStyle={{ padding: 18, paddingBottom: 140, gap: 14 }}>
+        <ScrollView contentContainerStyle={{ padding: 18, paddingBottom: nav ? 200 : 48, gap: 14 }}>
           <BackBtn />
           {title ? <Text style={s.h1} accessibilityRole="header">{title}</Text> : null}
           {children}
@@ -27,7 +27,7 @@ export function Btn({ label, onPress, kind = 'primary', style, small, a11y }: { 
   const fg = kind === 'accent' ? C.onAccent : kind === 'ghost' ? C.secondary : kind === 'danger' ? C.primary : C.white;
   return (
     <Pressable accessibilityRole="button" accessibilityLabel={a11y || label} onPress={onPress}
-      style={({ pressed }) => [{ minHeight: small ? 48 : MIN_TAP, borderRadius: R.btn, backgroundColor: bg, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18, opacity: pressed ? 0.85 : 1,
+      style={({ pressed }) => [{ minHeight: small ? 56 : MIN_TAP, borderRadius: R.btn, backgroundColor: bg, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18, opacity: pressed ? 0.85 : 1,
         borderWidth: kind === 'ghost' || kind === 'danger' ? 2 : 0, borderColor: kind === 'danger' ? C.primary : C.border }, style]}>
       <Text style={{ color: fg, fontSize: small ? 16 : 18, fontWeight: '800' }}>{label}</Text>
     </Pressable>
@@ -40,7 +40,7 @@ export const T = ({ children, style, testID }: { children: React.ReactNode; styl
 export function Chip({ label, active, onPress }: { label: string; active?: boolean; onPress: () => void }) {
   return (
     <Pressable accessibilityRole="button" accessibilityState={{ selected: !!active }} onPress={onPress}
-      style={{ minHeight: 52, paddingHorizontal: 16, borderRadius: 26, justifyContent: 'center', backgroundColor: active ? C.secondary : C.card, borderWidth: 2, borderColor: active ? C.secondary : C.border }}>
+      style={{ minHeight: 56, paddingHorizontal: 16, borderRadius: 28, justifyContent: 'center', backgroundColor: active ? C.secondary : C.card, borderWidth: 2, borderColor: active ? C.secondary : C.border }}>
       <Text style={{ color: active ? C.white : C.text, fontWeight: '700', fontSize: 16 }}>{label}</Text>
     </Pressable>
   );
@@ -85,7 +85,7 @@ function BottomBar() {
           <Pressable key={i.k} accessibilityRole="tab" accessibilityState={{ selected: active }} accessibilityLabel={t(`nav.${i.k}`)} onPress={() => router.replace(i.href as any)}
             style={{ flex: 1, minHeight: 68, alignItems: 'center', justifyContent: 'center', borderRadius: 20, backgroundColor: active ? '#FFE4E8' : 'transparent' }}>
             <Text style={{ fontSize: i.k === 'scan' ? 28 : 22 }}>{i.icon}</Text>
-            <Text style={{ fontSize: 13, fontWeight: '800', color: active ? C.primary : C.muted }}>{t(`nav.${i.k}`)}</Text>
+            <Text style={{ fontSize: 14, fontWeight: '800', color: active ? C.primary : C.muted }}>{t(`nav.${i.k}`)}</Text>
           </Pressable>
         );
       })}
@@ -97,7 +97,7 @@ export const s = StyleSheet.create({
   h1: { fontSize: 30, fontWeight: '900', color: C.text },
   h2: { fontSize: 20, fontWeight: '800', color: C.text },
   t: { fontSize: 17, color: C.text, lineHeight: 24 },
-  muted: { color: C.muted, fontSize: 15 },
+  muted: { color: C.muted, fontSize: 16 },
   card: { backgroundColor: C.card, borderRadius: R.card, padding: 18, gap: 10, shadowColor: '#E11D48', shadowOpacity: 0.08, shadowRadius: 16, shadowOffset: { width: 0, height: 6 }, elevation: 3 },
   row: { flexDirection: 'row', alignItems: 'center', gap: 10 },
   input: { minHeight: 58, borderRadius: 16, borderWidth: 2, borderColor: C.border, backgroundColor: C.card, paddingHorizontal: 16, fontSize: 18, color: C.text },

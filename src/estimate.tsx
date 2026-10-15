@@ -27,7 +27,7 @@ export function EstimateResult({ est, onLog }: { est: Estimate; onLog: (x: { nam
       <Text style={s.muted}>{t('scan.range')}</Text>
       <Text style={{ fontSize: 40, fontWeight: '900', color: C.primary }} testID="est-range">{fmtNum(r.min)}–{fmtNum(r.max)} {t('u.kcal')}</Text>
       <Text style={s.muted}>{t('scan.confidence')}: {t(`scan.${est.confidence}`)} · {t('home.protein')} {fmtNum(r.p)} {t('u.g')} · {t('home.carbs')} {fmtNum(r.c)} {t('u.g')} · {t('home.fat')} {fmtNum(r.f)} {t('u.g')}</Text>
-      <Text style={[s.muted, { fontSize: 13 }]}>{t('scan.disclaimer')}</Text>
+      <Text style={[s.muted, { fontSize: 15 }]}>{t('scan.disclaimer')}</Text>
     </Card>
     <Card>
       <Text style={s.h2}>{t('scan.questions')}</Text>

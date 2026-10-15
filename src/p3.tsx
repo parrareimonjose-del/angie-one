@@ -196,7 +196,7 @@ export function Report() {
       <T>{t('coach.target', { kcal: fmtNum(coachTarget(st).kcal) })}</T>
       {c.checkins.length > 0 && <T>{t('ci.history')}: {c.checkins.slice(-6).map((x) => `${x.date} ${fmtNum(x.weight, 1)} kg`).join(' · ')}</T>}
       {rows.length === 0 ? <Text style={s.muted}>{t('diary.empty')}</Text> : rows.map((r) => <T key={r.d}>{r.d} · {fmtNum(r.k)} {t('u.kcal')} · 💧{r.w} · 🔥{fmtNum(r.b)}</T>)}
-      <Text style={[s.muted, { fontSize: 13 }]}>{t('x.repFoot')}</Text></Card>
+      <Text style={[s.muted, { fontSize: 15 }]}>{t('x.repFoot')}</Text></Card>
     <Btn label={`🖨️ ${t('x.savePdf')}`} onPress={pdf} /><Note k="x.repNote" /></Screen>;
 }
 
