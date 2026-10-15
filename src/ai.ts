@@ -1,33 +1,30 @@
 /**
  * Capa de IA para estimar platos.
- * - Si existe EXPO_PUBLIC_GEMINI_API_KEY → llama a Gemini Flash-Lite (capa gratuita de Google AI Studio).
- * - Si no → MODO DEMO claramente etiquetado (estimación simulada).
- * TODO producción: mover la llamada a un backend/proxy (p. ej. Cloudflare Worker gratis) para no exponer la clave en el cliente.
+ * - Llama al proxy gratis de Cloudflare Worker (la clave de Gemini vive solo en el Worker como secreto).
+ * - Si el Worker falla → MODO DEMO claramente etiquetado (estimación simulada).
  */
 export type Estimate = { name: string; kcalMin: number; kcalMax: number; p: number; c: number; f: number; confidence: 'high' | 'medium' | 'low'; mode: 'live' | 'demo' };
 
-const KEY = process.env.EXPO_PUBLIC_GEMINI_API_KEY;
-const MODEL = process.env.EXPO_PUBLIC_GEMINI_MODEL || 'gemini-2.5-flash-lite';
-export const aiMode: 'live' | 'demo' = KEY ? 'live' : 'demo';
+export const AI_URL = 'https://angie-one-ai.angieoneapp-support.workers.dev/estimate';
+export const aiMode: 'live' | 'demo' = 'live';
 
-const PROMPT = `You are a nutrition estimator for Latin American and international food. Look at the meal photo and answer ONLY JSON:
-{"name": short dish name in LANG, "kcalMin": int, "kcalMax": int, "p": grams protein, "c": grams carbs, "f": grams fat, "confidence": "high"|"medium"|"low"}
-Give a realistic RANGE, not a single value. Never comment on body weight or give medical advice.`;
+async function callAI(body: object): Promise<Estimate> {
+  try {
+    const res = await fetch(AI_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    if (!res.ok) throw new Error('AI ' + res.status);
+    const o = await res.json();
+    return { name: String(o.name || '?'), kcalMin: +o.kcalMin || 0, kcalMax: +o.kcalMax || 0, p: +o.p || 0, c: +o.c || 0, f: +o.f || 0, confidence: o.confidence || 'medium', mode: 'live' };
+  } catch {
+    return demoEstimate();
+  }
+}
 
-export async function estimateMeal(base64: string, mime: string, lang: string): Promise<Estimate> {
-  if (!KEY) return demoEstimate();
-  const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${KEY}`, {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      contents: [{ parts: [{ text: PROMPT.replace('LANG', lang) }, { inline_data: { mime_type: mime, data: base64 } }] }],
-      generationConfig: { responseMimeType: 'application/json', temperature: 0.2 },
-    }),
-  });
-  if (!res.ok) throw new Error('AI ' + res.status);
-  const j = await res.json();
-  const txt = j?.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
-  const o = JSON.parse(txt);
-  return { name: String(o.name || '?'), kcalMin: +o.kcalMin || 0, kcalMax: +o.kcalMax || 0, p: +o.p || 0, c: +o.c || 0, f: +o.f || 0, confidence: o.confidence || 'medium', mode: 'live' };
+export function estimateMeal(base64: string, mime: string, lang: string): Promise<Estimate> {
+  return callAI({ image: base64, mime, lang });
+}
+
+export function estimateText(text: string, lang: string): Promise<Estimate> {
+  return callAI({ text, lang });
 }
 
 const DEMO = [

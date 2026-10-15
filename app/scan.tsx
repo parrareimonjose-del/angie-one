@@ -5,7 +5,7 @@ import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Screen, Card, Btn, Chip, T, s } from '../src/ui';
 import { useStore, today, uid, trialDaysLeft } from '../src/store';
-import { estimateMeal, refine, aiMode, Estimate } from '../src/ai';
+import { estimateMeal, refine, Estimate } from '../src/ai';
 import { C } from '../src/theme';
 
 const PORTIONS = [0.5, 0.75, 1, 1.5, 2];
@@ -34,6 +34,7 @@ export default function Scan() {
     } catch { setErr(t('scan.error')); } finally { setBusy(false); }
   };
   const r = est ? refine(est, q) : null;
+  const aiMode = est?.mode ?? 'live';
   const yn = (k: 'oil' | 'sauce' | 'fried') => (
     <View key={k} style={[s.row, { justifyContent: 'space-between' }]}><T style={{ fontWeight: '700' }}>{t(`scan.${k}`)}</T>
       <View style={s.row}><Chip label={t('scan.yes')} active={q[k] === true} onPress={() => setQ({ ...q, [k]: true })} /><Chip label={t('scan.no')} active={q[k] === false} onPress={() => setQ({ ...q, [k]: false })} /></View></View>
