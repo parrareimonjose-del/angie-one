@@ -4,6 +4,7 @@
  */
 import { AI_URL } from './ai';
 import { State, Profile, dailyTarget, trialPhase, today, DAY } from './store';
+import { safePlanDays } from './safety';
 
 export type Place = 'home' | 'gym';
 export type Level = 'beginner' | 'intermediate' | 'advanced';
@@ -29,7 +30,11 @@ export type WorkoutLog = { date: string; kcal: number; min: number; day: number 
 export type ChatMsg = { role: 'user' | 'coach'; text: string };
 export type Coach = { prefs?: Prefs; plan?: Plan; adjust: number; boost: number; checkins: CheckIn[]; workouts: WorkoutLog[]; chat: ChatMsg[]; chatCount: Record<string, number> };
 export const EMPTY_COACH: Coach = { adjust: 0, boost: 0, checkins: [], workouts: [], chat: [], chatCount: {} };
-export const coachOf = (s: State): Coach => ({ ...EMPTY_COACH, ...(s.coach || {}) });
+export const coachOf = (s: State): Coach => {
+  const c: Coach = { ...EMPTY_COACH, ...(s.coach || {}) };
+  // Planes guardados antes del filtro también pasan por él
+  return c.plan && c.prefs?.injuries?.length ? { ...c, plan: withSafety(c.plan, c.prefs) } : c;
+};
 
 /** Premium = prueba de 7 días activa (los pagos aún no existen). */
 export const isPremium = (s: State, now = Date.now()) => trialPhase(s.trialStart, now).phase === 'trial';
@@ -155,6 +160,12 @@ export function validatePlan(o: any, kcal: number, min: number): Plan | null {
   return { source: 'ai', created: Date.now(), lang: '', kcal, diet: { days: d.days.map((x: any) => ({ meals: x.meals.map((m: Meal, i: number) => ({ ...m, slot: i })) })), shopping: d.shopping || [] }, workout: { days: w.days, safety: w.safety } };
 }
 
+/** Filtro duro: cambia ejercicios inseguros para las lesiones elegidas (IA y reglas). */
+export function withSafety(plan: Plan, prefs: Prefs): Plan {
+  const r = safePlanDays(plan.workout.days, prefs.injuries);
+  return { ...plan, workout: { ...plan.workout, days: r.days } };
+}
+
 export async function makePlan(p: Profile, prefs: Prefs, kcal: number, prot: number, lang: string): Promise<Plan> {
   try {
     const injury = [...prefs.injuries.map((x) => INJ_EN[x]), prefs.injuryNote.trim()].filter(Boolean).join(', ');
@@ -163,9 +174,9 @@ export async function makePlan(p: Profile, prefs: Prefs, kcal: number, prot: num
       place: prefs.place, level: prefs.level, injury, dislike: prefs.dislikes.map((x) => DISLIKE_EN[x]).join(', '), cuisine: CUISINE_EN[prefs.cuisine], budget: prefs.budget,
     }, 120000);
     const plan = validatePlan(o, kcal, safeMin(p));
-    if (plan) return { ...plan, lang };
+    if (plan) return withSafety({ ...plan, lang }, prefs);
   } catch { /* respaldo abajo */ }
-  return { ...rulesPlan(p, prefs, kcal), lang };
+  return withSafety({ ...rulesPlan(p, prefs, kcal), lang }, prefs);
 }
 
 export async function askCoach(msgs: ChatMsg[], lang: string, context: string): Promise<string> {

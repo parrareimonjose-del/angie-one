@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, AppState, Platform } from 'react-native';
 import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import * as Speech from 'expo-speech';
@@ -34,12 +34,29 @@ export default function Player() {
     if (!voice) return;
     speak(st2.kind === 'rest' ? t('coach.sayRest', { n: st2.secs }) : `${N.ex(st2.ex)}. ${t('coach.setOf', { a: st2.set, b: st2.sets })}. ${st2.ex.reps ? t('coach.reps', { n: st2.ex.reps }) : t('coach.secs', { n: st2.secs })}`);
   };
-  useEffect(() => { if (step) { setLeft(step.secs); say(step); } }, [i, steps.length]);
+  useEffect(() => { endAt.current = 0; if (step) { setLeft(step.secs); say(step); } }, [i, steps.length]);
+  // Pausa automática si la app o la pestaña se ocultan; al volver sigue donde iba (si no la pausó el usuario).
+  const [hidden, setHidden] = useState(false);
   useEffect(() => {
-    if (!step || paused || fin || !step.secs) return;
+    const onHide = (h: boolean) => { setHidden(h); if (h) Speech.stop(); };
+    const sub = AppState.addEventListener('change', (a) => onHide(a !== 'active'));
+    let off = () => {};
+    if (Platform.OS === 'web' && typeof document !== 'undefined') {
+      const f = () => onHide(document.visibilityState === 'hidden');
+      document.addEventListener('visibilitychange', f); off = () => document.removeEventListener('visibilitychange', f);
+    }
+    return () => { sub.remove(); off(); };
+  }, []);
+  // Cuenta atrás por reloj real (sin deriva): se guarda la hora de fin y se recalcula cada tick.
+  const endAt = useRef(0); const [tick, setTick] = useState(0);
+  useEffect(() => {
+    if (!step || paused || hidden || fin || !step.secs) { endAt.current = 0; return; }
     if (left <= 0) { next(); return; }
-    const tm = setTimeout(() => setLeft(left - 1), 1000); return () => clearTimeout(tm);
-  }, [left, paused, fin, i]);
+    if (!endAt.current) endAt.current = Date.now() + left * 1000;
+    const tm = setTimeout(() => { setLeft(Math.max(0, Math.ceil((endAt.current - Date.now()) / 1000 - 0.05))); setTick((x) => x + 1); }, 250);
+    return () => clearTimeout(tm);
+  }, [left, tick, paused, hidden, fin, i]);
+
   const next = () => {
     if (!step) return;
     const add = step.kind === 'work' ? kcalFor(step.ex.met, kg, workSecs(step.ex)) : kcalFor(1.5, kg, step.secs - Math.max(0, left));

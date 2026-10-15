@@ -22,7 +22,7 @@ export default function Chat() {
     const msgs: ChatMsg[] = [...c.chat, { role: 'user', text }];
     upd((x) => ({ ...x, chat: msgs.slice(-30), chatCount: { [today()]: used + 1 } }));
     const p = st.profile; const pr = c.prefs;
-    const ctx = p ? `goal ${p.goal}, ${p.sex}, ${p.age} y, ${p.weight} kg, target ${coachTarget(st).kcal} kcal/day${pr ? `, trains at ${pr.place} ${pr.days} days/week, level ${pr.level}${pr.injuries.length ? ', limits: ' + pr.injuries.join(' ') : ''}` : ''}` : '';
+    const ctx = p ? `goal ${p.goal}, ${p.age} y, ${p.weight} kg, target ${coachTarget(st).kcal} kcal/day${pr ? `, trains at ${pr.place} ${pr.days} days/week, level ${pr.level}${pr.injuries.length ? ', limits: ' + pr.injuries.join(' ') : ''}` : ''}` : '';
     try { const r = await askCoach(msgs, curLang(), ctx); upd((x) => ({ ...x, chat: [...msgs, { role: 'coach' as const, text: r }].slice(-30) })); }
     catch { setErr(t('chat.offline')); }
     finally { setBusy(false); }

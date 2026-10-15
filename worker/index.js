@@ -53,7 +53,7 @@ const PLAN_PROMPT = `You are "Angie", a warm, guilt-free nutrition and fitness c
 {"diet":{"days":[{"meals":[{"name":"short dish name (NOT the meal time like breakfast)","items":"foods and portions in plain words","kcal":int,"p":int,"c":int,"f":int}]}],"shopping":["item with quantity for the week"]},
  "workout":{"days":[{"rest":bool,"title":"short title","exercises":[{"name":"exercise","desc":"one or two plain sentences how to do it safely","sets":int,"reps":int,"secs":int,"rest":int,"met":number}]}],"safety":"one short safety note"}}
 Rules: exactly 7 diet days (Monday..Sunday), MEALS meals per day; each day's kcal must add up close to KCAL kcal (never below MIN kcal), protein about PROT g. Prefer CUISINE dishes with local, affordable (BUDGET budget) ingredients; NEVER use: DISLIKE. Shopping list max 25 items.
-Exactly 7 workout days: DAYS training days at PLACE, about MINUTES minutes each, level LEVEL; others "rest":true with empty exercises. 4–7 exercises per training day including a short warm-up. Use "reps" for repetition exercises (secs 0) or "secs" for timed ones (reps 0). rest in seconds. met = realistic MET value (2–8). Respect limits/injuries: INJURY. Choose low-impact options if needed. Beginner-friendly descriptions. Write ALL text in LANG. No medical advice, no body shaming.`;
+Exactly 7 workout days: DAYS training days at PLACE, about MINUTES minutes each, level LEVEL; others "rest":true with empty exercises. 4–7 exercises per training day including a short warm-up. Use "reps" for repetition exercises (secs 0) or "secs" for timed ones (reps 0). rest in seconds. met = realistic MET value (2–8). Respect limits/injuries: INJURY. Hard rules: knees → no squats of any kind (including chair squats), lunges, step-ups or jumps; lower back → no deadlifts, good mornings, barbell rows or heavy spinal loading; shoulders → no overhead or shoulder press; wrists → no push-ups or planks on the hands. Choose low-impact options if needed. Beginner-friendly descriptions. Write ALL text in LANG. No medical advice, no body shaming.`;
 
 function cleanPlan(o, b) {
   if (!o || !o.diet || !o.workout) return null;
@@ -80,7 +80,14 @@ function cleanPlan(o, b) {
   return { diet: { days: ddays, shopping }, workout: { days: wdays, safety: str(o.workout.safety, 300) } };
 }
 
-const CHAT_PROMPT = `You are "Angie", the coach inside the Angie One app: warm, motivating, guilt-free, practical, Latin-friendly. Answer questions about food, nutrition, cooking and exercise in LANG, in at most 120 words, simple words, plain text without markdown. Do not use pet names or comment on the user's looks or gender. You are NOT a doctor: never diagnose, never prescribe medication, never suggest eating below 1200 kcal (women) / 1500 kcal (men), never praise extreme restriction, purging or over-exercise. If the user mentions symptoms, pain, pregnancy, a disease, or signs of an eating disorder, kindly suggest talking to a health professional. If the question is unrelated to food, health habits or exercise, gently steer back. User context: CTX.`;
+const CHAT_PROMPT = `You are "Angie", the coach inside the Angie One app: warm, motivating, guilt-free, practical, Latin-friendly. Answer questions about food, nutrition, cooking and exercise in LANG, in at most 120 words, simple words, plain text without markdown. Tone rules (strict, in every language): never use pet names or terms of endearment (e.g. mi amor, cariño, mi reina, linda, guapa, corazón, mija, mi vida, honey, sweetie, dear, darling, querida, chérie, Schatz, tesoro); never compliment or comment on the user's looks or body; never assume the user's gender: in gendered languages (Spanish, Portuguese, French, Italian, Arabic, etc.) use neutral wording (e.g. "te doy la bienvenida" instead of "bienvenida/o", "qué buena pregunta", avoid adjectives that agree with the user's gender, such as saciada/saciado, lista/listo, cansada/cansado; keep wording neutral even if the user states their gender, e.g. "te mantiene con saciedad"). You are NOT a doctor: never diagnose, never prescribe medication, never suggest eating below 1200 kcal (women) / 1500 kcal (men), never praise extreme restriction, purging or over-exercise. If the user mentions symptoms, pain, pregnancy, a disease, or signs of an eating disorder, kindly suggest talking to a health professional. If the question is unrelated to food, health habits or exercise, gently steer back. User context: CTX.`;
+
+// Red de seguridad del tono: quita apelativos cariñosos que la IA cuele (13 idiomas).
+const PET = /(?:,\s*|(?<=(?:^|[¡¿\s])(?:hola|hey|hi|hello|oi|olá|ola|salut|bonjour|ciao|hallo|merhaba|привет)\s+))(?:mi\s+(?:amor|vida|cielo|reina|rey|corazón|corazon|niña|niño|nena|linda|lindo|bella|hermosa|querida|querido|princesa)|cariño|cariñ[oa]|mija|mijo|mamita|papito|mami|papi|guap[oa]|lind[oa]|herman[oa]sa|preciosa?|querid[oa]|corazón|bonit[oa]|chula|amorcito|reina|princesa|honey|sweetie|sweetheart|darling|babe|baby|dear|hun|gorgeous|beautiful|handsome|love|meu\s+amor|minha\s+querida|meu\s+querido|benzinho|ma\s+(?:chérie|belle)|mon\s+(?:chéri|cœur|ange)|ma\s+puce|schatz|liebling|süße|tesoro|carissim[oa]|cara\s+mia|tatlım|canım|güzelim|дорог(?:ая|ой)|милая|солнышко|亲爱的|宝贝|ダーリン|자기야|حبيبتي|حبيبي|عزيزتي)\b(?=\s*[,.!?¡¿;:)]|\s*$)/giu;
+const ONLYW = /^[^\p{L}]*$/u;
+function cleanTone(t) {
+  return t.split('\n').map((l) => l.replace(PET, '').replace(/\s+([,.!?;:])/g, '$1').replace(/([¡¿])\s*([!?])/g, '$1$2').replace(/¡!/g, '!').replace(/¿\?/g, '?').replace(/,\s*([.!?])/g, '$1')).join('\n').trim();
+}
 
 async function coach(path, b, env, h) {
   if (path === '/plan') {
@@ -111,10 +118,10 @@ async function coach(path, b, env, h) {
   const msgs = (Array.isArray(b.messages) ? b.messages : []).slice(-6).map((m) => ({ role: m.role === 'user' ? 'User' : 'Angie', text: str(m.text, 600) })).filter((m) => m.text);
   if (!msgs.length || msgs[msgs.length - 1].role !== 'User') return json({ error: 'need question' }, 400, h);
   const lang = langOf(b.lang); const ctx = str(b.context, 300) || 'none';
-  const out = await cached('chat-v2', { lang, ctx, msgs }, 86400, async () => {
+  const out = await cached('chat-v4', { lang, ctx, msgs }, 86400, async () => {
     const txt = await gemini(env, [{ text: CHAT_PROMPT.replace('LANG', lang).replace('CTX', ctx) + '\n\n' + msgs.map((m) => `${m.role}: ${m.text}`).join('\n') + '\nAngie:' }], 500, 25000, false);
     if (txt === null) return { error: 'busy' };
-    return txt ? { reply: txt.replace(/^Angie:\s*/, '').slice(0, 1500) } : { error: 'parse' };
+    return txt ? { reply: cleanTone(txt.replace(/^Angie:\s*/, '')).slice(0, 1500) } : { error: 'parse' };
   });
   if (out.error) return json({ error: out.error }, out.error === 'busy' ? 503 : 502, h);
   return json(out, 200, h);

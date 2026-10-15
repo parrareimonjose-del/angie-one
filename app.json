@@ -2,7 +2,7 @@
   "expo": {
     "name": "Angie One",
     "slug": "angie-one",
-    "version": "1.0.0",
+    "version": "0.3.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -44,12 +44,15 @@
       },
       "predictiveBackGestureEnabled": false,
       "package": "com.parraapps.angieone",
-      "versionCode": 1,
+      "versionCode": 3,
       "permissions": [
         "android.permission.CAMERA"
       ],
       "blockedPermissions": [
-        "android.permission.RECORD_AUDIO"
+        "android.permission.RECORD_AUDIO",
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
       ]
     },
     "web": {
