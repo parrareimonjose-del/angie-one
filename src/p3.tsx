@@ -136,6 +136,7 @@ export function Twin() {
         <Rect x={70 - 24 * w} y={64} width={48 * w} height={70} rx={20} fill={C.primary} /><Rect x={70 - 22} y={132} width={18} height={56} rx={8} fill={C.secondary} /><Rect x={74} y={132} width={18} height={56} rx={8} fill={C.secondary} /></Svg></Animated.View>
       <Text style={{ fontSize: 40 }}>{props[act]}</Text><T style={{ textAlign: 'center' }}>{t(`x.tw.${act}`, { kcal: fmtNum(coachTarget(st).kcal) })}</T></Card>
     <Row>{(['talk', 'eat', 'cook', 'train'] as const).map((k) => <Chip key={k} label={t(`x.twa.${k}`)} active={act === k} onPress={() => go(k)} />)}</Row>
+    <Btn label={`🧬  ${t('cl.fromTwin')}`} onPress={() => router.push('/clon' as any)} />
     <Note k="x.twinNote" /><Disclaimer /></Screen>;
 }
 

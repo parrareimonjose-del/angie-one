@@ -67,7 +67,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const set = useCallback((fn: (s: State) => State) => {
     setS((prev) => { const next = fn(prev); AsyncStorage.setItem(KEY, JSON.stringify(next)); return next; });
   }, []);
-  const reset = useCallback(() => { AsyncStorage.removeItem(KEY); setS(INITIAL); i18n.changeLanguage(deviceLang()); }, []);
+  const reset = useCallback(() => { AsyncStorage.removeItem(KEY); AsyncStorage.removeItem('angieone:clone'); setS(INITIAL); i18n.changeLanguage(deviceLang()); }, []);
   return <C.Provider value={{ s, ready, set, reset }}>{children}</C.Provider>;
 }
 export const useStore = () => useContext(C);

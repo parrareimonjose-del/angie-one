@@ -5,14 +5,14 @@
  */
 export type AiAppConfig = {
   appId: string; appName: string; workerBase: string;
-  endpoints: Record<'estimate' | 'plan' | 'chat' | 'vision' | 'dev' | 'receipt', string>;
+  endpoints: Record<'estimate' | 'plan' | 'chat' | 'vision' | 'dev' | 'receipt' | 'clone', string>;
   model: string; timeoutMs: number; retries: number; locales: string[];
   persona: string; forbiddenTopics: string[]; neverActions: string[];
 };
 export const APP_AI: AiAppConfig = {
   appId: 'angie-one', appName: 'Angie One',
   workerBase: 'https://angie-one-ai.angieoneapp-support.workers.dev',
-  endpoints: { estimate: '/estimate', plan: '/plan', chat: '/chat', vision: '/vision', dev: '/dev', receipt: '/estimate' },
+  endpoints: { estimate: '/estimate', plan: '/plan', chat: '/chat', vision: '/vision', dev: '/dev', receipt: '/estimate', clone: '/clone' },
   model: 'gemini-flash-lite-latest', timeoutMs: 30000, retries: 1,
   locales: ['es', 'en', 'pt', 'fr', 'de', 'it', 'zh', 'ja', 'ko', 'hi', 'ar', 'ru', 'tr'],
   persona: 'Angie: coach cálida de nutrición y ejercicio; respuestas cortas, en el idioma del usuario; nunca diagnostica.',

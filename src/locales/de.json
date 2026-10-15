@@ -1526,5 +1526,167 @@
     "busy": "Ich konnte das Audio nicht verstehen. Versuch es nochmal.",
     "offline": "Kein Internet. Prüfe die Verbindung.",
     "notFood": "Hallo! Sag mir, was du gegessen hast, z. B. „Hähnchensalat und Kaffee“."
+  },
+  "sp": {
+    "tag": "Gut essen, wohlfühlen",
+    "skip": "Tippen zum Starten"
+  },
+  "cl": {
+    "title": "KI-Klon",
+    "fromTwin": "Meinen KI-Klon aus Fotos erstellen",
+    "intro": "Dein KI-Klon ist ein Cartoon-Zwilling von dir, passend zu deiner Größe und deinem Gewicht.",
+    "how": "Mache 6 geführte Fotos. Wenn du abnimmst oder stärker wirst, verändert sich dein Klon mit dir.",
+    "rule": "Goldene Regel",
+    "ruleTxt": "Deine Fotos und dein Klon bleiben nur auf diesem Handy. Sie werden niemals verkauft, niemals für Werbung genutzt und niemals jemandem gezeigt. Du kannst sie jederzeit löschen.",
+    "clothes": "Trage enganliegende Kleidung (wie Sportkleidung). Keine Unterwäsche- oder Bademodenfotos.",
+    "consent": "Ich stimme zu, dass meine Fotos zur Erstellung meines Klons verwendet werden. Nur die Frontfotos werden einmal an die KI gesendet, um Farben und Proportionen zu erkennen, und dort nicht gespeichert.",
+    "adult": "Ich bin 18 oder älter",
+    "start": "Fotos starten",
+    "needBoth": "Beide Kästchen ankreuzen, um zu starten.",
+    "notMed": "Dein Klon ist eine Illustration zur Motivation. Er ist keine medizinische Messung.",
+    "shot": {
+      "faceFront": "Gesicht, vorne",
+      "faceLeft": "Gesicht, links",
+      "faceRight": "Gesicht, rechts",
+      "bodyFront": "Körper, vorne",
+      "bodySide": "Körper, Seite",
+      "bodyBack": "Körper, hinten"
+    },
+    "tip": {
+      "faceFront": "Schau direkt in die Kamera. Positioniere dein Gesicht im Oval. Gutes Licht, keine Brille.",
+      "faceLeft": "Dreh den Kopf ein bisschen nach links.",
+      "bodyFront": "Steh 2 Meter entfernt. Der ganze Körper in der Umrisslinie, die Arme leicht geöffnet.",
+      "bodySide": "Dreh dich zur Seite. Steh gerade.",
+      "bodyBack": "Dreh der Kamera den Rücken zu.",
+      "faceRight": "Dreh den Kopf ein bisschen nach rechts."
+    },
+    "take": "Foto aufnehmen",
+    "pick": "Foto auswählen",
+    "skipShot": "Dieses Foto überspringen",
+    "noCam": "Kamereerlaubnis erforderlich. Du kannst stattdessen ein Foto auswählen.",
+    "camErr": "Das Foto konnte nicht geöffnet werden. Versuche es noch einmal.",
+    "onDevice": "Nur auf diesem Handy gespeichert.",
+    "review": "Deine Fotos (tippe auf eines, um es zu wiederholen)",
+    "needFront": "Das vordere Gesichtsfoto und das vordere Körperfoto werden benötigt.",
+    "build": "Meinen Klon erstellen",
+    "building": "Dein Klon wird erstellt…",
+    "sendOnce": "Die 2 Frontfotos werden einmal an die KI gesendet und dort nicht gespeichert. Alles andere bleibt auf deinem Handy.",
+    "noPerson": "Ich konnte keine bekleidete erwachsene Person auf den Fotos erkennen. Bitte versuche es mit enganliegender Kleidung noch einmal.",
+    "localOnly": "KI derzeit nicht verfügbar: Ich habe deinen Klon mit auf deinem Handy ermittelten Farben erstellt.",
+    "byAi": "Mit KI aus deinen Fotos erstellt",
+    "byPhone": "Auf deinem Handy erstellt",
+    "before": "Vorher",
+    "now": "Jetzt",
+    "goal": "Ziel",
+    "down": "Du hast {{kg}} kg abgenommen",
+    "up": "Du hast {{kg}} kg zugenommen",
+    "same": "Gleiches Gewicht wie am Anfang",
+    "v": {
+      "front": "Vorne",
+      "side": "Seite",
+      "back": "Hinten"
+    },
+    "morph": "Jedes Mal, wenn du dein Gewicht oder ein Training einträgst, aktualisiert sich dein Klon: schmäler, wenn du abnimmst, stärker, wenn du trainierst.",
+    "logW": "Mein Gewicht eintragen",
+    "train": "Training starten",
+    "redo": "Meine Fotos wiederholen",
+    "del": "Meine Fotos und meinen Klon löschen",
+    "delQ": "Deine 6 Fotos und deinen Klon von diesem Handy löschen?",
+    "delYes": "Ja, löschen",
+    "delNo": "Nein",
+    "nudge": "Erstelle deinen KI-Klon: einen Zwilling von dir, der sich mit deinen Fortschritten verändert.",
+    "nudgeGo": "Erstellen",
+    "notNow": "Jetzt nicht"
+  },
+  "tu": {
+    "title": "Lerne, Angie zu nutzen",
+    "sub": "Kurze Videos mit Sprache und Untertiteln. Tippe auf den großen Play-Button.",
+    "len": "3 Schritte · 15 Sekunden",
+    "play": "Abspielen",
+    "again": "Nochmal ansehen",
+    "step": "Schritt {{n}}",
+    "prev": "Zurück",
+    "next": "Weiter",
+    "pause": "Pause",
+    "resume": "Fortsetzen",
+    "voiceOn": "Ton an",
+    "voiceOff": "Ton aus",
+    "done": "Fertig! Probier es jetzt selbst aus.",
+    "try": "Jetzt ausprobieren",
+    "all": "Alle Anleitungen",
+    "f": {
+      "photo": {
+        "t": "Foto deiner Mahlzeit",
+        "s1": "Tippe unten auf Scannen.",
+        "s2": "Mache ein Foto von deinem Teller oder wähle eines aus.",
+        "s3": "Überprüfe die Kalorien und tippe auf Hinzufügen."
+      },
+      "voice": {
+        "t": "Per Spracheingabe protokollieren",
+        "s1": "Tippe auf das Mikrofon in der unteren Leiste.",
+        "s2": "Sage, was du gegessen hast, zum Beispiel: Reis mit Hähnchen.",
+        "s3": "Überprüfe das Ergebnis und speichere es ab."
+      },
+      "barcode": {
+        "t": "Barcode scannen",
+        "s1": "Öffne Barcode unter Mehr.",
+        "s2": "Tippe auf Mit Kamera scannen und halte sie auf den Barcode.",
+        "s3": "Wenn er nicht gefunden wird, mach ein Foto vom Etikett."
+      },
+      "coach": {
+        "t": "Dein persönlicher Coach",
+        "s1": "Öffne Coach unter Mehr.",
+        "s2": "Beantworte dein Ziel, deine Tage und Minuten.",
+        "s3": "Angie erstellt deinen Plan und passt ihn jede Woche an."
+      },
+      "plan": {
+        "t": "Dein Ernährungsplan",
+        "s1": "Öffne deinen Plan.",
+        "s2": "Sieh dir deine Mahlzeiten für jeden Tag an.",
+        "s3": "Ändere jede Mahlzeit, die du nicht magst."
+      },
+      "gym": {
+        "t": "Fitnessstudio und Übungen",
+        "s1": "Öffne Training.",
+        "s2": "Wähle eine Routine für dein Level.",
+        "s3": "Folge dem Timer und der Stimme."
+      },
+      "weight": {
+        "t": "Dein Gewicht eintragen",
+        "s1": "Öffne Gewicht.",
+        "s2": "Schreibe dein Gewicht auf und speichere es.",
+        "s3": "Sieh dir deine Tabelle und deinen Trend an."
+      },
+      "chef": {
+        "t": "Kühlschrank und KI-Chef",
+        "s1": "Öffne den KI-Koch.",
+        "s2": "Schreibe oder fotografiere, was du im Kühlschrank hast.",
+        "s3": "Angie gibt dir einfache Rezepte."
+      },
+      "menu": {
+        "t": "Speisekarte",
+        "s1": "Öffne Menü.",
+        "s2": "Mache ein Foto von der Speisekarte.",
+        "s3": "Angie zeigt dir die besten Optionen für dein Ziel."
+      },
+      "datos": {
+        "t": "Kassenbons und Umfragen",
+        "s1": "Öffne den Bereich Daten.",
+        "s2": "Erteile deine Erlaubnis und fotografiere einen Kassenbon.",
+        "s3": "Sammle Punkte. Deine Gesundheitsdaten werden niemals verkauft."
+      },
+      "security": {
+        "t": "PIN und Fingerabdruck",
+        "s1": "Öffne Sicherheit.",
+        "s2": "Erstelle eine PIN. Tippe auf das Auge, um sie zu sehen.",
+        "s3": "Aktiviere den Fingerabdruck oder Face ID."
+      },
+      "clone": {
+        "t": "Dein KI-Klon",
+        "s1": "Öffne den KI-Klon und kreuze beide Kästchen an.",
+        "s2": "Mache die 6 Fotos entlang der Umrisslinie.",
+        "s3": "Sieh dir deinen Klon an: vorher, jetzt und Ziel."
+      }
+    }
   }
 }

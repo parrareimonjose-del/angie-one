@@ -1,0 +1,164 @@
+{
+  "sp": {
+    "tag": "Coma bem, sinta-se bem",
+    "skip": "Toque para entrar"
+  },
+  "cl": {
+    "title": "Clone de IA",
+    "fromTwin": "Criar meu clone de IA com minhas fotos",
+    "intro": "Seu clone de IA é um gêmeo em formato de desenho animado, com sua altura e peso.",
+    "how": "Tire 6 fotos guiadas. Conforme você perde peso ou ganha força, seu clone muda com você.",
+    "rule": "Regra de ouro",
+    "ruleTxt": "Suas fotos e seu clone ficam apenas neste telefone. Eles nunca são vendidos, nunca usados para anúncios e nunca mostrados a ninguém. Você pode apagá-los quando quiser.",
+    "clothes": "Use roupas justas (como roupas de ginástica). Sem fotos de roupa de baixo ou de banho.",
+    "consent": "Concordo em usar minhas fotos para criar meu clone. Apenas as fotos de frente são enviadas uma vez para a IA ler as cores e proporções, e não ficam salvas lá.",
+    "adult": "Tenho 18 anos ou mais",
+    "start": "Começar fotos",
+    "needBoth": "Marque as duas caixas para começar.",
+    "notMed": "Seu clone é uma ilustração para motivação. Não é uma medição médica.",
+    "shot": {
+      "faceFront": "Rosto, frente",
+      "faceLeft": "Rosto, esquerda",
+      "faceRight": "Rosto, direita",
+      "bodyFront": "Corpo, frente",
+      "bodySide": "Corpo, lado",
+      "bodyBack": "Corpo, costas"
+    },
+    "tip": {
+      "faceFront": "Olhe direto para a câmera. Coloque seu rosto dentro do oval. Boa luz, sem óculos.",
+      "faceLeft": "Vire a cabeça um pouco para a esquerda.",
+      "faceRight": "Vire a cabeça um pouco para a direita.",
+      "bodyFront": "Fique a 2 metros de distância. Corpo inteiro dentro do contorno, braços um pouco abertos.",
+      "bodySide": "Vire de lado. Fique em pé e reto.",
+      "bodyBack": "Vire de costas para a câmera."
+    },
+    "take": "Tirar foto",
+    "pick": "Escolher uma foto",
+    "skipShot": "Pular esta foto",
+    "noCam": "Permissão da câmera necessária. Você pode escolher uma foto.",
+    "camErr": "A foto não pôde ser aberta. Tente novamente.",
+    "onDevice": "Salvo apenas neste telefone.",
+    "review": "Suas fotos (toque em uma para refazer)",
+    "needFront": "As fotos de rosto e corpo de frente são necessárias.",
+    "build": "Criar meu clone",
+    "building": "Criando seu clone…",
+    "sendOnce": "As 2 fotos de frente são enviadas uma vez para a IA e não ficam salvas lá. Todo o resto fica no seu telefone.",
+    "noPerson": "Não consegui ver um adulto vestido nas fotos. Tente novamente com roupas justas.",
+    "localOnly": "IA indisponível no momento: fiz seu clone com as cores lidas no seu telefone.",
+    "byAi": "Feito com IA a partir das suas fotos",
+    "byPhone": "Feito no seu telefone",
+    "before": "Antes",
+    "now": "Agora",
+    "goal": "Meta",
+    "down": "Você perdeu {{kg}} kg",
+    "up": "Você ganhou {{kg}} kg",
+    "same": "Mesmo peso do início",
+    "v": {
+      "front": "Frente",
+      "side": "Lado",
+      "back": "Costas"
+    },
+    "morph": "Toda vez que você registra seu peso ou um treino, seu clone se atualiza: mais magro quando perde peso, mais forte quando treina.",
+    "logW": "Registrar meu peso",
+    "train": "Ir treinar",
+    "redo": "Refazer minhas fotos",
+    "del": "Apagar minhas fotos e clone",
+    "delQ": "Apagar suas 6 fotos e seu clone deste telefone?",
+    "delYes": "Sim, apagar",
+    "delNo": "Não",
+    "nudge": "Crie seu clone de IA: um gêmeo seu que muda conforme você progride.",
+    "nudgeGo": "Criar",
+    "notNow": "Agora não"
+  },
+  "tu": {
+    "title": "Aprenda a usar a Angie",
+    "sub": "Curtos vídeos com voz e legendas. Toque no botão grande de reprodução.",
+    "len": "3 passos · 15 segundos",
+    "play": "Reproduzir",
+    "again": "Assistir de novo",
+    "step": "Passo {{n}}",
+    "prev": "Voltar",
+    "next": "Avançar",
+    "pause": "Pausar",
+    "resume": "Continuar",
+    "voiceOn": "Voz ligada",
+    "voiceOff": "Voz desligada",
+    "done": "Pronto! Agora tente você mesmo.",
+    "try": "Tente agora",
+    "all": "Todos os tutoriais",
+    "f": {
+      "photo": {
+        "t": "Foto da sua refeição",
+        "s1": "Toque em Escanear na parte inferior.",
+        "s2": "Tire uma foto do seu prato ou escolha uma.",
+        "s3": "Confira as calorias e toque em Adicionar."
+      },
+      "voice": {
+        "t": "Registrar por voz",
+        "s1": "Toque no microfone na barra inferior.",
+        "s2": "Diga o que comeu, por exemplo: arroz com frango.",
+        "s3": "Confira o resultado e salve."
+      },
+      "barcode": {
+        "t": "Escanear um código de barras",
+        "s1": "Abra Código de barras em Mais.",
+        "s2": "Toque em Escanear com a câmera e aponte para o código.",
+        "s3": "Se não for encontrado, tire uma foto do rótulo."
+      },
+      "coach": {
+        "t": "Seu coach pessoal",
+        "s1": "Abra o Coach em Mais.",
+        "s2": "Responda sobre sua meta, dias e minutos.",
+        "s3": "A Angie cria seu plano e o ajusta toda semana."
+      },
+      "plan": {
+        "t": "Seu plano de refeições",
+        "s1": "Abra seu plano.",
+        "s2": "Veja suas refeições para cada dia.",
+        "s3": "Mude qualquer refeição que você não goste."
+      },
+      "gym": {
+        "t": "Academia e exercícios",
+        "s1": "Abra Academia.",
+        "s2": "Escolha uma rotina para o seu nível.",
+        "s3": "Siga o cronômetro e a voz."
+      },
+      "weight": {
+        "t": "Registrar seu peso",
+        "s1": "Abra Peso.",
+        "s2": "Escreva seu peso e salve.",
+        "s3": "Veja seu gráfico e sua tendência."
+      },
+      "chef": {
+        "t": "Geladeira e chef de IA",
+        "s1": "Abra Chef de IA.",
+        "s2": "Escreva ou fotografar o que você tem na geladeira.",
+        "s3": "A Angie te dá receitas fáceis."
+      },
+      "menu": {
+        "t": "Cardápio de restaurante",
+        "s1": "Abra Cardápio.",
+        "s2": "Tire uma foto do cardápio.",
+        "s3": "A Angie mostra as melhores opções para a sua meta."
+      },
+      "datos": {
+        "t": "Recibos e pesquisas",
+        "s1": "Abra a seção Dados.",
+        "s2": "Dê sua permissão e tire uma foto de um recibo.",
+        "s3": "Ganhe pontos. Seus dados de saúde nunca são vendidos."
+      },
+      "security": {
+        "t": "PIN e impressão digital",
+        "s1": "Abra Segurança.",
+        "s2": "Crie um PIN. Toque no olho para vê-lo.",
+        "s3": "Ative a impressão digital ou o Face ID."
+      },
+      "clone": {
+        "t": "Seu clone de IA",
+        "s1": "Abra Clone de IA e marque as duas caixas.",
+        "s2": "Tire as 6 fotos seguindo o contorno.",
+        "s3": "Veja seu clone: antes, agora e meta."
+      }
+    }
+  }
+}

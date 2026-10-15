@@ -1,0 +1,12 @@
+import { bodyOf, goalKg, cleanTraits, strengthOf, SHOTS } from '../src/clone';
+const ok = (n: string, c: boolean) => { if (!c) { console.error('FAIL', n); process.exitCode = 1; } else console.log('PASS', n); };
+const a = bodyOf(95, 170, 'female', 0), b = bodyOf(70, 170, 'female', 0), c = bodyOf(70, 170, 'female', 1);
+ok('más peso = cintura más ancha', a.waist > b.waist);
+ok('más fuerza = brazos y pecho más marcados', c.arm > b.arm && c.chest > b.chest);
+ok('más fuerza = cintura no crece', c.waist <= b.waist);
+ok('altura escala', bodyOf(70, 190, 'male', 0).h > bodyOf(70, 155, 'male', 0).h);
+ok('meta bajar < actual y nunca IMC<20', goalKg(95, 170, 'lose') < 95 && goalKg(55, 170, 'lose') >= 57.8);
+ok('meta mantener = actual', goalKg(70, 170, 'keep') === 70);
+ok('traits inválidos -> por defecto', cleanTraits({ skin: 'red', shoulders: 9 }).skin === '#E0AC8A' && cleanTraits({ shoulders: 9 }).shoulders === 1.15);
+ok('fuerza 0..1', strengthOf(100) === 1 && strengthOf(0) === 0);
+ok('6 fotos guiadas', SHOTS.length === 6);

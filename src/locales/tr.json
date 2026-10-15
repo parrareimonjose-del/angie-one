@@ -1526,5 +1526,167 @@
     "busy": "Sesi anlayamadım. Tekrar deneyin.",
     "offline": "İnternet yok. Bağlantınızı kontrol edin.",
     "notFood": "Merhaba! Ne yediğinizi söyleyin, örneğin: \"tavuk salatası ve kahve\"."
+  },
+  "sp": {
+    "tag": "İyi beslen, harika hisset",
+    "skip": "Girmek için dokun"
+  },
+  "cl": {
+    "title": "Yapay Zeka İkizi",
+    "fromTwin": "Fotoğraflarımdan Yapay Zeka İkizimi oluştur",
+    "intro": "Yapay Zeka İkizi; boyun ve kilonla oluşturulan, sana benzeyen sevimli bir çizgi film ikizidir.",
+    "how": "6 adımda rehberli fotoğraf çek. Kilo verdikçe veya güçlendikçe ikizin de seninle birlikte değişir.",
+    "rule": "Altın kural",
+    "ruleTxt": "Fotoğrafların ve ikizin yalnızca bu telefonda kalır. Asla satılmaz, reklamlar için kullanılmaz ve hiç kimseye gösterilmez. İstediğin zaman silebilirsin.",
+    "clothes": "Üzerine oturan kıyafetler giy (spor kıyafetler gibi). İç çamaşırı veya mayo fotoğrafları kabul edilmez.",
+    "consent": "İkizimi oluşturmak için fotoğraflarımın kullanılmasını onaylıyorum. Yalnızca önden çekilen fotoğraflar renkleri ve oranları okumak için bir kez yapay zekaya gönderilir ve orada saklanmaz.",
+    "adult": "18 yaş veya üzerindeyim",
+    "start": "Fotoğraflara başla",
+    "needBoth": "Başlamak için her iki kutucuğu da işaretle.",
+    "notMed": "İkizin motivasyon amaçlı bir çizimdir. Tıbbi bir ölçüm değildir.",
+    "shot": {
+      "faceFront": "Yüz, ön",
+      "faceLeft": "Yüz, sol",
+      "faceRight": "Yüz, sağ",
+      "bodyFront": "Vücut, ön",
+      "bodySide": "Vücut, yan",
+      "bodyBack": "Vücut, arka"
+    },
+    "tip": {
+      "faceFront": "Doğrudan kameraya bak. Yüzünü oval alanın içine yerleştir. İyi ışık olsun, gözlük takma.",
+      "faceLeft": "Başını biraz sola çevir.",
+      "faceRight": "Başını biraz sağa çevir.",
+      "bodyFront": "2 metre uzakta dur. Tüm vücudun taslağın içinde olsun, kollarını biraz aç.",
+      "bodySide": "Yana dön. Dik dur.",
+      "bodyBack": "Sırtını kameraya dön."
+    },
+    "take": "Fotoğraf çek",
+    "pick": "Bir fotoğraf seç",
+    "skipShot": "Bu fotoğrafı atla",
+    "noCam": "Kamera izni gerekiyor. İstersen bir fotoğraf seçebilirsin.",
+    "camErr": "Fotoğraf açılamadı. Tekrar dene.",
+    "onDevice": "Yalnızca bu telefonda saklanır.",
+    "review": "Fotoğrafların (yeniden çekmek için birine dokun)",
+    "needFront": "Ön yüz ve ön vücut fotoğrafları gereklidir.",
+    "build": "İkizimi oluştur",
+    "building": "İkizing oluşturuluyor…",
+    "sendOnce": "Ön cepheden çekilen 2 fotoğraf yapay zekaya bir kez gönderilir ve orada saklanmaz. Geri kalan her şey telefonunda kalır.",
+    "noPerson": "Fotoğraflarda giyinmiş bir yetişkin göremedim. Lütfen üzerine oturan kıyafetlerle tekrar dene.",
+    "localOnly": "Yapay zeka şu an kullanılamıyor: İkizini telefonunda okunan renklerle oluşturdum.",
+    "byAi": "Fotoğraflarından yapay zeka ile oluşturuldu",
+    "byPhone": "Telefonunda oluşturuldu",
+    "before": "Önce",
+    "now": "Şimdi",
+    "goal": "Hedef",
+    "down": "{{kg}} kg verdin",
+    "up": "{{kg}} kg aldın",
+    "same": "Başlangıç ile aynı ağırlıktasın",
+    "v": {
+      "front": "Ön",
+      "side": "Yan",
+      "back": "Arka"
+    },
+    "morph": "Kilonu veya antrenmanını her kaydettiğinde ikizin güncellenir: kilo verdiğinde daha ince, antrenman yaptıkça daha güçlü görünür.",
+    "logW": "Kilomu kaydet",
+    "train": "Antrenmana git",
+    "redo": "Fotoğraflarımı yeniden çek",
+    "del": "Fotoğraflarımı ve ikizimi sil",
+    "delQ": "6 fotoğrafın ve ikizing bu telefondan silinsin mi?",
+    "delYes": "Evet, sil",
+    "delNo": "Hayır",
+    "nudge": "Yapay Zeka İkizini oluştur: İlerledikçe seninle birlikte değişen ikizin.",
+    "nudgeGo": "Oluştur",
+    "notNow": "Şimdi değil"
+  },
+  "tu": {
+    "title": "Angie'yi kullanmayı öğren",
+    "sub": "Sesli ve altyazılı kısa videolar. Büyük oynat düğmesine dokun.",
+    "len": "3 adım · 15 saniye",
+    "play": "Oynat",
+    "again": "Tekrar izle",
+    "step": "Adım {{n}}",
+    "prev": "Geri",
+    "next": "İleri",
+    "pause": "Duraklat",
+    "resume": "Devam et",
+    "voiceOn": "Ses açık",
+    "voiceOff": "Ses kapalı",
+    "done": "Harika! Şimdi kendin dene.",
+    "try": "Şimdi dene",
+    "all": "Tüm rehberler",
+    "f": {
+      "photo": {
+        "t": "Yemeğinin fotoğrafı",
+        "s1": "Alttaki Tara seçeneğine dokun.",
+        "s2": "Tabağının fotoğrafını çek veya galeriden seç.",
+        "s3": "Kalorileri kontrol et ve Ekle'ye dokun."
+      },
+      "voice": {
+        "t": "Sesle kaydet",
+        "s1": "Alt çubuktaki mikrofona dokun.",
+        "s2": "Ne yediğini söyle, örneğin: tavuklu pilav.",
+        "s3": "Sonucu kontrol et ve kaydet."
+      },
+      "barcode": {
+        "t": "Barkod tara",
+        "s1": "Diğer menüsünden Barkod'u aç.",
+        "s2": "Kamera ile Tara'ya dokun ve barkoda tut.",
+        "s3": "Bulunamazsa, etiketin fotoğrafını çek."
+      },
+      "coach": {
+        "t": "Kişisel koçun",
+        "s1": "Diğer menüsünden Koç'u aç.",
+        "s2": "Hedefini, günlerini ve dakikalarını yanıtla.",
+        "s3": "Angie planını hazırlar ve her hafta sana göre ayarlar."
+      },
+      "plan": {
+        "t": "Yemek planın",
+        "s1": "Planını aç.",
+        "s2": "Her gün için öğünlerini gör.",
+        "s3": "Sevmediğin herhangi bir öğünü değiştir."
+      },
+      "gym": {
+        "t": "Spor salonu ve egzersizler",
+        "s1": "Spor'u aç.",
+        "s2": "Seviyene uygun bir rutin seç.",
+        "s3": "Zamanlayıcıyı ve sesi takip et."
+      },
+      "weight": {
+        "t": "Kilonu kaydet",
+        "s1": "Kilo'yu aç.",
+        "s2": "Kilonu yaz ve kaydet.",
+        "s3": "Grafiğini ve trendini gör."
+      },
+      "chef": {
+        "t": "Buzdolabı ve yapay zeka şef",
+        "s1": "Yapay zeka şefi aç.",
+        "s2": "Buzdolabında ne olduğunu yaz veya fotoğrafla.",
+        "s3": "Angie sana kolay tarifler versin."
+      },
+      "menu": {
+        "t": "Restoran menüsü",
+        "s1": "Menü'yü aç.",
+        "s2": "Menünün fotoğrafını çek.",
+        "s3": "Angie hedefin için en iyi seçenekleri göstersin."
+      },
+      "datos": {
+        "t": "Fişler ve anketler",
+        "s1": "Veri bölümünü aç.",
+        "s2": "İznini ver ve bir fişin fotoğrafını çek.",
+        "s3": "Puan kazan. Sağlık verilerin asla satılmaz."
+      },
+      "security": {
+        "t": "PIN ve parmak izi",
+        "s1": "Güvenlik'i aç.",
+        "s2": "Bir PIN oluştur. Görmek için göz simgesine dokun.",
+        "s3": "Parmak izini veya Face ID'yi aç."
+      },
+      "clone": {
+        "t": "Yapay Zeka İkizin",
+        "s1": "Yapay Zeka İkizi'ni aç ve her iki kutucuğu da işaretle.",
+        "s2": "Taslağı takip ederek 6 fotoğrafı çek.",
+        "s3": "İkizini gör: önce, şimdi ve hedef."
+      }
+    }
   }
 }
