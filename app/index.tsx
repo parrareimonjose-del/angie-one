@@ -4,6 +4,7 @@ import { Redirect, router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import * as Speech from 'expo-speech';
 import { Screen, Card, Btn, Ring, Bar, T, s } from '../src/ui';
+import { fmtLocale, fmtNum } from '../src/i18n';
 import { useStore, today, dailyTarget, trialPhase, fmtCountdown, streak } from '../src/store';
 import { C } from '../src/theme';
 
@@ -20,7 +21,7 @@ export default function Home() {
   const challenges = t('home.challenges') as unknown as string[];
   const ch = challenges[new Date().getDate() % challenges.length];
   const doneToday = st.challengeDays.includes(d);
-  const speak = () => Speech.speak(t('home.summary', { eaten: Math.round(sum.kcal), goal: target.kcal, water }), { language: i18n.language });
+  const speak = () => Speech.speak(t('home.summary', { eaten: Math.round(sum.kcal), goal: target.kcal, water }), { language: fmtLocale() });
   return (
     <Screen>
       <View style={[s.row, { justifyContent: 'space-between' }]}>
@@ -32,18 +33,18 @@ export default function Home() {
       {tp.phase === 'trial' && left <= 2 ? <Card style={{ backgroundColor: '#FFF1DC' }}><T style={{ fontWeight: '700' }}>{t(left === 2 ? 'trial.remind2' : 'trial.remind1')}</T></Card> : null}
       <Card style={{ alignItems: 'center' }}>
         <Ring value={sum.kcal} max={target.kcal} size={220}>
-          <Text style={{ fontSize: 44, fontWeight: '900', color: C.text }}>{Math.max(0, target.kcal - Math.round(sum.kcal))}</Text>
-          <Text style={s.muted}>kcal {t('home.left')}</Text>
+          <Text style={{ fontSize: 44, fontWeight: '900', color: C.text }}>{fmtNum(Math.max(0, target.kcal - Math.round(sum.kcal)))}</Text>
+          <Text style={s.muted}>{t('u.kcal')} {t('home.left')}</Text>
         </Ring>
         <View style={[s.row, { justifyContent: 'space-around', alignSelf: 'stretch' }]}>
-          <View style={{ alignItems: 'center' }}><Text style={s.h2}>{Math.round(sum.kcal)}</Text><Text style={s.muted}>{t('home.eaten')}</Text></View>
-          <View style={{ alignItems: 'center' }}><Text style={s.h2}>{target.kcal}</Text><Text style={s.muted}>{t('home.goal')}</Text></View>
+          <View style={{ alignItems: 'center' }}><Text style={s.h2}>{fmtNum(sum.kcal)}</Text><Text style={s.muted}>{t('home.eaten')}</Text></View>
+          <View style={{ alignItems: 'center' }}><Text style={s.h2}>{fmtNum(target.kcal)}</Text><Text style={s.muted}>{t('home.goal')}</Text></View>
         </View>
       </Card>
       <Card>
         {([['protein', sum.p, target.p, C.protein], ['carbs', sum.c, target.c, C.carbs], ['fat', sum.f, target.f, C.fat]] as const).map(([k, v, m, col]) => (
           <View key={k} style={{ gap: 4 }}>
-            <View style={[s.row, { justifyContent: 'space-between' }]}><T style={{ fontWeight: '700' }}>{t(`home.${k}`)}</T><Text style={s.muted}>{Math.round(v)} / {m} g</Text></View>
+            <View style={[s.row, { justifyContent: 'space-between' }]}><T style={{ fontWeight: '700' }}>{t(`home.${k}`)}</T><Text style={s.muted}>{fmtNum(v)} / {fmtNum(m)} {t('u.g')}</Text></View>
             <Bar value={v} max={m} color={col} />
           </View>
         ))}

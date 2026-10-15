@@ -13,7 +13,22 @@
         "NSCameraUsageDescription": "Angie One usa la cámara para analizar tus platos y códigos de barras.",
         "NSPhotoLibraryUsageDescription": "Angie One usa tus fotos para analizar platos.",
         "ITSAppUsesNonExemptEncryption": false,
-        "NSMicrophoneUsageDescription": "Angie One usa el micrófono solo si dictas una comida por voz."
+        "NSMicrophoneUsageDescription": "Angie One usa el micrófono solo si dictas una comida por voz.",
+        "CFBundleLocalizations": [
+          "es",
+          "en",
+          "pt",
+          "fr",
+          "de",
+          "it",
+          "zh-Hans",
+          "ja",
+          "ko",
+          "hi",
+          "ar",
+          "ru",
+          "tr"
+        ]
       },
       "buildNumber": "1",
       "config": {
@@ -47,7 +62,6 @@
     },
     "plugins": [
       "expo-router",
-      "expo-localization",
       [
         "expo-camera",
         {
@@ -64,6 +78,12 @@
           "resizeMode": "contain",
           "backgroundColor": "#FFF7F5"
         }
+      ],
+      [
+        "expo-localization",
+        {
+          "supportsRTL": true
+        }
       ]
     ],
     "scheme": "angieone",
@@ -71,6 +91,9 @@
       "baseUrl": "/angie-one",
       "typedRoutes": false
     },
-    "description": "Angie One: AI calorie & nutrition coach. Snap your meal, know your calories."
+    "description": "Angie One: AI calorie & nutrition coach. Snap your meal, know your calories.",
+    "extra": {
+      "supportsRTL": true
+    }
   }
 }

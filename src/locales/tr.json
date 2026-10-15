@@ -1,0 +1,348 @@
+{
+ "tagline": "Yapay zeka beslenme koçun, suçluluk duygusu olmadan.",
+ "start": "Başla",
+ "next": "İleri",
+ "back": "Geri",
+ "save": "Kaydet",
+ "cancel": "İptal",
+ "add": "Ekle",
+ "done": "Tamam",
+ "ob": {
+  "goal": "Hedefin ne?",
+  "lose": "Kilo ver",
+  "keep": "Korumak",
+  "gain": "Kas yap",
+  "body": "Benden sana bahset",
+  "weight": "Kilo (kg)",
+  "height": "Boy (cm)",
+  "age": "Yaş",
+  "sex": "Cinsiyet",
+  "female": "Kadın",
+  "male": "Erkek",
+  "activity": "Ne kadar hareketlisin?",
+  "a1": "Düşük (masa başı iş)",
+  "a2": "Hafif (1–3 gün)",
+  "a3": "Orta (3–5 gün)",
+  "a4": "Yüksek (6–7 gün)",
+  "trialTitle": "7 gün Premium ücretsiz",
+  "trialBody": "Bugünden itibaren tüm Premium özellikleri 7 gün boyunca ücretsiz, kart gerekmeden seninle. Son günden 2 gün önce ve son gün sana hatırlatma yapacağız. Sonrasında ücretsiz sürüme dönersin ve tüm verilerin sende kalır. Otomatik olarak hiçbir ücret alınmaz.",
+  "target": "Günlük hedefin: {{kcal}} kcal",
+  "go": "Hadi başlayalım!",
+  "invalid": "Bilgilerini kontrol et: kilo 30–300 kg, boy 100–250 cm, yaş 13–100.",
+  "legalNote": "Devam ederek Şartlar ve Gizlilik Politikası'nı kabul etmiş olursun.",
+  "notMedical": "Angie One bir tıbbi cihaz değildir."
+ },
+ "home": {
+  "hello": "Selam! Bugün harika gidiyorsun",
+  "left": "kaldı",
+  "eaten": "tüketilen",
+  "goal": "hedef",
+  "protein": "Protein",
+  "carbs": "Karb",
+  "fat": "Yağ",
+  "water": "Su",
+  "addWater": "+1 bardak",
+  "challenge": "Günün meydan okuması",
+  "streak": "Seri: {{n}} gün",
+  "challengeDone": "Meydan okuma tamamlandı!",
+  "markDone": "Başardım",
+  "readAloud": "Sesli oku",
+  "summary": "{{goal}} kalorinin {{eaten}} kadarını ve {{water}} bardak suyu tükettin.",
+  "trialDays": "{{n}} gün ücretsiz Premium kaldı",
+  "trialOver": "Deneme süren sona erdi. Verilerin hâlâ burada.",
+  "challenges": [
+   "8 bardak su iç",
+   "20 dakika yürü",
+   "Renkli bir meyve ye",
+   "Kahvaltıya protein ekle",
+   "Akşam yemekini 21:00'den önce ye"
+  ]
+ },
+ "nav": {
+  "home": "Ana Sayfa",
+  "scan": "Fotoğraf",
+  "diary": "Günlük",
+  "more": "Daha fazla"
+ },
+ "scan": {
+  "title": "Yemek fotoğrafı",
+  "take": "Fotoğraf çek",
+  "pick": "Galeriden seç",
+  "analyzing": "Analiz ediliyor…",
+  "demo": "DEMO MODU: simüle edilmiş tahmin (yapay zeka anahtarı yok)",
+  "live": "Yapay Zeka: Gemini Flash-Lite",
+  "range": "Tahmini aralık",
+  "confidence": "Güvenilirlik",
+  "high": "yüksek",
+  "medium": "orta",
+  "low": "düşük",
+  "questions": "1 dokunuşla düzenle",
+  "oil": "Yağlı mı?",
+  "sauce": "Soslu mu?",
+  "fried": "Kızartma mı?",
+  "portion": "Porsiyon",
+  "yes": "Evet",
+  "no": "Hayır",
+  "log": "Günlüğe ekle",
+  "disclaimer": "Bu bir tahmindir, kesin değer değildir. Düzeltme yapabilirsin.",
+  "aiOff": "Yapay zeka kapalı. Ayarlardan aç veya manuel olarak kaydet.",
+  "error": "Fotoğrafı analiz edemedim. Tekrar dene veya manuel olarak kaydet.",
+  "limit": "Ücretsiz sürüm günde 1 yapay zeka fotoğrafı içerir.",
+  "noCam": "Kamera izni yok. Telefon ayarlarından aç veya galeriden bir fotoğraf seç."
+ },
+ "bar": {
+  "title": "Barkod",
+  "hint": "Kodu yaz veya tarat (Open Food Facts verisi)",
+  "search": "Ara",
+  "scanCam": "Kamera ile tara",
+  "notFound": "Ürün bulunamadı. Manuel olarak kaydet.",
+  "per100": "100 g başına",
+  "grams": "Gram",
+  "semaphore": "Trafik ışığı",
+  "sugar": "Şeker",
+  "salt": "Tuz",
+  "satfat": "Doymuş yağ"
+ },
+ "manual": {
+  "title": "Manuel kayıt",
+  "name": "Ad",
+  "kcal": "Kalori",
+  "latin": "Latin yemeği",
+  "search": "Yemek ara…",
+  "dictate": "Sesle dikte et",
+  "aiTitle": "Yemeğini tanımla",
+  "aiPh": "Örn. salatalı tavuk ve pilav, orta tabak",
+  "aiBtn": "Yapay zeka ile hesapla",
+  "exact": "Kaloriyi biliyorum",
+  "noMatch": "Sonuç yok. Yukarıda tanımla, yapay zeka hesaplasın."
+ },
+ "diary": {
+  "title": "Bugünkü günlük",
+  "empty": "Henüz bir şey yok. Yemeğinin fotoğrafını çek!",
+  "total": "Toplam",
+  "remove": "Kaldır",
+  "prev": "Önceki gün",
+  "nextDay": "Sonraki gün",
+  "today": "Bugün",
+  "day": "Günlük"
+ },
+ "more": {
+  "title": "Daha fazla",
+  "barcode": "Barkod",
+  "manual": "Manuel kayıt",
+  "settings": "Ayarlar",
+  "premium": "Premium",
+  "founder": "Kurucu Paneli"
+ },
+ "set": {
+  "title": "Ayarlar",
+  "language": "Dil",
+  "auto": "Otomatik (telefon dili)",
+  "ai": "Yapay zeka analizi",
+  "aiDesc": "Kapalıysa hiçbir servise fotoğraf gönderilmez.",
+  "profile": "Profilimi yeniden oluştur",
+  "reset": "Verilerimi sil",
+  "resetQ": "Emin misin? Bu, bu cihazdaki her şeyi siler.",
+  "privacy": "Günlüğün yalnızca bu cihazda saklanır. Sağlık verilerini asla satmayız.",
+  "version": "MVP sürümü"
+ },
+ "pay": {
+  "title": "Angie One Premium",
+  "sub": "İhtiyacın olan her şey, dürüst fiyat",
+  "monthly": "1,99 US$ / ay",
+  "yearly": "14,99 US$ / yıl",
+  "yearlySave": "%37 tasarruf et",
+  "latam": "Latin Amerika: 0,99 US$ / ay",
+  "f1": "Sınırsız yapay zeka fotoğrafı (adil kullanım)",
+  "f2": "Kişiselleştirilmiş diyet ve egzersiz planları",
+  "f3": "Haftalık koç ve sohbet",
+  "f4": "Buzdolabı ve menü tarayıcı",
+  "f5": "Reklamsız",
+  "offer": "48 saatlik hoş geldin teklifi: Abone kalmaya devam ettiğin sürece fiyatın sonsuza kadar sabit kalır.",
+  "renew": "Otomatik yenilenir. İstediğin zaman 1 dokunuşla iptal et. Ödeme yapmadan önce fiyat gösterilir.",
+  "cta": "Abone ol",
+  "soon": "Ödemeler henüz aktif değil (önizleme derlemesi).",
+  "free": "Ücretsiz sürümle devam et",
+  "offerLive": "🔒 Sabit fiyat sadece {{time}} daha geçerli",
+  "offerAfter": "Deneme süren bittiğinde bu fiyatı sonsuza kadar sabitlemek için 48 saatin olacak.",
+  "offerGone": "48 saatlik teklif sona erdi; güncel fiyat yukarıda gösterilmektedir."
+ },
+ "fo": {
+  "title": "Kurucu Paneli v1",
+  "sub": "Yapay zeka önerir, tek dokunuşla sen karar verirsin",
+  "approve": "Onayla",
+  "reject": "Reddet",
+  "approved": "Onaylandı",
+  "rejected": "Reddedildi",
+  "demo": "Örnek veri. Gerçek para oynamaz.",
+  "kpi": "Özet",
+  "users": "Kullanıcılar",
+  "paying": "Ödeme yapan",
+  "mrr": "Aylık gelir"
+ },
+ "aiErr": {
+  "offline": "Bağlantı yok veya sunucu çok uzun sürdü. İnternetini kontrol edip tekrar dene.",
+  "busy": "Yapay zeka şu anda çok meşgul. Bir dakika bekleyip tekrar dene.",
+  "tooLarge": "Bu fotoğraf çok büyük. Başka bir tane dene veya kırp.",
+  "notFood": "Burada yemek bulamadım. Tabağın daha net bir fotoğrafını dene veya kelimelerle tanımla.",
+  "server": "Şu anda hesaplayamadım. Tekrar dene veya manuel olarak kaydet."
+ },
+ "trial": {
+  "remind2": "⏰ Ücretsiz Premium'un 2 gün içinde sona eriyor. Otomatik olarak hiçbir ücret alınmaz.",
+  "remind1": "⏰ Bugün ücretsiz Premium'un son günü. 48 saatlik teklif yarın başlıyor.",
+  "offer": "🔒 48 saatlik teklif: fiyatını sonsuza kadar sabitle. Bitiş süresi: {{time}}",
+  "offerEnded": "48 saatlik teklif sona erdi. Ücretsiz sürümdesin."
+ },
+ "legal": {
+  "privacy": "Gizlilik Politikası",
+  "terms": "Kullanım Şartları",
+  "medical": "Tıbbi yasal uyarı",
+  "draft": "TASLAK — bir avukat tarafından incelenmesi bekleniyor.",
+  "section": "Yasal"
+ },
+ "u": {
+  "kcal": "kcal",
+  "g": "g",
+  "p": "P",
+  "c": "K",
+  "f": "Y"
+ },
+ "foCards": {
+  "c1": {
+   "title": "Daha üst bir servise geç",
+   "body": "Gelir > maliyet üst üste 3 ay. Öneri: ücretsiz katmandan temel plana geç (örnek)."
+  },
+  "c2": {
+   "title": "Aylık sosyal yardım",
+   "body": "Net kârın %15'ini ihtiyaç sahiplerine ayır (örnek: 0 $, henüz gelir yok)."
+  },
+  "c3": {
+   "title": "0.1.1 güncellemesini yayınla",
+   "body": "Programcı yapay zeka Portekizce metinleri düzeltti. %10 kademeli kullanıma sunma."
+  }
+ },
+ "foods": {
+  "arepa": "Mısır arepası",
+  "arepa_queso": "Peynirli arepa",
+  "empanada": "Etli empanada (kızarmış)",
+  "pabellon": "Pabellón criollo",
+  "frijoles": "Siyah fasulye",
+  "arroz": "Beyaz pirinç pilavı",
+  "platano": "Kızarmış tatlı muz",
+  "tostones": "Tostones (ezilip kızartılmış muz)",
+  "tacos": "Tacos al pastor (soslu domuz etli tako)",
+  "tamal": "Tamal",
+  "gallo_pinto": "Gallo pinto (fasulyeli pirinç)",
+  "ceviche": "Balık ceviche",
+  "pupusa": "Pupusa",
+  "bandeja": "Bandeja paisa",
+  "feijoada": "Feijoada (etçil siyah fasulye yahnisliği)",
+  "pao_queijo": "Peynirli ekmek",
+  "aguacate": "Avokado",
+  "mango": "Mango",
+  "huevo": "Çırpılmış yumurta",
+  "pollo": "Izgara tavuk",
+  "yuca": "Haşlanmış kasava (manyak kökü)",
+  "cafe": "Sütlü kahve"
+ },
+ "docs": {
+  "privacy": {
+   "title": "Gizlilik Politikası",
+   "updated": "Son güncelleme: 15 Ekim 2026",
+   "sections": [
+    [
+     "Biz Kimiz?",
+     "Angie One, bir Parra Apps uygulamasıdır. İletişim: angieoneapp.support@gmail.com."
+    ],
+    [
+     "Kullandığımız Veriler",
+     "Profiliniz (hedefiniz, kilo, boy, yaş, cinsiyet, aktivite düzeyiniz), yemek günlüğünüz, su tüketiminiz ve meydan okumalarınız. Şu anda bunlar yalnızca cihazınızda saklanır; günlüğünüzü barındıran herhangi bir hesabımız veya sunucumuz yoktur."
+    ],
+    [
+     "Yapay Zeka İçin Fotoğraflar ve Metinler",
+     "Yapay zeka açıksa, yemeğinizin fotoğrafı veya açıklaması, yalnızca tahmini hesaplamak amacıyla vekil sunucumuza (Cloudflare) ve Google Gemini'ye gönderilir. Bunu saklamıyoruz. Yapay zekayı Ayarlar'dan kapatabilirsiniz; bu durumda hiçbir şey gönderilmez."
+    ],
+    [
+     "Barkodlar",
+     "Barkod numarası, açık bir veritabanı olan Open Food Facts üzerinden sorgulanır. Hiçbir kişisel veri gönderilmez."
+    ],
+    [
+     "Sağlık Verilerinizi Asla Satmayız",
+     "Sağlık veya yemek verilerinizi reklamverenlerle veya üçüncü taraflarla satmaz, kiralamaz veya paylaşmayız. Sağlık verilerinizi reklam amacıyla kullanmayız."
+    ],
+    [
+     "Haklarınız",
+     "Tüm verilerinizi Ayarlar → Verilerimi Sil bölümünden görüntüleyebilir ve silebilirsiniz. Kaliforniya (CCPA), AB (GDPR) veya gizlilik yasalarına sahip herhangi bir yerde yaşıyorsanız, bize e-posta göndererek haklarınızı kullanabilirsiniz."
+    ],
+    [
+     "Çocuklar",
+     "Angie One, 13 yaşın altındaki çocuklara (AB'de 16) yönelik değildir."
+    ],
+    [
+     "Güvenlik ve İhlaller",
+     "Şifreli bağlantılar (HTTPS) kullanıyoruz. Bir veri ihlali sizi etkilerse, yasaların gerektirdiği şekilde (FTC Sağlık İhlali Bildirim Kuralı dahil) sizi bilgilendireceğiz."
+    ],
+    [
+     "Değişiklikler",
+     "Bu politikayı değiştirirsek, yürürlüğe girmeden önce bunu uygulamada göstereceğiz."
+    ]
+   ]
+  },
+  "terms": {
+   "title": "Kullanım Koşulları",
+   "updated": "Son güncellem: 15 Ekim 2026",
+   "sections": [
+    [
+     "Kabul",
+     "Angie One uygulamasını kullanarak bu koşulları kabul etmiş olursunuz. Kabul etmiyorsanız uygulamayı kullanmayın."
+    ],
+    [
+     "Hizmet",
+     "Angie One, yapay zeka ile öğünlerinizi kaydetmenize ve kalorileri tahmin etmenize yardımcı olur. Tahminler yaklaşık değerlerdir ve hatalı olabilir."
+    ],
+    [
+     "Deneme ve abonelik",
+     "Kart bilgisi gerekmeden 7 gün ücretsiz Premium kazanırsınız. Ardından ücretsiz sürüşe dönersiniz; otomatik olarak hiçbir ücret alınmaz. Sonrasında, aboneliğiniz devam ettiği sürece aynı fiyatı sabitlemeniz için 48 saatlik bir teklif alırsınız. Abonelikler otomatik olarak yenilenir ve mağazanızdan (App Store veya Google Play) tek dokunuşla iptal edilebilir. Fiyat, ödeme yapmadan önce gösterilir."
+    ],
+    [
+     "Kabul edilebilir kullanım",
+     "Uygulamayı yasadışı amaçlar için kullanmayın, uygulamaya zarar vermeye veya yapay zeka hizmetini kötüye kullanmaya çalışmayın."
+    ],
+    [
+     "Tıbbi tavsiye değildir",
+     "Tıbbi sorumluluk reddini okuyun. Uygulama bir sağlık profesyonelinin yerini tutmaz."
+    ],
+    [
+     "Sorumluluk",
+     "Uygulama \"olduğu gibi\" sağlanmaktadır. Yasaların izin verdiği ölçüde Parra Apps, tahminlerin kullanımından kaynaklanan zararlardan sorumlu tutulamaz."
+    ],
+    [
+     "İletişim",
+     "Bize angieoneapp.support@gmail.com adresinden e-posta gönderin."
+    ]
+   ]
+  },
+  "medical": {
+   "title": "Tıbbi Uyarı",
+   "updated": "Son güncelleme: 15 Ekim 2026",
+   "sections": [
+    [
+     "Tıbbi bir cihaz değildir",
+     "Angie One genel bir sağlıklı yaşam aracıdır. Herhangi bir hastalığı teşhis etmez, tedavi etmez, iyileştirmez veya önlemez."
+    ],
+    [
+     "Tahminler",
+     "Yapay zeka tarafından hesaplanan kalori ve besin öğeleri birer tahmindir ve önemli hatalar içerebilir. Gerektiğinde bunları gözden geçirin ve düzeltin."
+    ],
+    [
+     "Bir uzmana danışın",
+     "Özellikle hamileyseniz veya emziriyorsanız, diyabetiniz, yeme bozukluğunuz veya başka bir sağlık durumunuz varsa ya da 18 yaşın altındaysanız, diyetinizi değiştirmeden önce doktorunuza veya diyetisyeninize danışın."
+    ],
+    [
+     "Acil durumlar",
+     "Tıbbi bir acil durumunuz varsa 112'yi veya yerel acil durum numaranızı arayın."
+    ]
+   ]
+  }
+ }
+}

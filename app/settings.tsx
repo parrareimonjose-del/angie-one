@@ -3,7 +3,7 @@ import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Screen, Card, Btn, Chip, T, s } from '../src/ui';
 import { useStore } from '../src/store';
-import i18n, { deviceLang, Lang } from '../src/i18n';
+import i18n, { deviceLang, Lang, SUPPORTED, NATIVE } from '../src/i18n';
 import { C } from '../src/theme';
 import { LegalLinks } from '../src/legal-links';
 
@@ -19,9 +19,9 @@ export default function Settings() {
     <Screen title={t('set.title')}>
       <Card>
         <Text style={s.h2}>🌐 {t('set.language')}</Text>
-        <Chip label={`${t('set.auto')} · ${deviceLang().toUpperCase()}`} active={!st.langOverride} onPress={() => setLang(null)} />
+        <Chip label={`${t('set.auto')} · ${NATIVE[deviceLang()]}`} active={!st.langOverride} onPress={() => setLang(null)} />
         <View style={[s.row, { flexWrap: 'wrap' }]}>
-          {([['es', 'Español'], ['en', 'English'], ['pt', 'Português']] as const).map(([k, n]) => <Chip key={k} label={n} active={st.langOverride === k} onPress={() => setLang(k)} />)}
+          {SUPPORTED.map((k) => [k, NATIVE[k]] as const).map(([k, n]) => <Chip key={k} label={n} active={st.langOverride === k} onPress={() => setLang(k)} />)}
         </View>
       </Card>
       <Card>

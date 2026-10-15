@@ -1,0 +1,348 @@
+{
+ "tagline": "Dein KI-Ernährungscoach, ganz ohne schlechtes Gewissen.",
+ "start": "Loslegen",
+ "next": "Weiter",
+ "back": "Zurück",
+ "save": "Speichern",
+ "cancel": "Abbrechen",
+ "add": "Hinzufügen",
+ "done": "Fertig",
+ "ob": {
+  "goal": "Was ist dein Ziel?",
+  "lose": "Abnehmen",
+  "keep": "Halten",
+  "gain": "Muskelaufbau",
+  "body": "Erzähl mir von dir",
+  "weight": "Gewicht (kg)",
+  "height": "Größe (cm)",
+  "age": "Alter",
+  "sex": "Geschlecht",
+  "female": "Weiblich",
+  "male": "Männlich",
+  "activity": "Wie aktiv bist du?",
+  "a1": "Gering (Bürojob)",
+  "a2": "Leicht (1–3 Tage)",
+  "a3": "Mittel (3–5 Tage)",
+  "a4": "Hoch (6–7 Tage)",
+  "trialTitle": "7 Tage Premium kostenlos",
+  "trialBody": "Ab heute erhältst du alle Premium-Funktionen 7 Tage lang kostenlos, ganz ohne Kreditkarte. Wir erinnern dich 2 Tage vorher und am letzten Tag daran. Danach wechselst du automatisch zur kostenlosen Version und behältst all deine Daten. Es wird nichts automatisch abgebucht.",
+  "target": "Dein Tagesziel: {{kcal}} kcal",
+  "go": "Los geht's!",
+  "invalid": "Bitte Angaben prüfen: Gewicht 30–300 kg, Größe 100–250 cm, Alter 13–100.",
+  "legalNote": "Mit dem Fortfahren akzeptierst du die AGB und die Datenschutzerklärung.",
+  "notMedical": "Angie One ist kein Medizinprodukt."
+ },
+ "home": {
+  "hello": "Hi! Du machst das heute großartig",
+  "left": "übrig",
+  "eaten": "gegessen",
+  "goal": "Ziel",
+  "protein": "Protein",
+  "carbs": "Kohlenh.",
+  "fat": "Fett",
+  "water": "Wasser",
+  "addWater": "+1 Glas",
+  "challenge": "Tägliche Challenge",
+  "streak": "Serie: {{n}} Tage",
+  "challengeDone": "Challenge geschafft!",
+  "markDone": "Erledigt",
+  "readAloud": "Vorlesen",
+  "summary": "Du hast {{eaten}} von {{goal}} Kalorien und {{water}} Gläser Wasser zu dir genommen.",
+  "trialDays": "Noch {{n}} Tage kostenloses Premium",
+  "trialOver": "Deine Testphase ist vorbei. Deine Daten sind weiterhin hier.",
+  "challenges": [
+   "Trinke 8 Gläser Wasser",
+   "Gehe 20 Minuten spazieren",
+   "Iss ein farbiges Obst",
+   "Füge Protein zum Frühstück hinzu",
+   "Iss zu Abend vor 21 Uhr"
+  ]
+ },
+ "nav": {
+  "home": "Home",
+  "scan": "Foto",
+  "diary": "Tagebuch",
+  "more": "Mehr"
+ },
+ "scan": {
+  "title": "Mahlzeiten-Foto",
+  "take": "Foto aufnehmen",
+  "pick": "Aus Galerie wählen",
+  "analyzing": "Analysiere…",
+  "demo": "DEMO-MODUS: simulierte Schätzung (kein KI-Schlüssel)",
+  "live": "KI: Gemini Flash-Lite",
+  "range": "Geschätzter Bereich",
+  "confidence": "Konfidenz",
+  "high": "hoch",
+  "medium": "mittel",
+  "low": "gering",
+  "questions": "Mit 1 Tipp anpassen",
+  "oil": "Mit Öl?",
+  "sauce": "Mit Soße?",
+  "fried": "Frittiert?",
+  "portion": "Portion",
+  "yes": "Ja",
+  "no": "Nein",
+  "log": "Zum Tagebuch hinzufügen",
+  "disclaimer": "Dies ist ein Schätzwert, kein exakter Wert. Du kannst ihn korrigieren.",
+  "aiOff": "KI ist ausgeschaltet. Aktiviere sie in den Einstellungen oder trage manuell ein.",
+  "error": "Das Foto konnte nicht analysiert werden. Versuche es erneut oder trage es manuell ein.",
+  "limit": "Die kostenlose Version enthält 1 KI-Foto pro Tag.",
+  "noCam": "Keine Kameraerlaubnis. Aktiviere sie in deinen Geräteeinstellungen oder wähle ein Foto aus der Galerie."
+ },
+ "bar": {
+  "title": "Strichcode",
+  "hint": "Code eingeben oder scannen (Open Food Facts-Daten)",
+  "search": "Suchen",
+  "scanCam": "Mit Kamera scannen",
+  "notFound": "Produkt nicht gefunden. Manuell eintragen.",
+  "per100": "pro 100 g",
+  "grams": "Gramm",
+  "semaphore": "Nährwertampel",
+  "sugar": "Zucker",
+  "salt": "Salz",
+  "satfat": "Gesätt. Fetts."
+ },
+ "manual": {
+  "title": "Manueller Eintrag",
+  "name": "Name",
+  "kcal": "Kalorien",
+  "latin": "Lateinamerikanisches Essen",
+  "search": "Lebensmittel suchen…",
+  "dictate": "Per Sprache diktieren",
+  "aiTitle": "Beschreibe deine Mahlzeit",
+  "aiPh": "Z. B. Hähnchen mit Reis und Salat, mittlerer Teller",
+  "aiBtn": "Mit KI berechnen",
+  "exact": "Ich kenne die Kalorien",
+  "noMatch": "Keine Ergebnisse. Beschreibe es oben und die KI berechnet es."
+ },
+ "diary": {
+  "title": "Heutiges Tagebuch",
+  "empty": "Noch nichts da. Mach ein Foto von deiner Mahlzeit!",
+  "total": "Gesamt",
+  "remove": "Entfernen",
+  "prev": "Vorheriger Tag",
+  "nextDay": "Nächster Tag",
+  "today": "Heute",
+  "day": "Tagebuch"
+ },
+ "more": {
+  "title": "Mehr",
+  "barcode": "Strichcode",
+  "manual": "Manueller Eintrag",
+  "settings": "Einstellungen",
+  "premium": "Premium",
+  "founder": "Gründer-Panel"
+ },
+ "set": {
+  "title": "Settings",
+  "language": "Sprache",
+  "auto": "Automatisch (Gerätesprache)",
+  "ai": "KI-Analyse",
+  "aiDesc": "Wenn deaktiviert, werden keine Fotos an Dienste gesendet.",
+  "profile": "Mein Profil zurücksetzen",
+  "reset": "Meine Daten löschen",
+  "resetQ": "Sicher? Dadurch werden alle Daten auf diesem Gerät gelöscht.",
+  "privacy": "Dein Tagebuch wird nur auf diesem Gerät gespeichert. Wir verkaufen deine Gesundheitsdaten niemals.",
+  "version": "MVP-Version"
+ },
+ "pay": {
+  "title": "Angie One Premium",
+  "sub": "Alles, was du brauchst, zu einem fairen Preis",
+  "monthly": "1,99 US$ / Monat",
+  "yearly": "14,99 US$ / Jahr",
+  "yearlySave": "37% sparen",
+  "latam": "Lateinamerika: 0,99 US$ / Monat",
+  "f1": "Unbegrenzte KI-Fotos (faire Nutzung)",
+  "f2": "Personalisierte Ernährungs- und Trainingspläne",
+  "f3": "Wöchentlicher Coach & Chat",
+  "f4": "Kühlschrank- & Menü-Scanner",
+  "f5": "Keine Werbung",
+  "offer": "48h-Willkommensangebot: Dein Preis bleibt für immer eingefroren, solange du abonniert bleibst.",
+  "renew": "Verlängert sich automatisch. Jederzeit mit 1 Tipp kündbar. Preis wird vor der Zahlung angezeigt.",
+  "cta": "Abonnieren",
+  "soon": "Zahlungen sind noch nicht aktiv (Vorschau-Build).",
+  "free": "Mit kostenfreier Version fortfahren",
+  "offerLive": "🔒 Eingefrorener Preis nur noch für {{time}} verfügbar",
+  "offerAfter": "Wenn deine Testphase endet, hast du 48 Stunden Zeit, diesen Preis für immer einzufrieren.",
+  "offerGone": "Das 48h-Angebot ist abgelaufen; der aktuelle Preis wird oben angezeigt."
+ },
+ "fo": {
+  "title": "Gründer-Panel v1",
+  "sub": "KI schlägt vor, du entscheidest mit einem Tipp",
+  "approve": "Genehmigen",
+  "reject": "Ablehnen",
+  "approved": "Genehmigt",
+  "rejected": "Abgelehnt",
+  "demo": "Beispieldaten. Es fließt kein echtes Geld.",
+  "kpi": "Zusammenfassung",
+  "users": "Benutzer",
+  "paying": "Zahlend",
+  "mrr": "Monatlicher Umsatz"
+ },
+ "aiErr": {
+  "offline": "Keine Verbindung oder der Server hat zu lange gebraucht. Überprüfe deine Internetverbindung und versuche es erneut.",
+  "busy": "Die KI ist im Moment stark ausgelastet. Warte eine Minute und versuche es erneut.",
+  "tooLarge": "Dieses Foto ist zu groß. Versuche ein anderes oder schneide es zu.",
+  "notFood": "Hier konnten keine Lebensmittel gefunden werden. Versuche ein klareres Foto des Tellers oder beschreibe es mit Worten.",
+  "server": "Es konnte gerade nicht berechnet werden. Versuche es erneut oder trage es manuell ein."
+ },
+ "trial": {
+  "remind2": "⏰ Dein kostenloses Premium endet in 2 Tagen. Es wird nichts automatisch abgebucht.",
+  "remind1": "⏰ Heute ist der letzte Tag deines kostenlosen Premium-Abos. Dein 48h-Angebot beginnt morgen.",
+  "offer": "🔒 48h-Angebot: Friere deinen Preis für immer ein. Endet in {{time}}",
+  "offerEnded": "Das 48h-Angebot ist beendet. Du nutzt die kostenlose Version."
+ },
+ "legal": {
+  "privacy": "Datenschutzerklärung",
+  "terms": "Nutzungsbedingungen",
+  "medical": "Haftungsausschluss",
+  "draft": "ENTWURF — wartet auf die Prüfung durch einen Anwalt.",
+  "section": "Rechtliches"
+ },
+ "u": {
+  "kcal": "kcal",
+  "g": "g",
+  "p": "E",
+  "c": "K",
+  "f": "F"
+ },
+ "foCards": {
+  "c1": {
+   "title": "Auf höheren Dienst upgraden",
+   "body": "Umsatz > Kosten 3 Monate in Folge. Vorschlag: Wechsel von der kostenlosen Stufe zum Basisplan (Beispiel)."
+  },
+  "c2": {
+   "title": "Monatliche Sozialhilfe",
+   "body": "15% des Nettogewinns Bedürftigen zukommen lassen (Beispiel: 0 $, noch kein Umsatz)."
+  },
+  "c3": {
+   "title": "Update 0.1.1 veröffentlichen",
+   "body": "Programmierer-KI hat portugiesische Texte korrigiert. Gestaffelte Einführung zu 10%."
+  }
+ },
+ "foods": {
+  "arepa": "Mais-Arepa",
+  "arepa_queso": "Arepa mit Käse",
+  "empanada": "Rinder-Empanada (frittiert)",
+  "pabellon": "Pabellón criollo (Venezolanisches Nationalgericht)",
+  "frijoles": "Schwarze Bohnen",
+  "arroz": "Weißer Reis",
+  "platano": "Frittierte süße Kochbananen",
+  "tostones": "Tostones (knusprige Kochbananen)",
+  "tacos": "Tacos al pastor",
+  "tamal": "Tamale",
+  "gallo_pinto": "Gallo pinto (Reis und Bohnen)",
+  "ceviche": "Fisch-Ceviche",
+  "pupusa": "Pupusa",
+  "bandeja": "Bandeja paisa (Kolumbianischer Platten-Klassiker)",
+  "feijoada": "Feijoada (Schwarze-Bohnen-Eintopf)",
+  "pao_queijo": "Käsebrötchen",
+  "aguacate": "Avocado",
+  "mango": "Mango",
+  "huevo": "Rührei",
+  "pollo": "Gegrilltes Hähnchen",
+  "yuca": "Gekochter Maniok",
+  "cafe": "Milchkaffee"
+ },
+ "docs": {
+  "privacy": {
+   "title": "Datenschutzerklärung",
+   "updated": "Zuletzt aktualisiert: 15. Oktober 2026",
+   "sections": [
+    [
+     "Wer wir sind",
+     "Angie One ist eine App von Parra Apps. Kontakt: angieoneapp.support@gmail.com."
+    ],
+    [
+     "Daten, die wir nutzen",
+     "Dein Profil (Ziel, Gewicht, Größe, Alter, Geschlecht, Aktivität), dein Ernährungstagebuch, Wasser und Herausforderungen. Momentan werden diese ausschließlich auf deinem Gerät gespeichert; wir besitzen keine Konten oder Server, auf denen dein Tagebuch gespeichert wird."
+    ],
+    [
+     "Fotos und Texte für die KI",
+     "Wenn die KI aktiviert ist, werden das Foto oder die Beschreibung deiner Mahlzeit an unseren Proxy (Cloudflare) und an Google Gemini gesendet, ausschließlich um die Schätzung zu berechnen. Wir speichern diese Daten nicht. Du kannst die KI in den Einstellungen ausschalten, sodass nichts gesendet wird."
+    ],
+    [
+     "Barcodes",
+     "Die Barcodenummer wird in Open Food Facts, einer öffentlichen Datenbank, abgefragt. Es werden keine personenbezogenen Daten übermittelt."
+    ],
+    [
+     "Wir verkaufen niemals deine Gesundheitsdaten",
+     "Wir verkaufen, vermieten oder teilen deine Gesundheits- oder Ernährungsdaten weder an Werbetreibende noch an Dritte. Wir nutzen deine Gesundheitsdaten nicht für Werbezwecke."
+    ],
+    [
+     "Deine Rechte",
+     "Du kannst alle deine Daten in den Einstellungen unter „Meine Daten löschen“ einsehen und löschen. Wenn du in Kalifornien (CCPA), der EU (DSGVO) oder an einem anderen Ort mit Datenschutzgesetzen lebst, kannst du deine Rechte ausüben, indem du uns eine E-Mail schreibst."
+    ],
+    [
+     "Kinder",
+     "Angie One richtet sich nicht an Kinder unter 13 Jahren (16 Jahren in der EU)."
+    ],
+    [
+     "Sicherheit und Datenschutzvorfälle",
+     "Wir verwenden verschlüsselte Verbindungen (HTTPS). Wenn ein Sicherheitsvorfall deine Daten betrifft, werden wir dich gemäß den gesetzlichen Bestimmungen benachrichtigen (einschließlich der FTC Health Breach Notification Rule)."
+    ],
+    [
+     "Änderungen",
+     "Wenn wir diese Richtlinie ändern, zeigen wir dir dies in der App an, bevor sie in Kraft tritt."
+    ]
+   ]
+  },
+  "terms": {
+   "title": "Nutzungsbedingungen",
+   "updated": "Zuletzt aktualisiert: 15. Oktober 2026",
+   "sections": [
+    [
+     "Annahme",
+     "Durch die Nutzung von Angie One akzeptieren Sie diese Bedingungen. Wenn Sie nicht einverstanden sind, nutzen Sie die App nicht."
+    ],
+    [
+     "Der Dienst",
+     "Angie One hilft Ihnen dabei, Mahlzeiten zu protokollieren und Kalorien mit KI zu schätzen. Schätzungen sind Richtwerte und können fehlerhaft sein."
+    ],
+    [
+     "Testversion und Abonnement",
+     "Sie erhalten 7 Tage lang kostenlos Premium ohne Angabe von Zahlungsdaten. Danach kehren Sie zur kostenlosen Version zurück; es erfolgt keine automatisch belastete Zahlung. Anschließend erhalten Sie ein 48-stündiges Angebot, den Preis für die gesamte Dauer Ihres Abonnements einzufrieren. Abonnements verlängern sich automatisch und können mit einem Klick in Ihrem Store (App Store oder Google Play) gekündigt werden. Der Preis wird Ihnen vor der Bezahlung angezeigt."
+    ],
+    [
+     "Zulässige Nutzung",
+     "Nutzen Sie die App nicht für illegale Zwecke, versuchen Sie nicht, ihr zu schaden oder den KI-Dienst zu missbrauchen."
+    ],
+    [
+     "Keine medizinische Beratung",
+     "Lesen Sie den medizinischen Haftungsausschluss. Die App ersetzt keine medizinische Fachkraft."
+    ],
+    [
+     "Haftung",
+     "Die App wird „wie besehen“ bereitgestellt. Soweit gesetzlich zulässig, haftet Parra Apps nicht für Schäden, die aus der Nutzung von Schätzungen entstehen."
+    ],
+    [
+     "Kontakt",
+     "Schreiben Sie uns eine E-Mail an angieoneapp.support@gmail.com."
+    ]
+   ]
+  },
+  "medical": {
+   "title": "Medizinischer Haftungsausschluss",
+   "updated": "Zuletzt aktualisiert: 15. Oktober 2026",
+   "sections": [
+    [
+     "Kein Medizinprodukt",
+     "Angie One ist ein allgemeines Wellness-Tool. Es diagnostiziert, behandelt, heilt oder verhindert keine Krankheiten."
+    ],
+    [
+     "Schätzwerte",
+     "Die von der KI berechneten Kalorien und Nährstoffe sind Schätzwerte und können erhebliche Fehler enthalten. Überprüfe und korrigiere sie bei Bedarf."
+    ],
+    [
+     "Sprich mit Fachpersonal",
+     "Sprich mit deinem Arzt oder deiner Ernährungsberatung, bevor du deine Ernährung umstellst – insbesondere wenn du schwanger bist oder stillst, Diabetes, eine Essstörung oder eine andere gesundheitliche Erkrankung hast oder unter 18 Jahre alt bist."
+    ],
+    [
+     "Notfälle",
+     "Wähle bei medizinischen Notfällen 112 oder deine lokale Notrufnummer."
+    ]
+   ]
+  }
+ }
+}

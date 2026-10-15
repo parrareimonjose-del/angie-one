@@ -1,0 +1,348 @@
+{
+ "tagline": "Tu coach de nutrición con IA, sin culpa.",
+ "start": "Empezar",
+ "next": "Siguiente",
+ "back": "Atrás",
+ "save": "Guardar",
+ "cancel": "Cancelar",
+ "add": "Añadir",
+ "done": "Listo",
+ "ob": {
+  "goal": "¿Cuál es tu objetivo?",
+  "lose": "Bajar de peso",
+  "keep": "Mantenerme",
+  "gain": "Ganar músculo",
+  "body": "Cuéntame de ti",
+  "weight": "Peso (kg)",
+  "height": "Altura (cm)",
+  "age": "Edad",
+  "sex": "Sexo",
+  "female": "Mujer",
+  "male": "Hombre",
+  "activity": "¿Cuánto te mueves?",
+  "a1": "Poco (oficina)",
+  "a2": "Ligero (1–3 días)",
+  "a3": "Moderado (3–5 días)",
+  "a4": "Mucho (6–7 días)",
+  "trialTitle": "7 días de Premium gratis",
+  "trialBody": "Desde hoy tienes todo Premium gratis durante 7 días, sin tarjeta. Te avisaremos 2 días antes y el último día. Al terminar vuelves a la versión gratis y tus datos se quedan contigo. Nada se cobra solo.",
+  "target": "Tu meta diaria: {{kcal}} kcal",
+  "go": "¡Vamos!",
+  "invalid": "Revisa tus datos: peso 30–300 kg, altura 100–250 cm, edad 13–100.",
+  "legalNote": "Al continuar aceptas los Términos y la Política de privacidad.",
+  "notMedical": "Angie One no es un dispositivo médico."
+ },
+ "home": {
+  "hello": "¡Hola! Hoy vas muy bien",
+  "left": "restantes",
+  "eaten": "comidas",
+  "goal": "meta",
+  "protein": "Proteína",
+  "carbs": "Carbos",
+  "fat": "Grasa",
+  "water": "Agua",
+  "addWater": "+1 vaso",
+  "challenge": "Reto del día",
+  "streak": "Racha: {{n}} días",
+  "challengeDone": "¡Reto cumplido!",
+  "markDone": "Lo hice",
+  "readAloud": "Leer en voz alta",
+  "summary": "Llevas {{eaten}} de {{goal}} calorías y {{water}} vasos de agua.",
+  "trialDays": "Te quedan {{n}} días de Premium gratis",
+  "trialOver": "Tu prueba terminó. Tus datos siguen aquí.",
+  "challenges": [
+   "Toma 8 vasos de agua",
+   "Camina 20 minutos",
+   "Come una fruta de colores",
+   "Añade proteína a tu desayuno",
+   "Cena antes de las 9"
+  ]
+ },
+ "nav": {
+  "home": "Inicio",
+  "scan": "Foto",
+  "diary": "Diario",
+  "more": "Más"
+ },
+ "scan": {
+  "title": "Foto del plato",
+  "take": "Tomar foto",
+  "pick": "Elegir de la galería",
+  "analyzing": "Analizando…",
+  "demo": "MODO DEMO: estimación simulada (sin clave de IA)",
+  "live": "IA: Gemini Flash-Lite",
+  "range": "Rango estimado",
+  "confidence": "Confianza",
+  "high": "alta",
+  "medium": "media",
+  "low": "baja",
+  "questions": "Afina en 1 toque",
+  "oil": "¿Con aceite?",
+  "sauce": "¿Con salsa?",
+  "fried": "¿Frito?",
+  "portion": "Porción",
+  "yes": "Sí",
+  "no": "No",
+  "log": "Añadir al diario",
+  "disclaimer": "Es una estimación, no un valor exacto. Puedes corregirla.",
+  "aiOff": "La IA está apagada. Actívala en Ajustes o registra a mano.",
+  "error": "No pude analizar la foto. Prueba otra vez o regístralo a mano.",
+  "limit": "En la versión gratis tienes 1 foto con IA al día.",
+  "noCam": "Sin permiso de cámara. Actívalo en los ajustes del teléfono o elige una foto de la galería."
+ },
+ "bar": {
+  "title": "Código de barras",
+  "hint": "Escribe o escanea el código (datos de Open Food Facts)",
+  "search": "Buscar",
+  "scanCam": "Escanear con cámara",
+  "notFound": "No encontré ese producto. Regístralo a mano.",
+  "per100": "por 100 g",
+  "grams": "Gramos",
+  "semaphore": "Semáforo",
+  "sugar": "Azúcar",
+  "salt": "Sal",
+  "satfat": "Grasa sat."
+ },
+ "manual": {
+  "title": "Registro manual",
+  "name": "Nombre",
+  "kcal": "Calorías",
+  "latin": "Comida latina",
+  "search": "Buscar comida…",
+  "dictate": "Dictar por voz",
+  "aiTitle": "Describe tu plato",
+  "aiPh": "Ej.: arroz con pollo y ensalada, un plato mediano",
+  "aiBtn": "Calcular con IA",
+  "exact": "Ya sé las calorías",
+  "noMatch": "Sin resultados. Descríbelo arriba y la IA lo calcula."
+ },
+ "diary": {
+  "title": "Diario de hoy",
+  "empty": "Aún no hay nada. ¡Toma una foto de tu plato!",
+  "total": "Total",
+  "remove": "Quitar",
+  "prev": "Día anterior",
+  "nextDay": "Día siguiente",
+  "today": "Hoy",
+  "day": "Diario"
+ },
+ "more": {
+  "title": "Más",
+  "barcode": "Código de barras",
+  "manual": "Registro manual",
+  "settings": "Ajustes",
+  "premium": "Premium",
+  "founder": "Panel del Fundador"
+ },
+ "set": {
+  "title": "Ajustes",
+  "language": "Idioma",
+  "auto": "Automático (idioma del teléfono)",
+  "ai": "Análisis con IA",
+  "aiDesc": "Si lo apagas, no se envían fotos a ningún servicio.",
+  "profile": "Rehacer mi perfil",
+  "reset": "Borrar mis datos",
+  "resetQ": "¿Seguro? Esto borra todo en este dispositivo.",
+  "privacy": "Tu diario se guarda solo en este dispositivo. Nunca vendemos tus datos de salud.",
+  "version": "Versión MVP"
+ },
+ "pay": {
+  "title": "Angie One Premium",
+  "sub": "Todo lo que necesitas, a precio honesto",
+  "monthly": "1,99 $ / mes",
+  "yearly": "14,99 $ / año",
+  "yearlySave": "Ahorras 37 %",
+  "latam": "Latinoamérica: 0,99 $ / mes",
+  "f1": "Fotos con IA ilimitadas (uso justo)",
+  "f2": "Planes de dieta y ejercicio personalizados",
+  "f3": "Coach semanal y chat",
+  "f4": "Escáner de nevera y menú",
+  "f5": "Sin anuncios",
+  "offer": "Oferta de bienvenida 48 h: tu precio queda congelado para siempre mientras sigas suscrito.",
+  "renew": "Renovación automática. Cancela en 1 toque cuando quieras. El precio se muestra antes de pagar.",
+  "cta": "Suscribirme",
+  "soon": "Los pagos aún no están activos (versión de prueba).",
+  "free": "Seguir con la versión gratis",
+  "offerLive": "🔒 Precio congelado disponible solo {{time}} más",
+  "offerAfter": "Cuando termine tu prueba tendrás 48 h para congelar este precio para siempre.",
+  "offerGone": "La oferta de 48 h ya terminó; el precio actual se muestra arriba."
+ },
+ "fo": {
+  "title": "Panel del Fundador v1",
+  "sub": "La IA propone, tú decides con un toque",
+  "approve": "Aprobar",
+  "reject": "Rechazar",
+  "approved": "Aprobado",
+  "rejected": "Rechazado",
+  "demo": "Datos de ejemplo. Nada mueve dinero real.",
+  "kpi": "Resumen",
+  "users": "Usuarios",
+  "paying": "Pagando",
+  "mrr": "Ingreso mensual"
+ },
+ "aiErr": {
+  "offline": "Sin conexión o el servidor tardó demasiado. Revisa tu internet y prueba otra vez.",
+  "busy": "La IA está muy ocupada ahora mismo. Espera un minuto y prueba otra vez.",
+  "tooLarge": "La foto es demasiado grande. Prueba con otra o recórtala.",
+  "notFood": "No reconocí comida aquí. Prueba con una foto más clara del plato o descríbelo con palabras.",
+  "server": "No pude calcularlo ahora. Prueba otra vez o regístralo a mano."
+ },
+ "trial": {
+  "remind2": "⏰ Tu Premium gratis termina en 2 días. No se cobra nada solo.",
+  "remind1": "⏰ Hoy es el último día de tu Premium gratis. Mañana empieza tu oferta de 48 h.",
+  "offer": "🔒 Oferta 48 h: congela tu precio para siempre. Termina en {{time}}",
+  "offerEnded": "La oferta de 48 h terminó. Sigues con la versión gratis."
+ },
+ "legal": {
+  "privacy": "Política de privacidad",
+  "terms": "Términos de uso",
+  "medical": "Aviso médico",
+  "draft": "BORRADOR — pendiente de revisión por un abogado.",
+  "section": "Legal"
+ },
+ "u": {
+  "kcal": "kcal",
+  "g": "g",
+  "p": "P",
+  "c": "C",
+  "f": "G"
+ },
+ "docs": {
+  "privacy": {
+   "title": "Política de privacidad",
+   "updated": "Última actualización: 15 de octubre de 2026",
+   "sections": [
+    [
+     "Quiénes somos",
+     "Angie One es una app de Parra Apps. Contacto: angieoneapp.support@gmail.com."
+    ],
+    [
+     "Qué datos usamos",
+     "Los datos de tu perfil (objetivo, peso, altura, edad, sexo, actividad), tu diario de comidas, agua y retos. Hoy se guardan solo en tu dispositivo; no tenemos cuentas ni servidores con tu diario."
+    ],
+    [
+     "Fotos y textos para la IA",
+     "Si la IA está encendida, la foto o la descripción de tu plato se envía a nuestro servidor intermedio (Cloudflare) y a Google Gemini solo para calcular la estimación. No la guardamos. Puedes apagar la IA en Ajustes y entonces no se envía nada."
+    ],
+    [
+     "Códigos de barras",
+     "El número del código se consulta en Open Food Facts, una base de datos pública. No se envían tus datos personales."
+    ],
+    [
+     "Nunca vendemos tus datos de salud",
+     "No vendemos, alquilamos ni compartimos tus datos de salud o de comidas con anunciantes ni con terceros. No usamos tus datos de salud para publicidad."
+    ],
+    [
+     "Tus derechos",
+     "Puedes ver y borrar todos tus datos en Ajustes → Borrar mis datos. Si vives en California (CCPA), la UE (RGPD) u otro lugar con leyes de privacidad, puedes ejercer tus derechos escribiendo a nuestro correo."
+    ],
+    [
+     "Menores",
+     "Angie One no está dirigida a menores de 13 años (16 en la UE)."
+    ],
+    [
+     "Seguridad y brechas",
+     "Usamos conexiones cifradas (HTTPS). Si ocurre una brecha que afecte tus datos te avisaremos según la ley aplicable (incluida la regla de la FTC sobre notificación de brechas de salud)."
+    ],
+    [
+     "Cambios",
+     "Si cambiamos esta política te lo mostraremos en la app antes de que aplique."
+    ]
+   ]
+  },
+  "terms": {
+   "title": "Términos de uso",
+   "updated": "Última actualización: 15 de octubre de 2026",
+   "sections": [
+    [
+     "Aceptación",
+     "Al usar Angie One aceptas estos términos. Si no estás de acuerdo, no uses la app."
+    ],
+    [
+     "El servicio",
+     "Angie One te ayuda a registrar comidas y estimar calorías con IA. Las estimaciones son aproximadas y pueden equivocarse."
+    ],
+    [
+     "Prueba y suscripción",
+     "Recibes 7 días de Premium gratis sin tarjeta. Al terminar vuelves a la versión gratis; nada se cobra solo. Después tienes una oferta de 48 horas para congelar el precio mientras sigas suscrito. Las suscripciones se renuevan automáticamente y se cancelan en 1 toque desde tu tienda (App Store o Google Play). El precio se muestra antes de pagar."
+    ],
+    [
+     "Uso correcto",
+     "No uses la app para fines ilegales ni intentes dañarla o abusar del servicio de IA."
+    ],
+    [
+     "No es consejo médico",
+     "Lee el Aviso médico. La app no sustituye a un profesional de la salud."
+    ],
+    [
+     "Responsabilidad",
+     "La app se ofrece “tal cual”. En la medida que permita la ley, Parra Apps no responde por daños derivados del uso de estimaciones."
+    ],
+    [
+     "Contacto",
+     "Escríbenos a angieoneapp.support@gmail.com."
+    ]
+   ]
+  },
+  "medical": {
+   "title": "Aviso médico",
+   "updated": "Última actualización: 15 de octubre de 2026",
+   "sections": [
+    [
+     "No es un dispositivo médico",
+     "Angie One es una herramienta de bienestar general. No diagnostica, trata, cura ni previene ninguna enfermedad."
+    ],
+    [
+     "Estimaciones",
+     "Las calorías y nutrientes calculados por la IA son estimaciones y pueden tener errores importantes. Revísalos y corrígelos cuando haga falta."
+    ],
+    [
+     "Consulta a un profesional",
+     "Habla con tu médico o nutricionista antes de cambiar tu dieta, sobre todo si estás embarazada o lactando, tienes diabetes, un trastorno de la conducta alimentaria u otra condición de salud, o eres menor de edad."
+    ],
+    [
+     "Emergencias",
+     "Si tienes una emergencia médica, llama al 911 o a tu número local de emergencias."
+    ]
+   ]
+  }
+ },
+ "foCards": {
+  "c1": {
+   "title": "Subir a un servicio superior",
+   "body": "Ingresos > costos 3 meses seguidos. Propuesta: pasar de capa gratis a plan básico (ejemplo)."
+  },
+  "c2": {
+   "title": "Ayuda social del mes",
+   "body": "Destinar el 15 % de la ganancia neta a personas necesitadas (ejemplo: 0 $ porque aún no hay ingresos)."
+  },
+  "c3": {
+   "title": "Publicar actualización 0.1.1",
+   "body": "La IA Programadora corrigió textos en portugués. Lanzamiento por etapas al 10 %."
+  }
+ },
+ "foods": {
+  "arepa": "Arepa de maíz",
+  "arepa_queso": "Arepa con queso",
+  "empanada": "Empanada de carne (frita)",
+  "pabellon": "Pabellón criollo",
+  "frijoles": "Frijoles / caraotas negras",
+  "arroz": "Arroz blanco",
+  "platano": "Plátano maduro frito",
+  "tostones": "Tostones / patacones",
+  "tacos": "Tacos al pastor",
+  "tamal": "Tamal / hallaca",
+  "gallo_pinto": "Gallo pinto",
+  "ceviche": "Ceviche de pescado",
+  "pupusa": "Pupusa revuelta",
+  "bandeja": "Bandeja paisa",
+  "feijoada": "Feijoada",
+  "pao_queijo": "Pan de queso",
+  "aguacate": "Aguacate",
+  "mango": "Mango",
+  "huevo": "Huevos revueltos",
+  "pollo": "Pollo a la plancha",
+  "yuca": "Yuca hervida",
+  "cafe": "Café con leche"
+ }
+}

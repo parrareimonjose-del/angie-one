@@ -5,26 +5,10 @@ import { useStore } from '../src/store';
 import { C } from '../src/theme';
 
 // Panel del Fundador v1 (placeholder): la IA Administrativa propone, Jose aprueba. Nunca mueve dinero.
-const CARDS = {
-  es: [
-    { id: 'c1', title: 'Subir a un servicio superior', body: 'Ingresos > costos 3 meses seguidos. Propuesta: pasar de capa gratis a plan básico (ejemplo).' },
-    { id: 'c2', title: 'Ayuda social del mes', body: 'Destinar el 15 % de la ganancia neta a personas necesitadas (ejemplo: 0 $ porque aún no hay ingresos).' },
-    { id: 'c3', title: 'Publicar actualización 0.1.1', body: 'La IA Programadora corrigió textos en portugués. Lanzamiento por etapas al 10 %.' },
-  ],
-  en: [
-    { id: 'c1', title: 'Upgrade to a higher service', body: 'Revenue > costs 3 months in a row. Proposal: move from free tier to basic plan (sample).' },
-    { id: 'c2', title: 'Monthly social aid', body: 'Allocate 15% of net profit to people in need (sample: $0, no revenue yet).' },
-    { id: 'c3', title: 'Publish update 0.1.1', body: 'Programmer AI fixed Portuguese texts. Staged rollout at 10%.' },
-  ],
-  pt: [
-    { id: 'c1', title: 'Subir para um serviço superior', body: 'Receita > custos por 3 meses seguidos. Proposta: sair da camada grátis para o plano básico (exemplo).' },
-    { id: 'c2', title: 'Ajuda social do mês', body: 'Destinar 15% do lucro líquido a pessoas necessitadas (exemplo: US$ 0, ainda sem receita).' },
-    { id: 'c3', title: 'Publicar atualização 0.1.1', body: 'A IA Programadora corrigiu textos em português. Lançamento gradual em 10%.' },
-  ],
-};
+const CARD_IDS = ['c1', 'c2', 'c3'];
 export default function Founder() {
   const { t, i18n } = useTranslation(); const { s: st, set } = useStore();
-  const cards = CARDS[(i18n.language as 'es') in CARDS ? (i18n.language as 'es') : 'en'];
+  const cards = CARD_IDS.map((id) => ({ id, title: t(`foCards.${id}.title`), body: t(`foCards.${id}.body`) }));
   const decide = (id: string, v: 'approved' | 'rejected') => set((x) => ({ ...x, founder: { ...x.founder, [id]: v } }));
   return (
     <Screen title={`👑 ${t('fo.title')}`}>

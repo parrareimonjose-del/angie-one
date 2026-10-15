@@ -1,0 +1,348 @@
+{
+ "tagline": "Your AI nutrition coach, guilt-free.",
+ "start": "Get started",
+ "next": "Next",
+ "back": "Back",
+ "save": "Save",
+ "cancel": "Cancel",
+ "add": "Add",
+ "done": "Done",
+ "ob": {
+  "goal": "What's your goal?",
+  "lose": "Lose weight",
+  "keep": "Maintain",
+  "gain": "Build muscle",
+  "body": "Tell me about you",
+  "weight": "Weight (kg)",
+  "height": "Height (cm)",
+  "age": "Age",
+  "sex": "Sex",
+  "female": "Female",
+  "male": "Male",
+  "activity": "How active are you?",
+  "a1": "Low (desk job)",
+  "a2": "Light (1–3 days)",
+  "a3": "Moderate (3–5 days)",
+  "a4": "High (6–7 days)",
+  "trialTitle": "7 days of Premium free",
+  "trialBody": "Starting today you get all of Premium free for 7 days, no card needed. We'll remind you 2 days before and on the last day. Afterwards you go back to the free version and keep all your data. Nothing is charged automatically.",
+  "target": "Your daily goal: {{kcal}} kcal",
+  "go": "Let's go!",
+  "invalid": "Check your info: weight 30–300 kg, height 100–250 cm, age 13–100.",
+  "legalNote": "By continuing you accept the Terms and Privacy Policy.",
+  "notMedical": "Angie One is not a medical device."
+ },
+ "home": {
+  "hello": "Hi! You're doing great today",
+  "left": "left",
+  "eaten": "eaten",
+  "goal": "goal",
+  "protein": "Protein",
+  "carbs": "Carbs",
+  "fat": "Fat",
+  "water": "Water",
+  "addWater": "+1 glass",
+  "challenge": "Daily challenge",
+  "streak": "Streak: {{n}} days",
+  "challengeDone": "Challenge done!",
+  "markDone": "I did it",
+  "readAloud": "Read aloud",
+  "summary": "You've had {{eaten}} of {{goal}} calories and {{water}} glasses of water.",
+  "trialDays": "{{n}} days of free Premium left",
+  "trialOver": "Your trial ended. Your data is still here.",
+  "challenges": [
+   "Drink 8 glasses of water",
+   "Walk 20 minutes",
+   "Eat a colorful fruit",
+   "Add protein to breakfast",
+   "Have dinner before 9pm"
+  ]
+ },
+ "nav": {
+  "home": "Home",
+  "scan": "Photo",
+  "diary": "Diary",
+  "more": "More"
+ },
+ "scan": {
+  "title": "Meal photo",
+  "take": "Take photo",
+  "pick": "Choose from gallery",
+  "analyzing": "Analyzing…",
+  "demo": "DEMO MODE: simulated estimate (no AI key)",
+  "live": "AI: Gemini Flash-Lite",
+  "range": "Estimated range",
+  "confidence": "Confidence",
+  "high": "high",
+  "medium": "medium",
+  "low": "low",
+  "questions": "Refine in 1 tap",
+  "oil": "With oil?",
+  "sauce": "With sauce?",
+  "fried": "Fried?",
+  "portion": "Portion",
+  "yes": "Yes",
+  "no": "No",
+  "log": "Add to diary",
+  "disclaimer": "It's an estimate, not an exact value. You can correct it.",
+  "aiOff": "AI is off. Turn it on in Settings or log manually.",
+  "error": "I couldn't analyze the photo. Try again or log it manually.",
+  "limit": "The free version includes 1 AI photo per day.",
+  "noCam": "No camera permission. Turn it on in your phone settings or pick a photo from the gallery."
+ },
+ "bar": {
+  "title": "Barcode",
+  "hint": "Type or scan the code (Open Food Facts data)",
+  "search": "Search",
+  "scanCam": "Scan with camera",
+  "notFound": "Product not found. Log it manually.",
+  "per100": "per 100 g",
+  "grams": "Grams",
+  "semaphore": "Traffic light",
+  "sugar": "Sugar",
+  "salt": "Salt",
+  "satfat": "Sat. fat"
+ },
+ "manual": {
+  "title": "Manual log",
+  "name": "Name",
+  "kcal": "Calories",
+  "latin": "Latin food",
+  "search": "Search food…",
+  "dictate": "Dictate by voice",
+  "aiTitle": "Describe your meal",
+  "aiPh": "E.g. chicken and rice with salad, medium plate",
+  "aiBtn": "Calculate with AI",
+  "exact": "I know the calories",
+  "noMatch": "No results. Describe it above and the AI will calculate it."
+ },
+ "diary": {
+  "title": "Today's diary",
+  "empty": "Nothing yet. Snap a photo of your meal!",
+  "total": "Total",
+  "remove": "Remove",
+  "prev": "Previous day",
+  "nextDay": "Next day",
+  "today": "Today",
+  "day": "Diary"
+ },
+ "more": {
+  "title": "More",
+  "barcode": "Barcode",
+  "manual": "Manual log",
+  "settings": "Settings",
+  "premium": "Premium",
+  "founder": "Founder Panel"
+ },
+ "set": {
+  "title": "Settings",
+  "language": "Language",
+  "auto": "Automatic (phone language)",
+  "ai": "AI analysis",
+  "aiDesc": "If off, no photos are sent to any service.",
+  "profile": "Redo my profile",
+  "reset": "Delete my data",
+  "resetQ": "Sure? This deletes everything on this device.",
+  "privacy": "Your diary is stored only on this device. We never sell your health data.",
+  "version": "MVP version"
+ },
+ "pay": {
+  "title": "Angie One Premium",
+  "sub": "Everything you need, honest price",
+  "monthly": "$1.99 / month",
+  "yearly": "$14.99 / year",
+  "yearlySave": "Save 37%",
+  "latam": "Latin America: $0.99 / month",
+  "f1": "Unlimited AI photos (fair use)",
+  "f2": "Personalized diet & workout plans",
+  "f3": "Weekly coach & chat",
+  "f4": "Fridge & menu scanner",
+  "f5": "No ads",
+  "offer": "48h welcome offer: your price is locked forever while you stay subscribed.",
+  "renew": "Auto-renews. Cancel in 1 tap anytime. Price shown before you pay.",
+  "cta": "Subscribe",
+  "soon": "Payments are not active yet (preview build).",
+  "free": "Continue with free version",
+  "offerLive": "🔒 Locked price available for only {{time}} more",
+  "offerAfter": "When your trial ends you will have 48h to lock this price forever.",
+  "offerGone": "The 48h offer has ended; the current price is shown above."
+ },
+ "fo": {
+  "title": "Founder Panel v1",
+  "sub": "AI proposes, you decide in one tap",
+  "approve": "Approve",
+  "reject": "Reject",
+  "approved": "Approved",
+  "rejected": "Rejected",
+  "demo": "Sample data. Nothing moves real money.",
+  "kpi": "Summary",
+  "users": "Users",
+  "paying": "Paying",
+  "mrr": "Monthly revenue"
+ },
+ "aiErr": {
+  "offline": "No connection or the server took too long. Check your internet and try again.",
+  "busy": "The AI is very busy right now. Wait a minute and try again.",
+  "tooLarge": "That photo is too large. Try another one or crop it.",
+  "notFood": "I couldn't find food here. Try a clearer photo of the plate or describe it in words.",
+  "server": "I couldn't calculate it right now. Try again or log it manually."
+ },
+ "trial": {
+  "remind2": "⏰ Your free Premium ends in 2 days. Nothing is charged automatically.",
+  "remind1": "⏰ Today is the last day of your free Premium. Your 48h offer starts tomorrow.",
+  "offer": "🔒 48h offer: lock your price forever. Ends in {{time}}",
+  "offerEnded": "The 48h offer has ended. You are on the free version."
+ },
+ "legal": {
+  "privacy": "Privacy Policy",
+  "terms": "Terms of Use",
+  "medical": "Medical disclaimer",
+  "draft": "DRAFT — pending review by a lawyer.",
+  "section": "Legal"
+ },
+ "u": {
+  "kcal": "kcal",
+  "g": "g",
+  "p": "P",
+  "c": "C",
+  "f": "F"
+ },
+ "docs": {
+  "privacy": {
+   "title": "Privacy Policy",
+   "updated": "Last updated: October 15, 2026",
+   "sections": [
+    [
+     "Who we are",
+     "Angie One is an app by Parra Apps. Contact: angieoneapp.support@gmail.com."
+    ],
+    [
+     "Data we use",
+     "Your profile (goal, weight, height, age, sex, activity), your food diary, water and challenges. Today they are stored only on your device; we have no accounts or servers holding your diary."
+    ],
+    [
+     "Photos and text for the AI",
+     "If AI is on, the photo or description of your meal is sent to our proxy (Cloudflare) and to Google Gemini only to calculate the estimate. We do not store it. You can turn AI off in Settings and then nothing is sent."
+    ],
+    [
+     "Barcodes",
+     "The barcode number is looked up in Open Food Facts, a public database. No personal data is sent."
+    ],
+    [
+     "We never sell your health data",
+     "We do not sell, rent or share your health or food data with advertisers or third parties. We do not use your health data for advertising."
+    ],
+    [
+     "Your rights",
+     "You can view and delete all your data in Settings → Delete my data. If you live in California (CCPA), the EU (GDPR) or anywhere with privacy laws, you can exercise your rights by emailing us."
+    ],
+    [
+     "Children",
+     "Angie One is not directed to children under 13 (16 in the EU)."
+    ],
+    [
+     "Security and breaches",
+     "We use encrypted connections (HTTPS). If a breach affects your data we will notify you as required by law (including the FTC Health Breach Notification Rule)."
+    ],
+    [
+     "Changes",
+     "If we change this policy we will show it in the app before it applies."
+    ]
+   ]
+  },
+  "terms": {
+   "title": "Terms of Use",
+   "updated": "Last updated: October 15, 2026",
+   "sections": [
+    [
+     "Acceptance",
+     "By using Angie One you accept these terms. If you do not agree, do not use the app."
+    ],
+    [
+     "The service",
+     "Angie One helps you log meals and estimate calories with AI. Estimates are approximate and can be wrong."
+    ],
+    [
+     "Trial and subscription",
+     "You get 7 days of Premium free with no card. Afterwards you return to the free version; nothing is charged automatically. Then you get a 48-hour offer to lock the price for as long as you stay subscribed. Subscriptions auto-renew and can be cancelled in one tap from your store (App Store or Google Play). The price is shown before you pay."
+    ],
+    [
+     "Acceptable use",
+     "Do not use the app for illegal purposes or try to harm it or abuse the AI service."
+    ],
+    [
+     "Not medical advice",
+     "Read the Medical disclaimer. The app does not replace a health professional."
+    ],
+    [
+     "Liability",
+     "The app is provided \"as is\". To the extent permitted by law, Parra Apps is not liable for damages arising from the use of estimates."
+    ],
+    [
+     "Contact",
+     "Email us at angieoneapp.support@gmail.com."
+    ]
+   ]
+  },
+  "medical": {
+   "title": "Medical disclaimer",
+   "updated": "Last updated: October 15, 2026",
+   "sections": [
+    [
+     "Not a medical device",
+     "Angie One is a general wellness tool. It does not diagnose, treat, cure or prevent any disease."
+    ],
+    [
+     "Estimates",
+     "Calories and nutrients calculated by the AI are estimates and may contain significant errors. Review and correct them when needed."
+    ],
+    [
+     "Talk to a professional",
+     "Talk to your doctor or dietitian before changing your diet, especially if you are pregnant or breastfeeding, have diabetes, an eating disorder or another health condition, or are under 18."
+    ],
+    [
+     "Emergencies",
+     "If you have a medical emergency, call 911 or your local emergency number."
+    ]
+   ]
+  }
+ },
+ "foCards": {
+  "c1": {
+   "title": "Upgrade to a higher service",
+   "body": "Revenue > costs 3 months in a row. Proposal: move from free tier to basic plan (sample)."
+  },
+  "c2": {
+   "title": "Monthly social aid",
+   "body": "Allocate 15% of net profit to people in need (sample: $0, no revenue yet)."
+  },
+  "c3": {
+   "title": "Publish update 0.1.1",
+   "body": "Programmer AI fixed Portuguese texts. Staged rollout at 10%."
+  }
+ },
+ "foods": {
+  "arepa": "Corn arepa",
+  "arepa_queso": "Arepa with cheese",
+  "empanada": "Beef empanada (fried)",
+  "pabellon": "Pabellón criollo",
+  "frijoles": "Black beans",
+  "arroz": "White rice",
+  "platano": "Fried sweet plantain",
+  "tostones": "Tostones",
+  "tacos": "Tacos al pastor",
+  "tamal": "Tamale",
+  "gallo_pinto": "Gallo pinto",
+  "ceviche": "Fish ceviche",
+  "pupusa": "Pupusa",
+  "bandeja": "Bandeja paisa",
+  "feijoada": "Feijoada",
+  "pao_queijo": "Cheese bread",
+  "aguacate": "Avocado",
+  "mango": "Mango",
+  "huevo": "Scrambled eggs",
+  "pollo": "Grilled chicken",
+  "yuca": "Boiled cassava",
+  "cafe": "Coffee with milk"
+ }
+}

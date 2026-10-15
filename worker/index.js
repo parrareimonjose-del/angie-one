@@ -5,7 +5,7 @@ const RATE = 20; // requests per minute per IP (per isolate, best effort)
 const ORIGINS = [/^https:\/\/parrareimonjose-del\.github\.io$/, /^http:\/\/localhost(:\d+)?$/, /^http:\/\/127\.0\.0\.1(:\d+)?$/];
 const hits = new Map();
 const PROMPT = `You are a nutrition estimator for Latin American and international food. Estimate the meal (from the photo or description) and answer ONLY JSON:
-{"isFood": true|false, "name": short dish name in LANG, "kcalMin": int, "kcalMax": int, "p": grams protein, "c": grams carbs, "f": grams fat, "confidence": "high"|"medium"|"low"}
+{"isFood": true|false, "name": short dish name written in LANG (the user's language, native script), "kcalMin": int, "kcalMax": int, "p": grams protein, "c": grams carbs, "f": grams fat, "confidence": "high"|"medium"|"low"}
 If there is no food or drink in the photo/description, answer {"isFood": false}. Give a realistic RANGE, not a single value. Never comment on body weight or give medical advice.`;
 
 function cors(origin) {
@@ -28,8 +28,10 @@ export default {
     const raw = await req.text();
     if (raw.length > MAX_BYTES) return json({ error: 'too large' }, 413, h);
     let b; try { b = JSON.parse(raw); } catch { return json({ error: 'bad json' }, 400, h); }
-    const lang = String(b.lang || 'en').slice(0, 5);
-    const parts = [{ text: PROMPT.replace('LANG', lang) }];
+    const LANGS = { es: 'Spanish', en: 'English', pt: 'Portuguese', fr: 'French', de: 'German', it: 'Italian', zh: 'Simplified Chinese', ja: 'Japanese', ko: 'Korean', hi: 'Hindi', ar: 'Arabic', ru: 'Russian', tr: 'Turkish' };
+    const code = String(b.lang || 'en').slice(0, 5).toLowerCase().split('-')[0];
+    const lang = LANGS[code] || 'English';
+    const parts = [{ text: PROMPT.replace('LANG', lang) + ` Write the dish name in ${lang}.` }];
     if (b.image) {
       const mime = /^image\/(jpeg|png|webp|heic)$/.test(b.mime) ? b.mime : 'image/jpeg';
       parts.push({ inline_data: { mime_type: mime, data: String(b.image) } });

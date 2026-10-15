@@ -4,6 +4,7 @@ import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Screen, Card, Btn, T, s } from '../src/ui';
 import { useStore, today, dailyTarget } from '../src/store';
+import { fmtDate, fmtTime, fmtNum } from '../src/i18n';
 import { C } from '../src/theme';
 
 const ICON = { photo: '📸', barcode: '🏷️', manual: '✍️' };
@@ -17,19 +18,19 @@ export default function Diary() {
     <Screen title={off === 0 ? t('diary.title') : t('diary.day')}>
       <View style={s.row}>
         <Btn small kind="ghost" label="◀" a11y={t('diary.prev')} onPress={() => setOff(off - 1)} style={{ width: 64 }} />
-        <Text style={[s.h2, { flex: 1, textAlign: 'center' }]}>{off === 0 ? t('diary.today') : dt.toLocaleDateString()}</Text>
+        <Text style={[s.h2, { flex: 1, textAlign: 'center' }]}>{off === 0 ? t('diary.today') : fmtDate(dt)}</Text>
         <Btn small kind="ghost" label="▶" a11y={t('diary.nextDay')} onPress={() => off < 0 && setOff(off + 1)} style={{ width: 64 }} />
       </View>
       <Card style={{ backgroundColor: C.primary }}>
-        <Text style={[s.h2, { color: C.white }]}>{t('diary.total')}: {total} / {dailyTarget(st.profile).kcal} kcal</Text>
+        <Text style={[s.h2, { color: C.white }]}>{t('diary.total')}: {fmtNum(total)} / {fmtNum(dailyTarget(st.profile).kcal)} {t('u.kcal')}</Text>
       </Card>
       {ents.length === 0 ? <Card><T>{t('diary.empty')}</T><Btn label={`📸  ${t('nav.scan')}`} onPress={() => router.push('/scan')} /></Card>
         : ents.map((e) => (
           <Card key={e.id} style={{ flexDirection: 'row', alignItems: 'center' }}>
             <Text style={{ fontSize: 26 }}>{ICON[e.source]}</Text>
-            <View style={{ flex: 1 }}><T style={{ fontWeight: '800' }}>{e.name}</T><Text style={s.muted}>{new Date(e.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} · P {e.p} · C {e.c} · G {e.f}</Text></View>
+            <View style={{ flex: 1 }}><T style={{ fontWeight: '800' }}>{e.name}</T><Text style={s.muted}>{fmtTime(new Date(e.time))} · {t('u.p')} {fmtNum(e.p)} · {t('u.c')} {fmtNum(e.c)} · {t('u.f')} {fmtNum(e.f)}</Text></View>
             <View style={{ alignItems: 'flex-end', gap: 4 }}>
-              <Text style={{ fontWeight: '900', fontSize: 18, color: C.primary }}>{e.kcal}</Text>
+              <Text style={{ fontWeight: '900', fontSize: 18, color: C.primary }}>{fmtNum(e.kcal)}</Text>
               <Btn small kind="danger" label={t('diary.remove')} onPress={() => set((x) => ({ ...x, entries: x.entries.filter((y) => y.id !== e.id) }))} />
             </View>
           </Card>))}
