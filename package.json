@@ -38,7 +38,8 @@
     "export:web": "node scripts/check-i18n.js && expo export --platform web",
     "check:i18n": "node scripts/check-i18n.js",
     "test:safety": "node tests/run.mjs tests/safety.test.ts",
-    "test": "npm run -s test:safety"
+    "test:datos": "node tests/run.mjs tests/datos.test.ts",
+    "test": "npm run -s test:safety && npm run -s test:datos"
   },
   "private": true
 }

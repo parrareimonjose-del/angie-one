@@ -150,6 +150,21 @@ async function phase2(path, b, env, h) {
     if (out.error) return json({ error: out.error }, out.error === 'busy' ? 503 : 502, h);
     return json(out, 200, h);
   }
+  if (b.mode === 'receipt') {
+    // Sección de Datos: lee un recibo (foto o PDF). Solo campos de compra; nunca datos de salud ni personales.
+    if (!b.image) return json({ error: 'need input' }, 400, h);
+    const mime = /^(image\/(jpeg|png|webp)|application\/pdf)$/.test(b.mime) ? b.mime : 'image/jpeg';
+    const CATS = ['groceries', 'restaurant', 'home', 'clothing', 'services', 'transport', 'education', 'charity', 'business', 'health', 'pharmacy', 'other'];
+    const out = await (async () => { // sin caché: los recibos no se guardan en el servidor
+      const txt = await gemini(env, [{ text: `Read this purchase receipt. Answer ONLY JSON: {"isReceipt":true,"store":"","date":"YYYY-MM-DD","category":"one of ${CATS.join('|')}","total":0,"currency":"USD","items":[{"name":"","price":0}]}. Item names in ${lang}. Do NOT include card numbers, names, addresses, phone numbers or loyalty IDs. If it is not a receipt, {"isReceipt":false}.` }, { inline_data: { mime_type: mime, data: String(b.image) } }], 1200, 40000, true);
+      if (txt === null) return { error: 'busy' }; const o = parseJson(txt); if (!o) return { error: 'parse' };
+      if (o.isReceipt === false) return { error: 'not_receipt' };
+      return { store: str(o.store, 60), date: /^\d{4}-\d{2}-\d{2}$/.test(o.date) ? o.date : '', category: CATS.includes(o.category) ? o.category : 'other', total: Math.max(0, Math.round((+o.total || 0) * 100) / 100), currency: str(o.currency || 'USD', 3).toUpperCase(),
+        items: (Array.isArray(o.items) ? o.items : []).slice(0, 40).map((x) => ({ name: str(x?.name, 50), price: Math.max(0, +x?.price || 0) })).filter((x) => x.name) };
+    })();
+    if (out.error) return json({ error: out.error }, out.error === 'busy' ? 503 : out.error === 'not_receipt' ? 422 : 502, h);
+    return json(out, 200, h);
+  }
   const mode = b.mode === 'menu' ? 'menu' : 'chef';
   const parts = [];
   if (mode === 'menu') parts.push({ text: MENU_PROMPT.replace('LEFT', clampN(b.left, 0, 5000)).replace('LANG', lang) });
