@@ -27,7 +27,7 @@ export default function Player() {
     return out;
   }, [day, c.boost]);
   const [i, setI] = useState(0); const [left, setLeft] = useState(0); const [paused, setPaused] = useState(false);
-  const [voice, setVoice] = useState(true); const [burn, setBurn] = useState(0); const [fin, setFin] = useState(false);
+  const [voice, setVoice] = useState(true); const [burn, setBurn] = useState(0); const [fin, setFin] = useState(false); const [rpe, setRpe] = useState<'' | 'easy' | 'ok' | 'hard'>('');
   const start = useRef(Date.now()); const saved = useRef(false);
   const kg = st.profile?.weight || 70; const step = steps[i];
   const say = (st2: Step) => {
@@ -80,6 +80,8 @@ export default function Player() {
         <Text testID="burned" style={[s.h2, { color: C.white }]}>🔥 {fmtNum(Math.round(burn))} {t('u.kcal')}</Text>
         <Text style={[s.t, { color: C.white, textAlign: 'center' }]}>{t('coach.addedHome')}</Text>
       </Card>
+      <Card testID="rpe"><T style={{ fontWeight: '800' }}>{t('p2.rpeQ')}</T>
+        {rpe ? <Text style={{ color: C.success, fontWeight: '800', fontSize: 17 }}>✓ {t('p2.rpe.' + rpe)}</Text> : <View style={[s.row, { flexWrap: 'wrap' }]}>{(['easy', 'ok', 'hard'] as const).map((k) => <Btn key={k} small kind="ghost" label={t('p2.rpeL.' + k)} onPress={() => { setRpe(k); upd((x) => ({ ...x, boost: Math.min(2, Math.max(-1, x.boost + (k === 'easy' ? 1 : k === 'hard' ? -1 : 0))) })); }} />)}</View>}</Card>
       <Btn label={`🏠 ${t('nav.home')}`} onPress={() => router.replace('/')} />
       <Btn kind="ghost" label={`💪 ${t('coach.title')}`} onPress={() => router.replace('/coach')} />
     </Screen>

@@ -1,954 +1,1194 @@
 {
- "tagline": "Yapay zeka beslenme koçun, suçluluk duygusu olmadan.",
- "start": "Başla",
- "next": "İleri",
- "back": "Geri",
- "save": "Kaydet",
- "cancel": "İptal",
- "add": "Ekle",
- "done": "Tamam",
- "ob": {
-  "goal": "Hedefin ne?",
-  "lose": "Kilo ver",
-  "keep": "Korumak",
-  "gain": "Kas yap",
-  "body": "Benden sana bahset",
-  "weight": "Kilo (kg)",
-  "height": "Boy (cm)",
-  "age": "Yaş",
-  "sex": "Cinsiyet",
-  "female": "Kadın",
-  "male": "Erkek",
-  "activity": "Ne kadar hareketlisin?",
-  "a1": "Düşük (masa başı iş)",
-  "a2": "Hafif (1–3 gün)",
-  "a3": "Orta (3–5 gün)",
-  "a4": "Yüksek (6–7 gün)",
-  "trialTitle": "7 gün Premium ücretsiz",
-  "trialBody": "Bugünden itibaren tüm Premium özellikleri 7 gün boyunca ücretsiz, kart gerekmeden seninle. Son günden 2 gün önce ve son gün sana hatırlatma yapacağız. Sonrasında ücretsiz sürüme dönersin ve tüm verilerin sende kalır. Otomatik olarak hiçbir ücret alınmaz.",
-  "target": "Günlük hedefin: {{kcal}} kcal",
-  "go": "Hadi başlayalım!",
-  "invalid": "Bilgilerini kontrol et: kilo 30–300 kg, boy 100–250 cm, yaş 13–100.",
-  "legalNote": "Devam ederek Şartlar ve Gizlilik Politikası'nı kabul etmiş olursun.",
-  "notMedical": "Angie One bir tıbbi cihaz değildir."
- },
- "home": {
-  "hello": "Selam! Bugün harika gidiyorsun",
-  "left": "kaldı",
-  "eaten": "tüketilen",
-  "goal": "hedef",
-  "protein": "Protein",
-  "carbs": "Karb",
-  "fat": "Yağ",
-  "water": "Su",
-  "addWater": "+1 bardak",
-  "challenge": "Günün meydan okuması",
-  "streak": "Seri: {{n}} gün",
-  "challengeDone": "Meydan okuma tamamlandı!",
-  "markDone": "Başardım",
-  "readAloud": "Sesli oku",
-  "summary": "{{goal}} kalorinin {{eaten}} kadarını ve {{water}} bardak suyu tükettin.",
-  "trialDays": "{{n}} gün ücretsiz Premium kaldı",
-  "trialOver": "Deneme süren sona erdi. Verilerin hâlâ burada.",
-  "challenges": [
-   "8 bardak su iç",
-   "20 dakika yürü",
-   "Renkli bir meyve ye",
-   "Kahvaltıya protein ekle",
-   "Akşam yemekini 21:00'den önce ye"
-  ]
- },
- "nav": {
-  "home": "Ana Sayfa",
-  "scan": "Fotoğraf",
-  "diary": "Günlük",
-  "more": "Daha fazla",
-  "coach": "Koç"
- },
- "scan": {
-  "title": "Yemek fotoğrafı",
-  "take": "Fotoğraf çek",
-  "pick": "Galeriden seç",
-  "analyzing": "Analiz ediliyor…",
-  "demo": "DEMO MODU: simüle edilmiş tahmin (yapay zeka anahtarı yok)",
-  "live": "Yapay Zeka: Gemini Flash-Lite",
-  "range": "Tahmini aralık",
-  "confidence": "Güvenilirlik",
-  "high": "yüksek",
-  "medium": "orta",
-  "low": "düşük",
-  "questions": "1 dokunuşla düzenle",
-  "oil": "Yağlı mı?",
-  "sauce": "Soslu mu?",
-  "fried": "Kızartma mı?",
-  "portion": "Porsiyon",
-  "yes": "Evet",
-  "no": "Hayır",
-  "log": "Günlüğe ekle",
-  "disclaimer": "Bu bir tahmindir, kesin değer değildir. Düzeltme yapabilirsin.",
-  "aiOff": "Yapay zeka kapalı. Ayarlardan aç veya manuel olarak kaydet.",
-  "error": "Fotoğrafı analiz edemedim. Tekrar dene veya manuel olarak kaydet.",
-  "limit": "Ücretsiz sürüm günde 1 yapay zeka fotoğrafı içerir.",
-  "noCam": "Kamera izni yok. Telefon ayarlarından aç veya galeriden bir fotoğraf seç."
- },
- "bar": {
-  "title": "Barkod",
-  "hint": "Kodu yaz veya tarat (Open Food Facts verisi)",
-  "search": "Ara",
-  "scanCam": "Kamera ile tara",
-  "notFound": "Ürün bulunamadı. Manuel olarak kaydet.",
-  "per100": "100 g başına",
-  "grams": "Gram",
-  "semaphore": "Trafik ışığı",
-  "sugar": "Şeker",
-  "salt": "Tuz",
-  "satfat": "Doymuş yağ",
-  "badCode": "Barkodun altındaki 6 ila 14 haneyi yaz.",
-  "searching": "Aranıyor…"
- },
- "manual": {
-  "title": "Manuel kayıt",
-  "name": "Ad",
-  "kcal": "Kalori",
-  "latin": "Latin yemeği",
-  "search": "Yemek ara…",
-  "dictate": "Sesle dikte et",
-  "aiTitle": "Yemeğini tanımla",
-  "aiPh": "Örn. salatalı tavuk ve pilav, orta tabak",
-  "aiBtn": "Yapay zeka ile hesapla",
-  "exact": "Kaloriyi biliyorum",
-  "noMatch": "Sonuç yok. Yukarıda tanımla, yapay zeka hesaplasın.",
-  "badKcal": "Bir isim ve 1 ile 4999 arasında kalori yaz."
- },
- "diary": {
-  "title": "Bugünkü günlük",
-  "empty": "Henüz bir şey yok. Yemeğinin fotoğrafını çek!",
-  "total": "Toplam",
-  "remove": "Kaldır",
-  "prev": "Önceki gün",
-  "nextDay": "Sonraki gün",
-  "today": "Bugün",
-  "day": "Günlük"
- },
- "more": {
-  "title": "Daha fazla",
-  "barcode": "Barkod",
-  "manual": "Manuel kayıt",
-  "settings": "Ayarlar",
-  "premium": "Premium",
-  "founder": "Kurucu Paneli"
- },
- "set": {
-  "title": "Ayarlar",
-  "language": "Dil",
-  "auto": "Otomatik (telefon dili)",
-  "ai": "Yapay zeka analizi",
-  "aiDesc": "Kapalıysa hiçbir servise fotoğraf gönderilmez.",
-  "profile": "Profilimi yeniden oluştur",
-  "reset": "Verilerimi sil",
-  "resetQ": "Emin misin? Bu, bu cihazdaki her şeyi siler.",
-  "privacy": "Günlüğün yalnızca bu cihazda saklanır. Sağlık verilerini asla satmayız.",
-  "version": "MVP sürümü"
- },
- "pay": {
-  "title": "Angie One Premium",
-  "sub": "İhtiyacın olan her şey, dürüst fiyat",
-  "monthly": "1,99 US$ / ay",
-  "yearly": "14,99 US$ / yıl",
-  "yearlySave": "%37 tasarruf et",
-  "latam": "Latin Amerika: 0,99 US$ / ay",
-  "f1": "Sınırsız yapay zeka fotoğrafı (adil kullanım)",
-  "f2": "Kişiselleştirilmiş diyet ve egzersiz planları",
-  "f3": "Haftalık koç ve sohbet",
-  "f4": "Buzdolabı ve menü tarayıcı",
-  "f5": "Reklamsız",
-  "offer": "48 saatlik hoş geldin teklifi: Abone kalmaya devam ettiğin sürece fiyatın sonsuza kadar sabit kalır.",
-  "renew": "Otomatik yenilenir. İstediğin zaman 1 dokunuşla iptal et. Ödeme yapmadan önce fiyat gösterilir.",
-  "cta": "Abone ol",
-  "soon": "Ödemeler henüz aktif değil (önizleme derlemesi).",
-  "free": "Ücretsiz sürümle devam et",
-  "offerLive": "🔒 Sabit fiyat sadece {{time}} daha geçerli",
-  "offerAfter": "Deneme süren bittiğinde bu fiyatı sonsuza kadar sabitlemek için 48 saatin olacak.",
-  "offerGone": "48 saatlik teklif sona erdi; güncel fiyat yukarıda gösterilmektedir."
- },
- "fo": {
-  "title": "Kurucu Paneli v1",
-  "sub": "Yapay zeka önerir, tek dokunuşla sen karar verirsin",
-  "approve": "Onayla",
-  "reject": "Reddet",
-  "approved": "Onaylandı",
-  "rejected": "Reddedildi",
-  "demo": "Örnek veri. Gerçek para oynamaz.",
-  "kpi": "Özet",
-  "users": "Kullanıcılar",
-  "paying": "Ödeme yapan",
-  "mrr": "Aylık gelir"
- },
- "aiErr": {
-  "offline": "Bağlantı yok veya sunucu çok uzun sürdü. İnternetini kontrol edip tekrar dene.",
-  "busy": "Yapay zeka şu anda çok meşgul. Bir dakika bekleyip tekrar dene.",
-  "tooLarge": "Bu fotoğraf çok büyük. Başka bir tane dene veya kırp.",
-  "notFood": "Burada yemek bulamadım. Tabağın daha net bir fotoğrafını dene veya kelimelerle tanımla.",
-  "server": "Şu anda hesaplayamadım. Tekrar dene veya manuel olarak kaydet."
- },
- "trial": {
-  "remind2": "⏰ Ücretsiz Premium'un 2 gün içinde sona eriyor. Otomatik olarak hiçbir ücret alınmaz.",
-  "remind1": "⏰ Bugün ücretsiz Premium'un son günü. 48 saatlik teklif yarın başlıyor.",
-  "offer": "🔒 48 saatlik teklif: fiyatını sonsuza kadar sabitle. Bitiş süresi: {{time}}",
-  "offerEnded": "48 saatlik teklif sona erdi. Ücretsiz sürümdesin."
- },
- "legal": {
-  "privacy": "Gizlilik Politikası",
-  "terms": "Kullanım Şartları",
-  "medical": "Tıbbi yasal uyarı",
-  "draft": "TASLAK — bir avukat tarafından incelenmesi bekleniyor.",
-  "section": "Yasal"
- },
- "u": {
-  "kcal": "kcal",
-  "g": "g",
-  "p": "P",
-  "c": "K",
-  "f": "Y"
- },
- "foCards": {
-  "c1": {
-   "title": "Daha üst bir servise geç",
-   "body": "Gelir > maliyet üst üste 3 ay. Öneri: ücretsiz katmandan temel plana geç (örnek)."
+  "tagline": "Yapay zeka beslenme koçun, suçluluk duygusu olmadan.",
+  "start": "Başla",
+  "next": "İleri",
+  "back": "Geri",
+  "save": "Kaydet",
+  "cancel": "İptal",
+  "add": "Ekle",
+  "done": "Tamam",
+  "ob": {
+    "goal": "Hedefin ne?",
+    "lose": "Kilo ver",
+    "keep": "Korumak",
+    "gain": "Kas yap",
+    "body": "Benden sana bahset",
+    "weight": "Kilo (kg)",
+    "height": "Boy (cm)",
+    "age": "Yaş",
+    "sex": "Cinsiyet",
+    "female": "Kadın",
+    "male": "Erkek",
+    "activity": "Ne kadar hareketlisin?",
+    "a1": "Düşük (masa başı iş)",
+    "a2": "Hafif (1–3 gün)",
+    "a3": "Orta (3–5 gün)",
+    "a4": "Yüksek (6–7 gün)",
+    "trialTitle": "7 gün Premium ücretsiz",
+    "trialBody": "Bugünden itibaren tüm Premium özellikleri 7 gün boyunca ücretsiz, kart gerekmeden seninle. Son günden 2 gün önce ve son gün sana hatırlatma yapacağız. Sonrasında ücretsiz sürüme dönersin ve tüm verilerin sende kalır. Otomatik olarak hiçbir ücret alınmaz.",
+    "target": "Günlük hedefin: {{kcal}} kcal",
+    "go": "Hadi başlayalım!",
+    "invalid": "Bilgilerini kontrol et: kilo 30–300 kg, boy 100–250 cm, yaş 13–100.",
+    "legalNote": "Devam ederek Şartlar ve Gizlilik Politikası'nı kabul etmiş olursun.",
+    "notMedical": "Angie One bir tıbbi cihaz değildir."
   },
-  "c2": {
-   "title": "Aylık sosyal yardım",
-   "body": "Net kârın %15'ini ihtiyaç sahiplerine ayır (örnek: 0 $, henüz gelir yok)."
-  },
-  "c3": {
-   "title": "0.1.1 güncellemesini yayınla",
-   "body": "Programcı yapay zeka Portekizce metinleri düzeltti. %10 kademeli kullanıma sunma."
-  }
- },
- "foods": {
-  "arepa": "Mısır arepası",
-  "arepa_queso": "Peynirli arepa",
-  "empanada": "Etli empanada (kızarmış)",
-  "pabellon": "Pabellón criollo",
-  "frijoles": "Siyah fasulye",
-  "arroz": "Beyaz pirinç pilavı",
-  "platano": "Kızarmış tatlı muz",
-  "tostones": "Tostones (ezilip kızartılmış muz)",
-  "tacos": "Tacos al pastor (soslu domuz etli tako)",
-  "tamal": "Tamal",
-  "gallo_pinto": "Gallo pinto (fasulyeli pirinç)",
-  "ceviche": "Balık ceviche",
-  "pupusa": "Pupusa",
-  "bandeja": "Bandeja paisa",
-  "feijoada": "Feijoada (etçil siyah fasulye yahnisliği)",
-  "pao_queijo": "Peynirli ekmek",
-  "aguacate": "Avokado",
-  "mango": "Mango",
-  "huevo": "Çırpılmış yumurta",
-  "pollo": "Izgara tavuk",
-  "yuca": "Haşlanmış kasava (manyak kökü)",
-  "cafe": "Sütlü kahve"
- },
- "docs": {
-  "privacy": {
-   "title": "Gizlilik Politikası",
-   "updated": "Son güncelleme: 15 Ekim 2026",
-   "sections": [
-    [
-     "Biz Kimiz?",
-     "Angie One, bir Parra Apps uygulamasıdır. İletişim: angieoneapp.support@gmail.com."
-    ],
-    [
-     "Kullandığımız Veriler",
-     "Profiliniz (hedefiniz, kilo, boy, yaş, cinsiyet, aktivite düzeyiniz), yemek günlüğünüz, su tüketiminiz ve meydan okumalarınız. Şu anda bunlar yalnızca cihazınızda saklanır; günlüğünüzü barındıran herhangi bir hesabımız veya sunucumuz yoktur."
-    ],
-    [
-     "Yapay Zeka İçin Fotoğraflar ve Metinler",
-     "Yapay zeka açıksa, yemeğinizin fotoğrafı veya açıklaması, yalnızca tahmini hesaplamak amacıyla vekil sunucumuza (Cloudflare) ve Google Gemini'ye gönderilir. Bunu saklamıyoruz. Yapay zekayı Ayarlar'dan kapatabilirsiniz; bu durumda hiçbir şey gönderilmez."
-    ],
-    [
-     "Barkodlar",
-     "Barkod numarası, açık bir veritabanı olan Open Food Facts üzerinden sorgulanır. Hiçbir kişisel veri gönderilmez."
-    ],
-    [
-     "Sağlık Verilerinizi Asla Satmayız",
-     "Sağlık veya yemek verilerinizi reklamverenlerle veya üçüncü taraflarla satmaz, kiralamaz veya paylaşmayız. Sağlık verilerinizi reklam amacıyla kullanmayız."
-    ],
-    [
-     "Haklarınız",
-     "Tüm verilerinizi Ayarlar → Verilerimi Sil bölümünden görüntüleyebilir ve silebilirsiniz. Kaliforniya (CCPA), AB (GDPR) veya gizlilik yasalarına sahip herhangi bir yerde yaşıyorsanız, bize e-posta göndererek haklarınızı kullanabilirsiniz."
-    ],
-    [
-     "Çocuklar",
-     "Angie One, 13 yaşın altındaki çocuklara (AB'de 16) yönelik değildir."
-    ],
-    [
-     "Güvenlik ve İhlaller",
-     "Şifreli bağlantılar (HTTPS) kullanıyoruz. Bir veri ihlali sizi etkilerse, yasaların gerektirdiği şekilde (FTC Sağlık İhlali Bildirim Kuralı dahil) sizi bilgilendireceğiz."
-    ],
-    [
-     "Değişiklikler",
-     "Bu politikayı değiştirirsek, yürürlüğe girmeden önce bunu uygulamada göstereceğiz."
+  "home": {
+    "hello": "Selam! Bugün harika gidiyorsun",
+    "left": "kaldı",
+    "eaten": "tüketilen",
+    "goal": "hedef",
+    "protein": "Protein",
+    "carbs": "Karb",
+    "fat": "Yağ",
+    "water": "Su",
+    "addWater": "+1 bardak",
+    "challenge": "Günün meydan okuması",
+    "streak": "Seri: {{n}} gün",
+    "challengeDone": "Meydan okuma tamamlandı!",
+    "markDone": "Başardım",
+    "readAloud": "Sesli oku",
+    "summary": "{{goal}} kalorinin {{eaten}} kadarını ve {{water}} bardak suyu tükettin.",
+    "trialDays": "{{n}} gün ücretsiz Premium kaldı",
+    "trialOver": "Deneme süren sona erdi. Verilerin hâlâ burada.",
+    "challenges": [
+      "8 bardak su iç",
+      "20 dakika yürü",
+      "Renkli bir meyve ye",
+      "Kahvaltıya protein ekle",
+      "Akşam yemekini 21:00'den önce ye"
     ]
-   ]
   },
-  "terms": {
-   "title": "Kullanım Koşulları",
-   "updated": "Son güncellem: 15 Ekim 2026",
-   "sections": [
-    [
-     "Kabul",
-     "Angie One uygulamasını kullanarak bu koşulları kabul etmiş olursunuz. Kabul etmiyorsanız uygulamayı kullanmayın."
-    ],
-    [
-     "Hizmet",
-     "Angie One, yapay zeka ile öğünlerinizi kaydetmenize ve kalorileri tahmin etmenize yardımcı olur. Tahminler yaklaşık değerlerdir ve hatalı olabilir."
-    ],
-    [
-     "Deneme ve abonelik",
-     "Kart bilgisi gerekmeden 7 gün ücretsiz Premium kazanırsınız. Ardından ücretsiz sürüşe dönersiniz; otomatik olarak hiçbir ücret alınmaz. Sonrasında, aboneliğiniz devam ettiği sürece aynı fiyatı sabitlemeniz için 48 saatlik bir teklif alırsınız. Abonelikler otomatik olarak yenilenir ve mağazanızdan (App Store veya Google Play) tek dokunuşla iptal edilebilir. Fiyat, ödeme yapmadan önce gösterilir."
-    ],
-    [
-     "Kabul edilebilir kullanım",
-     "Uygulamayı yasadışı amaçlar için kullanmayın, uygulamaya zarar vermeye veya yapay zeka hizmetini kötüye kullanmaya çalışmayın."
-    ],
-    [
-     "Tıbbi tavsiye değildir",
-     "Tıbbi sorumluluk reddini okuyun. Uygulama bir sağlık profesyonelinin yerini tutmaz."
-    ],
-    [
-     "Sorumluluk",
-     "Uygulama \"olduğu gibi\" sağlanmaktadır. Yasaların izin verdiği ölçüde Parra Apps, tahminlerin kullanımından kaynaklanan zararlardan sorumlu tutulamaz."
-    ],
-    [
-     "İletişim",
-     "Bize angieoneapp.support@gmail.com adresinden e-posta gönderin."
-    ]
-   ]
+  "nav": {
+    "home": "Ana Sayfa",
+    "scan": "Fotoğraf",
+    "diary": "Günlük",
+    "more": "Daha fazla",
+    "coach": "Koç"
   },
-  "medical": {
-   "title": "Tıbbi Uyarı",
-   "updated": "Son güncelleme: 15 Ekim 2026",
-   "sections": [
-    [
-     "Tıbbi bir cihaz değildir",
-     "Angie One genel bir sağlıklı yaşam aracıdır. Herhangi bir hastalığı teşhis etmez, tedavi etmez, iyileştirmez veya önlemez."
+  "scan": {
+    "title": "Yemek fotoğrafı",
+    "take": "Fotoğraf çek",
+    "pick": "Galeriden seç",
+    "analyzing": "Analiz ediliyor…",
+    "demo": "DEMO MODU: simüle edilmiş tahmin (yapay zeka anahtarı yok)",
+    "live": "Yapay Zeka: Gemini Flash-Lite",
+    "range": "Tahmini aralık",
+    "confidence": "Güvenilirlik",
+    "high": "yüksek",
+    "medium": "orta",
+    "low": "düşük",
+    "questions": "1 dokunuşla düzenle",
+    "oil": "Yağlı mı?",
+    "sauce": "Soslu mu?",
+    "fried": "Kızartma mı?",
+    "portion": "Porsiyon",
+    "yes": "Evet",
+    "no": "Hayır",
+    "log": "Günlüğe ekle",
+    "disclaimer": "Bu bir tahmindir, kesin değer değildir. Düzeltme yapabilirsin.",
+    "aiOff": "Yapay zeka kapalı. Ayarlardan aç veya manuel olarak kaydet.",
+    "error": "Fotoğrafı analiz edemedim. Tekrar dene veya manuel olarak kaydet.",
+    "limit": "Ücretsiz sürüm günde 1 yapay zeka fotoğrafı içerir.",
+    "noCam": "Kamera izni yok. Telefon ayarlarından aç veya galeriden bir fotoğraf seç."
+  },
+  "bar": {
+    "title": "Barkod",
+    "hint": "Kodu yaz veya tarat (Open Food Facts verisi)",
+    "search": "Ara",
+    "scanCam": "Kamera ile tara",
+    "notFound": "Ürün bulunamadı. Manuel olarak kaydet.",
+    "per100": "100 g başına",
+    "grams": "Gram",
+    "semaphore": "Trafik ışığı",
+    "sugar": "Şeker",
+    "salt": "Tuz",
+    "satfat": "Doymuş yağ",
+    "badCode": "Barkodun altındaki 6 ila 14 haneyi yaz.",
+    "searching": "Aranıyor…"
+  },
+  "manual": {
+    "title": "Manuel kayıt",
+    "name": "Ad",
+    "kcal": "Kalori",
+    "latin": "Latin yemeği",
+    "search": "Yemek ara…",
+    "dictate": "Sesle dikte et",
+    "aiTitle": "Yemeğini tanımla",
+    "aiPh": "Örn. salatalı tavuk ve pilav, orta tabak",
+    "aiBtn": "Yapay zeka ile hesapla",
+    "exact": "Kaloriyi biliyorum",
+    "noMatch": "Sonuç yok. Yukarıda tanımla, yapay zeka hesaplasın.",
+    "badKcal": "Bir isim ve 1 ile 4999 arasında kalori yaz."
+  },
+  "diary": {
+    "title": "Bugünkü günlük",
+    "empty": "Henüz bir şey yok. Yemeğinin fotoğrafını çek!",
+    "total": "Toplam",
+    "remove": "Kaldır",
+    "prev": "Önceki gün",
+    "nextDay": "Sonraki gün",
+    "today": "Bugün",
+    "day": "Günlük"
+  },
+  "more": {
+    "title": "Daha fazla",
+    "barcode": "Barkod",
+    "manual": "Manuel kayıt",
+    "settings": "Ayarlar",
+    "premium": "Premium",
+    "founder": "Kurucu Paneli"
+  },
+  "set": {
+    "title": "Ayarlar",
+    "language": "Dil",
+    "auto": "Otomatik (telefon dili)",
+    "ai": "Yapay zeka analizi",
+    "aiDesc": "Kapalıysa hiçbir servise fotoğraf gönderilmez.",
+    "profile": "Profilimi yeniden oluştur",
+    "reset": "Verilerimi sil",
+    "resetQ": "Emin misin? Bu, bu cihazdaki her şeyi siler.",
+    "privacy": "Günlüğün yalnızca bu cihazda saklanır. Sağlık verilerini asla satmayız.",
+    "version": "MVP sürümü"
+  },
+  "pay": {
+    "title": "Angie One Premium",
+    "sub": "İhtiyacın olan her şey, dürüst fiyat",
+    "monthly": "1,99 US$ / ay",
+    "yearly": "14,99 US$ / yıl",
+    "yearlySave": "%37 tasarruf et",
+    "latam": "Latin Amerika: 0,99 US$ / ay",
+    "f1": "Sınırsız yapay zeka fotoğrafı (adil kullanım)",
+    "f2": "Kişiselleştirilmiş diyet ve egzersiz planları",
+    "f3": "Haftalık koç ve sohbet",
+    "f4": "Buzdolabı ve menü tarayıcı",
+    "f5": "Reklamsız",
+    "offer": "48 saatlik hoş geldin teklifi: Abone kalmaya devam ettiğin sürece fiyatın sonsuza kadar sabit kalır.",
+    "renew": "Otomatik yenilenir. İstediğin zaman 1 dokunuşla iptal et. Ödeme yapmadan önce fiyat gösterilir.",
+    "cta": "Abone ol",
+    "soon": "Ödemeler henüz aktif değil (önizleme derlemesi).",
+    "free": "Ücretsiz sürümle devam et",
+    "offerLive": "🔒 Sabit fiyat sadece {{time}} daha geçerli",
+    "offerAfter": "Deneme süren bittiğinde bu fiyatı sonsuza kadar sabitlemek için 48 saatin olacak.",
+    "offerGone": "48 saatlik teklif sona erdi; güncel fiyat yukarıda gösterilmektedir."
+  },
+  "fo": {
+    "title": "Kurucu Paneli v1",
+    "sub": "Yapay zeka önerir, tek dokunuşla sen karar verirsin",
+    "approve": "Onayla",
+    "reject": "Reddet",
+    "approved": "Onaylandı",
+    "rejected": "Reddedildi",
+    "demo": "Örnek veri. Gerçek para oynamaz.",
+    "kpi": "Özet",
+    "users": "Kullanıcılar",
+    "paying": "Ödeme yapan",
+    "mrr": "Aylık gelir"
+  },
+  "aiErr": {
+    "offline": "Bağlantı yok veya sunucu çok uzun sürdü. İnternetini kontrol edip tekrar dene.",
+    "busy": "Yapay zeka şu anda çok meşgul. Bir dakika bekleyip tekrar dene.",
+    "tooLarge": "Bu fotoğraf çok büyük. Başka bir tane dene veya kırp.",
+    "notFood": "Burada yemek bulamadım. Tabağın daha net bir fotoğrafını dene veya kelimelerle tanımla.",
+    "server": "Şu anda hesaplayamadım. Tekrar dene veya manuel olarak kaydet."
+  },
+  "trial": {
+    "remind2": "⏰ Ücretsiz Premium'un 2 gün içinde sona eriyor. Otomatik olarak hiçbir ücret alınmaz.",
+    "remind1": "⏰ Bugün ücretsiz Premium'un son günü. 48 saatlik teklif yarın başlıyor.",
+    "offer": "🔒 48 saatlik teklif: fiyatını sonsuza kadar sabitle. Bitiş süresi: {{time}}",
+    "offerEnded": "48 saatlik teklif sona erdi. Ücretsiz sürümdesin."
+  },
+  "legal": {
+    "privacy": "Gizlilik Politikası",
+    "terms": "Kullanım Şartları",
+    "medical": "Tıbbi yasal uyarı",
+    "draft": "TASLAK — bir avukat tarafından incelenmesi bekleniyor.",
+    "section": "Yasal"
+  },
+  "u": {
+    "kcal": "kcal",
+    "g": "g",
+    "p": "P",
+    "c": "K",
+    "f": "Y"
+  },
+  "foCards": {
+    "c1": {
+      "title": "Daha üst bir servise geç",
+      "body": "Gelir > maliyet üst üste 3 ay. Öneri: ücretsiz katmandan temel plana geç (örnek)."
+    },
+    "c2": {
+      "title": "Aylık sosyal yardım",
+      "body": "Net kârın %15'ini ihtiyaç sahiplerine ayır (örnek: 0 $, henüz gelir yok)."
+    },
+    "c3": {
+      "title": "0.1.1 güncellemesini yayınla",
+      "body": "Programcı yapay zeka Portekizce metinleri düzeltti. %10 kademeli kullanıma sunma."
+    }
+  },
+  "foods": {
+    "arepa": "Mısır arepası",
+    "arepa_queso": "Peynirli arepa",
+    "empanada": "Etli empanada (kızarmış)",
+    "pabellon": "Pabellón criollo",
+    "frijoles": "Siyah fasulye",
+    "arroz": "Beyaz pirinç pilavı",
+    "platano": "Kızarmış tatlı muz",
+    "tostones": "Tostones (ezilip kızartılmış muz)",
+    "tacos": "Tacos al pastor (soslu domuz etli tako)",
+    "tamal": "Tamal",
+    "gallo_pinto": "Gallo pinto (fasulyeli pirinç)",
+    "ceviche": "Balık ceviche",
+    "pupusa": "Pupusa",
+    "bandeja": "Bandeja paisa",
+    "feijoada": "Feijoada (etçil siyah fasulye yahnisliği)",
+    "pao_queijo": "Peynirli ekmek",
+    "aguacate": "Avokado",
+    "mango": "Mango",
+    "huevo": "Çırpılmış yumurta",
+    "pollo": "Izgara tavuk",
+    "yuca": "Haşlanmış kasava (manyak kökü)",
+    "cafe": "Sütlü kahve"
+  },
+  "docs": {
+    "privacy": {
+      "title": "Gizlilik Politikası",
+      "updated": "Son güncelleme: 15 Ekim 2026",
+      "sections": [
+        [
+          "Biz Kimiz?",
+          "Angie One, bir Parra Apps uygulamasıdır. İletişim: angieoneapp.support@gmail.com."
+        ],
+        [
+          "Kullandığımız Veriler",
+          "Profiliniz (hedefiniz, kilo, boy, yaş, cinsiyet, aktivite düzeyiniz), yemek günlüğünüz, su tüketiminiz ve meydan okumalarınız. Şu anda bunlar yalnızca cihazınızda saklanır; günlüğünüzü barındıran herhangi bir hesabımız veya sunucumuz yoktur."
+        ],
+        [
+          "Yapay Zeka İçin Fotoğraflar ve Metinler",
+          "Yapay zeka açıksa, yemeğinizin fotoğrafı veya açıklaması, yalnızca tahmini hesaplamak amacıyla vekil sunucumuza (Cloudflare) ve Google Gemini'ye gönderilir. Bunu saklamıyoruz. Yapay zekayı Ayarlar'dan kapatabilirsiniz; bu durumda hiçbir şey gönderilmez."
+        ],
+        [
+          "Barkodlar",
+          "Barkod numarası, açık bir veritabanı olan Open Food Facts üzerinden sorgulanır. Hiçbir kişisel veri gönderilmez."
+        ],
+        [
+          "Sağlık Verilerinizi Asla Satmayız",
+          "Sağlık veya yemek verilerinizi reklamverenlerle veya üçüncü taraflarla satmaz, kiralamaz veya paylaşmayız. Sağlık verilerinizi reklam amacıyla kullanmayız."
+        ],
+        [
+          "Haklarınız",
+          "Tüm verilerinizi Ayarlar → Verilerimi Sil bölümünden görüntüleyebilir ve silebilirsiniz. Kaliforniya (CCPA), AB (GDPR) veya gizlilik yasalarına sahip herhangi bir yerde yaşıyorsanız, bize e-posta göndererek haklarınızı kullanabilirsiniz."
+        ],
+        [
+          "Çocuklar",
+          "Angie One, 13 yaşın altındaki çocuklara (AB'de 16) yönelik değildir."
+        ],
+        [
+          "Güvenlik ve İhlaller",
+          "Şifreli bağlantılar (HTTPS) kullanıyoruz. Bir veri ihlali sizi etkilerse, yasaların gerektirdiği şekilde (FTC Sağlık İhlali Bildirim Kuralı dahil) sizi bilgilendireceğiz."
+        ],
+        [
+          "Değişiklikler",
+          "Bu politikayı değiştirirsek, yürürlüğe girmeden önce bunu uygulamada göstereceğiz."
+        ]
+      ]
+    },
+    "terms": {
+      "title": "Kullanım Koşulları",
+      "updated": "Son güncellem: 15 Ekim 2026",
+      "sections": [
+        [
+          "Kabul",
+          "Angie One uygulamasını kullanarak bu koşulları kabul etmiş olursunuz. Kabul etmiyorsanız uygulamayı kullanmayın."
+        ],
+        [
+          "Hizmet",
+          "Angie One, yapay zeka ile öğünlerinizi kaydetmenize ve kalorileri tahmin etmenize yardımcı olur. Tahminler yaklaşık değerlerdir ve hatalı olabilir."
+        ],
+        [
+          "Deneme ve abonelik",
+          "Kart bilgisi gerekmeden 7 gün ücretsiz Premium kazanırsınız. Ardından ücretsiz sürüşe dönersiniz; otomatik olarak hiçbir ücret alınmaz. Sonrasında, aboneliğiniz devam ettiği sürece aynı fiyatı sabitlemeniz için 48 saatlik bir teklif alırsınız. Abonelikler otomatik olarak yenilenir ve mağazanızdan (App Store veya Google Play) tek dokunuşla iptal edilebilir. Fiyat, ödeme yapmadan önce gösterilir."
+        ],
+        [
+          "Kabul edilebilir kullanım",
+          "Uygulamayı yasadışı amaçlar için kullanmayın, uygulamaya zarar vermeye veya yapay zeka hizmetini kötüye kullanmaya çalışmayın."
+        ],
+        [
+          "Tıbbi tavsiye değildir",
+          "Tıbbi sorumluluk reddini okuyun. Uygulama bir sağlık profesyonelinin yerini tutmaz."
+        ],
+        [
+          "Sorumluluk",
+          "Uygulama \"olduğu gibi\" sağlanmaktadır. Yasaların izin verdiği ölçüde Parra Apps, tahminlerin kullanımından kaynaklanan zararlardan sorumlu tutulamaz."
+        ],
+        [
+          "İletişim",
+          "Bize angieoneapp.support@gmail.com adresinden e-posta gönderin."
+        ]
+      ]
+    },
+    "medical": {
+      "title": "Tıbbi Uyarı",
+      "updated": "Son güncelleme: 15 Ekim 2026",
+      "sections": [
+        [
+          "Tıbbi bir cihaz değildir",
+          "Angie One genel bir sağlıklı yaşam aracıdır. Herhangi bir hastalığı teşhis etmez, tedavi etmez, iyileştirmez veya önlemez."
+        ],
+        [
+          "Tahminler",
+          "Yapay zeka tarafından hesaplanan kalori ve besin öğeleri birer tahmindir ve önemli hatalar içerebilir. Gerektiğinde bunları gözden geçirin ve düzeltin."
+        ],
+        [
+          "Bir uzmana danışın",
+          "Özellikle hamileyseniz veya emziriyorsanız, diyabetiniz, yeme bozukluğunuz veya başka bir sağlık durumunuz varsa ya da 18 yaşın altındaysanız, diyetinizi değiştirmeden önce doktorunuza veya diyetisyeninize danışın."
+        ],
+        [
+          "Acil durumlar",
+          "Tıbbi bir acil durumunuz varsa 112'yi veya yerel acil durum numaranızı arayın."
+        ]
+      ]
+    }
+  },
+  "coach": {
+    "title": "Kişisel koçunuz",
+    "introTitle": "Planınız, size özel hazırlandı",
+    "introBody": "3 hızlı ekranı yanıtlayın; Angie hedefiniz, vücudunuz ve zevkleriniz doğrultusunda haftalık yemek planınızı ve egzersiz programınızı oluştursun.",
+    "create": "Planımı oluştur",
+    "today": "Bugün",
+    "restDay": "Dinlenme günü — tadını çıkarın!",
+    "restBody": "Dinlenmek planın bir parçasıdır. Hafif bir yürüyüş veya esneme yapmak güzel bir ektir.",
+    "doneToday": "Bugünkü egzersiz tamamlandı. Harika iş!",
+    "startToday": "Bugünkü egzersize başla",
+    "burnedToday": "bugün yakıldı",
+    "burned": "yakıldı",
+    "streak": "Seri",
+    "week": "bu hafta",
+    "target": "Günlük hedefiniz: {{kcal}} kcal",
+    "source": {
+      "ai": "Plan Angie'nin Yapay Zekası tarafından hazırlandı",
+      "rules": "Temel plan (Yapay zeka meşguldü)"
+    },
+    "diet": "Yemek planı",
+    "workout": "Egzersiz",
+    "checkin": "Haftalık değerlendirme",
+    "due": "bugün yapılması gerekiyor",
+    "chat": "Angie'ye sor",
+    "edit": "Tercihlerimi değiştir",
+    "setupTitle": "Planınızı kuralım",
+    "place": "Nerede çalışacaksınız?",
+    "home": "Ev",
+    "gym": "Spor salonu",
+    "daysQ": "Haftada kaç gün",
+    "minutesQ": "Seans başına dakika",
+    "levelQ": "Seviyeniz",
+    "beginner": "Başlangıç",
+    "intermediate": "Orta",
+    "advanced": "İleri",
+    "injuriesQ": "Herhangi bir ağrı, sakatlık veya kısıtlamanız var mı?",
+    "none": "Yok",
+    "inj": {
+      "knees": "Dizler",
+      "back": "Sırt",
+      "shoulders": "Omuzlar",
+      "wrists": "Bilekler"
+    },
+    "injuryNote": "Angie'nin bilmesi gereken başka bir şey var mı? (isteğe bağlı)",
+    "optional": "İsteğe bağlı",
+    "dislikesQ": "Yemediğiniz yiyecekler",
+    "dis": {
+      "fish": "Balık",
+      "eggs": "Yumurta",
+      "dairy": "Süt ürünleri",
+      "beef": "Kırmızı et",
+      "chicken": "Tavuk",
+      "legumes": "Baklagiller",
+      "nuts": "Kuruyemiş",
+      "veg": "Vejetaryen"
+    },
+    "cuisineQ": "En sevdiğiniz mutfak",
+    "cui": {
+      "latin": "Latin",
+      "mexican": "Meksika",
+      "caribbean": "Karayip",
+      "andean": "Kolombiya / And",
+      "brazilian": "Brezilya",
+      "international": "Uluslararası"
+    },
+    "budgetQ": "Yemek bütçesi",
+    "bud": {
+      "low": "Düşük",
+      "medium": "Orta",
+      "high": "Yüksek"
+    },
+    "mealsQ": "Günlük öğün sayısı",
+    "generate": "Planı oluştur",
+    "building": "Angie planınızı hazırlıyor…",
+    "buildingSub": "Bu bir dakikaya kadar sürebilir.",
+    "fallbackNote": "Yapay zeka şu anda meşgul, bu yüzden size aynı kalori değerine ve tercihlerinize sahip temel bir plan hazırladım. Yapay zekayı daha sonra tekrar deneyebilirsiniz.",
+    "seePlan": "Planımı gör",
+    "tryAgain": "Yapay zekayı tekrar dene",
+    "slots3": [
+      "Kahvaltı",
+      "Öğle Yemeği",
+      "Akşam Yemeği"
     ],
-    [
-     "Tahminler",
-     "Yapay zeka tarafından hesaplanan kalori ve besin öğeleri birer tahmindir ve önemli hatalar içerebilir. Gerektiğinde bunları gözden geçirin ve düzeltin."
+    "slots4": [
+      "Kahvaltı",
+      "Öğle Yemeği",
+      "Ara Öğün",
+      "Akşam Yemeği"
     ],
-    [
-     "Bir uzmana danışın",
-     "Özellikle hamileyseniz veya emziriyorsanız, diyabetiniz, yeme bozukluğunuz veya başka bir sağlık durumunuz varsa ya da 18 yaşın altındaysanız, diyetinizi değiştirmeden önce doktorunuza veya diyetisyeninize danışın."
+    "slots5": [
+      "Kahvaltı",
+      "Kuşluk",
+      "Öğle Yemeği",
+      "İkindi",
+      "Akşam Yemeği"
     ],
-    [
-     "Acil durumlar",
-     "Tıbbi bir acil durumunuz varsa 112'yi veya yerel acil durum numaranızı arayın."
-    ]
-   ]
+    "slots2": [
+      "Öğün 1",
+      "Öğün 2"
+    ],
+    "slots6": [
+      "Öğün 1",
+      "Öğün 2",
+      "Öğün 3",
+      "Öğün 4",
+      "Öğün 5",
+      "Öğün 6"
+    ],
+    "portion": "porsiyon ×{{x}}",
+    "logMeal": "Günlüğüme ekle",
+    "logged": "Günlüğünüze eklendi",
+    "shopping": "Haftalık alışveriş listesi",
+    "reps": "{{n}} tekrar",
+    "secs": "{{n}} sn",
+    "restS": "dinlenme {{n}} sn",
+    "start": "Egzersize başla",
+    "safety": "Önce ısının, yavaş hareket edin ve ağrı, baş dönmesi veya göğüste baskı hissederseniz durun.",
+    "notMedical": "Angie tıbbi tavsiye değil, genel rehberlik sunar. Bir sağlık durumunuz varsa uzmanına danışın.",
+    "lockedTitle": "Koçunuz bir Premium özelliktir",
+    "lockedBody": "Ücretsiz deneme süreniz sona erdi. Planınız ve geçmişiniz kaydedildi — Angie ile antrenmana devam etmek için Premium'un kilidini açın.",
+    "teaser1": "Latin yemekleri ve alışveriş listesi içeren haftalık yemek planı",
+    "teaser2": "Rehberli zamanlayıcı ile evde veya spor salonunda antrenmanlar",
+    "teaser3": "Planınızı nazikçe ayarlayan haftalık değerlendirme",
+    "teaser4": "Yemek ve egzersiz hakkında Angie ile sohbet",
+    "unlock": "Premium'u Gör",
+    "keepData": "Otomatik olarak hiçbir ücret alınmaz.",
+    "stepOf": "Adım {{a}} / {{b}}",
+    "setOf": "Set {{a}} / {{b}}",
+    "rest": "Dinlen",
+    "breathe": "Nefes al ve biraz su iç",
+    "upNext": "Sırada ne var",
+    "skipRest": "Dinlenmeyi geç",
+    "doneSet": "Tamamlandı",
+    "pause": "Duraklat",
+    "resume": "Devam et",
+    "endEarly": "Şimdi bitir",
+    "greatJob": "Harika iş! Egzersiz tamamlandı",
+    "addedHome": "Yaktığınız kalori Ev'deki bugünkü dengenize eklendi.",
+    "sayRest": "{{n}} saniye dinlen.",
+    "sayDone": "Harika iş! Yaklaşık {{kcal}} kalori yaktın.",
+    "sayBurned": "Egzersiz yaparak {{kcal}} kalori yaktın.",
+    "dLegs": "Bacaklar ve merkez bölgesi",
+    "dUpper": "Üst vücut ve merkez bölgesi",
+    "dFull": "Tüm vücut",
+    "dRest": "Dinlenme"
+  },
+  "ci": {
+    "weightQ": "Bugünkü ağırlığınız (kg)",
+    "energyQ": "Bu hafta enerjiniz nasıldı?",
+    "e_low": "Düşük",
+    "e_ok": "Normal",
+    "e_good": "Harika",
+    "skippedQ": "Öğünleri bilerek atladınız mı veya yedikten sonra suçluluk duydunuz mu?",
+    "bingeQ": "Durduramadığınız şekilde çok fazla yemek yediniz mi ya da yediklerinizi 'telafi etmek' için egzersiz yaptınız mı?",
+    "yes": "Evet",
+    "no": "Hayır",
+    "private": "Cevaplarınız telefonunuzda kalır. Angie'nin sizinle ilgilenmesine yardımcı olur.",
+    "save": "Değerlendirmeyi kaydet",
+    "history": "Son değerlendirmeler",
+    "notYet": "Bir sonraki değerlendirmenize {{n}} gün var, ancak şimdi de yapabilirsiniz.",
+    "newTarget": "Günlük hedefiniz: {{kcal}} kcal",
+    "mFirst": "İlk değerlendirme kaydedildi! Önümüzdeki hafta karşılaştırıp ayarlayacağız.",
+    "mOnTrack": "Tam yolundasınız. Planı olduğu gibi bırakıyoruz.",
+    "mPlateau": "Kilonuz sabit kaldı. Hedefinizi biraz düşürüyoruz (−100 kcal) — nazikçe.",
+    "mFast": "Sağlıklı olandan daha hızlı veriyorsunuz. Biraz daha yemek ekliyoruz (+150 kcal).",
+    "mGainMore": "Kas kazanmak için biraz daha yemek ekliyoruz (+100 kcal).",
+    "mGainSlow": "Biraz hızlı alıyorsunuz. Hafifçe azaltıyoruz (−100 kcal).",
+    "mKeepDown": "Kilonuz biraz arttı. Küçük ayar (−100 kcal).",
+    "mKeepUp": "Kilonuz biraz düştü. Küçük ayar (+100 kcal).",
+    "tUp": "Antrenman: egzersiz başına bir set daha. Hazırsınız!",
+    "tDown": "Antrenman: toparlanmanız için bu hafta biraz daha hafif.",
+    "tSame": "Antrenman: geçen haftayla aynı.",
+    "warnTitle": "Seni önemsiyoruz",
+    "warnBody": "Bazı yanıtların, yemekle ilişkinin şu sıra zorlayıcı hissedilebileceğini gösteriyor. Bu birçok insanın başına gelir ve yalnız değilsin. Kalorilerini düşürmeyeceğiz. Bir doktora, beslenme uzmanına veya ruh sağlığı uzmanına danışmak gerçekten yardımcı olabilir. Yerel bir sağlık veya kriz hattıyla iletişime geçebilirsin."
+  },
+  "chat": {
+    "disclaimer": "Angie bir yapay zeka koçudur, doktor değildir. Yanıtları genel rehberlik amaçlıdır; sağlık sorunlarınız için bir uzmana başvurun.",
+    "hello": "Merhaba! Bana yemek, tarifler veya egzersiz hakkında her şeyi sorabilirsiniz.",
+    "s1": "Sağlıklı bir akşam için ne yiyebilirim?",
+    "s2": "Squat'ı nasıl güvenli bir şekilde yaparım?",
+    "s3": "Gece pirinç yemek sorun olur mu?",
+    "placeholder": "Sorunuzu yazın",
+    "send": "Gönder",
+    "offline": "Angie şu anda yanıt veremedi. Bağlantınızı kontrol edin ve birazdan tekrar deneyin.",
+    "limit": "Bugünkü {{n}} soru sınırına ulaştınız. Yarın tekrar gelin!"
+  },
+  "cfood": {
+    "b1": {
+      "n": "Yumurtalı ve peynirli arepa",
+      "i": "1 mısır arepası, 1 çırpılmış yumurta, 30 g taze peynir, domates"
+    },
+    "b2": {
+      "n": "Muzlu ve tarçınlı yulaf lapası",
+      "i": "Sütte pişmiş ½ su bardağı yulaf, 1 muz, tarçın"
+    },
+    "b3": {
+      "n": "Mısır tortilla ile çırpılmış yumurta",
+      "i": "Domates ve soğanlı 2 yumurta, 2 mısır tortillasız"
+    },
+    "b4": {
+      "n": "Meyveli ve yulaflı yoğurt",
+      "i": "1 su bardağı sade yoğurt, 1 su bardağı meyve, 3 yk yulaf"
+    },
+    "b5": {
+      "n": "Avokadolu ve fasulyeli kepekli tost",
+      "i": "2 dilim kepekli ekmek, ¼ avokado, ½ su bardağı fasulye"
+    },
+    "l1": {
+      "n": "Pirinç, fasulye ve tavuk",
+      "i": "¾ su bardağı pirinç, ½ su bardağı fasulye, 120 g ızgara tavuk, salata"
+    },
+    "l2": {
+      "n": "Yukalı ızgara balık",
+      "i": "150 g balık, 1 su bardağı haşlanmış yuka, limonlu salata"
+    },
+    "l3": {
+      "n": "Pirinç ve fırınlanmış muzlu et yahni",
+      "i": "120 g yahni et, ¾ su bardağı pirinç, ½ fırınlanmış olgun muz (plantain)"
+    },
+    "l4": {
+      "n": "Pirinçli mercimek",
+      "i": "1 su bardağı mercimek, ½ su bardağı pirinç, salata"
+    },
+    "l5": {
+      "n": "Patatesli ve sebzeli fırın tavuk",
+      "i": "130 g tavuk, 1 orta boy patates, 1 su bardağı sebze"
+    },
+    "s1": {
+      "n": "Yer fıstıklı meyve",
+      "i": "1 meyve, 1 küçük avuç yer fıstığı"
+    },
+    "s2": {
+      "n": "Meyveli yoğurt",
+      "i": "1 su bardağı sade yoğurt, ½ su bardağı meyve"
+    },
+    "s3": {
+      "n": "Limonlu mango ve haşlanmış yumurta",
+      "i": "1 su bardağı mango, limon, 1 haşlanmış yumurta"
+    },
+    "s4": {
+      "n": "Meyve kasesi",
+      "i": "1 muz ve 1 su bardağı mevsim meyvesi"
+    },
+    "d1": {
+      "n": "Pico de gallo soslu tavuk taco",
+      "i": "3 mısır tortilla, 120 g tavuk, domates ve soğan"
+    },
+    "d2": {
+      "n": "Sebzeli tavuk çorbası",
+      "i": "1 büyük kase: tavuk, patates, havuç, bal kabağı"
+    },
+    "d3": {
+      "n": "Avokadolu ton balıklı salata",
+      "i": "1 kutu suda ton balığı, ¼ avokado, marul ve domates, kraker"
+    },
+    "d4": {
+      "n": "Peynirli sebzeli omlet",
+      "i": "2 yumurta, sebze, 30 g peynir, 1 dilim ekmek"
+    },
+    "d5": {
+      "n": "Taze peynirli, pirinçli siyah fasulye",
+      "i": "1 su bardağı fasulye, ½ su bardağı pirinç, 30 g taze peynir"
+    }
+  },
+  "cing": {
+    "cornflour": "Önceden pişirilmiş mısır unu",
+    "eggs": "Yumurta",
+    "cheese": "Taze peynir",
+    "tomato": "Domates",
+    "oats": "Yulaf",
+    "banana": "Muz",
+    "milk": "Süt",
+    "tortillas": "Mısır tortillası",
+    "onion": "Soğan",
+    "yogurt": "Sade yoğurt",
+    "fruit": "Mevsim meyvesi",
+    "bread": "Kepekli ekmek",
+    "avocado": "Avokado",
+    "beans": "Fasulye",
+    "rice": "Pirinç",
+    "chicken": "Tavuk göğsü",
+    "salad": "Marul ve salatası yeşillikleri",
+    "fish": "Beyaz balık",
+    "yuca": "Yuka (manyok)",
+    "beef": "Yağsız dana eti",
+    "plantain": "Olgun muz (plantain)",
+    "lentils": "Mercimek",
+    "potato": "Patates",
+    "vegetables": "Karışık sebze",
+    "peanuts": "Yer fıstığı",
+    "tuna": "Suda konserve ton balığı"
+  },
+  "cex": {
+    "march": {
+      "n": "Olduğu yerde yürüme",
+      "d": "Dizlerinizi birer birer kaldırın ve kollarınızı sallayın. Isınmak için rahat bir tempoda yapın."
+    },
+    "treadmill": {
+      "n": "Koşu bandında yürüyüş",
+      "d": "Rahat bir tempoda yürüyün. Yürürken konuşabiliyor olmalısınız."
+    },
+    "chairSquat": {
+      "n": "Sandalyeden kalkma (Chair squat)",
+      "d": "Bir sandalyenin önünde durun, yavaşça oturun ve topuklarınızdan güç alarak tekrar ayağa kalkın."
+    },
+    "bridge": {
+      "n": "Kalça köprüsü (Glute bridge)",
+      "d": "Sırt üstü uzanın, dizleriniz bükülü olsun. Kalçanızı kaldırın, kalça kaslarınızı sıkın ve yavaşça indirin."
+    },
+    "calf": {
+      "n": "Kalf kaldırış (Calf raises)",
+      "d": "Bir duvara veya sandalyeye tutunun. Parmak uçlarınızda yükselin ve yavaşça inin."
+    },
+    "sideLeg": {
+      "n": "Yana bacak kaldırma",
+      "d": "Bir sandalyeye tutunun, bir bacağınızı yana doğru kaldırın ve yavaşça indirin. Bacak değiştirin."
+    },
+    "stepUp": {
+      "n": "Basamak çıkma (Step-up)",
+      "d": "Alçak ve sabit bir basamağa önce bir ayağınızla, sonra diğerinizle çıkın ve yavaşça inin."
+    },
+    "legPress": {
+      "n": "Leg press",
+      "d": "Makineye oturun, ayaklarınız tabana düz basıyor. Dizlerinizi kilitlemeden itin ve yavaşça başlangıca dönün."
+    },
+    "gobletSquat": {
+      "n": "Goblet squat",
+      "d": "Göğsünüzde hafif bir dambıl tutun. Sırtınız düz bir şekilde çömelin ve ayağa kalkın."
+    },
+    "wallPush": {
+      "n": "Duvarda şınav (Wall push-up)",
+      "d": "Eller göğüs hizasında duvarda. Dirseklerinizi duvara doğru bükün ve itin."
+    },
+    "armCircles": {
+      "n": "Kollarla daire çemberi",
+      "d": "Kollar iki yana açık, önce öne sonra arkaya küçük daireler çizin."
+    },
+    "bottleRow": {
+      "n": "Su şişesiyle kürek çekme",
+      "d": "Sırtınız düz şekilde hafifçe öne eğilin, iki su şişesini belinize doğru çekin ve indirin."
+    },
+    "latPull": {
+      "n": "Lat pulldown",
+      "d": "Makineye oturun, barı üst göğsünüze doğru çekin ve yavaşça yükselmesine izin verin."
+    },
+    "seatedRow": {
+      "n": "Oturarak kablo ile çekiş (Seated row)",
+      "d": "Dik oturun, tutacağı karnınıza çekin, kürek kemiklerinizi sıkın ve yavaşça dönün."
+    },
+    "chestPress": {
+      "n": "Chest press makinesi",
+      "d": "Sırtınız mindere dayalı oturun. Kolları öne doğru itin ve yavaşça dönün."
+    },
+    "birdDog": {
+      "n": "Bird dog",
+      "d": "Elleriniz ve dizleriniz üzerinde, bir kolunuzu öne ve zıt bacağınızı arkaya uzatın. Tutun, ardından değiştirin."
+    },
+    "deadBug": {
+      "n": "Ölü böcek (Dead bug)",
+      "d": "Sırt üstü uzanın, kollar yukarıda ve dizler bükülü. Zıt kol ve bacağı yavaşça aşağı indirin, sonra değiştirin."
+    },
+    "plank": {
+      "n": "Plank",
+      "d": "Ön kollarınız ve ayak parmaklarınız (veya dizleriniz) üzerinde, vücudunuzu düz tutun ve nefes alın."
+    },
+    "jacks": {
+      "n": "Jumping jacks",
+      "d": "Zıplayarak bacakları ve kollarınızı açın, sonra kapatın. Düşük etki için bunun yerine adımınızı yana atın."
+    },
+    "bike": {
+      "n": "Kondisyon bisikleti",
+      "d": "Biraz daha hızlı nefes almanızı sağlayacak istikrarlı bir tempoda pedal çevirin."
+    },
+    "stretch": {
+      "n": "Hafif esneme",
+      "d": "Bacakları, sırtı ve kollarınızı yavaşça esnetin. Her esnemeyi zıplamadan 15–20 saniye tutun."
+    }
+  },
+  "x": {
+    "pending": "Bağlantı beklemede",
+    "example": "ÖRNEK VERİ",
+    "explore": "Keşfet",
+    "more4": "Yakında geliyor",
+    "pendingLegend": "⏳ = Jose tarafından onaylanmış bir hesap, anahtar veya iş ortağı gerektirir. Burada yerel veya örnek verilerle çalışır.",
+    "pendingBody": "Bu bağlantı beklemede: bir hesap veya iş ortağı onayı gerekiyor. Hiçbir şey gönderilmedi.",
+    "needServer": "sunucu gerekiyor",
+    "needPay": "ödeme gerekiyor",
+    "needStores": "mağaza iş ortakları gerekiyor",
+    "t": {
+      "social": "Topluluk",
+      "recipes": "Latin tarifleri",
+      "gym": "Spor salonu",
+      "connect": "Saatler ve müzik",
+      "fasting": "Oruç",
+      "twin": "Dijital ikiz",
+      "video": "Haftalık video",
+      "health": "Sağlık modları",
+      "family": "Aile",
+      "report": "Doktor raporu",
+      "shop": "Alışveriş listesi",
+      "travel": "Seyahat modu",
+      "b2b": "Eğitmenler için",
+      "market": "Uzmanlar",
+      "corp": "Şirket sağlığı",
+      "store": "Mağaza",
+      "impact": "Etkimiz",
+      "pet": "Evcil hayvan planı",
+      "whatsapp": "WhatsApp günlüğü",
+      "tips": "İçerik üreticisi ipuçları"
+    },
+    "me": "Ben",
+    "postPh": "İlerlemeni paylaş…",
+    "addPhoto": "Fotoğraf",
+    "publish": "Yayınla",
+    "localOnly": "Şimdilik gönderiler yalnızca bu cihazda kalır.",
+    "like": "Beğen",
+    "follow": "Takip et",
+    "following": "Takip ediliyor",
+    "groups": "Gruplar",
+    "g1": "Antrenman yapan Latin anneler",
+    "g2": "5K koşucuları",
+    "g3": "Sağlıklı beslenme",
+    "join": "Katıl",
+    "joined": "Katıldın",
+    "challenges": "Meydan okumalar",
+    "ch1": "Bu hafta 3 gruba katıl",
+    "socialSafety": "Beden kıyaslaması yok, utandırma yok. Şikayet edilen gönderiler gizlenir.",
+    "k": {
+      "meal": "Öğün",
+      "gym": "Spor salonu",
+      "run": "Koşu"
+    },
+    "vote": "Oy ver",
+    "see": " Tarifi gör",
+    "close": "Kapat",
+    "rec": {
+      "r1": {
+        "n": "Hafif tavuklu arroz con pollo",
+        "s": "Esmer pirinç, derisiz tavuk, biber, bezelye. 1 çay kaşığı yağ."
+      },
+      "r2": {
+        "n": "Siyah fasulyeli ve mısırlı arepa",
+        "s": "Izgara arepa, siyah fasulye, taze peynir, avokado."
+      },
+      "r3": {
+        "n": "Fırında ropa vieja",
+        "s": "Yağsız dana eti, domates, biber, soğan. Salatayla servis et."
+      },
+      "r4": {
+        "n": "Tropikal meyve kasesi",
+        "s": "Papaya, mango, ananas, sade yoğurt ve yulaf."
+      }
+    },
+    "mv": {
+      "squat": "Çömelme (Squat)",
+      "pushup": "Şınav",
+      "jack": "Jumping jacks",
+      "plank": "Plank"
+    },
+    "mvd": {
+      "squat": "Ayaklar kalça genişliğinde, geriye otur, göğüs ileride, dizler parmak uçlarını geçmesin.",
+      "pushup": "Eller omuz altında, gövde düz. Dizler yerde olabilir.",
+      "jack": "Kollar ve bacaklar açık zıpla, yumuşak bas.",
+      "plank": "Ön kollar yerde, gövde düz, yavaşça nefes al."
+    },
+    "animNote": "Kendi animasyonlarımız, üçüncü taraf lisansı yok. Gerçek videolar yakında gelecektir.",
+    "int": {
+      "garmin": "Garmin",
+      "fitbit": "Fitbit",
+      "samsung": "Samsung Health",
+      "spotify": "Spotify (antrenman müzikleri)",
+      "health": "Apple Health / Health Connect"
+    },
+    "intWhy": "Adımları, kalp atış hızını ve antrenmanları otomatik olarak getirir.",
+    "connect": "Bağlan",
+    "manualSteps": "Bugünkü adımlar (manuel)",
+    "fastGoal": "Hedef: {{h}} saat",
+    "fastStart": "Oruca başla",
+    "fastEnd": "Orucu bitir",
+    "fastLog": "Son oruçlar",
+    "fastBlocked": "Güvenliğin için oruç kapatıldı (18 yaş altı, gebelik veya şeker hastalığı). Doktorunla konuş.",
+    "fastNote": "İsteğe bağlı. Başın dönerse veya kendini kötü hissedersen dur.",
+    "preview": "önizleme",
+    "tw": {
+      "talk": "Selam! Bugün hedefin {{kcal}} kcal. Yapabilirsin!",
+      "eat": "Dengeli bir tabak yiyorum: yarısı sebze.",
+      "cook": "Hadi birlikte hafif bir arroz con pollo pişirelim.",
+      "train": "Hadi antrenman yapalım! Benimle 10 squat."
+    },
+    "twa": {
+      "talk": "Konuş",
+      "eat": "Ye",
+      "cook": "Pişir",
+      "train": "Çalış"
+    },
+    "twinNote": "Animasyonlu önizleme. Tam 3D ikiz Premium Plus'a dahildir ve hâlâ geliştirilmektedir.",
+    "play": "Haftamı oynat",
+    "v1": "Bu hafta {{n}} gün kaydettin",
+    "v2": "Kayıt yapılan gün başına ortalama {{kcal}} kcal",
+    "v3": "Antrenmanda {{kcal}} kcal yaktın",
+    "v4": "{{n}} bardak su içtin",
+    "v5": "Her adım önemli. Devam et!",
+    "videoNote": "Verilerinle telefonunda yapıldı. Hiçbir şey yüklenmez.",
+    "healthWarn": "Bu modlar yalnızca genel ipuçları verir. Doktorunun yerini almaz veya ilacını değiştirmez.",
+    "on": "Açık",
+    "off": "Aç",
+    "m": {
+      "diabetes": "Şeker hastalığı",
+      "hypertension": "Yüksek tansiyon",
+      "cholesterol": "Kolesterol",
+      "cycle": "Adet döngüsü",
+      "pregnancy": "Gebelik"
+    },
+    "md": {
+      "diabetes": "Öğün başına karbonhidrata dikkat et, proteinle eşleştir, oruç tutma. Glukozunu doktorunun söylediği şekilde kontrol et.",
+      "hypertension": "Tuz sınırı: Günde 1.500 mg sodyum. Konserve ve tuzlanmış gıdaları azalt.",
+      "cholesterol": "Daha çok lif, yulaf ve fasulye; kızartma ve doymuş yağları azalt.",
+      "cycle": "Sonraki döngünü bilmek ve enerjini ayarlamak için adetini kaydet.",
+      "pregnancy": "Kalori açığı yok, oruç yok. 2. trimestere göre yaklaşık +300 kcal. Doktorunu takip et."
+    },
+    "periodToday": "Adetim bugün başladı",
+    "nextPeriod": "Sonraki adet yaklaşık {{d}} gün sonra",
+    "famName": "İsim",
+    "adult": "Yetişkin",
+    "child": "Çocuk",
+    "kidRule": "Çocuklar: kalori sayımı yok, sadece sağlıklı alışkanlıklar.",
+    "famNote": "Herkesin verisi bu cihazda kalır.",
+    "repTitle": "Doktorum için özet",
+    "repModes": "Modlar",
+    "repFoot": "Angie One tarafından oluşturuldu. Tahminlerdir, teşhis değildir.",
+    "savePdf": "PDF olarak kaydet",
+    "repNote": "Yazdırma penceresinde 'PDF olarak kaydet' seçeneğini seç. Kime vereceğine sen karar verirsin.",
+    "si1": "Tavuk göğsü",
+    "si2": "Esmer pirinç",
+    "si3": "Siyah fasulye",
+    "storeN": "Mağaza {{n}}",
+    "delivery": "Eve teslimat",
+    "priceNote": "Örnek fiyatlar. Gerçek fiyatlar için mağaza ortakları gerekir.",
+    "travelOn": "Seyahat modu açık",
+    "travelOff": "Seyahat modunu aç",
+    "tr1": "Hedefler esnek kalır: 1 öğün kaydetmek yeterlidir.",
+    "tr2": "Restoranlarda: ızgara, salata, su.",
+    "tr3": "10 dakikalık otel odası antrenmanı.",
+    "tr4": "Saat dilimi değişiklikleri otomatik olarak yönetilir.",
+    "hotelWorkout": "Oda antrenmanı",
+    "clients": "Danışanların",
+    "daysLogged": "{{n}} gün kaydedildi",
+    "b2bPrice": "Eğitmen planı: 20 danışmana kadar yönet (fiyatı belirlenecek).",
+    "b2bPrivacy": "Danışanlar eğitmeniyle ne paylaşacağını seçer.",
+    "sponsored": "Sponsorlu",
+    "ad1": "Kapınıza kadar gelen organik sebzeler.",
+    "ad2": "İlave şeker içermeyen su mataraları.",
+    "adWhy": "Yalnızca onaylı sağlıklı markalar. Sağlık verileriniz asla kullanılmaz.",
+    "adsTitle": "Onaylı markalar",
+    "role": {
+      "nutri": "Beslenme Uzmanı",
+      "trainer": "Kişisel Eğitmen",
+      "physio": "Fizyoterapist"
+    },
+    "session": "seans",
+    "book": "Yer ayırt",
+    "marketNote": "Yayına girmeden önce lisanslar doğrulanır.",
+    "corpCh": "Ekip adım yarışması",
+    "corpPrivacy": "Şirket yalnızca ekip toplamlarını görür, asla bireysel sağlık verilerini görmez.",
+    "aggTitle": "Anonim rapor",
+    "people": "kişi",
+    "aggNote": "20 kişiden küçük gruplar gizlenir. Bireysel veri yoktur.",
+    "purpose": "Amacına uygun alışveriş yap",
+    "purposeBody": "Her üründen elde edilen paranın büyük kısmı; kötü beslenme, aşırı kilo veya egzersiz eksikliği nedeniyle sağlık sorunları yaşayan ya da fizyoterapiye ihtiyacı olan kişilere yardım etmek için kullanılır.",
+    "prod": {
+      "tee": "Angie One Tişörtü",
+      "hoodie": "Mercan rengi kapüşonlu",
+      "bottle": "Matara",
+      "cap": "Şapka"
+    },
+    "openEtsy": "Etsy mağazasını aç",
+    "storeNote": "Ürünler Etsy'de (Parra Apps mağazası) sipariş üzerine yapılır. Mağaza henüz açık değil.",
+    "fundNext": "Sıradaki kişi için fon",
+    "helped": "Yardım edilen kişi",
+    "reason": {
+      "physio": "Fizyoterapi",
+      "nutrition": "Beslenme planı"
+    },
+    "impactNote": "İsimler gizlenir ve yalnızca onayla gösterilir. Her ödeme kurucu tarafından onaylanır ve makbuzu vardır.",
+    "splitTitle": "Kâr paylaşımı 60/25/15",
+    "sOps": "Operasyonlar",
+    "sGrowth": "Büyüme",
+    "sSocial": "Sosyal yardım",
+    "splitNote": "1.000$ net kâr ile örnek. Onayın olmadan hiçbir para hareket etmez.",
+    "disbTitle": "Yardım teklifleri",
+    "disbNote": "Yönetici yapay zeka önerir; tek dokunuşla onaylarsın. Ödemeler henüz bağlanmadı.",
+    "dog": "Köpek",
+    "cat": "Kedi",
+    "day": "gün",
+    "walk": "Yürüyüş tamamlandı",
+    "walked": "Bugünkü yürüyüş tamamlandı",
+    "petNote": "Yaklaşıktır. Veterinerine danış.",
+    "waHow": "WhatsApp'ta yazar gibi yaz, örneğin: '2 arepa yedim'.",
+    "waPh": "Mesaj",
+    "waTry": "Dene",
+    "tipsNote": "İpuçları, ödeme kesintileri hariç %100 içerik üreticisine gider."
+  },
+  "p2": {
+    "hub": "Sağlıklı araçlar",
+    "hubNote": "🔒 = Premium. Her şey telefonunda kalır.",
+    "lockT": "Premium",
+    "err": "Bağlantı kurulamadı. Birazdan tekrar dene.",
+    "thinking": "Angie düşünüyor…",
+    "toDiary": "Günlüğe ekle",
+    "on": "Açık",
+    "off": "Kapalı",
+    "pts": "puan",
+    "t": {
+      "weight": "Kilo",
+      "voice": "Sesle kaydet",
+      "fridge": "Buzdolabı ve yapay zeka şef",
+      "plans": "Diyet planları",
+      "menu": "Restoran menüsü",
+      "craving": "Kriz modu",
+      "sleep": "Uyku ve stres",
+      "rem": "Akıllı hatırlatıcılar",
+      "points": "Puanlar",
+      "weekly": "Haftalık özet",
+      "avatar": "Avatarım",
+      "memory": "Angie'nin hafızası",
+      "import": "MyFitnessPal'den içe aktar"
+    },
+    "wSave": "Kiloyu kaydet",
+    "wSaved": "Kilo kaydedildi ✓",
+    "wChart": "İlerlemen",
+    "wNeed2": "Grafiği görmek için kilonu farklı iki günde kaydet.",
+    "wTrend": "Eğilim: Haftada {{k}} kg",
+    "wNote": "Kilo günden güne inip çıkabilir. Tek bir güne değil, genel eğilime bakıyoruz.",
+    "aTitle": "Uyarlanabilir koç",
+    "aNeed": "Kilonu en az 5 gün boyunca birkaç kez kaydet ki Angie hedefimi güncelleyebilsin.",
+    "aOk": "Harika gidiyorsun. Hedefin aynı kalıyor.",
+    "aSlow": " Kilon sabit seyrediyor. Küçük bir değişiklik yardımcı olabilir.",
+    "aFast": "Hızlı kilo veriyorsun. Sana iyi bakmak için biraz daha yiyelim.",
+    "aGain": "Kilo almak için biraz daha yiyebilirsin.",
+    "aGainFast": "Hızlı kilo alıyorsun. Biraz yavaşlayalım.",
+    "aKeep": " Kilonu korumak için küçük bir ayar yapalım.",
+    "aApply": "{{d}} kcal uygula",
+    "aApplied": "Yeni hedef: {{kcal}} kcal",
+    "aSafe": "Günde asla {{min}} kcal altımına inilmez.",
+    "aLocked": "Uyarlanabilir koç, gerçek kilo eğilimine göre hedefini ayarlar.",
+    "memWhat": "Sana daha iyi yardımcı olmak için Angie sana söylediklerini (örneğin \"Balık yemem\") hatırlar.",
+    "memOn": "Hatırla",
+    "memOff": "Hatırlama",
+    "memPrivacy": "Yalnızca bu telefona kaydedilir. İstediğin zaman silebilirsin.",
+    "memList": "Angie'nin hatırladıkları",
+    "memEmpty": "Henüz bir şey yok.",
+    "memPh": "Örnek: Patlıcan sevmem",
+    "memDel": "Sil",
+    "memDelAll": "Tüm hafızayı sil",
+    "memDelQ": "Angie'nin hatırladığı her şey silinsin mi?",
+    "impHow": "MyFitnessPal'de: Ayarlar → Verileri dışa aktar. Bir CSV dosyası (Beslenme) alacaksın. Onu buradan seç.",
+    "impPick": "CSV dosyası seç",
+    "impPaste": "Veya dosya metnini yapıştır:",
+    "impGo": "İçe aktar",
+    "impSample": "Bir örnek dene",
+    "impOk": "Tamamlandı: {{d}} günden {{n}} öğün içe aktarıldı.",
+    "impBad": "Bu dosyayı okuyamadım. MyFitnessPal \"Beslenme\" CSV dosyasını kullan.",
+    "impNote": "Tekrar içe aktarmak öğünleri kopyalamaz.",
+    "vTap": "Dokun ve konuş",
+    "vListening": "Dinliyorum…",
+    "vOr": "Veya yaz:",
+    "vPh": "Örnek: Peynirli 2 arepa yedim",
+    "vGo": "Hesapla",
+    "vAdd": "Ekle",
+    "vSaved": "Kaydedildi",
+    "vAdded": "{{name}} eklendi, yaklaşık {{kcal}} kalori.",
+    "vErr": "Hesaplanamadı. Tekrar dene.",
+    "vNoMic": "Bu tarayıcıda sesli kullanım yok. Bunun yerine yaz.",
+    "tBal": "Dengeli Latin",
+    "tBalD": "Arepas, pilav, fasulye, tavuk ve meyve, uygun porsiyonlarda.",
+    "tProt": "Yüksek protein",
+    "tProtD": "Kas yapmak için daha fazla protein içeren 5 öğün.",
+    "tVeg": "Vejetaryen",
+    "tVegD": "Et veya balık yok: fasulye, yumurta, peynir ve sebzeler.",
+    "tCheap": "Düşük bütçeli",
+    "tCheapD": "Ucuz malzemelerle hazırlanan 3 basit öğün.",
+    "plUse": "Bu planı kullan",
+    "plApplied": "\"{{n}}\" planı hazır.",
+    "plLocked": "Hedefine göre hazırlanmış diyet planları.",
+    "chHow": "Buzdolabının, kilerin veya baharatların fotoğrafını çek, Angie sana 3 tarif önersin.",
+    "chPhoto": "Buzdolabımın fotoğrafı",
+    "chChef": "Yapay zeka şef",
+    "chPh": "Örnek: pirinç, yumurta, domates, kimyon",
+    "chGo": "Bana tarif ver",
+    "chFound": "Gördüklerim",
+    "chNone": "Yiyecek bulamadım. Başka bir fotoğraf dene.",
+    "chLocked": "Evde olanlarla tarifler.",
+    "mnLeft": "Bugün yaklaşık {{kcal}} kcal hakkın kaldı.",
+    "mnPhoto": "Menünün fotoğrafı",
+    "mnPh": "Veya menünün yemeklerini yapıştır",
+    "mnGo": "Ne söylemeliyim?",
+    "mnNone": "Menüyü okuyamadım. Başka bir fotoğraf dene.",
+    "mnLocked": "Menünün fotoğrafını çek, Angie sana en uygun olanı söylesin.",
+    "pick": {
+      "best": "⭐ En iyi seçim",
+      "ok": "👍 İyi",
+      "treat": "🎉 Kaçamak"
+    },
+    "crHow": "Canın ne çekiyor? Birini seç, Angie sana lezzetli ve daha hafif bir alternatif önersin.",
+    "crSave": "{{a}} yerine {{b}} kcal: {{d}} kcal kazandın.",
+    "crKind": "Ve eğer aslı istiyorsan, sakince tadını çıkar. Suçluluk yok.",
+    "crNote": "Kurallar değil, fikirler.",
+    "cr": {
+      "pizza": {
+        "n": "Pizza",
+        "s": "Tavuklu ve sebzeli tortilla pizza"
+      },
+      "icecream": {
+        "n": "Dondurma",
+        "s": "Tarçınlı dondurulmuş muzlu \"dondurma\""
+      },
+      "chocolate": {
+        "n": "Çikolata",
+        "s": "Çilekli 2 kare bitter çikolata"
+      },
+      "fries": {
+        "n": "Patates kızartması",
+        "s": "Hava fritözünde veya fırında patates dilimleri"
+      },
+      "soda": {
+        "n": "Gazlı içecek",
+        "s": "Misket limonu ve nane aromalı maden suyu"
+      },
+      "sweetbread": {
+        "n": "Tatlı ekmek",
+        "s": "Yulaflı ve muzlu krep"
+      },
+      "burger": {
+        "n": "Burger",
+        "s": "Salatalı ev yapımı yağsız burger"
+      },
+      "chips": {
+        "n": "Cips",
+        "s": "Yağsız patlamış mısır"
+      }
+    },
+    "slHours": "Kaç saat uyudun?",
+    "slStress": "Bugün stres durumun nasıl?",
+    "st1": "Çok sakin",
+    "st2": "Sakin",
+    "st3": "Normal",
+    "st4": "Stresli",
+    "st5": "Çok stresli",
+    "slTipStress": "Bir dakika boyunca yavaşça nefes al. Kısa bir yürüyüş de iyi gelir.",
+    "slTipShort": "Kısa bir gece oldu. Su iç ve bugün biraz daha erken yatmayı dene.",
+    "slTipGood": "İyi dinlenmek iştahını kontrol etmene yardımcı olur. Böyle devam et!",
+    "slBreath": "Angie ile nefes al",
+    "slBreathSay": "Dört saniye boyunca nefes al. Dört saniye tut. Altı saniye boyunca yavaşça ver. Tekrar.",
+    "slWeek": "Bu haftaki uykun",
+    "slAvg": "Ortalama: {{h}} saat",
+    "slNote": "Tıbbi bir teşhis değildir.",
+    "remHow": "Angie ana ekranda dostça hatırlatıcılar gösterir. Hangilerini istiyorsan seç.",
+    "remNote": "Telefon bildirimleri uygulamayla birlikte gelecek.",
+    "rn": {
+      "water": "Su",
+      "meal": "Öğünlerini kaydet",
+      "move": "Antrenman günü",
+      "sleep": "Uykunu kaydet",
+      "checkin": "Haftalık kontrol"
+    },
+    "r": {
+      "water": "Bir bardak su zamanı 💧",
+      "meal": "Günün ilk öğününü kaydet 📸",
+      "move": "Bugün antrenman günü. Sadece 20 dakika 💪",
+      "sleep": "Nasıl uyudun? Kaydetmek için dokun 😴",
+      "checkin": "Haftalık kontrolün hazır ⚖️"
+    },
+    "ptLevel": "Seviye {{n}}",
+    "ptNext": "Sonraki seviyeye {{n}} puan kaldı",
+    "ptHow": "Nasıl puan kazanılır",
+    "ptRules": "Öğün 5 · bir bardak su 1 · günlük görev 10 · antrenman 20 · kilo 5 · uyku 3",
+    "ptRewards": "Avatarın için ödüller",
+    "rw": {
+      "cap": "Şapka",
+      "glasses": "Güneş gözlüğü",
+      "medal": "Madalya",
+      "crown": "Taç"
+    },
+    "wkLogged": "7 günden {{n}} gününde yemek kaydettin.",
+    "wkKcal": "Ortalama {{a}} kcal yedin; hedefin {{b}}.",
+    "wkWater": "Su: Günde {{n}} bardak.",
+    "wkMove": "Antrenmanlar: {{n}}, yaklaşık {{k}} kcal yakıldı.",
+    "wkWeight": "Kilo değişimi: {{d}} kg.",
+    "wkSleep": "Uyku: Ortalama {{h}} saat.",
+    "wkCheer1": "Harika bir haftaydı, böyle devam et!",
+    "wkCheer2": "Her gün önemlidir. Bu hafta birlikte yeniden başlıyoruz.",
+    "wkPlay": "Özetimi dinle",
+    "wkLocked": "Her hafta Angie ilerlemeni sana sesli olarak anlatır.",
+    "avSkin": "Ten",
+    "avHair": "Saç",
+    "avShirt": "Gömlek",
+    "avNone": "Hiçbiri",
+    "avSayGood": "Bugün harika iş çıkardın! Yanındayım.",
+    "avSayStart": "Merhaba! Güne bir bardak suyla başlayalım.",
+    "avTwin": "3D ikizini gör (önizleme)",
+    "avNote": "Bu senin ilk klonun. Tam 3D ikiz Premium Plus ile geliyor.",
+    "avLocked": "Avatarını kişiselleştir ve ödüllerin kilidini aç.",
+    "rpeQ": "Nasıl geçti?",
+    "rpeL": {
+      "easy": "😎 Kolay",
+      "ok": "👍 İyi",
+      "hard": "🥵 Zor"
+    },
+    "rpe": {
+      "easy": "Bir dahaki sefere biraz daha zor olacak.",
+      "ok": "Mükemmel, aynı şekilde devam ediyoruz.",
+      "hard": "Bir dahaki sefere biraz daha kolay olacak."
+    },
+    "fbTitle": "Görüşün",
+    "fbPh": "Neyi geliştirebilirdik?",
+    "fbSave": "Angie One'a gönder",
+    "fbOk": "Teşekkürler! Kaydedildi.",
+    "fbNote": "Şimdilik adın olmadan bu telefonda saklanır.",
+    "devTitle": "Yapay Zeka Geliştirici",
+    "devSub": "Görüşleri ve metrikleri okur, değişiklikler önerir. Tek dokunuşla onaylarsın. Asla kendi başına yayınlamaz.",
+    "devMetrics": "Aktif günler (7): {{a}} · öğünler: {{e}} · antrenmanlar: {{w}}",
+    "devFb": "Görüşler: {{n}}",
+    "devGo": "Analiz et ve öner",
+    "devOffline": "Bağlantı yok: temel öneriler.",
+    "devQueued": "Onaylandı: test dalına gidiyor. Yayınlamak için senin onayın gerekiyor.",
+    "devNever": "Ödemelere veya paraya asla dokunmaz ve senden habersiz asla yayınlamaz.",
+    "risk": {
+      "low": "düşük risk",
+      "medium": "orta risk"
+    },
+    "dr": {
+      "fastT": "Daha hızlı fotoğraf",
+      "fastW": "Kullanıcılar fotoğrafın yavaş olduğunu söylüyor.",
+      "fastC": "Göndermeden önce fotoğrafı küçült ve ilerleme göster.",
+      "fontT": "Daha büyük metin",
+      "fontW": "Kullanıcılar daha büyük metin istiyor.",
+      "fontC": "Ayarlara büyük metin seçeneği ekle.",
+      "retT": "Günlük hatırlatıcı",
+      "retW": "Bu hafta aktif gün sayısı az.",
+      "retC": "Öğle yemeği saatinde samimi bir hatırlatıcı göster."
+    }
   }
- },
- "coach": {
-  "title": "Kişisel koçunuz",
-  "introTitle": "Planınız, size özel hazırlandı",
-  "introBody": "3 hızlı ekranı yanıtlayın; Angie hedefiniz, vücudunuz ve zevkleriniz doğrultusunda haftalık yemek planınızı ve egzersiz programınızı oluştursun.",
-  "create": "Planımı oluştur",
-  "today": "Bugün",
-  "restDay": "Dinlenme günü — tadını çıkarın!",
-  "restBody": "Dinlenmek planın bir parçasıdır. Hafif bir yürüyüş veya esneme yapmak güzel bir ektir.",
-  "doneToday": "Bugünkü egzersiz tamamlandı. Harika iş!",
-  "startToday": "Bugünkü egzersize başla",
-  "burnedToday": "bugün yakıldı",
-  "burned": "yakıldı",
-  "streak": "Seri",
-  "week": "bu hafta",
-  "target": "Günlük hedefiniz: {{kcal}} kcal",
-  "source": {
-   "ai": "Plan Angie'nin Yapay Zekası tarafından hazırlandı",
-   "rules": "Temel plan (Yapay zeka meşguldü)"
-  },
-  "diet": "Yemek planı",
-  "workout": "Egzersiz",
-  "checkin": "Haftalık değerlendirme",
-  "due": "bugün yapılması gerekiyor",
-  "chat": "Angie'ye sor",
-  "edit": "Tercihlerimi değiştir",
-  "setupTitle": "Planınızı kuralım",
-  "place": "Nerede çalışacaksınız?",
-  "home": "Ev",
-  "gym": "Spor salonu",
-  "daysQ": "Haftada kaç gün",
-  "minutesQ": "Seans başına dakika",
-  "levelQ": "Seviyeniz",
-  "beginner": "Başlangıç",
-  "intermediate": "Orta",
-  "advanced": "İleri",
-  "injuriesQ": "Herhangi bir ağrı, sakatlık veya kısıtlamanız var mı?",
-  "none": "Yok",
-  "inj": {
-   "knees": "Dizler",
-   "back": "Sırt",
-   "shoulders": "Omuzlar",
-   "wrists": "Bilekler"
-  },
-  "injuryNote": "Angie'nin bilmesi gereken başka bir şey var mı? (isteğe bağlı)",
-  "optional": "İsteğe bağlı",
-  "dislikesQ": "Yemediğiniz yiyecekler",
-  "dis": {
-   "fish": "Balık",
-   "eggs": "Yumurta",
-   "dairy": "Süt ürünleri",
-   "beef": "Kırmızı et",
-   "chicken": "Tavuk",
-   "legumes": "Baklagiller",
-   "nuts": "Kuruyemiş",
-   "veg": "Vejetaryen"
-  },
-  "cuisineQ": "En sevdiğiniz mutfak",
-  "cui": {
-   "latin": "Latin",
-   "mexican": "Meksika",
-   "caribbean": "Karayip",
-   "andean": "Kolombiya / And",
-   "brazilian": "Brezilya",
-   "international": "Uluslararası"
-  },
-  "budgetQ": "Yemek bütçesi",
-  "bud": {
-   "low": "Düşük",
-   "medium": "Orta",
-   "high": "Yüksek"
-  },
-  "mealsQ": "Günlük öğün sayısı",
-  "generate": "Planı oluştur",
-  "building": "Angie planınızı hazırlıyor…",
-  "buildingSub": "Bu bir dakikaya kadar sürebilir.",
-  "fallbackNote": "Yapay zeka şu anda meşgul, bu yüzden size aynı kalori değerine ve tercihlerinize sahip temel bir plan hazırladım. Yapay zekayı daha sonra tekrar deneyebilirsiniz.",
-  "seePlan": "Planımı gör",
-  "tryAgain": "Yapay zekayı tekrar dene",
-  "slots3": [
-   "Kahvaltı",
-   "Öğle Yemeği",
-   "Akşam Yemeği"
-  ],
-  "slots4": [
-   "Kahvaltı",
-   "Öğle Yemeği",
-   "Ara Öğün",
-   "Akşam Yemeği"
-  ],
-  "slots5": [
-   "Kahvaltı",
-   "Kuşluk",
-   "Öğle Yemeği",
-   "İkindi",
-   "Akşam Yemeği"
-  ],
-  "slots2": [
-   "Öğün 1",
-   "Öğün 2"
-  ],
-  "slots6": [
-   "Öğün 1",
-   "Öğün 2",
-   "Öğün 3",
-   "Öğün 4",
-   "Öğün 5",
-   "Öğün 6"
-  ],
-  "portion": "porsiyon ×{{x}}",
-  "logMeal": "Günlüğüme ekle",
-  "logged": "Günlüğünüze eklendi",
-  "shopping": "Haftalık alışveriş listesi",
-  "reps": "{{n}} tekrar",
-  "secs": "{{n}} sn",
-  "restS": "dinlenme {{n}} sn",
-  "start": "Egzersize başla",
-  "safety": "Önce ısının, yavaş hareket edin ve ağrı, baş dönmesi veya göğüste baskı hissederseniz durun.",
-  "notMedical": "Angie tıbbi tavsiye değil, genel rehberlik sunar. Bir sağlık durumunuz varsa uzmanına danışın.",
-  "lockedTitle": "Koçunuz bir Premium özelliktir",
-  "lockedBody": "Ücretsiz deneme süreniz sona erdi. Planınız ve geçmişiniz kaydedildi — Angie ile antrenmana devam etmek için Premium'un kilidini açın.",
-  "teaser1": "Latin yemekleri ve alışveriş listesi içeren haftalık yemek planı",
-  "teaser2": "Rehberli zamanlayıcı ile evde veya spor salonunda antrenmanlar",
-  "teaser3": "Planınızı nazikçe ayarlayan haftalık değerlendirme",
-  "teaser4": "Yemek ve egzersiz hakkında Angie ile sohbet",
-  "unlock": "Premium'u Gör",
-  "keepData": "Otomatik olarak hiçbir ücret alınmaz.",
-  "stepOf": "Adım {{a}} / {{b}}",
-  "setOf": "Set {{a}} / {{b}}",
-  "rest": "Dinlen",
-  "breathe": "Nefes al ve biraz su iç",
-  "upNext": "Sırada ne var",
-  "skipRest": "Dinlenmeyi geç",
-  "doneSet": "Tamamlandı",
-  "pause": "Duraklat",
-  "resume": "Devam et",
-  "endEarly": "Şimdi bitir",
-  "greatJob": "Harika iş! Egzersiz tamamlandı",
-  "addedHome": "Yaktığınız kalori Ev'deki bugünkü dengenize eklendi.",
-  "sayRest": "{{n}} saniye dinlen.",
-  "sayDone": "Harika iş! Yaklaşık {{kcal}} kalori yaktın.",
-  "sayBurned": "Egzersiz yaparak {{kcal}} kalori yaktın.",
-  "dLegs": "Bacaklar ve merkez bölgesi",
-  "dUpper": "Üst vücut ve merkez bölgesi",
-  "dFull": "Tüm vücut",
-  "dRest": "Dinlenme"
- },
- "ci": {
-  "weightQ": "Bugünkü ağırlığınız (kg)",
-  "energyQ": "Bu hafta enerjiniz nasıldı?",
-  "e_low": "Düşük",
-  "e_ok": "Normal",
-  "e_good": "Harika",
-  "skippedQ": "Öğünleri bilerek atladınız mı veya yedikten sonra suçluluk duydunuz mu?",
-  "bingeQ": "Durduramadığınız şekilde çok fazla yemek yediniz mi ya da yediklerinizi 'telafi etmek' için egzersiz yaptınız mı?",
-  "yes": "Evet",
-  "no": "Hayır",
-  "private": "Cevaplarınız telefonunuzda kalır. Angie'nin sizinle ilgilenmesine yardımcı olur.",
-  "save": "Değerlendirmeyi kaydet",
-  "history": "Son değerlendirmeler",
-  "notYet": "Bir sonraki değerlendirmenize {{n}} gün var, ancak şimdi de yapabilirsiniz.",
-  "newTarget": "Günlük hedefiniz: {{kcal}} kcal",
-  "mFirst": "İlk değerlendirme kaydedildi! Önümüzdeki hafta karşılaştırıp ayarlayacağız.",
-  "mOnTrack": "Tam yolundasınız. Planı olduğu gibi bırakıyoruz.",
-  "mPlateau": "Kilonuz sabit kaldı. Hedefinizi biraz düşürüyoruz (−100 kcal) — nazikçe.",
-  "mFast": "Sağlıklı olandan daha hızlı veriyorsunuz. Biraz daha yemek ekliyoruz (+150 kcal).",
-  "mGainMore": "Kas kazanmak için biraz daha yemek ekliyoruz (+100 kcal).",
-  "mGainSlow": "Biraz hızlı alıyorsunuz. Hafifçe azaltıyoruz (−100 kcal).",
-  "mKeepDown": "Kilonuz biraz arttı. Küçük ayar (−100 kcal).",
-  "mKeepUp": "Kilonuz biraz düştü. Küçük ayar (+100 kcal).",
-  "tUp": "Antrenman: egzersiz başına bir set daha. Hazırsınız!",
-  "tDown": "Antrenman: toparlanmanız için bu hafta biraz daha hafif.",
-  "tSame": "Antrenman: geçen haftayla aynı.",
-  "warnTitle": "Seni önemsiyoruz",
-  "warnBody": "Bazı yanıtların, yemekle ilişkinin şu sıra zorlayıcı hissedilebileceğini gösteriyor. Bu birçok insanın başına gelir ve yalnız değilsin. Kalorilerini düşürmeyeceğiz. Bir doktora, beslenme uzmanına veya ruh sağlığı uzmanına danışmak gerçekten yardımcı olabilir. Yerel bir sağlık veya kriz hattıyla iletişime geçebilirsin."
- },
- "chat": {
-  "disclaimer": "Angie bir yapay zeka koçudur, doktor değildir. Yanıtları genel rehberlik amaçlıdır; sağlık sorunlarınız için bir uzmana başvurun.",
-  "hello": "Merhaba! Bana yemek, tarifler veya egzersiz hakkında her şeyi sorabilirsiniz.",
-  "s1": "Sağlıklı bir akşam için ne yiyebilirim?",
-  "s2": "Squat'ı nasıl güvenli bir şekilde yaparım?",
-  "s3": "Gece pirinç yemek sorun olur mu?",
-  "placeholder": "Sorunuzu yazın",
-  "send": "Gönder",
-  "offline": "Angie şu anda yanıt veremedi. Bağlantınızı kontrol edin ve birazdan tekrar deneyin.",
-  "limit": "Bugünkü {{n}} soru sınırına ulaştınız. Yarın tekrar gelin!"
- },
- "cfood": {
-  "b1": {
-   "n": "Yumurtalı ve peynirli arepa",
-   "i": "1 mısır arepası, 1 çırpılmış yumurta, 30 g taze peynir, domates"
-  },
-  "b2": {
-   "n": "Muzlu ve tarçınlı yulaf lapası",
-   "i": "Sütte pişmiş ½ su bardağı yulaf, 1 muz, tarçın"
-  },
-  "b3": {
-   "n": "Mısır tortilla ile çırpılmış yumurta",
-   "i": "Domates ve soğanlı 2 yumurta, 2 mısır tortillasız"
-  },
-  "b4": {
-   "n": "Meyveli ve yulaflı yoğurt",
-   "i": "1 su bardağı sade yoğurt, 1 su bardağı meyve, 3 yk yulaf"
-  },
-  "b5": {
-   "n": "Avokadolu ve fasulyeli kepekli tost",
-   "i": "2 dilim kepekli ekmek, ¼ avokado, ½ su bardağı fasulye"
-  },
-  "l1": {
-   "n": "Pirinç, fasulye ve tavuk",
-   "i": "¾ su bardağı pirinç, ½ su bardağı fasulye, 120 g ızgara tavuk, salata"
-  },
-  "l2": {
-   "n": "Yukalı ızgara balık",
-   "i": "150 g balık, 1 su bardağı haşlanmış yuka, limonlu salata"
-  },
-  "l3": {
-   "n": "Pirinç ve fırınlanmış muzlu et yahni",
-   "i": "120 g yahni et, ¾ su bardağı pirinç, ½ fırınlanmış olgun muz (plantain)"
-  },
-  "l4": {
-   "n": "Pirinçli mercimek",
-   "i": "1 su bardağı mercimek, ½ su bardağı pirinç, salata"
-  },
-  "l5": {
-   "n": "Patatesli ve sebzeli fırın tavuk",
-   "i": "130 g tavuk, 1 orta boy patates, 1 su bardağı sebze"
-  },
-  "s1": {
-   "n": "Yer fıstıklı meyve",
-   "i": "1 meyve, 1 küçük avuç yer fıstığı"
-  },
-  "s2": {
-   "n": "Meyveli yoğurt",
-   "i": "1 su bardağı sade yoğurt, ½ su bardağı meyve"
-  },
-  "s3": {
-   "n": "Limonlu mango ve haşlanmış yumurta",
-   "i": "1 su bardağı mango, limon, 1 haşlanmış yumurta"
-  },
-  "s4": {
-   "n": "Meyve kasesi",
-   "i": "1 muz ve 1 su bardağı mevsim meyvesi"
-  },
-  "d1": {
-   "n": "Pico de gallo soslu tavuk taco",
-   "i": "3 mısır tortilla, 120 g tavuk, domates ve soğan"
-  },
-  "d2": {
-   "n": "Sebzeli tavuk çorbası",
-   "i": "1 büyük kase: tavuk, patates, havuç, bal kabağı"
-  },
-  "d3": {
-   "n": "Avokadolu ton balıklı salata",
-   "i": "1 kutu suda ton balığı, ¼ avokado, marul ve domates, kraker"
-  },
-  "d4": {
-   "n": "Peynirli sebzeli omlet",
-   "i": "2 yumurta, sebze, 30 g peynir, 1 dilim ekmek"
-  },
-  "d5": {
-   "n": "Taze peynirli, pirinçli siyah fasulye",
-   "i": "1 su bardağı fasulye, ½ su bardağı pirinç, 30 g taze peynir"
-  }
- },
- "cing": {
-  "cornflour": "Önceden pişirilmiş mısır unu",
-  "eggs": "Yumurta",
-  "cheese": "Taze peynir",
-  "tomato": "Domates",
-  "oats": "Yulaf",
-  "banana": "Muz",
-  "milk": "Süt",
-  "tortillas": "Mısır tortillası",
-  "onion": "Soğan",
-  "yogurt": "Sade yoğurt",
-  "fruit": "Mevsim meyvesi",
-  "bread": "Kepekli ekmek",
-  "avocado": "Avokado",
-  "beans": "Fasulye",
-  "rice": "Pirinç",
-  "chicken": "Tavuk göğsü",
-  "salad": "Marul ve salatası yeşillikleri",
-  "fish": "Beyaz balık",
-  "yuca": "Yuka (manyok)",
-  "beef": "Yağsız dana eti",
-  "plantain": "Olgun muz (plantain)",
-  "lentils": "Mercimek",
-  "potato": "Patates",
-  "vegetables": "Karışık sebze",
-  "peanuts": "Yer fıstığı",
-  "tuna": "Suda konserve ton balığı"
- },
- "cex": {
-  "march": {
-   "n": "Olduğu yerde yürüme",
-   "d": "Dizlerinizi birer birer kaldırın ve kollarınızı sallayın. Isınmak için rahat bir tempoda yapın."
-  },
-  "treadmill": {
-   "n": "Koşu bandında yürüyüş",
-   "d": "Rahat bir tempoda yürüyün. Yürürken konuşabiliyor olmalısınız."
-  },
-  "chairSquat": {
-   "n": "Sandalyeden kalkma (Chair squat)",
-   "d": "Bir sandalyenin önünde durun, yavaşça oturun ve topuklarınızdan güç alarak tekrar ayağa kalkın."
-  },
-  "bridge": {
-   "n": "Kalça köprüsü (Glute bridge)",
-   "d": "Sırt üstü uzanın, dizleriniz bükülü olsun. Kalçanızı kaldırın, kalça kaslarınızı sıkın ve yavaşça indirin."
-  },
-  "calf": {
-   "n": "Kalf kaldırış (Calf raises)",
-   "d": "Bir duvara veya sandalyeye tutunun. Parmak uçlarınızda yükselin ve yavaşça inin."
-  },
-  "sideLeg": {
-   "n": "Yana bacak kaldırma",
-   "d": "Bir sandalyeye tutunun, bir bacağınızı yana doğru kaldırın ve yavaşça indirin. Bacak değiştirin."
-  },
-  "stepUp": {
-   "n": "Basamak çıkma (Step-up)",
-   "d": "Alçak ve sabit bir basamağa önce bir ayağınızla, sonra diğerinizle çıkın ve yavaşça inin."
-  },
-  "legPress": {
-   "n": "Leg press",
-   "d": "Makineye oturun, ayaklarınız tabana düz basıyor. Dizlerinizi kilitlemeden itin ve yavaşça başlangıca dönün."
-  },
-  "gobletSquat": {
-   "n": "Goblet squat",
-   "d": "Göğsünüzde hafif bir dambıl tutun. Sırtınız düz bir şekilde çömelin ve ayağa kalkın."
-  },
-  "wallPush": {
-   "n": "Duvarda şınav (Wall push-up)",
-   "d": "Eller göğüs hizasında duvarda. Dirseklerinizi duvara doğru bükün ve itin."
-  },
-  "armCircles": {
-   "n": "Kollarla daire çemberi",
-   "d": "Kollar iki yana açık, önce öne sonra arkaya küçük daireler çizin."
-  },
-  "bottleRow": {
-   "n": "Su şişesiyle kürek çekme",
-   "d": "Sırtınız düz şekilde hafifçe öne eğilin, iki su şişesini belinize doğru çekin ve indirin."
-  },
-  "latPull": {
-   "n": "Lat pulldown",
-   "d": "Makineye oturun, barı üst göğsünüze doğru çekin ve yavaşça yükselmesine izin verin."
-  },
-  "seatedRow": {
-   "n": "Oturarak kablo ile çekiş (Seated row)",
-   "d": "Dik oturun, tutacağı karnınıza çekin, kürek kemiklerinizi sıkın ve yavaşça dönün."
-  },
-  "chestPress": {
-   "n": "Chest press makinesi",
-   "d": "Sırtınız mindere dayalı oturun. Kolları öne doğru itin ve yavaşça dönün."
-  },
-  "birdDog": {
-   "n": "Bird dog",
-   "d": "Elleriniz ve dizleriniz üzerinde, bir kolunuzu öne ve zıt bacağınızı arkaya uzatın. Tutun, ardından değiştirin."
-  },
-  "deadBug": {
-   "n": "Ölü böcek (Dead bug)",
-   "d": "Sırt üstü uzanın, kollar yukarıda ve dizler bükülü. Zıt kol ve bacağı yavaşça aşağı indirin, sonra değiştirin."
-  },
-  "plank": {
-   "n": "Plank",
-   "d": "Ön kollarınız ve ayak parmaklarınız (veya dizleriniz) üzerinde, vücudunuzu düz tutun ve nefes alın."
-  },
-  "jacks": {
-   "n": "Jumping jacks",
-   "d": "Zıplayarak bacakları ve kollarınızı açın, sonra kapatın. Düşük etki için bunun yerine adımınızı yana atın."
-  },
-  "bike": {
-   "n": "Kondisyon bisikleti",
-   "d": "Biraz daha hızlı nefes almanızı sağlayacak istikrarlı bir tempoda pedal çevirin."
-  },
-  "stretch": {
-   "n": "Hafif esneme",
-   "d": "Bacakları, sırtı ve kollarınızı yavaşça esnetin. Her esnemeyi zıplamadan 15–20 saniye tutun."
-  }
- },
- "x": {
-  "pending": "Bağlantı beklemede",
-  "example": "ÖRNEK VERİ",
-  "explore": "Keşfet",
-  "more4": "Yakında geliyor",
-  "pendingLegend": "⏳ = Jose tarafından onaylanmış bir hesap, anahtar veya iş ortağı gerektirir. Burada yerel veya örnek verilerle çalışır.",
-  "pendingBody": "Bu bağlantı beklemede: bir hesap veya iş ortağı onayı gerekiyor. Hiçbir şey gönderilmedi.",
-  "needServer": "sunucu gerekiyor",
-  "needPay": "ödeme gerekiyor",
-  "needStores": "mağaza iş ortakları gerekiyor",
-  "t": {
-   "social": "Topluluk",
-   "recipes": "Latin tarifleri",
-   "gym": "Spor salonu",
-   "connect": "Saatler ve müzik",
-   "fasting": "Oruç",
-   "twin": "Dijital ikiz",
-   "video": "Haftalık video",
-   "health": "Sağlık modları",
-   "family": "Aile",
-   "report": "Doktor raporu",
-   "shop": "Alışveriş listesi",
-   "travel": "Seyahat modu",
-   "b2b": "Eğitmenler için",
-   "market": "Uzmanlar",
-   "corp": "Şirket sağlığı",
-   "store": "Mağaza",
-   "impact": "Etkimiz",
-   "pet": "Evcil hayvan planı",
-   "whatsapp": "WhatsApp günlüğü",
-   "tips": "İçerik üreticisi ipuçları"
-  },
-  "me": "Ben",
-  "postPh": "İlerlemeni paylaş…",
-  "addPhoto": "Fotoğraf",
-  "publish": "Yayınla",
-  "localOnly": "Şimdilik gönderiler yalnızca bu cihazda kalır.",
-  "like": "Beğen",
-  "follow": "Takip et",
-  "following": "Takip ediliyor",
-  "groups": "Gruplar",
-  "g1": "Antrenman yapan Latin anneler",
-  "g2": "5K koşucuları",
-  "g3": "Sağlıklı beslenme",
-  "join": "Katıl",
-  "joined": "Katıldın",
-  "challenges": "Meydan okumalar",
-  "ch1": "Bu hafta 3 gruba katıl",
-  "socialSafety": "Beden kıyaslaması yok, utandırma yok. Şikayet edilen gönderiler gizlenir.",
-  "k": {
-   "meal": "Öğün",
-   "gym": "Spor salonu",
-   "run": "Koşu"
-  },
-  "vote": "Oy ver",
-  "see": " Tarifi gör",
-  "close": "Kapat",
-  "rec": {
-   "r1": {
-    "n": "Hafif tavuklu arroz con pollo",
-    "s": "Esmer pirinç, derisiz tavuk, biber, bezelye. 1 çay kaşığı yağ."
-   },
-   "r2": {
-    "n": "Siyah fasulyeli ve mısırlı arepa",
-    "s": "Izgara arepa, siyah fasulye, taze peynir, avokado."
-   },
-   "r3": {
-    "n": "Fırında ropa vieja",
-    "s": "Yağsız dana eti, domates, biber, soğan. Salatayla servis et."
-   },
-   "r4": {
-    "n": "Tropikal meyve kasesi",
-    "s": "Papaya, mango, ananas, sade yoğurt ve yulaf."
-   }
-  },
-  "mv": {
-   "squat": "Çömelme (Squat)",
-   "pushup": "Şınav",
-   "jack": "Jumping jacks",
-   "plank": "Plank"
-  },
-  "mvd": {
-   "squat": "Ayaklar kalça genişliğinde, geriye otur, göğüs ileride, dizler parmak uçlarını geçmesin.",
-   "pushup": "Eller omuz altında, gövde düz. Dizler yerde olabilir.",
-   "jack": "Kollar ve bacaklar açık zıpla, yumuşak bas.",
-   "plank": "Ön kollar yerde, gövde düz, yavaşça nefes al."
-  },
-  "animNote": "Kendi animasyonlarımız, üçüncü taraf lisansı yok. Gerçek videolar yakında gelecektir.",
-  "int": {
-   "garmin": "Garmin",
-   "fitbit": "Fitbit",
-   "samsung": "Samsung Health",
-   "spotify": "Spotify (antrenman müzikleri)",
-   "health": "Apple Health / Health Connect"
-  },
-  "intWhy": "Adımları, kalp atış hızını ve antrenmanları otomatik olarak getirir.",
-  "connect": "Bağlan",
-  "manualSteps": "Bugünkü adımlar (manuel)",
-  "fastGoal": "Hedef: {{h}} saat",
-  "fastStart": "Oruca başla",
-  "fastEnd": "Orucu bitir",
-  "fastLog": "Son oruçlar",
-  "fastBlocked": "Güvenliğin için oruç kapatıldı (18 yaş altı, gebelik veya şeker hastalığı). Doktorunla konuş.",
-  "fastNote": "İsteğe bağlı. Başın dönerse veya kendini kötü hissedersen dur.",
-  "preview": "önizleme",
-  "tw": {
-   "talk": "Selam! Bugün hedefin {{kcal}} kcal. Yapabilirsin!",
-   "eat": "Dengeli bir tabak yiyorum: yarısı sebze.",
-   "cook": "Hadi birlikte hafif bir arroz con pollo pişirelim.",
-   "train": "Hadi antrenman yapalım! Benimle 10 squat."
-  },
-  "twa": {
-   "talk": "Konuş",
-   "eat": "Ye",
-   "cook": "Pişir",
-   "train": "Çalış"
-  },
-  "twinNote": "Animasyonlu önizleme. Tam 3D ikiz Premium Plus'a dahildir ve hâlâ geliştirilmektedir.",
-  "play": "Haftamı oynat",
-  "v1": "Bu hafta {{n}} gün kaydettin",
-  "v2": "Kayıt yapılan gün başına ortalama {{kcal}} kcal",
-  "v3": "Antrenmanda {{kcal}} kcal yaktın",
-  "v4": "{{n}} bardak su içtin",
-  "v5": "Her adım önemli. Devam et!",
-  "videoNote": "Verilerinle telefonunda yapıldı. Hiçbir şey yüklenmez.",
-  "healthWarn": "Bu modlar yalnızca genel ipuçları verir. Doktorunun yerini almaz veya ilacını değiştirmez.",
-  "on": "Açık",
-  "off": "Aç",
-  "m": {
-   "diabetes": "Şeker hastalığı",
-   "hypertension": "Yüksek tansiyon",
-   "cholesterol": "Kolesterol",
-   "cycle": "Adet döngüsü",
-   "pregnancy": "Gebelik"
-  },
-  "md": {
-   "diabetes": "Öğün başına karbonhidrata dikkat et, proteinle eşleştir, oruç tutma. Glukozunu doktorunun söylediği şekilde kontrol et.",
-   "hypertension": "Tuz sınırı: Günde 1.500 mg sodyum. Konserve ve tuzlanmış gıdaları azalt.",
-   "cholesterol": "Daha çok lif, yulaf ve fasulye; kızartma ve doymuş yağları azalt.",
-   "cycle": "Sonraki döngünü bilmek ve enerjini ayarlamak için adetini kaydet.",
-   "pregnancy": "Kalori açığı yok, oruç yok. 2. trimestere göre yaklaşık +300 kcal. Doktorunu takip et."
-  },
-  "periodToday": "Adetim bugün başladı",
-  "nextPeriod": "Sonraki adet yaklaşık {{d}} gün sonra",
-  "famName": "İsim",
-  "adult": "Yetişkin",
-  "child": "Çocuk",
-  "kidRule": "Çocuklar: kalori sayımı yok, sadece sağlıklı alışkanlıklar.",
-  "famNote": "Herkesin verisi bu cihazda kalır.",
-  "repTitle": "Doktorum için özet",
-  "repModes": "Modlar",
-  "repFoot": "Angie One tarafından oluşturuldu. Tahminlerdir, teşhis değildir.",
-  "savePdf": "PDF olarak kaydet",
-  "repNote": "Yazdırma penceresinde 'PDF olarak kaydet' seçeneğini seç. Kime vereceğine sen karar verirsin.",
-  "si1": "Tavuk göğsü",
-  "si2": "Esmer pirinç",
-  "si3": "Siyah fasulye",
-  "storeN": "Mağaza {{n}}",
-  "delivery": "Eve teslimat",
-  "priceNote": "Örnek fiyatlar. Gerçek fiyatlar için mağaza ortakları gerekir.",
-  "travelOn": "Seyahat modu açık",
-  "travelOff": "Seyahat modunu aç",
-  "tr1": "Hedefler esnek kalır: 1 öğün kaydetmek yeterlidir.",
-  "tr2": "Restoranlarda: ızgara, salata, su.",
-  "tr3": "10 dakikalık otel odası antrenmanı.",
-  "tr4": "Saat dilimi değişiklikleri otomatik olarak yönetilir.",
-  "hotelWorkout": "Oda antrenmanı",
-  "clients": "Danışanların",
-  "daysLogged": "{{n}} gün kaydedildi",
-  "b2bPrice": "Eğitmen planı: 20 danışmana kadar yönet (fiyatı belirlenecek).",
-  "b2bPrivacy": "Danışanlar eğitmeniyle ne paylaşacağını seçer.",
-  "sponsored": "Sponsorlu",
-  "ad1": "Kapınıza kadar gelen organik sebzeler.",
-  "ad2": "İlave şeker içermeyen su mataraları.",
-  "adWhy": "Yalnızca onaylı sağlıklı markalar. Sağlık verileriniz asla kullanılmaz.",
-  "adsTitle": "Onaylı markalar",
-  "role": {
-   "nutri": "Beslenme Uzmanı",
-   "trainer": "Kişisel Eğitmen",
-   "physio": "Fizyoterapist"
-  },
-  "session": "seans",
-  "book": "Yer ayırt",
-  "marketNote": "Yayına girmeden önce lisanslar doğrulanır.",
-  "corpCh": "Ekip adım yarışması",
-  "corpPrivacy": "Şirket yalnızca ekip toplamlarını görür, asla bireysel sağlık verilerini görmez.",
-  "aggTitle": "Anonim rapor",
-  "people": "kişi",
-  "aggNote": "20 kişiden küçük gruplar gizlenir. Bireysel veri yoktur.",
-  "purpose": "Amacına uygun alışveriş yap",
-  "purposeBody": "Her üründen elde edilen paranın büyük kısmı; kötü beslenme, aşırı kilo veya egzersiz eksikliği nedeniyle sağlık sorunları yaşayan ya da fizyoterapiye ihtiyacı olan kişilere yardım etmek için kullanılır.",
-  "prod": {
-   "tee": "Angie One Tişörtü",
-   "hoodie": "Mercan rengi kapüşonlu",
-   "bottle": "Matara",
-   "cap": "Şapka"
-  },
-  "openEtsy": "Etsy mağazasını aç",
-  "storeNote": "Ürünler Etsy'de (Parra Apps mağazası) sipariş üzerine yapılır. Mağaza henüz açık değil.",
-  "fundNext": "Sıradaki kişi için fon",
-  "helped": "Yardım edilen kişi",
-  "reason": {
-   "physio": "Fizyoterapi",
-   "nutrition": "Beslenme planı"
-  },
-  "impactNote": "İsimler gizlenir ve yalnızca onayla gösterilir. Her ödeme kurucu tarafından onaylanır ve makbuzu vardır.",
-  "splitTitle": "Kâr paylaşımı 60/25/15",
-  "sOps": "Operasyonlar",
-  "sGrowth": "Büyüme",
-  "sSocial": "Sosyal yardım",
-  "splitNote": "1.000$ net kâr ile örnek. Onayın olmadan hiçbir para hareket etmez.",
-  "disbTitle": "Yardım teklifleri",
-  "disbNote": "Yönetici yapay zeka önerir; tek dokunuşla onaylarsın. Ödemeler henüz bağlanmadı.",
-  "dog": "Köpek",
-  "cat": "Kedi",
-  "day": "gün",
-  "walk": "Yürüyüş tamamlandı",
-  "walked": "Bugünkü yürüyüş tamamlandı",
-  "petNote": "Yaklaşıktır. Veterinerine danış.",
-  "waHow": "WhatsApp'ta yazar gibi yaz, örneğin: '2 arepa yedim'.",
-  "waPh": "Mesaj",
-  "waTry": "Dene",
-  "tipsNote": "İpuçları, ödeme kesintileri hariç %100 içerik üreticisine gider."
- }
 }

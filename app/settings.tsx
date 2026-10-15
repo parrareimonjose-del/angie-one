@@ -6,6 +6,7 @@ import { useStore } from '../src/store';
 import i18n, { deviceLang, Lang, SUPPORTED, NATIVE } from '../src/i18n';
 import { C } from '../src/theme';
 import { LegalLinks } from '../src/legal-links';
+import { FeedbackBox } from '../src/p2';
 
 export default function Settings() {
   const { t } = useTranslation(); const { s: st, set, reset } = useStore();
@@ -31,10 +32,13 @@ export default function Settings() {
         </View>
         <Text style={s.muted}>{t('set.aiDesc')}</Text>
       </Card>
+      <Btn kind="ghost" label={`🧠  ${t('p2.t.memory')}`} onPress={() => router.push('/memory')} />
+      <Btn kind="ghost" label={`🔔  ${t('p2.t.rem')}`} onPress={() => router.push('/reminders')} />
+      <FeedbackBox />
       <Card><T>🔒 {t('set.privacy')}</T><Text style={s.h2}>📄 {t('legal.section')}</Text><LegalLinks /></Card>
       <Btn kind="ghost" label={t('set.profile')} onPress={() => router.push('/onboarding')} />
       <Btn kind="danger" label={t('set.reset')} onPress={doReset} />
-      <Text style={[s.muted, { textAlign: 'center' }]}>Angie One · {t('set.version')} 0.4.0 · Parra Apps</Text>
+      <Text style={[s.muted, { textAlign: 'center' }]}>Angie One · {t('set.version')} 0.5.0 · Parra Apps</Text>
     </Screen>
   );
 }

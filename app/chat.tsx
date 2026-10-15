@@ -6,12 +6,15 @@ import { C } from '../src/theme';
 import { curLang } from '../src/i18n';
 import { today } from '../src/store';
 import { useCoach, CoachLocked, Row, speak } from '../src/coach-ui';
+import { useExt } from '../src/ext';
+import { Mem, MEM0, learnFact, memContext } from '../src/p2';
 import { askCoach, coachTarget, ChatMsg } from '../src/coach';
 
 const DAILY = 20;
 const plain = (x: string) => x.replace(/\*\*(.+?)\*\*/g, '$1').replace(/^\s*[*-]\s+/gm, '• ').replace(/[*_#`]/g, '');
 export default function Chat() {
   const { t } = useTranslation(); const { st, c, upd, premium } = useCoach();
+  const [mem, setMem] = useExt<Mem>('mem', MEM0);
   const [q, setQ] = useState(''); const [busy, setBusy] = useState(false); const [err, setErr] = useState('');
   if (!premium) return <CoachLocked />;
   const used = c.chatCount[today()] || 0;
@@ -23,7 +26,8 @@ export default function Chat() {
     upd((x) => ({ ...x, chat: msgs.slice(-30), chatCount: { [today()]: used + 1 } }));
     const p = st.profile; const pr = c.prefs;
     const ctx = p ? `goal ${p.goal}, ${p.age} y, ${p.weight} kg, target ${coachTarget(st).kcal} kcal/day${pr ? `, trains at ${pr.place} ${pr.days} days/week, level ${pr.level}${pr.injuries.length ? ', limits: ' + pr.injuries.join(' ') : ''}` : ''}` : '';
-    try { const r = await askCoach(msgs, curLang(), ctx); upd((x) => ({ ...x, chat: [...msgs, { role: 'coach' as const, text: r }].slice(-30) })); }
+    const fact = mem.on ? learnFact(text) : null; if (fact) setMem((m) => ({ ...m, facts: [...m.facts, { id: String(Date.now()), text: fact }].slice(-20) }));
+    try { const r = await askCoach(msgs, curLang(), ctx + memContext(mem)); upd((x) => ({ ...x, chat: [...msgs, { role: 'coach' as const, text: r }].slice(-30) })); }
     catch { setErr(t('chat.offline')); }
     finally { setBusy(false); }
   };

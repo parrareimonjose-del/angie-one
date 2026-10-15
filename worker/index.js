@@ -117,11 +117,52 @@ async function coach(path, b, env, h) {
   // /chat
   const msgs = (Array.isArray(b.messages) ? b.messages : []).slice(-6).map((m) => ({ role: m.role === 'user' ? 'User' : 'Angie', text: str(m.text, 600) })).filter((m) => m.text);
   if (!msgs.length || msgs[msgs.length - 1].role !== 'User') return json({ error: 'need question' }, 400, h);
-  const lang = langOf(b.lang); const ctx = str(b.context, 300) || 'none';
+  const lang = langOf(b.lang); const ctx = str(b.context, 700) || 'none';
   const out = await cached('chat-v4', { lang, ctx, msgs }, 86400, async () => {
     const txt = await gemini(env, [{ text: CHAT_PROMPT.replace('LANG', lang).replace('CTX', ctx) + '\n\n' + msgs.map((m) => `${m.role}: ${m.text}`).join('\n') + '\nAngie:' }], 500, 25000, false);
     if (txt === null) return { error: 'busy' };
     return txt ? { reply: cleanTone(txt.replace(/^Angie:\s*/, '')).slice(0, 1500) } : { error: 'parse' };
+  });
+  if (out.error) return json({ error: out.error }, out.error === 'busy' ? 503 : 502, h);
+  return json(out, 200, h);
+}
+
+// ---------- Fase 2: nevera/despensa/chef, menú del restaurante e IA Programadora ----------
+const CHEF_PROMPT = `You are "Angie", a guilt-free AI chef for Latin American home cooking (not a doctor). INPUT. Answer ONLY JSON:
+{"items":["ingredient or spice detected/given, in LANG"],"recipes":[{"name":"dish in LANG","kcal":int per serving,"min":int minutes,"uses":["main items used"],"steps":["short step in LANG"]}]}
+Give exactly 3 simple, healthy, affordable recipes mostly using those items (basic pantry staples like salt, oil and water allowed), max 6 steps each, kcal per serving about KCAL or less (never below 200). NEVER use: DISLIKE. If there is no food at all, answer {"items":[],"recipes":[]}. No medical advice.`;
+const MENU_PROMPT = `You read a restaurant menu (photo or text) for a guilt-free nutrition app. The user has about LEFT kcal left today. Answer ONLY JSON:
+{"dishes":[{"name":"dish as written","kcalMin":int,"kcalMax":int,"pick":"best"|"ok"|"treat","tip":"one short friendly tip in LANG (e.g. ask for sauce on the side)"}]}
+Max 8 dishes; mark 2–3 "best" (fits LEFT, good protein, less fried). Never shame; "treat" is fine to enjoy sometimes. If it is not a menu, answer {"dishes":[]}.`;
+const DEV_PROMPT = `You are the "Programmer AI" of the Angie One app (nutrition app by Parra Apps). Read anonymous user feedback and metrics and propose up to 4 small, safe product changes. Answer ONLY JSON:
+{"proposals":[{"title":"short title in LANG","why":"one sentence in LANG citing the feedback or metric","change":"what to change, one sentence in LANG","risk":"low"|"medium"}]}
+Never propose anything about payments, moving money, collecting more personal data, or publishing without the founder's approval. Data: DATA`;
+async function phase2(path, b, env, h) {
+  const lang = langOf(b.lang);
+  if (path === '/dev') {
+    const data = str(JSON.stringify(b.data || {}), 2500);
+    const out = await cached('dev-v1', { lang, data }, 6 * 3600, async () => {
+      const txt = await gemini(env, [{ text: DEV_PROMPT.replace('LANG', lang).replace('DATA', data) }], 1200, 30000, true);
+      if (txt === null) return { error: 'busy' }; const o = parseJson(txt);
+      const list = (Array.isArray(o?.proposals) ? o.proposals : []).slice(0, 4).map((x) => ({ title: str(x.title, 80), why: str(x.why, 240), change: str(x.change, 240), risk: x.risk === 'medium' ? 'medium' : 'low' })).filter((x) => x.title);
+      return list.length ? { proposals: list } : { error: 'parse' };
+    });
+    if (out.error) return json({ error: out.error }, out.error === 'busy' ? 503 : 502, h);
+    return json(out, 200, h);
+  }
+  const mode = b.mode === 'menu' ? 'menu' : 'chef';
+  const parts = [];
+  if (mode === 'menu') parts.push({ text: MENU_PROMPT.replace('LEFT', clampN(b.left, 0, 5000)).replace('LANG', lang) });
+  else parts.push({ text: CHEF_PROMPT.replace('INPUT', b.image ? 'Look at the photo of a fridge, pantry or spice rack and list the visible foods and spices.' : 'The user has these items: ' + str(b.text, 400) + '.').replace(/LANG/g, lang).replace('KCAL', clampN(b.kcal || 550, 250, 1200)).replace('DISLIKE', str(b.dislike, 150) || 'nothing') });
+  if (b.image) parts.push({ inline_data: { mime_type: /^image\/(jpeg|png|webp)$/.test(b.mime) ? b.mime : 'image/jpeg', data: String(b.image) } });
+  else if (mode === 'menu') parts.push({ text: 'Menu text: ' + str(b.text, 1500) });
+  if (!b.image && !str(b.text, 10).trim()) return json({ error: 'need input' }, 400, h);
+  const out = await cached('vis-v1-' + mode, { lang, mode, img: b.image || '', text: str(b.text, 1500), kcal: b.kcal, left: b.left, dislike: b.dislike }, 86400, async () => {
+    const txt = await gemini(env, parts, 2000, 40000, true);
+    if (txt === null) return { error: 'busy' }; const o = parseJson(txt); if (!o) return { error: 'parse' };
+    if (mode === 'menu') return { dishes: (Array.isArray(o.dishes) ? o.dishes : []).slice(0, 8).map((d) => { let lo = clampN(d.kcalMin, 0, 4000), hi = clampN(d.kcalMax, 0, 4000); if (lo > hi) [lo, hi] = [hi, lo]; return { name: str(d.name, 80), kcalMin: lo, kcalMax: hi, pick: ['best', 'ok', 'treat'].includes(d.pick) ? d.pick : 'ok', tip: str(d.tip, 160) }; }).filter((d) => d.name && d.kcalMax) };
+    return { items: (Array.isArray(o.items) ? o.items : []).slice(0, 30).map((x) => str(x, 40)).filter(Boolean),
+      recipes: (Array.isArray(o.recipes) ? o.recipes : []).slice(0, 3).map((r) => ({ name: str(r.name, 70), kcal: clampN(r.kcal, 150, 1500), min: clampN(r.min, 5, 180), uses: (r.uses || []).slice(0, 8).map((x) => str(x, 40)), steps: (r.steps || []).slice(0, 6).map((x) => str(x, 200)) })).filter((r) => r.name && r.steps.length) };
   });
   if (out.error) return json({ error: out.error }, out.error === 'busy' ? 503 : 502, h);
   return json(out, 200, h);
@@ -133,7 +174,7 @@ export default {
     if (!h) return json({ error: 'origin' }, 403);
     if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: h });
     const path = new URL(req.url).pathname;
-    if (req.method !== 'POST' || !['/estimate', '/plan', '/chat'].includes(path)) return json({ error: 'not found' }, 404, h);
+    if (req.method !== 'POST' || !['/estimate', '/plan', '/chat', '/vision', '/dev'].includes(path)) return json({ error: 'not found' }, 404, h);
     const ip = req.headers.get('CF-Connecting-IP') || 'x';
     const now = Date.now(), arr = (hits.get(ip) || []).filter((t) => now - t < 60000);
     if (arr.length >= RATE) return json({ error: 'rate' }, 429, h);
@@ -143,6 +184,7 @@ export default {
     if (raw.length > MAX_BYTES) return json({ error: 'too large' }, 413, h);
     let b; try { b = JSON.parse(raw); } catch { return json({ error: 'bad json' }, 400, h); }
     if (path === '/plan' || path === '/chat') return coach(path, b, env, h);
+    if (path === '/vision' || path === '/dev') return phase2(path, b, env, h);
     const LANGS = { es: 'Spanish', en: 'English', pt: 'Portuguese', fr: 'French', de: 'German', it: 'Italian', zh: 'Simplified Chinese', ja: 'Japanese', ko: 'Korean', hi: 'Hindi', ar: 'Arabic', ru: 'Russian', tr: 'Turkish' };
     const code = String(b.lang || 'en').slice(0, 5).toLowerCase().split('-')[0];
     const lang = LANGS[code] || 'English';

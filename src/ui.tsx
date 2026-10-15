@@ -15,6 +15,7 @@ export function Screen({ children, nav = true, title }: { children: React.ReactN
           {title ? <Text style={s.h1} accessibilityRole="header">{title}</Text> : null}
           {children}
         </ScrollView>
+        {nav ? <VoiceFab /> : null}
         {nav ? <BottomBar /> : null}
       </View>
     </SafeAreaView>
@@ -102,3 +103,11 @@ export const s = StyleSheet.create({
   input: { minHeight: 58, borderRadius: 16, borderWidth: 2, borderColor: C.border, backgroundColor: C.card, paddingHorizontal: 16, fontSize: 18, color: C.text },
   bar: { position: 'absolute', left: 10, right: 10, bottom: 12, flexDirection: 'row', gap: 6, padding: 6, backgroundColor: C.card, borderRadius: 28, shadowColor: '#000', shadowOpacity: 0.12, shadowRadius: 20, elevation: 8 },
 });
+
+/** Fase 2: botón de voz flotante en todas las pantallas con barra (registrar comida hablando). */
+function VoiceFab() {
+  const { t } = useTranslation();
+  return <Pressable testID="voice-fab" accessibilityRole="button" accessibilityLabel={t('p2.t.voice')} onPress={() => router.push('/voice' as any)}
+    style={{ position: 'absolute', right: 18, bottom: 100, width: 64, height: 64, borderRadius: 32, backgroundColor: C.secondary, alignItems: 'center', justifyContent: 'center', shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 10, elevation: 6 }}>
+    <Text style={{ fontSize: 28 }}>🎙️</Text></Pressable>;
+}

@@ -5,6 +5,7 @@ export default function More() {
   const { t } = useTranslation();
   return (
     <Screen title={t('more.title')}>
+      <Btn label={`🌱  ${t('p2.hub')}`} onPress={() => router.push('/plus')} />
       <Btn kind="accent" label={`✨  ${t('x.explore')}`} onPress={() => router.push('/explore')} />
       <Btn label={`💪  ${t('coach.title')}`} onPress={() => router.push('/coach')} />
       <Btn label={`🏷️  ${t('more.barcode')}`} onPress={() => router.push('/barcode')} />

@@ -7,6 +7,7 @@ import { router } from 'expo-router';
 import { fmtNum } from '../src/i18n';
 import { useFund } from '../src/p4';
 import { ADS } from '../src/ext';
+import { DevAI } from '../src/p2';
 export const split = (net: number) => ({ ops: Math.round(net * 60) / 100, growth: Math.round(net * 25) / 100, social: Math.round(net * 15) / 100 });
 
 // Panel del Fundador v1 (placeholder): la IA Administrativa propone, Jose aprueba. Nunca mueve dinero.
@@ -39,6 +40,7 @@ export default function Founder() {
             : <Text testID="disb-status" style={{ fontWeight: '900', color: d.status === 'approved' ? C.success : C.primary }}>{d.status === 'approved' ? `✓ ${t('fo.approved')} · 🧾 ${d.receipt}` : '✕ ' + t('fo.rejected')}</Text>}</View>)}
         <Text style={s.muted}>{t('x.disbNote')}</Text></Card>
       <Card><Text style={s.h2}>{t('x.adsTitle')}</Text>{ADS.map((a) => <T key={a.id}>✓ {a.brand}</T>)}<Text style={s.muted}>{t('x.adWhy')}</Text></Card>
+      <DevAI />
       <Btn kind="ghost" label={`📊 ${t('x.aggTitle')}`} onPress={() => router.push('/aggregate')} />
       {cards.map((c) => (
         <Card key={c.id}>

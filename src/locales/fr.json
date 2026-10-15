@@ -1,954 +1,1194 @@
 {
- "tagline": "Votre coach nutrition IA, sans culpabilité.",
- "start": "Commencer",
- "next": "Suivant",
- "back": "Retour",
- "save": "Enregistrer",
- "cancel": "Annuler",
- "add": "Ajouter",
- "done": "Terminé",
- "ob": {
-  "goal": "Quel est votre objectif ?",
-  "lose": "Perdre du poids",
-  "keep": "Maintenir mon poids",
-  "gain": "Prendre du muscle",
-  "body": "Parlez-moi de vous",
-  "weight": "Poids (kg)",
-  "height": "Taille (cm)",
-  "age": "Âge",
-  "sex": "Sexe",
-  "female": "Femme",
-  "male": "Homme",
-  "activity": "Quel est votre niveau d'activité ?",
-  "a1": "Sédentaire (travail de bureau)",
-  "a2": "Léger (1 à 3 jours)",
-  "a3": "Modéré (3 à 5 jours)",
-  "a4": "Intense (6 à 7 jours)",
-  "trialTitle": "7 jours de Premium offerts",
-  "trialBody": "Dès aujourd'hui, profitez gratuitement de tout Premium pendant 7 jours, sans carte bancaire. Nous vous enverrons un rappel 2 jours avant et le dernier jour. Ensuite, vous repasserez à la version gratuite tout en conservant vos données. Aucun prélèvement automatique.",
-  "target": "Votre objectif quotidien : {{kcal}} kcal",
-  "go": "C'est parti !",
-  "invalid": "Vérifiez vos informations : poids 30–300 kg, taille 100–250 cm, âge 13–100 ans.",
-  "legalNote": "En continuant, vous acceptez les Conditions d'utilisation et la Politique de confidentialité.",
-  "notMedical": "Angie One n'est pas un dispositif médical."
- },
- "home": {
-  "hello": "Bonjour ! Vous assurez aujourd'hui",
-  "left": "restant",
-  "eaten": "consommées",
-  "goal": "objectif",
-  "protein": "Protéines",
-  "carbs": "Glucides",
-  "fat": "Lipides",
-  "water": "Eau",
-  "addWater": "+1 verre",
-  "challenge": "Défi du jour",
-  "streak": "Série : {{n}} jours",
-  "challengeDone": "Défi relevé !",
-  "markDone": "C'est fait",
-  "readAloud": "Lire à voix haute",
-  "summary": "Vous avez consommé {{eaten}} sur {{goal}} calories et {{water}} verres d'eau.",
-  "trialDays": "Plus que {{n}} jours de Premium gratuit",
-  "trialOver": "Votre essai est terminé. Vos données sont toujours là.",
-  "challenges": [
-   "Boire 8 verres d'eau",
-   "Marcher 20 minutes",
-   "Manger un fruit coloré",
-   "Ajouter des protéines au petit-déjeuner",
-   "Dîner avant 21 h"
-  ]
- },
- "nav": {
-  "home": "Accueil",
-  "scan": "Photo",
-  "diary": "Journal",
-  "more": "Plus",
-  "coach": "Coach"
- },
- "scan": {
-  "title": "Photo du repas",
-  "take": "Prendre une photo",
-  "pick": "Choisir dans la galerie",
-  "analyzing": "Analyse en cours…",
-  "demo": "MODE DÉMO : estimation simulée (sans clé IA)",
-  "live": "IA : Gemini Flash-Lite",
-  "range": "Fourchette estimée",
-  "confidence": "Niveau de confiance",
-  "high": "élevé",
-  "medium": "moyen",
-  "low": "faible",
-  "questions": "Précisez en 1 geste",
-  "oil": "Avec de l'huile ?",
-  "sauce": "Avec de la sauce ?",
-  "fried": "Frit ?",
-  "portion": "Portion",
-  "yes": "Oui",
-  "no": "Non",
-  "log": "Ajouter au journal",
-  "disclaimer": "Il s'agit d'une estimation, pas d'une valeur exacte. Vous pouvez la corriger.",
-  "aiOff": "L'IA est désactivée. Activez-la dans les Paramètres ou saisissez manuellement.",
-  "error": "Impossible d'analyser la photo. Réessayez ou saisissez-la manuellement.",
-  "limit": "La version gratuite comprend 1 photo IA par jour.",
-  "noCam": "Accès à l'appareil photo refusé. Activez-le dans les paramètres de votre téléphone ou choisissez une photo dans la galerie."
- },
- "bar": {
-  "title": "Code-barres",
-  "hint": "Saisissez ou scannez le code (données Open Food Facts)",
-  "search": "Rechercher",
-  "scanCam": "Scanner avec l'appareil photo",
-  "notFound": "Produit introuvable. Saisissez-le manuellement.",
-  "per100": "pour 100 g",
-  "grams": "Grammes",
-  "semaphore": "Feu tricolore",
-  "sugar": "Sucres",
-  "salt": "Sel",
-  "satfat": "Graisses sat.",
-  "badCode": "Tape les 6 à 14 chiffres sous le code-barres.",
-  "searching": "Recherche…"
- },
- "manual": {
-  "title": "Ajout manuel",
-  "name": "Nom",
-  "kcal": "Calories",
-  "latin": "Plats latino-américains",
-  "search": "Rechercher un aliment…",
-  "dictate": "Dicter à la voix",
-  "aiTitle": "Décrivez votre repas",
-  "aiPh": "Ex. : poulet et riz avec salade, assiette moyenne",
-  "aiBtn": "Calculer avec l'IA",
-  "exact": "Je connais les calories",
-  "noMatch": "Aucun résultat. Décrivez-le ci-dessus et l'IA fera le calcul.",
-  "badKcal": "Écris un nom et des calories entre 1 et 4999."
- },
- "diary": {
-  "title": "Journal d'aujourd'hui",
-  "empty": "Rien pour l'instant. Prenez votre repas en photo !",
-  "total": "Total",
-  "remove": "Supprimer",
-  "prev": "Jour précédent",
-  "nextDay": "Jour suivant",
-  "today": "Aujourd'hui",
-  "day": "Journal"
- },
- "more": {
-  "title": "Plus",
-  "barcode": "Code-barres",
-  "manual": "Ajout manuel",
-  "settings": "Paramètres",
-  "premium": "Premium",
-  "founder": "Panneau Fondateur"
- },
- "set": {
-  "title": "Paramètres",
-  "language": "Langue",
-  "auto": "Automatique (langue du téléphone)",
-  "ai": "Analyse par IA",
-  "aiDesc": "Si désactivée, aucune photo n'est transmise à aucun service.",
-  "profile": "Modifier mon profil",
-  "reset": "Supprimer mes données",
-  "resetQ": "Êtes-vous sûr(e) ? Cela supprimera toutes les données sur cet appareil.",
-  "privacy": "Votre journal est stocké uniquement sur cet appareil. Nous ne vendons jamais vos données de santé.",
-  "version": "Version MVP"
- },
- "pay": {
-  "title": "Angie One Premium",
-  "sub": "Tout ce dont vous avez besoin, à un prix juste",
-  "monthly": "1,99 US$ / mois",
-  "yearly": "14,99 US$ / an",
-  "yearlySave": "Économisez 37 %",
-  "latam": "Amérique latine : 0,99 US$ / mois",
-  "f1": "Photos IA illimitées (utilisation raisonnable)",
-  "f2": "Programmes nutritionnels et sportifs personnalisés",
-  "f3": "Coaching et chat hebdomadaires",
-  "f4": "Scanner de frigo et de menus",
-  "f5": "Sans publicité",
-  "offer": "Offre de bienvenue 48 h : votre tarif est garanti à vie tant que vous restez abonné(e).",
-  "renew": "Renouvellement automatique. Résiliation en 1 clic à tout moment. Prix affiché avant le paiement.",
-  "cta": "S'abonner",
-  "soon": "Les paiements ne sont pas encore disponibles (version d'aperçu).",
-  "free": "Continuer avec la version gratuite",
-  "offerLive": "🔒 Tarif garanti disponible pendant encore seulement {{time}}",
-  "offerAfter": "À la fin de votre essai, vous aurez 48 h pour bloquer ce tarif à vie.",
-  "offerGone": "L'offre de 48 h est terminée ; le tarif actuel est affiché ci-dessus."
- },
- "fo": {
-  "title": "Tableau de bord du fondateur v1",
-  "sub": "L'IA propose, vous décidez en un geste",
-  "approve": "Approuver",
-  "reject": "Refuser",
-  "approved": "Approuvé",
-  "rejected": "Refusé",
-  "demo": "Données d'exemple. Aucun mouvement d'argent réel.",
-  "kpi": "Résumé",
-  "users": "Utilisateurs",
-  "paying": "Payants",
-  "mrr": "Revenus mensuels"
- },
- "aiErr": {
-  "offline": "Pas de connexion ou le serveur a mis trop de temps à répondre. Vérifiez votre connexion internet et réessayez.",
-  "busy": "L'IA est très sollicitée en ce moment. Patientez une minute et réessayez.",
-  "tooLarge": "Cette photo est trop volumineuse. Essayez-en une autre ou recadrez-la.",
-  "notFood": "Je n'ai pas trouvé de nourriture ici. Essayez avec une photo plus nette de l'assiette ou décrivez votre repas par écrit.",
-  "server": "Impossible de faire le calcul pour l'instant. Réessayez ou saisissez-le manuellement."
- },
- "trial": {
-  "remind2": "⏰ Votre essai gratuit de Premium se termine dans 2 jours. Aucun prélèvement automatique.",
-  "remind1": "⏰ Aujourd'hui est le dernier jour de votre essai gratuit de Premium. Votre offre de 48 h commence demain.",
-  "offer": "🔒 Offre 48 h : bloquez votre tarif à vie. Se termine dans {{time}}",
-  "offerEnded": "L'offre de 48 h est terminée. Vous utilisez la version gratuite."
- },
- "legal": {
-  "privacy": "Politique de confidentialité",
-  "terms": "Conditions d'utilisation",
-  "medical": "Avertissement médical",
-  "draft": "BROUILLON — en attente de révision par un avocat.",
-  "section": "Mentions légales"
- },
- "u": {
-  "kcal": "kcal",
-  "g": "g",
-  "p": "P",
-  "c": "G",
-  "f": "L"
- },
- "docs": {
-  "privacy": {
-   "title": "Politique de confidentialité",
-   "updated": "Dernière mise à jour : 15 octobre 2026",
-   "sections": [
-    [
-     "Qui nous sommes",
-     "Angie One est une application développée par Parra Apps. Contact : angieoneapp.support@gmail.com."
-    ],
-    [
-     "Données que nous utilisons",
-     "Votre profil (objectif, poids, taille, âge, sexe, activité), votre journal alimentaire, votre suivi d'eau et vos défis. À ce jour, ces données sont stockées uniquement sur votre appareil ; nous n'avons aucun compte ni serveur hébergeant votre journal."
-    ],
-    [
-     "Photos et textes pour l'IA",
-     "Si l'IA est activée, la photo ou la description de votre repas est envoyée à notre proxy (Cloudflare) et à Google Gemini uniquement pour calculer l'estimation. Nous ne la conservons pas. Vous pouvez désactiver l'IA dans les Paramètres ; ainsi, rien n'est envoyé."
-    ],
-    [
-     "Codes-barres",
-     "Le numéro du code-barres est recherché dans Open Food Facts, une base de données publique. Aucune donnée personnelle n'est envoyée."
-    ],
-    [
-     "Nous ne vendons jamais vos données de santé",
-     "Nous ne vendons, ne louons et ne partageons pas vos données de santé ou d'alimentation avec des annonceurs ou des tiers. Nous n'utilisons pas vos données de santé à des fins publicitaires."
-    ],
-    [
-     "Vos droits",
-     "Vous pouvez consulter et supprimer toutes vos données dans Paramètres → Supprimer mes données. Si vous résidez en Californie (CCPA), dans l'Union européenne (RGPD) ou dans toute région dotée de lois sur la vie privée, vous pouvez exercer vos droits en nous envoyant un e-mail."
-    ],
-    [
-     "Enfants",
-     "Angie One ne s'adresse pas aux enfants de moins de 13 ans (16 ans dans l'UE)."
-    ],
-    [
-     "Sécurité et violations de données",
-     "Nous utilisons des connexions chiffrées (HTTPS). En cas de violation affectant vos données, nous vous en informerons conformément à la loi (y compris la FTC Health Breach Notification Rule)."
-    ],
-    [
-     "Modifications",
-     "Si nous modifions cette politique, nous l'afficherons dans l'application avant son entrée en vigueur."
+  "tagline": "Votre coach nutrition IA, sans culpabilité.",
+  "start": "Commencer",
+  "next": "Suivant",
+  "back": "Retour",
+  "save": "Enregistrer",
+  "cancel": "Annuler",
+  "add": "Ajouter",
+  "done": "Terminé",
+  "ob": {
+    "goal": "Quel est votre objectif ?",
+    "lose": "Perdre du poids",
+    "keep": "Maintenir mon poids",
+    "gain": "Prendre du muscle",
+    "body": "Parlez-moi de vous",
+    "weight": "Poids (kg)",
+    "height": "Taille (cm)",
+    "age": "Âge",
+    "sex": "Sexe",
+    "female": "Femme",
+    "male": "Homme",
+    "activity": "Quel est votre niveau d'activité ?",
+    "a1": "Sédentaire (travail de bureau)",
+    "a2": "Léger (1 à 3 jours)",
+    "a3": "Modéré (3 à 5 jours)",
+    "a4": "Intense (6 à 7 jours)",
+    "trialTitle": "7 jours de Premium offerts",
+    "trialBody": "Dès aujourd'hui, profitez gratuitement de tout Premium pendant 7 jours, sans carte bancaire. Nous vous enverrons un rappel 2 jours avant et le dernier jour. Ensuite, vous repasserez à la version gratuite tout en conservant vos données. Aucun prélèvement automatique.",
+    "target": "Votre objectif quotidien : {{kcal}} kcal",
+    "go": "C'est parti !",
+    "invalid": "Vérifiez vos informations : poids 30–300 kg, taille 100–250 cm, âge 13–100 ans.",
+    "legalNote": "En continuant, vous acceptez les Conditions d'utilisation et la Politique de confidentialité.",
+    "notMedical": "Angie One n'est pas un dispositif médical."
+  },
+  "home": {
+    "hello": "Bonjour ! Vous assurez aujourd'hui",
+    "left": "restant",
+    "eaten": "consommées",
+    "goal": "objectif",
+    "protein": "Protéines",
+    "carbs": "Glucides",
+    "fat": "Lipides",
+    "water": "Eau",
+    "addWater": "+1 verre",
+    "challenge": "Défi du jour",
+    "streak": "Série : {{n}} jours",
+    "challengeDone": "Défi relevé !",
+    "markDone": "C'est fait",
+    "readAloud": "Lire à voix haute",
+    "summary": "Vous avez consommé {{eaten}} sur {{goal}} calories et {{water}} verres d'eau.",
+    "trialDays": "Plus que {{n}} jours de Premium gratuit",
+    "trialOver": "Votre essai est terminé. Vos données sont toujours là.",
+    "challenges": [
+      "Boire 8 verres d'eau",
+      "Marcher 20 minutes",
+      "Manger un fruit coloré",
+      "Ajouter des protéines au petit-déjeuner",
+      "Dîner avant 21 h"
     ]
-   ]
   },
-  "terms": {
-   "title": "Conditions d'utilisation",
-   "updated": "Dernière mise à jour : 15 octobre 2026",
-   "sections": [
-    [
-     "Acceptation",
-     "En utilisant Angie One, vous acceptez ces conditions. Si vous n'êtes pas d'accord, n'utilisez pas l'application."
-    ],
-    [
-     "Le service",
-     "Angie One vous aide à enregistrer vos repas et à estimer les calories grâce à l'IA. Les estimations sont approximatives et peuvent comporter des erreurs."
-    ],
-    [
-     "Essai et abonnement",
-     "Vous bénéficiez de 7 jours de Premium offerts sans carte bancaire. Ensuite, vous repassez à la version gratuite ; aucun prélèvement automatique n'est effectué. Vous disposez alors d'une offre de 48 heures pour bloquer ce tarif tant que vous restez abonné(e). Les abonnements se renouvellent automatiquement et peuvent être résiliés en un clic depuis votre boutique d'applications (App Store ou Google Play). Le prix est affiché avant le paiement."
-    ],
-    [
-     "Utilisation acceptable",
-     "N'utilisez pas l'application à des fins illégales et ne tentez pas de lui nuire ou d'abuser du service d'IA."
-    ],
-    [
-     "Absence de conseil médical",
-     "Veuillez lire l'Avertissement médical. L'application ne remplace pas un professionnel de santé."
-    ],
-    [
-     "Responsabilité",
-     "L'application est fournie « en l'état ». Dans la mesure permise par la loi, Parra Apps décline toute responsabilité pour les dommages résultant de l'utilisation des estimations."
-    ],
-    [
-     "Contact",
-     "Contactez-nous par e-mail à angieoneapp.support@gmail.com."
-    ]
-   ]
+  "nav": {
+    "home": "Accueil",
+    "scan": "Photo",
+    "diary": "Journal",
+    "more": "Plus",
+    "coach": "Coach"
   },
-  "medical": {
-   "title": "Avertissement médical",
-   "updated": "Dernière mise à jour : 15 octobre 2026",
-   "sections": [
-    [
-     "Pas un dispositif médical",
-     "Angie One est un outil de bien-être général. Il ne diagnostique, ne traite, ne guérit ni ne prévient aucune maladie."
+  "scan": {
+    "title": "Photo du repas",
+    "take": "Prendre une photo",
+    "pick": "Choisir dans la galerie",
+    "analyzing": "Analyse en cours…",
+    "demo": "MODE DÉMO : estimation simulée (sans clé IA)",
+    "live": "IA : Gemini Flash-Lite",
+    "range": "Fourchette estimée",
+    "confidence": "Niveau de confiance",
+    "high": "élevé",
+    "medium": "moyen",
+    "low": "faible",
+    "questions": "Précisez en 1 geste",
+    "oil": "Avec de l'huile ?",
+    "sauce": "Avec de la sauce ?",
+    "fried": "Frit ?",
+    "portion": "Portion",
+    "yes": "Oui",
+    "no": "Non",
+    "log": "Ajouter au journal",
+    "disclaimer": "Il s'agit d'une estimation, pas d'une valeur exacte. Vous pouvez la corriger.",
+    "aiOff": "L'IA est désactivée. Activez-la dans les Paramètres ou saisissez manuellement.",
+    "error": "Impossible d'analyser la photo. Réessayez ou saisissez-la manuellement.",
+    "limit": "La version gratuite comprend 1 photo IA par jour.",
+    "noCam": "Accès à l'appareil photo refusé. Activez-le dans les paramètres de votre téléphone ou choisissez une photo dans la galerie."
+  },
+  "bar": {
+    "title": "Code-barres",
+    "hint": "Saisissez ou scannez le code (données Open Food Facts)",
+    "search": "Rechercher",
+    "scanCam": "Scanner avec l'appareil photo",
+    "notFound": "Produit introuvable. Saisissez-le manuellement.",
+    "per100": "pour 100 g",
+    "grams": "Grammes",
+    "semaphore": "Feu tricolore",
+    "sugar": "Sucres",
+    "salt": "Sel",
+    "satfat": "Graisses sat.",
+    "badCode": "Tape les 6 à 14 chiffres sous le code-barres.",
+    "searching": "Recherche…"
+  },
+  "manual": {
+    "title": "Ajout manuel",
+    "name": "Nom",
+    "kcal": "Calories",
+    "latin": "Plats latino-américains",
+    "search": "Rechercher un aliment…",
+    "dictate": "Dicter à la voix",
+    "aiTitle": "Décrivez votre repas",
+    "aiPh": "Ex. : poulet et riz avec salade, assiette moyenne",
+    "aiBtn": "Calculer avec l'IA",
+    "exact": "Je connais les calories",
+    "noMatch": "Aucun résultat. Décrivez-le ci-dessus et l'IA fera le calcul.",
+    "badKcal": "Écris un nom et des calories entre 1 et 4999."
+  },
+  "diary": {
+    "title": "Journal d'aujourd'hui",
+    "empty": "Rien pour l'instant. Prenez votre repas en photo !",
+    "total": "Total",
+    "remove": "Supprimer",
+    "prev": "Jour précédent",
+    "nextDay": "Jour suivant",
+    "today": "Aujourd'hui",
+    "day": "Journal"
+  },
+  "more": {
+    "title": "Plus",
+    "barcode": "Code-barres",
+    "manual": "Ajout manuel",
+    "settings": "Paramètres",
+    "premium": "Premium",
+    "founder": "Panneau Fondateur"
+  },
+  "set": {
+    "title": "Paramètres",
+    "language": "Langue",
+    "auto": "Automatique (langue du téléphone)",
+    "ai": "Analyse par IA",
+    "aiDesc": "Si désactivée, aucune photo n'est transmise à aucun service.",
+    "profile": "Modifier mon profil",
+    "reset": "Supprimer mes données",
+    "resetQ": "Êtes-vous sûr(e) ? Cela supprimera toutes les données sur cet appareil.",
+    "privacy": "Votre journal est stocké uniquement sur cet appareil. Nous ne vendons jamais vos données de santé.",
+    "version": "Version MVP"
+  },
+  "pay": {
+    "title": "Angie One Premium",
+    "sub": "Tout ce dont vous avez besoin, à un prix juste",
+    "monthly": "1,99 US$ / mois",
+    "yearly": "14,99 US$ / an",
+    "yearlySave": "Économisez 37 %",
+    "latam": "Amérique latine : 0,99 US$ / mois",
+    "f1": "Photos IA illimitées (utilisation raisonnable)",
+    "f2": "Programmes nutritionnels et sportifs personnalisés",
+    "f3": "Coaching et chat hebdomadaires",
+    "f4": "Scanner de frigo et de menus",
+    "f5": "Sans publicité",
+    "offer": "Offre de bienvenue 48 h : votre tarif est garanti à vie tant que vous restez abonné(e).",
+    "renew": "Renouvellement automatique. Résiliation en 1 clic à tout moment. Prix affiché avant le paiement.",
+    "cta": "S'abonner",
+    "soon": "Les paiements ne sont pas encore disponibles (version d'aperçu).",
+    "free": "Continuer avec la version gratuite",
+    "offerLive": "🔒 Tarif garanti disponible pendant encore seulement {{time}}",
+    "offerAfter": "À la fin de votre essai, vous aurez 48 h pour bloquer ce tarif à vie.",
+    "offerGone": "L'offre de 48 h est terminée ; le tarif actuel est affiché ci-dessus."
+  },
+  "fo": {
+    "title": "Tableau de bord du fondateur v1",
+    "sub": "L'IA propose, vous décidez en un geste",
+    "approve": "Approuver",
+    "reject": "Refuser",
+    "approved": "Approuvé",
+    "rejected": "Refusé",
+    "demo": "Données d'exemple. Aucun mouvement d'argent réel.",
+    "kpi": "Résumé",
+    "users": "Utilisateurs",
+    "paying": "Payants",
+    "mrr": "Revenus mensuels"
+  },
+  "aiErr": {
+    "offline": "Pas de connexion ou le serveur a mis trop de temps à répondre. Vérifiez votre connexion internet et réessayez.",
+    "busy": "L'IA est très sollicitée en ce moment. Patientez une minute et réessayez.",
+    "tooLarge": "Cette photo est trop volumineuse. Essayez-en une autre ou recadrez-la.",
+    "notFood": "Je n'ai pas trouvé de nourriture ici. Essayez avec une photo plus nette de l'assiette ou décrivez votre repas par écrit.",
+    "server": "Impossible de faire le calcul pour l'instant. Réessayez ou saisissez-le manuellement."
+  },
+  "trial": {
+    "remind2": "⏰ Votre essai gratuit de Premium se termine dans 2 jours. Aucun prélèvement automatique.",
+    "remind1": "⏰ Aujourd'hui est le dernier jour de votre essai gratuit de Premium. Votre offre de 48 h commence demain.",
+    "offer": "🔒 Offre 48 h : bloquez votre tarif à vie. Se termine dans {{time}}",
+    "offerEnded": "L'offre de 48 h est terminée. Vous utilisez la version gratuite."
+  },
+  "legal": {
+    "privacy": "Politique de confidentialité",
+    "terms": "Conditions d'utilisation",
+    "medical": "Avertissement médical",
+    "draft": "BROUILLON — en attente de révision par un avocat.",
+    "section": "Mentions légales"
+  },
+  "u": {
+    "kcal": "kcal",
+    "g": "g",
+    "p": "P",
+    "c": "G",
+    "f": "L"
+  },
+  "docs": {
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "updated": "Dernière mise à jour : 15 octobre 2026",
+      "sections": [
+        [
+          "Qui nous sommes",
+          "Angie One est une application développée par Parra Apps. Contact : angieoneapp.support@gmail.com."
+        ],
+        [
+          "Données que nous utilisons",
+          "Votre profil (objectif, poids, taille, âge, sexe, activité), votre journal alimentaire, votre suivi d'eau et vos défis. À ce jour, ces données sont stockées uniquement sur votre appareil ; nous n'avons aucun compte ni serveur hébergeant votre journal."
+        ],
+        [
+          "Photos et textes pour l'IA",
+          "Si l'IA est activée, la photo ou la description de votre repas est envoyée à notre proxy (Cloudflare) et à Google Gemini uniquement pour calculer l'estimation. Nous ne la conservons pas. Vous pouvez désactiver l'IA dans les Paramètres ; ainsi, rien n'est envoyé."
+        ],
+        [
+          "Codes-barres",
+          "Le numéro du code-barres est recherché dans Open Food Facts, une base de données publique. Aucune donnée personnelle n'est envoyée."
+        ],
+        [
+          "Nous ne vendons jamais vos données de santé",
+          "Nous ne vendons, ne louons et ne partageons pas vos données de santé ou d'alimentation avec des annonceurs ou des tiers. Nous n'utilisons pas vos données de santé à des fins publicitaires."
+        ],
+        [
+          "Vos droits",
+          "Vous pouvez consulter et supprimer toutes vos données dans Paramètres → Supprimer mes données. Si vous résidez en Californie (CCPA), dans l'Union européenne (RGPD) ou dans toute région dotée de lois sur la vie privée, vous pouvez exercer vos droits en nous envoyant un e-mail."
+        ],
+        [
+          "Enfants",
+          "Angie One ne s'adresse pas aux enfants de moins de 13 ans (16 ans dans l'UE)."
+        ],
+        [
+          "Sécurité et violations de données",
+          "Nous utilisons des connexions chiffrées (HTTPS). En cas de violation affectant vos données, nous vous en informerons conformément à la loi (y compris la FTC Health Breach Notification Rule)."
+        ],
+        [
+          "Modifications",
+          "Si nous modifions cette politique, nous l'afficherons dans l'application avant son entrée en vigueur."
+        ]
+      ]
+    },
+    "terms": {
+      "title": "Conditions d'utilisation",
+      "updated": "Dernière mise à jour : 15 octobre 2026",
+      "sections": [
+        [
+          "Acceptation",
+          "En utilisant Angie One, vous acceptez ces conditions. Si vous n'êtes pas d'accord, n'utilisez pas l'application."
+        ],
+        [
+          "Le service",
+          "Angie One vous aide à enregistrer vos repas et à estimer les calories grâce à l'IA. Les estimations sont approximatives et peuvent comporter des erreurs."
+        ],
+        [
+          "Essai et abonnement",
+          "Vous bénéficiez de 7 jours de Premium offerts sans carte bancaire. Ensuite, vous repassez à la version gratuite ; aucun prélèvement automatique n'est effectué. Vous disposez alors d'une offre de 48 heures pour bloquer ce tarif tant que vous restez abonné(e). Les abonnements se renouvellent automatiquement et peuvent être résiliés en un clic depuis votre boutique d'applications (App Store ou Google Play). Le prix est affiché avant le paiement."
+        ],
+        [
+          "Utilisation acceptable",
+          "N'utilisez pas l'application à des fins illégales et ne tentez pas de lui nuire ou d'abuser du service d'IA."
+        ],
+        [
+          "Absence de conseil médical",
+          "Veuillez lire l'Avertissement médical. L'application ne remplace pas un professionnel de santé."
+        ],
+        [
+          "Responsabilité",
+          "L'application est fournie « en l'état ». Dans la mesure permise par la loi, Parra Apps décline toute responsabilité pour les dommages résultant de l'utilisation des estimations."
+        ],
+        [
+          "Contact",
+          "Contactez-nous par e-mail à angieoneapp.support@gmail.com."
+        ]
+      ]
+    },
+    "medical": {
+      "title": "Avertissement médical",
+      "updated": "Dernière mise à jour : 15 octobre 2026",
+      "sections": [
+        [
+          "Pas un dispositif médical",
+          "Angie One est un outil de bien-être général. Il ne diagnostique, ne traite, ne guérit ni ne prévient aucune maladie."
+        ],
+        [
+          "Estimations",
+          "Les calories et nutriments calculés par l'IA sont des estimations et peuvent comporter des erreurs importantes. Vérifiez-les et corrigez-les au besoin."
+        ],
+        [
+          "Consultez un professionnel",
+          "Consultez votre médecin ou diététicien avant de modifier votre régime alimentaire, en particulier si vous êtes enceinte ou si vous allaitez, si vous souffrez de diabète, de troubles du comportement alimentaire ou d'un autre problème de santé, ou si vous avez moins de 18 ans."
+        ],
+        [
+          "Urgences",
+          "En cas d'urgence médicale, appelez le 15, le 112, le 911 ou votre numéro d'urgence local."
+        ]
+      ]
+    }
+  },
+  "foCards": {
+    "c1": {
+      "title": "Passer à une formule supérieure",
+      "body": "Revenus > coûts pendant 3 mois consécutifs. Proposition : passer de la formule gratuite au forfait de base (exemple)."
+    },
+    "c2": {
+      "title": "Aide sociale mensuelle",
+      "body": "Allouer 15 % du bénéfice net aux personnes dans le besoin (exemple : 0 $, aucun revenu pour le moment)."
+    },
+    "c3": {
+      "title": "Publier la mise à jour 0.1.1",
+      "body": "L'IA de programmation a corrigé les textes en portugais. Déploiement progressif à 10 %."
+    }
+  },
+  "foods": {
+    "arepa": "Arepa de maïs",
+    "arepa_queso": "Arepa au fromage",
+    "empanada": "Empanada au bœuf (frite)",
+    "pabellon": "Pabellón criollo",
+    "frijoles": "Haricots noirs",
+    "arroz": "Riz blanc",
+    "platano": "Banane plantain mûre frite",
+    "tostones": "Tostones (bananes plantains frites)",
+    "tacos": "Tacos al pastor",
+    "tamal": "Tamal",
+    "gallo_pinto": "Gallo pinto",
+    "ceviche": "Ceviche de poisson",
+    "pupusa": "Pupusa",
+    "bandeja": "Bandeja paisa",
+    "feijoada": "Feijoada",
+    "pao_queijo": "Pão de queijo (petit pain au fromage)",
+    "aguacate": "Avocat",
+    "mango": "Mangue",
+    "huevo": "Œufs brouillés",
+    "pollo": "Poulet grillé",
+    "yuca": "Manioc bouilli",
+    "cafe": "Café au lait"
+  },
+  "coach": {
+    "title": "Coach personnel",
+    "introTitle": "Votre plan, conçu pour vous",
+    "introBody": "Répondez à 3 questions rapides et Angie élaborera votre plan de repas hebdomadaire et votre entraînement, selon votre objectif, votre corps et vos goûts.",
+    "create": "Créer mon plan",
+    "today": "Aujourd'hui",
+    "restDay": "Jour de repos — profitez-en !",
+    "restBody": "Se reposer fait partie du plan. Une petite promenade ou des étirements sont les bienvenus.",
+    "doneToday": "Séance d'aujourd'hui terminée. Bravo !",
+    "startToday": "Commencer la séance du jour",
+    "burnedToday": "brûlées aujourd'hui",
+    "burned": "brûlées",
+    "streak": "Série",
+    "week": "cette semaine",
+    "target": "Votre objectif quotidien : {{kcal}} kcal",
+    "source": {
+      "ai": "Plan créé par l'IA d'Angie",
+      "rules": "Plan de base (l'IA était occupée)"
+    },
+    "diet": "Plan de repas",
+    "workout": "Exercice",
+    "checkin": "Bilan hebdomadaire",
+    "due": "à faire aujourd'hui",
+    "chat": "Parler à Angie",
+    "edit": "Modifier mes préférences",
+    "setupTitle": "Configurons votre plan",
+    "place": "Où allez-vous vous entraîner ?",
+    "home": "À la maison",
+    "gym": "À la salle de sport",
+    "daysQ": "Jours par semaine",
+    "minutesQ": "Minutes par séance",
+    "levelQ": "Votre niveau",
+    "beginner": "Débutant",
+    "intermediate": "Intermédiaire",
+    "advanced": "Avancé",
+    "injuriesQ": "Douleurs, blessures ou limites particulières ?",
+    "none": "Aucune",
+    "inj": {
+      "knees": "Genoux",
+      "back": "Dos",
+      "shoulders": "Épaules",
+      "wrists": "Poignets"
+    },
+    "injuryNote": "Autre chose qu'Angie devrait savoir ? (optionnel)",
+    "optional": "Optionnel",
+    "dislikesQ": "Aliments que vous ne mangez pas",
+    "dis": {
+      "fish": "Poisson",
+      "eggs": "Œufs",
+      "dairy": "Produits laitiers",
+      "beef": "Viande rouge",
+      "chicken": "Poulet",
+      "legumes": "Légumineuses",
+      "nuts": "Fruits à coque",
+      "veg": "Végétarien"
+    },
+    "cuisineQ": "Votre cuisine préférée",
+    "cui": {
+      "latin": "Latine",
+      "mexican": "Mexicaine",
+      "caribbean": "Caribéenne",
+      "andean": "Colombienne / Andine",
+      "brazilian": "Brésilienne",
+      "international": "Internationale"
+    },
+    "budgetQ": "Budget alimentaire",
+    "bud": {
+      "low": "Faible",
+      "medium": "Moyen",
+      "high": "Élevé"
+    },
+    "mealsQ": "Repas par jour",
+    "generate": "Créer le plan",
+    "building": "Angie élabore votre plan…",
+    "buildingSub": "Cela peut prendre jusqu'à une minute.",
+    "fallbackNote": "L'IA est occupée pour le moment, je vous ai donc préparé un plan de base avec les mêmes calories et vos préférences. Vous pourrez réessayer avec l'IA plus tard.",
+    "seePlan": "Voir mon plan",
+    "tryAgain": "Réessayer avec l'IA",
+    "slots3": [
+      "Petit-déjeuner",
+      "Déjeuner",
+      "Dîner"
     ],
-    [
-     "Estimations",
-     "Les calories et nutriments calculés par l'IA sont des estimations et peuvent comporter des erreurs importantes. Vérifiez-les et corrigez-les au besoin."
+    "slots4": [
+      "Petit-déjeuner",
+      "Déjeuner",
+      "Collation",
+      "Dîner"
     ],
-    [
-     "Consultez un professionnel",
-     "Consultez votre médecin ou diététicien avant de modifier votre régime alimentaire, en particulier si vous êtes enceinte ou si vous allaitez, si vous souffrez de diabète, de troubles du comportement alimentaire ou d'un autre problème de santé, ou si vous avez moins de 18 ans."
+    "slots5": [
+      "Petit-déjeuner",
+      "Collation du matin",
+      "Déjeuner",
+      "Collation de l'après-midi",
+      "Dîner"
     ],
-    [
-     "Urgences",
-     "En cas d'urgence médicale, appelez le 15, le 112, le 911 ou votre numéro d'urgence local."
-    ]
-   ]
+    "slots2": [
+      "Repas 1",
+      "Repas 2"
+    ],
+    "slots6": [
+      "Repas 1",
+      "Repas 2",
+      "Repas 3",
+      "Repas 4",
+      "Repas 5",
+      "Repas 6"
+    ],
+    "portion": "portion ×{{x}}",
+    "logMeal": "Ajouter à mon journal",
+    "logged": "Ajouté à votre journal",
+    "shopping": "Liste de courses de la semaine",
+    "reps": "{{n}} rép.",
+    "secs": "{{n}} s",
+    "restS": "repos {{n}} s",
+    "start": "Commencer la séance",
+    "safety": "Échauffez-vous d'abord, bougez lentement et arrêtez-vous en cas de douleur, de vertige ou d'oppression thoracique.",
+    "notMedical": "Angie donne des conseils généraux, pas des avis médicaux. Si vous avez un problème de santé, consultez un professionnel.",
+    "lockedTitle": "Votre coach est une fonctionnalité Premium",
+    "lockedBody": "Votre essai gratuit est terminé. Votre plan et votre historique sont sauvegardés — débloquez Premium pour continuer à vous entraîner avec Angie.",
+    "teaser1": "Plan de repas hebdomadaire aux saveurs latines et liste de courses",
+    "teaser2": "Entraînements à la maison ou en salle avec un minuteur guidé",
+    "teaser3": "Un bilan hebdomadaire qui ajuste votre plan en douceur",
+    "teaser4": "Discutez avec Angie de nutrition et d'exercice",
+    "unlock": "Découvrir Premium",
+    "keepData": "Aucun débit automatique.",
+    "stepOf": "Étape {{a}} sur {{b}}",
+    "setOf": "Série {{a}} sur {{b}}",
+    "rest": "Repos",
+    "breathe": "Respirez et buvez un peu d'eau",
+    "upNext": "À suivre",
+    "skipRest": "Passer le repos",
+    "doneSet": "Terminé",
+    "pause": "Pause",
+    "resume": "Reprendre",
+    "endEarly": "Terminer maintenant",
+    "greatJob": "Bravo ! Séance terminée",
+    "addedHome": "Vos calories brûlées ont été ajoutées au bilan d'aujourd'hui sur Accueil.",
+    "sayRest": "Repos de {{n}} secondes.",
+    "sayDone": "Bravo ! Vous avez brûlé environ {{kcal}} calories.",
+    "sayBurned": "Vous avez brûlé {{kcal}} calories en vous entraînant.",
+    "dLegs": "Jambes et abdos",
+    "dUpper": "Haut du corps et abdos",
+    "dFull": "Corps complet",
+    "dRest": "Repos"
+  },
+  "ci": {
+    "weightQ": "Votre poids aujourd'hui (kg)",
+    "energyQ": "Comment était votre niveau d'énergie cette semaine ?",
+    "e_low": "Faible",
+    "e_ok": "Normal",
+    "e_good": "Super",
+    "skippedQ": "Avez-vous sauté des repas exprès ou ressenti de la culpabilité après avoir mangé ?",
+    "bingeQ": "Avez-vous beaucoup mangé sans pouvoir vous arrêter, ou fait du sport pour « compenser » un repas ?",
+    "yes": "Oui",
+    "no": "Non",
+    "private": "Vos réponses restent sur votre téléphone. Elles aident Angie à prendre soin de vous.",
+    "save": "Enregistrer le bilan",
+    "history": "Bilans récents",
+    "notYet": "Votre prochain bilan est dans {{n}} jours, mais vous pouvez en faire un dès maintenant.",
+    "newTarget": "Votre objectif quotidien : {{kcal}} kcal",
+    "mFirst": "Premier bilan enregistré ! La semaine prochaine, nous comparerons et ajusterons.",
+    "mOnTrack": "Vous êtes sur la bonne voie. Nous gardons le plan tel quel.",
+    "mPlateau": "Votre poids est stable. Nous réduisons légèrement votre objectif (−100 kcal) — en douceur.",
+    "mFast": "Vous perdez du poids plus vite que conseillé. Nous ajoutons un peu de nourriture (+150 kcal).",
+    "mGainMore": "Pour prendre du muscle, nous ajoutons un peu de nourriture (+100 kcal).",
+    "mGainSlow": "Vous prenez du poids un peu vite. Nous réduisons légèrement (−100 kcal).",
+    "mKeepDown": "Votre poids a un peu augmenté. Petit ajustement (−100 kcal).",
+    "mKeepUp": "Votre poids a un peu baissé. Petit ajustement (+100 kcal).",
+    "tUp": "Entraînement : une série de plus par exercice. Vous êtes prêt(e) !",
+    "tDown": "Entraînement : un peu plus léger cette semaine, pour bien récupérer.",
+    "tSame": "Entraînement : idem que la semaine dernière.",
+    "warnTitle": "Nous prenons soin de vous",
+    "warnBody": "Certaines de vos réponses laissent penser que votre rapport à la nourriture est compliqué en ce moment. Cela arrive à beaucoup de personnes, et vous n'êtes pas seul(e). Nous n'allons pas baisser vos calories. Parler à un médecin, un nutritionniste ou un professionnel de la santé mentale peut vraiment vous aider. N'hésitez pas à contacter une ligne d'écoute ou un service d'aide d'urgence local."
+  },
+  "chat": {
+    "disclaimer": "Angie est un coach IA, pas un médecin. Ses réponses sont des conseils généraux ; en cas de problème de santé, consultez un professionnel.",
+    "hello": "Bonjour ! Posez-moi vos questions sur la nutrition, les recettes ou le sport.",
+    "s1": "Que puis-je manger pour un dîner sain ?",
+    "s2": "Comment faire un squat correctement ?",
+    "s3": "Est-ce grave de manger du riz le soir ?",
+    "placeholder": "Écrivez votre question",
+    "send": "Envoyer",
+    "offline": "Angie n'a pas pu répondre pour le moment. Vérifiez votre connexion et réessayez dans un instant.",
+    "limit": "Vous avez atteint vos {{n}} questions d'aujourd'hui. Revenez demain !"
+  },
+  "cfood": {
+    "b1": {
+      "n": "Arepa avec œuf et fromage",
+      "i": "1 arepa de maïs, 1 œuf brouillé, 30 g de queso fresco, tomate"
+    },
+    "b2": {
+      "n": "Flocons d'avoine à la banane et à la cannelle",
+      "i": "½ tasse d'avoine cuite dans du lait, 1 banane, cannelle"
+    },
+    "b3": {
+      "n": "Œufs brouillés et tortillas de maïs",
+      "i": "2 œufs avec tomate et oignon, 2 tortillas de maïs"
+    },
+    "b4": {
+      "n": "Yaourt aux fruits et à l'avoine",
+      "i": "1 tasse de yaourt nature, 1 tasse de fruits, 3 c. à s. d'avoine"
+    },
+    "b5": {
+      "n": "Tartines de pain complet à l'avocat et haricots",
+      "i": "2 tranches de pain complet, ¼ d'avocat, ½ tasse de haricots"
+    },
+    "l1": {
+      "n": "Riz, haricots et poulet",
+      "i": "¾ tasse de riz, ½ tasse de haricots, 120 g de poulet grillé, salade"
+    },
+    "l2": {
+      "n": "Poisson grillé et yuca",
+      "i": "150 g de poisson, 1 tasse de yuca bouilli, salade au citron"
+    },
+    "l3": {
+      "n": "Ragoût de bœuf, riz et plantain rôti",
+      "i": "120 g de bœuf mijoté, ¾ tasse de riz, ½ plantain mûr rôti"
+    },
+    "l4": {
+      "n": "Lentilles au riz",
+      "i": "1 tasse de lentilles, ½ tasse de riz, salade"
+    },
+    "l5": {
+      "n": "Poulet rôti aux pommes de terre et légumes",
+      "i": "130 g de poulet, 1 pomme de terre moyenne, 1 tasse de légumes"
+    },
+    "s1": {
+      "n": "Fruits et cacahuètes",
+      "i": "1 fruit, 1 petite poignée de cacahuètes"
+    },
+    "s2": {
+      "n": "Yaourt aux fruits",
+      "i": "1 tasse de yaourt nature, ½ tasse de fruits"
+    },
+    "s3": {
+      "n": "Mangue au citron vert et œuf dur",
+      "i": "1 tasse de mangue, citron vert, 1 œuf dur"
+    },
+    "s4": {
+      "n": "Salade de fruits",
+      "i": "1 banane et 1 tasse de fruits de saison"
+    },
+    "d1": {
+      "n": "Tacos au poulet et pico de gallo",
+      "i": "3 tortillas de maïs, 120 g de poulet, tomate et oignon"
+    },
+    "d2": {
+      "n": "Soupe de poulet aux légumes",
+      "i": "1 grand bol : poulet, pomme de terre, carotte, courge"
+    },
+    "d3": {
+      "n": "Salade de thon à l'avocat",
+      "i": "1 boîte de thon au naturel, ¼ d'avocat, laitue et tomate, crackers"
+    },
+    "d4": {
+      "n": "Omelette aux légumes et fromage",
+      "i": "2 œufs, légumes, 30 g de fromage, 1 tranche de pain"
+    },
+    "d5": {
+      "n": "Haricots noirs, riz et queso fresco",
+      "i": "1 tasse de haricots, ½ tasse de riz, 30 g de queso fresco"
+    }
+  },
+  "cing": {
+    "cornflour": "Farine de maïs précuite",
+    "eggs": "Œufs",
+    "cheese": "Queso fresco",
+    "tomato": "Tomates",
+    "oats": "Flocons d'avoine",
+    "banana": "Bananes",
+    "milk": "Lait",
+    "tortillas": "Tortillas de maïs",
+    "onion": "Oignons",
+    "yogurt": "Yaourt nature",
+    "fruit": "Fruits de saison",
+    "bread": "Pain complet",
+    "avocado": "Avocats",
+    "beans": "Haricots",
+    "rice": "Riz",
+    "chicken": "Blanc de poulet",
+    "salad": "Laitue et salade verte",
+    "fish": "Poisson blanc",
+    "yuca": "Yuca (manioc)",
+    "beef": "Bœuf maigre",
+    "plantain": "Plantains mûrs",
+    "lentils": "Lentilles",
+    "potato": "Pommes de terre",
+    "vegetables": "Légumes variés",
+    "peanuts": "Cacahuètes",
+    "tuna": "Thon en boîte au naturel"
+  },
+  "cex": {
+    "march": {
+      "n": "Marche sur place",
+      "d": "Levez les genoux l'un après l'autre en balançant les bras. Allez à un rythme tranquille pour vous échauffer."
+    },
+    "treadmill": {
+      "n": "Marche sur tapis",
+      "d": "Marchez à un rythme confortable. Vous devez pouvoir parler en marchant."
+    },
+    "chairSquat": {
+      "n": "Squat sur chaise",
+      "d": "Placez-vous devant une chaise, asseyez-vous lentement puis relevez-vous en poussant sur vos talons."
+    },
+    "bridge": {
+      "n": "Pont fessier",
+      "d": "Allongez-vous sur le dos, genoux fléchis. Levez les bassin, contractez les fessiers et redescendez lentement."
+    },
+    "calf": {
+      "n": "Élévations des mollets",
+      "d": "Tenez-vous à un mur ou une chaise. Montez sur la pointe des pieds et redescendez lentement."
+    },
+    "sideLeg": {
+      "n": "Élévation latérale de la jambe",
+      "d": "Accrochez-vous à une chaise, montez une jambe sur le côté puis redescendez lentement. Changez de jambe."
+    },
+    "stepUp": {
+      "n": "Montées sur marche",
+      "d": "Montez sur une marche basse et stable avec un pied, puis l'autre, et redescendez lentement."
+    },
+    "legPress": {
+      "n": "Presse à cuisses",
+      "d": "Asseyez-vous sur la machine, pieds à plat sur la plateforme. Poussez sans verrouiller les genoux et revenez lentement."
+    },
+    "gobletSquat": {
+      "n": "Goblet squat",
+      "d": "Tenez un haltère léger contre votre poitrine. Descendez en squat le dos droit, puis remontez."
+    },
+    "wallPush": {
+      "n": "Pompes contre le mur",
+      "d": "Mains sur le mur à hauteur de poitrine. Pliez les coudes vers le mur et poussez pour revenir."
+    },
+    "armCircles": {
+      "n": "Cercles avec les bras",
+      "d": "Bras écartés, faites de petits cercles vers l'avant puis vers l'arrière."
+    },
+    "bottleRow": {
+      "n": "Tirage avec bouteilles d'eau",
+      "d": "Penchez-vous légèrement en avant le dos droit, ramenez deux bouteilles d'eau vers votre taille et redescendez."
+    },
+    "latPull": {
+      "n": "Tirage vertical",
+      "d": "Asseyez-vous à la machine, tirez la barre vers le haut de la poitrine et laissez-la remonter lentement."
+    },
+    "seatedRow": {
+      "n": "Tirage horizontal",
+      "d": "Tenez-vous bien droit, tirez la poignée vers le ventre, serrez les omoplates et revenez lentement."
+    },
+    "chestPress": {
+      "n": "Développé couché à la machine",
+      "d": "Asseyez-vous le dos bien calé. Poussez les poignées vers l'avant et revenez lentement."
+    },
+    "birdDog": {
+      "n": "Bird dog",
+      "d": "À quatre pattes, tendez un bras vers l'avant et la jambe opposée vers l'arrière. Maintenez, puis inversez."
+    },
+    "deadBug": {
+      "n": "Dead bug",
+      "d": "Allongez-vous sur le dos, bras levés et genoux fléchis. Descendez lentement le bras et la jambe opposés, puis inversez."
+    },
+    "plank": {
+      "n": "Planche",
+      "d": "En appui sur les avant-bras et la pointe des pieds (ou les genoux), gardez le corps aligné et respirez."
+    },
+    "jacks": {
+      "n": "Jumping jacks",
+      "d": "Sautez en écartant les jambes et les bras, puis refermez. Pour un impact réduit, faites un pas chassé sur le côté à la place."
+    },
+    "bike": {
+      "n": "Vélo d'appartement",
+      "d": "Pédalez à un rythme régulier qui vous fait respirer un peu plus vite."
+    },
+    "stretch": {
+      "n": "Étirements doux",
+      "d": "Étirez lentement les jambes, le dos et les bras. Maintenez chaque étirement 15 à 20 secondes sans à-coups."
+    }
+  },
+  "x": {
+    "pending": "Connexion en attente",
+    "example": "EXEMPLE DE DONNÉES",
+    "explore": "Explorer",
+    "more4": "Bientôt disponible",
+    "pendingLegend": "⏳ = nécessite un compte, une clé ou un partenaire approuvé par José. Cela fonctionne ici avec des données locales ou d'exemple.",
+    "pendingBody": "Cette connexion est en attente : elle nécessite un compte ou l'approbation d'un partenaire. Rien n'a été envoyé.",
+    "needServer": "nécessite un serveur",
+    "needPay": "nécessite des paiements",
+    "needStores": "nécessite des partenaires marchands",
+    "t": {
+      "social": "Communauté",
+      "recipes": "Recettes latines",
+      "gym": "Sport",
+      "connect": "Montres et musique",
+      "fasting": "Jeûne",
+      "twin": "Jumeau numérique",
+      "video": "Vidéo de la semaine",
+      "health": "Modes santé",
+      "family": "Famille",
+      "report": "Rapport médical",
+      "shop": "Liste de courses",
+      "travel": "Mode voyage",
+      "b2b": "Pour les coachs",
+      "market": "Experts",
+      "corp": "Bien-être en entreprise",
+      "store": "Boutique",
+      "impact": "Notre impact",
+      "pet": "Plan animal",
+      "whatsapp": "Journal WhatsApp",
+      "tips": "Astuces de créateurs"
+    },
+    "me": "Moi",
+    "postPh": "Partage tes progrès…",
+    "addPhoto": "Photo",
+    "publish": "Publier",
+    "localOnly": "Pour l'instant, les publications restent uniquement sur cet appareil.",
+    "like": "J'aime",
+    "follow": "S'abonner",
+    "following": "Abonnements",
+    "groups": "Groupes",
+    "g1": "Mamans latines qui s'entraînent",
+    "g2": "Coureurs de 5 km",
+    "g3": "Cuisine saine",
+    "join": "Rejoindre",
+    "joined": "Rejoint",
+    "challenges": "Défis",
+    "ch1": "Rejoins 3 groupes cette semaine",
+    "socialSafety": "Pas de comparaison corporelle, pas de jugement. Les publications signalées sont masquées.",
+    "k": {
+      "meal": "Repas",
+      "gym": "Sport",
+      "run": "Course"
+    },
+    "vote": "Voter",
+    "see": "Voir la recette",
+    "close": "Fermer",
+    "rec": {
+      "r1": {
+        "n": "Arroz con pollo au poulet léger",
+        "s": "Riz complet, poulet sans peau, poivrons, petits pois. 1 c. à café d'huile."
+      },
+      "r2": {
+        "n": "Arepa aux haricots noirs et maïs",
+        "s": "Arepa grillée, haricots noirs, fromage frais, avocat."
+      },
+      "r3": {
+        "n": "Ropa vieja au four",
+        "s": "Bœuf maigre, tomates, poivrons, oignon. À servir avec une salade."
+      },
+      "r4": {
+        "n": "Bol de fruits tropicaux",
+        "s": "Papaye, mangue, ananas, yaourt nature et avoine."
+      }
+    },
+    "mv": {
+      "squat": "Squats",
+      "pushup": "Pompes",
+      "jack": "Jumping jacks",
+      "plank": "Planche"
+    },
+    "mvd": {
+      "squat": "Pieds écartés de la largeur des hanches, recule les fesses, torse bombé, genoux au-dessus des orteils.",
+      "pushup": "Mains sous les épaules, corps droit. Poser les genoux au sol est autorisé.",
+      "jack": "saute en écartant les bras et les jambes, retombe en douceur.",
+      "plank": "Avant-bras au sol, corps bien droit, respire lentement."
+    },
+    "animNote": "Nos propres animations, sans licences tierces. De vraies vidéos arriveront plus tard.",
+    "int": {
+      "garmin": "Garmin",
+      "fitbit": "Fitbit",
+      "samsung": "Samsung Health",
+      "spotify": "Spotify (musique pour l'entraînement)",
+      "health": "Apple Health / Health Connect"
+    },
+    "intWhy": "Importe automatiquement tes pas, ta fréquence cardiaque et tes entraînements.",
+    "connect": "Connecter",
+    "manualSteps": "Pas du jour (manuel)",
+    "fastGoal": "Objectif : {{h}} heures",
+    "fastStart": "Commencer le jeûne",
+    "fastEnd": "Terminer le jeûne",
+    "fastLog": "Jeûnes récents",
+    "fastBlocked": "Le jeûne est désactivé pour ta sécurité (moins de 18 ans, grossesse ou diabète). Parles-en à ton médecin.",
+    "fastNote": "Optionnel. Arrête-toi si tu te sens étourdi ou mal.",
+    "preview": "aperçu",
+    "tw": {
+      "talk": "Coucou ! Aujourd'hui ton objectif est de {{kcal}} kcal. Tu vas y arriver !",
+      "eat": "Je mange une assiette équilibrée : la moitié de légumes.",
+      "cook": "Cuisinons un arroz con pollo léger ensemble.",
+      "train": "Bougeons ! 10 squats avec moi."
+    },
+    "twa": {
+      "talk": "Parler",
+      "eat": "Manger",
+      "cook": "Cuisiner",
+      "train": "S'entraîner"
+    },
+    "twinNote": "Aperçu animé. Le jumeau 3D complet fait partie de Premium Plus et est encore en développement.",
+    "play": "Revoir ma semaine",
+    "v1": "Tu as enregistré {{n}} jours cette semaine",
+    "v2": "Moyenne de {{kcal}} kcal par jour enregistré",
+    "v3": "Tu as brûlé {{kcal}} kcal en t'entraînant",
+    "v4": "Tu as bu {{n}} verres d'eau",
+    "v5": "Chaque pas compte. Continue comme ça !",
+    "videoNote": "Créé sur ton téléphone avec tes données. Rien n'est mis en ligne.",
+    "healthWarn": "Ces modes donnent uniquement des conseils généraux. Ils ne remplacent pas ton médecin et ne modifient pas ton traitement.",
+    "on": "Activé",
+    "off": "Activer",
+    "m": {
+      "diabetes": "Diabète",
+      "hypertension": "Hypertension artérielle",
+      "cholesterol": "Cholestérol",
+      "cycle": "Cycle menstruel",
+      "pregnancy": "Grossesse"
+    },
+    "md": {
+      "diabetes": "Surveille les glucides par repas, associe-les à des protéines, pas de jeûne. Vérifie ta glycémie selon les indications de ton médecin.",
+      "hypertension": "Limite de sel : 1 500 mg de sodium par jour. Moins d'aliments en conserve et de charcuterie.",
+      "cholesterol": "Plus de fibres, d'avoine et de haricots ; moins d'aliments frits et de graisses saturées.",
+      "cycle": "Note tes règles pour connaître ton prochain cycle et adapter ton énergie.",
+      "pregnancy": "Pas de déficit calorique, pas de jeûne. Environ +300 kcal à partir du 2e trimestre. Suis les conseils de ton médecin."
+    },
+    "periodToday": "Mes règles ont commencé aujourd'hui",
+    "nextPeriod": "Prochaines règles vers le {{d}}",
+    "famName": "Nom",
+    "adult": "Adulte",
+    "child": "Enfant",
+    "kidRule": "Enfants : pas de comptage de calories, uniquement de bonnes habitudes.",
+    "famNote": "Les données de chaque personne restent sur cet appareil.",
+    "repTitle": "Résumé pour mon médecin",
+    "repModes": "Modes",
+    "repFoot": "Généré par Angie One. Estimations, pas un diagnostic.",
+    "savePdf": "Enregistrer en PDF",
+    "repNote": "Sélectionne 'Enregistrer en PDF' dans la fenêtre d'impression. C'est toi qui décides à qui le donner.",
+    "si1": "Blanc de poulet",
+    "si2": "Riz complet",
+    "si3": "Haricots noirs",
+    "storeN": "Magasin {{n}}",
+    "delivery": "Livraison à domicile",
+    "priceNote": "Exemples de prix. Les vrais prix nécessitent des partenaires marchands.",
+    "travelOn": "Mode voyage activé",
+    "travelOff": "Activer le mode voyage",
+    "tr1": "Les objectifs restent souples : enregistrer 1 repas suffit.",
+    "tr2": "Au restaurant : grillades, salade, eau.",
+    "tr3": "Séance de sport de 10 minutes en chambre d'hôtel.",
+    "tr4": "Les changements de fuseau horaire sont gérés automatiquement.",
+    "hotelWorkout": "Sport en chambre",
+    "clients": "Tes clients",
+    "daysLogged": "{{n}} jours enregistrés",
+    "b2bPrice": "Formule coach : gère jusqu'à 20 clients (prix à définir).",
+    "b2bPrivacy": "Les clients choisissent ce qu'ils partagent avec leur coach.",
+    "sponsored": "Sponsorisé",
+    "ad1": "Légumes bio livrés à ta porte.",
+    "ad2": "Bouteilles d'eau sans sucres ajoutés.",
+    "adWhy": "Uniquement des marques saines approuvées. Jamais choisies à partir de tes données de santé.",
+    "adsTitle": "Marques approuvées",
+    "role": {
+      "nutri": "Nutritionniste",
+      "trainer": "Entraîneur personnel",
+      "physio": "Physiothérapeute"
+    },
+    "session": "séance",
+    "book": "Réserver",
+    "marketNote": "Licences vérifiées avant le lancement.",
+    "corpCh": "Défi de pas en équipe",
+    "corpPrivacy": "L'entreprise voit seulement les totaux de l'équipe, jamais les données de santé individuelles.",
+    "aggTitle": "Rapport anonyme",
+    "people": "personnes",
+    "aggNote": "Les groupes de moins de 20 personnes sont masqués. Aucune donnée individuelle.",
+    "purpose": "Acheter utile",
+    "purposeBody": "La majeure partie de l'argent de chaque produit aide les personnes ayant des problèmes de santé liés à une mauvaise nutrition, au surpoids, au manque d'exercice ou ayant besoin de kinésithérapie.",
+    "prod": {
+      "tee": "T-shirt Angie One",
+      "hoodie": "Sweat à capuchon corail",
+      "bottle": "Gourde",
+      "cap": "Casquette"
+    },
+    "openEtsy": "Ouvrir la boutique Etsy",
+    "storeNote": "Les produits sont fabriqués à la demande sur Etsy (boutique Parra Apps). La boutique n'est pas encore ouverte.",
+    "fundNext": "Fonds pour la personne suivante",
+    "helped": "Personnes aidées",
+    "reason": {
+      "physio": "Kinésithérapie",
+      "nutrition": "Plan nutritionnel"
+    },
+    "impactNote": "Les noms sont masqués et affichés uniquement avec consentement. Chaque paiement est approuvé par le fondateur et possède un reçu.",
+    "splitTitle": "Répartition des bénéfices 60/25/15",
+    "sOps": "Fonctionnement",
+    "sGrowth": "Croissance",
+    "sSocial": "Aide sociale",
+    "splitNote": "Exemple avec 1 000 $ de bénéfice net. Aucun argent ne bouge sans ton accord.",
+    "disbTitle": "Propositions d'aide",
+    "disbNote": "L'IA administrative propose ; tu approuves en un seul geste. Les paiements ne sont pas encore connectés.",
+    "dog": "Chien",
+    "cat": "Chat",
+    "day": "jour",
+    "walk": "Marche effectuée",
+    "walked": "Marche effectuée aujourd'hui",
+    "petNote": "Approximatif. Demande à ton vétérinaire.",
+    "waHow": "Écris comme sur WhatsApp, par exemple : 'J'ai mangé 2 arepas'.",
+    "waPh": "Message",
+    "waTry": "Essayer",
+    "tipsNote": "Les pourboires vont à 100 % au créateur, moins les frais de paiement."
+  },
+  "p2": {
+    "hub": "Outils santé",
+    "hubNote": "🔒 = Premium. Tout reste sur votre téléphone.",
+    "lockT": "Premium",
+    "err": "Connexion impossible. Réessayez dans un moment.",
+    "thinking": "Angie réfléchit…",
+    "toDiary": "Ajouter au journal",
+    "on": "Activé",
+    "off": "Désactivé",
+    "pts": "pts",
+    "t": {
+      "weight": "Poids",
+      "voice": "Enregistrer par la voix",
+      "fridge": "Frigo et chef IA",
+      "plans": "Plans alimentaires",
+      "menu": "Menu de restaurant",
+      "craving": "Mode envies",
+      "sleep": "Sommeil et stress",
+      "rem": "Rappels malins",
+      "points": "Points",
+      "weekly": "Résumé de la semaine",
+      "avatar": "Mon avatar",
+      "memory": "Mémoire d'Angie",
+      "import": "Importer MyFitnessPal"
+    },
+    "wSave": "Enregistrer le poids",
+    "wSaved": "Poids enregistré ✓",
+    "wChart": "Vos progrès",
+    "wNeed2": "Enregistrez votre poids sur deux jours différents pour voir le graphique.",
+    "wTrend": "Tendance : {{k}} kg par semaine",
+    "wNote": "Le poids varie au jour le jour. Nous regardons la tendance, pas une seule journée.",
+    "aTitle": "Coach adaptatif",
+    "aNeed": "Enregistrez votre poids plusieurs fois sur au moins 5 jours et Angie ajustera votre objectif.",
+    "aOk": "Vous êtes sur la bonne voie. Votre objectif ne change pas.",
+    "aSlow": "Votre poids est stable. Un petit changement peut aider.",
+    "aFast": "Vous perdez rapidement. Mangeons un peu plus pour prendre soin de vous.",
+    "aGain": "Pour prendre du poids, vous pouvez manger un peu plus.",
+    "aGainFast": "Vous prenez du poids rapidement. Ralentissons un tout petit peu.",
+    "aKeep": "Ajustons un peu pour maintenir votre poids.",
+    "aApply": "Appliquer {{d}} kcal",
+    "aApplied": "Nouvel objectif : {{kcal}} kcal",
+    "aSafe": "Jamais en dessous de {{min}} kcal par jour.",
+    "aLocked": "Le coach adaptatif ajuste votre objectif selon votre vraie tendance de poids.",
+    "memWhat": "Angie se souvient de ce que vous lui dites (par exemple \"Je ne mange pas de poisson\") pour mieux vous aider.",
+    "memOn": "Se souvenir",
+    "memOff": "Ne pas se souvenir",
+    "memPrivacy": "Enregistré uniquement sur ce téléphone. Vous pouvez tout effacer à tout moment.",
+    "memList": "Ce dont Angie se souvient",
+    "memEmpty": "Rien pour l'instant.",
+    "memPh": "Exemple : Je n'aime pas l'aubergine",
+    "memDel": "Supprimer",
+    "memDelAll": "Effacer toute la mémoire",
+    "memDelQ": "Tout effacer de la mémoire d'Angie ?",
+    "impHow": "Dans MyFitnessPal : Paramètres → Exporter les données. Vous obtiendrez un fichier CSV (Nutrition). Choisissez-le ici.",
+    "impPick": "Choisir le fichier CSV",
+    "impPaste": "Ou collez le texte du fichier :",
+    "impGo": "Importer",
+    "impSample": "Essayer un exemple",
+    "impOk": "Terminé : {{n}} repas de {{d}} jours importés.",
+    "impBad": "Je n'ai pas pu lire ce fichier. Utilisez le CSV \"Nutrition\" de MyFitnessPal.",
+    "impNote": "Réimporter ne duplique pas les repas.",
+    "vTap": "Appuyez et parlez",
+    "vListening": "À l'écoute…",
+    "vOr": "Ou écrivez-le :",
+    "vPh": "Exemple : J'ai pris 2 arepas avec du fromage",
+    "vGo": "Calculer",
+    "vAdd": "Ajouter",
+    "vSaved": "Enregistré",
+    "vAdded": "{{name}} ajouté, environ {{kcal}} calories.",
+    "vErr": "Calcul impossible. Réessayez.",
+    "vNoMic": "La voix n'est pas disponible dans ce navigateur. Écrivez plutôt.",
+    "tBal": "Latino équilibré",
+    "tBalD": "Arepas, riz, haricots, poulet et fruits, dans les bonnes proportions.",
+    "tProt": "Riche en protéines",
+    "tProtD": "5 repas avec plus de protéines pour développer vos muscles.",
+    "tVeg": "Végétarien",
+    "tVegD": "Pas de viande ni de poisson : haricots, œufs, fromage et légumes.",
+    "tCheap": "Petit budget",
+    "tCheapD": "3 repas simples avec des ingrédients économiques.",
+    "plUse": "Utiliser ce plan",
+    "plApplied": "Plan \"{{n}}\" prêt.",
+    "plLocked": "Des plans alimentaires faits pour votre objectif.",
+    "chHow": "Prenez une photo de votre frigo, placard ou épices et Angie vous suggère 3 recettes.",
+    "chPhoto": "Photo de mon frigo",
+    "chChef": "Chef IA",
+    "chPh": "Exemple : riz, œufs, tomate, cumin",
+    "chGo": "Donne-moi des recettes",
+    "chFound": "Je vois",
+    "chNone": "Je n'ai trouvé aucun aliment. Essayez une autre photo.",
+    "chLocked": "Des recettes avec ce que vous avez à la maison.",
+    "mnLeft": "Il vous reste environ {{kcal}} kcal aujourd'hui.",
+    "mnPhoto": "Photo du menu",
+    "mnPh": "Ou collez les plats du menu",
+    "mnGo": "Qu'est-ce que je commande ?",
+    "mnNone": "Je n'ai pas pu lire le menu. Essayez une autre photo.",
+    "mnLocked": "Prenez en photo le menu et Angie vous dit ce qui correspond le mieux.",
+    "pick": {
+      "best": "⭐ Meilleur choix",
+      "ok": "👍 Bien",
+      "treat": "🎉 Plaisir"
+    },
+    "crHow": "Qu'est-ce qui vous fait envie ? Choisissez et Angie vous propose une alternative savoureuse et plus légère.",
+    "crSave": "De {{a}} à {{b}} kcal : vous économisez {{d}} kcal.",
+    "crKind": "Et si vous voulez l'original, savourez-le calmement. Sans culpabilité.",
+    "crNote": "Des idées, pas des règles.",
+    "cr": {
+      "pizza": {
+        "n": "Pizza",
+        "s": "Pizza tortilla au poulet et aux légumes"
+      },
+      "icecream": {
+        "n": "Glace",
+        "s": "\"Glace\" à la banane surgelée et à la cannelle"
+      },
+      "chocolate": {
+        "n": "Chocolat",
+        "s": "2 carrés de chocolat noir avec des fraises"
+      },
+      "fries": {
+        "n": "Frites",
+        "s": "Quartiers de pommes de terre au four ou à l'air fryer"
+      },
+      "soda": {
+        "n": "Soda",
+        "s": "Eau gazeuse avec citron vert et menthe"
+      },
+      "sweetbread": {
+        "n": "Pain sucré",
+        "s": "Pancake à l'avoine et à la banane"
+      },
+      "burger": {
+        "n": "Burger",
+        "s": "Burger maison minceur avec salade"
+      },
+      "chips": {
+        "n": "Chips",
+        "s": "Pop-corn soufflé à l'air"
+      }
+    },
+    "slHours": "Combien d'heures avez-vous dormi ?",
+    "slStress": "Comment est votre stress aujourd'hui ?",
+    "st1": "Très calme",
+    "st2": "Calme",
+    "st3": "Normal",
+    "st4": "Stressé",
+    "st5": "Très stressé",
+    "slTipStress": "Respirez lentement pendant une minute. Une petite marche aide aussi.",
+    "slTipShort": "Courte nuit. Buvez de l'eau et essayez de vous coucher un peu plus tôt aujourd'hui.",
+    "slTipGood": "Un bon repos aide à contrôler l'appétit. Continuez ainsi !",
+    "slBreath": "Respirez avec Angie",
+    "slBreathSay": "Inspirez pendant quatre secondes. Retenez quatre. Expirez lentement pendant six. Encore.",
+    "slWeek": "Votre sommeil cette semaine",
+    "slAvg": "Moyenne : {{h}} heures",
+    "slNote": "Il ne s'agit pas d'un diagnostic médical.",
+    "remHow": "Angie affiche des rappels amicaux sur l'écran d'accueil. Choisissez lesquels.",
+    "remNote": "Les notifications téléphoniques arriveront avec l'application.",
+    "rn": {
+      "water": "Eau",
+      "meal": "Enregistrer vos repas",
+      "move": "Jour d'entraînement",
+      "sleep": "Enregistrer votre sommeil",
+      "checkin": "Bilan hebdomadaire"
+    },
+    "r": {
+      "water": "C'est l'heure d'un verre d'eau 💧",
+      "meal": "Enregistrez votre premier repas du jour 📸",
+      "move": "Aujourd'hui, c'est sport. Juste 20 minutes 💪",
+      "sleep": "Comment avez-vous dormi ? Appuyez pour l'enregistrer 😴",
+      "checkin": "Votre bilan hebdomadaire est prêt ⚖️"
+    },
+    "ptLevel": "Niveau {{n}}",
+    "ptNext": "{{n}} points pour le niveau suivant",
+    "ptHow": "Comment gagner des points",
+    "ptRules": "Repas 5 · verre d'eau 1 · défi du jour 10 · entraînement 20 · poids 5 · sommeil 3",
+    "ptRewards": "Récompenses pour votre avatar",
+    "rw": {
+      "cap": "Casquette",
+      "glasses": "Lunettes de soleil",
+      "medal": "Médaille",
+      "crown": "Couronne"
+    },
+    "wkLogged": "Vous avez enregistré de la nourriture {{n}} jours sur 7.",
+    "wkKcal": "Vous avez mangé {{a}} kcal en moyenne ; votre objectif est de {{b}}.",
+    "wkWater": "Eau : {{n}} verres par jour.",
+    "wkMove": "Entraînements : {{n}}, environ {{k}} kcal brûlées.",
+    "wkWeight": "Variation de poids : {{d}} kg.",
+    "wkSleep": "Sommeil : {{h}} heures en moyenne.",
+    "wkCheer1": "Super semaine, continuez comme ça !",
+    "wkCheer2": "Chaque jour compte. Cette semaine, on recommence ensemble.",
+    "wkPlay": "Écouter mon résumé",
+    "wkLocked": "Chaque semaine, Angie vous raconte vos progrès à voix haute.",
+    "avSkin": "Peau",
+    "avHair": "Cheveux",
+    "avShirt": "T-shirt",
+    "avNone": "Rien",
+    "avSayGood": "Beau travail aujourd'hui ! Je suis avec vous.",
+    "avSayStart": "Bonjour ! Commençons la journée avec un verre d'eau.",
+    "avTwin": "Voir le jumeau 3D (aperçu)",
+    "avNote": "Voici votre premier clone. Le jumeau 3D complet arrive dans Premium Plus.",
+    "avLocked": "Personnalisez votre avatar et débloquez des récompenses.",
+    "rpeQ": "Comment c'était ?",
+    "rpeL": {
+      "easy": "😎 Facile",
+      "ok": "👍 Bien",
+      "hard": "🥵 Difficile"
+    },
+    "rpe": {
+      "easy": "La prochaine fois, ce sera un tout petit peu plus dur.",
+      "ok": "Parfait, on ne change rien.",
+      "hard": "La prochaine fois, ce sera un peu plus facile."
+    },
+    "fbTitle": "Votre avis",
+    "fbPh": "Qu'aimeriez-vous améliorer ?",
+    "fbSave": "Envoyer à Angie One",
+    "fbOk": "Merci ! C'est enregistré.",
+    "fbNote": "Enregistré sur ce téléphone pour l'instant, sans votre nom.",
+    "devTitle": "IA Programmeur",
+    "devSub": "Lit les avis et les métriques et propose des changements. Vous approuvez en un clic. Aucune publication automatique.",
+    "devMetrics": "Jours actifs (7) : {{a}} · repas : {{e}} · entraînements : {{w}}",
+    "devFb": "Avis : {{n}}",
+    "devGo": "Analyser et proposer",
+    "devOffline": "Pas de connexion : propositions de base.",
+    "devQueued": "Approuvé : envoyé vers une branche de test. La publication nécessite votre accord.",
+    "devNever": "Ne touche jamais aux paiements ou à l'argent et ne publie jamais sans vous.",
+    "risk": {
+      "low": "risque faible",
+      "medium": "risque moyen"
+    },
+    "dr": {
+      "fastT": "Photo plus rapide",
+      "fastW": "Les utilisateurs trouvent la photo lente.",
+      "fastC": "Réduire la taille de la photo avant l'envoi et afficher la progression.",
+      "fontT": "Texte plus grand",
+      "fontW": "Les utilisateurs demandent un texte plus grand.",
+      "fontC": "Ajouter une option de texte grand format dans les Paramètres.",
+      "retT": "Rappel quotidien",
+      "retW": "Peu de jours actifs cette semaine.",
+      "retC": "Afficher un rappel amical à l'heure du déjeuner."
+    }
   }
- },
- "foCards": {
-  "c1": {
-   "title": "Passer à une formule supérieure",
-   "body": "Revenus > coûts pendant 3 mois consécutifs. Proposition : passer de la formule gratuite au forfait de base (exemple)."
-  },
-  "c2": {
-   "title": "Aide sociale mensuelle",
-   "body": "Allouer 15 % du bénéfice net aux personnes dans le besoin (exemple : 0 $, aucun revenu pour le moment)."
-  },
-  "c3": {
-   "title": "Publier la mise à jour 0.1.1",
-   "body": "L'IA de programmation a corrigé les textes en portugais. Déploiement progressif à 10 %."
-  }
- },
- "foods": {
-  "arepa": "Arepa de maïs",
-  "arepa_queso": "Arepa au fromage",
-  "empanada": "Empanada au bœuf (frite)",
-  "pabellon": "Pabellón criollo",
-  "frijoles": "Haricots noirs",
-  "arroz": "Riz blanc",
-  "platano": "Banane plantain mûre frite",
-  "tostones": "Tostones (bananes plantains frites)",
-  "tacos": "Tacos al pastor",
-  "tamal": "Tamal",
-  "gallo_pinto": "Gallo pinto",
-  "ceviche": "Ceviche de poisson",
-  "pupusa": "Pupusa",
-  "bandeja": "Bandeja paisa",
-  "feijoada": "Feijoada",
-  "pao_queijo": "Pão de queijo (petit pain au fromage)",
-  "aguacate": "Avocat",
-  "mango": "Mangue",
-  "huevo": "Œufs brouillés",
-  "pollo": "Poulet grillé",
-  "yuca": "Manioc bouilli",
-  "cafe": "Café au lait"
- },
- "coach": {
-  "title": "Coach personnel",
-  "introTitle": "Votre plan, conçu pour vous",
-  "introBody": "Répondez à 3 questions rapides et Angie élaborera votre plan de repas hebdomadaire et votre entraînement, selon votre objectif, votre corps et vos goûts.",
-  "create": "Créer mon plan",
-  "today": "Aujourd'hui",
-  "restDay": "Jour de repos — profitez-en !",
-  "restBody": "Se reposer fait partie du plan. Une petite promenade ou des étirements sont les bienvenus.",
-  "doneToday": "Séance d'aujourd'hui terminée. Bravo !",
-  "startToday": "Commencer la séance du jour",
-  "burnedToday": "brûlées aujourd'hui",
-  "burned": "brûlées",
-  "streak": "Série",
-  "week": "cette semaine",
-  "target": "Votre objectif quotidien : {{kcal}} kcal",
-  "source": {
-   "ai": "Plan créé par l'IA d'Angie",
-   "rules": "Plan de base (l'IA était occupée)"
-  },
-  "diet": "Plan de repas",
-  "workout": "Exercice",
-  "checkin": "Bilan hebdomadaire",
-  "due": "à faire aujourd'hui",
-  "chat": "Parler à Angie",
-  "edit": "Modifier mes préférences",
-  "setupTitle": "Configurons votre plan",
-  "place": "Où allez-vous vous entraîner ?",
-  "home": "À la maison",
-  "gym": "À la salle de sport",
-  "daysQ": "Jours par semaine",
-  "minutesQ": "Minutes par séance",
-  "levelQ": "Votre niveau",
-  "beginner": "Débutant",
-  "intermediate": "Intermédiaire",
-  "advanced": "Avancé",
-  "injuriesQ": "Douleurs, blessures ou limites particulières ?",
-  "none": "Aucune",
-  "inj": {
-   "knees": "Genoux",
-   "back": "Dos",
-   "shoulders": "Épaules",
-   "wrists": "Poignets"
-  },
-  "injuryNote": "Autre chose qu'Angie devrait savoir ? (optionnel)",
-  "optional": "Optionnel",
-  "dislikesQ": "Aliments que vous ne mangez pas",
-  "dis": {
-   "fish": "Poisson",
-   "eggs": "Œufs",
-   "dairy": "Produits laitiers",
-   "beef": "Viande rouge",
-   "chicken": "Poulet",
-   "legumes": "Légumineuses",
-   "nuts": "Fruits à coque",
-   "veg": "Végétarien"
-  },
-  "cuisineQ": "Votre cuisine préférée",
-  "cui": {
-   "latin": "Latine",
-   "mexican": "Mexicaine",
-   "caribbean": "Caribéenne",
-   "andean": "Colombienne / Andine",
-   "brazilian": "Brésilienne",
-   "international": "Internationale"
-  },
-  "budgetQ": "Budget alimentaire",
-  "bud": {
-   "low": "Faible",
-   "medium": "Moyen",
-   "high": "Élevé"
-  },
-  "mealsQ": "Repas par jour",
-  "generate": "Créer le plan",
-  "building": "Angie élabore votre plan…",
-  "buildingSub": "Cela peut prendre jusqu'à une minute.",
-  "fallbackNote": "L'IA est occupée pour le moment, je vous ai donc préparé un plan de base avec les mêmes calories et vos préférences. Vous pourrez réessayer avec l'IA plus tard.",
-  "seePlan": "Voir mon plan",
-  "tryAgain": "Réessayer avec l'IA",
-  "slots3": [
-   "Petit-déjeuner",
-   "Déjeuner",
-   "Dîner"
-  ],
-  "slots4": [
-   "Petit-déjeuner",
-   "Déjeuner",
-   "Collation",
-   "Dîner"
-  ],
-  "slots5": [
-   "Petit-déjeuner",
-   "Collation du matin",
-   "Déjeuner",
-   "Collation de l'après-midi",
-   "Dîner"
-  ],
-  "slots2": [
-   "Repas 1",
-   "Repas 2"
-  ],
-  "slots6": [
-   "Repas 1",
-   "Repas 2",
-   "Repas 3",
-   "Repas 4",
-   "Repas 5",
-   "Repas 6"
-  ],
-  "portion": "portion ×{{x}}",
-  "logMeal": "Ajouter à mon journal",
-  "logged": "Ajouté à votre journal",
-  "shopping": "Liste de courses de la semaine",
-  "reps": "{{n}} rép.",
-  "secs": "{{n}} s",
-  "restS": "repos {{n}} s",
-  "start": "Commencer la séance",
-  "safety": "Échauffez-vous d'abord, bougez lentement et arrêtez-vous en cas de douleur, de vertige ou d'oppression thoracique.",
-  "notMedical": "Angie donne des conseils généraux, pas des avis médicaux. Si vous avez un problème de santé, consultez un professionnel.",
-  "lockedTitle": "Votre coach est une fonctionnalité Premium",
-  "lockedBody": "Votre essai gratuit est terminé. Votre plan et votre historique sont sauvegardés — débloquez Premium pour continuer à vous entraîner avec Angie.",
-  "teaser1": "Plan de repas hebdomadaire aux saveurs latines et liste de courses",
-  "teaser2": "Entraînements à la maison ou en salle avec un minuteur guidé",
-  "teaser3": "Un bilan hebdomadaire qui ajuste votre plan en douceur",
-  "teaser4": "Discutez avec Angie de nutrition et d'exercice",
-  "unlock": "Découvrir Premium",
-  "keepData": "Aucun débit automatique.",
-  "stepOf": "Étape {{a}} sur {{b}}",
-  "setOf": "Série {{a}} sur {{b}}",
-  "rest": "Repos",
-  "breathe": "Respirez et buvez un peu d'eau",
-  "upNext": "À suivre",
-  "skipRest": "Passer le repos",
-  "doneSet": "Terminé",
-  "pause": "Pause",
-  "resume": "Reprendre",
-  "endEarly": "Terminer maintenant",
-  "greatJob": "Bravo ! Séance terminée",
-  "addedHome": "Vos calories brûlées ont été ajoutées au bilan d'aujourd'hui sur Accueil.",
-  "sayRest": "Repos de {{n}} secondes.",
-  "sayDone": "Bravo ! Vous avez brûlé environ {{kcal}} calories.",
-  "sayBurned": "Vous avez brûlé {{kcal}} calories en vous entraînant.",
-  "dLegs": "Jambes et abdos",
-  "dUpper": "Haut du corps et abdos",
-  "dFull": "Corps complet",
-  "dRest": "Repos"
- },
- "ci": {
-  "weightQ": "Votre poids aujourd'hui (kg)",
-  "energyQ": "Comment était votre niveau d'énergie cette semaine ?",
-  "e_low": "Faible",
-  "e_ok": "Normal",
-  "e_good": "Super",
-  "skippedQ": "Avez-vous sauté des repas exprès ou ressenti de la culpabilité après avoir mangé ?",
-  "bingeQ": "Avez-vous beaucoup mangé sans pouvoir vous arrêter, ou fait du sport pour « compenser » un repas ?",
-  "yes": "Oui",
-  "no": "Non",
-  "private": "Vos réponses restent sur votre téléphone. Elles aident Angie à prendre soin de vous.",
-  "save": "Enregistrer le bilan",
-  "history": "Bilans récents",
-  "notYet": "Votre prochain bilan est dans {{n}} jours, mais vous pouvez en faire un dès maintenant.",
-  "newTarget": "Votre objectif quotidien : {{kcal}} kcal",
-  "mFirst": "Premier bilan enregistré ! La semaine prochaine, nous comparerons et ajusterons.",
-  "mOnTrack": "Vous êtes sur la bonne voie. Nous gardons le plan tel quel.",
-  "mPlateau": "Votre poids est stable. Nous réduisons légèrement votre objectif (−100 kcal) — en douceur.",
-  "mFast": "Vous perdez du poids plus vite que conseillé. Nous ajoutons un peu de nourriture (+150 kcal).",
-  "mGainMore": "Pour prendre du muscle, nous ajoutons un peu de nourriture (+100 kcal).",
-  "mGainSlow": "Vous prenez du poids un peu vite. Nous réduisons légèrement (−100 kcal).",
-  "mKeepDown": "Votre poids a un peu augmenté. Petit ajustement (−100 kcal).",
-  "mKeepUp": "Votre poids a un peu baissé. Petit ajustement (+100 kcal).",
-  "tUp": "Entraînement : une série de plus par exercice. Vous êtes prêt(e) !",
-  "tDown": "Entraînement : un peu plus léger cette semaine, pour bien récupérer.",
-  "tSame": "Entraînement : idem que la semaine dernière.",
-  "warnTitle": "Nous prenons soin de vous",
-  "warnBody": "Certaines de vos réponses laissent penser que votre rapport à la nourriture est compliqué en ce moment. Cela arrive à beaucoup de personnes, et vous n'êtes pas seul(e). Nous n'allons pas baisser vos calories. Parler à un médecin, un nutritionniste ou un professionnel de la santé mentale peut vraiment vous aider. N'hésitez pas à contacter une ligne d'écoute ou un service d'aide d'urgence local."
- },
- "chat": {
-  "disclaimer": "Angie est un coach IA, pas un médecin. Ses réponses sont des conseils généraux ; en cas de problème de santé, consultez un professionnel.",
-  "hello": "Bonjour ! Posez-moi vos questions sur la nutrition, les recettes ou le sport.",
-  "s1": "Que puis-je manger pour un dîner sain ?",
-  "s2": "Comment faire un squat correctement ?",
-  "s3": "Est-ce grave de manger du riz le soir ?",
-  "placeholder": "Écrivez votre question",
-  "send": "Envoyer",
-  "offline": "Angie n'a pas pu répondre pour le moment. Vérifiez votre connexion et réessayez dans un instant.",
-  "limit": "Vous avez atteint vos {{n}} questions d'aujourd'hui. Revenez demain !"
- },
- "cfood": {
-  "b1": {
-   "n": "Arepa avec œuf et fromage",
-   "i": "1 arepa de maïs, 1 œuf brouillé, 30 g de queso fresco, tomate"
-  },
-  "b2": {
-   "n": "Flocons d'avoine à la banane et à la cannelle",
-   "i": "½ tasse d'avoine cuite dans du lait, 1 banane, cannelle"
-  },
-  "b3": {
-   "n": "Œufs brouillés et tortillas de maïs",
-   "i": "2 œufs avec tomate et oignon, 2 tortillas de maïs"
-  },
-  "b4": {
-   "n": "Yaourt aux fruits et à l'avoine",
-   "i": "1 tasse de yaourt nature, 1 tasse de fruits, 3 c. à s. d'avoine"
-  },
-  "b5": {
-   "n": "Tartines de pain complet à l'avocat et haricots",
-   "i": "2 tranches de pain complet, ¼ d'avocat, ½ tasse de haricots"
-  },
-  "l1": {
-   "n": "Riz, haricots et poulet",
-   "i": "¾ tasse de riz, ½ tasse de haricots, 120 g de poulet grillé, salade"
-  },
-  "l2": {
-   "n": "Poisson grillé et yuca",
-   "i": "150 g de poisson, 1 tasse de yuca bouilli, salade au citron"
-  },
-  "l3": {
-   "n": "Ragoût de bœuf, riz et plantain rôti",
-   "i": "120 g de bœuf mijoté, ¾ tasse de riz, ½ plantain mûr rôti"
-  },
-  "l4": {
-   "n": "Lentilles au riz",
-   "i": "1 tasse de lentilles, ½ tasse de riz, salade"
-  },
-  "l5": {
-   "n": "Poulet rôti aux pommes de terre et légumes",
-   "i": "130 g de poulet, 1 pomme de terre moyenne, 1 tasse de légumes"
-  },
-  "s1": {
-   "n": "Fruits et cacahuètes",
-   "i": "1 fruit, 1 petite poignée de cacahuètes"
-  },
-  "s2": {
-   "n": "Yaourt aux fruits",
-   "i": "1 tasse de yaourt nature, ½ tasse de fruits"
-  },
-  "s3": {
-   "n": "Mangue au citron vert et œuf dur",
-   "i": "1 tasse de mangue, citron vert, 1 œuf dur"
-  },
-  "s4": {
-   "n": "Salade de fruits",
-   "i": "1 banane et 1 tasse de fruits de saison"
-  },
-  "d1": {
-   "n": "Tacos au poulet et pico de gallo",
-   "i": "3 tortillas de maïs, 120 g de poulet, tomate et oignon"
-  },
-  "d2": {
-   "n": "Soupe de poulet aux légumes",
-   "i": "1 grand bol : poulet, pomme de terre, carotte, courge"
-  },
-  "d3": {
-   "n": "Salade de thon à l'avocat",
-   "i": "1 boîte de thon au naturel, ¼ d'avocat, laitue et tomate, crackers"
-  },
-  "d4": {
-   "n": "Omelette aux légumes et fromage",
-   "i": "2 œufs, légumes, 30 g de fromage, 1 tranche de pain"
-  },
-  "d5": {
-   "n": "Haricots noirs, riz et queso fresco",
-   "i": "1 tasse de haricots, ½ tasse de riz, 30 g de queso fresco"
-  }
- },
- "cing": {
-  "cornflour": "Farine de maïs précuite",
-  "eggs": "Œufs",
-  "cheese": "Queso fresco",
-  "tomato": "Tomates",
-  "oats": "Flocons d'avoine",
-  "banana": "Bananes",
-  "milk": "Lait",
-  "tortillas": "Tortillas de maïs",
-  "onion": "Oignons",
-  "yogurt": "Yaourt nature",
-  "fruit": "Fruits de saison",
-  "bread": "Pain complet",
-  "avocado": "Avocats",
-  "beans": "Haricots",
-  "rice": "Riz",
-  "chicken": "Blanc de poulet",
-  "salad": "Laitue et salade verte",
-  "fish": "Poisson blanc",
-  "yuca": "Yuca (manioc)",
-  "beef": "Bœuf maigre",
-  "plantain": "Plantains mûrs",
-  "lentils": "Lentilles",
-  "potato": "Pommes de terre",
-  "vegetables": "Légumes variés",
-  "peanuts": "Cacahuètes",
-  "tuna": "Thon en boîte au naturel"
- },
- "cex": {
-  "march": {
-   "n": "Marche sur place",
-   "d": "Levez les genoux l'un après l'autre en balançant les bras. Allez à un rythme tranquille pour vous échauffer."
-  },
-  "treadmill": {
-   "n": "Marche sur tapis",
-   "d": "Marchez à un rythme confortable. Vous devez pouvoir parler en marchant."
-  },
-  "chairSquat": {
-   "n": "Squat sur chaise",
-   "d": "Placez-vous devant une chaise, asseyez-vous lentement puis relevez-vous en poussant sur vos talons."
-  },
-  "bridge": {
-   "n": "Pont fessier",
-   "d": "Allongez-vous sur le dos, genoux fléchis. Levez les bassin, contractez les fessiers et redescendez lentement."
-  },
-  "calf": {
-   "n": "Élévations des mollets",
-   "d": "Tenez-vous à un mur ou une chaise. Montez sur la pointe des pieds et redescendez lentement."
-  },
-  "sideLeg": {
-   "n": "Élévation latérale de la jambe",
-   "d": "Accrochez-vous à une chaise, montez une jambe sur le côté puis redescendez lentement. Changez de jambe."
-  },
-  "stepUp": {
-   "n": "Montées sur marche",
-   "d": "Montez sur une marche basse et stable avec un pied, puis l'autre, et redescendez lentement."
-  },
-  "legPress": {
-   "n": "Presse à cuisses",
-   "d": "Asseyez-vous sur la machine, pieds à plat sur la plateforme. Poussez sans verrouiller les genoux et revenez lentement."
-  },
-  "gobletSquat": {
-   "n": "Goblet squat",
-   "d": "Tenez un haltère léger contre votre poitrine. Descendez en squat le dos droit, puis remontez."
-  },
-  "wallPush": {
-   "n": "Pompes contre le mur",
-   "d": "Mains sur le mur à hauteur de poitrine. Pliez les coudes vers le mur et poussez pour revenir."
-  },
-  "armCircles": {
-   "n": "Cercles avec les bras",
-   "d": "Bras écartés, faites de petits cercles vers l'avant puis vers l'arrière."
-  },
-  "bottleRow": {
-   "n": "Tirage avec bouteilles d'eau",
-   "d": "Penchez-vous légèrement en avant le dos droit, ramenez deux bouteilles d'eau vers votre taille et redescendez."
-  },
-  "latPull": {
-   "n": "Tirage vertical",
-   "d": "Asseyez-vous à la machine, tirez la barre vers le haut de la poitrine et laissez-la remonter lentement."
-  },
-  "seatedRow": {
-   "n": "Tirage horizontal",
-   "d": "Tenez-vous bien droit, tirez la poignée vers le ventre, serrez les omoplates et revenez lentement."
-  },
-  "chestPress": {
-   "n": "Développé couché à la machine",
-   "d": "Asseyez-vous le dos bien calé. Poussez les poignées vers l'avant et revenez lentement."
-  },
-  "birdDog": {
-   "n": "Bird dog",
-   "d": "À quatre pattes, tendez un bras vers l'avant et la jambe opposée vers l'arrière. Maintenez, puis inversez."
-  },
-  "deadBug": {
-   "n": "Dead bug",
-   "d": "Allongez-vous sur le dos, bras levés et genoux fléchis. Descendez lentement le bras et la jambe opposés, puis inversez."
-  },
-  "plank": {
-   "n": "Planche",
-   "d": "En appui sur les avant-bras et la pointe des pieds (ou les genoux), gardez le corps aligné et respirez."
-  },
-  "jacks": {
-   "n": "Jumping jacks",
-   "d": "Sautez en écartant les jambes et les bras, puis refermez. Pour un impact réduit, faites un pas chassé sur le côté à la place."
-  },
-  "bike": {
-   "n": "Vélo d'appartement",
-   "d": "Pédalez à un rythme régulier qui vous fait respirer un peu plus vite."
-  },
-  "stretch": {
-   "n": "Étirements doux",
-   "d": "Étirez lentement les jambes, le dos et les bras. Maintenez chaque étirement 15 à 20 secondes sans à-coups."
-  }
- },
- "x": {
-  "pending": "Connexion en attente",
-  "example": "EXEMPLE DE DONNÉES",
-  "explore": "Explorer",
-  "more4": "Bientôt disponible",
-  "pendingLegend": "⏳ = nécessite un compte, une clé ou un partenaire approuvé par José. Cela fonctionne ici avec des données locales ou d'exemple.",
-  "pendingBody": "Cette connexion est en attente : elle nécessite un compte ou l'approbation d'un partenaire. Rien n'a été envoyé.",
-  "needServer": "nécessite un serveur",
-  "needPay": "nécessite des paiements",
-  "needStores": "nécessite des partenaires marchands",
-  "t": {
-   "social": "Communauté",
-   "recipes": "Recettes latines",
-   "gym": "Sport",
-   "connect": "Montres et musique",
-   "fasting": "Jeûne",
-   "twin": "Jumeau numérique",
-   "video": "Vidéo de la semaine",
-   "health": "Modes santé",
-   "family": "Famille",
-   "report": "Rapport médical",
-   "shop": "Liste de courses",
-   "travel": "Mode voyage",
-   "b2b": "Pour les coachs",
-   "market": "Experts",
-   "corp": "Bien-être en entreprise",
-   "store": "Boutique",
-   "impact": "Notre impact",
-   "pet": "Plan animal",
-   "whatsapp": "Journal WhatsApp",
-   "tips": "Astuces de créateurs"
-  },
-  "me": "Moi",
-  "postPh": "Partage tes progrès…",
-  "addPhoto": "Photo",
-  "publish": "Publier",
-  "localOnly": "Pour l'instant, les publications restent uniquement sur cet appareil.",
-  "like": "J'aime",
-  "follow": "S'abonner",
-  "following": "Abonnements",
-  "groups": "Groupes",
-  "g1": "Mamans latines qui s'entraînent",
-  "g2": "Coureurs de 5 km",
-  "g3": "Cuisine saine",
-  "join": "Rejoindre",
-  "joined": "Rejoint",
-  "challenges": "Défis",
-  "ch1": "Rejoins 3 groupes cette semaine",
-  "socialSafety": "Pas de comparaison corporelle, pas de jugement. Les publications signalées sont masquées.",
-  "k": {
-   "meal": "Repas",
-   "gym": "Sport",
-   "run": "Course"
-  },
-  "vote": "Voter",
-  "see": "Voir la recette",
-  "close": "Fermer",
-  "rec": {
-   "r1": {
-    "n": "Arroz con pollo au poulet léger",
-    "s": "Riz complet, poulet sans peau, poivrons, petits pois. 1 c. à café d'huile."
-   },
-   "r2": {
-    "n": "Arepa aux haricots noirs et maïs",
-    "s": "Arepa grillée, haricots noirs, fromage frais, avocat."
-   },
-   "r3": {
-    "n": "Ropa vieja au four",
-    "s": "Bœuf maigre, tomates, poivrons, oignon. À servir avec une salade."
-   },
-   "r4": {
-    "n": "Bol de fruits tropicaux",
-    "s": "Papaye, mangue, ananas, yaourt nature et avoine."
-   }
-  },
-  "mv": {
-   "squat": "Squats",
-   "pushup": "Pompes",
-   "jack": "Jumping jacks",
-   "plank": "Planche"
-  },
-  "mvd": {
-   "squat": "Pieds écartés de la largeur des hanches, recule les fesses, torse bombé, genoux au-dessus des orteils.",
-   "pushup": "Mains sous les épaules, corps droit. Poser les genoux au sol est autorisé.",
-   "jack": "saute en écartant les bras et les jambes, retombe en douceur.",
-   "plank": "Avant-bras au sol, corps bien droit, respire lentement."
-  },
-  "animNote": "Nos propres animations, sans licences tierces. De vraies vidéos arriveront plus tard.",
-  "int": {
-   "garmin": "Garmin",
-   "fitbit": "Fitbit",
-   "samsung": "Samsung Health",
-   "spotify": "Spotify (musique pour l'entraînement)",
-   "health": "Apple Health / Health Connect"
-  },
-  "intWhy": "Importe automatiquement tes pas, ta fréquence cardiaque et tes entraînements.",
-  "connect": "Connecter",
-  "manualSteps": "Pas du jour (manuel)",
-  "fastGoal": "Objectif : {{h}} heures",
-  "fastStart": "Commencer le jeûne",
-  "fastEnd": "Terminer le jeûne",
-  "fastLog": "Jeûnes récents",
-  "fastBlocked": "Le jeûne est désactivé pour ta sécurité (moins de 18 ans, grossesse ou diabète). Parles-en à ton médecin.",
-  "fastNote": "Optionnel. Arrête-toi si tu te sens étourdi ou mal.",
-  "preview": "aperçu",
-  "tw": {
-   "talk": "Coucou ! Aujourd'hui ton objectif est de {{kcal}} kcal. Tu vas y arriver !",
-   "eat": "Je mange une assiette équilibrée : la moitié de légumes.",
-   "cook": "Cuisinons un arroz con pollo léger ensemble.",
-   "train": "Bougeons ! 10 squats avec moi."
-  },
-  "twa": {
-   "talk": "Parler",
-   "eat": "Manger",
-   "cook": "Cuisiner",
-   "train": "S'entraîner"
-  },
-  "twinNote": "Aperçu animé. Le jumeau 3D complet fait partie de Premium Plus et est encore en développement.",
-  "play": "Revoir ma semaine",
-  "v1": "Tu as enregistré {{n}} jours cette semaine",
-  "v2": "Moyenne de {{kcal}} kcal par jour enregistré",
-  "v3": "Tu as brûlé {{kcal}} kcal en t'entraînant",
-  "v4": "Tu as bu {{n}} verres d'eau",
-  "v5": "Chaque pas compte. Continue comme ça !",
-  "videoNote": "Créé sur ton téléphone avec tes données. Rien n'est mis en ligne.",
-  "healthWarn": "Ces modes donnent uniquement des conseils généraux. Ils ne remplacent pas ton médecin et ne modifient pas ton traitement.",
-  "on": "Activé",
-  "off": "Activer",
-  "m": {
-   "diabetes": "Diabète",
-   "hypertension": "Hypertension artérielle",
-   "cholesterol": "Cholestérol",
-   "cycle": "Cycle menstruel",
-   "pregnancy": "Grossesse"
-  },
-  "md": {
-   "diabetes": "Surveille les glucides par repas, associe-les à des protéines, pas de jeûne. Vérifie ta glycémie selon les indications de ton médecin.",
-   "hypertension": "Limite de sel : 1 500 mg de sodium par jour. Moins d'aliments en conserve et de charcuterie.",
-   "cholesterol": "Plus de fibres, d'avoine et de haricots ; moins d'aliments frits et de graisses saturées.",
-   "cycle": "Note tes règles pour connaître ton prochain cycle et adapter ton énergie.",
-   "pregnancy": "Pas de déficit calorique, pas de jeûne. Environ +300 kcal à partir du 2e trimestre. Suis les conseils de ton médecin."
-  },
-  "periodToday": "Mes règles ont commencé aujourd'hui",
-  "nextPeriod": "Prochaines règles vers le {{d}}",
-  "famName": "Nom",
-  "adult": "Adulte",
-  "child": "Enfant",
-  "kidRule": "Enfants : pas de comptage de calories, uniquement de bonnes habitudes.",
-  "famNote": "Les données de chaque personne restent sur cet appareil.",
-  "repTitle": "Résumé pour mon médecin",
-  "repModes": "Modes",
-  "repFoot": "Généré par Angie One. Estimations, pas un diagnostic.",
-  "savePdf": "Enregistrer en PDF",
-  "repNote": "Sélectionne 'Enregistrer en PDF' dans la fenêtre d'impression. C'est toi qui décides à qui le donner.",
-  "si1": "Blanc de poulet",
-  "si2": "Riz complet",
-  "si3": "Haricots noirs",
-  "storeN": "Magasin {{n}}",
-  "delivery": "Livraison à domicile",
-  "priceNote": "Exemples de prix. Les vrais prix nécessitent des partenaires marchands.",
-  "travelOn": "Mode voyage activé",
-  "travelOff": "Activer le mode voyage",
-  "tr1": "Les objectifs restent souples : enregistrer 1 repas suffit.",
-  "tr2": "Au restaurant : grillades, salade, eau.",
-  "tr3": "Séance de sport de 10 minutes en chambre d'hôtel.",
-  "tr4": "Les changements de fuseau horaire sont gérés automatiquement.",
-  "hotelWorkout": "Sport en chambre",
-  "clients": "Tes clients",
-  "daysLogged": "{{n}} jours enregistrés",
-  "b2bPrice": "Formule coach : gère jusqu'à 20 clients (prix à définir).",
-  "b2bPrivacy": "Les clients choisissent ce qu'ils partagent avec leur coach.",
-  "sponsored": "Sponsorisé",
-  "ad1": "Légumes bio livrés à ta porte.",
-  "ad2": "Bouteilles d'eau sans sucres ajoutés.",
-  "adWhy": "Uniquement des marques saines approuvées. Jamais choisies à partir de tes données de santé.",
-  "adsTitle": "Marques approuvées",
-  "role": {
-   "nutri": "Nutritionniste",
-   "trainer": "Entraîneur personnel",
-   "physio": "Physiothérapeute"
-  },
-  "session": "séance",
-  "book": "Réserver",
-  "marketNote": "Licences vérifiées avant le lancement.",
-  "corpCh": "Défi de pas en équipe",
-  "corpPrivacy": "L'entreprise voit seulement les totaux de l'équipe, jamais les données de santé individuelles.",
-  "aggTitle": "Rapport anonyme",
-  "people": "personnes",
-  "aggNote": "Les groupes de moins de 20 personnes sont masqués. Aucune donnée individuelle.",
-  "purpose": "Acheter utile",
-  "purposeBody": "La majeure partie de l'argent de chaque produit aide les personnes ayant des problèmes de santé liés à une mauvaise nutrition, au surpoids, au manque d'exercice ou ayant besoin de kinésithérapie.",
-  "prod": {
-   "tee": "T-shirt Angie One",
-   "hoodie": "Sweat à capuchon corail",
-   "bottle": "Gourde",
-   "cap": "Casquette"
-  },
-  "openEtsy": "Ouvrir la boutique Etsy",
-  "storeNote": "Les produits sont fabriqués à la demande sur Etsy (boutique Parra Apps). La boutique n'est pas encore ouverte.",
-  "fundNext": "Fonds pour la personne suivante",
-  "helped": "Personnes aidées",
-  "reason": {
-   "physio": "Kinésithérapie",
-   "nutrition": "Plan nutritionnel"
-  },
-  "impactNote": "Les noms sont masqués et affichés uniquement avec consentement. Chaque paiement est approuvé par le fondateur et possède un reçu.",
-  "splitTitle": "Répartition des bénéfices 60/25/15",
-  "sOps": "Fonctionnement",
-  "sGrowth": "Croissance",
-  "sSocial": "Aide sociale",
-  "splitNote": "Exemple avec 1 000 $ de bénéfice net. Aucun argent ne bouge sans ton accord.",
-  "disbTitle": "Propositions d'aide",
-  "disbNote": "L'IA administrative propose ; tu approuves en un seul geste. Les paiements ne sont pas encore connectés.",
-  "dog": "Chien",
-  "cat": "Chat",
-  "day": "jour",
-  "walk": "Marche effectuée",
-  "walked": "Marche effectuée aujourd'hui",
-  "petNote": "Approximatif. Demande à ton vétérinaire.",
-  "waHow": "Écris comme sur WhatsApp, par exemple : 'J'ai mangé 2 arepas'.",
-  "waPh": "Message",
-  "waTry": "Essayer",
-  "tipsNote": "Les pourboires vont à 100 % au créateur, moins les frais de paiement."
- }
 }
