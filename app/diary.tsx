@@ -14,7 +14,7 @@ export default function Diary() {
   const ents = st.entries.filter((e) => e.date === d).sort((a, b) => a.time - b.time);
   const total = ents.reduce((a, e) => a + e.kcal, 0);
   return (
-    <Screen title={t('diary.title')}>
+    <Screen title={off === 0 ? t('diary.title') : t('diary.day')}>
       <View style={s.row}>
         <Btn small kind="ghost" label="◀" a11y={t('diary.prev')} onPress={() => setOff(off - 1)} style={{ width: 64 }} />
         <Text style={[s.h2, { flex: 1, textAlign: 'center' }]}>{off === 0 ? t('diary.today') : dt.toLocaleDateString()}</Text>

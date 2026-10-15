@@ -1,40 +1,49 @@
 /**
  * Capa de IA para estimar platos.
- * - Llama al proxy gratis de Cloudflare Worker (la clave de Gemini vive solo en el Worker como secreto).
- * - Si el Worker falla → MODO DEMO claramente etiquetado (estimación simulada).
+ * Llama al proxy gratis de Cloudflare Worker (la clave de Gemini vive solo en el Worker como secreto).
+ * Si algo falla lanza AIError con un código claro para mostrar un mensaje entendible (nunca inventa datos).
  */
 export type Estimate = { name: string; kcalMin: number; kcalMax: number; p: number; c: number; f: number; confidence: 'high' | 'medium' | 'low'; mode: 'live' | 'demo' };
+export type AIErrorCode = 'offline' | 'busy' | 'tooLarge' | 'notFood' | 'server';
+export class AIError extends Error { constructor(public code: AIErrorCode) { super(code); } }
 
 export const AI_URL = 'https://angie-one-ai.angieoneapp-support.workers.dev/estimate';
-export const aiMode: 'live' | 'demo' = 'live';
+const TIMEOUT_MS = 30000;
 
-async function callAI(body: object): Promise<Estimate> {
-  try {
-    const res = await fetch(AI_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
-    if (!res.ok) throw new Error('AI ' + res.status);
-    const o = await res.json();
-    return { name: String(o.name || '?'), kcalMin: +o.kcalMin || 0, kcalMax: +o.kcalMax || 0, p: +o.p || 0, c: +o.c || 0, f: +o.f || 0, confidence: o.confidence || 'medium', mode: 'live' };
-  } catch {
-    return demoEstimate();
+async function once(body: string): Promise<Estimate> {
+  const ctl = new AbortController(); const timer = setTimeout(() => ctl.abort(), TIMEOUT_MS);
+  let res: Response;
+  try { res = await fetch(AI_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, signal: ctl.signal }); }
+  catch { throw new AIError('offline'); }
+  finally { clearTimeout(timer); }
+  let o: any = {}; try { o = await res.json(); } catch { /* vacío */ }
+  if (!res.ok) {
+    if (res.status === 413) throw new AIError('tooLarge');
+    if (res.status === 429 || o.error === 'busy') throw new AIError('busy');
+    if (o.error === 'not_food') throw new AIError('notFood');
+    throw new AIError('server');
+  }
+  const n = (v: any) => Math.max(0, Math.round(+v || 0));
+  let lo = n(o.kcalMin), hi = n(o.kcalMax); if (lo > hi) [lo, hi] = [hi, lo];
+  if (!hi || !o.name) throw new AIError('notFood');
+  return { name: String(o.name), kcalMin: lo, kcalMax: hi, p: n(o.p), c: n(o.c), f: n(o.f), confidence: ['high', 'medium', 'low'].includes(o.confidence) ? o.confidence : 'medium', mode: 'live' };
+}
+
+/** 1 reintento automático si la red o el servidor fallan (el Worker ya reintenta contra Google). */
+async function callAI(payload: object): Promise<Estimate> {
+  const body = JSON.stringify(payload);
+  try { return await once(body); }
+  catch (e: any) {
+    if (e instanceof AIError && (e.code === 'offline' || e.code === 'server')) { await new Promise((r) => setTimeout(r, 1200)); return once(body); }
+    throw e;
   }
 }
 
 export function estimateMeal(base64: string, mime: string, lang: string): Promise<Estimate> {
   return callAI({ image: base64, mime, lang });
 }
-
 export function estimateText(text: string, lang: string): Promise<Estimate> {
-  return callAI({ text, lang });
-}
-
-const DEMO = [
-  { name: 'Arroz, frijoles y pollo', kcalMin: 520, kcalMax: 680, p: 38, c: 75, f: 14 },
-  { name: 'Arepa con queso y aguacate', kcalMin: 410, kcalMax: 560, p: 14, c: 48, f: 22 },
-  { name: 'Ensalada con huevo', kcalMin: 250, kcalMax: 360, p: 16, c: 14, f: 18 },
-];
-function demoEstimate(): Promise<Estimate> {
-  const d = DEMO[Math.floor(Math.random() * DEMO.length)];
-  return new Promise((r) => setTimeout(() => r({ ...d, confidence: 'medium', mode: 'demo' }), 900));
+  return callAI({ text: text.trim().slice(0, 500), lang });
 }
 
 /** Ajustes de 1 toque y porción sobre la estimación. */

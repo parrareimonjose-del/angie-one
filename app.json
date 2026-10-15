@@ -5,27 +5,45 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "automatic",
+    "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "com.parraapps.angieone",
       "infoPlist": {
         "NSCameraUsageDescription": "Angie One usa la cámara para analizar tus platos y códigos de barras.",
-        "NSPhotoLibraryUsageDescription": "Angie One usa tus fotos para analizar platos."
+        "NSPhotoLibraryUsageDescription": "Angie One usa tus fotos para analizar platos.",
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSMicrophoneUsageDescription": "Angie One usa el micrófono solo si dictas una comida por voz."
+      },
+      "buildNumber": "1",
+      "config": {
+        "usesNonExemptEncryption": false
       }
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E11D48",
-        "foregroundImage": "./assets/icon.png"
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png",
+        "backgroundColor": "#E11D48"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.parraapps.angieone"
+      "package": "com.parraapps.angieone",
+      "versionCode": 1,
+      "permissions": [
+        "android.permission.CAMERA"
+      ],
+      "blockedPermissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png",
       "output": "single",
-      "bundler": "metro"
+      "bundler": "metro",
+      "name": "Angie One",
+      "themeColor": "#E11D48",
+      "backgroundColor": "#FFF7F5"
     },
     "plugins": [
       "expo-router",
@@ -33,7 +51,18 @@
       [
         "expo-camera",
         {
-          "cameraPermission": "Angie One usa la cámara para analizar tus platos y códigos de barras."
+          "cameraPermission": "Angie One usa la cámara para analizar tus platos y códigos de barras.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#FFF7F5"
         }
       ]
     ],
@@ -41,6 +70,7 @@
     "experiments": {
       "baseUrl": "/angie-one",
       "typedRoutes": false
-    }
+    },
+    "description": "Angie One: AI calorie & nutrition coach. Snap your meal, know your calories."
   }
 }

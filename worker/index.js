@@ -5,8 +5,8 @@ const RATE = 20; // requests per minute per IP (per isolate, best effort)
 const ORIGINS = [/^https:\/\/parrareimonjose-del\.github\.io$/, /^http:\/\/localhost(:\d+)?$/, /^http:\/\/127\.0\.0\.1(:\d+)?$/];
 const hits = new Map();
 const PROMPT = `You are a nutrition estimator for Latin American and international food. Estimate the meal (from the photo or description) and answer ONLY JSON:
-{"name": short dish name in LANG, "kcalMin": int, "kcalMax": int, "p": grams protein, "c": grams carbs, "f": grams fat, "confidence": "high"|"medium"|"low"}
-Give a realistic RANGE, not a single value. Never comment on body weight or give medical advice.`;
+{"isFood": true|false, "name": short dish name in LANG, "kcalMin": int, "kcalMax": int, "p": grams protein, "c": grams carbs, "f": grams fat, "confidence": "high"|"medium"|"low"}
+If there is no food or drink in the photo/description, answer {"isFood": false}. Give a realistic RANGE, not a single value. Never comment on body weight or give medical advice.`;
 
 function cors(origin) {
   const ok = origin && ORIGINS.some((r) => r.test(origin));
@@ -35,15 +35,34 @@ export default {
       parts.push({ inline_data: { mime_type: mime, data: String(b.image) } });
     } else if (b.text) parts.push({ text: 'Meal: ' + String(b.text).slice(0, 500) });
     else return json({ error: 'need image or text' }, 400, h);
-    const call = () => fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`, {
-      method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': env.GEMINI_API_KEY },
-      body: JSON.stringify({ contents: [{ parts }], generationConfig: { responseMimeType: 'application/json', temperature: 0.2, maxOutputTokens: 300 } }),
-    });
-    let r = await call();
-    if (r.status === 429 || r.status >= 500) { await new Promise((x) => setTimeout(x, 800)); r = await call(); }
-    if (!r.ok) { const d = (await r.text()).slice(0, 300); console.log('upstream', r.status, d); return json({ error: 'upstream ' + r.status, detail: d.replace(/AIza[\w-]+|AQ\.[\w-]+/g, '***') }, 502, h); }
+    const call = async () => {
+      const ctl = new AbortController(); const tm = setTimeout(() => ctl.abort(), 20000);
+      try {
+        return await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`, {
+          method: 'POST', signal: ctl.signal, headers: { 'Content-Type': 'application/json', 'x-goog-api-key': env.GEMINI_API_KEY },
+          body: JSON.stringify({ contents: [{ parts }], generationConfig: { responseMimeType: 'application/json', temperature: 0.2, maxOutputTokens: 400 } }),
+        });
+      } catch (e) { return null; } finally { clearTimeout(tm); }
+    };
+    // Hasta 3 intentos con espera creciente si Google está saturado (429), falla (5xx) o no responde.
+    let r = null;
+    for (let i = 0; i < 3; i++) {
+      r = await call();
+      if (r && r.ok) break;
+      if (r && r.status !== 429 && r.status < 500) break;
+      if (i < 2) await new Promise((x) => setTimeout(x, [700, 1800][i]));
+    }
+    if (!r) return json({ error: 'busy', message: 'AI timeout' }, 503, h);
+    if (!r.ok) {
+      const d = (await r.text()).slice(0, 300); console.log('upstream', r.status, d.replace(/AIza[\w-]+|AQ\.[\w-]+/g, '***'));
+      return json({ error: r.status === 429 || r.status >= 500 ? 'busy' : 'upstream' }, r.status === 429 || r.status >= 500 ? 503 : 502, h);
+    }
     const j = await r.json();
-    let o; try { o = JSON.parse(j?.candidates?.[0]?.content?.parts?.[0]?.text || '{}'); } catch { return json({ error: 'parse' }, 502, h); }
-    return json({ name: String(o.name || '?'), kcalMin: +o.kcalMin || 0, kcalMax: +o.kcalMax || 0, p: +o.p || 0, c: +o.c || 0, f: +o.f || 0, confidence: ['high','medium','low'].includes(o.confidence) ? o.confidence : 'medium' }, 200, h);
+    const txt = (j?.candidates?.[0]?.content?.parts || []).map((p) => p.text || '').join('').replace(/^```(json)?|```$/g, '').trim();
+    let o; try { o = JSON.parse(txt || '{}'); } catch { const m = txt.match(/\{[\s\S]*\}/); try { o = JSON.parse(m ? m[0] : '{}'); } catch { return json({ error: 'parse' }, 502, h); } }
+    const n = (v) => Math.max(0, Math.round(+v || 0));
+    let lo = n(o.kcalMin), hi = n(o.kcalMax); if (lo > hi) [lo, hi] = [hi, lo];
+    if (o.isFood === false || !hi) return json({ error: 'not_food' }, 422, h);
+    return json({ name: String(o.name || '?').slice(0, 80), kcalMin: lo, kcalMax: hi, p: n(o.p), c: n(o.c), f: n(o.f), confidence: ['high','medium','low'].includes(o.confidence) ? o.confidence : 'medium' }, 200, h);
   },
 };

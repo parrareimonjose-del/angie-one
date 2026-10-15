@@ -33,7 +33,7 @@ const es = {
   manual: { title: 'Registro manual', name: 'Nombre', kcal: 'Calorías', latin: 'Comida latina', search: 'Buscar comida…', dictate: 'Dictar por voz' },
   diary: { title: 'Diario de hoy', empty: 'Aún no hay nada. ¡Toma una foto de tu plato!', total: 'Total', remove: 'Quitar', prev: 'Día anterior', nextDay: 'Día siguiente', today: 'Hoy' },
   more: { title: 'Más', barcode: 'Código de barras', manual: 'Registro manual', settings: 'Ajustes', premium: 'Premium', founder: 'Panel del Fundador' },
-  set: { title: 'Ajustes', language: 'Idioma', auto: 'Automático (idioma del teléfono)', ai: 'Análisis con IA', aiDesc: 'Si lo apagas, no se envían fotos a ningún servicio.', profile: 'Rehacer mi perfil', reset: 'Borrar mis datos', resetQ: '¿Seguro? Esto borra todo en este dispositivo.', privacy: 'Tus datos se guardan solo en este dispositivo.', version: 'Versión MVP' },
+  set: { title: 'Ajustes', language: 'Idioma', auto: 'Automático (idioma del teléfono)', ai: 'Análisis con IA', aiDesc: 'Si lo apagas, no se envían fotos a ningún servicio.', profile: 'Rehacer mi perfil', reset: 'Borrar mis datos', resetQ: '¿Seguro? Esto borra todo en este dispositivo.', privacy: 'Tu diario se guarda solo en este dispositivo. Nunca vendemos tus datos de salud.', version: 'Versión MVP' },
   pay: { title: 'Angie One Premium', sub: 'Todo lo que necesitas, a precio honesto', monthly: '1,99 $ / mes', yearly: '14,99 $ / año', yearlySave: 'Ahorras 37 %', latam: 'Latinoamérica: 0,99 $ / mes',
     f1: 'Fotos con IA ilimitadas (uso justo)', f2: 'Planes de dieta y ejercicio personalizados', f3: 'Coach semanal y chat', f4: 'Escáner de nevera y menú', f5: 'Sin anuncios',
     offer: 'Oferta de bienvenida 48 h: tu precio queda congelado para siempre mientras sigas suscrito.', renew: 'Renovación automática. Cancela en 1 toque cuando quieras. El precio se muestra antes de pagar.',
@@ -64,7 +64,7 @@ const en: Dict = {
   manual: { title: 'Manual log', name: 'Name', kcal: 'Calories', latin: 'Latin food', search: 'Search food…', dictate: 'Dictate by voice' },
   diary: { title: "Today's diary", empty: 'Nothing yet. Snap a photo of your meal!', total: 'Total', remove: 'Remove', prev: 'Previous day', nextDay: 'Next day', today: 'Today' },
   more: { title: 'More', barcode: 'Barcode', manual: 'Manual log', settings: 'Settings', premium: 'Premium', founder: 'Founder Panel' },
-  set: { title: 'Settings', language: 'Language', auto: 'Automatic (phone language)', ai: 'AI analysis', aiDesc: 'If off, no photos are sent to any service.', profile: 'Redo my profile', reset: 'Delete my data', resetQ: 'Sure? This deletes everything on this device.', privacy: 'Your data is stored only on this device.', version: 'MVP version' },
+  set: { title: 'Settings', language: 'Language', auto: 'Automatic (phone language)', ai: 'AI analysis', aiDesc: 'If off, no photos are sent to any service.', profile: 'Redo my profile', reset: 'Delete my data', resetQ: 'Sure? This deletes everything on this device.', privacy: 'Your diary is stored only on this device. We never sell your health data.', version: 'MVP version' },
   pay: { title: 'Angie One Premium', sub: 'Everything you need, honest price', monthly: '$1.99 / month', yearly: '$14.99 / year', yearlySave: 'Save 37%', latam: 'Latin America: $0.99 / month',
     f1: 'Unlimited AI photos (fair use)', f2: 'Personalized diet & workout plans', f3: 'Weekly coach & chat', f4: 'Fridge & menu scanner', f5: 'No ads',
     offer: '48h welcome offer: your price is locked forever while you stay subscribed.', renew: 'Auto-renews. Cancel in 1 tap anytime. Price shown before you pay.',
@@ -94,7 +94,7 @@ const pt: Dict = {
   manual: { title: 'Registro manual', name: 'Nome', kcal: 'Calorias', latin: 'Comida latina', search: 'Buscar comida…', dictate: 'Ditar por voz' },
   diary: { title: 'Diário de hoje', empty: 'Nada ainda. Tire uma foto do seu prato!', total: 'Total', remove: 'Remover', prev: 'Dia anterior', nextDay: 'Próximo dia', today: 'Hoje' },
   more: { title: 'Mais', barcode: 'Código de barras', manual: 'Registro manual', settings: 'Ajustes', premium: 'Premium', founder: 'Painel do Fundador' },
-  set: { title: 'Ajustes', language: 'Idioma', auto: 'Automático (idioma do telefone)', ai: 'Análise com IA', aiDesc: 'Se desligar, nenhuma foto é enviada a nenhum serviço.', profile: 'Refazer meu perfil', reset: 'Apagar meus dados', resetQ: 'Tem certeza? Isso apaga tudo neste dispositivo.', privacy: 'Seus dados ficam só neste dispositivo.', version: 'Versão MVP' },
+  set: { title: 'Ajustes', language: 'Idioma', auto: 'Automático (idioma do telefone)', ai: 'Análise com IA', aiDesc: 'Se desligar, nenhuma foto é enviada a nenhum serviço.', profile: 'Refazer meu perfil', reset: 'Apagar meus dados', resetQ: 'Tem certeza? Isso apaga tudo neste dispositivo.', privacy: 'Seu diário fica só neste dispositivo. Nunca vendemos seus dados de saúde.', version: 'Versão MVP' },
   pay: { title: 'Angie One Premium', sub: 'Tudo o que você precisa, preço honesto', monthly: 'US$ 1,99 / mês', yearly: 'US$ 14,99 / ano', yearlySave: 'Economize 37%', latam: 'América Latina: US$ 0,99 / mês',
     f1: 'Fotos com IA ilimitadas (uso justo)', f2: 'Planos de dieta e treino personalizados', f3: 'Coach semanal e chat', f4: 'Scanner de geladeira e cardápio', f5: 'Sem anúncios',
     offer: 'Oferta de boas-vindas 48 h: seu preço fica congelado para sempre enquanto continuar assinante.', renew: 'Renovação automática. Cancele em 1 toque quando quiser. O preço aparece antes de pagar.',
@@ -107,4 +107,6 @@ i18n.use(initReactI18next).init({
   resources: { es: { translation: es }, en: { translation: en }, pt: { translation: pt } },
   lng: deviceLang(), fallbackLng: 'en', interpolation: { escapeValue: false }, returnObjects: true,
 });
+import { EXTRA } from './i18n-extra';
+(['es', 'en', 'pt'] as const).forEach((l) => i18n.addResourceBundle(l, 'translation', EXTRA[l], true, true));
 export default i18n;

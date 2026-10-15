@@ -12,7 +12,7 @@ npx expo start          # escanea el QR con Expo Go (iOS/Android) o pulsa "w" pa
 npx expo export --platform web   # compila la web en dist/
 ./scripts-deploy-web.sh # publica la web en GitHub Pages (gratis)
 ```
-Para activar la IA real: copia `.env.example` a `.env` y pon tu clave gratis de Google AI Studio.
+La IA real pasa por el Worker de `worker/` (desplegar con `npx wrangler@3 deploy`; la clave es un secreto del Worker, nunca en el repo).
 
 ## Qué ya funciona
 - **Bienvenida**: objetivo, peso, altura, edad, sexo, actividad → meta diaria (Mifflin-St Jeor, con mínimo seguro de 1.200/1.500 kcal) y aviso claro de **7 días de Premium gratis sin tarjeta**.
@@ -27,17 +27,24 @@ Para activar la IA real: copia `.env.example` a `.env` y pon tu clave gratis de 
 - Uso con una mano: botones de 64 px, barra inferior grande, etiquetas de accesibilidad.
 - Datos guardados **solo en el dispositivo** (AsyncStorage).
 
-## Qué está simulado (mock) o pendiente
-- **IA**: sin `EXPO_PUBLIC_GEMINI_API_KEY` la app muestra **"MODO DEMO"** y da una estimación de ejemplo. Con la clave llama a Gemini Flash-Lite. ⚠️ Para producción la llamada debe ir por un backend/proxy gratuito (p. ej. Cloudflare Worker) para no exponer la clave.
-- **Pagos**: el botón "Suscribirme" no cobra (TODO RevenueCat + App Store/Google Play Billing).
-- **Panel del Fundador**: datos de ejemplo; no mueve dinero.
-- Pendiente de Fase 1: Apple Health / Health Connect, notificaciones, cuentas y sincronización en la nube, escáner de etiquetas por foto, dictado por voz nativo.
+## Novedades v0.2 (15 oct 2026)
+- **IA real** vía Cloudflare Worker (la clave vive solo como secreto del Worker). Sin modo demo: si falla, mensajes claros (sin internet, IA ocupada, foto grande, no es comida).
+- **Registro por texto con IA**: describe el plato (o díctalo) → rango de calorías, afinado y porción → diario.
+- **Prueba 7 días → oferta 48 h con precio congelado → versión gratis**, con recordatorios en la app 2 días antes y el último día, y cuenta regresiva.
+- **Política de privacidad, Términos y Aviso médico** (ES/EN/PT, BORRADOR para revisión de abogado) en Ajustes, Premium y la bienvenida.
+- Worker: 3 intentos con espera creciente, tiempo límite, respuesta "no es comida".
+- Validación de datos en la bienvenida; fotos grandes se reducen en la web antes de enviarse.
+- Iconos iOS/Android (adaptativo + monocromo), splash y `eas.json` listos para EAS Build. `expo-doctor`: 21/21.
 
+## Qué está simulado (mock) o pendiente
+- **Pagos**: el botón "Suscribirme" no cobra (TODO RevenueCat + App Store/Google Play Billing). La oferta de 48 h se calcula localmente.
+- **Panel del Fundador**: datos de ejemplo; no mueve dinero.
+- Recordatorios de fin de prueba: dentro de la app (las notificaciones push requieren expo-notifications + build nativa).
+- Pendiente de Fase 1: Apple Health / Health Connect, cuentas y sincronización en la nube, dictado por voz nativo.
 ## Lo que necesita a Jose (un toque cada uno)
-1. Crear la clave gratis de Gemini en Google AI Studio y ponerla en `.env` (nunca por chat).
 2. Cuenta **Apple Developer** (99 $/año) — de pago, decides tú cuándo.
 3. Cuenta **Google Play Console** (25 $ una vez) — de pago.
 4. Cuenta gratis de **Expo/EAS** para compilar las apps.
 5. Aprobar la publicación en App Store y Google Play.
 6. RevenueCat (gratis hasta 2.500 $/mes de ingresos) cuando se activen pagos.
-7. Política de privacidad, términos y aviso médico antes de publicar.
+7. Revisión legal de los borradores de privacidad, términos y aviso médico antes de publicar.

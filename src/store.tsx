@@ -27,10 +27,21 @@ export function dailyTarget(p?: Profile) {
   return { kcal, p: prot, c: carbs, f: fat };
 }
 
-export function trialDaysLeft(start?: number) {
+export const DAY = 86400000;
+export const TRIAL_DAYS = 7, OFFER_HOURS = 48;
+export function trialDaysLeft(start?: number, now = Date.now()) {
   if (!start) return 0;
-  return Math.max(0, 7 - Math.floor((Date.now() - start) / 86400000));
+  return Math.max(0, TRIAL_DAYS - Math.floor((now - start) / DAY));
 }
+/** Fase comercial local: prueba de 7 días → oferta de 48 h con precio congelado → versión gratis. */
+export function trialPhase(start?: number, now = Date.now()) {
+  if (!start) return { phase: 'none' as const, daysLeft: 0, offerMsLeft: 0 };
+  const trialEnd = start + TRIAL_DAYS * DAY, offerEnd = trialEnd + OFFER_HOURS * 3600000;
+  if (now < trialEnd) return { phase: 'trial' as const, daysLeft: trialDaysLeft(start, now), offerMsLeft: 0 };
+  if (now < offerEnd) return { phase: 'offer' as const, daysLeft: 0, offerMsLeft: offerEnd - now };
+  return { phase: 'free' as const, daysLeft: 0, offerMsLeft: 0 };
+}
+export const fmtCountdown = (ms: number) => { const m = Math.max(0, Math.floor(ms / 60000)); return `${Math.floor(m / 60)}h ${String(m % 60).padStart(2, '0')}m`; };
 
 export function streak(days: string[]) {
   const set = new Set(days); let n = 0; const d = new Date();

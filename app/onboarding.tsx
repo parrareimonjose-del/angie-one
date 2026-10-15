@@ -5,12 +5,15 @@ import { useTranslation } from 'react-i18next';
 import { Screen, Card, Btn, Chip, T, s } from '../src/ui';
 import { useStore, dailyTarget, Profile } from '../src/store';
 import { C } from '../src/theme';
+import { LegalLinks } from '../src/legal-links';
 
 export default function Onboarding() {
   const { t } = useTranslation(); const { set, s: st } = useStore();
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(0); const [bad, setBad] = useState(false);
   const [p, setP] = useState<Profile>(st.profile || { goal: 'lose', weight: 70, height: 165, age: 30, sex: 'female', activity: 2 });
   const num = (k: keyof Profile) => (v: string) => setP({ ...p, [k]: Number(v.replace(/[^0-9.]/g, '')) || 0 } as Profile);
+  const valid = p.weight >= 30 && p.weight <= 300 && p.height >= 100 && p.height <= 250 && p.age >= 13 && p.age <= 100;
+  const next = () => { if (step === 1 && !valid) { setBad(true); return; } setBad(false); step < 3 ? setStep(step + 1) : finish(); };
   const finish = () => { set((x) => ({ ...x, profile: p, trialStart: x.trialStart || Date.now() })); router.replace('/'); };
   return (
     <Screen nav={false}>
@@ -26,6 +29,7 @@ export default function Onboarding() {
         {(['weight', 'height', 'age'] as const).map((k) => <View key={k} style={{ gap: 4 }}><T>{t(`ob.${k}`)}</T>
           <TextInput accessibilityLabel={t(`ob.${k}`)} style={s.input} keyboardType="numeric" value={String(p[k] || '')} onChangeText={num(k)} /></View>)}
         <T>{t('ob.sex')}</T>
+        {bad ? <T style={{ color: C.primary, fontWeight: '700' }}>{t('ob.invalid')}</T> : null}
         <View style={s.row}>{(['female', 'male'] as const).map((x) => <Chip key={x} label={t(`ob.${x}`)} active={p.sex === x} onPress={() => setP({ ...p, sex: x })} />)}</View></Card>}
       {step === 2 && <Card><Text style={s.h2}>{t('ob.activity')}</Text>
         {([1, 2, 3, 4] as const).map((a) => <Btn key={a} kind={p.activity === a ? 'primary' : 'ghost'} label={t(`ob.a${a}`)} onPress={() => setP({ ...p, activity: a })} />)}</Card>}
@@ -35,10 +39,12 @@ export default function Onboarding() {
           <Text style={[s.t, { color: C.white }]}>{t('ob.trialBody')}</Text>
         </Card>
         <Card style={{ alignItems: 'center' }}><Text style={[s.h2, { color: C.primary }]}>{t('ob.target', { kcal: dailyTarget(p).kcal })}</Text></Card>
+        <Text style={[s.muted, { textAlign: 'center' }]}>{t('ob.notMedical')} {t('ob.legalNote')}</Text>
+        <LegalLinks />
       </>}
       <View style={[s.row]}>
         {step > 0 && <Btn kind="ghost" label={t('back')} onPress={() => setStep(step - 1)} style={{ flex: 1 }} />}
-        <Btn label={step < 3 ? t('next') : t('ob.go')} onPress={() => (step < 3 ? setStep(step + 1) : finish())} style={{ flex: 2 }} />
+        <Btn label={step < 3 ? t('next') : t('ob.go')} onPress={next} style={{ flex: 2 }} />
       </View>
     </Screen>
   );
