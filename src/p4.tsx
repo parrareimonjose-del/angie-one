@@ -15,7 +15,7 @@ import { alertPending } from './p3';
 
 export function Market() {
   const { t } = useTranslation();
-  const pros = [['Dra. Rosa M.', 'nutri', 4.9, 25], ['Carlos P.', 'trainer', 4.8, 20], ['Ana L.', 'physio', 5.0, 30]] as const;
+  const pros = [['Dra. Rosa M.', 'nutri', 4.9, 25], ['Carlos P.', 'trainer', 4.8, 20], ['Ana L.', 'wellness', 5.0, 30]] as const;
   return <Screen title={`🧑‍⚕️ ${t('x.t.market')}`}><Example /><Pending what={t('x.needPay')} />
     {pros.map(([n, r, st, p]) => <Card key={n}><Text style={s.h2}>{n}</Text><T>{t(`x.role.${r}`)} · ⭐ {fmtNum(st, 1)} · ${p}/{t('x.session')}</T>
       <Btn small kind="ghost" label={t('x.book')} onPress={() => alertPending(t)} /></Card>)}
@@ -63,9 +63,9 @@ export function Store() {
 // ---------- Impacto: fondo, personas ayudadas, recibos. Cada desembolso lo aprueba Jose en el Panel del Fundador ----------
 export type Disb = { id: string; who: string; reason: string; amount: number; date: string; status: 'proposed' | 'approved' | 'rejected'; receipt?: string };
 export const FUND_SEED = { raised: 380, goal: 500, list: [
-  { id: 'h1', who: 'Persona A (ej.)', reason: 'physio', amount: 250, date: '2026-09-02', status: 'approved', receipt: 'R-0001' },
+  { id: 'h1', who: 'Persona A (ej.)', reason: 'activity', amount: 250, date: '2026-09-02', status: 'approved', receipt: 'R-0001' },
   { id: 'h2', who: 'Persona B (ej.)', reason: 'nutrition', amount: 180, date: '2026-09-20', status: 'approved', receipt: 'R-0002' },
-  { id: 'p1', who: 'Persona C (ej.)', reason: 'physio', amount: 300, date: '2026-10-14', status: 'proposed' },
+  { id: 'p1', who: 'Persona C (ej.)', reason: 'activity', amount: 300, date: '2026-10-14', status: 'proposed' },
 ] as Disb[] };
 export function useFund() { return useExt('fund', FUND_SEED); }
 export function Impact() {

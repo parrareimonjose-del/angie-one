@@ -201,7 +201,7 @@
   "legal": {
     "privacy": "Política de privacidad",
     "terms": "Términos de uso",
-    "medical": "Aviso médico",
+    "medical": "No es consejo médico",
     "draft": "BORRADOR — pendiente de revisión por un abogado.",
     "section": "Legal"
   },
@@ -290,7 +290,7 @@
       ]
     },
     "medical": {
-      "title": "Aviso médico",
+      "title": "No es consejo médico",
       "updated": "Última actualización: 15 de octubre de 2026",
       "sections": [
         [
@@ -303,7 +303,7 @@
         ],
         [
           "Consulta a un profesional",
-          "Habla con tu médico o nutricionista antes de cambiar tu dieta, sobre todo si estás embarazada o lactando, tienes diabetes, un trastorno de la conducta alimentaria u otra condición de salud, o eres menor de edad."
+          "Consulta a un profesional de la salud antes de hacer cambios grandes en tu dieta o tu ejercicio, o si sientes dolor. Si eres menor de 18 años, hazlo con un adulto."
         ],
         [
           "Emergencias",
@@ -385,7 +385,7 @@
     "beginner": "Principiante",
     "intermediate": "Intermedio",
     "advanced": "Avanzado",
-    "injuriesQ": "¿Algún dolor, lesión o limitación?",
+    "injuriesQ": "¿Alguna zona que quieras cuidar al entrenar?",
     "none": "Ninguno",
     "inj": {
       "knees": "Rodillas",
@@ -466,7 +466,7 @@
     "secs": "{{n}} seg",
     "restS": "descanso {{n}} s",
     "start": "Iniciar entrenamiento",
-    "safety": "Calienta primero, muévete despacio y detente si sientes dolor, mareo o presión en el pecho.",
+    "safety": "Calienta primero y muévete despacio. Si sientes dolor o mareo, detente y consulta a un profesional.",
     "notMedical": "Angie ofrece orientación general, no consejos médicos. Si tienes alguna condición de salud, consulta con un profesional.",
     "lockedTitle": "Tu coach es una función Premium",
     "lockedBody": "Tu prueba gratuita terminó. Tu plan y tu historial están guardados; desbloquea Premium para seguir entrenando con Angie.",
@@ -746,9 +746,9 @@
       "fasting": "Ayuno",
       "twin": "Gemelo digital",
       "video": "Video semanal",
-      "health": "Modos de salud",
+      "health": "Preferencias de comida",
       "family": "Familia",
-      "report": "Informe médico",
+      "report": "Mi resumen de bienestar",
       "shop": "Lista de compras",
       "travel": "Modo viaje",
       "b2b": "Para coaches",
@@ -830,7 +830,7 @@
     "fastStart": "Empezar ayuno",
     "fastEnd": "Terminar ayuno",
     "fastLog": "Ayunos recientes",
-    "fastBlocked": "El ayuno está apagado por tu seguridad (menor de 18, embarazo o diabetes). Habla con tu médico.",
+    "fastBlocked": "El ayuno está apagado para menores de 18 años, por seguridad.",
     "fastNote": "Opcional. Para si te mareas o te sientes mal.",
     "preview": "vista previa",
     "tw": {
@@ -853,22 +853,22 @@
     "v4": "Tomaste {{n}} vasos de agua",
     "v5": "Cada paso cuenta. ¡Sigue así!",
     "videoNote": "Se crea en tu teléfono con tus datos. No se sube nada.",
-    "healthWarn": "Estos modos solo dan consejos generales. No reemplazan a tu médico ni cambian tu medicina.",
+    "healthWarn": "Son preferencias de comida y bienestar general. No es consejo médico.",
     "on": "Activo",
     "off": "Activar",
     "m": {
-      "diabetes": "Diabetes",
-      "hypertension": "Presión alta",
-      "cholesterol": "Colesterol",
       "cycle": "Ciclo menstrual",
-      "pregnancy": "Embarazo"
+      "lesssugar": "Menos azúcar",
+      "lesssalt": "Menos sal",
+      "glutenfree": "Sin gluten",
+      "morefiber": "Más fibra"
     },
     "md": {
-      "diabetes": "Cuida los carbohidratos por comida, acompáñalos con proteína y sin ayuno. Mide tu glucosa como diga tu médico.",
-      "hypertension": "Límite de sal: 1.500 mg de sodio al día. Menos enlatados y embutidos.",
-      "cholesterol": "Más fibra, avena y granos; menos frituras y grasa saturada.",
       "cycle": "Anota tu regla para saber tu próximo ciclo y ajustar la energía.",
-      "pregnancy": "Sin déficit de calorías ni ayuno. Unas +300 kcal desde el 2.º trimestre. Sigue a tu médico."
+      "lesssugar": "Ideas con menos azúcar añadido y algo de proteína en cada comida.",
+      "lesssalt": "Ideas con menos sal: menos enlatados y embutidos.",
+      "glutenfree": "Ideas de comidas sin gluten: arroz, maíz, papa y legumbres.",
+      "morefiber": "Más avena, legumbres, frutas y verduras."
     },
     "periodToday": "Hoy me bajó la regla",
     "nextPeriod": "Próxima regla cerca del {{d}}",
@@ -877,9 +877,9 @@
     "child": "Niño",
     "kidRule": "Niños: sin contar calorías, solo hábitos sanos.",
     "famNote": "Los datos de cada persona quedan en este dispositivo.",
-    "repTitle": "Resumen para mi médico",
-    "repModes": "Modos",
-    "repFoot": "Generado por Angie One. Son estimaciones, no un diagnóstico.",
+    "repTitle": "Mi resumen personal de bienestar",
+    "repModes": "Preferencias",
+    "repFoot": "Generado por Angie One. Son estimaciones de bienestar; no es consejo médico.",
     "savePdf": "Guardar como PDF",
     "repNote": "Elige 'Guardar como PDF' en la ventana de imprimir. Tú decides a quién dárselo.",
     "si1": "Pechuga de pollo",
@@ -907,7 +907,7 @@
     "role": {
       "nutri": "Nutricionista",
       "trainer": "Entrenador personal",
-      "physio": "Fisioterapeuta"
+      "wellness": "Coach de bienestar"
     },
     "session": "sesión",
     "book": "Reservar",
@@ -918,7 +918,7 @@
     "people": "personas",
     "aggNote": "Los grupos de menos de 20 personas se ocultan. Sin datos individuales.",
     "purpose": "Compra con propósito",
-    "purposeBody": "La mayor parte del dinero de cada producto financia ayuda para personas con problemas de salud por mala alimentación, sobrepeso o falta de ejercicio, o que necesitan fisioterapia.",
+    "purposeBody": "La mayor parte del dinero de cada producto apoya programas de alimentación sana y actividad física.",
     "prod": {
       "tee": "Camiseta Angie One",
       "hoodie": "Sudadera coral",
@@ -930,8 +930,8 @@
     "fundNext": "Fondo para la próxima persona",
     "helped": "Personas ayudadas",
     "reason": {
-      "physio": "Fisioterapia",
-      "nutrition": "Plan de nutrición"
+      "nutrition": "Plan de nutrición",
+      "activity": "Actividad física"
     },
     "impactNote": "Los nombres se ocultan y solo se muestran con permiso. Cada pago lo aprueba el fundador y tiene recibo.",
     "splitTitle": "Reparto de ganancias 60/25/15",

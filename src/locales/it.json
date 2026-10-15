@@ -201,7 +201,7 @@
   "legal": {
     "privacy": "Informativa sulla privacy",
     "terms": "Termini d'uso",
-    "medical": "Avvertenza medica",
+    "medical": "Non è un consiglio medico",
     "draft": "BOZZA — in attesa di revisione da parte di un legale.",
     "section": "Note legali"
   },
@@ -328,7 +328,7 @@
       ]
     },
     "medical": {
-      "title": "Avvertenza medica",
+      "title": "Non è un consiglio medico",
       "updated": "Ultimo aggiornamento: 15 ottobre 2026",
       "sections": [
         [
@@ -341,7 +341,7 @@
         ],
         [
           "Rivolgiti a un professionista",
-          "Consulta il tuo medico o un dietista prima di modificare la tua dieta, in particolare se sei incinta o stai allattando, soffri di diabete, di un disturbo alimentare o di un'altra condizione di salute, o se hai meno di 18 anni."
+          "Parla con un professionista della salute prima di grandi cambiamenti a dieta o esercizio, o se senti dolore. Se hai meno di 18 anni, fallo con un adulto."
         ],
         [
           "Emergenze",
@@ -385,7 +385,7 @@
     "beginner": "Principiante",
     "intermediate": "Intermedio",
     "advanced": "Avanzato",
-    "injuriesQ": "Hai dolori, infortuni o limitazioni?",
+    "injuriesQ": "C'è una zona che vuoi risparmiare durante l'allenamento?",
     "none": "Nessuno",
     "inj": {
       "knees": "Ginocchia",
@@ -466,7 +466,7 @@
     "secs": "{{n}} sec",
     "restS": "recupero {{n}} s",
     "start": "Inizia allenamento",
-    "safety": "Fai prima riscaldamento, muoviti lentamente e fermati se avverti dolore, vertigini o pressione al petto.",
+    "safety": "Riscaldati prima e muoviti piano. Se senti dolore o capogiro, fermati e consulta un professionista.",
     "notMedical": "Angie fornisce indicazioni generali, non pareri medici. Se hai una condizione di salute, consulta un professionista.",
     "lockedTitle": "Il tuo coach è una funzione Premium",
     "lockedBody": "La tua prova gratuita è terminata. Il tuo piano e la tua cronologia sono stati salvati: sblocca Premium per continuare ad allenarti con Angie.",
@@ -746,9 +746,9 @@
       "fasting": "Digiuno",
       "twin": "Gemello digitale",
       "video": "Video settimanale",
-      "health": "Modalità salute",
+      "health": "Preferenze alimentari",
       "family": "Famiglia",
-      "report": "Report medico",
+      "report": "Il mio riepilogo benessere",
       "shop": "Lista della spesa",
       "travel": "Modalità viaggio",
       "b2b": "Per coach",
@@ -830,7 +830,7 @@
     "fastStart": "Inizia a digiunare",
     "fastEnd": "Termina digiuno",
     "fastLog": "Digiuni recenti",
-    "fastBlocked": "Il digiuno è disattivato per la tua sicurezza (under 18, gravidanza o diabete). Parla con il tuo medico.",
+    "fastBlocked": "Il digiuno è disattivato per i minori di 18 anni, per sicurezza.",
     "fastNote": "Facoltativo. Fermati se ti senti capogiro o poco bene.",
     "preview": "anteprima",
     "tw": {
@@ -853,22 +853,22 @@
     "v4": "Hai bevuto {{n}} bicchieri d'acqua",
     "v5": "Ogni passo conta. Continua così!",
     "videoNote": "Creato sul tuo telefono con i tuoi dati. Non viene caricato nulla.",
-    "healthWarn": "Queste modalità forniscono solo consigli generali. Non sostituiscono il medico né cambiano i tuoi medicinali.",
+    "healthWarn": "Sono preferenze alimentari e consigli di benessere generale. Non è un consiglio medico.",
     "on": "Attivo",
     "off": "Attiva",
     "m": {
-      "diabetes": "Diabete",
-      "hypertension": "Pressione alta",
-      "cholesterol": "Colesterolo",
       "cycle": "Ciclo mestruale",
-      "pregnancy": "Gravidanza"
+      "lesssugar": "Meno zucchero",
+      "lesssalt": "Meno sale",
+      "glutenfree": "Senza glutine",
+      "morefiber": "Più fibre"
     },
     "md": {
-      "diabetes": "Controlla i carboidrati a pasto, abbinali a proteine, niente digiuno. Controlla la glicemia come dice il medico.",
-      "hypertension": "Limite di sale: 1.500 mg di sodio al giorno. Meno cibi in scatola e insaccati.",
-      "cholesterol": "Più fibre, avena e fagioli; meno cibi fritti e grassi saturi.",
       "cycle": "Registra il ciclo per conoscere il prossimo e regolare l'energia.",
-      "pregnancy": "Nessun deficit calorico, niente digiuno. Circa +300 kcal dal 2° trimestre. Segui il tuo medico."
+      "lesssugar": "Idee con meno zucchero aggiunto e un po' di proteine a ogni pasto.",
+      "lesssalt": "Idee con meno sale: meno cibi in scatola e salumi.",
+      "glutenfree": "Idee senza glutine: riso, mais, patate e legumi.",
+      "morefiber": "Più avena, legumi, frutta e verdura."
     },
     "periodToday": "Il mio ciclo è iniziato oggi",
     "nextPeriod": "Prossimo ciclo intorno al {{d}}",
@@ -877,9 +877,9 @@
     "child": "Bambino",
     "kidRule": "Bambini: niente conteggio delle calorie, solo sane abitudini.",
     "famNote": "I dati di ciascuno rimangono su questo dispositivo.",
-    "repTitle": "Riepilogo per il mio medico",
-    "repModes": "Modalità",
-    "repFoot": "Generato da Angie One. Stime, non una diagnosi.",
+    "repTitle": "Il mio riepilogo personale di benessere",
+    "repModes": "Preferenze",
+    "repFoot": "Generato da Angie One. Solo stime di benessere; non è un consiglio medico.",
     "savePdf": "Salva come PDF",
     "repNote": "Scegli 'Salva come PDF' nella finestra di stampa. Decidi tu chi lo riceve.",
     "si1": "Petto di pollo",
@@ -907,7 +907,7 @@
     "role": {
       "nutri": "Nutrizionista",
       "trainer": "Personal trainer",
-      "physio": "Fisioterapista"
+      "wellness": "Coach del benessere"
     },
     "session": "sessione",
     "book": "Prenota",
@@ -918,7 +918,7 @@
     "people": "persone",
     "aggNote": "I gruppi con meno di 20 persone sono nascosti. Nessun dato individuale.",
     "purpose": "Acquista con uno scopo",
-    "purposeBody": "La maggior parte dei proventi di ogni prodotto finanzia aiuti per persone con problemi di salute dovuti a cattiva nutrizione, sovrappeso o mancanza di esercizio, o che necessitano di fisioterapia.",
+    "purposeBody": "La maggior parte del ricavato di ogni prodotto sostiene programmi di alimentazione sana e attività fisica.",
     "prod": {
       "tee": "T-shirt Angie One",
       "hoodie": "Felpa con cappuccio corallo",
@@ -930,8 +930,8 @@
     "fundNext": "Fondo per la prossima persona",
     "helped": "Persone aiutate",
     "reason": {
-      "physio": "Fisioterapia",
-      "nutrition": "Piano nutrizionale"
+      "nutrition": "Piano nutrizionale",
+      "activity": "Attività fisica"
     },
     "impactNote": "I nomi sono nascosti e mostrati solo con consenso. Ogni pagamento è approvato dal fondatore e ha una ricevuta.",
     "splitTitle": "Ripartizione profitti 60/25/15",

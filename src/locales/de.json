@@ -201,7 +201,7 @@
   "legal": {
     "privacy": "Datenschutzerklärung",
     "terms": "Nutzungsbedingungen",
-    "medical": "Haftungsausschluss",
+    "medical": "Keine medizinische Beratung",
     "draft": "ENTWURF — wartet auf die Prüfung durch einen Anwalt.",
     "section": "Rechtliches"
   },
@@ -328,7 +328,7 @@
       ]
     },
     "medical": {
-      "title": "Medizinischer Haftungsausschluss",
+      "title": "Keine medizinische Beratung",
       "updated": "Zuletzt aktualisiert: 15. Oktober 2026",
       "sections": [
         [
@@ -341,7 +341,7 @@
         ],
         [
           "Sprich mit Fachpersonal",
-          "Sprich mit deinem Arzt oder deiner Ernährungsberatung, bevor du deine Ernährung umstellst – insbesondere wenn du schwanger bist oder stillst, Diabetes, eine Essstörung oder eine andere gesundheitliche Erkrankung hast oder unter 18 Jahre alt bist."
+          "Sprich mit einer Gesundheitsfachperson, bevor du Ernährung oder Training stark änderst oder wenn du Schmerzen hast. Unter 18 bitte zusammen mit einem Erwachsenen."
         ],
         [
           "Notfälle",
@@ -385,7 +385,7 @@
     "beginner": "Anfänger",
     "intermediate": "Fortgeschritten",
     "advanced": "Profi",
-    "injuriesQ": "Schmerzen, Verletzungen oder Einschränkungen?",
+    "injuriesQ": "Gibt es eine Körperstelle, die du beim Training schonen willst?",
     "none": "Keine",
     "inj": {
       "knees": "Knie",
@@ -466,7 +466,7 @@
     "secs": "{{n}} Sek.",
     "restS": "Pause {{n}} s",
     "start": "Training starten",
-    "safety": "Wärm dich zuerst auf, bewege dich langsam und hör auf, wenn du Schmerzen, Schwindel oder Druck in der Brust verspürst.",
+    "safety": "Erst aufwärmen und langsam bewegen. Bei Schmerzen oder Schwindel aufhören und eine Fachperson fragen.",
     "notMedical": "Angie gibt allgemeine Empfehlungen, keine medizinischen Ratschläge. Wende dich bei gesundheitlichen Beschwerden an Fachpersonal.",
     "lockedTitle": "Dein Coach ist ein Premium-Feature",
     "lockedBody": "Deine kostenlose Testphase ist abgelaufen. Dein Plan und Verlauf sind gespeichert – schalte Premium frei, um weiter mit Angie zu trainieren.",
@@ -746,9 +746,9 @@
       "fasting": "Fasten",
       "twin": "Digitaler Zwilling",
       "video": "Wöchentliches Video",
-      "health": "Gesundheitsmodi",
+      "health": "Essensvorlieben",
       "family": "Familie",
-      "report": "Arztbericht",
+      "report": "Meine Wellness-Übersicht",
       "shop": "Einkaufsliste",
       "travel": "Reisemodus",
       "b2b": "Für Coaches",
@@ -830,7 +830,7 @@
     "fastStart": "Fasten starten",
     "fastEnd": "Fasten beenden",
     "fastLog": "Letzte Fastenperioden",
-    "fastBlocked": "Das Fasten ist zu deiner Sicherheit deaktiviert (unter 18, Schwangerschaft oder Diabetes). Sprich mit deinem Arzt.",
+    "fastBlocked": "Fasten ist für unter 18-Jährige aus Sicherheitsgründen aus.",
     "fastNote": "Optional. Hör auf, wenn dir schwindelig oder unwohl wird.",
     "preview": "Vorschau",
     "tw": {
@@ -853,22 +853,22 @@
     "v4": "Du hast {{n}} Gläser Wasser getrunken",
     "v5": "Jeder Schritt zählt. Mach weiter so!",
     "videoNote": "Auf deinem Telefon mit deinen Daten erstellt. Nichts wird hochgeladen.",
-    "healthWarn": "Diese Modi geben nur allgemeine Tipps. Sie ersetzen nicht deinen Arzt und ändern nicht deine Medikamente.",
+    "healthWarn": "Das sind Essensvorlieben und allgemeine Wellness-Tipps. Keine medizinische Beratung.",
     "on": "An",
     "off": "Einschalten",
     "m": {
-      "diabetes": "Diabetes",
-      "hypertension": "Bluthochdruck",
-      "cholesterol": "Cholesterin",
       "cycle": "Menstruationszyklus",
-      "pregnancy": "Schwangerschaft"
+      "lesssugar": "Weniger Zucker",
+      "lesssalt": "Weniger Salz",
+      "glutenfree": "Glutenfrei",
+      "morefiber": "Mehr Ballaststoffe"
     },
     "md": {
-      "diabetes": "Kohlenhydrate pro Mahlzeit im Blick behalten, mit Protein kombinieren, kein Fasten. Miss deinen Blutzucker nach Anweisung deines Arztes.",
-      "hypertension": "Salzlimit: 1.500 mg Natrium pro Tag. Weniger Dosen- und Pökelfleisch.",
-      "cholesterol": "Mehr Ballaststoffe, Haferflocken und Bohnen; weniger frittierte Speisen und gesättigte Fette.",
       "cycle": "Trage deine Periode ein, um deinen nächsten Zyklus zu kennen und die Energie anzupassen.",
-      "pregnancy": "Kein Kaloriendefizit, kein Fasten. Etwa +300 kcal ab dem 2. Trimester. Folge den Anweisungen deines Arztes."
+      "lesssugar": "Ideen mit weniger zugesetztem Zucker und etwas Eiweiß zu jeder Mahlzeit.",
+      "lesssalt": "Ideen mit weniger Salz: weniger Konserven und Wurstwaren.",
+      "glutenfree": "Glutenfreie Ideen: Reis, Mais, Kartoffeln und Hülsenfrüchte.",
+      "morefiber": "Mehr Hafer, Hülsenfrüchte, Obst und Gemüse."
     },
     "periodToday": "Meine Periode hat heute begonnen",
     "nextPeriod": "Nächste Periode um den {{d}}",
@@ -877,9 +877,9 @@
     "child": "Kind",
     "kidRule": "Kinder: kein Kalorienzählen, nur gesunde Gewohnheiten.",
     "famNote": "Die Daten jeder Person bleiben auf diesem Gerät.",
-    "repTitle": "Zusammenfassung für meinen Arzt",
-    "repModes": "Modi",
-    "repFoot": "Erstellt von Angie One. Schätzungen, keine Diagnose.",
+    "repTitle": "Meine persönliche Wellness-Übersicht",
+    "repModes": "Vorlieben",
+    "repFoot": "Erstellt von Angie One. Nur Wellness-Schätzungen; keine medizinische Beratung.",
     "savePdf": "Als PDF speichern",
     "repNote": "Wähle im Druckfenster „Als PDF speichern“. Du entscheidest, wer es bekommt.",
     "si1": "Hähnchenbrust",
@@ -907,7 +907,7 @@
     "role": {
       "nutri": "Ernährungsberater",
       "trainer": "Personal Trainer",
-      "physio": "Physiotherapeut"
+      "wellness": "Wellness-Coach"
     },
     "session": "Sitzung",
     "book": "Buchen",
@@ -918,7 +918,7 @@
     "people": "Personen",
     "aggNote": "Gruppen mit weniger als 20 Personen werden ausgeblendet. Keine individuellen Daten.",
     "purpose": "Mit Sinn einkaufen",
-    "purposeBody": "Ein Großteil des Geldes aus jedem Produkt finanziert Hilfe für Menschen mit gesundheitlichen Problemen durch falsche Ernährung, Übergewicht oder Bewegungsmangel oder für diejenigen, die Physiotherapie benötigen.",
+    "purposeBody": "Der Großteil des Geldes jedes Produkts unterstützt Programme für gesunde Ernährung und Bewegung.",
     "prod": {
       "tee": "Angie One T-Shirt",
       "hoodie": "Korallenfarbener Hoodie",
@@ -930,8 +930,8 @@
     "fundNext": "Fonds für die nächste Person",
     "helped": "Geholfene Personen",
     "reason": {
-      "physio": "Physiotherapie",
-      "nutrition": "Ernährungsplan"
+      "nutrition": "Ernährungsplan",
+      "activity": "Bewegung"
     },
     "impactNote": "Namen werden anonymisiert und nur mit Zustimmung angezeigt. Jede Zahlung wird vom Gründer genehmigt und hat einen Beleg.",
     "splitTitle": "Umsatzaufteilung 60/25/15",

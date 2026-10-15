@@ -201,7 +201,7 @@
   "legal": {
     "privacy": "Gizlilik Politikası",
     "terms": "Kullanım Şartları",
-    "medical": "Tıbbi yasal uyarı",
+    "medical": "Tıbbi tavsiye değildir",
     "draft": "TASLAK — bir avukat tarafından incelenmesi bekleniyor.",
     "section": "Yasal"
   },
@@ -328,7 +328,7 @@
       ]
     },
     "medical": {
-      "title": "Tıbbi Uyarı",
+      "title": "Tıbbi tavsiye değildir",
       "updated": "Son güncelleme: 15 Ekim 2026",
       "sections": [
         [
@@ -341,7 +341,7 @@
         ],
         [
           "Bir uzmana danışın",
-          "Özellikle hamileyseniz veya emziriyorsanız, diyabetiniz, yeme bozukluğunuz veya başka bir sağlık durumunuz varsa ya da 18 yaşın altındaysanız, diyetinizi değiştirmeden önce doktorunuza veya diyetisyeninize danışın."
+          "Beslenmende veya egzersizde büyük değişiklikler yapmadan önce ya da ağrı hissedersen bir sağlık uzmanına danış. 18 yaş altındaysan bunu bir yetişkinle yap."
         ],
         [
           "Acil durumlar",
@@ -385,7 +385,7 @@
     "beginner": "Başlangıç",
     "intermediate": "Orta",
     "advanced": "İleri",
-    "injuriesQ": "Herhangi bir ağrı, sakatlık veya kısıtlamanız var mı?",
+    "injuriesQ": "Antrenmanda korumak istediğin bir bölge var mı?",
     "none": "Yok",
     "inj": {
       "knees": "Dizler",
@@ -466,7 +466,7 @@
     "secs": "{{n}} sn",
     "restS": "dinlenme {{n}} sn",
     "start": "Egzersize başla",
-    "safety": "Önce ısının, yavaş hareket edin ve ağrı, baş dönmesi veya göğüste baskı hissederseniz durun.",
+    "safety": "Önce ısın ve yavaş hareket et. Ağrı veya baş dönmesi hissedersen dur ve bir uzmana danış.",
     "notMedical": "Angie tıbbi tavsiye değil, genel rehberlik sunar. Bir sağlık durumunuz varsa uzmanına danışın.",
     "lockedTitle": "Koçunuz bir Premium özelliktir",
     "lockedBody": "Ücretsiz deneme süreniz sona erdi. Planınız ve geçmişiniz kaydedildi — Angie ile antrenmana devam etmek için Premium'un kilidini açın.",
@@ -746,9 +746,9 @@
       "fasting": "Oruç",
       "twin": "Dijital ikiz",
       "video": "Haftalık video",
-      "health": "Sağlık modları",
+      "health": "Yemek tercihleri",
       "family": "Aile",
-      "report": "Doktor raporu",
+      "report": "Sağlıklı yaşam özetim",
       "shop": "Alışveriş listesi",
       "travel": "Seyahat modu",
       "b2b": "Eğitmenler için",
@@ -830,7 +830,7 @@
     "fastStart": "Oruca başla",
     "fastEnd": "Orucu bitir",
     "fastLog": "Son oruçlar",
-    "fastBlocked": "Güvenliğin için oruç kapatıldı (18 yaş altı, gebelik veya şeker hastalığı). Doktorunla konuş.",
+    "fastBlocked": "Güvenlik için 18 yaş altında oruç kapalıdır.",
     "fastNote": "İsteğe bağlı. Başın dönerse veya kendini kötü hissedersen dur.",
     "preview": "önizleme",
     "tw": {
@@ -853,22 +853,22 @@
     "v4": "{{n}} bardak su içtin",
     "v5": "Her adım önemli. Devam et!",
     "videoNote": "Verilerinle telefonunda yapıldı. Hiçbir şey yüklenmez.",
-    "healthWarn": "Bu modlar yalnızca genel ipuçları verir. Doktorunun yerini almaz veya ilacını değiştirmez.",
+    "healthWarn": "Bunlar yemek tercihleri ve genel sağlıklı yaşam ipuçlarıdır. Tıbbi tavsiye değildir.",
     "on": "Açık",
     "off": "Aç",
     "m": {
-      "diabetes": "Şeker hastalığı",
-      "hypertension": "Yüksek tansiyon",
-      "cholesterol": "Kolesterol",
       "cycle": "Adet döngüsü",
-      "pregnancy": "Gebelik"
+      "lesssugar": "Daha az şeker",
+      "lesssalt": "Daha az tuz",
+      "glutenfree": "Glütensiz",
+      "morefiber": "Daha fazla lif"
     },
     "md": {
-      "diabetes": "Öğün başına karbonhidrata dikkat et, proteinle eşleştir, oruç tutma. Glukozunu doktorunun söylediği şekilde kontrol et.",
-      "hypertension": "Tuz sınırı: Günde 1.500 mg sodyum. Konserve ve tuzlanmış gıdaları azalt.",
-      "cholesterol": "Daha çok lif, yulaf ve fasulye; kızartma ve doymuş yağları azalt.",
       "cycle": "Sonraki döngünü bilmek ve enerjini ayarlamak için adetini kaydet.",
-      "pregnancy": "Kalori açığı yok, oruç yok. 2. trimestere göre yaklaşık +300 kcal. Doktorunu takip et."
+      "lesssugar": "Daha az ilave şeker ve her öğünde biraz protein içeren fikirler.",
+      "lesssalt": "Daha az tuzlu fikirler: daha az konserve ve şarküteri.",
+      "glutenfree": "Glütensiz yemek fikirleri: pirinç, mısır, patates ve baklagiller.",
+      "morefiber": "Daha fazla yulaf, baklagil, meyve ve sebze."
     },
     "periodToday": "Adetim bugün başladı",
     "nextPeriod": "Sonraki adet yaklaşık {{d}} gün sonra",
@@ -877,9 +877,9 @@
     "child": "Çocuk",
     "kidRule": "Çocuklar: kalori sayımı yok, sadece sağlıklı alışkanlıklar.",
     "famNote": "Herkesin verisi bu cihazda kalır.",
-    "repTitle": "Doktorum için özet",
-    "repModes": "Modlar",
-    "repFoot": "Angie One tarafından oluşturuldu. Tahminlerdir, teşhis değildir.",
+    "repTitle": "Kişisel sağlıklı yaşam özetim",
+    "repModes": "Tercihler",
+    "repFoot": "Angie One tarafından oluşturuldu. Yalnızca tahminlerdir; tıbbi tavsiye değildir.",
     "savePdf": "PDF olarak kaydet",
     "repNote": "Yazdırma penceresinde 'PDF olarak kaydet' seçeneğini seç. Kime vereceğine sen karar verirsin.",
     "si1": "Tavuk göğsü",
@@ -907,7 +907,7 @@
     "role": {
       "nutri": "Beslenme Uzmanı",
       "trainer": "Kişisel Eğitmen",
-      "physio": "Fizyoterapist"
+      "wellness": "Sağlıklı yaşam koçu"
     },
     "session": "seans",
     "book": "Yer ayırt",
@@ -918,7 +918,7 @@
     "people": "kişi",
     "aggNote": "20 kişiden küçük gruplar gizlenir. Bireysel veri yoktur.",
     "purpose": "Amacına uygun alışveriş yap",
-    "purposeBody": "Her üründen elde edilen paranın büyük kısmı; kötü beslenme, aşırı kilo veya egzersiz eksikliği nedeniyle sağlık sorunları yaşayan ya da fizyoterapiye ihtiyacı olan kişilere yardım etmek için kullanılır.",
+    "purposeBody": "Her üründen gelen paranın çoğu sağlıklı beslenme ve fiziksel aktivite programlarını destekler.",
     "prod": {
       "tee": "Angie One Tişörtü",
       "hoodie": "Mercan rengi kapüşonlu",
@@ -930,8 +930,8 @@
     "fundNext": "Sıradaki kişi için fon",
     "helped": "Yardım edilen kişi",
     "reason": {
-      "physio": "Fizyoterapi",
-      "nutrition": "Beslenme planı"
+      "nutrition": "Beslenme planı",
+      "activity": "Fiziksel aktivite"
     },
     "impactNote": "İsimler gizlenir ve yalnızca onayla gösterilir. Her ödeme kurucu tarafından onaylanır ve makbuzu vardır.",
     "splitTitle": "Kâr paylaşımı 60/25/15",

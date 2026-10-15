@@ -201,7 +201,7 @@
   "legal": {
     "privacy": "Política de privacidade",
     "terms": "Termos de uso",
-    "medical": "Aviso médico",
+    "medical": "Não é conselho médico",
     "draft": "RASCUNHO — pendente de revisão por um advogado.",
     "section": "Legal"
   },
@@ -290,7 +290,7 @@
       ]
     },
     "medical": {
-      "title": "Aviso médico",
+      "title": "Não é conselho médico",
       "updated": "Última atualização: 15 de outubro de 2026",
       "sections": [
         [
@@ -303,7 +303,7 @@
         ],
         [
           "Consulte um profissional",
-          "Fale com seu médico ou nutricionista antes de mudar sua dieta, principalmente se estiver grávida ou amamentando, tiver diabetes, transtorno alimentar ou outra condição, ou for menor de idade."
+          "Consulte um profissional de saúde antes de fazer grandes mudanças na dieta ou no exercício, ou se sentir dor. Se tiver menos de 18 anos, faça isso com um adulto."
         ],
         [
           "Emergências",
@@ -385,7 +385,7 @@
     "beginner": "Iniciante",
     "intermediate": "Intermediário",
     "advanced": "Avançado",
-    "injuriesQ": "Alguma dor, lesão ou limite?",
+    "injuriesQ": "Alguma área que você quer poupar no treino?",
     "none": "Nenhuma",
     "inj": {
       "knees": "Joelhos",
@@ -466,7 +466,7 @@
     "secs": "{{n}} seg",
     "restS": "descanso de {{n}} s",
     "start": "Iniciar treino",
-    "safety": "Aqueça-se primeiro, mova-se devagar e pare se sentir dor, tontura ou pressão no peito.",
+    "safety": "Aqueça primeiro e mova-se devagar. Se sentir dor ou tontura, pare e consulte um profissional.",
     "notMedical": "A Angie oferece orientações gerais, não conselhos médicos. Se você tiver alguma condição de saúde, consulte um profissional.",
     "lockedTitle": "Seu treinador é um recurso Premium",
     "lockedBody": "Seu teste grátis terminou. Seu plano e histórico estão salvos — desbloqueie o Premium para continuar treinando com a Angie.",
@@ -746,9 +746,9 @@
       "fasting": "Jejum",
       "twin": "Gêmeo digital",
       "video": "Vídeo semanal",
-      "health": "Modos de saúde",
+      "health": "Preferências alimentares",
       "family": "Família",
-      "report": "Relatório para o médico",
+      "report": "Meu resumo de bem-estar",
       "shop": "Lista de compras",
       "travel": "Modo viagem",
       "b2b": "Para treinadores",
@@ -830,7 +830,7 @@
     "fastStart": "Iniciar jejum",
     "fastEnd": "Encerrar jejum",
     "fastLog": "Jejuns recentes",
-    "fastBlocked": "O jejum está desativado para sua segurança (menores de 18 anos, gravidez ou diabetes). Fale com seu médico.",
+    "fastBlocked": "O jejum está desativado para menores de 18 anos, por segurança.",
     "fastNote": "Opcional. Pare se sentir tontura ou mal-estar.",
     "preview": "prévia",
     "tw": {
@@ -853,22 +853,22 @@
     "v4": "Você bebeu {{n}} copos de água",
     "v5": "Cada passo conta. Continue assim!",
     "videoNote": "Criado no seu celular com seus dados. Nada é enviado para a nuvem.",
-    "healthWarn": "Estes modos oferecem apenas dicas gerais. Eles não substituem seu médico nem alteram seus remédios.",
+    "healthWarn": "São preferências alimentares e dicas gerais de bem-estar. Não é conselho médico.",
     "on": "Atativado",
     "off": "Ativar",
     "m": {
-      "diabetes": "Diabetes",
-      "hypertension": "Pressão alta",
-      "cholesterol": "Colesterol",
       "cycle": "Ciclo menstrual",
-      "pregnancy": "Gravidez"
+      "lesssugar": "Menos açúcar",
+      "lesssalt": "Menos sal",
+      "glutenfree": "Sem glúten",
+      "morefiber": "Mais fibra"
     },
     "md": {
-      "diabetes": "Monitore os carboidratos por refeição, combine-os com proteínas, sem jejum. Verifique sua glicose conforme a orientação do seu médico.",
-      "hypertension": "Limite de sal: 1.500 mg de sódio por dia. Menos alimentos em conserva e embutidos.",
-      "cholesterol": "Mais fibras, aveia e feijão; menos frituras e gordura saturada.",
       "cycle": "Registre sua menstruação para saber o próximo ciclo e ajustar a energia.",
-      "pregnancy": "Sem déficit calórico, sem jejum. Cerca de +300 kcal a partir do 2º trimestre. Siga seu médico."
+      "lesssugar": "Ideias com menos açúcar adicionado e um pouco de proteína em cada refeição.",
+      "lesssalt": "Ideias com menos sal: menos enlatados e embutidos.",
+      "glutenfree": "Ideias sem glúten: arroz, milho, batata e leguminosas.",
+      "morefiber": "Mais aveia, leguminosas, frutas e verduras."
     },
     "periodToday": "Minha menstruação desceu hoje",
     "nextPeriod": "Próxima menstruação por volta de {{d}}",
@@ -877,9 +877,9 @@
     "child": "Criança",
     "kidRule": "Crianças: sem contagem de calorias, apenas hábitos saudáveis.",
     "famNote": "Os dados de cada pessoa ficam apenas neste dispositivo.",
-    "repTitle": "Resumo para o meu médico",
-    "repModes": "Modos",
-    "repFoot": "Gerado por Angie One. Estimativas, não um diagnóstico.",
+    "repTitle": "Meu resumo pessoal de bem-estar",
+    "repModes": "Preferências",
+    "repFoot": "Gerado pelo Angie One. São estimativas de bem-estar; não é conselho médico.",
     "savePdf": "Salvar como PDF",
     "repNote": "Escolha 'Salvar como PDF' na janela de impressão. Você decide quem recebe.",
     "si1": "Peito de frango",
@@ -907,7 +907,7 @@
     "role": {
       "nutri": "Nutricionista",
       "trainer": "Personal trainer",
-      "physio": "Fisioterapeuta"
+      "wellness": "Coach de bem-estar"
     },
     "session": "sessão",
     "book": "Agendar",
@@ -918,7 +918,7 @@
     "people": "pessoas",
     "aggNote": "Grupos com menos de 20 pessoas são ocultados. Nenhum dado individual.",
     "purpose": "Compre com propósito",
-    "purposeBody": "A maior parte do lucro de cada produto financia ajuda para pessoas com problemas de saúde devido à má alimentação, sobrepeso ou falta de exercício, ou que precisam de fisioterapia.",
+    "purposeBody": "A maior parte do dinheiro de cada produto apoia programas de alimentação saudável e atividade física.",
     "prod": {
       "tee": "Camiseta Angie One",
       "hoodie": "Moletom coral",
@@ -930,8 +930,8 @@
     "fundNext": "Fundo para a próxima pessoa",
     "helped": "Pessoas ajudadas",
     "reason": {
-      "physio": "Fisioterapia",
-      "nutrition": "Plano de nutrição"
+      "nutrition": "Plano de nutrição",
+      "activity": "Atividade física"
     },
     "impactNote": "Nomes são ocultados e exibidos apenas com consentimento. Cada pagamento é aprovado pelo fundador e possui recibo.",
     "splitTitle": "Divisão de lucros 60/25/15",

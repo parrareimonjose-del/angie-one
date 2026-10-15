@@ -201,7 +201,7 @@
   "legal": {
     "privacy": "Politique de confidentialité",
     "terms": "Conditions d'utilisation",
-    "medical": "Avertissement médical",
+    "medical": "Pas un avis médical",
     "draft": "BROUILLON — en attente de révision par un avocat.",
     "section": "Mentions légales"
   },
@@ -290,7 +290,7 @@
       ]
     },
     "medical": {
-      "title": "Avertissement médical",
+      "title": "Pas un avis médical",
       "updated": "Dernière mise à jour : 15 octobre 2026",
       "sections": [
         [
@@ -303,7 +303,7 @@
         ],
         [
           "Consultez un professionnel",
-          "Consultez votre médecin ou diététicien avant de modifier votre régime alimentaire, en particulier si vous êtes enceinte ou si vous allaitez, si vous souffrez de diabète, de troubles du comportement alimentaire ou d'un autre problème de santé, ou si vous avez moins de 18 ans."
+          "Consulte un professionnel de santé avant de grands changements d'alimentation ou d'exercice, ou si tu ressens une douleur. Si tu as moins de 18 ans, fais-le avec un adulte."
         ],
         [
           "Urgences",
@@ -385,7 +385,7 @@
     "beginner": "Débutant",
     "intermediate": "Intermédiaire",
     "advanced": "Avancé",
-    "injuriesQ": "Douleurs, blessures ou limites particulières ?",
+    "injuriesQ": "Une zone à ménager pendant l'entraînement ?",
     "none": "Aucune",
     "inj": {
       "knees": "Genoux",
@@ -466,7 +466,7 @@
     "secs": "{{n}} s",
     "restS": "repos {{n}} s",
     "start": "Commencer la séance",
-    "safety": "Échauffez-vous d'abord, bougez lentement et arrêtez-vous en cas de douleur, de vertige ou d'oppression thoracique.",
+    "safety": "Échauffe-toi d'abord et bouge lentement. Si tu ressens une douleur ou un vertige, arrête et consulte un professionnel.",
     "notMedical": "Angie donne des conseils généraux, pas des avis médicaux. Si vous avez un problème de santé, consultez un professionnel.",
     "lockedTitle": "Votre coach est une fonctionnalité Premium",
     "lockedBody": "Votre essai gratuit est terminé. Votre plan et votre historique sont sauvegardés — débloquez Premium pour continuer à vous entraîner avec Angie.",
@@ -746,9 +746,9 @@
       "fasting": "Jeûne",
       "twin": "Jumeau numérique",
       "video": "Vidéo de la semaine",
-      "health": "Modes santé",
+      "health": "Préférences alimentaires",
       "family": "Famille",
-      "report": "Rapport médical",
+      "report": "Mon bilan bien-être",
       "shop": "Liste de courses",
       "travel": "Mode voyage",
       "b2b": "Pour les coachs",
@@ -830,7 +830,7 @@
     "fastStart": "Commencer le jeûne",
     "fastEnd": "Terminer le jeûne",
     "fastLog": "Jeûnes récents",
-    "fastBlocked": "Le jeûne est désactivé pour ta sécurité (moins de 18 ans, grossesse ou diabète). Parles-en à ton médecin.",
+    "fastBlocked": "Le jeûne est désactivé pour les moins de 18 ans, par sécurité.",
     "fastNote": "Optionnel. Arrête-toi si tu te sens étourdi ou mal.",
     "preview": "aperçu",
     "tw": {
@@ -853,22 +853,22 @@
     "v4": "Tu as bu {{n}} verres d'eau",
     "v5": "Chaque pas compte. Continue comme ça !",
     "videoNote": "Créé sur ton téléphone avec tes données. Rien n'est mis en ligne.",
-    "healthWarn": "Ces modes donnent uniquement des conseils généraux. Ils ne remplacent pas ton médecin et ne modifient pas ton traitement.",
+    "healthWarn": "Ce sont des préférences alimentaires et des conseils de bien-être général. Ce n'est pas un avis médical.",
     "on": "Activé",
     "off": "Activer",
     "m": {
-      "diabetes": "Diabète",
-      "hypertension": "Hypertension artérielle",
-      "cholesterol": "Cholestérol",
       "cycle": "Cycle menstruel",
-      "pregnancy": "Grossesse"
+      "lesssugar": "Moins de sucre",
+      "lesssalt": "Moins de sel",
+      "glutenfree": "Sans gluten",
+      "morefiber": "Plus de fibres"
     },
     "md": {
-      "diabetes": "Surveille les glucides par repas, associe-les à des protéines, pas de jeûne. Vérifie ta glycémie selon les indications de ton médecin.",
-      "hypertension": "Limite de sel : 1 500 mg de sodium par jour. Moins d'aliments en conserve et de charcuterie.",
-      "cholesterol": "Plus de fibres, d'avoine et de haricots ; moins d'aliments frits et de graisses saturées.",
       "cycle": "Note tes règles pour connaître ton prochain cycle et adapter ton énergie.",
-      "pregnancy": "Pas de déficit calorique, pas de jeûne. Environ +300 kcal à partir du 2e trimestre. Suis les conseils de ton médecin."
+      "lesssugar": "Des idées avec moins de sucre ajouté et un peu de protéines à chaque repas.",
+      "lesssalt": "Idées moins salées : moins de conserves et de charcuterie.",
+      "glutenfree": "Idées de repas sans gluten : riz, maïs, pommes de terre et légumineuses.",
+      "morefiber": "Plus d'avoine, de légumineuses, de fruits et de légumes."
     },
     "periodToday": "Mes règles ont commencé aujourd'hui",
     "nextPeriod": "Prochaines règles vers le {{d}}",
@@ -877,9 +877,9 @@
     "child": "Enfant",
     "kidRule": "Enfants : pas de comptage de calories, uniquement de bonnes habitudes.",
     "famNote": "Les données de chaque personne restent sur cet appareil.",
-    "repTitle": "Résumé pour mon médecin",
-    "repModes": "Modes",
-    "repFoot": "Généré par Angie One. Estimations, pas un diagnostic.",
+    "repTitle": "Mon bilan bien-être personnel",
+    "repModes": "Préférences",
+    "repFoot": "Généré par Angie One. Estimations de bien-être ; ce n'est pas un avis médical.",
     "savePdf": "Enregistrer en PDF",
     "repNote": "Sélectionne 'Enregistrer en PDF' dans la fenêtre d'impression. C'est toi qui décides à qui le donner.",
     "si1": "Blanc de poulet",
@@ -907,7 +907,7 @@
     "role": {
       "nutri": "Nutritionniste",
       "trainer": "Entraîneur personnel",
-      "physio": "Physiothérapeute"
+      "wellness": "Coach bien-être"
     },
     "session": "séance",
     "book": "Réserver",
@@ -918,7 +918,7 @@
     "people": "personnes",
     "aggNote": "Les groupes de moins de 20 personnes sont masqués. Aucune donnée individuelle.",
     "purpose": "Acheter utile",
-    "purposeBody": "La majeure partie de l'argent de chaque produit aide les personnes ayant des problèmes de santé liés à une mauvaise nutrition, au surpoids, au manque d'exercice ou ayant besoin de kinésithérapie.",
+    "purposeBody": "La majeure partie de l'argent de chaque produit soutient des programmes d'alimentation saine et d'activité physique.",
     "prod": {
       "tee": "T-shirt Angie One",
       "hoodie": "Sweat à capuchon corail",
@@ -930,8 +930,8 @@
     "fundNext": "Fonds pour la personne suivante",
     "helped": "Personnes aidées",
     "reason": {
-      "physio": "Kinésithérapie",
-      "nutrition": "Plan nutritionnel"
+      "nutrition": "Plan nutritionnel",
+      "activity": "Activité physique"
     },
     "impactNote": "Les noms sont masqués et affichés uniquement avec consentement. Chaque paiement est approuvé par le fondateur et possède un reçu.",
     "splitTitle": "Répartition des bénéfices 60/25/15",

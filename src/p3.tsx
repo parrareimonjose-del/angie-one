@@ -18,7 +18,7 @@ import { useExt, Pending, Example, Note, Sponsored, Tile } from './ext';
 export function Explore() {
   const { t } = useTranslation();
   const p3: [string, string, string, boolean?][] = [['🤳', 'social', '/social'], ['🍲', 'recipes', '/recipes'], ['🏋️', 'gym', '/gym'], ['⌚', 'connect', '/connect', true], ['⏱️', 'fasting', '/fasting'], ['🧍', 'twin', '/twin'],
-    ['🎬', 'video', '/video'], ['🩺', 'health', '/health'], ['👨‍👩‍👧', 'family', '/family'], ['📄', 'report', '/report'], ['🛒', 'shop', '/shopping', true], ['✈️', 'travel', '/travel'], ['🧑‍🏫', 'b2b', '/b2b']];
+    ['🎬', 'video', '/video'], ['🥗', 'health', '/health'], ['👨‍👩‍👧', 'family', '/family'], ['📄', 'report', '/report'], ['🛒', 'shop', '/shopping', true], ['✈️', 'travel', '/travel'], ['🧑‍🏫', 'b2b', '/b2b']];
   const p4: [string, string, string, boolean?][] = [['🧑‍⚕️', 'market', '/market', true], ['🏢', 'corp', '/corporate'], ['🐶', 'pet', '/pet'], ['💬', 'whatsapp', '/whatsapp', true]];
   if (FEATURES.purposeStore) p4.splice(2, 0, ['🛍️', 'store', '/store', true]);
   const grid = (a: typeof p3) => <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, justifyContent: 'space-between' }}>{a.map(([i, k, h, p]) => <Tile key={k} icon={i} label={t(`x.t.${k}`)} pending={p} onPress={() => router.push(h as any)} />)}</View>;
@@ -105,7 +105,7 @@ export const alertPending = (t: (k: string) => string) => { if (Platform.OS === 
 export function Fasting() {
   const { t } = useTranslation(); const [f, setF] = useExt<{ start?: number; hours: number; log: number[] }>('fast', { hours: 14, log: [] });
   const [now, setNow] = useState(Date.now()); useEffect(() => { const i = setInterval(() => setNow(Date.now()), 1000); return () => clearInterval(i); }, []);
-  const { s: st } = useStore(); const p = st.profile; const risky = !!p && (p.age < 18 || (st as any).ext?.modes?.includes('pregnancy') || (st as any).ext?.modes?.includes('diabetes'));
+  const { s: st } = useStore(); const p = st.profile; const risky = !!p && p.age < 18;
   const el = f.start ? (now - f.start) / 3600e3 : 0;
   return <Screen title={`⏱️ ${t('x.t.fasting')}`}>
     {risky ? <Card style={{ backgroundColor: '#FFF1DC' }}><T style={{ fontWeight: '800' }}>💛 {t('x.fastBlocked')}</T></Card> : <>
@@ -155,12 +155,15 @@ export function Video() {
 }
 
 // ---------- Modos de salud ----------
-export const MODES = ['diabetes', 'hypertension', 'cholesterol', 'cycle', 'pregnancy'] as const;
+export const MODES = ['lesssugar', 'lesssalt', 'glutenfree', 'morefiber', 'cycle'] as const;
+/** Migra modos antiguos (médicos) a preferencias neutras de comida. */
+const LEGACY: Record<string, string | null> = { diabetes: 'lesssugar', hypertension: 'lesssalt', cholesterol: 'morefiber', pregnancy: null };
+export const cleanModes = (a: string[]) => [...new Set(a.map((m) => (m in LEGACY ? LEGACY[m] : m)).filter((m): m is string => !!m && (MODES as readonly string[]).includes(m)))];
 export function Health() {
-  const { t } = useTranslation(); const [modes, setModes] = useExt<string[]>('modes', []); const [cyc, setCyc] = useExt<{ last?: string; len: number }>('cycle', { len: 28 });
-  const tog = (m: string) => setModes((a) => (a.includes(m) ? a.filter((x) => x !== m) : m === 'pregnancy' ? [...a.filter((x) => x !== 'cycle'), m] : m === 'cycle' ? [...a.filter((x) => x !== 'pregnancy'), m] : [...a, m]));
+  const { t } = useTranslation(); const [rawModes, setModes] = useExt<string[]>('modes', []); const modes = cleanModes(rawModes); const [cyc, setCyc] = useExt<{ last?: string; len: number }>('cycle', { len: 28 });
+  const tog = (m: string) => setModes((a0) => { const a = cleanModes(a0); return a.includes(m) ? a.filter((x) => x !== m) : [...a, m]; });
   const nextP = cyc.last ? new Date(new Date(cyc.last + 'T12:00:00').getTime() + cyc.len * DAY) : null;
-  return <Screen title={`🩺 ${t('x.t.health')}`}>
+  return <Screen title={`🥗 ${t('x.t.health')}`}>
     <Card style={{ backgroundColor: '#FFF1DC' }}><T style={{ fontWeight: '800' }}>⚠️ {t('x.healthWarn')}</T></Card>
     {MODES.map((m) => <Card key={m}><Row><Text style={[s.h2, { flex: 1 }]}>{t(`x.m.${m}`)}</Text><Btn small kind={modes.includes(m) ? 'secondary' : 'ghost'} label={modes.includes(m) ? '✓ ' + t('x.on') : t('x.off')} onPress={() => tog(m)} /></Row>
       {modes.includes(m) && <T testID={`mode-${m}`}>{t(`x.md.${m}`)}</T>}
@@ -170,7 +173,7 @@ export function Health() {
 }
 /** Límites seguros por modo, usados por el coach y el ayuno. */
 export function modeLimits(modes: string[]) {
-  return { minKcalBoost: modes.includes('pregnancy') ? 300 : 0, sodiumMg: modes.includes('hypertension') ? 1500 : 2300, noFasting: modes.includes('pregnancy') || modes.includes('diabetes') };
+  const m = cleanModes(modes); return { minKcalBoost: 0, sodiumMg: m.includes('lesssalt') ? 1500 : 2300, noFasting: false };
 }
 
 // ---------- Familia ----------
@@ -185,9 +188,9 @@ export function Family() {
     <Note k="x.famNote" /></Screen>;
 }
 
-// ---------- Informe para el médico (PDF con el diálogo de imprimir del navegador) ----------
+// ---------- Resumen personal de bienestar (PDF con el diálogo de imprimir del navegador) ----------
 export function Report() {
-  const { t } = useTranslation(); const { s: st } = useStore(); const c = coachOf(st); const [modes] = useExt<string[]>('modes', []);
+  const { t } = useTranslation(); const { s: st } = useStore(); const c = coachOf(st); const [rawModes] = useExt<string[]>('modes', []); const modes = cleanModes(rawModes);
   const days = [...Array(14)].map((_, k) => today(new Date(Date.now() - k * DAY)));
   const rows = days.map((d) => ({ d, k: st.entries.filter((e) => e.date === d).reduce((a, e) => a + e.kcal, 0), w: st.water[d] || 0, b: burnedOn(c, d) })).filter((r) => r.k || r.w || r.b);
   const pdf = () => { if (Platform.OS === 'web') window.print(); };

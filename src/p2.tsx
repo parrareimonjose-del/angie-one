@@ -105,12 +105,15 @@ function WeightInner() {
 // ---------- Memoria por usuario (solo en el dispositivo) ----------
 export type Mem = { on: boolean; facts: { id: string; text: string }[] };
 export const MEM0: Mem = { on: true, facts: [] };
-const LEARN = /(no me gusta|no como|soy al[eé]rgic|soy vegetarian|soy vegan|no tomo|odio|i don'?t (like|eat)|i'?m (allergic|vegetarian|vegan)|i am (allergic|vegetarian|vegan)|i hate|soy cel[ií]ac|tengo diabetes|soy diab[eé]tic|intoleran|i'?m (celiac|diabetic|lactose)|i have diabetes|não gosto|sou vegetarian|je n'aime pas|ich mag kein)/i;
-export const learnFact = (text: string) => (LEARN.test(text) ? text.trim().slice(0, 120) : null);
+const LEARN = /(no me gusta|no como|soy al[eé]rgic|soy vegetarian|soy vegan|no tomo|odio|i don'?t (like|eat)|i'?m (allergic|vegetarian|vegan)|i am (allergic|vegetarian|vegan)|i hate|sin gluten|menos az[uú]car|sin az[uú]car|menos sal|gluten[- ]free|less sugar|no sugar|less salt|intoleran|i'?m lactose|não gosto|sou vegetarian|je n'aime pas|ich mag kein)/i;
+/** Nunca guardamos enfermedades: se convierten en preferencias neutras de comida. */
+const NEUTRAL: [RegExp, string][] = [[/cel[ií]ac|celiac|coeliac/i, 'sin gluten / gluten-free'], [/diab[eé]t|glucos|insulin/i, 'menos azúcar / less sugar'], [/hipertens|hypertens|presi[oó]n alta|blood pressure/i, 'menos sal / less salt']];
+export const neutralFact = (text: string) => { for (const [r, v] of NEUTRAL) if (r.test(text)) return v; return null; };
+export const learnFact = (text: string) => neutralFact(text) ?? (LEARN.test(text) ? text.trim().slice(0, 120) : null);
 export const memContext = (m?: Mem) => (m && m.on && m.facts.length ? ' Remember about user: ' + m.facts.map((f) => f.text).join('; ').slice(0, 350) : '');
 export function Memory() {
   const { t } = useTranslation(); const [m, setM] = useExt<Mem>('mem', MEM0); const [q, setQ] = useState('');
-  const add = () => { const v = q.trim(); if (!v) return; setM((x) => ({ ...x, facts: [...x.facts, { id: uid(), text: v.slice(0, 120) }].slice(-20) })); setQ(''); };
+  const add = () => { const v = neutralFact(q) ?? q.trim(); if (!v) return; setM((x) => ({ ...x, facts: [...x.facts, { id: uid(), text: v.slice(0, 120) }].slice(-20) })); setQ(''); };
   return <Screen title={`🧠 ${t('p2.t.memory')}`}>
     <Card><T>{t('p2.memWhat')}</T>
       <Row><Chip label={`✓ ${t('p2.memOn')}`} active={m.on} onPress={() => setM((x) => ({ ...x, on: true }))} /><Chip label={t('p2.memOff')} active={!m.on} onPress={() => setM((x) => ({ ...x, on: false }))} /></Row>

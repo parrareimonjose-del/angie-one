@@ -47,6 +47,7 @@ export default function CoachSetup() {
           <Chip label={t('coach.none')} active={!p.injuries.length} onPress={() => setP({ ...p, injuries: [] })} />
           {(['knees', 'back', 'shoulders', 'wrists'] as Injury[]).map((k) => <Chip key={k} label={t(`coach.inj.${k}`)} active={p.injuries.includes(k)} onPress={() => toggle('injuries', k)} />)}
         </Row>
+        <Text style={s.muted}>⚠️ {t('coach.safety')}</Text>
         <T>{t('coach.injuryNote')}</T>
         <TextInput accessibilityLabel={t('coach.injuryNote')} style={s.input} value={p.injuryNote} maxLength={120} onChangeText={(v) => setP({ ...p, injuryNote: v })} placeholder={t('coach.optional')} />
       </Card>}
