@@ -3,7 +3,7 @@ import { View, Text, TextInput, Pressable, Platform, ScrollView } from 'react-na
 import { useTranslation } from 'react-i18next';
 import { router } from 'expo-router';
 import i18n, { curLang } from './i18n';
-import { Card, Btn, Chip, T, s, CardTitle } from './ui';
+import { Card, Btn, Chip, T, s, CardTitle, Pill, IconTile } from './ui';
 import { C } from './theme';
 import { useStore, uid } from './store';
 import { useExt, Pending, Note } from './ext';
@@ -83,11 +83,14 @@ export function SecurityScreenBody() {
   const addBio = async () => { if (!auth) return; try { const id = await bioRegister(auth.name); setAuth({ ...auth, passkeyId: id }); setMsg('✓ ' + t('fx.bioOn')); } catch { setMsg(t('fx.bioFail')); } };
   const skip = () => { setAsked(() => true); router.replace('/'); };
   return <>
-    <Text style={s.muted}>{t('fx.secSub')}</Text>
+    <Card style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
+      <View style={{ width: 84, height: 84, borderRadius: 42, alignItems: 'center', justifyContent: 'center', backgroundColor: auth ? C.success + '22' : C.tint, borderWidth: 3, borderColor: auth ? C.success : C.secondary }}><Text style={{ fontSize: 40 }}>{auth ? '🛡️' : '🔓'}</Text></View>
+      <View style={{ flex: 1, gap: 6 }}><Pill label={auth ? '✓ ON' : 'OFF'} color={auth ? C.success : C.muted} /><Text style={s.muted}>{t('fx.secSub')}</Text></View></Card>
+    <View style={{ flexDirection: 'row', gap: 10 }}>{[['🔢', t('fx.pin')], ['🔤', t('fx.password')], ['👆', '🔐']].map(([i, l]) => <View key={i} style={[s.card, { flex: 1, alignItems: 'center', padding: 12, gap: 6 }]}><IconTile icon={i} size={42} /><Text style={{ fontWeight: '700', color: C.text, fontSize: 13 }}>{l}</Text></View>)}</View>
     {auth ? <Card testID="sec-on"><T style={{ fontWeight: '900', color: C.success }}>🔐 {t('fx.isOn', { name: auth.name || '—' })}</T>
       <Check testID="sec-remember" on={auth.remember} label={t('fx.remember')} onPress={() => setAuth({ ...auth, remember: !auth.remember })} />
       <Btn kind="danger" label={t('fx.remove')} onPress={() => { setAuth(null); setMsg('✓ ' + t('fx.removed')); }} /></Card> : null}
-    <Card><CardTitle>{auth ? t('fx.change') : t('fx.create')}</CardTitle>
+    <Card><CardTitle icon="✏️">{auth ? t('fx.change') : t('fx.create')}</CardTitle>
       <TextInput testID="sec-name" accessibilityLabel={t('fx.name')} style={s.input} value={name} onChangeText={setName} placeholder={t('fx.name')} />
       <View style={s.row}><Chip label={`🔢 ${t('fx.pin')}`} active={kind === 'pin'} onPress={() => setKind('pin')} /><Chip label={`🔤 ${t('fx.password')}`} active={kind === 'password'} onPress={() => setKind('password')} /></View>
       <Text style={s.muted}>{t(kind === 'pin' ? 'fx.pinHint' : 'fx.pwHint')}</Text>

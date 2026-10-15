@@ -1,10 +1,10 @@
 /** Fase 4 (web): marketplace, bienestar corporativo, informes anónimos, tienda Etsy, impacto, mascotas, WhatsApp y propinas. */
 import { useState } from 'react';
-import { View, Text, TextInput } from 'react-native';
+import { View, Text, TextInput, Image } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import Svg, { Rect, Circle, Text as SvgText } from 'react-native-svg';
-import { Screen, Card, Btn, Chip, T, Bar, s, CardTitle, IconCard } from './ui';
+import { Screen, Card, Btn, Chip, T, Bar, s, CardTitle, IconCard, StatRow, Pill } from './ui';
 import { C } from './theme';
 import { useStore, today, uid } from './store';
 import { fmtNum, fmtDate } from './i18n';
@@ -38,7 +38,10 @@ export function AggReport() {
   const { t } = useTranslation();
   const g = aggregate([{ name: 'US', n: 120, avgKcal: 1850 }, { name: 'MX', n: 64, avgKcal: 1790 }, { name: 'VE', n: 8, avgKcal: 1700 }]);
   return <Screen title={`📊 ${t('x.aggTitle')}`}><Example />
-    {g.map((x) => <Card key={x.name}><T>{x.name} · {x.n} {t('x.people')} · {fmtNum(x.avgKcal)} {t('u.kcal')}</T></Card>)}
+    <StatRow items={[{ icon: '👥', value: g.reduce((a, x) => a + x.n, 0), label: t('x.people') }, { icon: '🌎', value: g.length, label: '🌎' }, { icon: '🔥', value: g.length ? fmtNum(Math.round(g.reduce((a, x) => a + x.avgKcal * x.n, 0) / Math.max(1, g.reduce((a, x) => a + x.n, 0)))) : '—', label: t('u.kcal') }]} />
+    <IconCard icon="📊" title={t('x.aggTitle')}>
+      {g.map((x) => <View key={x.name} style={{ gap: 6 }}><View style={s.row}><Text style={{ fontSize: 22 }}>{({ US: '🇺🇸', MX: '🇲🇽', VE: '🇻🇪' } as Record<string, string>)[x.name] ?? '🌎'}</Text><T style={{ flex: 1, fontWeight: '800' }}>{x.name} · {x.n} {t('x.people')}</T><Text style={{ fontWeight: '900', color: C.primary }}>{fmtNum(x.avgKcal)} {t('u.kcal')}</Text></View>
+        <Bar value={x.avgKcal} max={2500} color={C.secondary} /></View>)}</IconCard>
     <Note k="x.aggNote" /></Screen>;
 }
 
@@ -81,6 +84,10 @@ export function Pet() {
   const { t } = useTranslation(); const [pet, setPet] = useExt<{ kind: 'dog' | 'cat'; kg: number; walks: string[] }>('pet', { kind: 'dog', kg: 12, walks: [] });
   const kcal = Math.round(70 * Math.pow(pet.kg, 0.75) * (pet.kind === 'dog' ? 1.6 : 1.2));
   return <Screen title={`🐶 ${t('x.t.pet')}`}>
+    <Card style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}><Image source={require('../assets/sections/pet.jpg')} style={{ width: 96, height: 96, borderRadius: 48 }} accessibilityIgnoresInvertColors />
+      <View style={{ flex: 1, gap: 4 }}><Text style={{ fontSize: 30, fontWeight: '900', color: C.primary }}>{fmtNum(kcal)}</Text><Text style={s.muted}>{t('u.kcal')}/{t('x.day')}</Text>
+      {pet.kind === 'dog' ? <Pill label={`🦮 ${pet.walks.length}`} color={C.success} /> : null}</View></Card>
+    <View style={{ flexDirection: 'row', gap: 4 }}>{[...Array(7)].map((_, k) => { const d = today(new Date(Date.now() - (6 - k) * 864e5)); const on = pet.walks.includes(d); return <View key={k} style={{ flex: 1, height: 36, borderRadius: 10, alignItems: 'center', justifyContent: 'center', backgroundColor: on ? C.success + '33' : C.tint }}><Text>{on ? '🐾' : '·'}</Text></View>; })}</View>
     <Row><Chip label={`🐶 ${t('x.dog')}`} active={pet.kind === 'dog'} onPress={() => setPet((p) => ({ ...p, kind: 'dog' }))} /><Chip label={`🐱 ${t('x.cat')}`} active={pet.kind === 'cat'} onPress={() => setPet((p) => ({ ...p, kind: 'cat' }))} /></Row>
     <Card><Row>{[4, 8, 12, 25, 35].map((k) => <Chip key={k} label={`${k} kg`} active={pet.kg === k} onPress={() => setPet((p) => ({ ...p, kg: k }))} />)}</Row>
       <Text testID="pet-kcal" style={[s.h2, { color: C.primary }]}>~{fmtNum(kcal)} {t('u.kcal')}/{t('x.day')}</Text></Card>

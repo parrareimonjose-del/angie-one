@@ -6,8 +6,8 @@ import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import Svg, { Circle, Rect, Ellipse, Path } from 'react-native-svg';
-import { Screen, Card, Btn, Chip, T, Bar, s, StatRow, IconCard, EmptyState, Pill, Ring, InfoNote, CardTitle, IconTile } from './ui';
-import { C } from './theme';
+import { Screen, Card, Btn, Chip, T, Bar, s, StatRow, IconCard, EmptyState, Pill, Ring, InfoNote, CardTitle, IconTile, FOOD } from './ui';
+import { C, R, shadow } from './theme';
 import { useStore, today, uid, DAY, trialPhase } from './store';
 import { fmtNum, fmtDate } from './i18n';
 import { coachTarget, coachOf, burnedOn } from './coach';
@@ -37,18 +37,20 @@ export function Social() {
   const tog = (a: string[], v: string) => (a.includes(v) ? a.filter((x) => x !== v) : [...a, v]);
   return <Screen title={`🤳 ${t('x.t.social')}`}>
     <Pending what={t('x.needServer')} />
-    <Card><Row>{(['meal', 'gym', 'run'] as const).map((k) => <Chip key={k} label={t(`x.k.${k}`)} active={kind === k} onPress={() => setKind(k)} />)}</Row>
+    <StatRow items={[{ icon: '📝', value: posts.length, label: '📝' }, { icon: '👥', value: groups.length, label: t('x.groups') }, { icon: '⭐', value: follow.length, label: t('x.following') }]} />
+    <Card><CardTitle icon="✍️">{t('x.postPh')}</CardTitle><Row>{(['meal', 'gym', 'run'] as const).map((k) => <Chip key={k} label={t(`x.k.${k}`)} active={kind === k} onPress={() => setKind(k)} />)}</Row>
       <TextInput accessibilityLabel={t('x.postPh')} placeholder={t('x.postPh')} style={s.input} value={txt} onChangeText={setTxt} maxLength={200} />
       {img ? <Image source={{ uri: img }} style={{ width: '100%', height: 180, borderRadius: 16 }} /> : null}
       <Row><Btn small kind="ghost" label={`🖼️ ${t('x.addPhoto')}`} onPress={pick} /><Btn small label={t('x.publish')} onPress={pub} /></Row>
       <Note k="x.localOnly" /></Card>
-    {posts.map((p) => <Card key={p.id} testID="post"><Text style={s.muted}>{p.who} · {t(`x.k.${p.kind}`)}</Text>
+    {posts.map((p) => <Card key={p.id} testID="post"><View style={s.row}><View style={{ width: 42, height: 42, borderRadius: 21, backgroundColor: p.mine ? C.primary : C.secondary, alignItems: 'center', justifyContent: 'center' }}><Text style={{ color: '#fff', fontWeight: '900' }}>{(p.who || '?').slice(0, 1)}</Text></View><Text style={[s.muted, { flex: 1 }]}><Text style={{ fontWeight: '800', color: C.text }}>{p.who}</Text> · {t(`x.k.${p.kind}`)}</Text><Text style={{ fontSize: 20 }}>{({ meal: '🍽️', gym: '🏋️', run: '🏃' } as Record<string, string>)[p.kind]}</Text></View>
+      {!p.img ? <Image source={({ meal: FOOD.bowl, gym: require('../assets/sections/gym.jpg'), run: require('../assets/sections/run.jpg') } as Record<string, any>)[p.kind]} style={{ width: '100%', height: 150, borderRadius: 16 }} resizeMode="cover" /> : null}
       {p.img ? <Image source={{ uri: p.img }} style={{ width: '100%', height: 200, borderRadius: 16 }} /> : null}<T>{p.text}</T>
       <Row><Btn small kind="ghost" label={`💗 ${p.likes}`} a11y={t('x.like')} onPress={() => setPosts((a) => a.map((x) => (x.id === p.id ? { ...x, likes: x.likes + 1 } : x)))} />
         {!p.mine && <Btn small kind={follow.includes(p.who) ? 'secondary' : 'ghost'} label={follow.includes(p.who) ? t('x.following') : t('x.follow')} onPress={() => setFollow((f) => tog(f, p.who))} />}
         {p.mine && <Btn small kind="danger" label={t('diary.remove')} onPress={() => setPosts((a) => a.filter((x) => x.id !== p.id))} />}</Row></Card>)}
     <Card><CardTitle>👥 {t('x.groups')}</CardTitle>
-      {['g1', 'g2', 'g3'].map((g) => <Row key={g}><T style={{ flex: 1 }}>{t(`x.${g}`)}</T><Btn small kind={groups.includes(g) ? 'secondary' : 'ghost'} label={groups.includes(g) ? t('x.joined') : t('x.join')} onPress={() => setGroups((a) => tog(a, g))} /></Row>)}</Card>
+      {['g1', 'g2', 'g3'].map((g, gi) => <Row key={g}><IconTile icon={['🥗', '🏃', '💪'][gi]} size={40} /><T style={{ flex: 1 }}>{t(`x.${g}`)}</T><Btn small kind={groups.includes(g) ? 'secondary' : 'ghost'} label={groups.includes(g) ? t('x.joined') : t('x.join')} onPress={() => setGroups((a) => tog(a, g))} /></Row>)}</Card>
     <Card><CardTitle>🏆 {t('x.challenges')}</CardTitle><T>{t('x.ch1')}</T><Bar value={groups.length} max={3} color={C.primary} /></Card>
     <Note k="x.socialSafety" />
   </Screen>;
@@ -154,9 +156,15 @@ export function Video() {
   const slides = [t('x.v1', { n: logged }), t('x.v2', { kcal: fmtNum(Math.round(kc.reduce((a, b) => a + b, 0) / Math.max(1, logged))) }), t('x.v3', { kcal: fmtNum(burn) }), t('x.v4', { n: water }), t('x.v5')];
   useEffect(() => { if (i < 0 || i >= slides.length) return; speak(slides[i]); const tm = setTimeout(() => setI(i + 1), 3500); return () => clearTimeout(tm); }, [i]);
   return <Screen title={`🎬 ${t('x.t.video')}`}>
-    <Card style={{ minHeight: 260, alignItems: 'center', justifyContent: 'center', backgroundColor: C.secondary }}>
-      <Text testID="slide" style={[s.h1, { color: C.white, textAlign: 'center' }]}>{i < 0 ? '🎬' : i >= slides.length ? '🎉' : slides[i]}</Text>
-      {i >= 0 && <Bar value={Math.min(i + 1, slides.length)} max={slides.length} color={C.accent} />}</Card>
+    <View style={{ minHeight: 280, borderRadius: R.hero, overflow: 'hidden', ...shadow('card') }}>
+      <Image source={[FOOD.bowl, FOOD.salad, require('../assets/sections/run.jpg'), require('../assets/sections/water.jpg'), FOOD.fruit][Math.max(0, Math.min(i, 4))]} style={{ position: 'absolute', width: '100%', height: '100%' }} resizeMode="cover" accessibilityIgnoresInvertColors />
+      <View style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(40,16,80,0.55)' }} />
+      <View style={{ flex: 1, padding: 20, justifyContent: 'center', alignItems: 'center', gap: 14 }}>
+        <View style={{ flexDirection: 'row', gap: 4, alignSelf: 'stretch' }}>{slides.map((_, k) => <View key={k} style={{ flex: 1, height: 4, borderRadius: 2, backgroundColor: k <= i ? '#fff' : 'rgba(255,255,255,0.35)' }} />)}</View>
+        <Text testID="slide" style={[s.h1, { color: C.white, textAlign: 'center' }]}>{i < 0 ? '🎬' : i >= slides.length ? '🎉' : slides[i]}</Text>
+        {i < 0 ? <View style={{ width: 76, height: 76, borderRadius: 38, backgroundColor: 'rgba(255,255,255,0.9)', alignItems: 'center', justifyContent: 'center' }}><Text style={{ fontSize: 30, color: C.primary }}>▶</Text></View> : null}
+      </View></View>
+    <StatRow items={[{ icon: '📅', value: `${logged}/7`, label: '📅' }, { icon: '🔥', value: fmtNum(burn), label: t('u.kcal') }, { icon: '💧', value: water, label: '💧' }]} />
     <Btn label={`▶️ ${t('x.play')}`} onPress={() => setI(0)} /><Note k="x.videoNote" /></Screen>;
 }
 
@@ -204,7 +212,9 @@ export function Report() {
   const rows = days.map((d) => ({ d, k: st.entries.filter((e) => e.date === d).reduce((a, e) => a + e.kcal, 0), w: st.water[d] || 0, b: burnedOn(c, d) })).filter((r) => r.k || r.w || r.b);
   const pdf = () => { if (Platform.OS === 'web') window.print(); };
   return <Screen title={`📄 ${t('x.t.report')}`}>
-    <Card testID="report"><CardTitle>Angie One · {t('x.repTitle')}</CardTitle><Text style={s.muted}>{fmtDate(new Date())}</Text>
+    <StatRow items={[{ icon: '📅', value: rows.length, label: '14 d' }, { icon: '🍽️', value: rows.length ? fmtNum(Math.round(rows.reduce((a, r) => a + r.k, 0) / rows.length)) : '—', label: t('u.kcal') }, { icon: '💧', value: rows.reduce((a, r) => a + r.w, 0), label: '💧' }]} />
+    <Card><View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 4, height: 100 }}>{[...days].reverse().map((d) => { const r = rows.find((x) => x.d === d); return <View key={d} style={{ flex: 1, height: Math.max(4, ((r?.k || 0) / 2500) * 96), borderRadius: 4, backgroundColor: r?.k ? C.secondary : C.border }} />; })}</View></Card>
+    <Card testID="report"><CardTitle icon="📄">Angie One · {t('x.repTitle')}</CardTitle><Text style={s.muted}>{fmtDate(new Date())}</Text>
       {st.profile && <T>{t('ob.age')}: {st.profile.age} · {t('ob.weight')}: {fmtNum(st.profile.weight, 1)} · {t('ob.height')}: {st.profile.height}</T>}
       {modes.length > 0 && <T>{t('x.repModes')}: {modes.map((m) => t(`x.m.${m}`)).join(', ')}</T>}
       <T>{t('coach.target', { kcal: fmtNum(coachTarget(st).kcal) })}</T>

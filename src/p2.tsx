@@ -6,7 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import Svg, { Circle, Rect, Ellipse, Path, Polyline, Line, Text as SvgText } from 'react-native-svg';
-import { Screen, Card, Btn, Chip, T, Bar, s, IconCard, EmptyState, Pill, InfoNote, CardTitle, Ring, FOOD } from './ui';
+import { Screen, Card, Btn, Chip, T, Bar, s, IconCard, EmptyState, Pill, InfoNote, CardTitle, Ring, FOOD, IconTile, StatRow } from './ui';
 import { C } from './theme';
 import { useStore, today, uid, DAY, State, Entry, dailyTarget } from './store';
 import { fmtNum, fmtDate, fmtLocale, curLang } from './i18n';
@@ -225,11 +225,13 @@ export function Chef() {
   const log = (r: Rec, i: number) => { set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: r.name, kcal: r.kcal, p: 0, c: 0, f: 0, source: 'manual' }] })); setAdded(i); };
   if (!prem) return <Screen title={`🧊 ${t('p2.t.fridge')}`}><Locked k="p2.chLocked" /></Screen>;
   return <Screen title={`🧊 ${t('p2.t.fridge')}`}>
-    <Card><T>{t('p2.chHow')}</T><Btn label={`📸 ${t('p2.chPhoto')}`} onPress={photo} />{uri ? <Image source={{ uri }} style={{ width: '100%', height: 180, borderRadius: 16 }} /> : null}</Card>
+    <Card><Image source={uri ? { uri } : require('../assets/sections/chef.jpg')} style={{ width: '100%', height: 160, borderRadius: 16 }} resizeMode="cover" accessibilityIgnoresInvertColors />
+      <CardTitle icon="🧊">{t('p2.chHow')}</CardTitle><Btn label={`📸 ${t('p2.chPhoto')}`} onPress={photo} /></Card>
+    <View style={{ flexDirection: 'row', gap: 10 }}>{['📸', '🥕', '🍳'].map((e, k) => <View key={k} style={[s.card, { flex: 1, alignItems: 'center', padding: 12, gap: 6 }]}><IconTile icon={e} size={42} /><Text style={[s.muted, { fontSize: 13 }]}>{k + 1}</Text></View>)}</View>
     <Card><CardTitle>👩‍🍳 {t('p2.chChef')}</CardTitle><TextInput testID="chef-text" style={s.input} value={q} onChangeText={setQ} placeholder={t('p2.chPh')} />
       <Btn kind="secondary" label={busy ? '…' : `✨ ${t('p2.chGo')}`} onPress={() => q.trim() && run({ text: q })} /></Card>
     {busy ? <T>⏳ {t('p2.thinking')}</T> : null}{err ? <Text style={{ color: C.primary, fontWeight: '800' }}>{err}</Text> : null}
-    {items.length ? <Card><CardTitle>{t('p2.chFound')}</CardTitle><T>{items.join(' · ')}</T></Card> : null}
+    {items.length ? <Card><CardTitle icon="🥕">{t('p2.chFound')}</CardTitle><View style={[s.row, { flexWrap: 'wrap' }]}>{items.map((x) => <Pill key={x} label={x} />)}</View></Card> : null}
     {recs.map((r, i) => <Card key={i} testID="recipe"><CardTitle>{r.name}</CardTitle><Text style={s.muted}>{fmtNum(r.kcal)} {t('u.kcal')} · {r.min} min</Text>
       {open === i ? r.steps.map((x, j) => <T key={j}>{j + 1}. {x}</T>) : null}
       <Row><Btn small kind="ghost" label={open === i ? t('x.close') : t('x.see')} onPress={() => setOpen(open === i ? -1 : i)} /><Btn small kind="ghost" label="🔊" a11y={t('home.readAloud')} onPress={() => speak(r.name + '. ' + r.steps.join('. '))} />
@@ -247,7 +249,9 @@ export function Menu() {
   const col = { best: C.success, ok: C.secondary, treat: C.warning };
   if (!prem) return <Screen title={`📋 ${t('p2.t.menu')}`}><Locked k="p2.mnLocked" /></Screen>;
   return <Screen title={`📋 ${t('p2.t.menu')}`}>
-    <Card><T>{t('p2.mnLeft', { kcal: fmtNum(left) })}</T><Btn label={`📸 ${t('p2.mnPhoto')}`} onPress={photo} /></Card>
+    <Card style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}><Ring value={left} max={Math.max(1, coachTarget(st).kcal)} size={110} stroke={12}><Text style={{ fontSize: 22, fontWeight: '900', color: C.text }}>{fmtNum(left)}</Text><Text style={[s.muted, { fontSize: 12 }]}>{t('u.kcal')}</Text></Ring>
+      <View style={{ flex: 1, gap: 8 }}><T>{t('p2.mnLeft', { kcal: fmtNum(left) })}</T><View style={{ flexDirection: 'row', gap: 6 }}>{[['🟢', C.success], ['🟣', C.secondary], ['🟠', C.warning]].map(([e, c], k) => <Pill key={k} label={t('p2.pick.' + ['best', 'ok', 'treat'][k])} color={c} />)}</View></View></Card>
+    <Card><Image source={FOOD.plate} style={{ width: '100%', height: 130, borderRadius: 16 }} resizeMode="cover" accessibilityIgnoresInvertColors /><Btn label={`📸 ${t('p2.mnPhoto')}`} onPress={photo} /></Card>
     <Card><TextInput testID="menu-text" style={[s.input, { minHeight: 90, textAlignVertical: 'top' }]} multiline value={q} onChangeText={setQ} placeholder={t('p2.mnPh')} />
       <Btn kind="secondary" label={busy ? '…' : `✨ ${t('p2.mnGo')}`} onPress={() => q.trim() && run({ text: q })} /></Card>
     {busy ? <T>⏳ {t('p2.thinking')}</T> : null}{err ? <Text style={{ color: C.primary, fontWeight: '800' }}>{err}</Text> : null}
@@ -355,7 +359,11 @@ export function Weekly() {
   const lines = [t('p2.wkLogged', { n: w.logged }), w.logged ? t('p2.wkKcal', { a: fmtNum(w.avgK), b: fmtNum(w.target) }) : '', t('p2.wkWater', { n: fmtNum(w.water, 1) }),
     t('p2.wkMove', { n: w.workouts, k: fmtNum(w.burned) }), w.dW !== null ? t('p2.wkWeight', { d: (w.dW > 0 ? '+' : '') + fmtNum(w.dW, 1) }) : '', w.sh !== null ? t('p2.wkSleep', { h: fmtNum(w.sh, 1) }) : '', t(w.logged >= 5 ? 'p2.wkCheer1' : 'p2.wkCheer2')].filter(Boolean);
   return <Screen title={`🗣️ ${t('p2.t.weekly')}`}>
-    {!prem ? <Locked k="p2.wkLocked" /> : <><Card testID="weekly">{lines.map((l, i) => <T key={i}>• {l}</T>)}</Card>
+    {!prem ? <Locked k="p2.wkLocked" /> : <>
+      <Card style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}><Ring value={w.logged} max={7} size={120} stroke={13}><Text style={{ fontSize: 26, fontWeight: '900', color: C.text }}>{w.logged}/7</Text><Text style={[s.muted, { fontSize: 12 }]}>📅</Text></Ring>
+        <View style={{ flex: 1, gap: 8 }}><Text style={{ fontWeight: '800', color: C.text }}>{fmtNum(w.avgK)} / {fmtNum(w.target)} {t('u.kcal')}</Text><Bar value={w.avgK} max={Math.max(1, w.target)} color={C.primary} /></View></Card>
+      <StatRow items={[{ icon: '💧', value: fmtNum(w.water, 1), label: '💧' }, { icon: '🏋️', value: w.workouts, label: `🔥 ${fmtNum(w.burned)}` }, { icon: '😴', value: w.sh !== null ? fmtNum(w.sh, 1) + 'h' : '—', label: w.dW !== null ? `⚖️ ${(w.dW > 0 ? '+' : '') + fmtNum(w.dW, 1)} kg` : '⚖️' }]} />
+      <Card testID="weekly">{lines.map((l, i) => <View key={i} style={{ flexDirection: 'row', gap: 10, alignItems: 'center' }}><IconTile icon={['📅', '🍽️', '💧', '🏋️', '⚖️', '😴', '🎉'][i] ?? '•'} size={34} /><T style={{ flex: 1 }}>• {l}</T></View>)}</Card>
       <Btn label={`🔊 ${t('p2.wkPlay')}`} onPress={() => speak(lines.join(' '))} /></>}
   </Screen>;
 }
