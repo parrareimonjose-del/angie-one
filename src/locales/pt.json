@@ -62,7 +62,8 @@
   "home": "Início",
   "scan": "Foto",
   "diary": "Diário",
-  "more": "Mais"
+  "more": "Mais",
+  "coach": "Treinador"
  },
  "scan": {
   "title": "Foto do prato",
@@ -344,5 +345,383 @@
   "pollo": "Frango grelhado",
   "yuca": "Mandioca cozida",
   "cafe": "Café com leite"
+ },
+ "coach": {
+  "title": "Treinador pessoal",
+  "introTitle": "Seu plano, feito para você",
+  "introBody": "Responda a 3 telas rápidas e a Angie monta seu cardápio semanal e treino com base no seu objetivo, corpo e preferências.",
+  "create": "Criar meu plano",
+  "today": "Hoje",
+  "restDay": "Dia de descanso — aproveite!",
+  "restBody": "Descansar faz parte do plano. Uma caminhada leve ou um alongamento são ótimos extras.",
+  "doneToday": "Treino feito hoje. Bom trabalho!",
+  "startToday": "Iniciar o treino de hoje",
+  "burnedToday": "gastos hoje",
+  "burned": "gastos",
+  "streak": "Sequência",
+  "week": "esta semana",
+  "target": "Sua meta diária: {{kcal}} kcal",
+  "source": {
+   "ai": "Plano criado pela IA da Angie",
+   "rules": "Plano básico (a IA estava ocupada)"
+  },
+  "diet": "Plano alimentar",
+  "workout": "Exercício",
+  "checkin": "Check-in semanal",
+  "due": "pendente hoje",
+  "chat": "Falar com a Angie",
+  "edit": "Alterar preferências",
+  "setupTitle": "Vamos configurar seu plano",
+  "place": "Onde você vai treinar?",
+  "home": "Em casa",
+  "gym": "Na academia",
+  "daysQ": "Dias por semana",
+  "minutesQ": "Minutos por sessão",
+  "levelQ": "Seu nível",
+  "beginner": "Iniciante",
+  "intermediate": "Intermediário",
+  "advanced": "Avançado",
+  "injuriesQ": "Alguma dor, lesão ou limite?",
+  "none": "Nenhuma",
+  "inj": {
+   "knees": "Joelhos",
+   "back": "Costas",
+   "shoulders": "Ombros",
+   "wrists": "Punhos"
+  },
+  "injuryNote": "Mais alguma coisa que a Angie deva saber? (opcional)",
+  "optional": "Opcional",
+  "dislikesQ": "Alimentos que você não come",
+  "dis": {
+   "fish": "Peixe",
+   "eggs": "Ovos",
+   "dairy": "Laticínios",
+   "beef": "Carne vermelha",
+   "chicken": "Frango",
+   "legumes": "Feijão",
+   "nuts": "Castanhas e nozes",
+   "veg": "Vegetariano"
+  },
+  "cuisineQ": "Sua culinária favorita",
+  "cui": {
+   "latin": "Latina",
+   "mexican": "Mexicana",
+   "caribbean": "Caribenha",
+   "andean": "Colombiana / Andina",
+   "brazilian": "Brasileira",
+   "international": "Internacional"
+  },
+  "budgetQ": "Orçamento para alimentação",
+  "bud": {
+   "low": "Baixo",
+   "medium": "Médio",
+   "high": "Alto"
+  },
+  "mealsQ": "Refeições por dia",
+  "generate": "Criar plano",
+  "building": "A Angie está montando seu plano…",
+  "buildingSub": "Isso pode levar até um minuto.",
+  "fallbackNote": "A IA está ocupada agora, então criei um plano básico para você com as mesmas calorias e suas preferências. Você pode tentar a IA novamente mais tarde.",
+  "seePlan": "Ver meu plano",
+  "tryAgain": "Tentar a IA novamente",
+  "slots3": [
+   "Café da manhã",
+   "Almoço",
+   "Jantar"
+  ],
+  "slots4": [
+   "Café da manhã",
+   "Almoço",
+   "Lanche",
+   "Jantar"
+  ],
+  "slots5": [
+   "Café da manhã",
+   "Lanche da manhã",
+   "Almoço",
+   "Lanche da tarde",
+   "Jantar"
+  ],
+  "slots2": [
+   "Refeição 1",
+   "Refeição 2"
+  ],
+  "slots6": [
+   "Refeição 1",
+   "Refeição 2",
+   "Refeição 3",
+   "Refeição 4",
+   "Refeição 5",
+   "Refeição 6"
+  ],
+  "portion": "porção ×{{x}}",
+  "logMeal": "Adicionar ao diário",
+  "logged": "Adicionado ao seu diário",
+  "shopping": "Lista de compras da semana",
+  "reps": "{{n}} reps",
+  "secs": "{{n}} seg",
+  "restS": "descanso de {{n}} s",
+  "start": "Iniciar treino",
+  "safety": "Aqueça-se primeiro, mova-se devagar e pare se sentir dor, tontura ou pressão no peito.",
+  "notMedical": "A Angie oferece orientações gerais, não conselhos médicos. Se você tiver alguma condição de saúde, consulte um profissional.",
+  "lockedTitle": "Seu treinador é um recurso Premium",
+  "lockedBody": "Seu teste grátis terminou. Seu plano e histórico estão salvos — desbloqueie o Premium para continuar treinando com a Angie.",
+  "teaser1": "Cardápio semanal com alimentos latinos e lista de compras",
+  "teaser2": "Treinos em casa ou na academia com cronômetro guiado",
+  "teaser3": "Check-in semanal que ajusta seu plano de forma gradual",
+  "teaser4": "Converse com a Angie sobre comida e exercícios",
+  "unlock": "Ver Premium",
+  "keepData": "Nada é cobrado automaticamente.",
+  "stepOf": "Passo {{a}} de {{b}}",
+  "setOf": "Série {{a}} de {{b}}",
+  "rest": "Descanso",
+  "breathe": "Respire e tome um pouco de água",
+  "upNext": "Próximo",
+  "skipRest": "Pular descanso",
+  "doneSet": "Feito",
+  "pause": "Pausar",
+  "resume": "Continuar",
+  "endEarly": "Concluir agora",
+  "greatJob": "Bom trabalho! Treino concluído",
+  "addedHome": "Suas calorias gastas foram adicionadas ao saldo de hoje na Início.",
+  "sayRest": "Descanse {{n}} segundos.",
+  "sayDone": "Bom trabalho! Você gastou cerca de {{kcal}} calorias.",
+  "sayBurned": "Você gastou {{kcal}} calorias se exercitando.",
+  "dLegs": "Pernas e abdômen",
+  "dUpper": "Membros superiores e abdômen",
+  "dFull": "Corpo todo",
+  "dRest": "Descanso"
+ },
+ "ci": {
+  "weightQ": "Seu peso hoje (kg)",
+  "energyQ": "Como esteve sua energia esta semana?",
+  "e_low": "Baixa",
+  "e_ok": "Normal",
+  "e_good": "Ótima",
+  "skippedQ": "Você pulou refeições de propósito ou sentiu culpa depois de comer?",
+  "bingeQ": "Você comeu muito sem conseguir parar ou se exercitou para 'compensar' a comida?",
+  "yes": "Sim",
+  "no": "Não",
+  "private": "Suas respostas ficam no seu celular. Elas ajudam a Angie a cuidar de você.",
+  "save": "Salvar check-in",
+  "history": "Check-ins recentes",
+  "notYet": "Seu próximo check-in é em {{n}} dias, mas você pode fazer um agora.",
+  "newTarget": "Sua meta diária: {{kcal}} kcal",
+  "mFirst": "Primeiro check-in salvo! Na próxima semana vamos comparar e ajustar.",
+  "mOnTrack": "Você está no caminho certo. Vamos manter o plano como está.",
+  "mPlateau": "Seu peso se manteve estável. Vamos reduzir sua meta um pouco (−100 kcal) — com cuidado.",
+  "mFast": "Você está perdendo peso mais rápido do que o saudável. Vamos adicionar um pouco mais de comida (+150 kcal).",
+  "mGainMore": "Para ganhar massa muscular, vamos adicionar um pouco mais de comida (+100 kcal).",
+  "mGainSlow": "Você está ganhando peso um pouco rápido. Vamos ajustar levemente (−100 kcal).",
+  "mKeepDown": "Seu peso subiu um pouco. Pequeno ajuste (−100 kcal).",
+  "mKeepUp": "Seu peso caiu um pouco. Pequeno ajuste (+100 kcal).",
+  "tUp": "Treino: uma série a mais por exercício. Você está pronto(a)!",
+  "tDown": "Treino: um pouco mais leve esta semana, para você se recuperar.",
+  "tSame": "Treino: igual ao da semana passada.",
+  "warnTitle": "Nós nos importamos com você",
+  "warnBody": "Algumas das suas respostas sugerem que sua relação com a comida pode estar difícil agora. Isso acontece com muita gente, e você não está sozinho(a). Não vamos reduzir suas calorias. Conversar com um médico, nutricionista ou profissional de saúde mental pode ajudar muito. Se precisar, entre em contato com um serviço de apoio ou linha de ajuda local."
+ },
+ "chat": {
+  "disclaimer": "A Angie é uma treinadora de IA, não uma médica. As respostas dela são orientações gerais; para problemas de saúde, consulte um profissional.",
+  "hello": "Olá! Me pergunte qualquer coisa sobre comida, receitas ou exercícios.",
+  "s1": "O que posso comer em um jantar saudável?",
+  "s2": "Como faço um agachamento com segurança?",
+  "s3": "Tem problema comer arroz à noite?",
+  "placeholder": "Escreva sua pergunta",
+  "send": "Enviar",
+  "offline": "A Angie não pôde responder agora. Verifique sua conexão e tente novamente em instantes.",
+  "limit": "Você atingiu as {{n}} perguntas de hoje. Volte amanhã!"
+ },
+ "cfood": {
+  "b1": {
+   "n": "Arepa com ovo e queijo",
+   "i": "1 arepa de milho, 1 ovo mexido, 30 g de queijo fresco, tomate"
+  },
+  "b2": {
+   "n": "Aveia com banana e canela",
+   "i": "½ xícara de aveia cozida no leite, 1 banana, canela"
+  },
+  "b3": {
+   "n": "Ovos mexidos com tortilhas de milho",
+   "i": "2 ovos com tomate e cebola, 2 tortilhas de milho"
+  },
+  "b4": {
+   "n": "Iogurte com frutas e aveia",
+   "i": "1 xícara de iogurte natural, 1 xícara de frutas, 3 colheres (sopa) de aveia"
+  },
+  "b5": {
+   "n": "Torrada integral com abacate e feijão",
+   "i": "2 fatias de pão integral, ¼ de abacate, ½ xícara de feijão"
+  },
+  "l1": {
+   "n": "Arroz, feijão e frango",
+   "i": "¾ de xícara de arroz, ½ xícara de feijão, 120 g de frango grelhado, salada"
+  },
+  "l2": {
+   "n": "Peixe grelhado com yuca",
+   "i": "150 g de peixe, 1 xícara de yuca cozida, salada com limão"
+  },
+  "l3": {
+   "n": "Carne cozida com arroz e banana-da-terra assada",
+   "i": "120 g de carne cozida, ¾ de xícara de arroz, ½ banana-da-terra madura assada"
+  },
+  "l4": {
+   "n": "Lentilha com arroz",
+   "i": "1 xícara de lentilha, ½ xícara de arroz, salada"
+  },
+  "l5": {
+   "n": "Frango assado com batatas e legumes",
+   "i": "130 g de frango, 1 batata média, 1 xícara de legumes"
+  },
+  "s1": {
+   "n": "Fruta com amendoim",
+   "i": "1 fruta, 1 punhado pequeno de amendoim"
+  },
+  "s2": {
+   "n": "Iogurte com frutas",
+   "i": "1 xícara de iogurte natural, ½ xícara de frutas"
+  },
+  "s3": {
+   "n": "Manga com limão e um ovo cozido",
+   "i": "1 xícara de manga, limão, 1 ovo cozido"
+  },
+  "s4": {
+   "n": "Salada de frutas",
+   "i": "1 banana e 1 xícara de frutas da estação"
+  },
+  "d1": {
+   "n": "Tacos de frango com pico de gallo",
+   "i": "3 tortilhas de milho, 120 g de frango, tomate e cebola"
+  },
+  "d2": {
+   "n": "Sopa de frango com legumes",
+   "i": "1 tigela grande: frango, batata, cenoura, abóbora"
+  },
+  "d3": {
+   "n": "Salada de atum com abacate",
+   "i": "1 lata de atum na água, ¼ de abacate, alface e tomate, biscoitos salgados"
+  },
+  "d4": {
+   "n": "Omelete de legumes com queijo",
+   "i": "2 ovos, legumes, 30 g de queijo, 1 fatia de pão"
+  },
+  "d5": {
+   "n": "Feijão-preto com arroz e queijo fresco",
+   "i": "1 xícara de feijão, ½ xícara de arroz, 30 g de queijo fresco"
+  }
+ },
+ "cing": {
+  "cornflour": "Farinha de milho pré-cozida",
+  "eggs": "Ovos",
+  "cheese": "Queijo fresco",
+  "tomato": "Tomates",
+  "oats": "Aveia",
+  "banana": "Bananas",
+  "milk": "Leite",
+  "tortillas": "Tortilhas de milho",
+  "onion": "Cebolas",
+  "yogurt": "Iogurte natural",
+  "fruit": "Frutas da estação",
+  "bread": "Pão integral",
+  "avocado": "Abacates",
+  "beans": "Feijão",
+  "rice": "Arroz",
+  "chicken": "Peito de frango",
+  "salad": "Alface e folhas para salada",
+  "fish": "Peixe branco",
+  "yuca": "Yuca (mandioca)",
+  "beef": "Carne bovina magra",
+  "plantain": "Banana-da-terra madura",
+  "lentils": "Lentilha",
+  "potato": "Batatas",
+  "vegetables": "Legumes variados",
+  "peanuts": "Amendoim",
+  "tuna": "Atum enlatado na água"
+ },
+ "cex": {
+  "march": {
+   "n": "Marcha no lugar",
+   "d": "Eleve os joelhos um de cada vez e balance os braços. Faça em um ritmo leve para aquecer."
+  },
+  "treadmill": {
+   "n": "Caminhada na esteira",
+   "d": "Caminhe em um ritmo confortável. Você deve conseguir conversar enquanto caminha."
+  },
+  "chairSquat": {
+   "n": "Agachamento na cadeira",
+   "d": "Fique em pé na frente de uma cadeira, sente-se devagar e levante-se novamente, empurrando pelos calcanhares."
+  },
+  "bridge": {
+   "n": "Elevação pélvica",
+   "d": "Deite de costas com os joelhos dobrados. Eleve o quadril, contraia os glúteos e desça devagar."
+  },
+  "calf": {
+   "n": "Elevação de panturrilhas",
+   "d": "Apoie-se em uma parede ou cadeira. Suba na ponta dos pés e desça devagar."
+  },
+  "sideLeg": {
+   "n": "Elevação lateral de perna",
+   "d": "Segure em uma cadeira, levante uma perna para o lado e abaixe devagar. Troque de perna."
+  },
+  "stepUp": {
+   "n": "Subida no degrau",
+   "d": "Suba em um degrau baixo e estável com um pé, depois o outro, e desça devagar."
+  },
+  "legPress": {
+   "n": "Leg press",
+   "d": "Sente-se na máquina com os pés apoiados na plataforma. Empurre para longe sem esticar completamente os joelhos e retorne devagar."
+  },
+  "gobletSquat": {
+   "n": "Agachamento Goblet",
+   "d": "Segure um halter leve junto ao peito. Agache com as costas retas e levante-se."
+  },
+  "wallPush": {
+   "n": "Flexão na parede",
+   "d": "Mãos na parede na altura do peito. Dobre os cotovelos em direção à parede e empurre de volta."
+  },
+  "armCircles": {
+   "n": "Circulos com os braços",
+   "d": "Com os braços abertos para os lados, faça pequenos círculos para frente e depois para trás."
+  },
+  "bottleRow": {
+   "n": "Remada com garrafas de água",
+   "d": "Incline o tronco levemente para frente com as costas retas, puxe duas garrafas de água em direção à cintura e abaixe."
+  },
+  "latPull": {
+   "n": "Puxada alta",
+   "d": "Sente-se na máquina, puxe a barra em direção à parte superior do peito e deixe-a subir devagar."
+  },
+  "seatedRow": {
+   "n": "Remada baixa sentada",
+   "d": "Sente-se com a coluna erguida, puxe o puxador em direção ao abdômen, contraia as escápulas e retorne devagar."
+  },
+  "chestPress": {
+   "n": "Supino na máquina",
+   "d": "Sente-se com as costas apoiadas no encosto. Empurre as alças para frente e retorne devagar."
+  },
+  "birdDog": {
+   "n": "Perdigueiro (Bird Dog)",
+   "d": "Apoiado(a) sobre as mãos e os joelhos, estique um braço para frente e a perna oposta para trás. Segure e depois alterne."
+  },
+  "deadBug": {
+   "n": "Bug morto (Dead Bug)",
+   "d": "Deite de costas, com os braços para cima e joelhos dobrados. Abaixe devagar o braço e a perna opostos, depois alterne."
+  },
+  "plank": {
+   "n": "Prancha",
+   "d": "Apoiado(a) nos antebraços e na ponta dos pés (ou joelhos), mantenha o corpo reto e respire."
+  },
+  "jacks": {
+   "n": "Polichinelos",
+   "d": "Pule abrindo as pernas e os braços, depois feche. Para baixo impacto, dê um passo para o lado em vez de pular."
+  },
+  "bike": {
+   "n": "Bicicleta ergométrica",
+   "d": "Pedale em um ritmo constante que faça você respirar um pouco mais rápido."
+  },
+  "stretch": {
+   "n": "Alongamento leve",
+   "d": "Alongue as pernas, costas e braços devagar. Segure cada posição por 15 a 20 segundos sem balançar."
+  }
  }
 }

@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18n, { deviceLang, Lang } from './i18n';
+import type { Coach } from './coach';
 
 export type Profile = { goal: 'lose' | 'keep' | 'gain'; weight: number; height: number; age: number; sex: 'female' | 'male'; activity: 1 | 2 | 3 | 4 };
 export type Entry = { id: string; date: string; time: number; name: string; kcal: number; p: number; c: number; f: number; source: 'photo' | 'barcode' | 'manual' };
@@ -8,6 +9,7 @@ export type State = {
   profile?: Profile; trialStart?: number; langOverride?: Lang | null; aiEnabled: boolean;
   entries: Entry[]; water: Record<string, number>; challengeDays: string[]; aiPhotos: Record<string, number>;
   founder: Record<string, 'approved' | 'rejected'>;
+  coach?: Coach;
 };
 const INITIAL: State = { aiEnabled: true, entries: [], water: {}, challengeDays: [], aiPhotos: {}, founder: {}, langOverride: null };
 const KEY = 'angieone:v1';

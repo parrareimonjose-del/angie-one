@@ -65,7 +65,7 @@ export function Bar({ value, max, color }: { value: number; max: number; color: 
 
 function BottomBar() {
   const { t } = useTranslation(); const path = usePathname();
-  const items = [{ k: 'home', href: '/', icon: '🏠' }, { k: 'scan', href: '/scan', icon: '📸' }, { k: 'diary', href: '/diary', icon: '📖' }, { k: 'more', href: '/more', icon: '☰' }];
+  const items = [{ k: 'home', href: '/', icon: '🏠' }, { k: 'scan', href: '/scan', icon: '📸' }, { k: 'coach', href: '/coach', icon: '💪' }, { k: 'diary', href: '/diary', icon: '📖' }, { k: 'more', href: '/more', icon: '☰' }];
   return (
     <View style={s.bar}>
       {items.map((i) => {

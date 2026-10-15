@@ -62,7 +62,8 @@
   "home": "Ana Sayfa",
   "scan": "Fotoğraf",
   "diary": "Günlük",
-  "more": "Daha fazla"
+  "more": "Daha fazla",
+  "coach": "Koç"
  },
  "scan": {
   "title": "Yemek fotoğrafı",
@@ -343,6 +344,384 @@
      "Tıbbi bir acil durumunuz varsa 112'yi veya yerel acil durum numaranızı arayın."
     ]
    ]
+  }
+ },
+ "coach": {
+  "title": "Kişisel koçunuz",
+  "introTitle": "Planınız, size özel hazırlandı",
+  "introBody": "3 hızlı ekranı yanıtlayın; Angie hedefiniz, vücudunuz ve zevkleriniz doğrultusunda haftalık yemek planınızı ve egzersiz programınızı oluştursun.",
+  "create": "Planımı oluştur",
+  "today": "Bugün",
+  "restDay": "Dinlenme günü — tadını çıkarın!",
+  "restBody": "Dinlenmek planın bir parçasıdır. Hafif bir yürüyüş veya esneme yapmak güzel bir ektir.",
+  "doneToday": "Bugünkü egzersiz tamamlandı. Harika iş!",
+  "startToday": "Bugünkü egzersize başla",
+  "burnedToday": "bugün yakıldı",
+  "burned": "yakıldı",
+  "streak": "Seri",
+  "week": "bu hafta",
+  "target": "Günlük hedefiniz: {{kcal}} kcal",
+  "source": {
+   "ai": "Plan Angie'nin Yapay Zekası tarafından hazırlandı",
+   "rules": "Temel plan (Yapay zeka meşguldü)"
+  },
+  "diet": "Yemek planı",
+  "workout": "Egzersiz",
+  "checkin": "Haftalık değerlendirme",
+  "due": "bugün yapılması gerekiyor",
+  "chat": "Angie'ye sor",
+  "edit": "Tercihlerimi değiştir",
+  "setupTitle": "Planınızı kuralım",
+  "place": "Nerede çalışacaksınız?",
+  "home": "Ev",
+  "gym": "Spor salonu",
+  "daysQ": "Haftada kaç gün",
+  "minutesQ": "Seans başına dakika",
+  "levelQ": "Seviyeniz",
+  "beginner": "Başlangıç",
+  "intermediate": "Orta",
+  "advanced": "İleri",
+  "injuriesQ": "Herhangi bir ağrı, sakatlık veya kısıtlamanız var mı?",
+  "none": "Yok",
+  "inj": {
+   "knees": "Dizler",
+   "back": "Sırt",
+   "shoulders": "Omuzlar",
+   "wrists": "Bilekler"
+  },
+  "injuryNote": "Angie'nin bilmesi gereken başka bir şey var mı? (isteğe bağlı)",
+  "optional": "İsteğe bağlı",
+  "dislikesQ": "Yemediğiniz yiyecekler",
+  "dis": {
+   "fish": "Balık",
+   "eggs": "Yumurta",
+   "dairy": "Süt ürünleri",
+   "beef": "Kırmızı et",
+   "chicken": "Tavuk",
+   "legumes": "Baklagiller",
+   "nuts": "Kuruyemiş",
+   "veg": "Vejetaryen"
+  },
+  "cuisineQ": "En sevdiğiniz mutfak",
+  "cui": {
+   "latin": "Latin",
+   "mexican": "Meksika",
+   "caribbean": "Karayip",
+   "andean": "Kolombiya / And",
+   "brazilian": "Brezilya",
+   "international": "Uluslararası"
+  },
+  "budgetQ": "Yemek bütçesi",
+  "bud": {
+   "low": "Düşük",
+   "medium": "Orta",
+   "high": "Yüksek"
+  },
+  "mealsQ": "Günlük öğün sayısı",
+  "generate": "Planı oluştur",
+  "building": "Angie planınızı hazırlıyor…",
+  "buildingSub": "Bu bir dakikaya kadar sürebilir.",
+  "fallbackNote": "Yapay zeka şu anda meşgul, bu yüzden size aynı kalori değerine ve tercihlerinize sahip temel bir plan hazırladım. Yapay zekayı daha sonra tekrar deneyebilirsiniz.",
+  "seePlan": "Planımı gör",
+  "tryAgain": "Yapay zekayı tekrar dene",
+  "slots3": [
+   "Kahvaltı",
+   "Öğle Yemeği",
+   "Akşam Yemeği"
+  ],
+  "slots4": [
+   "Kahvaltı",
+   "Öğle Yemeği",
+   "Ara Öğün",
+   "Akşam Yemeği"
+  ],
+  "slots5": [
+   "Kahvaltı",
+   "Kuşluk",
+   "Öğle Yemeği",
+   "İkindi",
+   "Akşam Yemeği"
+  ],
+  "slots2": [
+   "Öğün 1",
+   "Öğün 2"
+  ],
+  "slots6": [
+   "Öğün 1",
+   "Öğün 2",
+   "Öğün 3",
+   "Öğün 4",
+   "Öğün 5",
+   "Öğün 6"
+  ],
+  "portion": "porsiyon ×{{x}}",
+  "logMeal": "Günlüğüme ekle",
+  "logged": "Günlüğünüze eklendi",
+  "shopping": "Haftalık alışveriş listesi",
+  "reps": "{{n}} tekrar",
+  "secs": "{{n}} sn",
+  "restS": "dinlenme {{n}} sn",
+  "start": "Egzersize başla",
+  "safety": "Önce ısının, yavaş hareket edin ve ağrı, baş dönmesi veya göğüste baskı hissederseniz durun.",
+  "notMedical": "Angie tıbbi tavsiye değil, genel rehberlik sunar. Bir sağlık durumunuz varsa uzmanına danışın.",
+  "lockedTitle": "Koçunuz bir Premium özelliktir",
+  "lockedBody": "Ücretsiz deneme süreniz sona erdi. Planınız ve geçmişiniz kaydedildi — Angie ile antrenmana devam etmek için Premium'un kilidini açın.",
+  "teaser1": "Latin yemekleri ve alışveriş listesi içeren haftalık yemek planı",
+  "teaser2": "Rehberli zamanlayıcı ile evde veya spor salonunda antrenmanlar",
+  "teaser3": "Planınızı nazikçe ayarlayan haftalık değerlendirme",
+  "teaser4": "Yemek ve egzersiz hakkında Angie ile sohbet",
+  "unlock": "Premium'u Gör",
+  "keepData": "Otomatik olarak hiçbir ücret alınmaz.",
+  "stepOf": "Adım {{a}} / {{b}}",
+  "setOf": "Set {{a}} / {{b}}",
+  "rest": "Dinlen",
+  "breathe": "Nefes al ve biraz su iç",
+  "upNext": "Sırada ne var",
+  "skipRest": "Dinlenmeyi geç",
+  "doneSet": "Tamamlandı",
+  "pause": "Duraklat",
+  "resume": "Devam et",
+  "endEarly": "Şimdi bitir",
+  "greatJob": "Harika iş! Egzersiz tamamlandı",
+  "addedHome": "Yaktığınız kalori Ev'deki bugünkü dengenize eklendi.",
+  "sayRest": "{{n}} saniye dinlen.",
+  "sayDone": "Harika iş! Yaklaşık {{kcal}} kalori yaktın.",
+  "sayBurned": "Egzersiz yaparak {{kcal}} kalori yaktın.",
+  "dLegs": "Bacaklar ve merkez bölgesi",
+  "dUpper": "Üst vücut ve merkez bölgesi",
+  "dFull": "Tüm vücut",
+  "dRest": "Dinlenme"
+ },
+ "ci": {
+  "weightQ": "Bugünkü ağırlığınız (kg)",
+  "energyQ": "Bu hafta enerjiniz nasıldı?",
+  "e_low": "Düşük",
+  "e_ok": "Normal",
+  "e_good": "Harika",
+  "skippedQ": "Öğünleri bilerek atladınız mı veya yedikten sonra suçluluk duydunuz mu?",
+  "bingeQ": "Durduramadığınız şekilde çok fazla yemek yediniz mi ya da yediklerinizi 'telafi etmek' için egzersiz yaptınız mı?",
+  "yes": "Evet",
+  "no": "Hayır",
+  "private": "Cevaplarınız telefonunuzda kalır. Angie'nin sizinle ilgilenmesine yardımcı olur.",
+  "save": "Değerlendirmeyi kaydet",
+  "history": "Son değerlendirmeler",
+  "notYet": "Bir sonraki değerlendirmenize {{n}} gün var, ancak şimdi de yapabilirsiniz.",
+  "newTarget": "Günlük hedefiniz: {{kcal}} kcal",
+  "mFirst": "İlk değerlendirme kaydedildi! Önümüzdeki hafta karşılaştırıp ayarlayacağız.",
+  "mOnTrack": "Tam yolundasınız. Planı olduğu gibi bırakıyoruz.",
+  "mPlateau": "Kilonuz sabit kaldı. Hedefinizi biraz düşürüyoruz (−100 kcal) — nazikçe.",
+  "mFast": "Sağlıklı olandan daha hızlı veriyorsunuz. Biraz daha yemek ekliyoruz (+150 kcal).",
+  "mGainMore": "Kas kazanmak için biraz daha yemek ekliyoruz (+100 kcal).",
+  "mGainSlow": "Biraz hızlı alıyorsunuz. Hafifçe azaltıyoruz (−100 kcal).",
+  "mKeepDown": "Kilonuz biraz arttı. Küçük ayar (−100 kcal).",
+  "mKeepUp": "Kilonuz biraz düştü. Küçük ayar (+100 kcal).",
+  "tUp": "Antrenman: egzersiz başına bir set daha. Hazırsınız!",
+  "tDown": "Antrenman: toparlanmanız için bu hafta biraz daha hafif.",
+  "tSame": "Antrenman: geçen haftayla aynı.",
+  "warnTitle": "Seni önemsiyoruz",
+  "warnBody": "Bazı yanıtların, yemekle ilişkinin şu sıra zorlayıcı hissedilebileceğini gösteriyor. Bu birçok insanın başına gelir ve yalnız değilsin. Kalorilerini düşürmeyeceğiz. Bir doktora, beslenme uzmanına veya ruh sağlığı uzmanına danışmak gerçekten yardımcı olabilir. Yerel bir sağlık veya kriz hattıyla iletişime geçebilirsin."
+ },
+ "chat": {
+  "disclaimer": "Angie bir yapay zeka koçudur, doktor değildir. Yanıtları genel rehberlik amaçlıdır; sağlık sorunlarınız için bir uzmana başvurun.",
+  "hello": "Merhaba! Bana yemek, tarifler veya egzersiz hakkında her şeyi sorabilirsiniz.",
+  "s1": "Sağlıklı bir akşam için ne yiyebilirim?",
+  "s2": "Squat'ı nasıl güvenli bir şekilde yaparım?",
+  "s3": "Gece pirinç yemek sorun olur mu?",
+  "placeholder": "Sorunuzu yazın",
+  "send": "Gönder",
+  "offline": "Angie şu anda yanıt veremedi. Bağlantınızı kontrol edin ve birazdan tekrar deneyin.",
+  "limit": "Bugünkü {{n}} soru sınırına ulaştınız. Yarın tekrar gelin!"
+ },
+ "cfood": {
+  "b1": {
+   "n": "Yumurtalı ve peynirli arepa",
+   "i": "1 mısır arepası, 1 çırpılmış yumurta, 30 g taze peynir, domates"
+  },
+  "b2": {
+   "n": "Muzlu ve tarçınlı yulaf lapası",
+   "i": "Sütte pişmiş ½ su bardağı yulaf, 1 muz, tarçın"
+  },
+  "b3": {
+   "n": "Mısır tortilla ile çırpılmış yumurta",
+   "i": "Domates ve soğanlı 2 yumurta, 2 mısır tortillasız"
+  },
+  "b4": {
+   "n": "Meyveli ve yulaflı yoğurt",
+   "i": "1 su bardağı sade yoğurt, 1 su bardağı meyve, 3 yk yulaf"
+  },
+  "b5": {
+   "n": "Avokadolu ve fasulyeli kepekli tost",
+   "i": "2 dilim kepekli ekmek, ¼ avokado, ½ su bardağı fasulye"
+  },
+  "l1": {
+   "n": "Pirinç, fasulye ve tavuk",
+   "i": "¾ su bardağı pirinç, ½ su bardağı fasulye, 120 g ızgara tavuk, salata"
+  },
+  "l2": {
+   "n": "Yukalı ızgara balık",
+   "i": "150 g balık, 1 su bardağı haşlanmış yuka, limonlu salata"
+  },
+  "l3": {
+   "n": "Pirinç ve fırınlanmış muzlu et yahni",
+   "i": "120 g yahni et, ¾ su bardağı pirinç, ½ fırınlanmış olgun muz (plantain)"
+  },
+  "l4": {
+   "n": "Pirinçli mercimek",
+   "i": "1 su bardağı mercimek, ½ su bardağı pirinç, salata"
+  },
+  "l5": {
+   "n": "Patatesli ve sebzeli fırın tavuk",
+   "i": "130 g tavuk, 1 orta boy patates, 1 su bardağı sebze"
+  },
+  "s1": {
+   "n": "Yer fıstıklı meyve",
+   "i": "1 meyve, 1 küçük avuç yer fıstığı"
+  },
+  "s2": {
+   "n": "Meyveli yoğurt",
+   "i": "1 su bardağı sade yoğurt, ½ su bardağı meyve"
+  },
+  "s3": {
+   "n": "Limonlu mango ve haşlanmış yumurta",
+   "i": "1 su bardağı mango, limon, 1 haşlanmış yumurta"
+  },
+  "s4": {
+   "n": "Meyve kasesi",
+   "i": "1 muz ve 1 su bardağı mevsim meyvesi"
+  },
+  "d1": {
+   "n": "Pico de gallo soslu tavuk taco",
+   "i": "3 mısır tortilla, 120 g tavuk, domates ve soğan"
+  },
+  "d2": {
+   "n": "Sebzeli tavuk çorbası",
+   "i": "1 büyük kase: tavuk, patates, havuç, bal kabağı"
+  },
+  "d3": {
+   "n": "Avokadolu ton balıklı salata",
+   "i": "1 kutu suda ton balığı, ¼ avokado, marul ve domates, kraker"
+  },
+  "d4": {
+   "n": "Peynirli sebzeli omlet",
+   "i": "2 yumurta, sebze, 30 g peynir, 1 dilim ekmek"
+  },
+  "d5": {
+   "n": "Taze peynirli, pirinçli siyah fasulye",
+   "i": "1 su bardağı fasulye, ½ su bardağı pirinç, 30 g taze peynir"
+  }
+ },
+ "cing": {
+  "cornflour": "Önceden pişirilmiş mısır unu",
+  "eggs": "Yumurta",
+  "cheese": "Taze peynir",
+  "tomato": "Domates",
+  "oats": "Yulaf",
+  "banana": "Muz",
+  "milk": "Süt",
+  "tortillas": "Mısır tortillası",
+  "onion": "Soğan",
+  "yogurt": "Sade yoğurt",
+  "fruit": "Mevsim meyvesi",
+  "bread": "Kepekli ekmek",
+  "avocado": "Avokado",
+  "beans": "Fasulye",
+  "rice": "Pirinç",
+  "chicken": "Tavuk göğsü",
+  "salad": "Marul ve salatası yeşillikleri",
+  "fish": "Beyaz balık",
+  "yuca": "Yuka (manyok)",
+  "beef": "Yağsız dana eti",
+  "plantain": "Olgun muz (plantain)",
+  "lentils": "Mercimek",
+  "potato": "Patates",
+  "vegetables": "Karışık sebze",
+  "peanuts": "Yer fıstığı",
+  "tuna": "Suda konserve ton balığı"
+ },
+ "cex": {
+  "march": {
+   "n": "Olduğu yerde yürüme",
+   "d": "Dizlerinizi birer birer kaldırın ve kollarınızı sallayın. Isınmak için rahat bir tempoda yapın."
+  },
+  "treadmill": {
+   "n": "Koşu bandında yürüyüş",
+   "d": "Rahat bir tempoda yürüyün. Yürürken konuşabiliyor olmalısınız."
+  },
+  "chairSquat": {
+   "n": "Sandalyeden kalkma (Chair squat)",
+   "d": "Bir sandalyenin önünde durun, yavaşça oturun ve topuklarınızdan güç alarak tekrar ayağa kalkın."
+  },
+  "bridge": {
+   "n": "Kalça köprüsü (Glute bridge)",
+   "d": "Sırt üstü uzanın, dizleriniz bükülü olsun. Kalçanızı kaldırın, kalça kaslarınızı sıkın ve yavaşça indirin."
+  },
+  "calf": {
+   "n": "Kalf kaldırış (Calf raises)",
+   "d": "Bir duvara veya sandalyeye tutunun. Parmak uçlarınızda yükselin ve yavaşça inin."
+  },
+  "sideLeg": {
+   "n": "Yana bacak kaldırma",
+   "d": "Bir sandalyeye tutunun, bir bacağınızı yana doğru kaldırın ve yavaşça indirin. Bacak değiştirin."
+  },
+  "stepUp": {
+   "n": "Basamak çıkma (Step-up)",
+   "d": "Alçak ve sabit bir basamağa önce bir ayağınızla, sonra diğerinizle çıkın ve yavaşça inin."
+  },
+  "legPress": {
+   "n": "Leg press",
+   "d": "Makineye oturun, ayaklarınız tabana düz basıyor. Dizlerinizi kilitlemeden itin ve yavaşça başlangıca dönün."
+  },
+  "gobletSquat": {
+   "n": "Goblet squat",
+   "d": "Göğsünüzde hafif bir dambıl tutun. Sırtınız düz bir şekilde çömelin ve ayağa kalkın."
+  },
+  "wallPush": {
+   "n": "Duvarda şınav (Wall push-up)",
+   "d": "Eller göğüs hizasında duvarda. Dirseklerinizi duvara doğru bükün ve itin."
+  },
+  "armCircles": {
+   "n": "Kollarla daire çemberi",
+   "d": "Kollar iki yana açık, önce öne sonra arkaya küçük daireler çizin."
+  },
+  "bottleRow": {
+   "n": "Su şişesiyle kürek çekme",
+   "d": "Sırtınız düz şekilde hafifçe öne eğilin, iki su şişesini belinize doğru çekin ve indirin."
+  },
+  "latPull": {
+   "n": "Lat pulldown",
+   "d": "Makineye oturun, barı üst göğsünüze doğru çekin ve yavaşça yükselmesine izin verin."
+  },
+  "seatedRow": {
+   "n": "Oturarak kablo ile çekiş (Seated row)",
+   "d": "Dik oturun, tutacağı karnınıza çekin, kürek kemiklerinizi sıkın ve yavaşça dönün."
+  },
+  "chestPress": {
+   "n": "Chest press makinesi",
+   "d": "Sırtınız mindere dayalı oturun. Kolları öne doğru itin ve yavaşça dönün."
+  },
+  "birdDog": {
+   "n": "Bird dog",
+   "d": "Elleriniz ve dizleriniz üzerinde, bir kolunuzu öne ve zıt bacağınızı arkaya uzatın. Tutun, ardından değiştirin."
+  },
+  "deadBug": {
+   "n": "Ölü böcek (Dead bug)",
+   "d": "Sırt üstü uzanın, kollar yukarıda ve dizler bükülü. Zıt kol ve bacağı yavaşça aşağı indirin, sonra değiştirin."
+  },
+  "plank": {
+   "n": "Plank",
+   "d": "Ön kollarınız ve ayak parmaklarınız (veya dizleriniz) üzerinde, vücudunuzu düz tutun ve nefes alın."
+  },
+  "jacks": {
+   "n": "Jumping jacks",
+   "d": "Zıplayarak bacakları ve kollarınızı açın, sonra kapatın. Düşük etki için bunun yerine adımınızı yana atın."
+  },
+  "bike": {
+   "n": "Kondisyon bisikleti",
+   "d": "Biraz daha hızlı nefes almanızı sağlayacak istikrarlı bir tempoda pedal çevirin."
+  },
+  "stretch": {
+   "n": "Hafif esneme",
+   "d": "Bacakları, sırtı ve kollarınızı yavaşça esnetin. Her esnemeyi zıplamadan 15–20 saniye tutun."
   }
  }
 }

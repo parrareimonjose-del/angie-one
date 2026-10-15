@@ -21,7 +21,8 @@ const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).forEach((e) => { 
 ['app', 'src'].forEach((d) => walk(path.join(__dirname, '..', d)));
 const keyset = new Set([...ref.keys()].map((k) => k.replace(/\.\d+$/, '')));
 const pre = new Set([...ref.keys()].flatMap((k) => k.split('.').map((_, i, a) => a.slice(0, i + 1).join('.'))));
-const unknown = [...used].filter((k) => !keyset.has(k) && !pre.has(k));
+// claves dinámicas t('ci.' + x): basta con que exista alguna clave con ese prefijo
+const unknown = [...used].filter((k) => !keyset.has(k) && !pre.has(k) && !(/[._]$|\d$|[a-z]$/.test(k) && [...ref.keys()].some((r) => r.startsWith(k) && r !== k && /[._]$/.test(k) || r.startsWith(k) && /^\d/.test(r.slice(k.length)))));
 if (unknown.length) { console.error('✗ claves usadas en el código sin traducción: ' + unknown.join(', ')); bad++; }
 if (bad) { console.error(`\n${bad} problema(s) de traducción`); process.exit(1); }
 console.log('\nTodas las traducciones están completas.');

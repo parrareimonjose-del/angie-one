@@ -62,7 +62,8 @@
   "home": "Home",
   "scan": "Foto",
   "diary": "Diario",
-  "more": "Altro"
+  "more": "Altro",
+  "coach": "Coach"
  },
  "scan": {
   "title": "Foto pasto",
@@ -343,6 +344,384 @@
      "In caso di emergenza medica, chiama il 112 o il numero di emergenza locale."
     ]
    ]
+  }
+ },
+ "coach": {
+  "title": "Coach personale",
+  "introTitle": "Il tuo piano, fatto su misura per te",
+  "introBody": "Rispondi a 3 brevi schermate e Angie creerà il tuo piano alimentare settimanale e il tuo allenamento, in base ai tuoi obiettivi, al tuo corpo e ai tuoi gusti.",
+  "create": "Crea il mio piano",
+  "today": "Oggi",
+  "restDay": "Giorno di riposo — goditelo!",
+  "restBody": "Riposare fa parte del piano. Una tranquilla passeggiata o dello stretching sono un ottimo extra.",
+  "doneToday": "Allenamento di oggi completato. Ottimo lavoro!",
+  "startToday": "Inizia l'allenamento di oggi",
+  "burnedToday": "bruciati oggi",
+  "burned": "bruciati",
+  "streak": "Serie",
+  "week": "questa settimana",
+  "target": "Il tuo obiettivo giornaliero: {{kcal}} kcal",
+  "source": {
+   "ai": "Piano creato dall'intelligenza artificiale di Angie",
+   "rules": "Piano base (l'IA era occupata)"
+  },
+  "diet": "Piano alimentare",
+  "workout": "Esercizio",
+  "checkin": "Check-in settimanale",
+  "due": "in scadenza oggi",
+  "chat": "Chiedi ad Angie",
+  "edit": "Modifica le tue preferenze",
+  "setupTitle": "Impostiamo il tuo piano",
+  "place": "Dove ti allenerai?",
+  "home": "A casa",
+  "gym": "In palestra",
+  "daysQ": "Giorni a settimana",
+  "minutesQ": "Minuti per sessione",
+  "levelQ": "Il tuo livello",
+  "beginner": "Principiante",
+  "intermediate": "Intermedio",
+  "advanced": "Avanzato",
+  "injuriesQ": "Hai dolori, infortuni o limitazioni?",
+  "none": "Nessuno",
+  "inj": {
+   "knees": "Ginocchia",
+   "back": "Schiena",
+   "shoulders": "Spalle",
+   "wrists": "Polsi"
+  },
+  "injuryNote": "Cos'altro dovrebbe sapere Angie? (facoltativo)",
+  "optional": "Facoltativo",
+  "dislikesQ": "Cibi che non mangi",
+  "dis": {
+   "fish": "Pesce",
+   "eggs": "Uova",
+   "dairy": "Latticini",
+   "beef": "Carne rossa",
+   "chicken": "Pollo",
+   "legumes": "Fagioli",
+   "nuts": "Frutta a guscio",
+   "veg": "Vegetariano"
+  },
+  "cuisineQ": "La tua cucina preferita",
+  "cui": {
+   "latin": "Latina",
+   "mexican": "Messicana",
+   "caribbean": "Caraibica",
+   "andean": "Colombiana / Andina",
+   "brazilian": "Brasiliana",
+   "international": "Internazionale"
+  },
+  "budgetQ": "Budget per la spesa",
+  "bud": {
+   "low": "Basso",
+   "medium": "Medio",
+   "high": "Alto"
+  },
+  "mealsQ": "Pasti al giorno",
+  "generate": "Crea piano",
+  "building": "Angie sta creando il tuo piano…",
+  "buildingSub": "Potrebbe volerci circa un minuto.",
+  "fallbackNote": "Al momento l'IA è occupata, quindi ho creato per te un piano base con le stesse calorie e le tue preferenze. Puoi riprovare con l'IA più tardi.",
+  "seePlan": "Visualizza il mio piano",
+  "tryAgain": "Riprova con l'IA",
+  "slots3": [
+   "Colazione",
+   "Pranzo",
+   "Cena"
+  ],
+  "slots4": [
+   "Colazione",
+   "Pranzo",
+   "Spuntino",
+   "Cena"
+  ],
+  "slots5": [
+   "Colazione",
+   "Spuntino mattutino",
+   "Pranzo",
+   "Spuntino pomeridiano",
+   "Cena"
+  ],
+  "slots2": [
+   "Pasto 1",
+   "Pasto 2"
+  ],
+  "slots6": [
+   "Pasto 1",
+   "Pasto 2",
+   "Pasto 3",
+   "Pasto 4",
+   "Pasto 5",
+   "Pasto 6"
+  ],
+  "portion": "porzione ×{{x}}",
+  "logMeal": "Aggiungi al diario",
+  "logged": "Aggiunto al tuo diario",
+  "shopping": "Lista della spesa per la settimana",
+  "reps": "{{n}} rip.",
+  "secs": "{{n}} sec",
+  "restS": "recupero {{n}} s",
+  "start": "Inizia allenamento",
+  "safety": "Fai prima riscaldamento, muoviti lentamente e fermati se avverti dolore, vertigini o pressione al petto.",
+  "notMedical": "Angie fornisce indicazioni generali, non pareri medici. Se hai una condizione di salute, consulta un professionista.",
+  "lockedTitle": "Il tuo coach è una funzione Premium",
+  "lockedBody": "La tua prova gratuita è terminata. Il tuo piano e la tua cronologia sono stati salvati: sblocca Premium per continuare ad allenarti con Angie.",
+  "teaser1": "Piano alimentare settimanale con cibi latini e lista della spesa",
+  "teaser2": "Allenamenti a casa o in palestra con timer guidato",
+  "teaser3": "Un check-in settimanale che adatta delicatamente il tuo piano",
+  "teaser4": "Chatta con Angie su cibo ed esercizio fisico",
+  "unlock": "Scopri Premium",
+  "keepData": "Non viene effettuato alcun addebito automatico.",
+  "stepOf": "Passaggio {{a}} di {{b}}",
+  "setOf": "Serie {{a}} di {{b}}",
+  "rest": "Riposo",
+  "breathe": "Respirare e bere un po' d'acqua",
+  "upNext": "Prossimo esercizio",
+  "skipRest": "Salta riposo",
+  "doneSet": "Fatto",
+  "pause": "Pausa",
+  "resume": "Riprendi",
+  "endEarly": "Termina ora",
+  "greatJob": "Ottimo lavoro! Allenamento completato",
+  "addedHome": "Le calorie bruciate sono state aggiunte al bilancio di oggi nella Home.",
+  "sayRest": "Riposa {{n}} secondi.",
+  "sayDone": "Ottimo lavoro! Hai bruciato circa {{kcal}} calorie.",
+  "sayBurned": "Hai bruciato {{kcal}} calorie allenandoti.",
+  "dLegs": "Gambe e core",
+  "dUpper": "Parte superiore e core",
+  "dFull": "Corpo intero",
+  "dRest": "Riposo"
+ },
+ "ci": {
+  "weightQ": "Il tuo peso oggi (kg)",
+  "energyQ": "Com'è stata la tua energia questa settimana?",
+  "e_low": "Bassa",
+  "e_ok": "Normale",
+  "e_good": "Ottima",
+  "skippedQ": "Hai saltato i pasti di proposito o ti sei sentito/a in colpa dopo aver mangiato?",
+  "bingeQ": "Hai mangiato molto senza riuscire a fermarti, o ti sei allenato/a per 'compensare' il cibo?",
+  "yes": "Sì",
+  "no": "No",
+  "private": "Le tue risposte rimangono sul tuo telefono. Aiutano Angie a prendersi cura di te.",
+  "save": "Salva check-in",
+  "history": "Check-in recenti",
+  "notYet": "Il tuo prossimo check-in è tra {{n}} giorni, ma puoi farne uno adesso.",
+  "newTarget": "Il tuo obiettivo giornaliero: {{kcal}} kcal",
+  "mFirst": "Primo check-in salvato! La settimana prossima confronteremo i dati e faremo modifiche.",
+  "mOnTrack": "Sei perfettamente in carreggiata. Manteniamo il piano così com'è.",
+  "mPlateau": "Il tuo peso è rimasto stabile. Riduciamo leggermente il tuo obiettivo (−100 kcal), dolcemente.",
+  "mFast": "Stai dimagrendo più velocemente del sano. Aggiungiamo un po' più di cibo (+150 kcal).",
+  "mGainMore": "Per aumentare la massa muscolare, aggiungiamo un po' più di cibo (+100 kcal).",
+  "mGainSlow": "Stai crescendo un po' troppo velocemente. Riduciamo leggermente (−100 kcal).",
+  "mKeepDown": "Il tuo peso è aumentato un po'. Piccolo aggiustamento (−100 kcal).",
+  "mKeepUp": "Il tuo peso è calato un po'. Piccolo aggiustamento (+100 kcal).",
+  "tUp": "Allenamento: una serie in più per esercizio. Sei pronto/a!",
+  "tDown": "Allenamento: un po' più leggero questa settimana, così recuperi.",
+  "tSame": "Allenamento: uguale alla settimana scorsa.",
+  "warnTitle": "Tieniamo a te",
+  "warnBody": "Alcune delle tue risposte suggeriscono che il tuo rapporto con il cibo possa risultare difficile in questo momento. Succede a molte persone e non sei solo/a. Non ridurremo le tue calorie. Parlare con un medico, un nutrizionista o un professionista della salute mentale può davvero aiutare. Ti consigliamo di contattare un servizio di supporto o un centro medico locale."
+ },
+ "chat": {
+  "disclaimer": "Angie è un coach virtuale, non un medico. Le sue risposte sono indicazioni generali; per problemi di salute, consulta un professionista.",
+  "hello": "Ciao! Chiedimi qualsiasi cosa su cibo, ricette o esercizio fisico.",
+  "s1": "Cosa posso mangiare per una cena sana?",
+  "s2": "Come si fa uno squat in sicurezza?",
+  "s3": "Va bene mangiare riso la sera?",
+  "placeholder": "Scrivi la tua domanda",
+  "send": "Invia",
+  "offline": "Angie non ha potuto rispondere in questo momento. Controlla la tua connessione e riprova tra poco.",
+  "limit": "Hai raggiunto le {{n}} domande di oggi. Torna domani!"
+ },
+ "cfood": {
+  "b1": {
+   "n": "Arepa con uovo e formaggio",
+   "i": "1 arepa di mais, 1 uovo strapazzato, 30 g di formaggio fresco, pomodoro"
+  },
+  "b2": {
+   "n": "Farina d'avena con banana e cannella",
+   "i": "½ tazza di avena cotta nel latte, 1 banana, cannella"
+  },
+  "b3": {
+   "n": "Uova strapazzate con tortillas di mais",
+   "i": "2 uova con pomodoro e cipolla, 2 tortillas di mais"
+  },
+  "b4": {
+   "n": "Yogurt con frutta e avena",
+   "i": "1 tazza di yogurt bianco, 1 tazza di frutta, 3 cucchiai di avena"
+  },
+  "b5": {
+   "n": "Toast integrale con avocado e fagioli",
+   "i": "2 fette di pane integrale, ¼ di avocado, ½ tazza di fagioli"
+  },
+  "l1": {
+   "n": "Riso, fagioli e pollo",
+   "i": "¾ di tazza di riso, ½ tazza di fagioli, 120 g di pollo alla griglia, insalata"
+  },
+  "l2": {
+   "n": "Pesce alla griglia con yuca",
+   "i": "150 g di pesce, 1 tazza di yuca bollita, insalata con limone"
+  },
+  "l3": {
+   "n": "Spezzatino di manzo con riso e platano al forno",
+   "i": "120 g di manzo in umido, ¾ di tazza di riso, ½ platano maturo al forno"
+  },
+  "l4": {
+   "n": "Lenticchie con riso",
+   "i": "1 tazza di lenticchie, ½ tazza di riso, insalata"
+  },
+  "l5": {
+   "n": "Pollo al forno con patate e verdure",
+   "i": "130 g di pollo, 1 patata media, 1 tazza di verdure"
+  },
+  "s1": {
+   "n": "Frutta con arachidi",
+   "i": "1 frutto, 1 piccola manciata di arachidi"
+  },
+  "s2": {
+   "n": "Yogurt con frutta",
+   "i": "1 tazza di yogurt bianco, ½ tazza di frutta"
+  },
+  "s3": {
+   "n": "Mango con lime e un uovo sodo",
+   "i": "1 tazza di mango, lime, 1 uovo sodo"
+  },
+  "s4": {
+   "n": "Macedonia",
+   "i": "1 banana e 1 tazza di frutta di stagione"
+  },
+  "d1": {
+   "n": "Tacos di pollo con pico de gallo",
+   "i": "3 tortillas di mais, 120 g di pollo, pomodoro e cipolla"
+  },
+  "d2": {
+   "n": "Zuppa di pollo con verdure",
+   "i": "1 ciotola grande: pollo, patata, carota, zucca"
+  },
+  "d3": {
+   "n": "Insalata di tonno con avocado",
+   "i": "1 scatola di tonno al naturale, ¼ di avocado, insalata mista e pomodoro, crackers"
+  },
+  "d4": {
+   "n": "Omelette di verdure con formaggio",
+   "i": "2 uova, verdure, 30 g di formaggio, 1 fetta di pane"
+  },
+  "d5": {
+   "n": "Fagioli neri con riso e formaggio fresco",
+   "i": "1 tazza di fagioli, ½ tazza di riso, 30 g di formaggio fresco"
+  }
+ },
+ "cing": {
+  "cornflour": "Farina di mais precotta",
+  "eggs": "Uova",
+  "cheese": "Formaggio fresco",
+  "tomato": "Pomodori",
+  "oats": "Avena",
+  "banana": "Banane",
+  "milk": "Latte",
+  "tortillas": "Tortillas di mais",
+  "onion": "Cipolle",
+  "yogurt": "Yogurt bianco",
+  "fruit": "Frutta di stagione",
+  "bread": "Pane integrale",
+  "avocado": "Avocado",
+  "beans": "Fagioli",
+  "rice": "Riso",
+  "chicken": "Petto di pollo",
+  "salad": "Lattuga e insalata verde",
+  "fish": "Pesce bianco",
+  "yuca": "Yuca (manioca)",
+  "beef": "Manzo magro",
+  "plantain": "Platani maturi",
+  "lentils": "Lenticchie",
+  "potato": "Patate",
+  "vegetables": "Verdure miste",
+  "peanuts": "Arachidi",
+  "tuna": "Tonno in scatola al naturale"
+ },
+ "cex": {
+  "march": {
+   "n": "Marcia sul posto",
+   "d": "Solleva le ginocchia una alla volta e muovi le braccia. Procedi a un ritmo leggero per riscaldarti."
+  },
+  "treadmill": {
+   "n": "Camminata sul tapis roulant",
+   "d": "Cammina a un ritmo confortevole. Dovresti essere in grado di parlare mentre cammini."
+  },
+  "chairSquat": {
+   "n": "Squat con sedia",
+   "d": "Mettiti in piedi davanti a una sedia, siediti lentamente e rialzati facendo forza sui talloni."
+  },
+  "bridge": {
+   "n": "Ponte per glutei",
+   "d": "Sdraiati sulla schiena con le ginocchia piegate. Solleva i anche, contrai i glutei e abbassati lentamente."
+  },
+  "calf": {
+   "n": "Sollevamento polpacci",
+   "d": "Tieniti a un muro o a una sedia. Sollevati sulle punte dei piedi e scendi lentamente."
+  },
+  "sideLeg": {
+   "n": "Slanci laterali delle gambe",
+   "d": "Tieniti a una sedia, solleva una gamba lateralmente e abbassala lentamente. Cambia gamba."
+  },
+  "stepUp": {
+   "n": "Step-up",
+   "d": "Sali su un gradino basso e stabile con un piede, poi con l'altro, e scendi lentamente."
+  },
+  "legPress": {
+   "n": "Leg press",
+   "d": "Siediti sulla macchina, piedi ben appoggiati sulla pedana. Spingi via senza bloccare le ginocchia e torna lentamente."
+  },
+  "gobletSquat": {
+   "n": "Goblet squat",
+   "d": "Tieni un manubrio leggero al petto. Abbassati in squat con la schiena dritta e rialzati."
+  },
+  "wallPush": {
+   "n": "Flessioni al muro",
+   "d": "Mani sul muro all'altezza del petto. Piega i gomiti verso il muro e spingi per tornare."
+  },
+  "armCircles": {
+   "n": "Circonduzioni delle braccia",
+   "d": "Braccia aperte sui lati, fai piccoli cerchi in avanti e poi all'indietro."
+  },
+  "bottleRow": {
+   "n": "Rematore con bottiglie d'acqua",
+   "d": "Inclinati leggermente in avanti con la schiena dritta, tira due bottiglie d'acqua verso la vita e abbassale."
+  },
+  "latPull": {
+   "n": "Lat pulldown",
+   "d": "Siediti alla macchina, tira la sbarra verso la parte alta del petto e lasciala salire lentamente."
+  },
+  "seatedRow": {
+   "n": "Rematore da seduti ai cavi",
+   "d": "Siediti con il busto eretto, tira la maniglia verso l'addome, contrai le scapole e torna lentamente."
+  },
+  "chestPress": {
+   "n": "Chest press",
+   "d": "Siediti con la schiena appoggiata allo schienale. Spingi le maniglie in avanti e torna lentamente."
+  },
+  "birdDog": {
+   "n": "Bird dog",
+   "d": "In ginocchio e sulle mani, protendi un braccio in avanti e la gamba opposta all'indietro. Mantieni la posizione, poi cambia."
+  },
+  "deadBug": {
+   "n": "Dead bug",
+   "d": "Sdraiati sulla schiena, braccia in alto e ginocchia piegate. Abbassa lentamente il braccio e la gamba opposti, poi cambia."
+  },
+  "plank": {
+   "n": "Plank",
+   "d": "Sugli avambracci e sulle punte dei piedi (o ginocchia), mantieni il corpo dritto e respira."
+  },
+  "jacks": {
+   "n": "Jumping jacks",
+   "d": "Salta aprendo gambe e braccia, poi chiudi. Per un basso impatto, fai un passo di lato alternato."
+  },
+  "bike": {
+   "n": "Cyclette",
+   "d": "Pedala a un ritmo costante che ti faccia respirare un po' più velocemente."
+  },
+  "stretch": {
+   "n": "Stretching leggero",
+   "d": "Allunga gambe, schiena e braccia lentamente. Mantieni ogni allungamento per 15-20 secondi senza molleggiare."
   }
  }
 }

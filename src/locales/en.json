@@ -62,7 +62,8 @@
   "home": "Home",
   "scan": "Photo",
   "diary": "Diary",
-  "more": "More"
+  "more": "More",
+  "coach": "Coach"
  },
  "scan": {
   "title": "Meal photo",
@@ -344,5 +345,383 @@
   "pollo": "Grilled chicken",
   "yuca": "Boiled cassava",
   "cafe": "Coffee with milk"
+ },
+ "coach": {
+  "title": "Personal coach",
+  "introTitle": "Your plan, made for you",
+  "introBody": "Answer 3 quick screens and Angie builds your weekly meal plan and workout, based on your goal, body and tastes.",
+  "create": "Create my plan",
+  "today": "Today",
+  "restDay": "Rest day — enjoy it!",
+  "restBody": "Resting is part of the plan. A gentle walk or stretching is a nice extra.",
+  "doneToday": "Workout done today. Great job!",
+  "startToday": "Start today's workout",
+  "burnedToday": "burned today",
+  "burned": "burned",
+  "streak": "Streak",
+  "week": "this week",
+  "target": "Your daily goal: {{kcal}} kcal",
+  "source": {
+   "ai": "Plan made by Angie's AI",
+   "rules": "Basic plan (the AI was busy)"
+  },
+  "diet": "Meal plan",
+  "workout": "Exercise",
+  "checkin": "Weekly check-in",
+  "due": "due today",
+  "chat": "Ask Angie",
+  "edit": "Change my preferences",
+  "setupTitle": "Let's set up your plan",
+  "place": "Where will you train?",
+  "home": "Home",
+  "gym": "Gym",
+  "daysQ": "Days per week",
+  "minutesQ": "Minutes per session",
+  "levelQ": "Your level",
+  "beginner": "Beginner",
+  "intermediate": "Intermediate",
+  "advanced": "Advanced",
+  "injuriesQ": "Any pain, injury or limit?",
+  "none": "None",
+  "inj": {
+   "knees": "Knees",
+   "back": "Back",
+   "shoulders": "Shoulders",
+   "wrists": "Wrists"
+  },
+  "injuryNote": "Anything else Angie should know? (optional)",
+  "optional": "Optional",
+  "dislikesQ": "Foods you don't eat",
+  "dis": {
+   "fish": "Fish",
+   "eggs": "Eggs",
+   "dairy": "Dairy",
+   "beef": "Red meat",
+   "chicken": "Chicken",
+   "legumes": "Beans",
+   "nuts": "Nuts",
+   "veg": "Vegetarian"
+  },
+  "cuisineQ": "Your favorite cuisine",
+  "cui": {
+   "latin": "Latin",
+   "mexican": "Mexican",
+   "caribbean": "Caribbean",
+   "andean": "Colombian / Andean",
+   "brazilian": "Brazilian",
+   "international": "International"
+  },
+  "budgetQ": "Food budget",
+  "bud": {
+   "low": "Low",
+   "medium": "Medium",
+   "high": "High"
+  },
+  "mealsQ": "Meals per day",
+  "generate": "Create plan",
+  "building": "Angie is building your plan…",
+  "buildingSub": "This can take up to a minute.",
+  "fallbackNote": "The AI is busy right now, so I made you a basic plan with the same calories and your preferences. You can try the AI again later.",
+  "seePlan": "See my plan",
+  "tryAgain": "Try the AI again",
+  "slots3": [
+   "Breakfast",
+   "Lunch",
+   "Dinner"
+  ],
+  "slots4": [
+   "Breakfast",
+   "Lunch",
+   "Snack",
+   "Dinner"
+  ],
+  "slots5": [
+   "Breakfast",
+   "Morning snack",
+   "Lunch",
+   "Afternoon snack",
+   "Dinner"
+  ],
+  "slots2": [
+   "Meal 1",
+   "Meal 2"
+  ],
+  "slots6": [
+   "Meal 1",
+   "Meal 2",
+   "Meal 3",
+   "Meal 4",
+   "Meal 5",
+   "Meal 6"
+  ],
+  "portion": "portion ×{{x}}",
+  "logMeal": "Add to my diary",
+  "logged": "Added to your diary",
+  "shopping": "Shopping list for the week",
+  "reps": "{{n}} reps",
+  "secs": "{{n}} sec",
+  "restS": "rest {{n}} s",
+  "start": "Start workout",
+  "safety": "Warm up first, move slowly and stop if you feel pain, dizziness or chest pressure.",
+  "notMedical": "Angie gives general guidance, not medical advice. If you have a health condition, check with a professional.",
+  "lockedTitle": "Your coach is a Premium feature",
+  "lockedBody": "Your free trial ended. Your plan and history are saved — unlock Premium to keep training with Angie.",
+  "teaser1": "Weekly meal plan with Latin foods and a shopping list",
+  "teaser2": "Home or gym workouts with a guided timer",
+  "teaser3": "A weekly check-in that adjusts your plan gently",
+  "teaser4": "Chat with Angie about food and exercise",
+  "unlock": "See Premium",
+  "keepData": "Nothing is charged automatically.",
+  "stepOf": "Step {{a}} of {{b}}",
+  "setOf": "Set {{a}} of {{b}}",
+  "rest": "Rest",
+  "breathe": "Breathe and drink some water",
+  "upNext": "Up next",
+  "skipRest": "Skip rest",
+  "doneSet": "Done",
+  "pause": "Pause",
+  "resume": "Resume",
+  "endEarly": "Finish now",
+  "greatJob": "Great job! Workout done",
+  "addedHome": "Your burned calories were added to today's balance on Home.",
+  "sayRest": "Rest {{n}} seconds.",
+  "sayDone": "Great job! You burned about {{kcal}} calories.",
+  "sayBurned": "You burned {{kcal}} calories exercising.",
+  "dLegs": "Legs and core",
+  "dUpper": "Upper body and core",
+  "dFull": "Full body",
+  "dRest": "Rest"
+ },
+ "ci": {
+  "weightQ": "Your weight today (kg)",
+  "energyQ": "How was your energy this week?",
+  "e_low": "Low",
+  "e_ok": "Normal",
+  "e_good": "Great",
+  "skippedQ": "Did you skip meals on purpose or feel guilty after eating?",
+  "bingeQ": "Did you eat a lot without being able to stop, or exercise to 'make up' for food?",
+  "yes": "Yes",
+  "no": "No",
+  "private": "Your answers stay on your phone. They help Angie take care of you.",
+  "save": "Save check-in",
+  "history": "Recent check-ins",
+  "notYet": "Your next check-in is in {{n}} days, but you can do one now.",
+  "newTarget": "Your daily goal: {{kcal}} kcal",
+  "mFirst": "First check-in saved! Next week we'll compare and adjust.",
+  "mOnTrack": "You're right on track. We keep the plan as it is.",
+  "mPlateau": "Your weight held steady. We lower your goal a little (−100 kcal) — gently.",
+  "mFast": "You're losing faster than is healthy. We add a little more food (+150 kcal).",
+  "mGainMore": "To gain muscle, we add a little more food (+100 kcal).",
+  "mGainSlow": "You're gaining a bit fast. We trim slightly (−100 kcal).",
+  "mKeepDown": "Your weight rose a bit. Small adjustment (−100 kcal).",
+  "mKeepUp": "Your weight dropped a bit. Small adjustment (+100 kcal).",
+  "tUp": "Training: one more set per exercise. You're ready!",
+  "tDown": "Training: a bit lighter this week, so you recover.",
+  "tSame": "Training: same as last week.",
+  "warnTitle": "We care about you",
+  "warnBody": "Some of your answers suggest your relationship with food may be feeling hard right now. That happens to many people, and you're not alone. We won't lower your calories. Talking with a doctor, a nutritionist or a mental health professional can really help. In the U.S. you can also contact the NEDA helpline or call/text 988."
+ },
+ "chat": {
+  "disclaimer": "Angie is an AI coach, not a doctor. Her answers are general guidance; for health problems, see a professional.",
+  "hello": "Hi! Ask me anything about food, recipes or exercise.",
+  "s1": "What can I eat for a healthy dinner?",
+  "s2": "How do I do a squat safely?",
+  "s3": "Is it okay to eat rice at night?",
+  "placeholder": "Write your question",
+  "send": "Send",
+  "offline": "Angie couldn't answer right now. Check your connection and try again in a moment.",
+  "limit": "You've reached today's {{n}} questions. Come back tomorrow!"
+ },
+ "cfood": {
+  "b1": {
+   "n": "Arepa with egg and cheese",
+   "i": "1 corn arepa, 1 scrambled egg, 30 g fresh cheese, tomato"
+  },
+  "b2": {
+   "n": "Oatmeal with banana and cinnamon",
+   "i": "½ cup oats cooked in milk, 1 banana, cinnamon"
+  },
+  "b3": {
+   "n": "Scrambled eggs with corn tortillas",
+   "i": "2 eggs with tomato and onion, 2 corn tortillas"
+  },
+  "b4": {
+   "n": "Yogurt with fruit and oats",
+   "i": "1 cup plain yogurt, 1 cup fruit, 3 tbsp oats"
+  },
+  "b5": {
+   "n": "Whole-wheat toast with avocado and beans",
+   "i": "2 slices whole-wheat bread, ¼ avocado, ½ cup beans"
+  },
+  "l1": {
+   "n": "Rice, beans and chicken",
+   "i": "¾ cup rice, ½ cup beans, 120 g grilled chicken, salad"
+  },
+  "l2": {
+   "n": "Grilled fish with yuca",
+   "i": "150 g fish, 1 cup boiled yuca, salad with lemon"
+  },
+  "l3": {
+   "n": "Beef stew with rice and baked plantain",
+   "i": "120 g stewed beef, ¾ cup rice, ½ baked ripe plantain"
+  },
+  "l4": {
+   "n": "Lentils with rice",
+   "i": "1 cup lentils, ½ cup rice, salad"
+  },
+  "l5": {
+   "n": "Baked chicken with potatoes and vegetables",
+   "i": "130 g chicken, 1 medium potato, 1 cup vegetables"
+  },
+  "s1": {
+   "n": "Fruit with peanuts",
+   "i": "1 fruit, 1 small handful of peanuts"
+  },
+  "s2": {
+   "n": "Yogurt with fruit",
+   "i": "1 cup plain yogurt, ½ cup fruit"
+  },
+  "s3": {
+   "n": "Mango with lime and a boiled egg",
+   "i": "1 cup mango, lime, 1 boiled egg"
+  },
+  "s4": {
+   "n": "Fruit bowl",
+   "i": "1 banana and 1 cup of seasonal fruit"
+  },
+  "d1": {
+   "n": "Chicken tacos with pico de gallo",
+   "i": "3 corn tortillas, 120 g chicken, tomato and onion"
+  },
+  "d2": {
+   "n": "Chicken soup with vegetables",
+   "i": "1 big bowl: chicken, potato, carrot, squash"
+  },
+  "d3": {
+   "n": "Tuna salad with avocado",
+   "i": "1 can tuna in water, ¼ avocado, lettuce and tomato, crackers"
+  },
+  "d4": {
+   "n": "Vegetable omelette with cheese",
+   "i": "2 eggs, vegetables, 30 g cheese, 1 slice bread"
+  },
+  "d5": {
+   "n": "Black beans with rice and fresh cheese",
+   "i": "1 cup beans, ½ cup rice, 30 g fresh cheese"
+  }
+ },
+ "cing": {
+  "cornflour": "Precooked corn flour",
+  "eggs": "Eggs",
+  "cheese": "Fresh cheese",
+  "tomato": "Tomatoes",
+  "oats": "Oats",
+  "banana": "Bananas",
+  "milk": "Milk",
+  "tortillas": "Corn tortillas",
+  "onion": "Onions",
+  "yogurt": "Plain yogurt",
+  "fruit": "Seasonal fruit",
+  "bread": "Whole-wheat bread",
+  "avocado": "Avocados",
+  "beans": "Beans",
+  "rice": "Rice",
+  "chicken": "Chicken breast",
+  "salad": "Lettuce and salad greens",
+  "fish": "White fish",
+  "yuca": "Yuca (cassava)",
+  "beef": "Lean beef",
+  "plantain": "Ripe plantains",
+  "lentils": "Lentils",
+  "potato": "Potatoes",
+  "vegetables": "Mixed vegetables",
+  "peanuts": "Peanuts",
+  "tuna": "Canned tuna in water"
+ },
+ "cex": {
+  "march": {
+   "n": "March in place",
+   "d": "Lift your knees one at a time and swing your arms. Go at an easy pace to warm up."
+  },
+  "treadmill": {
+   "n": "Treadmill walk",
+   "d": "Walk at a comfortable pace. You should be able to talk while walking."
+  },
+  "chairSquat": {
+   "n": "Chair squat",
+   "d": "Stand in front of a chair, sit down slowly and stand back up, pushing through your heels."
+  },
+  "bridge": {
+   "n": "Glute bridge",
+   "d": "Lie on your back with knees bent. Lift your hips, squeeze your glutes and lower slowly."
+  },
+  "calf": {
+   "n": "Calf raises",
+   "d": "Hold a wall or chair. Rise onto your toes and lower slowly."
+  },
+  "sideLeg": {
+   "n": "Side leg raise",
+   "d": "Hold a chair, lift one leg out to the side and lower slowly. Switch legs."
+  },
+  "stepUp": {
+   "n": "Step-up",
+   "d": "Step up onto a low, stable step with one foot, then the other, and step down slowly."
+  },
+  "legPress": {
+   "n": "Leg press",
+   "d": "Sit on the machine, feet flat on the plate. Push away without locking your knees and return slowly."
+  },
+  "gobletSquat": {
+   "n": "Goblet squat",
+   "d": "Hold a light dumbbell at your chest. Squat down with your back straight and stand up."
+  },
+  "wallPush": {
+   "n": "Wall push-up",
+   "d": "Hands on the wall at chest height. Bend your elbows toward the wall and push back."
+  },
+  "armCircles": {
+   "n": "Arm circles",
+   "d": "Arms out to the sides, make small circles forward and then backward."
+  },
+  "bottleRow": {
+   "n": "Row with water bottles",
+   "d": "Lean forward slightly with a straight back, pull two water bottles toward your waist and lower."
+  },
+  "latPull": {
+   "n": "Lat pulldown",
+   "d": "Sit at the machine, pull the bar to your upper chest and let it rise slowly."
+  },
+  "seatedRow": {
+   "n": "Seated cable row",
+   "d": "Sit tall, pull the handle to your belly, squeeze your shoulder blades and return slowly."
+  },
+  "chestPress": {
+   "n": "Chest press machine",
+   "d": "Sit with your back on the pad. Push the handles forward and return slowly."
+  },
+  "birdDog": {
+   "n": "Bird dog",
+   "d": "On hands and knees, reach one arm forward and the opposite leg back. Hold, then switch."
+  },
+  "deadBug": {
+   "n": "Dead bug",
+   "d": "Lie on your back, arms up and knees bent. Slowly lower the opposite arm and leg, then switch."
+  },
+  "plank": {
+   "n": "Plank",
+   "d": "On your forearms and toes (or knees), keep your body straight and breathe."
+  },
+  "jacks": {
+   "n": "Jumping jacks",
+   "d": "Jump opening legs and arms, then close. For low impact, step out to the side instead."
+  },
+  "bike": {
+   "n": "Stationary bike",
+   "d": "Pedal at a steady pace that makes you breathe a little faster."
+  },
+  "stretch": {
+   "n": "Gentle stretching",
+   "d": "Stretch legs, back and arms slowly. Hold each stretch for 15–20 seconds without bouncing."
+  }
  }
 }

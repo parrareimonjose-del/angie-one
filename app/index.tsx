@@ -5,8 +5,9 @@ import { useTranslation } from 'react-i18next';
 import * as Speech from 'expo-speech';
 import { Screen, Card, Btn, Ring, Bar, T, s } from '../src/ui';
 import { fmtLocale, fmtNum } from '../src/i18n';
-import { useStore, today, dailyTarget, trialPhase, fmtCountdown, streak } from '../src/store';
+import { useStore, today, trialPhase, fmtCountdown, streak } from '../src/store';
 import { C } from '../src/theme';
+import { coachTarget, coachOf, burnedOn, isPremium, weekday } from '../src/coach';
 
 export default function Home() {
   const { t, i18n } = useTranslation(); const { s: st, ready, set } = useStore();
@@ -14,14 +15,14 @@ export default function Home() {
   useEffect(() => { const i = setInterval(() => setNow(Date.now()), 30000); return () => clearInterval(i); }, []);
   if (!ready) return <View style={{ flex: 1, backgroundColor: C.bg }} />;
   if (!st.profile) return <Redirect href="/onboarding" />;
-  const d = today(); const target = dailyTarget(st.profile);
+  const d = today(); const target = coachTarget(st); const co = coachOf(st); const burned = burnedOn(co, d);
   const ents = st.entries.filter((e) => e.date === d);
   const sum = ents.reduce((a, e) => ({ kcal: a.kcal + e.kcal, p: a.p + e.p, c: a.c + e.c, f: a.f + e.f }), { kcal: 0, p: 0, c: 0, f: 0 });
   const water = st.water[d] || 0; const tp = trialPhase(st.trialStart, now); const left = tp.daysLeft;
   const challenges = t('home.challenges') as unknown as string[];
   const ch = challenges[new Date().getDate() % challenges.length];
   const doneToday = st.challengeDays.includes(d);
-  const speak = () => Speech.speak(t('home.summary', { eaten: Math.round(sum.kcal), goal: target.kcal, water }), { language: fmtLocale() });
+  const speak = () => Speech.speak(t('home.summary', { eaten: Math.round(sum.kcal), goal: target.kcal, water }) + (burned ? ' ' + t('coach.sayBurned', { kcal: burned }) : ''), { language: fmtLocale() });
   return (
     <Screen>
       <View style={[s.row, { justifyContent: 'space-between' }]}>
@@ -33,12 +34,13 @@ export default function Home() {
       {tp.phase === 'trial' && left <= 2 ? <Card style={{ backgroundColor: '#FFF1DC' }}><T style={{ fontWeight: '700' }}>{t(left === 2 ? 'trial.remind2' : 'trial.remind1')}</T></Card> : null}
       <Card style={{ alignItems: 'center' }}>
         <Ring value={sum.kcal} max={target.kcal} size={220}>
-          <Text style={{ fontSize: 44, fontWeight: '900', color: C.text }}>{fmtNum(Math.max(0, target.kcal - Math.round(sum.kcal)))}</Text>
+          <Text style={{ fontSize: 44, fontWeight: '900', color: C.text }}>{fmtNum(Math.max(0, target.kcal + burned - Math.round(sum.kcal)))}</Text>
           <Text style={s.muted}>{t('u.kcal')} {t('home.left')}</Text>
         </Ring>
         <View style={[s.row, { justifyContent: 'space-around', alignSelf: 'stretch' }]}>
           <View style={{ alignItems: 'center' }}><Text style={s.h2}>{fmtNum(sum.kcal)}</Text><Text style={s.muted}>{t('home.eaten')}</Text></View>
           <View style={{ alignItems: 'center' }}><Text style={s.h2}>{fmtNum(target.kcal)}</Text><Text style={s.muted}>{t('home.goal')}</Text></View>
+          <View style={{ alignItems: 'center' }}><Text testID="home-burned" style={[s.h2, { color: C.warning }]}>🔥 {fmtNum(burned)}</Text><Text style={s.muted}>{t('coach.burned')}</Text></View>
         </View>
       </Card>
       <Card>
@@ -63,6 +65,7 @@ export default function Home() {
             : <Btn small kind="primary" label={t('home.markDone')} onPress={() => set((x) => ({ ...x, challengeDays: [...x.challengeDays, d] }))} />}
         </Card>
       </View>
+      {isPremium(st) && co.plan && !co.plan.workout.days[weekday()].rest && !co.workouts.some((w) => w.date === d) ? <Btn kind="secondary" label={`🏋️  ${t('coach.startToday')}`} onPress={() => router.push({ pathname: '/player', params: { day: String(weekday()) } })} /> : null}
       <Btn label={`📸  ${t('nav.scan')}`} onPress={() => router.push('/scan')} />
     </Screen>
   );
