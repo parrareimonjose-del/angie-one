@@ -131,7 +131,7 @@ export function CopyScreen() {
   const slots = t('coach.slots4') as unknown as string[];
   const go = () => { if (!ids.length || !days.length) { setMsg(t('mf.copyPick')); return; } const n = copyEntries(st.entries, ids, days); set((x) => ({ ...x, entries: [...x.entries, ...n] })); setMsg(t('mf.copyOk', { n: ids.length, d: days.length })); setDays([]); };
   return <Screen title={`📋 ${t('mf.copy')}`}>
-    <StatRow items={[{ icon: '🍽️', value: ents.length, label: t('mf.copyFrom', { day: fmtDate(new Date(from + 'T12:00')) }) }, { icon: '✅', value: ids.length, label: '☑' }, { icon: '📅', value: days.length, label: t('mf.copyTo') }]} />
+    <StatRow items={[{ icon: '🍽️', value: ents.length, label: t('mf.copyFrom', { day: fmtDate(new Date(from + 'T12:00')) }) }, { icon: '✅', value: ids.length, label: t('mf.copy') }, { icon: '📅', value: days.length, label: t('mf.copyTo') }]} />
     <H2>{t('mf.copyFrom', { day: fmtDate(new Date(from + 'T12:00')) })}</H2>
     {ents.length === 0 ? <Card><EmptyState icon="📋" title={t('diary.empty')} /></Card> : <Card>
       {slots.map((l, i) => { const es = ents.filter((e) => slotOf(e) === i); if (!es.length) return null; const all = es.every((e) => ids.includes(e.id));

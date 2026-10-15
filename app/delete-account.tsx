@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { Text, Platform } from 'react-native';
+import { View, Text, Platform } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Screen, Card, Btn, T, s } from '../src/ui';
+import { Screen, Card, Btn, T, s, IconCard, IconTile, InfoNote } from '../src/ui';
 import { C } from '../src/theme';
 import { useStore } from '../src/store';
 import { useAuth } from '../src/faltantes-ui';
@@ -18,8 +18,9 @@ export default function DeleteAccount() {
     setAuth(null); reset(); try { const ks = await AsyncStorage.getAllKeys(); await AsyncStorage.multiRemove(ks.filter((k) => k.startsWith('angieone'))); } catch {}
     if (typeof sessionStorage !== 'undefined') sessionStorage.clear(); setDone(true); };
   return <Screen title={`🗑️ ${t('fx.delTitle')}`}>
-    <Card><T>{t('fx.delWhat')}</T><T>{t('fx.delCloud')}</T></Card>
+    <IconCard icon="🗑️" title={t('fx.delTitle')} sub={t('fx.delWhat')} style={{ borderColor: C.primary + '55' }}>
+      <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}><IconTile icon="☁️" size={36} /><T style={{ flex: 1 }}>{t('fx.delCloud')}</T></View></IconCard>
     {done ? <Card testID="del-done"><T style={{ color: C.success, fontWeight: '900' }}>✓ {t('fx.delDone')}</T><Btn label={t('fx.start')} onPress={() => router.replace('/onboarding')} /></Card>
       : <Btn testID="del-btn" kind="danger" label={`🗑️ ${t('fx.delBtn')}`} onPress={del} />}
-    <Text style={s.muted}>✉️ angieoneapp.support@gmail.com</Text><Note k="fx.delNote" /></Screen>;
+    <InfoNote icon="✉️" text="angieoneapp.support@gmail.com" /><Note k="fx.delNote" /></Screen>;
 }

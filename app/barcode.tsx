@@ -43,7 +43,13 @@ export default function Barcode() {
   const log = () => { if (!prod) return; set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: prod.name, kcal: Math.round(prod.kcal100 * k), p: Math.round(prod.p100 * k), c: Math.round(prod.c100 * k), f: Math.round(prod.f100 * k), fiber: prod.fiber100 == null ? undefined : Math.round(prod.fiber100 * k * 10) / 10, source: 'barcode' }] })); router.replace('/diary'); };
   return (
     <Screen title={t('bar.title')}>
-      <Text style={s.muted}>{t('bar.hint')}</Text>
+      <Card style={{ alignItems: 'center', gap: 12 }}>
+        <View style={{ width: '100%', height: 120, borderRadius: 18, backgroundColor: C.tint, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+          <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 3, height: 70 }}>{[3, 1, 2, 1, 3, 2, 1, 1, 3, 1, 2, 3, 1, 2, 1, 3, 1, 2, 2, 1, 3].map((w, i) => <View key={i} style={{ width: w * 2, height: 70, backgroundColor: C.text, opacity: 0.85 }} />)}</View>
+          <View style={{ position: 'absolute', left: 16, right: 16, top: 58, height: 3, borderRadius: 2, backgroundColor: C.primary }} />
+        </View>
+        <Text style={[s.muted, { textAlign: 'center' }]}>{t('bar.hint')}</Text>
+      </Card>
       <TextInput accessibilityLabel={t('bar.title')} style={s.input} keyboardType="number-pad" value={code} onChangeText={setCode} placeholder="7501055363063" onSubmitEditing={() => search()} />
       <Btn label={wcam ? `✕  ${t('bar.closeCam')}` : `📷  ${t('bar.scanCam')}`} onPress={() => { if (Platform.OS === 'web') { setMsg(''); setWcam(!wcam); } else (async () => { if (!perm?.granted) await ask(); setCam(true); })(); }} />
       {wcam && Platform.OS === 'web' && <><WebScanner onCode={(c) => { setWcam(false); setCode(c); search(c); }} onError={(e) => { setWcam(false); setMsg(t(e === 'denied' ? 'bar.camDenied' : 'bar.noCam')); }} /><T>{t('bar.aim')}</T></>}

@@ -1,9 +1,9 @@
 // Copia en la nube cifrada (gratis): activar, copiar ahora, restaurar en un teléfono nuevo y "Borrar todo de la nube".
 import { useEffect, useRef, useState } from 'react';
-import { Text, TextInput, Platform } from 'react-native';
+import { View, Text, TextInput, Platform } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Screen, Card, Btn, T, s, CardTitle } from '../src/ui';
+import { Screen, Card, Btn, T, s, CardTitle, IconCard, IconTile, Pill } from '../src/ui';
 import { C } from '../src/theme';
 import { useStore } from '../src/store';
 import { fmtLocale } from '../src/i18n';
@@ -25,7 +25,9 @@ export default function Backup() {
     try { const b = await downloadBackup(rc); const code = rc.toUpperCase().trim(); set(() => ({ ...b.state, sync: { on: true, code, last: b.at } })); setRestored(true); setMsg(t('bk.restored')); } catch (e) { fail(e); } finally { setBusy(false); } };
   const when = (ms?: number) => (ms ? new Date(ms).toLocaleString(fmtLocale(), { dateStyle: 'medium', timeStyle: 'short' }) : '—');
   return <Screen title={`☁️ ${t('bk.title')}`}>
-    <Card><T>{t('bk.what')}</T><Text style={s.muted}>🔒 {t('bk.e2e')}</Text><Text style={s.muted}>📸 {t('bk.noPhotos')}</Text><Text style={s.muted}>🚫 {t('bk.neverSold')}</Text></Card>
+    <IconCard icon="☁️" title={t('bk.title')} sub={t('bk.what')} right={<Pill label={sy?.on ? '✓' : 'OFF'} color={sy?.on ? C.success : C.muted} />}>
+      {[['🔒', t('bk.e2e')], ['📸', t('bk.noPhotos')], ['🚫', t('bk.neverSold')]].map(([i, x]) => <View key={i} style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}><IconTile icon={i} size={36} /><Text style={[s.muted, { flex: 1 }]}>{x}</Text></View>)}
+    </IconCard>
     {code ? <Card testID="bk-codecard">
       <CardTitle>{t('bk.codeTitle')}</CardTitle><T>{t('bk.codeHow')}</T>
       <Text testID="bk-code" selectable style={{ fontSize: 24, fontWeight: '900', letterSpacing: 1, color: C.secondary }}>{code}</Text>

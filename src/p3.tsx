@@ -6,7 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import Svg, { Circle, Rect, Ellipse, Path } from 'react-native-svg';
-import { Screen, Card, Btn, Chip, T, Bar, s, StatRow, IconCard, EmptyState, Pill, Ring, InfoNote, CardTitle } from './ui';
+import { Screen, Card, Btn, Chip, T, Bar, s, StatRow, IconCard, EmptyState, Pill, Ring, InfoNote, CardTitle, IconTile } from './ui';
 import { C } from './theme';
 import { useStore, today, uid, DAY, trialPhase } from './store';
 import { fmtNum, fmtDate } from './i18n';
@@ -230,8 +230,11 @@ export function Shopping() {
 // ---------- Modo viaje ----------
 export function Travel() {
   const { t } = useTranslation(); const [on, setOn] = useExt<boolean>('travel', false);
-  return <Screen title={`✈️ ${t('x.t.travel')}`}><Btn kind={on ? 'secondary' : 'ghost'} label={on ? '✓ ' + t('x.travelOn') : t('x.travelOff')} onPress={() => setOn((v) => !v)} />
-    {on && <Card testID="travel-tips">{['tr1', 'tr2', 'tr3', 'tr4'].map((k) => <T key={k}>✈️ {t(`x.${k}`)}</T>)}</Card>}
+  return <Screen title={`✈️ ${t('x.t.travel')}`}>
+    <IconCard icon={on ? '🧳' : '🏝️'} title={t('x.t.travel')} sub={on ? t('x.travelOn') : t('x.travelOff')} right={<Pill label={on ? 'ON' : 'OFF'} color={on ? C.success : C.muted} />}>
+      <Btn kind={on ? 'secondary' : 'ghost'} label={on ? '✓ ' + t('x.travelOn') : t('x.travelOff')} onPress={() => setOn((v) => !v)} /></IconCard>
+    {on ? <Card testID="travel-tips">{['tr1', 'tr2', 'tr3', 'tr4'].map((k, i) => <View key={k} style={{ flexDirection: 'row', gap: 12, alignItems: 'center' }}><IconTile icon={['🥗', '💧', '🚶', '😴'][i]} size={40} /><T style={{ flex: 1 }}>{t(`x.${k}`)}</T></View>)}</Card>
+      : <Card><EmptyState image={require('../assets/sections/travel.jpg')} title={t('x.t.travel')} sub={t('x.travelOff')} /></Card>}
     <Btn kind="ghost" label={`🏋️ ${t('x.hotelWorkout')}`} onPress={() => router.push('/gym')} /></Screen>;
 }
 

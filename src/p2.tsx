@@ -6,7 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import Svg, { Circle, Rect, Ellipse, Path, Polyline, Line, Text as SvgText } from 'react-native-svg';
-import { Screen, Card, Btn, Chip, T, Bar, s, IconCard, EmptyState, Pill, InfoNote, CardTitle } from './ui';
+import { Screen, Card, Btn, Chip, T, Bar, s, IconCard, EmptyState, Pill, InfoNote, CardTitle, Ring, FOOD } from './ui';
 import { C } from './theme';
 import { useStore, today, uid, DAY, State, Entry, dailyTarget } from './store';
 import { fmtNum, fmtDate, fmtLocale, curLang } from './i18n';
@@ -180,6 +180,7 @@ export function Voice() {
   const add = () => { if (!est) return; set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: est.name, kcal: est.kcal, p: est.p, c: est.c, f: est.f, source: 'manual' }] })); setDone(true); speak(t('p2.vAdded', { name: est.name, kcal: est.kcal })); };
   return <Screen title={`🎙️ ${t('p2.t.voice')}`} nav={false}>
     <Btn label={working ? `⏳ ${t('voice.working')}` : listening ? `⏹️ ${t('voice.stop')}` : `🎙️ ${t('p2.vTap')}`} onPress={listen} style={{ minHeight: 96 }} />
+    <Card style={{ alignItems: 'center', gap: 6 }}><View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, height: 60 }}>{[12, 28, 44, 20, 52, 34, 16, 40, 24, 48, 18, 30, 10].map((h, i) => <View key={i} style={{ width: 6, height: listening ? h : h / 3, borderRadius: 3, backgroundColor: i % 2 ? C.secondary : C.primary }} />)}</View></Card>
     <Text style={s.muted}>{t('p2.vOr')}</Text>
     <TextInput testID="voice-text" style={s.input} value={q} onChangeText={setQ} placeholder={t('p2.vPh')} onSubmitEditing={() => go()} />
     <Btn kind="secondary" label={busy ? '…' : `✨ ${t('p2.vGo')}`} onPress={() => go()} />
@@ -262,9 +263,12 @@ export function Craving() {
   const { t } = useTranslation(); const { set } = useStore(); const [sel, setSel] = useState(''); const [added, setAdded] = useState(false);
   const c = CRAVINGS.find((x) => x[0] === sel);
   return <Screen title={`🍫 ${t('p2.t.craving')}`}>
-    <T>{t('p2.crHow')}</T>
-    <View style={[s.row, { flexWrap: 'wrap' }]}>{CRAVINGS.map(([k]) => <Chip key={k} label={t(`p2.cr.${k}.n`)} active={sel === k} onPress={() => { setSel(k); setAdded(false); }} />)}</View>
+    <IconCard icon="🍫" title={t('p2.t.craving')} sub={t('p2.crHow')}>
+    <View style={[s.row, { flexWrap: 'wrap' }]}>{CRAVINGS.map(([k]) => <Chip key={k} label={t(`p2.cr.${k}.n`)} active={sel === k} onPress={() => { setSel(k); setAdded(false); }} />)}</View></IconCard>
+    {!c ? <Card><EmptyState image={FOOD.fruit} title={t('p2.crHow')} /></Card> : null}
     {c ? <Card testID="swap" style={{ backgroundColor: C.tint }}><CardTitle>✨ {t(`p2.cr.${c[0]}.s`)}</CardTitle>
+      <View style={{ flexDirection: 'row', gap: 10 }}><View style={{ flex: 1, gap: 4 }}><Text style={s.muted}>{t(`p2.cr.${c[0]}.n`)}</Text><Bar value={c[1]} max={c[1]} color={C.primary} /><Text style={{ fontWeight: '900', color: C.primary }}>{c[1]} kcal</Text></View>
+        <View style={{ flex: 1, gap: 4 }}><Text style={s.muted}>✨</Text><Bar value={c[2]} max={c[1]} color={C.success} /><Text style={{ fontWeight: '900', color: C.success }}>{c[2]} kcal</Text></View></View>
       <T>{t('p2.crSave', { a: c[1], b: c[2], d: c[1] - c[2] })}</T><Text style={s.muted}>{t('p2.crKind')}</Text>
       {added ? <Text style={{ color: C.success, fontWeight: '800' }}>✓ {t('p2.vSaved')}</Text> : <Btn small label={`＋ ${t('p2.toDiary')}`} onPress={() => { set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: t(`p2.cr.${c[0]}.s`), kcal: c[2], p: 0, c: 0, f: 0, source: 'manual' }] })); setAdded(true); }} />}</Card> : null}
     <Note k="p2.crNote" /></Screen>;
@@ -279,9 +283,12 @@ export function SleepStress() {
   const avg = week.filter(Boolean) as Sleep[]; const ah = avg.length ? avg.reduce((a, x) => a + x.h, 0) / avg.length : 0;
   const tip = cur.stress >= 4 ? 'slTipStress' : cur.h < 6 ? 'slTipShort' : 'slTipGood';
   return <Screen title={`😴 ${t('p2.t.sleep')}`}>
+    <Card style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}><Ring value={cur.h} max={8} size={120} stroke={13}><Text style={{ fontSize: 22 }}>🌙</Text><Text style={{ fontSize: 26, fontWeight: '900', color: C.text }}>{cur.h} h</Text></Ring>
+      <View style={{ flex: 1, gap: 8 }}><Text style={s.muted}>{t('p2.slStress')}</Text><View style={{ flexDirection: 'row', gap: 4 }}>{[1, 2, 3, 4, 5].map((n) => <View key={n} style={{ flex: 1, height: 10, borderRadius: 5, backgroundColor: n <= cur.stress ? (cur.stress >= 4 ? C.primary : C.secondary) : C.border }} />)}</View>
+        {avg.length ? <Text style={s.muted}>{t('p2.slAvg', { h: fmtNum(ah, 1) })}</Text> : null}</View></Card>
     <Card><CardTitle>🌙 {t('p2.slHours')}</CardTitle><View style={[s.row, { flexWrap: 'wrap' }]}>{[4, 5, 6, 7, 8, 9, 10].map((h) => <Chip key={h} label={`${h} h`} active={log.some((x) => x.date === today()) && cur.h === h} onPress={() => up({ h })} />)}</View></Card>
     <Card><CardTitle>🌿 {t('p2.slStress')}</CardTitle><View style={[s.row, { flexWrap: 'wrap' }]}>{[1, 2, 3, 4, 5].map((n) => <Chip key={n} label={t(`p2.st${n}`)} active={log.some((x) => x.date === today()) && cur.stress === n} onPress={() => up({ stress: n })} />)}</View></Card>
-    <Card testID="sleep-tip"><T>💡 {t('p2.' + tip)}</T>{cur.stress >= 4 ? <Btn small kind="secondary" label={`🫁 ${t('p2.slBreath')}`} onPress={() => speak(t('p2.slBreathSay'))} /> : null}</Card>
+    <Card testID="sleep-tip"><CardTitle icon="💡">{t('p2.' + tip)}</CardTitle>{cur.stress >= 4 ? <Btn small kind="secondary" label={`🫁 ${t('p2.slBreath')}`} onPress={() => speak(t('p2.slBreathSay'))} /> : null}</Card>
     <Card><CardTitle>{t('p2.slWeek')}</CardTitle>
       <View style={[s.row, { alignItems: 'flex-end', height: 110, justifyContent: 'space-between' }]}>{week.map((x, i) => <View key={i} style={{ alignItems: 'center', flex: 1 }}>
         <View style={{ width: 22, height: ((x?.h || 0) / 10) * 90, backgroundColor: x && x.h >= 7 ? C.secondary : C.accent, borderRadius: 6 }} /><Text style={s.muted}>{dayStr(6 - i).slice(8)}</Text></View>)}</View>

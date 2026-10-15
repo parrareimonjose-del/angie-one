@@ -4,7 +4,7 @@ import { View, Text, TextInput } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import Svg, { Rect, Circle, Text as SvgText } from 'react-native-svg';
-import { Screen, Card, Btn, Chip, T, Bar, s, CardTitle } from './ui';
+import { Screen, Card, Btn, Chip, T, Bar, s, CardTitle, IconCard } from './ui';
 import { C } from './theme';
 import { useStore, today, uid } from './store';
 import { fmtNum, fmtDate } from './i18n';
@@ -102,8 +102,10 @@ export function parseMsg(msg: string, name: (id: string) => string) {
 export function WhatsApp() {
   const { t } = useTranslation(); const { set } = useStore(); const [m, setM] = useState(''); const [res, setRes] = useState<ReturnType<typeof parseMsg> | null>(null);
   return <Screen title={`💬 ${t('x.t.whatsapp')}`}><Pending what="WhatsApp Business" />
-    <Card><T>{t('x.waHow')}</T><TextInput testID="wa-input" accessibilityLabel={t('x.waPh')} placeholder={t('x.waPh')} style={s.input} value={m} onChangeText={setM} />
-      <Btn label={t('x.waTry')} onPress={() => setRes(parseMsg(m, (id) => t(`foods.${id}`)))} /></Card>
+    <IconCard icon="💬" title={t('x.t.whatsapp')} sub={t('x.waHow')}>
+      <View style={{ alignSelf: 'flex-start', maxWidth: '85%', padding: 12, borderRadius: 16, borderBottomLeftRadius: 4, backgroundColor: C.mode === 'dark' ? '#14532D' : '#DCFCE7' }}><Text style={{ color: C.text }}>{t('x.waPh')}</Text></View>
+      <TextInput testID="wa-input" accessibilityLabel={t('x.waPh')} placeholder={t('x.waPh')} style={s.input} value={m} onChangeText={setM} />
+      <Btn label={t('x.waTry')} onPress={() => setRes(parseMsg(m, (id) => t(`foods.${id}`)))} /></IconCard>
     {res && (res.length ? <Card>{res.map((r, i) => <T key={i}>✓ {r.name} · {fmtNum(r.kcal)} {t('u.kcal')}</T>)}
       <Btn label={`✓ ${t('scan.log')}`} onPress={() => { set((x) => ({ ...x, entries: [...x.entries, ...res.map((r) => ({ id: uid(), date: today(), time: Date.now(), ...r, source: 'manual' as const }))] })); router.replace('/diary'); }} /></Card>
       : <Card><T>{t('manual.noMatch')}</T></Card>)}</Screen>;
