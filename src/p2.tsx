@@ -13,7 +13,9 @@ import { fmtNum, fmtDate, fmtLocale, curLang } from './i18n';
 import { coachTarget, coachOf, burnedOn, isPremium, weekday, safeMin, rulesPlan, DEFAULT_PREFS, Prefs, nextCheckInDays } from './coach';
 import { speak, Row, Disclaimer } from './coach-ui';
 import { useExt, Example, Note, Tile } from './ext';
-import { estimateText, AI_URL } from './ai';
+import { estimateText, AI_URL, AIError } from './ai';
+import { startVoice, voiceSupported } from './voice';
+import { aiErrorText } from './estimate';
 import { shrinkForUpload } from './img';
 
 const BASE = AI_URL.replace(/\/estimate$/, '');
@@ -169,15 +171,15 @@ export function Import() {
 export function Voice() {
   const { t } = useTranslation(); const { set } = useStore(); const [q, setQ] = useState(''); const [busy, setBusy] = useState(false); const [listening, setL] = useState(false);
   const [est, setEst] = useState<{ name: string; kcal: number; p: number; c: number; f: number } | null>(null); const [err, setErr] = useState(''); const [done, setDone] = useState(false);
-  const SR = Platform.OS === 'web' ? ((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition) : null;
-  const listen = () => { if (!SR) { setErr(t('p2.vNoMic')); return; } const r = new SR(); r.lang = fmtLocale(); r.interimResults = false; setL(true); setErr('');
-    r.onresult = (e: any) => { const x = e.results[0][0].transcript; setQ(x); go(x); }; r.onerror = () => { setErr(t('p2.vNoMic')); }; r.onend = () => setL(false); r.start(); };
+  const stopRef = useRef<null | (() => void)>(null); const [working, setW] = useState(false);
+  const listen = () => { if (listening) { stopRef.current?.(); return; } if (!voiceSupported()) { setErr(t('p2.vNoMic')); return; } setErr('');
+    stopRef.current = startVoice({ onText: (x) => { setQ(x); go(x); }, onErr: (e) => setErr(t('voice.' + e)), onState: (st) => { setL(st === 'listening'); setW(st === 'working'); } }); };
   const go = async (text = q) => { if (!text.trim()) return; setBusy(true); setErr(''); setEst(null); setDone(false);
     try { const e = await estimateText(text, curLang()); setEst({ name: e.name, kcal: Math.round((e.kcalMin + e.kcalMax) / 2), p: e.p, c: e.c, f: e.f }); }
-    catch { setErr(t('p2.vErr')); } finally { setBusy(false); } };
+    catch (e) { setErr(e instanceof AIError && e.code === 'notFood' ? t('voice.notFood') : aiErrorText(t, e)); } finally { setBusy(false); } };
   const add = () => { if (!est) return; set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: est.name, kcal: est.kcal, p: est.p, c: est.c, f: est.f, source: 'manual' }] })); setDone(true); speak(t('p2.vAdded', { name: est.name, kcal: est.kcal })); };
   return <Screen title={`🎙️ ${t('p2.t.voice')}`} nav={false}>
-    <Btn label={listening ? `👂 ${t('p2.vListening')}` : `🎙️ ${t('p2.vTap')}`} onPress={listen} style={{ minHeight: 96 }} />
+    <Btn label={working ? `⏳ ${t('voice.working')}` : listening ? `⏹️ ${t('voice.stop')}` : `🎙️ ${t('p2.vTap')}`} onPress={listen} style={{ minHeight: 96 }} />
     <Text style={s.muted}>{t('p2.vOr')}</Text>
     <TextInput testID="voice-text" style={s.input} value={q} onChangeText={setQ} placeholder={t('p2.vPh')} onSubmitEditing={() => go()} />
     <Btn kind="secondary" label={busy ? '…' : `✨ ${t('p2.vGo')}`} onPress={() => go()} />

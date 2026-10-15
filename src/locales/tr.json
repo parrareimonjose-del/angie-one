@@ -105,7 +105,13 @@
     "salt": "Tuz",
     "satfat": "Doymuş yağ",
     "badCode": "Barkodun altındaki 6 ila 14 haneyi yaz.",
-    "searching": "Aranıyor…"
+    "searching": "Aranıyor…",
+    "closeCam": "Kamerayı kapat",
+    "aim": "Kamerayı barkoda doğrultun.",
+    "camDenied": "Kamera izni gerekiyor. Ayarlar > Safari > Kamera'dan açın.",
+    "noCam": "Kamera açılamadı. Kodu yazın.",
+    "notFound2": "Ürün bulunamadı. Besin etiketinin fotoğrafını çekin veya elle ekleyin.",
+    "labelPhoto": "Besin etiketinin fotoğrafını çek"
   },
   "manual": {
     "title": "Manuel kayıt",
@@ -1510,5 +1516,15 @@
       "pending": "Bekleyen"
     },
     "weighNever": "Henüz kilo kaydı yok."
+  },
+  "voice": {
+    "stop": "Bitirmek için dokunun",
+    "working": "Söylediklerinizi yazıyorum…",
+    "noMic": "Bu tarayıcıda ses çalışmıyor. Yazın.",
+    "denied": "Mikrofon izni gerekiyor. Ayarlar > Safari > Mikrofon'dan açın.",
+    "noSpeech": "Duyamadım. Dokunun ve daha yakından konuşun.",
+    "busy": "Sesi anlayamadım. Tekrar deneyin.",
+    "offline": "İnternet yok. Bağlantınızı kontrol edin.",
+    "notFood": "Merhaba! Ne yediğinizi söyleyin, örneğin: \"tavuk salatası ve kahve\"."
   }
 }

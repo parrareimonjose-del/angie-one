@@ -105,7 +105,13 @@
     "salt": "Sel",
     "satfat": "Graisses sat.",
     "badCode": "Tape les 6 à 14 chiffres sous le code-barres.",
-    "searching": "Recherche…"
+    "searching": "Recherche…",
+    "closeCam": "Fermer la caméra",
+    "aim": "Visez le code-barres avec la caméra.",
+    "camDenied": "J'ai besoin de l'accès à la caméra. Activez-le dans Réglages > Safari > Caméra.",
+    "noCam": "Impossible d'ouvrir la caméra. Saisissez le code.",
+    "notFound2": "Produit introuvable. Prenez une photo de l'étiquette nutritionnelle ou ajoutez-le à la main.",
+    "labelPhoto": "Photographier l'étiquette nutritionnelle"
   },
   "manual": {
     "title": "Ajout manuel",
@@ -1510,5 +1516,15 @@
       "pending": "En attente"
     },
     "weighNever": "Aucun poids enregistré pour l’instant."
+  },
+  "voice": {
+    "stop": "Touchez pour terminer",
+    "working": "J'écris ce que vous avez dit…",
+    "noMic": "La voix ne fonctionne pas dans ce navigateur. Écrivez-le.",
+    "denied": "J'ai besoin de l'accès au micro. Activez-le dans Réglages > Safari > Microphone.",
+    "noSpeech": "Je ne vous ai pas entendu. Touchez et parlez plus près.",
+    "busy": "Je n'ai pas compris l'audio. Réessayez.",
+    "offline": "Pas d'internet. Vérifiez la connexion.",
+    "notFood": "Bonjour ! Dites-moi ce que vous avez mangé, par exemple : « salade de poulet et café »."
   }
 }

@@ -8,6 +8,11 @@ import { useStore, today, uid } from '../src/store';
 import { lookupBarcode, light, Product } from '../src/off';
 import { curLang, region, fmtNum } from '../src/i18n';
 import { C } from '../src/theme';
+import * as ImagePicker from 'expo-image-picker';
+import WebScanner from '../src/webscan';
+import { estimateLabel, Estimate } from '../src/ai';
+import { EstimateResult, aiErrorText } from '../src/estimate';
+import { shrinkForUpload } from '../src/img';
 
 const LIGHT = { green: C.success, amber: C.accent, red: C.primary, na: C.border };
 
@@ -15,13 +20,23 @@ export default function Barcode() {
   const { t } = useTranslation(); const { set } = useStore();
   const [code, setCode] = useState(''); const [prod, setProd] = useState<Product | null>(null);
   const [msg, setMsg] = useState(''); const [grams, setGrams] = useState(100); const [cam, setCam] = useState(false);
-  const [perm, ask] = useCameraPermissions();
+  const [perm, ask] = useCameraPermissions(); const [wcam, setWcam] = useState(false); const [nf, setNf] = useState(false);
+  const [lest, setLest] = useState<Estimate | null>(null); const [lbusy, setLbusy] = useState(false); const [mName, setMName] = useState(''); const [mKcal, setMKcal] = useState('');
+  const addE = (e: { name: string; kcal: number; p?: number; c?: number; f?: number }) => { set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: e.name, kcal: e.kcal, p: e.p || 0, c: e.c || 0, f: e.f || 0, source: 'barcode' }] })); router.replace('/diary'); };
+  const labelPhoto = async () => {
+    const opt = { base64: true, quality: 0.7, mediaTypes: ['images'] as any };
+    const r = Platform.OS !== 'web' ? await ImagePicker.launchCameraAsync(opt) : await ImagePicker.launchImageLibraryAsync(opt);
+    if (r.canceled || !r.assets?.[0]?.base64) return; const a = r.assets[0];
+    setLbusy(true); setLest(null); setMsg('');
+    try { const x = await shrinkForUpload(a.uri, a.base64!, a.mimeType || 'image/jpeg'); setLest(await estimateLabel(x.b64, x.mime, curLang())); }
+    catch (e) { setMsg(aiErrorText(t, e)); } finally { setLbusy(false); }
+  };
   const search = async (c = code) => {
-    setProd(null);
+    setProd(null); setNf(false); setLest(null);
     if (!/^\d{6,14}$/.test(c.trim())) { setMsg(t('bar.badCode')); return; }
     if (typeof navigator !== 'undefined' && navigator.onLine === false) { setMsg(t('aiErr.offline')); return; }
     setMsg(`⏳ ${t('bar.searching')}`);
-    try { const p = await lookupBarcode(c.trim(), curLang(), region()); setProd(p); setMsg(p ? '' : t('bar.notFound')); } catch { setMsg(typeof navigator !== 'undefined' && navigator.onLine === false ? t('aiErr.offline') : t('bar.notFound')); }
+    try { const p = await lookupBarcode(c.trim(), curLang(), region()); setProd(p); setMsg(p ? '' : t('bar.notFound2')); setNf(!p); } catch { const off = typeof navigator !== 'undefined' && navigator.onLine === false; setMsg(off ? t('aiErr.offline') : t('bar.notFound2')); setNf(!off); }
   };
   const k = grams / 100;
   const log = () => { if (!prod) return; set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: prod.name, kcal: Math.round(prod.kcal100 * k), p: Math.round(prod.p100 * k), c: Math.round(prod.c100 * k), f: Math.round(prod.f100 * k), source: 'barcode' }] })); router.replace('/diary'); };
@@ -29,11 +44,20 @@ export default function Barcode() {
     <Screen title={t('bar.title')}>
       <Text style={s.muted}>{t('bar.hint')}</Text>
       <TextInput accessibilityLabel={t('bar.title')} style={s.input} keyboardType="number-pad" value={code} onChangeText={setCode} placeholder="7501055363063" onSubmitEditing={() => search()} />
-      <Btn label={`🔎  ${t('bar.search')}`} onPress={() => search()} />
-      {Platform.OS !== 'web' && <Btn kind="secondary" label={`📷  ${t('bar.scanCam')}`} onPress={async () => { if (!perm?.granted) await ask(); setCam(true); }} />}
+      <Btn label={wcam ? `✕  ${t('bar.closeCam')}` : `📷  ${t('bar.scanCam')}`} onPress={() => { if (Platform.OS === 'web') { setMsg(''); setWcam(!wcam); } else (async () => { if (!perm?.granted) await ask(); setCam(true); })(); }} />
+      {wcam && Platform.OS === 'web' && <><WebScanner onCode={(c) => { setWcam(false); setCode(c); search(c); }} onError={(e) => { setWcam(false); setMsg(t(e === 'denied' ? 'bar.camDenied' : 'bar.noCam')); }} /><T>{t('bar.aim')}</T></>}
+      <Btn kind="secondary" label={`🔎  ${t('bar.search')}`} onPress={() => search()} />
       {cam && Platform.OS !== 'web' && <CameraView style={{ height: 260, borderRadius: 24 }} barcodeScannerSettings={{ barcodeTypes: ['ean13', 'ean8', 'upc_a', 'upc_e'] }}
         onBarcodeScanned={({ data }) => { setCam(false); setCode(data); search(data); }} />}
-      {msg ? <T>{msg}</T> : null}
+      {msg ? <T testID="bar-msg">{msg}</T> : null}
+      {nf && !prod && <Card testID="bar-nf">
+        <Btn label={lbusy ? `⏳ ${t('scan.analyzing')}` : `🏷️  ${t('bar.labelPhoto')}`} onPress={labelPhoto} />
+        {lest && <EstimateResult key={lest.name + lest.kcalMin} est={lest} onLog={(x) => addE(x)} />}
+        <Text style={s.h2}>✍️ {t('manual.exact')}</Text>
+        <TextInput accessibilityLabel={t('manual.name')} style={s.input} placeholder={t('manual.name')} value={mName} onChangeText={setMName} />
+        <TextInput accessibilityLabel={t('manual.kcal')} style={s.input} placeholder={t('manual.kcal')} keyboardType="numeric" value={mKcal} onChangeText={(v) => setMKcal(v.replace(/[^0-9]/g, ''))} />
+        <Btn kind="secondary" label={t('add')} onPress={() => { if (mName.trim() && +mKcal > 0 && +mKcal < 5000) addE({ name: mName.trim(), kcal: +mKcal }); }} />
+      </Card>}
       {prod && <>
         <Card>
           <View style={s.row}>{prod.image ? <Image source={{ uri: prod.image }} style={{ width: 64, height: 64, borderRadius: 12 }} /> : null}<Text style={[s.h2, { flex: 1 }]}>{prod.name}</Text></View>

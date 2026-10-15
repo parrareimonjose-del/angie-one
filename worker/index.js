@@ -1,5 +1,6 @@
 // Angie One AI proxy: keeps GEMINI_API_KEY server-side (Worker secret).
 const MODEL = 'gemini-flash-lite-latest';
+const MODELS = ['gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-flash-lite-latest'];
 const MAX_BYTES = 4 * 1024 * 1024; // 4 MB request cap
 const RATE = 20; // requests per minute per IP (per isolate, best effort)
 const ORIGINS = [/^https:\/\/parrareimonjose-del\.github\.io$/, /^http:\/\/localhost(:\d+)?$/, /^http:\/\/127\.0\.0\.1(:\d+)?$/];
@@ -19,19 +20,22 @@ const langOf = (v) => LANG_NAMES[String(v || 'en').slice(0, 5).toLowerCase().spl
 const clampN = (v, lo, hi) => Math.min(hi, Math.max(lo, Math.round(+v || 0)));
 const str = (v, n) => String(v ?? '').replace(/[<>]/g, '').slice(0, n);
 
-async function gemini(env, parts, maxTokens, timeoutMs, mimeJson) {
-  for (let i = 0; i < 3; i++) {
+async function gemini(env, parts, maxTokens, timeoutMs, mimeJson, schema) {
+  // Intenta varios modelos gratis; reintenta con espera creciente si hay 429/5xx/timeout.
+  for (let i = 0; i < MODELS.length; i++) {
+    const model = MODELS[i];
     const ctl = new AbortController(); const tm = setTimeout(() => ctl.abort(), timeoutMs);
     let r = null;
     try {
-      r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`, {
+      r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`, {
         method: 'POST', signal: ctl.signal, headers: { 'Content-Type': 'application/json', 'x-goog-api-key': env.GEMINI_API_KEY },
-        body: JSON.stringify({ contents: [{ parts }], generationConfig: { ...(mimeJson ? { responseMimeType: 'application/json' } : {}), temperature: 0.4, maxOutputTokens: maxTokens } }),
+        body: JSON.stringify({ contents: [{ parts }], generationConfig: { ...(mimeJson ? { responseMimeType: 'application/json' } : {}), ...(schema ? { responseSchema: schema } : {}), temperature: 0.4, maxOutputTokens: maxTokens } }),
       });
-    } catch (e) { r = null; } finally { clearTimeout(tm); }
+    } catch (e) { r = null; console.log('gemini timeout/err', model); } finally { clearTimeout(tm); }
     if (r && r.ok) { const j = await r.json(); return (j?.candidates?.[0]?.content?.parts || []).map((p) => p.text || '').join('').trim(); }
-    if (r && r.status !== 429 && r.status < 500) { console.log('upstream', r.status); return null; }
-    if (i < 2) await new Promise((x) => setTimeout(x, [800, 2000][i]));
+    if (r) console.log('upstream', model, r.status, (await r.text().catch(() => '')).slice(0, 200).replace(/AIza[\w-]+/g, '***'));
+    if (r && r.status === 400) return null;
+    if (i < MODELS.length - 1) await new Promise((x) => setTimeout(x, [400, 1500, 3000, 6000][i]));
   }
   return null;
 }
@@ -54,6 +58,16 @@ const PLAN_PROMPT = `You are "Angie", a warm, guilt-free nutrition and fitness c
  "workout":{"days":[{"rest":bool,"title":"short title","exercises":[{"name":"exercise","desc":"one or two plain sentences how to do it safely","sets":int,"reps":int,"secs":int,"rest":int,"met":number}]}],"safety":"one short safety note"}}
 Rules: exactly 7 diet days (Monday..Sunday), MEALS meals per day; each day's kcal must add up close to KCAL kcal (never below MIN kcal), protein about PROT g. Prefer CUISINE dishes with local, affordable (BUDGET budget) ingredients; NEVER use: DISLIKE. Shopping list max 25 items.
 Exactly 7 workout days: DAYS training days at PLACE, about MINUTES minutes each, level LEVEL; others "rest":true with empty exercises. 4–7 exercises per training day including a short warm-up. Use "reps" for repetition exercises (secs 0) or "secs" for timed ones (reps 0). rest in seconds. met = realistic MET value (2–8). Respect limits/injuries: INJURY. Hard rules: knees → no squats of any kind (including chair squats), lunges, step-ups or jumps; lower back → no deadlifts, good mornings, barbell rows or heavy spinal loading; shoulders → no overhead or shoulder press; wrists → no push-ups or planks on the hands. Choose low-impact options if needed. Beginner-friendly descriptions. Write ALL text in LANG. No medical advice, no body shaming.`;
+
+const N = { type: 'INTEGER' }, S = { type: 'STRING' };
+const SCHEMA = {
+  diet: { type: 'OBJECT', properties: { diet: { type: 'OBJECT', properties: {
+    days: { type: 'ARRAY', items: { type: 'OBJECT', properties: { meals: { type: 'ARRAY', items: { type: 'OBJECT', properties: { name: S, items: S, kcal: N, p: N, c: N, f: N }, required: ['name', 'items', 'kcal', 'p', 'c', 'f'] } } }, required: ['meals'] } },
+    shopping: { type: 'ARRAY', items: S } }, required: ['days', 'shopping'] } }, required: ['diet'] },
+  workout: { type: 'OBJECT', properties: { workout: { type: 'OBJECT', properties: {
+    days: { type: 'ARRAY', items: { type: 'OBJECT', properties: { rest: { type: 'BOOLEAN' }, title: S, exercises: { type: 'ARRAY', items: { type: 'OBJECT', properties: { name: S, desc: S, sets: N, reps: N, secs: N, rest: N, met: { type: 'NUMBER' } }, required: ['name', 'desc', 'sets', 'reps', 'secs', 'rest', 'met'] } } }, required: ['rest', 'title', 'exercises'] } },
+    safety: S }, required: ['days', 'safety'] } }, required: ['workout'] },
+};
 
 function cleanPlan(o, b) {
   if (!o || !o.diet || !o.workout) return null;
@@ -98,18 +112,26 @@ async function coach(path, b, env, h) {
       injury: str(b.injury, 200) || 'none', dislike: str(b.dislike, 200) || 'nothing', cuisine: str(b.cuisine, 80) || 'Latin American', budget: ['low', 'medium', 'high'].includes(b.budget) ? b.budget : 'medium',
       goal: ['lose', 'keep', 'gain'].includes(b.goal) ? b.goal : 'keep', age: clampN(b.age, 13, 100), weight: clampN(b.weight, 30, 300),
     };
-    const out = await cached('plan-v2', p, 7 * 86400, async () => {
+    const out = await cached('plan-v3', p, 7 * 86400, async () => {
       const prompt = PLAN_PROMPT.replace('MEALS', p.meals).replace('KCAL', p.kcal).replace('MIN', p.sex === 'male' ? 1500 : 1200).replace('PROT', p.prot).replace('CUISINE', p.cuisine).replace('BUDGET', p.budget).replace('DISLIKE', p.dislike)
         .replace('DAYS', p.days).replace('PLACE', p.place).replace('MINUTES', p.minutes).replace('LEVEL', p.level).replace('INJURY', p.injury).replace('LANG', p.lang)
         + ` User: ${p.sex}, ${p.age} years, ${p.weight} kg, goal ${p.goal}.`;
-      for (let attempt = 0; attempt < 2; attempt++) {
-      const txt = await gemini(env, [{ text: prompt }], 8192, 55000, true);
-      if (txt === null) return { error: 'busy' };
-      const parsed = parseJson(txt); const plan = cleanPlan(parsed, p);
-      if (!plan) console.log('plan reject', txt.length, txt.slice(0, 300), txt.slice(-200), parsed ? JSON.stringify({ dd: parsed.diet?.days?.length, wd: parsed.workout?.days?.length, m: parsed.diet?.days?.map((d) => d.meals?.length) }) : 'noparse');
-      if (plan) return { plan };
-      }
-      return { error: 'parse' };
+      // Dos llamadas pequeñas en paralelo (dieta y ejercicio) con esquema JSON forzado: menos JSON roto y menos tiempo.
+      const part = async (which) => {
+        for (let attempt = 0; attempt < 2; attempt++) {
+          const txt = await gemini(env, [{ text: prompt + `\nNOW OUTPUT ONLY the "${which}" object (as {"${which}":{...}}).` }], 8192, 45000, true, SCHEMA[which]);
+          if (txt === null) return { err: 'busy' };
+          const o = parseJson(txt); const v = o && (o[which] || (which === 'diet' ? (o.days && o.shopping ? o : null) : (o.days ? o : null)));
+          if (v) return { v };
+          console.log('plan reject', which, txt.length, txt.slice(-150));
+        }
+        return { err: 'parse' };
+      };
+      const [d, w] = await Promise.all([part('diet'), part('workout')]);
+      if (d.err || w.err) return { error: d.err === 'busy' || w.err === 'busy' ? 'busy' : 'parse' };
+      const plan = cleanPlan({ diet: d.v, workout: w.v }, p);
+      if (!plan) { console.log('plan clean reject', JSON.stringify({ dd: d.v.days?.length, wd: w.v.days?.length, m: d.v.days?.map((x) => x.meals?.length) })); return { error: 'parse' }; }
+      return { plan };
     });
     if (out.error) return json({ error: out.error }, out.error === 'busy' ? 503 : 502, h);
     return json(out, 200, h);
@@ -189,7 +211,7 @@ export default {
     if (!h) return json({ error: 'origin' }, 403);
     if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: h });
     const path = new URL(req.url).pathname;
-    if (req.method !== 'POST' || !['/estimate', '/plan', '/chat', '/vision', '/dev'].includes(path)) return json({ error: 'not found' }, 404, h);
+    if (req.method !== 'POST' || !['/estimate', '/plan', '/chat', '/vision', '/dev', '/voice'].includes(path)) return json({ error: 'not found' }, 404, h);
     const ip = req.headers.get('CF-Connecting-IP') || 'x';
     const now = Date.now(), arr = (hits.get(ip) || []).filter((t) => now - t < 60000);
     if (arr.length >= RATE) return json({ error: 'rate' }, 429, h);
@@ -198,12 +220,24 @@ export default {
     const raw = await req.text();
     if (raw.length > MAX_BYTES) return json({ error: 'too large' }, 413, h);
     let b; try { b = JSON.parse(raw); } catch { return json({ error: 'bad json' }, 400, h); }
+    if (path === '/voice') {
+      // Voz en iPhone/otros: audio grabado (mp4/aac, webm/opus, wav) → texto. No se guarda nada.
+      if (!b.audio) return json({ error: 'need audio' }, 400, h);
+      const mime = String(b.mime || 'audio/mp4').split(';')[0];
+      const am = /^audio\/(mp4|aac|m4a|x-m4a|mpeg|mp3|webm|ogg|wav|x-wav)$/.test(mime) ? mime.replace('x-m4a', 'mp4').replace('m4a', 'mp4').replace('webm', 'webm') : 'audio/mp4';
+      const txt = await gemini(env, [{ text: `Transcribe what the person says in this short audio (they are probably telling what they ate). Answer ONLY JSON {"text":"exact transcription in the spoken language"}. If there is no speech, {"text":""}.` }, { inline_data: { mime_type: am, data: String(b.audio) } }], 400, 30000, true);
+      if (txt === null) return json({ error: 'busy' }, 503, h);
+      const o = parseJson(txt); const t = str(o?.text, 500).trim();
+      return t ? json({ text: t }, 200, h) : json({ error: 'no_speech' }, 422, h);
+    }
     if (path === '/plan' || path === '/chat') return coach(path, b, env, h);
     if (path === '/vision' || path === '/dev') return phase2(path, b, env, h);
     const LANGS = { es: 'Spanish', en: 'English', pt: 'Portuguese', fr: 'French', de: 'German', it: 'Italian', zh: 'Simplified Chinese', ja: 'Japanese', ko: 'Korean', hi: 'Hindi', ar: 'Arabic', ru: 'Russian', tr: 'Turkish' };
     const code = String(b.lang || 'en').slice(0, 5).toLowerCase().split('-')[0];
     const lang = LANGS[code] || 'English';
-    const parts = [{ text: PROMPT.replace('LANG', lang) + ` Write the dish name in ${lang}.` }];
+    const parts = [{ text: b.label && b.image
+      ? `This photo shows a packaged food's nutrition facts label and/or package. Read the values PER SERVING (or per package if no serving). Answer ONLY JSON {"isFood": true, "name": product name or short description in ${lang}, "kcalMin": int, "kcalMax": int (same as kcalMin if read exactly), "p": g protein, "c": g carbs, "f": g fat, "confidence": "high" if read from the label else "low"}. If no food label or package is visible, {"isFood": false}.`
+      : PROMPT.replace('LANG', lang) + ` Write the dish name in ${lang}.` }];
     if (b.image) {
       const mime = /^image\/(jpeg|png|webp|heic)$/.test(b.mime) ? b.mime : 'image/jpeg';
       parts.push({ inline_data: { mime_type: mime, data: String(b.image) } });

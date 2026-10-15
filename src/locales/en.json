@@ -105,7 +105,13 @@
     "salt": "Salt",
     "satfat": "Sat. fat",
     "badCode": "Type the 6 to 14 numbers under the barcode.",
-    "searching": "Searching…"
+    "searching": "Searching…",
+    "closeCam": "Close camera",
+    "aim": "Point the camera at the barcode.",
+    "camDenied": "I need camera permission. Turn it on in Settings > Safari > Camera.",
+    "noCam": "I couldn't open the camera. Type the code.",
+    "notFound2": "Product not found. Take a photo of the nutrition label or log it manually.",
+    "labelPhoto": "Take a photo of the nutrition label"
   },
   "manual": {
     "title": "Manual log",
@@ -1510,5 +1516,15 @@
       "pending": "Pending"
     },
     "weighNever": "No weight logged yet."
+  },
+  "voice": {
+    "stop": "Tap to finish",
+    "working": "Writing down what you said…",
+    "noMic": "Voice doesn't work in this browser. Type it.",
+    "denied": "I need microphone permission. Turn it on in Settings > Safari > Microphone.",
+    "noSpeech": "I didn't hear you. Tap and speak closer.",
+    "busy": "I couldn't understand the audio. Try again.",
+    "offline": "No internet. Check your connection.",
+    "notFood": "Hi! Tell me what you ate, for example: \"chicken salad and coffee\"."
   }
 }

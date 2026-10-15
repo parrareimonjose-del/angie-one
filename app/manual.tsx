@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
+import { startVoice, voiceSupported } from '../src/voice';
 import { View, Text, TextInput, Pressable, Platform } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
@@ -22,11 +23,12 @@ export default function Manual() {
   const ask = async (text = desc) => {
     if (text.trim().length < 2 || busy) return;
     setErr(''); setEst(null); setBusy(true);
-    try { setEst(await estimateText(text, i18n.language)); } catch (e) { setErr(aiErrorText(t, e)); } finally { setBusy(false); }
+    try { setEst(await estimateText(text, i18n.language)); } catch (e: any) { setErr(e?.code === 'notFood' ? t('voice.notFood') : aiErrorText(t, e)); } finally { setBusy(false); }
   };
-  // Dictado por voz: Web Speech API en navegador. TODO nativo: expo-speech-recognition (requiere dev build).
-  const SR: any = Platform.OS === 'web' && typeof window !== 'undefined' ? (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition : null;
-  const dictate = () => { const r = new SR(); r.lang = fmtLocale(); r.onresult = (ev: any) => { const txt = ev.results[0][0].transcript; setDesc(txt); ask(txt); }; r.start(); };
+  // Dictado por voz: Web Speech o grabación + transcripción en el Worker (iPhone).
+  const SR = voiceSupported(); const [lis, setLis] = useState<'idle' | 'listening' | 'working'>('idle'); const stopRef = useRef<null | (() => void)>(null);
+  const dictate = () => { if (lis === 'listening') { stopRef.current?.(); return; } setErr('');
+    stopRef.current = startVoice({ onText: (txt) => { setDesc(txt); ask(txt); }, onErr: (e) => setErr(t('voice.' + e)), onState: setLis }); };
   const list = LATIN_FOODS.filter((f) => (fname(f.id) + ' ' + f.name.en + ' ' + f.name.es).toLowerCase().includes(q.toLowerCase()));
   return (
     <Screen title={t('manual.title')}>
@@ -34,7 +36,7 @@ export default function Manual() {
         <Text style={s.h2}>✨ {t('manual.aiTitle')}</Text>
         <TextInput accessibilityLabel={t('manual.aiTitle')} style={[s.input, { minHeight: 80, paddingTop: 12 }]} multiline placeholder={t('manual.aiPh')} value={desc} onChangeText={setDesc} />
         <Btn label={busy ? `⏳ ${t('scan.analyzing')}` : `✨  ${t('manual.aiBtn')}`} onPress={() => ask()} />
-        {SR && <Btn kind="secondary" small label={`🎙️  ${t('manual.dictate')}`} onPress={dictate} />}
+        {SR && <Btn kind="secondary" small label={lis === 'working' ? `⏳ ${t('voice.working')}` : lis === 'listening' ? `⏹️ ${t('voice.stop')}` : `🎙️  ${t('manual.dictate')}`} onPress={dictate} />}
         {err ? <T style={{ color: C.primary, fontWeight: '700' }}>{err}</T> : null}
       </Card>}
       {est && <EstimateResult key={est.name + est.kcalMin} est={est} onLog={(x) => add(x)} />}

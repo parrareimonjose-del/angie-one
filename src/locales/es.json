@@ -105,7 +105,13 @@
     "salt": "Sal",
     "satfat": "Grasa sat.",
     "badCode": "Escribe los 6 a 14 números que hay bajo el código de barras.",
-    "searching": "Buscando…"
+    "searching": "Buscando…",
+    "closeCam": "Cerrar cámara",
+    "aim": "Apunta la cámara al código de barras.",
+    "camDenied": "Necesito permiso de la cámara. Actívalo en Ajustes > Safari > Cámara.",
+    "noCam": "No pude abrir la cámara. Escribe el código.",
+    "notFound2": "No encontré ese producto. Toma una foto de la etiqueta nutricional o regístralo a mano.",
+    "labelPhoto": "Tomar foto de la etiqueta nutricional"
   },
   "manual": {
     "title": "Registro manual",
@@ -1510,5 +1516,15 @@
       "pending": "Pendientes"
     },
     "weighNever": "Aún no hay ningún peso registrado."
+  },
+  "voice": {
+    "stop": "Toca para terminar",
+    "working": "Escribiendo lo que dijiste…",
+    "noMic": "La voz no funciona en este navegador. Escríbelo.",
+    "denied": "Necesito permiso del micrófono. Actívalo en Ajustes > Safari > Micrófono.",
+    "noSpeech": "No te escuché. Toca y habla más cerca.",
+    "busy": "No pude entender el audio. Prueba otra vez.",
+    "offline": "Sin internet. Revisa tu conexión.",
+    "notFood": "¡Hola! Cuéntame qué comiste, por ejemplo: \"arepa con queso y café\"."
   }
 }

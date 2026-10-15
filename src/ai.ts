@@ -44,6 +44,10 @@ async function callAI(payload: object): Promise<Estimate> {
 export function estimateMeal(base64: string, mime: string, lang: string): Promise<Estimate> {
   return callAI({ image: base64, mime, lang });
 }
+/** Foto de la etiqueta nutricional (cuando el código no aparece). */
+export function estimateLabel(base64: string, mime: string, lang: string): Promise<Estimate> {
+  return callAI({ image: base64, mime, lang, label: true });
+}
 export function estimateText(text: string, lang: string): Promise<Estimate> {
   return callAI({ text: text.trim().slice(0, 500), lang });
 }

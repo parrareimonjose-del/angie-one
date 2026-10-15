@@ -105,7 +105,13 @@
     "salt": "Sale",
     "satfat": "Grassi saturi",
     "badCode": "Digita i 6-14 numeri sotto il codice a barre.",
-    "searching": "Cerco…"
+    "searching": "Cerco…",
+    "closeCam": "Chiudi fotocamera",
+    "aim": "Inquadra il codice a barre.",
+    "camDenied": "Serve il permesso della fotocamera. Attivalo in Impostazioni > Safari > Fotocamera.",
+    "noCam": "Non riesco ad aprire la fotocamera. Scrivi il codice.",
+    "notFound2": "Prodotto non trovato. Fotografa l'etichetta nutrizionale o registralo a mano.",
+    "labelPhoto": "Fotografa l'etichetta nutrizionale"
   },
   "manual": {
     "title": "Inserimento manuale",
@@ -1510,5 +1516,15 @@
       "pending": "In attesa"
     },
     "weighNever": "Nessun peso registrato finora."
+  },
+  "voice": {
+    "stop": "Tocca per finire",
+    "working": "Scrivo quello che hai detto…",
+    "noMic": "La voce non funziona in questo browser. Scrivilo.",
+    "denied": "Serve il permesso del microfono. Attivalo in Impostazioni > Safari > Microfono.",
+    "noSpeech": "Non ti ho sentito. Tocca e parla più vicino.",
+    "busy": "Non ho capito l'audio. Riprova.",
+    "offline": "Niente internet. Controlla la connessione.",
+    "notFood": "Ciao! Dimmi cosa hai mangiato, per esempio: \"insalata di pollo e caffè\"."
   }
 }

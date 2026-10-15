@@ -105,7 +105,13 @@
     "salt": "Salz",
     "satfat": "Gesätt. Fetts.",
     "badCode": "Tippe die 6 bis 14 Zahlen unter dem Barcode ein.",
-    "searching": "Suche läuft…"
+    "searching": "Suche läuft…",
+    "closeCam": "Kamera schließen",
+    "aim": "Richte die Kamera auf den Barcode.",
+    "camDenied": "Ich brauche Kamerazugriff. Aktiviere ihn unter Einstellungen > Safari > Kamera.",
+    "noCam": "Kamera konnte nicht geöffnet werden. Gib den Code ein.",
+    "notFound2": "Produkt nicht gefunden. Fotografiere das Nährwertetikett oder trage es manuell ein.",
+    "labelPhoto": "Nährwertetikett fotografieren"
   },
   "manual": {
     "title": "Manueller Eintrag",
@@ -1510,5 +1516,15 @@
       "pending": "Offen"
     },
     "weighNever": "Noch kein Gewicht eingetragen."
+  },
+  "voice": {
+    "stop": "Tippen zum Beenden",
+    "working": "Ich schreibe auf, was du gesagt hast…",
+    "noMic": "Sprache funktioniert in diesem Browser nicht. Bitte eintippen.",
+    "denied": "Ich brauche Mikrofonzugriff. Aktiviere ihn unter Einstellungen > Safari > Mikrofon.",
+    "noSpeech": "Ich habe nichts gehört. Tippe und sprich näher.",
+    "busy": "Ich konnte das Audio nicht verstehen. Versuch es nochmal.",
+    "offline": "Kein Internet. Prüfe die Verbindung.",
+    "notFood": "Hallo! Sag mir, was du gegessen hast, z. B. „Hähnchensalat und Kaffee“."
   }
 }
