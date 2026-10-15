@@ -4,7 +4,7 @@ import { View, Text, TextInput, Platform, Pressable, Share } from 'react-native'
 import { router, useLocalSearchParams } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import Svg, { Circle } from 'react-native-svg';
-import { Screen, Card, Btn, Chip, T, s } from './ui';
+import { Screen, Card, Btn, Chip, T, s, Ring, IconCard, IconTile, StatRow, EmptyState, H2, CardTitle } from './ui';
 import { C } from './theme';
 import { useStore, today, uid, type Entry } from './store';
 import { fmtNum, fmtDate } from './i18n';
@@ -74,19 +74,22 @@ export function MacrosScreen() {
   const sumM = meals.reduce((a, m) => ({ p: a.p + m.p, c: a.c + m.c, f: a.f + m.f }), { p: 0, c: 0, f: 0 });
   const save = () => { set((x) => ({ ...x, macros: { day, meals: prem ? meals : undefined, net } })); setMsg(t('mf.saved')); };
   return <Screen title={`🎯 ${t('mf.goals')}`}>
-    <Card><Text style={s.h2}>{t('mf.perDay')}</Text>
+    <Card><View style={{ flexDirection: 'row', justifyContent: 'space-around' }}>{(['p', 'c', 'f'] as const).map((k) => { const kc = day[k] * (k === 'f' ? 9 : 4); const tot = Math.max(1, kcalOf(day)); return <View key={k} style={{ alignItems: 'center', gap: 6 }}>
+      <Ring value={kc} max={tot} size={96} stroke={11} colors={[MCOL[k], MCOL[k]]}><Text style={{ fontSize: 20, fontWeight: '900', color: C.text }}>{day[k]}</Text><Text style={[s.muted, { fontSize: 12 }]}>g</Text></Ring>
+      <Text style={{ fontWeight: '800', color: MCOL[k] }}>{t(k === 'p' ? 'home.protein' : k === 'c' ? 'home.carbs' : 'home.fat')}</Text><Text style={[s.muted, { fontSize: 13 }]}>{Math.round((kc / tot) * 100)}%</Text></View>; })}</View></Card>
+    <IconCard icon="🎯" title={t('mf.perDay')} sub={`${fmtNum(kcalOf(day))} ${t('u.kcal')}`}>
       <Stepper testID="g-p" label={t('home.protein')} color={C.protein} value={day.p} onChange={(p) => setD({ ...day, p })} />
       <Stepper testID="g-c" label={t('home.carbs')} color={C.carbs} value={day.c} onChange={(c) => setD({ ...day, c })} />
       <Stepper testID="g-f" label={t('home.fat')} color={C.fat} value={day.f} onChange={(f) => setD({ ...day, f })} />
       <Text testID="g-kcal" style={[s.t, { fontWeight: '800' }]}>= {fmtNum(kcalOf(day))} {t('u.kcal')}</Text>
       {kcalOf(day) < 1000 ? <Text testID="g-low" style={{ color: C.warning, fontWeight: '800' }}>⚠️ {t('mf.low')}</Text> : null}
       <Btn small kind="ghost" testID="g-reset" label={`↺ ${t('mf.recommended', { p: rec.p, c: rec.c, f: rec.f })}`} onPress={() => setD({ p: rec.p, c: rec.c, f: rec.f })} />
-    </Card>
+    </IconCard>
     <Card><Pressable testID="g-net" accessibilityRole="switch" accessibilityState={{ checked: net }} onPress={() => setNet(!net)} style={[s.row, { minHeight: 56 }]}>
       <Text style={{ fontSize: 28 }}>{net ? '☑' : '☐'}</Text><View style={{ flex: 1 }}><T style={{ fontWeight: '800' }}>{t('mf.useNet')}</T><Text style={s.muted}>{t('mf.netHow')}</Text></View></Pressable></Card>
-    <Text style={s.h2}>{t('mf.perMeal')}</Text>
+    <H2>{t('mf.perMeal')}</H2>
     {!prem ? <Locked k="mf.mealLocked" /> : <>
-      {meals.map((m, i) => <Card key={i} testID={`meal-goal-${i}`}><Text style={s.h2}>{slots[i]} · {fmtNum(kcalOf(m))} {t('u.kcal')}</Text>
+      {meals.map((m, i) => <Card key={i} testID={`meal-goal-${i}`}><View style={[s.row, { gap: 12 }]}><IconTile icon={['🌅', '☀️', '🍎', '🌙'][i] ?? '🍽️'} size={42} /><Text style={[s.h2, { flex: 1 }]}>{slots[i]} · {fmtNum(kcalOf(m))} {t('u.kcal')}</Text></View>
         {(['p', 'c', 'f'] as const).map((k) => <Stepper key={k} testID={`m${i}-${k}`} label={t(k === 'p' ? 'home.protein' : k === 'c' ? 'home.carbs' : 'home.fat')} color={MCOL[k]} value={m[k]}
           onChange={(v) => setMeals(meals.map((x, j) => (j === i ? { ...x, [k]: v } : x)))} />)}</Card>)}
       <Text testID="meal-sum" style={[s.muted, { fontWeight: '700' }]}>{t('mf.mealSum', { p: sumM.p, c: sumM.c, f: sumM.f, dp: day.p, dc: day.c, df: day.f })}</Text></>}
@@ -128,16 +131,17 @@ export function CopyScreen() {
   const slots = t('coach.slots4') as unknown as string[];
   const go = () => { if (!ids.length || !days.length) { setMsg(t('mf.copyPick')); return; } const n = copyEntries(st.entries, ids, days); set((x) => ({ ...x, entries: [...x.entries, ...n] })); setMsg(t('mf.copyOk', { n: ids.length, d: days.length })); setDays([]); };
   return <Screen title={`📋 ${t('mf.copy')}`}>
-    <Text style={s.h2}>{t('mf.copyFrom', { day: fmtDate(new Date(from + 'T12:00')) })}</Text>
-    {ents.length === 0 ? <Card><T>{t('diary.empty')}</T></Card> : <Card>
+    <StatRow items={[{ icon: '🍽️', value: ents.length, label: t('mf.copyFrom', { day: fmtDate(new Date(from + 'T12:00')) }) }, { icon: '✅', value: ids.length, label: '☑' }, { icon: '📅', value: days.length, label: t('mf.copyTo') }]} />
+    <H2>{t('mf.copyFrom', { day: fmtDate(new Date(from + 'T12:00')) })}</H2>
+    {ents.length === 0 ? <Card><EmptyState icon="📋" title={t('diary.empty')} /></Card> : <Card>
       {slots.map((l, i) => { const es = ents.filter((e) => slotOf(e) === i); if (!es.length) return null; const all = es.every((e) => ids.includes(e.id));
         return <View key={i} style={{ gap: 4 }}>
           <Pressable testID={`cp-meal-${i}`} accessibilityRole="checkbox" accessibilityState={{ checked: all }} onPress={() => setIds(all ? ids.filter((x) => !es.some((e) => e.id === x)) : [...new Set([...ids, ...es.map((e) => e.id)])])} style={[s.row, { minHeight: 48 }]}>
-            <Text style={{ fontSize: 24 }}>{all ? '☑' : '☐'}</Text><Text style={s.h2}>{l}</Text></Pressable>
+            <Text style={{ fontSize: 24 }}>{all ? '☑' : '☐'}</Text><CardTitle>{l}</CardTitle></Pressable>
           {es.map((e) => <Pressable key={e.id} testID="cp-item" accessibilityRole="checkbox" accessibilityState={{ checked: ids.includes(e.id) }} onPress={() => setIds(tog(ids, e.id))} style={[s.row, { minHeight: 48, paddingLeft: 24 }]}>
             <Text style={{ fontSize: 22 }}>{ids.includes(e.id) ? '☑' : '☐'}</Text><T style={{ flex: 1 }}>{e.name}</T><Text style={s.muted}>{fmtNum(e.kcal)} {t('u.kcal')}</Text></Pressable>)}
         </View>; })}</Card>}
-    <Text style={s.h2}>{t('mf.copyTo')}</Text>
+    <H2>{t('mf.copyTo')}</H2>
     <Row>{opts.map((x) => { const d = today(x); return <Chip key={d} label={(d === today() ? t('diary.today') + ' · ' : '') + fmtDate(x)} active={days.includes(d)} onPress={() => setDays(tog(days, d))} />; })}</Row>
     <Btn testID="cp-go" label={`📋 ${t('mf.copyGo', { n: ids.length, d: days.length })}`} onPress={go} />
     {msg ? <Text testID="cp-msg" style={{ fontWeight: '800', fontSize: 17, color: C.success }}>{msg}</Text> : null}
@@ -153,7 +157,7 @@ export function DiaryMeals({ d, ents }: { d: string; ents: Entry[] }) {
   const move = (e: Entry, m: number) => set((x) => ({ ...x, entries: x.entries.map((y) => (y.id === e.id ? { ...y, meal: m } : y)) }));
   return <>{slots.map((l, i) => { const es = ents.filter((e) => slotOf(e) === i).sort((a, b) => a.time - b.time); const sm = totals(es);
     return <View key={i} testID={`meal-${i}`} style={{ gap: 8 }}>
-      <View style={[s.row, { justifyContent: 'space-between' }]}><Text style={s.h2}>{l}</Text><Text style={[s.muted, { fontWeight: '800' }]}>{fmtNum(sm.kcal)} {t('u.kcal')}</Text></View>
+      <View style={[s.row, { justifyContent: 'space-between' }]}><CardTitle>{l}</CardTitle><Text style={[s.muted, { fontWeight: '800' }]}>{fmtNum(sm.kcal)} {t('u.kcal')}</Text></View>
       {prem && es.length ? <Text testID={`meal-${i}-vs`} style={s.muted}>{t('u.p')} {fmtNum(sm.p)}/{mg[i].p} · {t('u.c')} {fmtNum(sm.c)}/{mg[i].c} · {t('u.f')} {fmtNum(sm.f)}/{mg[i].f} g</Text> : null}
       {es.map((e) => <Card key={e.id} testID="entry">
         <View style={[s.row, { alignItems: 'center' }]}>
@@ -196,11 +200,11 @@ export function MealPrepScreen() {
     {msg ? <Text testID="prep-msg" style={{ color: C.success, fontWeight: '800', fontSize: 17 }}>✓ {msg}</Text> : null}
     {prep && day ? <>
       <Row>{[0, 1, 2, 3, 4, 5, 6].map((i) => <Chip key={i} label={dayName(i)} active={i === d} onPress={() => setD(i)} />)}</Row>
-      <Text style={s.h2}>{dayName(d, true)} · {fmtNum(dk)} {t('u.kcal')}</Text>
+      <CardTitle>{dayName(d, true)} · {fmtNum(dk)} {t('u.kcal')}</CardTitle>
       {day.meals.map((m, i) => <Card key={i} testID="prep-meal"><Text style={s.muted}>{slots[m.slot] || slots[i]}</Text><T style={{ fontWeight: '800' }}>{N.meal(m)}</T>
         <Text style={s.muted}>{fmtNum(m.kcal)} {t('u.kcal')} · {t('u.p')} {m.p} · {t('u.c')} {m.c} · {t('u.f')} {m.f} · {t('mf.fiber')} {mealFiber(m)}</Text>
         {prep.logged.includes(`${d}-${i}`) ? <Text style={{ color: C.success, fontWeight: '800' }}>✓ {t('p2.vSaved')}</Text> : <Btn small kind="ghost" testID="prep-log" label={`＋ ${t('p2.toDiary')}`} onPress={() => log(i)} />}</Card>)}
-      <Text style={s.h2}>🛒 {t('mf.grocery')}</Text>
+      <CardTitle>🛒 {t('mf.grocery')}</CardTitle>
       <Card testID="grocery">{grocery(prep).map(({ g, items }) => <View key={g} style={{ gap: 2 }}><Text style={[s.h2, { fontSize: 18 }]}>{t(`mf.g.${g}`)}</Text>
         {items.map(([i, n]) => { const on = prep.checked.includes(i); return <Pressable key={i} testID="gro-item" accessibilityRole="checkbox" accessibilityState={{ checked: on }} onPress={() => upd((p) => ({ ...p, checked: on ? p.checked.filter((x) => x !== i) : [...p.checked, i] }))} style={[s.row, { minHeight: 48 }]}>
           <Text style={{ fontSize: 24 }}>{on ? '☑' : '☐'}</Text><T style={{ flex: 1, textDecorationLine: on ? 'line-through' : 'none', color: on ? C.muted : C.text } as any}>{t(`cing.${i}`)}</T>{n > 1 ? <Text style={s.muted}>×{n}</Text> : null}</Pressable>; })}</View>)}</Card>
@@ -223,15 +227,15 @@ export function HealthSyncScreen() {
     inp.onchange = () => { const f = inp.files?.[0]; if (f) f.text().then((x) => run(f.name, x)); }; inp.click(); };
   const last = Object.entries(h.steps).sort((a, b) => b[0].localeCompare(a[0])).slice(0, 7);
   return <Screen title={`❤️ ${t('mf.health')}`}>
-    <Card testID="native-card"><Text style={s.h2}>📱 {sourceName()}</Text>
+    <Card testID="native-card"><CardTitle>📱 {sourceName()}</CardTitle>
       {native ? <Btn label={t('mf.hConnect')} onPress={async () => { if (await native.requestRead()) run('native.json', ''); }} />
         : <View testID="native-only" style={{ alignSelf: 'flex-start', backgroundColor: C.warnBg, borderColor: C.warning, borderWidth: 2, borderRadius: 12, paddingHorizontal: 10, paddingVertical: 6 }}>
           <Text style={{ color: C.warning, fontWeight: '800' }}>📲 {t('mf.phoneOnly')}</Text></View>}
       <Text style={s.muted}>{t('mf.hReads')}</Text></Card>
-    <Card><Text style={s.h2}>📂 {t('mf.hImport')}</Text><T>{t('mf.hApple')}</T><T>{t('mf.hGoogle')}</T>
+    <Card><CardTitle>📂 {t('mf.hImport')}</CardTitle><T>{t('mf.hApple')}</T><T>{t('mf.hGoogle')}</T>
       <Btn testID="h-pick" label={`📂 ${t('mf.hPick')}`} onPress={pick} /></Card>
     {msg ? <Card><Text testID="h-msg" style={{ fontWeight: '800', fontSize: 17, color: err ? C.primary : C.success }}>{msg}</Text></Card> : null}
-    {last.length || h.workouts.length ? <Card testID="h-data"><Text style={s.h2}>{t('mf.hLast')}</Text>
+    {last.length || h.workouts.length ? <Card testID="h-data"><CardTitle>{t('mf.hLast')}</CardTitle>
       {last.map(([d, n]) => <Text key={d} style={s.t}>👣 {fmtDate(new Date(d + 'T12:00'))}: {fmtNum(n)}</Text>)}
       {h.workouts.slice(-5).map((w, i) => <Text key={i} style={s.t}>🏃 {fmtDate(new Date(w.date + 'T12:00'))}: {w.type} · {w.min} min{w.kcal ? ` · ${fmtNum(w.kcal)} ${t('u.kcal')}` : ''}</Text>)}
       {h.weights.length ? <Btn small kind="ghost" label={`⚖️ ${t('p2.t.weight')}`} onPress={() => router.push('/weight')} /> : null}

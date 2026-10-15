@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { View, Text, Pressable, Platform, Linking } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Screen, Card, Btn, Chip, T, s } from './ui';
+import { Screen, Card, Btn, Chip, T, s, InfoNote, CardTitle } from './ui';
 import { C } from './theme';
 import { useStore, today } from './store';
 import { fmtDate, fmtNum } from './i18n';
@@ -40,18 +40,18 @@ export function SubscriptionScreen() {
   const [steps, setSteps] = useState(false); const [rmsg, setRmsg] = useState(''); const n = nextCharge(st.trialStart, st.sub); const prem = isPremium(st);
   const store = { stripe: 'Stripe', play: 'Google Play', apple: 'App Store' }[prov];
   return <Screen title={`💳 ${t('hb.title')}`}>
-    <Card testID="sub-status"><Text style={s.h2}>{prem ? `⭐ ${t('hb.premium')}` : t('hb.free')}</Text>
+    <Card testID="sub-status"><CardTitle>{prem ? `⭐ ${t('hb.premium')}` : t('hb.free')}</CardTitle>
       <T>{n ? t(n.kind === 'trial' ? 'hb.trialEnds' : 'hb.renews', { date: fmtDate(new Date(n.at)) }) : t('hb.noCharge')}</T>
       <Text style={s.muted}>{t('hb.trialFree')}</Text></Card>
     <Btn testID="cancel-1" kind="danger" label={`✖ ${t('hb.cancel')}`} onPress={() => setSteps(true)} />
-    {steps ? <Card testID="cancel-steps"><Text style={s.h2}>{t('hb.howTo', { store })}</Text>
+    {steps ? <Card testID="cancel-steps"><CardTitle>{t('hb.howTo', { store })}</CardTitle>
       {(t(`hb.steps.${prov}`) as unknown as string[]).map((x, i) => <T key={i}>{i + 1}. {x}</T>)}
       {CANCEL_URL[prov] ? <Btn testID="cancel-2" label={`↗ ${t('hb.openStore', { store })}`} onPress={() => Linking.openURL(CANCEL_URL[prov])} />
         : <><Btn testID="cancel-2" label={`↗ ${t('hb.openStore', { store })}`} onPress={() => setRmsg(t('hb.portalSoon'))} /><Pending what="Stripe" /></>}
       {!st.sub?.active ? <Text testID="cancel-trial" style={[s.muted, { fontWeight: '700' }]}>{t('hb.trialNoCard')}</Text> : null}</Card> : null}
     <Btn testID="restore" kind="secondary" label={`↺ ${t('hb.restore')}`} onPress={async () => { const r = await restore(); setRmsg(r.ok ? t('hb.restored') : t(prov === 'stripe' ? 'hb.restoreWeb' : 'hb.restorePending')); }} />
     {rmsg ? <Card><Text testID="restore-msg" style={{ fontWeight: '800', fontSize: 16 }}>{rmsg}</Text></Card> : null}
-    <Text style={s.muted}>ℹ️ {t('hb.promise')}</Text>
+    <InfoNote icon="🤝" text={t('hb.promise')} />
   </Screen>;
 }
 /** Fila de alimento con «Verificado ✓» y botón para reportar datos erróneos. */

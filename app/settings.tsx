@@ -1,7 +1,7 @@
 import { View, Text, Switch, Platform, Alert } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Screen, Card, Btn, Chip, T, s, ThemePicker } from '../src/ui';
+import { Screen, Card, Btn, Chip, T, s, ThemePicker, CardTitle } from '../src/ui';
 import { useStore } from '../src/store';
 import i18n, { deviceLang, Lang, SUPPORTED, NATIVE } from '../src/i18n';
 import { C } from '../src/theme';
@@ -23,7 +23,7 @@ export default function Settings() {
       <Btn testID="go-security" kind="secondary" label={`🔐 ${t('fx.secTitle')}`} onPress={() => router.push('/security')} />
       <ThemePicker />
       <Card>
-        <Text style={s.h2}>🌐 {t('set.language')}</Text>
+        <CardTitle>🌐 {t('set.language')}</CardTitle>
         <Chip label={`${t('set.auto')} · ${NATIVE[deviceLang()]}`} active={!st.langOverride} onPress={() => setLang(null)} />
         <View style={[s.row, { flexWrap: 'wrap' }]}>
           {SUPPORTED.map((k) => [k, NATIVE[k]] as const).map(([k, n]) => <Chip key={k} label={n} active={st.langOverride === k} onPress={() => setLang(k)} />)}
@@ -31,7 +31,7 @@ export default function Settings() {
       </Card>
       <Card>
         <View style={[s.row, { justifyContent: 'space-between' }]}>
-          <Text style={s.h2}>🤖 {t('set.ai')}</Text>
+          <CardTitle>🤖 {t('set.ai')}</CardTitle>
           <Switch accessibilityLabel={t('set.ai')} value={st.aiEnabled} onValueChange={(v) => set((x) => ({ ...x, aiEnabled: v }))} trackColor={{ true: C.secondary, false: C.border }} thumbColor={C.white} style={{ transform: [{ scale: 1.3 }] }} />
         </View>
         <Text style={s.muted}>{t('set.aiDesc')}</Text>
@@ -42,7 +42,7 @@ export default function Settings() {
       <Btn kind="ghost" label={`🧠  ${t('p2.t.memory')}`} onPress={() => router.push('/memory')} />
       <Btn kind="ghost" label={`🔔  ${t('p2.t.rem')}`} onPress={() => router.push('/reminders')} />
       <FeedbackBox />
-      <Card><T>🔒 {t('set.privacy')}</T><Text style={s.h2}>📄 {t('legal.section')}</Text><LegalLinks /></Card>
+      <Card><T>🔒 {t('set.privacy')}</T><CardTitle>📄 {t('legal.section')}</CardTitle><LegalLinks /></Card>
       <Btn kind="ghost" label={t('set.profile')} onPress={() => router.push('/onboarding')} />
       <Btn kind="danger" label={t('set.reset')} onPress={doReset} />
       <Text style={[s.muted, { textAlign: 'center' }]}>Angie One · {t('set.version')} 0.5.0 · Parra Apps</Text>

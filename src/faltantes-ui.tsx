@@ -3,7 +3,7 @@ import { View, Text, TextInput, Pressable, Platform, ScrollView } from 'react-na
 import { useTranslation } from 'react-i18next';
 import { router } from 'expo-router';
 import i18n, { curLang } from './i18n';
-import { Card, Btn, Chip, T, s } from './ui';
+import { Card, Btn, Chip, T, s, CardTitle } from './ui';
 import { C } from './theme';
 import { useStore, uid } from './store';
 import { useExt, Pending, Note } from './ext';
@@ -87,7 +87,7 @@ export function SecurityScreenBody() {
     {auth ? <Card testID="sec-on"><T style={{ fontWeight: '900', color: C.success }}>🔐 {t('fx.isOn', { name: auth.name || '—' })}</T>
       <Check testID="sec-remember" on={auth.remember} label={t('fx.remember')} onPress={() => setAuth({ ...auth, remember: !auth.remember })} />
       <Btn kind="danger" label={t('fx.remove')} onPress={() => { setAuth(null); setMsg('✓ ' + t('fx.removed')); }} /></Card> : null}
-    <Card><Text style={s.h2}>{auth ? t('fx.change') : t('fx.create')}</Text>
+    <Card><CardTitle>{auth ? t('fx.change') : t('fx.create')}</CardTitle>
       <TextInput testID="sec-name" accessibilityLabel={t('fx.name')} style={s.input} value={name} onChangeText={setName} placeholder={t('fx.name')} />
       <View style={s.row}><Chip label={`🔢 ${t('fx.pin')}`} active={kind === 'pin'} onPress={() => setKind('pin')} /><Chip label={`🔤 ${t('fx.password')}`} active={kind === 'password'} onPress={() => setKind('password')} /></View>
       <Text style={s.muted}>{t(kind === 'pin' ? 'fx.pinHint' : 'fx.pwHint')}</Text>
@@ -97,12 +97,12 @@ export function SecurityScreenBody() {
       <Text style={s.muted}>{t('fx.rememberHint')}</Text>
       <Btn label={`✓ ${t('fx.save')}`} onPress={save} />
       {msg ? <Text testID="sec-msg" style={{ fontWeight: '800', fontSize: 18, color: msg.startsWith('✓') ? C.success : C.primary }}>{msg}</Text> : null}</Card>
-    <Card testID="bio-card"><Text style={s.h2}>👆 {t('fx.bioTitle')}</Text>
+    <Card testID="bio-card"><CardTitle>👆 {t('fx.bioTitle')}</CardTitle>
       {bioOk === null ? <T>…</T> : !bioOk ? <T testID="bio-none">{t('fx.bioNone')}</T> : !auth ? <T>{t('fx.bioFirst')}</T>
         : auth.passkeyId ? <><T style={{ color: C.success, fontWeight: '800' }}>✓ {t('fx.bioOn')}</T><Btn kind="ghost" label={t('fx.bioOff')} onPress={() => setAuth({ ...auth, passkeyId: undefined })} /></>
         : <Btn kind="secondary" label={`👆 ${t('fx.bioAdd')}`} onPress={addBio} />}
       <Note k="fx.bioNote" /></Card>
-    <Card><Text style={s.h2}>☁️ {t('fx.cloud')}</Text><Pending /><T>{t('fx.cloudNote')}</T></Card>
+    <Card><CardTitle>☁️ {t('fx.cloud')}</CardTitle><Pending /><T>{t('fx.cloudNote')}</T></Card>
     <Btn testID="go-delete" kind="danger" label={`🗑️ ${t('fx.delTitle')}`} onPress={() => router.push('/delete-account')} />
     {!auth ? <Btn testID="sec-skip" kind="ghost" label={t('fx.skip')} onPress={skip} /> : null}
     <Note k="fx.localNote" /></>;
@@ -119,7 +119,7 @@ export function SecurityNudge() {
 export function useLedger() { return useExt<Charge[]>('ledger', SAMPLE_CHARGES); }
 export function LedgerCard() {
   const { t } = useTranslation(); const [list, setList] = useLedger(); const tot = totals(list); const L = pdfT();
-  return <Card testID="ledger"><Text style={s.h2}>🧾 {t('fx.ledTitle')}</Text>
+  return <Card testID="ledger"><CardTitle>🧾 {t('fx.ledTitle')}</CardTitle>
     {list.some((c) => c.sample) ? <View style={{ backgroundColor: C.accent, borderRadius: 10, padding: 8 }}><Text style={{ color: C.onAccent, fontWeight: '800' }}>{t('fx.sample')}</Text></View> : null}
     <T testID="led-tot">{t('fx.ledTot', { n: tot.count, net: money(tot.net), f: money(tot.founder), a: money(tot.app), x: money(tot.taxes) })}</T>
     {list.map((c) => { const sp = split3(net(c)); return <View key={c.id} testID="charge" style={{ gap: 6, borderTopWidth: 1, borderColor: C.border, paddingTop: 8 }}>
@@ -128,7 +128,7 @@ export function LedgerCard() {
       {c.status === 'pending' ? <View style={s.row}><Btn small label={t('fx.approveSplit')} onPress={() => setList((v) => decideCharge(v, c.id, 'approved'))} style={{ flex: 1, backgroundColor: C.success }} /><Btn small kind="danger" label={t('fo.reject')} onPress={() => setList((v) => decideCharge(v, c.id, 'rejected'))} style={{ flex: 1 }} /></View>
         : c.status === 'approved' ? <View style={s.row}><Text testID="charge-ok" style={{ flex: 1, fontWeight: '900', color: C.success }}>✓ 🧾 {c.receipt}</Text><Btn small kind="ghost" label={`📄 ${t('fx.pdfR')}`} onPress={() => download(`recibo-${c.receipt}.pdf`, 'application/pdf', makePdf(wrap(receiptLines(c, L))))} /></View>
         : <Text style={{ fontWeight: '900', color: C.primary }}>✕ {t('fo.rejected')}</Text>}</View>; })}
-    <Text style={s.h2}>📚 {t('fx.accTitle')}</Text>
+    <CardTitle>📚 {t('fx.accTitle')}</CardTitle>
     <View style={s.row}><Btn small kind="secondary" label="CSV" onPress={() => download('angie-one-contador.csv', 'text/csv;charset=utf-8', '\uFEFF' + toCsv(list))} style={{ flex: 1 }} />
       <Btn small kind="secondary" label="PDF" onPress={() => download('angie-one-contador.pdf', 'application/pdf', makePdf(wrap(accountantLines(list, L))))} style={{ flex: 1 }} /></View>
     <Note k="fx.ledNever" /></Card>;
@@ -138,7 +138,7 @@ export function LedgerCard() {
 export function PanelMaestroCard() {
   const { t } = useTranslation(); const { s: st } = useStore(); const [list] = useLedger(); const [shown, setShown] = useState(false);
   const sum = buildSummary(adminMetrics(st, list), list, '0.6.0'); const json = JSON.stringify(sum, null, 2);
-  return <Card testID="pm"><Text style={s.h2}>🧩 {t('fx.pmTitle')}</Text><T>{t('fx.pmSub')}</T>
+  return <Card testID="pm"><CardTitle>🧩 {t('fx.pmTitle')}</CardTitle><T>{t('fx.pmSub')}</T>
     <Btn kind="secondary" label={`⬇️ ${t('fx.pmDl')}`} onPress={() => download('angie-one-panel-maestro.json', 'application/json', json)} />
     <Btn kind="ghost" label={shown ? t('fx.hide') : t('fx.pmSee')} onPress={() => setShown(!shown)} />
     {shown ? <Text testID="pm-json" selectable style={{ fontFamily: Platform.OS === 'web' ? 'monospace' : undefined, fontSize: 13, color: C.text }}>{json}</Text> : null}
@@ -155,7 +155,7 @@ export function AdminAICard() {
   const decide = (p: Proposal, status: 'approved' | 'rejected') => { const np = { ...p, status }; setProps((v) => v.map((x) => (x.id === p.id ? np : x)));
     const sp = toSpec(np); if (sp) setSpecs((v) => [...v.filter((x) => x.proposalId !== p.id), sp].slice(-30)); };
   const K: [string, string | number][] = [[t('fx.m.active7'), m.activeDays7], [t('fx.m.active30'), m.activeDays30], [t('fx.m.entries'), m.entries], [t('fx.m.avgKcal'), `${m.avgKcal7}/${m.targetKcal}`], [t('fx.m.water'), m.avgWater7], [t('fx.m.streak'), m.streak]];
-  return <><Card testID="adminai"><Text style={s.h2}>🧠 {t('fx.adTitle')}</Text><Text style={s.muted}>{t('fx.adSub')}</Text>
+  return <><Card testID="adminai"><CardTitle>🧠 {t('fx.adTitle')}</CardTitle><Text style={s.muted}>{t('fx.adSub')}</Text>
     <View style={[s.row, { flexWrap: 'wrap' }]}>{K.map(([k, v]) => <View key={k} testID="ad-metric" style={{ width: '30%', minWidth: 96, alignItems: 'center', padding: 4 }}><Text style={[s.h2, { color: C.secondary }]}>{v}</Text><Text style={[s.muted, { fontSize: 14, textAlign: 'center' }]}>{k}</Text></View>)}</View>
     <Btn kind="secondary" label={`🔍 ${t('fx.adRun')}`} onPress={run} />
     {props.map((p) => <View key={p.id} testID="ad-prop" style={{ gap: 6, borderTopWidth: 1, borderColor: C.border, paddingTop: 8 }}>
@@ -164,7 +164,7 @@ export function AdminAICard() {
       {p.status === 'proposed' ? <View style={s.row}><Btn small label={t('fo.approve')} onPress={() => decide(p, 'approved')} style={{ flex: 1, backgroundColor: C.success }} /><Btn small kind="danger" label={t('fx.notYet')} onPress={() => decide(p, 'rejected')} style={{ flex: 1 }} /></View>
         : <Text testID="ad-status" style={{ fontWeight: '900', color: p.status === 'approved' ? C.success : C.primary }}>{p.status === 'approved' ? `✓ ${t('fx.toDev')}` : '✕ ' + t('fx.notYet')}</Text>}</View>)}
     <Note k="fx.adNever" /></Card>
-    <Card testID="devspecs"><Text style={s.h2}>🛠️ {t('fx.spTitle')}</Text><Text style={s.muted}>{t('fx.spSub')}</Text>
+    <Card testID="devspecs"><CardTitle>🛠️ {t('fx.spTitle')}</CardTitle><Text style={s.muted}>{t('fx.spSub')}</Text>
       {!specs.length ? <T>{t('fx.spNone')}</T> : specs.map((sp) => <View key={sp.id} testID="spec" style={{ gap: 6, borderTopWidth: 1, borderColor: C.border, paddingTop: 8 }}>
         <Text style={[s.t, { fontWeight: '900' }]}>📝 {t(`fx.ap.${sp.rule}.t`)}</Text><Text style={s.muted}>{t('fx.spInfo', { f: sp.files.length, s: sp.steps.length })}</Text>
         <Btn small kind="ghost" label={`⬇️ ${t('fx.spDl')}`} onPress={() => download(`${sp.id}.md`, 'text/markdown', specMarkdown(sp))} /></View>)}

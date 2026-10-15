@@ -3,7 +3,7 @@
 import { View, Text } from 'react-native';
 import { router, usePathname } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Screen, Card, Btn, Chip, T, s, ListRow, HeroPhoto, FOOD } from './ui';
+import { Screen, Card, Btn, Chip, T, s, ListRow, HeroPhoto, FOOD, CardTitle } from './ui';
 import { C } from './theme';
 import { useStore } from './store';
 import { isPremium } from './coach';
@@ -46,7 +46,7 @@ function Timeline() {
       <View style={[s.row, { flexWrap: 'wrap' }]}>{Object.keys(TAX_SEASONS).map((c) => <Chip key={c} label={c} active={tx.country === c} onPress={() => setTx((x) => ({ ...x, country: c }))} />)}</View>
     </Card>
     <Card testID="tax-timeline" style={{ gap: 4 }}>
-      <Text style={s.h2}>🗓️ {t('tx.timeline')}</Text>
+      <CardTitle>🗓️ {t('tx.timeline')}</CardTitle>
       {list.length ? list.map((a) => <ListRow key={a.kind + a.period} testID={`auto-${a.kind}-${a.period}`} icon={a.kind === 'year' ? '📚' : '📅'}
         label={`${a.kind === 'year' ? t('tx.f4') : t('tx.f3')} · ${label(a)}`}
         sub={t('tx.sum', { n: a.count, total: money(a.total) }) + (a.ded != null ? ' · ' + t('tx.dedL', { v: money(a.ded) }) : '')}
@@ -72,7 +72,7 @@ export function TaxesCard() {
   const { t } = useTranslation(); const [tx] = useTax(); const fresh = tx.auto.filter((a) => !a.seen).length;
   return <Card testID="taxes-card">
     <View style={s.row}><View style={{ width: 52, height: 52, borderRadius: 16, backgroundColor: C.tint, alignItems: 'center', justifyContent: 'center' }}><Text style={{ fontSize: 28 }}>💼</Text></View>
-      <View style={{ flex: 1 }}><Text style={s.h2}>{t('tx.title')}</Text><Text style={s.muted}>{t('tx.short')}</Text></View>
+      <View style={{ flex: 1 }}><CardTitle>{t('tx.title')}</CardTitle><Text style={s.muted}>{t('tx.short')}</Text></View>
       {fresh ? <View testID="taxes-badge" style={{ minWidth: 28, height: 28, borderRadius: 14, backgroundColor: C.primary, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 6 }}><Text style={{ color: '#fff', fontWeight: '800' }}>{fresh}</Text></View> : null}</View>
     <Text style={[s.muted, { fontWeight: '700' }]}>⏳ {inSeason(new Date(), tx.country) ? t('tx.season') : t('tx.seasonDays', { n: daysToSeason(new Date(), tx.country) })}</Text>
     <Btn testID="go-taxes" label={t('tx.open')} onPress={() => router.push('/taxes' as any)} />
@@ -88,12 +88,12 @@ function Preview() {
   const { t } = useTranslation();
   return <>
     <Card testID="taxes-preview" style={{ gap: 12 }}>
-      <Text style={s.h2}>✨ {t('tx.includes')}</Text>
+      <CardTitle>✨ {t('tx.includes')}</CardTitle>
       {FEATS.map(([i, k]) => <ListRow key={k} icon={i} label={t(`tx.${k}`)} sub={t(`tx.${k}d`)} />)}
     </Card>
     <Card testID="taxes-sample" style={{ gap: 6 }}>
       <Text style={s.label}>{t('tx.sample')}</Text>
-      <Text style={s.h2}>📚 {t('tx.sampleT')}</Text>
+      <CardTitle>📚 {t('tx.sampleT')}</CardTitle>
       {[['🛒', 'groceries', '$2,480'], ['🍽️', 'restaurant', '$360'], ['💊', 'pharmacy', '$215']].map(([i, k, v]) => <View key={k} style={[s.row, { justifyContent: 'space-between' }]}><T>{i} {t('dt.cat.' + k)}</T><T style={{ fontWeight: '800' }}>{v}</T></View>)}
       <View style={{ height: 1, backgroundColor: C.border, marginVertical: 4 }} />
       <T style={{ fontWeight: '800', color: C.success }}>💡 {t('tx.sampleDed')}</T>
@@ -114,7 +114,7 @@ export function TaxesScreen() {
     </HeroPhoto>
     {!prem ? <><SeasonMini /><Preview /></> : <>
       <Timeline />
-      <Card><Text style={s.h2}>⭐ {t('dt.points')}: {d.points}</Text><T>{t('dt.rules')}</T></Card>
+      <Card><CardTitle>⭐ {t('dt.points')}: {d.points}</CardTitle><T>{t('dt.rules')}</T></Card>
       <Card style={{ gap: 4 }}>
         <ListRow testID="tx-receipts" icon="📸" label={t('tx.f1')} sub={t('tx.f1d')} onPress={() => router.push('/datos' as any)} />
         <ListRow testID="tx-month" icon="📅" label={t('tx.f3')} sub={t('tx.f3d')} onPress={() => router.push('/datos-mes' as any)} />

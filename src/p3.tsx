@@ -6,7 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import Svg, { Circle, Rect, Ellipse, Path } from 'react-native-svg';
-import { Screen, Card, Btn, Chip, T, Bar, s } from './ui';
+import { Screen, Card, Btn, Chip, T, Bar, s, StatRow, IconCard, EmptyState, Pill, Ring, InfoNote, CardTitle } from './ui';
 import { C } from './theme';
 import { useStore, today, uid, DAY, trialPhase } from './store';
 import { fmtNum, fmtDate } from './i18n';
@@ -22,7 +22,7 @@ export function Explore() {
   const p4: [string, string, string, boolean?][] = [['🧑‍⚕️', 'market', '/market', true], ['🏢', 'corp', '/corporate'], ['🐶', 'pet', '/pet'], ['💬', 'whatsapp', '/whatsapp', true]];
   if (FEATURES.purposeStore) p4.splice(2, 0, ['🛍️', 'store', '/store', true]);
   const grid = (a: typeof p3) => <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, justifyContent: 'space-between' }}>{a.map(([i, k, h, p]) => <Tile key={k} icon={i} label={t(`x.t.${k}`)} pending={p} onPress={() => router.push(h as any)} />)}</View>;
-  return <Screen title={`✨ ${t('x.explore')}`}>{grid(p3)}<Text style={s.h2}>{t('x.more4')}</Text>{grid(p4)}<Note k="x.pendingLegend" /></Screen>;
+  return <Screen title={`✨ ${t('x.explore')}`}>{grid(p3)}<CardTitle>{t('x.more4')}</CardTitle>{grid(p4)}<Note k="x.pendingLegend" /></Screen>;
 }
 
 // ---------- Red social (local hasta tener servidor) ----------
@@ -47,9 +47,9 @@ export function Social() {
       <Row><Btn small kind="ghost" label={`💗 ${p.likes}`} a11y={t('x.like')} onPress={() => setPosts((a) => a.map((x) => (x.id === p.id ? { ...x, likes: x.likes + 1 } : x)))} />
         {!p.mine && <Btn small kind={follow.includes(p.who) ? 'secondary' : 'ghost'} label={follow.includes(p.who) ? t('x.following') : t('x.follow')} onPress={() => setFollow((f) => tog(f, p.who))} />}
         {p.mine && <Btn small kind="danger" label={t('diary.remove')} onPress={() => setPosts((a) => a.filter((x) => x.id !== p.id))} />}</Row></Card>)}
-    <Card><Text style={s.h2}>👥 {t('x.groups')}</Text>
+    <Card><CardTitle>👥 {t('x.groups')}</CardTitle>
       {['g1', 'g2', 'g3'].map((g) => <Row key={g}><T style={{ flex: 1 }}>{t(`x.${g}`)}</T><Btn small kind={groups.includes(g) ? 'secondary' : 'ghost'} label={groups.includes(g) ? t('x.joined') : t('x.join')} onPress={() => setGroups((a) => tog(a, g))} /></Row>)}</Card>
-    <Card><Text style={s.h2}>🏆 {t('x.challenges')}</Text><T>{t('x.ch1')}</T><Bar value={groups.length} max={3} color={C.primary} /></Card>
+    <Card><CardTitle>🏆 {t('x.challenges')}</CardTitle><T>{t('x.ch1')}</T><Bar value={groups.length} max={3} color={C.primary} /></Card>
     <Note k="x.socialSafety" />
   </Screen>;
 }
@@ -61,7 +61,7 @@ export function Recipes() {
   const base: Record<string, number> = { r1: 24, r2: 17, r3: 31, r4: 9 };
   const list = [...RECIPES].sort((a, b) => base[b.id] + (votes[b.id] || 0) - base[a.id] - (votes[a.id] || 0));
   return <Screen title={`🍲 ${t('x.t.recipes')}`}><Example />
-    {list.map((r) => <Card key={r.id}><Text style={s.h2}>{t(`x.rec.${r.id}.n`)}</Text><Text style={s.muted}>{fmtNum(r.kcal)} {t('u.kcal')} · {r.min} min</Text>
+    {list.map((r) => <Card key={r.id}><CardTitle>{t(`x.rec.${r.id}.n`)}</CardTitle><Text style={s.muted}>{fmtNum(r.kcal)} {t('u.kcal')} · {r.min} min</Text>
       {open === r.id && <T>{t(`x.rec.${r.id}.s`)}</T>}
       <Row><Btn small kind={votes[r.id] ? 'secondary' : 'ghost'} label={`👍 ${base[r.id] + (votes[r.id] || 0)}`} a11y={t('x.vote')} onPress={() => setVotes((v) => ({ ...v, [r.id]: v[r.id] ? 0 : 1 }))} />
         <Btn small kind="ghost" label={open === r.id ? t('x.close') : t('x.see')} onPress={() => setOpen(open === r.id ? '' : r.id)} /></Row></Card>)}
@@ -84,7 +84,7 @@ function MoveAnim({ m }: { m: typeof MOVES[number] }) {
 export function Gym() {
   const { t } = useTranslation(); const [m, setM] = useState<typeof MOVES[number]>('squat');
   return <Screen title={`🏋️ ${t('x.t.gym')}`}><Row>{MOVES.map((k) => <Chip key={k} label={t(`x.mv.${k}`)} active={m === k} onPress={() => setM(k)} />)}</Row>
-    <MoveAnim key={m} m={m} /><Card><Text style={s.h2}>{t(`x.mv.${m}`)}</Text><T>{t(`x.mvd.${m}`)}</T>
+    <MoveAnim key={m} m={m} /><Card><CardTitle>{t(`x.mv.${m}`)}</CardTitle><T>{t(`x.mvd.${m}`)}</T>
       <Btn small kind="ghost" label={`🔊 ${t('home.readAloud')}`} onPress={() => speak(`${t(`x.mv.${m}`)}. ${t(`x.mvd.${m}`)}`)} /></Card>
     <Note k="x.animNote" /><Btn label={`💪 ${t('coach.workout')}`} onPress={() => router.push('/workout')} /><Disclaimer /></Screen>;
 }
@@ -94,9 +94,10 @@ export const INTEGRATIONS = ['garmin', 'fitbit', 'samsung', 'spotify', 'health']
 export function Connect() {
   const { t } = useTranslation(); const [steps, setSteps] = useExt<Record<string, number>>('steps', {});
   return <Screen title={`⌚ ${t('x.t.connect')}`}>
-    {INTEGRATIONS.map((k) => <Card key={k}><Row><Text style={[s.h2, { flex: 1 }]}>{t(`x.int.${k}`)}</Text><Pending /></Row><Text style={s.muted}>{t('x.intWhy')}</Text>
-      <Btn small kind="ghost" label={t('x.connect')} onPress={() => alertPending(t)} /></Card>)}
-    <Card><Text style={s.h2}>👣 {t('x.manualSteps')}</Text><Row>{[2000, 5000, 8000].map((n) => <Chip key={n} label={fmtNum(n)} active={steps[today()] === n} onPress={() => setSteps((x) => ({ ...x, [today()]: n }))} />)}</Row></Card>
+    <Card style={{ alignItems: 'center' }}><Ring value={steps[today()] || 0} max={8000} size={170} stroke={16}><Text style={{ fontSize: 26 }}>👣</Text><Text style={{ fontSize: 30, fontWeight: '900', color: C.text }}>{fmtNum(steps[today()] || 0)}</Text><Text style={s.muted}>/ {fmtNum(8000)}</Text></Ring></Card>
+    <IconCard icon="👣" title={t('x.manualSteps')}><Row>{[2000, 5000, 8000].map((n) => <Chip key={n} label={fmtNum(n)} active={steps[today()] === n} onPress={() => setSteps((x) => ({ ...x, [today()]: n }))} />)}</Row></IconCard>
+    {INTEGRATIONS.map((k, i) => <IconCard key={k} icon={['⌚', '🍎', '🤖', '💪', '🏃', '❤️', '📈'][i % 7]} title={t(`x.int.${k}`)} sub={t('x.intWhy')}>
+      <Pending /><Btn small kind="ghost" label={t('x.connect')} onPress={() => alertPending(t)} /></IconCard>)}
   </Screen>;
 }
 export const alertPending = (t: (k: string) => string) => { if (Platform.OS === 'web') window.alert(t('x.pendingBody')); };
@@ -110,11 +111,15 @@ export function Fasting() {
   return <Screen title={`⏱️ ${t('x.t.fasting')}`}>
     {risky ? <Card style={{ backgroundColor: C.warnBg }}><T style={{ fontWeight: '800' }}>💛 {t('x.fastBlocked')}</T></Card> : <>
       <Row>{[12, 14, 16].map((h) => <Chip key={h} label={`${h}:${24 - h}`} active={f.hours === h} onPress={() => setF((x) => ({ ...x, hours: h }))} />)}</Row>
-      <Card style={{ alignItems: 'center' }}><Text testID="fast-timer" style={{ fontSize: 48, fontWeight: '900', color: C.secondary }}>{Math.floor(el)}h {String(Math.floor((el % 1) * 60)).padStart(2, '0')}m</Text>
-        <Bar value={el} max={f.hours} color={C.secondary} /><Text style={s.muted}>{t('x.fastGoal', { h: f.hours })}</Text></Card>
+      <Card style={{ alignItems: 'center', paddingVertical: 24 }}><Ring value={Math.min(el, f.hours)} max={f.hours} size={230} stroke={20}>
+        <Text style={{ fontSize: 15 }}>{f.start ? '🔥' : '⏱️'}</Text>
+        <Text testID="fast-timer" style={{ fontSize: 44, fontWeight: '900', color: C.text }}>{Math.floor(el)}h {String(Math.floor((el % 1) * 60)).padStart(2, '0')}m</Text>
+        <Text style={s.muted}>{Math.round((Math.min(el, f.hours) / f.hours) * 100)}%</Text></Ring>
+        <Text style={[s.muted, { marginTop: 6 }]}>{t('x.fastGoal', { h: f.hours })}</Text></Card>
+      <StatRow items={[{ icon: '🎯', value: `${f.hours}h`, label: `${f.hours}:${24 - f.hours}` }, { icon: '📅', value: f.log.length, label: t('x.fastLog') }]} />
       {f.start ? <Btn label={t('x.fastEnd')} onPress={() => setF((x) => ({ ...x, start: undefined, log: [...x.log, Math.round(el * 10) / 10].slice(-14) }))} />
         : <Btn label={t('x.fastStart')} onPress={() => setF((x) => ({ ...x, start: Date.now() }))} />}
-      {f.log.length > 0 && <Card><T>{t('x.fastLog')}: {f.log.map((h) => fmtNum(h, 1) + 'h').join(' · ')}</T></Card>}</>}
+      {f.log.length > 0 && <IconCard icon="📊" title={t('x.fastLog')}><View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 6, height: 90 }}>{f.log.map((h, i) => <View key={i} style={{ flex: 1, alignItems: 'center', gap: 4 }}><View style={{ width: '100%', height: Math.max(6, (h / 24) * 80), borderRadius: 6, backgroundColor: h >= f.hours ? C.secondary : C.primary }} /><Text style={[s.muted, { fontSize: 11 }]}>{fmtNum(h, 0)}</Text></View>)}</View></IconCard>}</>}
     <Note k="x.fastNote" /><Disclaimer /></Screen>;
 }
 
@@ -181,11 +186,14 @@ export function modeLimits(modes: string[]) {
 export function Family() {
   const { t } = useTranslation(); const [fam, setFam] = useExt<{ id: string; name: string; kid: boolean }[]>('family', []); const [n, setN] = useState(''); const [kid, setKid] = useState(false);
   return <Screen title={`👨‍👩‍👧 ${t('x.t.family')}`}>
-    <Card><TextInput accessibilityLabel={t('x.famName')} placeholder={t('x.famName')} style={s.input} value={n} onChangeText={setN} maxLength={30} />
+    <StatRow items={[{ icon: '👨‍👩‍👧', value: fam.length, label: t('x.t.family') }, { icon: '🧑', value: fam.filter((m) => !m.kid).length, label: t('x.adult'), color: C.secondary }, { icon: '🧒', value: fam.filter((m) => m.kid).length, label: t('x.child'), color: C.primary }]} />
+    <IconCard icon="➕" title={t('add')} sub={t('x.famName')}><TextInput accessibilityLabel={t('x.famName')} placeholder={t('x.famName')} style={s.input} value={n} onChangeText={setN} maxLength={30} />
       <Row><Chip label={t('x.adult')} active={!kid} onPress={() => setKid(false)} /><Chip label={t('x.child')} active={kid} onPress={() => setKid(true)} /></Row>
-      <Btn label={t('add')} onPress={() => { if (n.trim()) { setFam((f) => [...f, { id: uid(), name: n.trim(), kid }]); setN(''); } }} /></Card>
-    {fam.map((m) => <Card key={m.id}><Row><T style={{ flex: 1, fontWeight: '800' }}>{m.kid ? '🧒' : '🧑'} {m.name}</T><Btn small kind="danger" label={t('diary.remove')} onPress={() => setFam((f) => f.filter((x) => x.id !== m.id))} /></Row>
-      {m.kid && <Text style={s.muted}>{t('x.kidRule')}</Text>}</Card>)}
+      <Btn label={t('add')} onPress={() => { if (n.trim()) { setFam((f) => [...f, { id: uid(), name: n.trim(), kid }]); setN(''); } }} /></IconCard>
+    {fam.length === 0 ? <Card><EmptyState icon="👨‍👩‍👧" title={t('x.t.family')} sub={t('x.famName')} /></Card> : null}
+    {fam.map((m) => <IconCard key={m.id} icon={m.kid ? '🧒' : '🧑'} title={m.name} right={<Btn small kind="danger" label={t('diary.remove')} onPress={() => setFam((f) => f.filter((x) => x.id !== m.id))} />}>
+      <Pill label={m.kid ? t('x.child') : t('x.adult')} color={m.kid ? C.primary : C.secondary} />
+      {m.kid && <Text style={s.muted}>{t('x.kidRule')}</Text>}</IconCard>)}
     <Note k="x.famNote" /></Screen>;
 }
 
@@ -196,7 +204,7 @@ export function Report() {
   const rows = days.map((d) => ({ d, k: st.entries.filter((e) => e.date === d).reduce((a, e) => a + e.kcal, 0), w: st.water[d] || 0, b: burnedOn(c, d) })).filter((r) => r.k || r.w || r.b);
   const pdf = () => { if (Platform.OS === 'web') window.print(); };
   return <Screen title={`📄 ${t('x.t.report')}`}>
-    <Card testID="report"><Text style={s.h2}>Angie One · {t('x.repTitle')}</Text><Text style={s.muted}>{fmtDate(new Date())}</Text>
+    <Card testID="report"><CardTitle>Angie One · {t('x.repTitle')}</CardTitle><Text style={s.muted}>{fmtDate(new Date())}</Text>
       {st.profile && <T>{t('ob.age')}: {st.profile.age} · {t('ob.weight')}: {fmtNum(st.profile.weight, 1)} · {t('ob.height')}: {st.profile.height}</T>}
       {modes.length > 0 && <T>{t('x.repModes')}: {modes.map((m) => t(`x.m.${m}`)).join(', ')}</T>}
       <T>{t('coach.target', { kcal: fmtNum(coachTarget(st).kcal) })}</T>
@@ -232,6 +240,6 @@ export function B2B() {
   const { t } = useTranslation();
   const cl = [['María', 5, 0.8], ['José', 3, 0.5], ['Lucía', 6, 0.95]] as const;
   return <Screen title={`🧑‍🏫 ${t('x.t.b2b')}`}><Example /><Pending what={t('x.needServer')} />
-    <Card><Text style={s.h2}>{t('x.clients')}</Text>{cl.map(([n, d, a]) => <View key={n} style={{ gap: 4 }}><T>{n} · {t('x.daysLogged', { n: d })}</T><Bar value={a} max={1} color={C.success} /></View>)}</Card>
+    <Card><CardTitle>{t('x.clients')}</CardTitle>{cl.map(([n, d, a]) => <View key={n} style={{ gap: 4 }}><T>{n} · {t('x.daysLogged', { n: d })}</T><Bar value={a} max={1} color={C.success} /></View>)}</Card>
     <Card><T>{t('x.b2bPrice')}</T></Card><Note k="x.b2bPrivacy" /></Screen>;
 }

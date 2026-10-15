@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Text, TextInput, Platform } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Screen, Card, Btn, T, s } from '../src/ui';
+import { Screen, Card, Btn, T, s, CardTitle } from '../src/ui';
 import { C } from '../src/theme';
 import { useStore } from '../src/store';
 import { fmtLocale } from '../src/i18n';
@@ -27,7 +27,7 @@ export default function Backup() {
   return <Screen title={`☁️ ${t('bk.title')}`}>
     <Card><T>{t('bk.what')}</T><Text style={s.muted}>🔒 {t('bk.e2e')}</Text><Text style={s.muted}>📸 {t('bk.noPhotos')}</Text><Text style={s.muted}>🚫 {t('bk.neverSold')}</Text></Card>
     {code ? <Card testID="bk-codecard">
-      <Text style={s.h2}>{t('bk.codeTitle')}</Text><T>{t('bk.codeHow')}</T>
+      <CardTitle>{t('bk.codeTitle')}</CardTitle><T>{t('bk.codeHow')}</T>
       <Text testID="bk-code" selectable style={{ fontSize: 24, fontWeight: '900', letterSpacing: 1, color: C.secondary }}>{code}</Text>
       <Btn testID="bk-saved" label={busy ? `⏳ ${t('bk.working')}` : `✓ ${t('bk.saved')}`} onPress={confirmCode} />
     </Card> : sy?.on ? <Card>
@@ -39,7 +39,7 @@ export default function Backup() {
     {msg ? <T testID="bk-msg" style={{ color: C.success, fontWeight: '800' }}>{msg}</T> : null}
     {err ? <T testID="bk-err" style={{ color: C.primary, fontWeight: '800' }}>{err}</T> : null}
     {!code && <Card>
-      <Text style={s.h2}>📲 {t('bk.restoreTitle')}</Text><T>{t('bk.restoreHow')}</T>
+      <CardTitle>📲 {t('bk.restoreTitle')}</CardTitle><T>{t('bk.restoreHow')}</T>
       <TextInput testID="bk-rc" accessibilityLabel={t('bk.restoreTitle')} autoCapitalize="characters" style={s.input} placeholder="XXXX-XXXX-XXXX-XXXX-XXXX" value={rc} onChangeText={setRc} />
       <Btn testID="bk-restore" kind="secondary" label={busy ? `⏳ ${t('bk.working')}` : t('bk.restore')} onPress={restore} />
       {restored ? <Btn testID="bk-home" label={t('bk.goHome')} onPress={() => router.replace('/')} /> : null}

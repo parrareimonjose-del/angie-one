@@ -6,7 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import Svg, { Circle, Rect, Ellipse, Path, Polyline, Line, Text as SvgText } from 'react-native-svg';
-import { Screen, Card, Btn, Chip, T, Bar, s } from './ui';
+import { Screen, Card, Btn, Chip, T, Bar, s, IconCard, EmptyState, Pill, InfoNote, CardTitle } from './ui';
 import { C } from './theme';
 import { useStore, today, uid, DAY, State, Entry, dailyTarget } from './store';
 import { fmtNum, fmtDate, fmtLocale, curLang } from './i18n';
@@ -95,10 +95,10 @@ function WeightInner() {
       <Row>{[-1, -0.1, 0.1, 1].map((d) => <Btn key={d} small kind="ghost" label={(d > 0 ? '+' : '−') + fmtNum(Math.abs(d), 1)} onPress={() => setKg(Math.round((kg + d) * 10) / 10)} style={{ minWidth: 70 }} />)}</Row>
       <Btn label={`✓ ${t('p2.wSave')}`} onPress={save} style={{ alignSelf: 'stretch' }} />
       {msg ? <Text style={{ color: C.success, fontWeight: '800', fontSize: 17 }} testID="w-msg">{msg}</Text> : null}</Card>
-    <Card><Text style={s.h2}>📈 {t('p2.wChart')}</Text>{ws.length >= 2 ? <Chart ws={ws} /> : <T>{t('p2.wNeed2')}</T>}
+    <Card><CardTitle>📈 {t('p2.wChart')}</CardTitle>{ws.length >= 2 ? <Chart ws={ws} /> : <T>{t('p2.wNeed2')}</T>}
       {k !== null ? <T testID="trend">{t('p2.wTrend', { k: (k > 0 ? '+' : '') + fmtNum(k, 2) })}</T> : null}
       {ws.slice(-5).reverse().map((w) => <Text key={w.date} style={s.muted}>{fmtDate(new Date(w.date + 'T12:00:00'))} · {fmtNum(w.kg, 1)} kg</Text>)}</Card>
-    {prem ? <Card testID="adaptive"><Text style={s.h2}>🧭 {t('p2.aTitle')}</Text><T>{t('p2.' + a.msg)}</T>
+    {prem ? <Card testID="adaptive"><CardTitle>🧭 {t('p2.aTitle')}</CardTitle><T>{t('p2.' + a.msg)}</T>
       {a.delta ? <Btn kind="secondary" label={t('p2.aApply', { d: (a.delta > 0 ? '+' : '') + a.delta })} onPress={apply} /> : null}
       <Text style={s.muted}>{t('p2.aSafe', { min: safeMin(st.profile) })}</Text></Card> : <Locked k="p2.aLocked" />}
     <Note k="p2.wNote" /></Screen>;
@@ -117,14 +117,14 @@ export function Memory() {
   const { t } = useTranslation(); const [m, setM] = useExt<Mem>('mem', MEM0); const [q, setQ] = useState('');
   const add = () => { const v = neutralFact(q) ?? q.trim(); if (!v) return; setM((x) => ({ ...x, facts: [...x.facts, { id: uid(), text: v.slice(0, 120) }].slice(-20) })); setQ(''); };
   return <Screen title={`🧠 ${t('p2.t.memory')}`}>
-    <Card><T>{t('p2.memWhat')}</T>
-      <Row><Chip label={`✓ ${t('p2.memOn')}`} active={m.on} onPress={() => setM((x) => ({ ...x, on: true }))} /><Chip label={t('p2.memOff')} active={!m.on} onPress={() => setM((x) => ({ ...x, on: false }))} /></Row>
-      <Text style={s.muted}>🔒 {t('p2.memPrivacy')}</Text></Card>
-    <Card><Text style={s.h2}>{t('p2.memList')}</Text>
-      {m.facts.length ? m.facts.map((f) => <View key={f.id} style={[s.row, { justifyContent: 'space-between' }]}><T style={{ flex: 1 }}>• {f.text}</T>
-        <Btn small kind="danger" label="🗑️" a11y={t('p2.memDel')} onPress={() => setM((x) => ({ ...x, facts: x.facts.filter((y) => y.id !== f.id) }))} style={{ width: 56 }} /></View>) : <T>{t('p2.memEmpty')}</T>}
+    <IconCard icon="🧠" title={t('p2.t.memory')} sub={t('p2.memWhat')} right={<Pill label={m.on ? '✓' : '—'} color={m.on ? C.success : C.muted} />}>
+      <Row><Chip label={`✓ ${t('p2.memOn')}`} active={m.on} onPress={() => setM((x) => ({ ...x, on: true }))} /><Chip label={t('p2.memOff')} active={!m.on} onPress={() => setM((x) => ({ ...x, on: false }))} /></Row></IconCard>
+    <InfoNote icon="🔒" text={t('p2.memPrivacy')} />
+    <IconCard icon="💭" title={t('p2.memList')} right={<Pill label={`${m.facts.length}/20`} />}>
+      {m.facts.length ? m.facts.map((f) => <View key={f.id} style={[s.row, { justifyContent: 'space-between', padding: 10, borderRadius: 14, backgroundColor: C.tint }]}><Text style={{ fontSize: 18 }}>💡</Text><T style={{ flex: 1 }}>{f.text}</T>
+        <Btn small kind="danger" label="🗑️" a11y={t('p2.memDel')} onPress={() => setM((x) => ({ ...x, facts: x.facts.filter((y) => y.id !== f.id) }))} style={{ width: 56 }} /></View>) : <EmptyState icon="💭" title={t('p2.memEmpty')} />}
       <TextInput style={s.input} value={q} onChangeText={setQ} placeholder={t('p2.memPh')} onSubmitEditing={add} accessibilityLabel={t('p2.memPh')} />
-      <Btn small label={`＋ ${t('add')}`} onPress={add} /></Card>
+      <Btn small label={`＋ ${t('add')}`} onPress={add} /></IconCard>
     <Btn kind="danger" label={`🗑️ ${t('p2.memDelAll')}`} onPress={() => { if (Platform.OS !== 'web' || window.confirm(t('p2.memDelQ'))) setM(() => ({ ...MEM0, on: m.on })); }} />
   </Screen>;
 }
@@ -184,7 +184,7 @@ export function Voice() {
     <TextInput testID="voice-text" style={s.input} value={q} onChangeText={setQ} placeholder={t('p2.vPh')} onSubmitEditing={() => go()} />
     <Btn kind="secondary" label={busy ? '…' : `✨ ${t('p2.vGo')}`} onPress={() => go()} />
     {err ? <Text style={{ color: C.primary, fontWeight: '800' }}>{err}</Text> : null}
-    {est ? <Card testID="voice-est"><Text style={s.h2}>{est.name}</Text><T>~{fmtNum(est.kcal)} {t('u.kcal')} · P {est.p} · C {est.c} · G {est.f}</T>
+    {est ? <Card testID="voice-est"><CardTitle>{est.name}</CardTitle><T>~{fmtNum(est.kcal)} {t('u.kcal')} · P {est.p} · C {est.c} · G {est.f}</T>
       {done ? <Text style={{ color: C.success, fontWeight: '900', fontSize: 18 }}>✓ {t('p2.vSaved')}</Text> : <Btn label={`＋ ${t('p2.vAdd')}`} onPress={add} />}</Card> : null}
     <Btn kind="ghost" label={t('back')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))} />
   </Screen>;
@@ -199,7 +199,7 @@ export function Plans() {
     const plan = rulesPlan(x.profile!, prefs, coachTarget(x).kcal); return { ...x, coach: { ...c, prefs, plan } }; }); setMsg(t('p2.plApplied', { n: t('p2.' + tp.k) })); };
   return <Screen title={`👩‍🍳 ${t('p2.t.plans')}`}>
     {!prem ? <Locked k="p2.plLocked" /> : <>
-      {TEMPLATES.map((tp) => <Card key={tp.k}><Text style={s.h2}>{t('p2.' + tp.k)}</Text><T>{t('p2.' + tp.k + 'D')}</T><Btn small label={t('p2.plUse')} onPress={() => apply(tp)} /></Card>)}
+      {TEMPLATES.map((tp) => <Card key={tp.k}><CardTitle>{t('p2.' + tp.k)}</CardTitle><T>{t('p2.' + tp.k + 'D')}</T><Btn small label={t('p2.plUse')} onPress={() => apply(tp)} /></Card>)}
       {msg ? <Card><Text testID="pl-msg" style={{ color: C.success, fontWeight: '800', fontSize: 17 }}>✓ {msg}</Text><Btn small kind="secondary" label={`🍽️ ${t('coach.diet')}`} onPress={() => router.push('/diet')} /></Card> : null}</>}
     <Btn kind="ghost" label={`🍲 ${t('x.t.recipes')}`} onPress={() => router.push('/recipes')} />
     <Btn kind="ghost" label={`🧊 ${t('p2.t.fridge')}`} onPress={() => router.push('/chef')} />
@@ -225,11 +225,11 @@ export function Chef() {
   if (!prem) return <Screen title={`🧊 ${t('p2.t.fridge')}`}><Locked k="p2.chLocked" /></Screen>;
   return <Screen title={`🧊 ${t('p2.t.fridge')}`}>
     <Card><T>{t('p2.chHow')}</T><Btn label={`📸 ${t('p2.chPhoto')}`} onPress={photo} />{uri ? <Image source={{ uri }} style={{ width: '100%', height: 180, borderRadius: 16 }} /> : null}</Card>
-    <Card><Text style={s.h2}>👩‍🍳 {t('p2.chChef')}</Text><TextInput testID="chef-text" style={s.input} value={q} onChangeText={setQ} placeholder={t('p2.chPh')} />
+    <Card><CardTitle>👩‍🍳 {t('p2.chChef')}</CardTitle><TextInput testID="chef-text" style={s.input} value={q} onChangeText={setQ} placeholder={t('p2.chPh')} />
       <Btn kind="secondary" label={busy ? '…' : `✨ ${t('p2.chGo')}`} onPress={() => q.trim() && run({ text: q })} /></Card>
     {busy ? <T>⏳ {t('p2.thinking')}</T> : null}{err ? <Text style={{ color: C.primary, fontWeight: '800' }}>{err}</Text> : null}
-    {items.length ? <Card><Text style={s.h2}>{t('p2.chFound')}</Text><T>{items.join(' · ')}</T></Card> : null}
-    {recs.map((r, i) => <Card key={i} testID="recipe"><Text style={s.h2}>{r.name}</Text><Text style={s.muted}>{fmtNum(r.kcal)} {t('u.kcal')} · {r.min} min</Text>
+    {items.length ? <Card><CardTitle>{t('p2.chFound')}</CardTitle><T>{items.join(' · ')}</T></Card> : null}
+    {recs.map((r, i) => <Card key={i} testID="recipe"><CardTitle>{r.name}</CardTitle><Text style={s.muted}>{fmtNum(r.kcal)} {t('u.kcal')} · {r.min} min</Text>
       {open === i ? r.steps.map((x, j) => <T key={j}>{j + 1}. {x}</T>) : null}
       <Row><Btn small kind="ghost" label={open === i ? t('x.close') : t('x.see')} onPress={() => setOpen(open === i ? -1 : i)} /><Btn small kind="ghost" label="🔊" a11y={t('home.readAloud')} onPress={() => speak(r.name + '. ' + r.steps.join('. '))} />
         {added === i ? <Text style={{ color: C.success, fontWeight: '800' }}>✓ {t('p2.vSaved')}</Text> : <Btn small label={`＋ ${t('p2.toDiary')}`} onPress={() => log(r, i)} />}</Row></Card>)}
@@ -251,7 +251,7 @@ export function Menu() {
       <Btn kind="secondary" label={busy ? '…' : `✨ ${t('p2.mnGo')}`} onPress={() => q.trim() && run({ text: q })} /></Card>
     {busy ? <T>⏳ {t('p2.thinking')}</T> : null}{err ? <Text style={{ color: C.primary, fontWeight: '800' }}>{err}</Text> : null}
     {[...ds].sort((a, b) => ['best', 'ok', 'treat'].indexOf(a.pick) - ['best', 'ok', 'treat'].indexOf(b.pick)).map((d) => <Card key={d.name} testID="dish" style={{ borderLeftWidth: 8, borderLeftColor: col[d.pick] }}>
-      <Text style={[s.muted, { fontWeight: '900', color: col[d.pick] }]}>{t('p2.pick.' + d.pick)}</Text><Text style={s.h2}>{d.name}</Text><T>{fmtNum(d.kcalMin)}–{fmtNum(d.kcalMax)} {t('u.kcal')}</T><Text style={s.muted}>💡 {d.tip}</Text>
+      <Text style={[s.muted, { fontWeight: '900', color: col[d.pick] }]}>{t('p2.pick.' + d.pick)}</Text><CardTitle>{d.name}</CardTitle><T>{fmtNum(d.kcalMin)}–{fmtNum(d.kcalMax)} {t('u.kcal')}</T><Text style={s.muted}>💡 {d.tip}</Text>
       {added === d.name ? <Text style={{ color: C.success, fontWeight: '800' }}>✓ {t('p2.vSaved')}</Text> : <Btn small kind="ghost" label={`＋ ${t('p2.toDiary')}`} onPress={() => { set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: d.name, kcal: Math.round((d.kcalMin + d.kcalMax) / 2), p: 0, c: 0, f: 0, source: 'manual' }] })); setAdded(d.name); }} />}</Card>)}
     <Disclaimer /></Screen>;
 }
@@ -264,7 +264,7 @@ export function Craving() {
   return <Screen title={`🍫 ${t('p2.t.craving')}`}>
     <T>{t('p2.crHow')}</T>
     <View style={[s.row, { flexWrap: 'wrap' }]}>{CRAVINGS.map(([k]) => <Chip key={k} label={t(`p2.cr.${k}.n`)} active={sel === k} onPress={() => { setSel(k); setAdded(false); }} />)}</View>
-    {c ? <Card testID="swap" style={{ backgroundColor: C.tint }}><Text style={s.h2}>✨ {t(`p2.cr.${c[0]}.s`)}</Text>
+    {c ? <Card testID="swap" style={{ backgroundColor: C.tint }}><CardTitle>✨ {t(`p2.cr.${c[0]}.s`)}</CardTitle>
       <T>{t('p2.crSave', { a: c[1], b: c[2], d: c[1] - c[2] })}</T><Text style={s.muted}>{t('p2.crKind')}</Text>
       {added ? <Text style={{ color: C.success, fontWeight: '800' }}>✓ {t('p2.vSaved')}</Text> : <Btn small label={`＋ ${t('p2.toDiary')}`} onPress={() => { set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: t(`p2.cr.${c[0]}.s`), kcal: c[2], p: 0, c: 0, f: 0, source: 'manual' }] })); setAdded(true); }} />}</Card> : null}
     <Note k="p2.crNote" /></Screen>;
@@ -279,10 +279,10 @@ export function SleepStress() {
   const avg = week.filter(Boolean) as Sleep[]; const ah = avg.length ? avg.reduce((a, x) => a + x.h, 0) / avg.length : 0;
   const tip = cur.stress >= 4 ? 'slTipStress' : cur.h < 6 ? 'slTipShort' : 'slTipGood';
   return <Screen title={`😴 ${t('p2.t.sleep')}`}>
-    <Card><Text style={s.h2}>🌙 {t('p2.slHours')}</Text><View style={[s.row, { flexWrap: 'wrap' }]}>{[4, 5, 6, 7, 8, 9, 10].map((h) => <Chip key={h} label={`${h} h`} active={log.some((x) => x.date === today()) && cur.h === h} onPress={() => up({ h })} />)}</View></Card>
-    <Card><Text style={s.h2}>🌿 {t('p2.slStress')}</Text><View style={[s.row, { flexWrap: 'wrap' }]}>{[1, 2, 3, 4, 5].map((n) => <Chip key={n} label={t(`p2.st${n}`)} active={log.some((x) => x.date === today()) && cur.stress === n} onPress={() => up({ stress: n })} />)}</View></Card>
+    <Card><CardTitle>🌙 {t('p2.slHours')}</CardTitle><View style={[s.row, { flexWrap: 'wrap' }]}>{[4, 5, 6, 7, 8, 9, 10].map((h) => <Chip key={h} label={`${h} h`} active={log.some((x) => x.date === today()) && cur.h === h} onPress={() => up({ h })} />)}</View></Card>
+    <Card><CardTitle>🌿 {t('p2.slStress')}</CardTitle><View style={[s.row, { flexWrap: 'wrap' }]}>{[1, 2, 3, 4, 5].map((n) => <Chip key={n} label={t(`p2.st${n}`)} active={log.some((x) => x.date === today()) && cur.stress === n} onPress={() => up({ stress: n })} />)}</View></Card>
     <Card testID="sleep-tip"><T>💡 {t('p2.' + tip)}</T>{cur.stress >= 4 ? <Btn small kind="secondary" label={`🫁 ${t('p2.slBreath')}`} onPress={() => speak(t('p2.slBreathSay'))} /> : null}</Card>
-    <Card><Text style={s.h2}>{t('p2.slWeek')}</Text>
+    <Card><CardTitle>{t('p2.slWeek')}</CardTitle>
       <View style={[s.row, { alignItems: 'flex-end', height: 110, justifyContent: 'space-between' }]}>{week.map((x, i) => <View key={i} style={{ alignItems: 'center', flex: 1 }}>
         <View style={{ width: 22, height: ((x?.h || 0) / 10) * 90, backgroundColor: x && x.h >= 7 ? C.secondary : C.accent, borderRadius: 6 }} /><Text style={s.muted}>{dayStr(6 - i).slice(8)}</Text></View>)}</View>
       {avg.length ? <T>{t('p2.slAvg', { h: fmtNum(ah, 1) })}</T> : null}</Card>
@@ -310,7 +310,7 @@ export function SmartTips() {
 export function Reminders() {
   const { t } = useTranslation(); const [rem, setRem] = useExt<Rem>('rem', REM0);
   return <Screen title={`🔔 ${t('p2.t.rem')}`}><T>{t('p2.remHow')}</T>
-    {(Object.keys(REM0) as (keyof Rem)[]).map((k) => <Card key={k}><Text style={s.h2}>{t('p2.rn.' + k)}</Text>
+    {(Object.keys(REM0) as (keyof Rem)[]).map((k) => <Card key={k}><CardTitle>{t('p2.rn.' + k)}</CardTitle>
       <Row><Chip label={`✓ ${t('p2.on')}`} active={rem[k]} onPress={() => setRem((v) => ({ ...v, [k]: true }))} /><Chip label={t('p2.off')} active={!rem[k]} onPress={() => setRem((v) => ({ ...v, [k]: false }))} /></Row></Card>)}
     <Note k="p2.remNote" /></Screen>;
 }
@@ -326,8 +326,8 @@ export function Points() {
   return <Screen title={`🏆 ${t('p2.t.points')}`}>
     <Card style={{ alignItems: 'center', backgroundColor: C.secondary }}><Text testID="pts" style={{ fontSize: 52, fontWeight: '900', color: C.white }}>{fmtNum(pts)}</Text><Text style={[s.h2, { color: C.white }]}>{t('p2.ptLevel', { n: lvl })}</Text></Card>
     <Card><Bar value={pts % 100} max={100} color={C.accent} /><T>{t('p2.ptNext', { n: 100 - (pts % 100) })}</T></Card>
-    <Card><Text style={s.h2}>{t('p2.ptHow')}</Text><T>{t('p2.ptRules')}</T></Card>
-    <Card><Text style={s.h2}>🎁 {t('p2.ptRewards')}</Text>{REWARDS.map((r) => <T key={r.k}>{pts >= r.at ? '✅' : '🔒'} {r.icon} {t('p2.rw.' + r.k)} · {r.at} {t('p2.pts')}</T>)}
+    <Card><CardTitle>{t('p2.ptHow')}</CardTitle><T>{t('p2.ptRules')}</T></Card>
+    <Card><CardTitle>🎁 {t('p2.ptRewards')}</CardTitle>{REWARDS.map((r) => <T key={r.k}>{pts >= r.at ? '✅' : '🔒'} {r.icon} {t('p2.rw.' + r.k)} · {r.at} {t('p2.pts')}</T>)}
       <Btn small kind="ghost" label={`🙂 ${t('p2.t.avatar')}`} onPress={() => router.push('/avatar')} /></Card></Screen>;
 }
 
@@ -379,10 +379,10 @@ export function Avatar() {
     <Card style={{ alignItems: 'center', backgroundColor: C.tint }}><AvatarSvg av={av} /><T style={{ textAlign: 'center' }}>{eaten ? t('p2.avSayGood') : t('p2.avSayStart')}</T>
       <Btn small kind="ghost" label="🔊" a11y={t('home.readAloud')} onPress={say} style={{ width: 64 }} /></Card>
     {!prem ? <Locked k="p2.avLocked" /> : <>
-      <Card><Text style={s.h2}>{t('p2.avSkin')}</Text><Row>{SKIN.map((c, i) => <Pressable key={c} accessibilityRole="button" accessibilityLabel={`${t('p2.avSkin')} ${i + 1}`} onPress={() => setAv((v) => ({ ...v, skin: i }))} style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: c, borderWidth: av.skin === i ? 4 : 0, borderColor: C.secondary }} />)}</Row>
-        <Text style={s.h2}>{t('p2.avHair')}</Text><Row>{HAIR.map((c, i) => <Pressable key={c} accessibilityRole="button" accessibilityLabel={`${t('p2.avHair')} ${i + 1}`} onPress={() => setAv((v) => ({ ...v, hair: i }))} style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: c, borderWidth: av.hair === i ? 4 : 0, borderColor: C.primary }} />)}</Row>
-        <Text style={s.h2}>{t('p2.avShirt')}</Text><Row>{SHIRT.map((c, i) => <Pressable key={i} accessibilityRole="button" accessibilityLabel={`${t('p2.avShirt')} ${i + 1}`} onPress={() => setAv((v) => ({ ...v, shirt: i }))} style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: c, borderWidth: av.shirt === i ? 4 : 0, borderColor: C.text }} />)}</Row></Card>
-      <Card><Text style={s.h2}>🎁 {t('p2.ptRewards')}</Text><Row><Chip label={t('p2.avNone')} active={!av.acc} onPress={() => setAv((v) => ({ ...v, acc: '' }))} />
+      <Card><CardTitle>{t('p2.avSkin')}</CardTitle><Row>{SKIN.map((c, i) => <Pressable key={c} accessibilityRole="button" accessibilityLabel={`${t('p2.avSkin')} ${i + 1}`} onPress={() => setAv((v) => ({ ...v, skin: i }))} style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: c, borderWidth: av.skin === i ? 4 : 0, borderColor: C.secondary }} />)}</Row>
+        <CardTitle>{t('p2.avHair')}</CardTitle><Row>{HAIR.map((c, i) => <Pressable key={c} accessibilityRole="button" accessibilityLabel={`${t('p2.avHair')} ${i + 1}`} onPress={() => setAv((v) => ({ ...v, hair: i }))} style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: c, borderWidth: av.hair === i ? 4 : 0, borderColor: C.primary }} />)}</Row>
+        <CardTitle>{t('p2.avShirt')}</CardTitle><Row>{SHIRT.map((c, i) => <Pressable key={i} accessibilityRole="button" accessibilityLabel={`${t('p2.avShirt')} ${i + 1}`} onPress={() => setAv((v) => ({ ...v, shirt: i }))} style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: c, borderWidth: av.shirt === i ? 4 : 0, borderColor: C.text }} />)}</Row></Card>
+      <Card><CardTitle>🎁 {t('p2.ptRewards')}</CardTitle><Row><Chip label={t('p2.avNone')} active={!av.acc} onPress={() => setAv((v) => ({ ...v, acc: '' }))} />
         {REWARDS.map((r) => <Chip key={r.k} label={`${pts >= r.at ? r.icon : '🔒'} ${t('p2.rw.' + r.k)}`} active={av.acc === r.k} onPress={() => pts >= r.at && setAv((v) => ({ ...v, acc: r.k }))} />)}</Row></Card></>}
     <Btn kind="secondary" label={`🧍 ${t('p2.avTwin')}`} onPress={() => router.push('/twin')} />
     <Note k="p2.avNote" /></Screen>;
@@ -392,7 +392,7 @@ export function Avatar() {
 export type Fb = { id: string; text: string; at: number };
 export function FeedbackBox() {
   const { t } = useTranslation(); const [fb, setFb] = useExt<Fb[]>('feedback', []); const [q, setQ] = useState(''); const [ok, setOk] = useState(false);
-  return <Card><Text style={s.h2}>💌 {t('p2.fbTitle')}</Text><TextInput testID="fb" style={s.input} value={q} onChangeText={(v) => { setQ(v); setOk(false); }} placeholder={t('p2.fbPh')} />
+  return <Card><CardTitle>💌 {t('p2.fbTitle')}</CardTitle><TextInput testID="fb" style={s.input} value={q} onChangeText={(v) => { setQ(v); setOk(false); }} placeholder={t('p2.fbPh')} />
     <Btn small label={t('p2.fbSave')} onPress={() => { if (!q.trim()) return; setFb((v) => [...v, { id: uid(), text: q.trim().slice(0, 300), at: Date.now() }].slice(-50)); setQ(''); setOk(true); }} />
     {ok ? <Text style={{ color: C.success, fontWeight: '800' }}>✓ {t('p2.fbOk')}</Text> : null}<Text style={s.muted}>{t('p2.fbNote')}</Text></Card>;
 }
@@ -420,7 +420,7 @@ export function DevAI() {
     catch { setErr(t('p2.devOffline')); list = rulesProposals(m, texts).map((x) => ({ ...x, title: t(x.title), why: t(x.why), change: t(x.change) })); }
     setProps((v) => [...v.filter((x) => x.status !== 'proposed'), ...list.map((x) => ({ ...x, id: uid(), status: 'proposed' as const }))].slice(-20)); setBusy(false); };
   const decide = (id: string, status: Prop['status']) => setProps((v) => v.map((x) => (x.id === id ? { ...x, status } : x)));
-  return <Card testID="devai"><Text style={s.h2}>🤖 {t('p2.devTitle')}</Text><Text style={s.muted}>{t('p2.devSub')}</Text>
+  return <Card testID="devai"><CardTitle>🤖 {t('p2.devTitle')}</CardTitle><Text style={s.muted}>{t('p2.devSub')}</Text>
     <T>📊 {t('p2.devMetrics', { a: m.activeDays7, e: m.entries, w: m.workouts })}</T>
     <T>💌 {t('p2.devFb', { n: fb.length })}{fb.length ? '' : ' · ' + t('x.example')}</T>
     <Btn kind="secondary" label={busy ? '…' : `🔍 ${t('p2.devGo')}`} onPress={analyze} />{err ? <Text style={s.muted}>{err}</Text> : null}

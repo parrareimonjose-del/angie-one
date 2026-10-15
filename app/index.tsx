@@ -3,7 +3,7 @@ import { View, Text, Image } from 'react-native';
 import { Redirect, router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import * as Speech from 'expo-speech';
-import { Screen, Card, Btn, Ring, T, s, HeroPhoto, FOOD, celebrate, IconBtn } from '../src/ui';
+import { Screen, Card, Btn, Ring, T, s, HeroPhoto, FOOD, celebrate, IconBtn, CardTitle } from '../src/ui';
 import { fmtLocale, fmtNum } from '../src/i18n';
 import { useStore, today, trialPhase, fmtCountdown, streak } from '../src/store';
 import { C } from '../src/theme';
@@ -48,20 +48,20 @@ export default function Home() {
           <Text style={s.muted}>{t('u.kcal')} {t('home.left')}</Text>
         </Ring>
         <View style={[s.row, { justifyContent: 'space-around', alignSelf: 'stretch' }]}>
-          <View style={{ alignItems: 'center' }}><Text style={s.h2}>{fmtNum(sum.kcal)}</Text><Text style={s.muted}>{t('home.eaten')}</Text></View>
-          <View style={{ alignItems: 'center' }}><Text style={s.h2}>{fmtNum(target.kcal)}</Text><Text style={s.muted}>{t('home.goal')}</Text></View>
+          <View style={{ alignItems: 'center' }}><CardTitle>{fmtNum(sum.kcal)}</CardTitle><Text style={s.muted}>{t('home.eaten')}</Text></View>
+          <View style={{ alignItems: 'center' }}><CardTitle>{fmtNum(target.kcal)}</CardTitle><Text style={s.muted}>{t('home.goal')}</Text></View>
           <View style={{ alignItems: 'center' }}><Text testID="home-burned" style={[s.h2, { color: C.warning }]}>🔥 {fmtNum(burned)}</Text><Text style={s.muted}>{t('coach.burned')}</Text></View>
         </View>
       </Card>
       <MacroRings />
       <View style={[s.row, { alignItems: 'stretch' }]}>
         <Card style={{ flex: 1 }}>
-          <Text style={s.h2}>💧 {t('home.water')}</Text>
+          <CardTitle>💧 {t('home.water')}</CardTitle>
           <Text style={{ fontSize: 30, fontWeight: '900', color: C.water }}>{water}/8</Text>
           <Btn small kind="secondary" label={t('home.addWater')} onPress={() => set((x) => ({ ...x, water: { ...x.water, [d]: (x.water[d] || 0) + 1 } }))} />
         </Card>
         <Card style={{ flex: 1 }}>
-          <Text style={s.h2}>🔥 {t('home.challenge')}</Text>
+          <CardTitle>🔥 {t('home.challenge')}</CardTitle>
           <T>{ch}</T>
           {st.streakOff ? null : <Text testID="streak" style={[s.muted, { fontWeight: '700' }]}>{t('home.streak', { n: streak(st.challengeDays) })}</Text>}
           {doneToday ? <Text style={{ color: C.success, fontWeight: '800', fontSize: 16 }}>✓ {t('home.challengeDone')}</Text>

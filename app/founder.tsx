@@ -1,6 +1,6 @@
 import { View, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Screen, Card, Btn, T, s } from '../src/ui';
+import { Screen, Card, Btn, T, s, CardTitle } from '../src/ui';
 import { useStore } from '../src/store';
 import { C } from '../src/theme';
 import { router } from 'expo-router';
@@ -22,15 +22,15 @@ export default function Founder() {
       <Text style={s.muted}>{t('fo.sub')}</Text>
       <View style={{ backgroundColor: C.accent, borderRadius: 12, padding: 10 }}><Text style={{ color: C.onAccent, fontWeight: '800' }}>{t('fo.demo')}</Text></View>
       <Card>
-        <Text style={s.h2}>{t('fo.kpi')}</Text>
+        <CardTitle>{t('fo.kpi')}</CardTitle>
         <View style={[s.row, { justifyContent: 'space-around' }]}>
           {[[t('fo.users'), '1'], [t('fo.paying'), '0'], [t('fo.mrr'), '0 $']].map(([k, v]) => <View key={k} style={{ alignItems: 'center' }}><Text style={[s.h1, { color: C.secondary }]}>{v}</Text><Text style={s.muted}>{k}</Text></View>)}
         </View>
       </Card>
-      <Card testID="split"><Text style={s.h2}>{t('x.splitTitle')}</Text>
+      <Card testID="split"><CardTitle>{t('x.splitTitle')}</CardTitle>
         {(() => { const sp = split(1000); return <><T>60% · {t('fx.sFounder')}: ${fmtNum(sp.ops)}</T><T>25% · {t('fx.sApp')}: ${fmtNum(sp.growth)}</T><T>15% · {t('fx.sTaxes')}: ${fmtNum(sp.social)}</T></>; })()}
         <Text style={s.muted}>{t('x.splitNote')}</Text></Card>
-      <Card><Text style={s.h2}>{t('x.adsTitle')}</Text>{ADS.map((a) => <T key={a.id}>✓ {a.brand}</T>)}<Text style={s.muted}>{t('x.adWhy')}</Text></Card>
+      <Card><CardTitle>{t('x.adsTitle')}</CardTitle>{ADS.map((a) => <T key={a.id}>✓ {a.brand}</T>)}<Text style={s.muted}>{t('x.adWhy')}</Text></Card>
       <LedgerCard />
       <AdminAICard />
       <PanelMaestroCard />
@@ -39,7 +39,7 @@ export default function Founder() {
       <Btn kind="ghost" label={`📊 ${t('x.aggTitle')}`} onPress={() => router.push('/aggregate')} />
       {cards.map((c) => (
         <Card key={c.id}>
-          <Text style={s.h2}>{c.title}</Text><T>{c.body}</T>
+          <CardTitle>{c.title}</CardTitle><T>{c.body}</T>
           {st.founder[c.id] ? <Text style={{ fontWeight: '900', fontSize: 18, color: st.founder[c.id] === 'approved' ? C.success : C.primary }}>{st.founder[c.id] === 'approved' ? '✓ ' + t('fo.approved') : '✕ ' + t('fo.rejected')}</Text>
             : <View style={s.row}><Btn label={t('fo.approve')} onPress={() => decide(c.id, 'approved')} style={{ flex: 1, backgroundColor: C.success }} /><Btn kind="danger" label={t('fo.reject')} onPress={() => decide(c.id, 'rejected')} style={{ flex: 1 }} /></View>}
         </Card>))}

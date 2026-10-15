@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { View, Text, TextInput, Image } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Screen, Card, Btn, Chip, T, s } from '../src/ui';
+import { Screen, Card, Btn, Chip, T, s, CardTitle } from '../src/ui';
 import { useStore, dailyTarget, Profile } from '../src/store';
 import { C } from '../src/theme';
 import { LegalLinks } from '../src/legal-links';
@@ -23,15 +23,15 @@ export default function Onboarding() {
         <Text style={[s.muted, { textAlign: 'center' }]}>{t('tagline')}</Text>
         <View style={[s.row, { marginTop: 6 }]}>{[0, 1, 2, 3].map((i) => <View key={i} style={{ width: i === step ? 28 : 10, height: 10, borderRadius: 5, backgroundColor: i <= step ? C.primary : C.border }} />)}</View>
       </View>
-      {step === 0 && <Card><Text style={s.h2}>{t('ob.goal')}</Text>
+      {step === 0 && <Card><CardTitle>{t('ob.goal')}</CardTitle>
         {(['lose', 'keep', 'gain'] as const).map((g) => <Btn key={g} kind={p.goal === g ? 'primary' : 'ghost'} label={t(`ob.${g}`)} onPress={() => setP({ ...p, goal: g })} />)}</Card>}
-      {step === 1 && <Card><Text style={s.h2}>{t('ob.body')}</Text>
+      {step === 1 && <Card><CardTitle>{t('ob.body')}</CardTitle>
         {(['weight', 'height', 'age'] as const).map((k) => <View key={k} style={{ gap: 4 }}><T>{t(`ob.${k}`)}</T>
           <TextInput accessibilityLabel={t(`ob.${k}`)} style={s.input} keyboardType="numeric" value={String(p[k] || '')} onChangeText={num(k)} /></View>)}
         <T>{t('ob.sex')}</T>
         {bad ? <T style={{ color: C.primary, fontWeight: '700' }}>{t('ob.invalid')}</T> : null}
         <View style={s.row}>{(['female', 'male'] as const).map((x) => <Chip key={x} label={t(`ob.${x}`)} active={p.sex === x} onPress={() => setP({ ...p, sex: x })} />)}</View></Card>}
-      {step === 2 && <Card><Text style={s.h2}>{t('ob.activity')}</Text>
+      {step === 2 && <Card><CardTitle>{t('ob.activity')}</CardTitle>
         {([1, 2, 3, 4] as const).map((a) => <Btn key={a} kind={p.activity === a ? 'primary' : 'ghost'} label={t(`ob.a${a}`)} onPress={() => setP({ ...p, activity: a })} />)}</Card>}
       {step === 3 && <>
         <Card style={{ backgroundColor: C.secondary }}>

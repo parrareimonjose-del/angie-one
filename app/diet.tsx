@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { Redirect } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Screen, Card, Btn, Chip, T, s } from '../src/ui';
+import { Screen, Card, Btn, Chip, T, s, CardTitle, FOOD } from '../src/ui';
 import { C } from '../src/theme';
 import { fmtNum } from '../src/i18n';
 import { today, uid } from '../src/store';
@@ -27,13 +27,14 @@ export default function Diet() {
     <Screen title={`🍽️ ${t('coach.diet')}`}>
       <Row>{[0, 1, 2, 3, 4, 5, 6].map((i) => <Chip key={i} label={dayName(i)} active={i === d} onPress={() => setD(i)} />)}</Row>
       <View style={[s.row, { justifyContent: 'space-between' }]}>
-        <Text style={s.h2}>{dayName(d, true)} · {fmtNum(total)} {t('u.kcal')}</Text>
+        <CardTitle>{dayName(d, true)} · {fmtNum(total)} {t('u.kcal')}</CardTitle>
         <Btn small kind="ghost" label="🔊" a11y={t('home.readAloud')} style={{ width: 56 }} onPress={() => speak(meals.map((m, i) => `${slots[i] || ''}: ${N.meal(m)}, ${sc(m).kcal} ${t('u.kcal')}`).join('. '))} />
       </View>
       {meals.map((m, i) => { const v = sc(m); const ok = added.includes(`${d}-${i}`) || st.entries.some((e) => e.date === today() && e.name === N.meal(m) && e.kcal === v.kcal); return (
         <Card key={i}>
+          <Image source={[FOOD.breakfast, FOOD.bowl, FOOD.fruit, FOOD.plate, FOOD.salad][i % 5]} accessibilityIgnoresInvertColors style={{ height: 110, borderRadius: 16, width: '100%' }} resizeMode="cover" />
           <Text style={[s.muted, { fontWeight: '800' }]}>{slots[i] || ''}</Text>
-          {N.meal(m) !== slots[i] && <Text style={s.h2}>{N.meal(m)}</Text>}
+          {N.meal(m) !== slots[i] && <CardTitle>{N.meal(m)}</CardTitle>}
           <T>{N.items(m)}{m.scale && Math.abs(m.scale * k - 1) > 0.05 ? ` · ${t('coach.portion', { x: fmtNum(m.scale * k, 1) })}` : ''}</T>
           <Text style={[s.t, { fontWeight: '800', color: C.primary }]}>{fmtNum(v.kcal)} {t('u.kcal')} · {t('u.p')} {v.p}{t('u.g')} · {t('u.c')} {v.c}{t('u.g')} · {t('u.f')} {v.f}{t('u.g')}</Text>
           {d === weekday() && (ok ? <Text style={{ color: C.success, fontWeight: '800' }}>✓ {t('coach.logged')}</Text> : <Btn small kind="secondary" label={`+ ${t('coach.logMeal')}`} onPress={() => log(m, i)} />)}

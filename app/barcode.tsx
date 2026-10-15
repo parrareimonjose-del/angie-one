@@ -3,7 +3,7 @@ import { View, Text, TextInput, Image, Platform } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { CameraView, useCameraPermissions } from 'expo-camera';
-import { Screen, Card, Btn, Chip, T, s } from '../src/ui';
+import { Screen, Card, Btn, Chip, T, s, CardTitle } from '../src/ui';
 import { useStore, today, uid } from '../src/store';
 import { lookupBarcode, light, Product } from '../src/off';
 import { barcodeCloud, ATTRIBUTION } from '../src/fooddb';
@@ -54,7 +54,7 @@ export default function Barcode() {
       {nf && !prod && <Card testID="bar-nf">
         <Btn label={lbusy ? `⏳ ${t('scan.analyzing')}` : `🏷️  ${t('bar.labelPhoto')}`} onPress={labelPhoto} />
         {lest && <EstimateResult key={lest.name + lest.kcalMin} est={lest} onLog={(x) => addE(x)} />}
-        <Text style={s.h2}>✍️ {t('manual.exact')}</Text>
+        <CardTitle>✍️ {t('manual.exact')}</CardTitle>
         <TextInput accessibilityLabel={t('manual.name')} style={s.input} placeholder={t('manual.name')} value={mName} onChangeText={setMName} />
         <TextInput accessibilityLabel={t('manual.kcal')} style={s.input} placeholder={t('manual.kcal')} keyboardType="numeric" value={mKcal} onChangeText={(v) => setMKcal(v.replace(/[^0-9]/g, ''))} />
         <Btn kind="secondary" label={t('add')} onPress={() => { if (mName.trim() && +mKcal > 0 && +mKcal < 5000) addE({ name: mName.trim(), kcal: +mKcal }); }} />

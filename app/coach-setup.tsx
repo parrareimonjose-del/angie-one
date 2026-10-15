@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { View, Text, TextInput, ActivityIndicator } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Screen, Card, Btn, Chip, T, s } from '../src/ui';
+import { Screen, Card, Btn, Chip, T, s, CardTitle, InfoNote } from '../src/ui';
 import { C } from '../src/theme';
 import { curLang } from '../src/i18n';
 import { useCoach, CoachLocked, Row, Disclaimer } from '../src/coach-ui';
@@ -24,7 +24,7 @@ export default function CoachSetup() {
   };
   if (busy) return (
     <Screen nav={false}><Card style={{ alignItems: 'center', gap: 16, paddingVertical: 40 }}>
-      <ActivityIndicator size="large" color={C.primary} /><Text style={s.h2}>{t('coach.building')}</Text><T>{t('coach.buildingSub')}</T></Card></Screen>
+      <Text style={{ fontSize: 56 }}>🧑‍🍳</Text><ActivityIndicator size="large" color={C.primary} /><CardTitle>{t('coach.building')}</CardTitle><T>{t('coach.buildingSub')}</T></Card></Screen>
   );
   if (note) return (
     <Screen nav={false}><Card style={{ backgroundColor: C.warnBg }}><T style={{ fontWeight: '700' }}>{note}</T></Card>
@@ -34,31 +34,31 @@ export default function CoachSetup() {
     <Screen nav={false} title={t('coach.setupTitle')}>
       <View style={[s.row, { justifyContent: 'center' }]}>{[0, 1, 2].map((i) => <View key={i} style={{ width: i === step ? 28 : 10, height: 10, borderRadius: 5, backgroundColor: i <= step ? C.primary : C.border }} />)}</View>
       {step === 0 && <>
-        <Card><Text style={s.h2}>{t('coach.place')}</Text><Row>
+        <Card><CardTitle icon="📍">{t('coach.place')}</CardTitle><Row>
           <Chip label={`🏠 ${t('coach.home')}`} active={p.place === 'home'} onPress={() => setP({ ...p, place: 'home' })} />
           <Chip label={`🏋️ ${t('coach.gym')}`} active={p.place === 'gym'} onPress={() => setP({ ...p, place: 'gym' })} /></Row></Card>
-        <Card><Text style={s.h2}>{t('coach.daysQ')}</Text><Row>{[2, 3, 4, 5, 6].map((n) => <Chip key={n} label={String(n)} active={p.days === n} onPress={() => setP({ ...p, days: n })} />)}</Row></Card>
-        <Card><Text style={s.h2}>{t('coach.minutesQ')}</Text><Row>{[15, 20, 30, 45, 60].map((n) => <Chip key={n} label={`${n} min`} active={p.minutes === n} onPress={() => setP({ ...p, minutes: n })} />)}</Row></Card>
-        <Card><Text style={s.h2}>{t('coach.levelQ')}</Text><Row>{(['beginner', 'intermediate', 'advanced'] as const).map((l) => <Chip key={l} label={t(`coach.${l}`)} active={p.level === l} onPress={() => setP({ ...p, level: l })} />)}</Row></Card>
+        <Card><CardTitle icon="📅">{t('coach.daysQ')}</CardTitle><Row>{[2, 3, 4, 5, 6].map((n) => <Chip key={n} label={String(n)} active={p.days === n} onPress={() => setP({ ...p, days: n })} />)}</Row></Card>
+        <Card><CardTitle icon="⏱️">{t('coach.minutesQ')}</CardTitle><Row>{[15, 20, 30, 45, 60].map((n) => <Chip key={n} label={`${n} min`} active={p.minutes === n} onPress={() => setP({ ...p, minutes: n })} />)}</Row></Card>
+        <Card><CardTitle icon="📈">{t('coach.levelQ')}</CardTitle><Row>{(['beginner', 'intermediate', 'advanced'] as const).map((l) => <Chip key={l} label={t(`coach.${l}`)} active={p.level === l} onPress={() => setP({ ...p, level: l })} />)}</Row></Card>
       </>}
       {step === 1 && <Card>
-        <Text style={s.h2}>{t('coach.injuriesQ')}</Text>
+        <CardTitle icon="🩹">{t('coach.injuriesQ')}</CardTitle>
         <Row>
           <Chip label={t('coach.none')} active={!p.injuries.length} onPress={() => setP({ ...p, injuries: [] })} />
           {(['knees', 'back', 'shoulders', 'wrists'] as Injury[]).map((k) => <Chip key={k} label={t(`coach.inj.${k}`)} active={p.injuries.includes(k)} onPress={() => toggle('injuries', k)} />)}
         </Row>
-        <Text style={s.muted}>⚠️ {t('coach.safety')}</Text>
+        <InfoNote warn icon="⚠️" text={t('coach.safety')} />
         <T>{t('coach.injuryNote')}</T>
         <TextInput accessibilityLabel={t('coach.injuryNote')} style={s.input} value={p.injuryNote} maxLength={120} onChangeText={(v) => setP({ ...p, injuryNote: v })} placeholder={t('coach.optional')} />
       </Card>}
       {step === 2 && <>
-        <Card><Text style={s.h2}>{t('coach.dislikesQ')}</Text>
+        <Card><CardTitle icon="🚫">{t('coach.dislikesQ')}</CardTitle>
           <Row>{(['fish', 'eggs', 'dairy', 'beef', 'chicken', 'legumes', 'nuts', 'veg'] as Dislike[]).map((k) => <Chip key={k} label={t(`coach.dis.${k}`)} active={p.dislikes.includes(k)} onPress={() => toggle('dislikes', k)} />)}</Row></Card>
-        <Card><Text style={s.h2}>{t('coach.cuisineQ')}</Text>
+        <Card><CardTitle icon="🌎">{t('coach.cuisineQ')}</CardTitle>
           <Row>{(['latin', 'mexican', 'caribbean', 'andean', 'brazilian', 'international'] as Cuisine[]).map((k) => <Chip key={k} label={t(`coach.cui.${k}`)} active={p.cuisine === k} onPress={() => setP({ ...p, cuisine: k })} />)}</Row></Card>
-        <Card><Text style={s.h2}>{t('coach.budgetQ')}</Text>
+        <Card><CardTitle icon="💰">{t('coach.budgetQ')}</CardTitle>
           <Row>{(['low', 'medium', 'high'] as const).map((k) => <Chip key={k} label={t(`coach.bud.${k}`)} active={p.budget === k} onPress={() => setP({ ...p, budget: k })} />)}</Row></Card>
-        <Card><Text style={s.h2}>{t('coach.mealsQ')}</Text>
+        <Card><CardTitle icon="🍽️">{t('coach.mealsQ')}</CardTitle>
           <Row>{([3, 4, 5] as const).map((k) => <Chip key={k} label={String(k)} active={p.meals === k} onPress={() => setP({ ...p, meals: k })} />)}</Row></Card>
         <Disclaimer />
       </>}

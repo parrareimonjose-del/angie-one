@@ -156,7 +156,7 @@ export function Screen({ children, nav = true, title }: { children: React.ReactN
             </View>
           ) : null}
           <FadeIn style={{ gap: 14 }}>
-            {title ? (!isTab && heroImg(path) ? <SectionHero title={title} source={heroImg(path)} fallbackIcon={ROUTE_ICON[path.replace(/^\//, '').split('/')[0]]} /> : <Text style={s.h1} accessibilityRole="header">{title}</Text>) : null}
+            {title ? (path !== '/' && path !== '/more' && path !== '/onboarding' && heroImg(path) ? <SectionHero title={title} source={heroImg(path)} fallbackIcon={ROUTE_ICON[path.replace(/^\//, '').split('/')[0]]} /> : <Text style={s.h1} accessibilityRole="header">{title}</Text>) : null}
             {children}
           </FadeIn>
         </ScrollView>
@@ -416,4 +416,48 @@ export function ThemePicker() {
       </View>
     </Card>
   );
+}
+
+// ---------------- Bloques ricos para el cuerpo de las pantallas (pulido 2) ----------------
+const TILE = () => (C.mode === 'dark' ? ['#3B2A66', '#241A3F'] : ['#FFE4E6', '#EDE9FE']);
+export function IconTile({ icon, size = 48, colors }: { icon: string; size?: number; colors?: string[] }) {
+  return <View style={{ width: size, height: size, borderRadius: size * 0.32, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}><GradientFill colors={colors ?? TILE()} radius={size * 0.32} /><Text style={{ fontSize: size * 0.48 }}>{icon}</Text></View>;
+}
+/** Tarjeta con cabecera: azulejo de icono + título + subtítulo. */
+export function IconCard({ icon, title, sub, children, style, testID, right }: { icon: string; title: string; sub?: string; children?: React.ReactNode; style?: ViewStyle; testID?: string; right?: React.ReactNode }) {
+  return <View testID={testID} style={[s.card, style]}>
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 14 }}><IconTile icon={icon} />
+      <View style={{ flex: 1 }}><Text style={{ fontSize: 18, fontWeight: '800', color: C.text }}>{title}</Text>{sub ? <Text style={s.muted}>{sub}</Text> : null}</View>{right}</View>
+    {children}
+  </View>;
+}
+/** Fila de cifras grandes con icono (como en Inicio). */
+export function StatRow({ items }: { items: { icon: string; value: string | number; label: string; color?: string }[] }) {
+  return <View style={{ flexDirection: 'row', gap: 10 }}>{items.map((it, i) => (
+    <View key={i} style={[s.card, { flex: 1, alignItems: 'center', gap: 4, padding: 12 }]}>
+      <Text style={{ fontSize: 22 }}>{it.icon}</Text>
+      <Text style={{ fontSize: 22, fontWeight: '900', color: it.color ?? C.text }} numberOfLines={1} adjustsFontSizeToFit>{it.value}</Text>
+      <Text style={[s.muted, { fontSize: 13, textAlign: 'center' }]} numberOfLines={2}>{it.label}</Text>
+    </View>))}</View>;
+}
+/** Nota informativa en tarjeta suave con icono. */
+export function InfoNote({ text, icon = 'ℹ️', warn }: { text: string; icon?: string; warn?: boolean }) {
+  return <View style={{ flexDirection: 'row', gap: 12, alignItems: 'flex-start', padding: 14, borderRadius: 18, backgroundColor: warn ? C.warnBg : C.tint, borderWidth: 1, borderColor: C.glassBorder }}>
+    <Text style={{ fontSize: 18 }}>{icon}</Text><Text style={[s.muted, { flex: 1, fontSize: 14, color: C.text, opacity: 0.85 }]}>{text}</Text>
+  </View>;
+}
+/** Píldora pequeña de estado. */
+export function Pill({ label, color }: { label: string; color?: string }) {
+  const c = color ?? C.secondary;
+  return <View style={{ alignSelf: 'flex-start', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 999, backgroundColor: c + '22', borderWidth: 1, borderColor: c + '55' }}><Text style={{ color: c, fontWeight: '800', fontSize: 13 }}>{label}</Text></View>;
+}
+/** Título de tarjeta: azulejo con el emoji inicial (o el icono dado) o barra de acento. */
+export function CardTitle({ children, icon, style }: { children: React.ReactNode; icon?: string; style?: TextStyle }) {
+  const parts = React.Children.toArray(children); const first = typeof parts[0] === 'string' ? (parts[0] as string) : '';
+  const m = first.match(EMOJI_RE); const own = m && /\p{Extended_Pictographic}/u.test(m[1]) ? m[1] : null; const ic = icon ?? own;
+  const rest = own && !icon ? [first.slice(m![0].length), ...parts.slice(1)] : parts;
+  return <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+    {ic ? <IconTile icon={ic} size={40} /> : <View style={{ width: 5, height: 22, borderRadius: 3, backgroundColor: C.mode === 'dark' ? '#A78BFA' : '#E11D48' }} />}
+    <Text style={[s.h2, { flex: 1 }, style as any]} accessibilityRole="header">{rest}</Text>
+  </View>;
 }

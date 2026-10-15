@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { useStore } from './store';
 import { isPremium } from './coach';
 import { C } from './theme';
-import { s, T, Card } from './ui';
+import { s, T, Card, InfoNote } from './ui';
 
 export function useExt<V>(key: string, init: V): [V, (fn: (v: V) => V) => void] {
   const { s: st, set } = useStore();
@@ -19,7 +19,7 @@ export const Pending = ({ what }: { what?: string }) => { const { t } = useTrans
     <Text style={{ color: C.warning, fontWeight: '800' }}>⏳ {t('x.pending')}{what ? ` · ${what}` : ''}</Text></View>); };
 export const Example = () => { const { t } = useTranslation(); return (
   <View style={{ alignSelf: 'flex-start', backgroundColor: C.accent, borderRadius: 12, paddingHorizontal: 10, paddingVertical: 6 }}><Text style={{ color: C.onAccent, fontWeight: '800' }}>{t('x.example')}</Text></View>); };
-export const Note = ({ k }: { k: string }) => { const { t } = useTranslation(); return <Text style={[s.muted, { fontSize: 14 }]}>ℹ️ {t(k)}</Text>; };
+export const Note = ({ k }: { k: string }) => { const { t } = useTranslation(); return <InfoNote text={t(k)} />; };
 
 /** Anuncio de marca saludable aprobada. Nunca se elige por datos de salud: solo por idioma. */
 export const ADS = [{ id: 'a1', brand: 'Verde Vivo', key: 'ad1' }, { id: 'a2', brand: 'Agua Clara', key: 'ad2' }];

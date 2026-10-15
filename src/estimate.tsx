@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { View, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Card, Btn, Chip, T, s } from './ui';
+import { Card, Btn, Chip, T, s, CardTitle } from './ui';
 import { refine, Estimate, AIError } from './ai';
 import { C } from './theme';
 import { fmtNum } from './i18n';
@@ -30,7 +30,7 @@ export function EstimateResult({ est, onLog }: { est: Estimate; onLog: (x: { nam
       <Text style={[s.muted, { fontSize: 15 }]}>{t('scan.disclaimer')}</Text>
     </Card>
     <Card>
-      <Text style={s.h2}>{t('scan.questions')}</Text>
+      <CardTitle>{t('scan.questions')}</CardTitle>
       {(['oil', 'sauce', 'fried'] as const).map(yn)}
       <T style={{ fontWeight: '700' }}>{t('scan.portion')}</T>
       <View style={[s.row, { flexWrap: 'wrap' }]}>{PORTIONS.map((p) => <Chip key={p} label={`${p}×`} active={q.portion === p} onPress={() => setQ({ ...q, portion: p })} />)}</View>

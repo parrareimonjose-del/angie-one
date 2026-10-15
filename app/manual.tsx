@@ -5,7 +5,7 @@ import { startVoice, voiceSupported } from '../src/voice';
 import { View, Text, TextInput, Pressable, Platform } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Screen, Card, Btn, T, s } from '../src/ui';
+import { Screen, Card, Btn, T, s, CardTitle } from '../src/ui';
 import { useStore, today, uid } from '../src/store';
 import { fmtLocale, fmtNum } from '../src/i18n';
 import { searchFoods, type VFood } from '../src/verified';
@@ -45,7 +45,7 @@ export default function Manual() {
   return (
     <Screen title={t('manual.title')}>
       {st.aiEnabled && <Card>
-        <Text style={s.h2}>✨ {t('manual.aiTitle')}</Text>
+        <CardTitle>✨ {t('manual.aiTitle')}</CardTitle>
         <TextInput accessibilityLabel={t('manual.aiTitle')} style={[s.input, { minHeight: 80, paddingTop: 12 }]} multiline placeholder={t('manual.aiPh')} value={desc} onChangeText={setDesc} />
         <Btn label={busy ? `⏳ ${t('scan.analyzing')}` : `✨  ${t('manual.aiBtn')}`} onPress={() => ask()} />
         {SR && <Btn kind="secondary" small label={lis === 'working' ? `⏳ ${t('voice.working')}` : lis === 'listening' ? `⏹️ ${t('voice.stop')}` : `🎙️  ${t('manual.dictate')}`} onPress={dictate} />}
@@ -54,14 +54,14 @@ export default function Manual() {
       {est && <EstimateResult key={est.name + est.kcalMin} est={est} onLog={(x) => add(x)} />}
       <TextInput accessibilityLabel={t('manual.search')} style={s.input} placeholder={t('manual.search')} value={q} onChangeText={setQ} />
       <Card>
-        <Text style={s.h2}>🌎 {t('manual.latin')}</Text><Text style={s.muted}>{t('hb.verifiedHow')}</Text>
+        <CardTitle>🌎 {t('manual.latin')}</CardTitle><Text style={s.muted}>{t('hb.verifiedHow')}</Text>
         {list.length === 0 ? <Text style={s.muted}>{t('manual.noMatch')}</Text> : null}
         {cst === 'busy' ? <Text testID="cloud-busy" style={s.muted}>⏳ {t('fdb.searching')}</Text> : cst === 'off' ? <Text testID="cloud-off" style={s.muted}>{t('fdb.offline')}</Text> : null}
         {list.slice(0, 20).map((f) => <FoodRow key={f.key} f={f} label={label(f)} onAdd={() => add({ name: label(f), kcal: f.kcal, p: f.p, c: f.c, f: f.f, fiber: f.fiber })} />)}
         {cloud.length ? <Text testID="food-attrib" style={[s.muted, { fontSize: 13 }]}>{t('fdb.source')}: {ATTRIBUTION}</Text> : null}
       </Card>
       <Card>
-        <Text style={s.h2}>✍️ {t('manual.exact')}</Text>
+        <CardTitle>✍️ {t('manual.exact')}</CardTitle>
         <TextInput accessibilityLabel={t('manual.name')} style={s.input} placeholder={t('manual.name')} value={name} onChangeText={setName} />
         <TextInput accessibilityLabel={t('manual.kcal')} style={s.input} placeholder={t('manual.kcal')} keyboardType="numeric" value={kcal} onChangeText={(v) => setKcal(v.replace(/[^0-9]/g, ''))} />
         {bad ? <T style={{ color: C.primary, fontWeight: '700' }}>{t('manual.badKcal')}</T> : null}

@@ -6,7 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
-import { Screen, Card, Btn, T, Bar, s } from './ui';
+import { Screen, Card, Btn, T, Bar, s, InfoNote, CardTitle } from './ui';
 import { C } from './theme';
 import { useStore, uid } from './store';
 import { fmtNum, curLang } from './i18n';
@@ -63,7 +63,7 @@ export function Datos() {
   const done = new Set(Object.values(d.master).map((m) => m.survey?.id));
   return <Screen title={`🧾 ${t('dt.title')}`}>
     <DatosTabs /><Example /><Pending what={t('dt.server')} /><Health />
-    <Card testID="consent"><Text style={s.h2}>✋ {t('dt.consentT')}</Text>
+    <Card testID="consent"><CardTitle>✋ {t('dt.consentT')}</CardTitle>
       {d.consent ? <><T testID="consent-on">✓ {t('dt.consentOn')}</T>
         <Btn kind="danger" label={t('dt.revoke')} onPress={() => { setD((x) => revoke(x)); setMsg(t('dt.revoked')); }} />
         <Btn small kind="ghost" label={t('dt.deleteAll')} onPress={() => { setD((x) => revoke(x, Date.now(), 'delete')); setMsg(t('dt.revoked')); }} /></>
@@ -78,12 +78,12 @@ export function Datos() {
     {d.consent ? <>
       <Card><Text style={s.h2}>⭐ {t('dt.points')}: <Text testID="dt-points">{d.points}</Text></Text>
         <T>{t('dt.rules')}</T><T testID="dt-today">{t('dt.today', { n: receiptsToday(d), max: MAX_RECEIPTS_DAY })}</T></Card>
-      <Card><Text style={s.h2}>🧾 {t('dt.receipts')}</Text>
+      <Card><CardTitle>🧾 {t('dt.receipts')}</CardTitle>
         <Btn label={`📸 ${t('dt.photo')}`} onPress={photo} />
         {Platform.OS === 'web' ? <Btn kind="secondary" label={`📄 ${t('dt.pdf')}`} onPress={pdf} /> : null}
         <Btn small kind="ghost" label={t('dt.sample')} onPress={() => add('receipt', { ...SAMPLE, total: +(20 + Math.random() * 60).toFixed(2) })} />
         {busy ? <T>⏳ {t('dt.reading')}</T> : null}</Card>
-      <Card><Text style={s.h2}>📝 {t('dt.surveys')}</Text>
+      <Card><CardTitle>📝 {t('dt.surveys')}</CardTitle>
         {SURVEYS.filter((x) => !done.has(x)).map((x) => <Survey key={x} id={x} onDone={(a) => add('survey', { id: x, answers: { a } })} />)}
         {SURVEYS.every((x) => done.has(x)) ? <T>✓ {t('dt.allSurveys')}</T> : null}</Card>
       <Btn kind="accent" label={`📅 ${t('dt.month')}`} onPress={() => router.push('/datos-mes' as any)} />
@@ -103,19 +103,19 @@ function ReportScreen({ kind }: { kind: 'month' | 'year' }) {
   const ded = deductions(rs);
   return <Screen title={kind === 'month' ? `📅 ${t('dt.month')}` : `📚 ${t('dt.year')}`}><Example />
     {!d.consent ? <Card><T>{t('dt.needConsent')}</T><Btn label={t('dt.title')} onPress={() => router.push('/datos' as any)} /></Card> : null}
-    <Card testID="cost"><Text style={s.h2}>{t('dt.cost', { n: c.cost })}</Text><T>{t('dt.youHave', { n: d.points })}</T>
+    <Card testID="cost"><CardTitle>{t('dt.cost', { n: c.cost })}</CardTitle><T>{t('dt.youHave', { n: d.points })}</T>
       <Bar value={Math.min(d.points, c.cost)} max={c.cost} color={C.primary} />
       {kind === 'month' ? <T>{t('dt.gapM', { n: gap })}</T> : <T>{t('dt.gapY')}</T>}</Card>
-    {d.consent && !c.gapDone ? <Card><Text style={s.h2}>🧩 {t('dt.gapT')}</Text>
+    {d.consent && !c.gapDone ? <Card><CardTitle>🧩 {t('dt.gapT')}</CardTitle>
       <Survey id={gapSurveyId(kind, period)} onDone={(a) => { const r = ingest(d, 'survey', { id: gapSurveyId(kind, period), answers: { a } }, uid()); if (!r.error) setD(() => r.d); }} /></Card> : null}
     {!have ? <Btn label={c.ok ? `✓ ${t('dt.redeem', { n: c.cost })}` : `🔒 ${t('dt.notYet')}`} kind={c.ok ? 'primary' : 'ghost'} onPress={() => { const n = redeem(d, kind, period); if (n) setD(() => n); }} /> : null}
-    {have ? <Card testID="report"><Text style={s.h2}>{t('dt.summary')} · {period}</Text>
+    {have ? <Card testID="report"><CardTitle>{t('dt.summary')} · {period}</CardTitle>
       <T>{t('dt.total')}: {money(sum.total)} · {sum.count} {t('dt.receipts').toLowerCase()}</T>
       {sum.by.map((x) => <T key={x.cat}>• {t('dt.cat.' + x.cat)}: {money(x.v)}</T>)}
       {kind === 'year' ? <>
-        <Text style={s.h2}>💡 {t('dt.dedT')}</Text>
+        <CardTitle>💡 {t('dt.dedT')}</CardTitle>
         {Object.keys(ded).length ? Object.entries(ded).map(([k, v]) => <T key={k}>• {t('dt.ded.' + k)}: {money(v)}</T>) : <T>{t('dt.dedNone')}</T>}
-        <Text style={s.h2}>🧑‍💼 {t('dt.accQ')}</Text>
+        <CardTitle>🧑‍💼 {t('dt.accQ')}</CardTitle>
         {ACCOUNTANT_QS.map((q) => <View key={q} style={{ gap: 4 }}><T>{t('dt.acc.' + q)}</T><TextInput value={ans[q] || ''} onChangeText={(v) => setAns((a) => ({ ...a, [q]: v.slice(0, 120) }))} style={[s.input, { minHeight: 48 }]} /></View>)}
         <Btn label={`📄 ${t('dt.pdfDl')}`} onPress={() => downloadPdf(period, sum, ded, ans)} />
         <Btn kind="ghost" label={`✉️ ${t('dt.toAcc')}`} onPress={() => {}} /><Pending what={t('dt.toAccP')} />
@@ -162,7 +162,7 @@ export function FounderData() {
   const infos = LISTS.map((l) => listInfo(l, SAMPLE_USERS[l] + (mine(l) ? 1 : 0), SAMPLE_USERS[l] * 9 + mine(l), Math.round(SAMPLE_USERS[l] / 8)));
   const ready = infos.filter((i) => i.ready && dec[i.id]?.v !== 'approved');
   const pointers = LISTS.reduce((n, l) => n + mine(l), 0);
-  return <Card testID="founder-data"><Text style={s.h2}>🗂️ {t('dt.foT')}</Text><Example /><Pending what={t('dt.server')} />
+  return <Card testID="founder-data"><CardTitle>🗂️ {t('dt.foT')}</CardTitle><Example /><Pending what={t('dt.server')} />
     <T>{t('dt.foMaster', { n: Object.keys(d.master).length, p: pointers, bad: danglingPointers(d).length })}</T>
     <T>{t('dt.foConsent', { g: d.log.filter((x) => x.action === 'grant').length, r: d.log.filter((x) => x.action !== 'grant').length })}</T>
     {ready.length ? <View testID="ready-notice" style={{ backgroundColor: C.warnBg, borderRadius: 12, padding: 10, gap: 4 }}><Text style={[s.h2, { color: C.warning }]}>🔔 {t('dt.readyN', { n: ready.length })}</Text></View> : null}
@@ -188,5 +188,5 @@ export function FounderData() {
       </View> : null}
       {!i.ready ? <Text style={[s.muted, { fontSize: 14 }]}>🔒 {t('dt.min50', { n: MIN_GROUP })}</Text> : null}
     </View>)}
-    <Text style={[s.muted, { fontSize: 14 }]}>ℹ️ {t('dt.foNote')}</Text></Card>;
+    <InfoNote text={t('dt.foNote')} /></Card>;
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Screen, Card, Btn, T, s } from '../src/ui';
+import { Screen, Card, Btn, T, s, CardTitle } from '../src/ui';
 import { C } from '../src/theme';
 import { useStore, trialPhase, fmtCountdown } from '../src/store';
 import { LegalLinks } from '../src/legal-links';
@@ -35,7 +35,7 @@ export default function Paywall() {
       <Text style={[s.muted, { textAlign: 'center' }]}>{t('pay.latam')}</Text>
       <Card style={{ backgroundColor: C.warnBg }}><T>⏳ {t('pay.offer')}</T>
         <T style={{ fontWeight: '800', color: tp.phase === 'offer' ? C.primary : C.text }}>{tp.phase === 'offer' ? t('pay.offerLive', { time: fmtCountdown(tp.offerMsLeft) }) : tp.phase === 'free' ? t('pay.offerGone') : t('pay.offerAfter')}</T></Card>
-      <Card testID="sub-terms"><Text style={s.h2}>📋 {t('fx.termsT')}</Text>
+      <Card testID="sub-terms"><CardTitle>📋 {t('fx.termsT')}</CardTitle>
         <T>{t('fx.terms', { price: plan === 'y' ? '$' + PLANS.yearly.usd : '$' + PLANS.monthly.usd, period: t(plan === 'y' ? 'fx.perYear' : 'fx.perMonth'), store: prov.name })}</T>
         <Text style={[s.muted, { fontSize: 15 }]}>{t('pay.renew')}</Text><Text style={[s.muted, { fontSize: 15 }]}>⚕️ {t('fx.healthDisc')}</Text></Card>
       <Text testID="pay-provider" style={[s.muted, { textAlign: 'center' }]}>🔒 {t('fx.payVia', { store: prov.name })}</Text>

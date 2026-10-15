@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImagePicker from 'expo-image-picker';
 import Svg, { Circle, Rect, Ellipse, Path, Defs, ClipPath, Image as SvgImage, G } from 'react-native-svg';
-import { Screen, Card, Btn, T, s } from './ui';
+import { Screen, Card, Btn, T, s, InfoNote, CardTitle } from './ui';
 import { C } from './theme';
 import { fmtNum, curLang } from './i18n';
 import { useStore, today } from './store';
@@ -113,12 +113,12 @@ export function Clone() {
   // 1) Permiso aparte (casillas sin marcar) y mayor de edad
   if (!c && i === -1) return <Screen title={`🧬 ${t('cl.title')}`}>
     <Card style={{ backgroundColor: C.tint }}><T style={{ fontWeight: '800' }}>{t('cl.intro')}</T><T>{t('cl.how')}</T></Card>
-    <Card><Text style={s.h2}>🔒 {t('cl.rule')}</Text><T>{t('cl.ruleTxt')}</T><T>👕 {t('cl.clothes')}</T></Card>
+    <Card><CardTitle>🔒 {t('cl.rule')}</CardTitle><T>{t('cl.ruleTxt')}</T><T>👕 {t('cl.clothes')}</T></Card>
     <Check testID="cl-consent" on={consent} label={t('cl.consent')} onPress={() => setConsent(!consent)} />
     <Check testID="cl-adult" on={adult} label={t('cl.adult')} onPress={() => setAdult(!adult)} />
     <Btn testID="cl-start" label={`📸  ${t('cl.start')}`} kind={consent && adult ? 'primary' : 'ghost'} onPress={() => { if (consent && adult) { setMsg(''); save({ consent: Date.now(), adult: true, photos: {} }); setI(0); } else setMsg(t('cl.needBoth')); }} />
     {msg ? <T style={{ color: C.primary, fontWeight: '700' }}>{msg}</T> : null}
-    <Text style={[s.muted, { fontSize: 14 }]}>ℹ️ {t('cl.notMed')}</Text></Screen>;
+    <InfoNote text={t('cl.notMed')} /></Screen>;
   // 2) Fotos guiadas
   if (i >= 0) { const sh = SHOTS[i]; const must = sh === 'faceFront' || sh === 'bodyFront';
     return <Screen title={`📸 ${i + 1}/6 · ${t(`cl.shot.${sh}`)}`}>
@@ -132,7 +132,7 @@ export function Clone() {
   // 3) Revisar fotos y crear el clon
   if (!c.traits) { const missing = !c.photos.faceFront || !c.photos.bodyFront;
     return <Screen title={`🧬 ${t('cl.title')}`}>
-      <Card><Text style={s.h2}>{t('cl.review')}</Text><View style={[s.row, { flexWrap: 'wrap', gap: 8 }]}>{SHOTS.map((sh, k) => <Pressable key={sh} onPress={() => setI(k)} accessibilityRole="button" accessibilityLabel={t(`cl.shot.${sh}`)} style={{ width: 92, alignItems: 'center' }}>
+      <Card><CardTitle>{t('cl.review')}</CardTitle><View style={[s.row, { flexWrap: 'wrap', gap: 8 }]}>{SHOTS.map((sh, k) => <Pressable key={sh} onPress={() => setI(k)} accessibilityRole="button" accessibilityLabel={t(`cl.shot.${sh}`)} style={{ width: 92, alignItems: 'center' }}>
         {c.photos[sh] ? <Svg width={84} height={84}><SvgImage href={{ uri: c.photos[sh]! }} width={84} height={84} preserveAspectRatio="xMidYMid slice" /></Svg> : <View style={{ width: 84, height: 84, borderRadius: 12, backgroundColor: C.border, alignItems: 'center', justifyContent: 'center' }}><Text style={{ fontSize: 28 }}>＋</Text></View>}
         <Text style={[s.muted, { fontSize: 13, textAlign: 'center' }]}>{t(`cl.shot.${sh}`)}</Text></Pressable>)}</View></Card>
       {missing ? <><T style={{ color: C.primary, fontWeight: '700' }}>{t('cl.needFront')}</T><Btn label={`📸  ${t('cl.take')}`} onPress={() => setI(c.photos.faceFront ? 3 : 0)} /></>
@@ -159,7 +159,7 @@ export function Clone() {
       <Btn kind="danger" style={{ flex: 1 }} testID="cl-del-yes" label={t('cl.delYes')} onPress={() => { save(null); setAsk(false); setI(-1); setConsent(false); setAdult(false); }} />
       <Btn kind="ghost" style={{ flex: 1 }} label={t('cl.delNo')} onPress={() => setAsk(false)} /></View></Card>
       : <Btn kind="danger" testID="cl-del" label={`🗑️  ${t('cl.del')}`} onPress={() => setAsk(true)} />}
-    <Text style={[s.muted, { fontSize: 14 }]}>🔒 {t('cl.onDevice')} ℹ️ {t('cl.notMed')}</Text></Screen>;
+    <InfoNote icon="🔒" text={`${t('cl.onDevice')} ${t('cl.notMed')}`} /></Screen>;
 }
 
 /** Tarjeta en Inicio: invita a crear el clon (se puede ocultar). */

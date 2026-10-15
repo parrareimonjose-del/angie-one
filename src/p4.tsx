@@ -4,7 +4,7 @@ import { View, Text, TextInput } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import Svg, { Rect, Circle, Text as SvgText } from 'react-native-svg';
-import { Screen, Card, Btn, Chip, T, Bar, s } from './ui';
+import { Screen, Card, Btn, Chip, T, Bar, s, CardTitle } from './ui';
 import { C } from './theme';
 import { useStore, today, uid } from './store';
 import { fmtNum, fmtDate } from './i18n';
@@ -17,7 +17,7 @@ export function Market() {
   const { t } = useTranslation();
   const pros = [['Dra. Rosa M.', 'nutri', 4.9, 25], ['Carlos P.', 'trainer', 4.8, 20], ['Ana L.', 'wellness', 5.0, 30]] as const;
   return <Screen title={`🧑‍⚕️ ${t('x.t.market')}`}><Example /><Pending what={t('x.needPay')} />
-    {pros.map(([n, r, st, p]) => <Card key={n}><Text style={s.h2}>{n}</Text><T>{t(`x.role.${r}`)} · ⭐ {fmtNum(st, 1)} · ${p}/{t('x.session')}</T>
+    {pros.map(([n, r, st, p]) => <Card key={n}><CardTitle>{n}</CardTitle><T>{t(`x.role.${r}`)} · ⭐ {fmtNum(st, 1)} · ${p}/{t('x.session')}</T>
       <Btn small kind="ghost" label={t('x.book')} onPress={() => alertPending(t)} /></Card>)}
     <Note k="x.marketNote" /></Screen>;
 }
@@ -26,7 +26,7 @@ export function Corporate() {
   const { t } = useTranslation(); const [joined, setJ] = useExt<boolean>('corp', false);
   const teams = [['Ventas', 0.72], ['Soporte', 0.64], ['Tecnología', 0.81]] as const;
   return <Screen title={`🏢 ${t('x.t.corp')}`}><Example />
-    <Card><Text style={s.h2}>{t('x.corpCh')}</Text>{teams.map(([n, v]) => <View key={n} style={{ gap: 4 }}><T>{n} · {Math.round(v * 100)}%</T><Bar value={v} max={1} color={C.secondary} /></View>)}
+    <Card><CardTitle>{t('x.corpCh')}</CardTitle>{teams.map(([n, v]) => <View key={n} style={{ gap: 4 }}><T>{n} · {Math.round(v * 100)}%</T><Bar value={v} max={1} color={C.secondary} /></View>)}
       <Btn label={joined ? '✓ ' + t('x.joined') : t('x.join')} kind={joined ? 'secondary' : 'primary'} onPress={() => setJ((v) => !v)} /></Card>
     <Note k="x.corpPrivacy" /></Screen>;
 }
@@ -71,8 +71,8 @@ export function useFund() { return useExt('fund', FUND_SEED); }
 export function Impact() {
   const { t } = useTranslation(); const [f] = useFund(); const done = f.list.filter((x) => x.status === 'approved');
   return <Screen title={`💗 ${t('x.t.impact')}`}><Example />
-    <Card><Text style={s.h2}>{t('x.fundNext')}</Text><Text testID="fund" style={[s.h1, { color: C.primary }]}>${fmtNum(f.raised)} / ${fmtNum(f.goal)}</Text><Bar value={f.raised} max={f.goal} color={C.primary} /></Card>
-    <Card><Text style={s.h2}>{t('x.helped')} ({done.length})</Text>
+    <Card><CardTitle>{t('x.fundNext')}</CardTitle><Text testID="fund" style={[s.h1, { color: C.primary }]}>${fmtNum(f.raised)} / ${fmtNum(f.goal)}</Text><Bar value={f.raised} max={f.goal} color={C.primary} /></Card>
+    <Card><CardTitle>{t('x.helped')} ({done.length})</CardTitle>
       {done.map((x) => <T key={x.id}>✓ {x.who} · {t(`x.reason.${x.reason}`)} · ${fmtNum(x.amount)} · {fmtDate(new Date(x.date + 'T12:00:00'))} · 🧾 {x.receipt}</T>)}</Card>
     <Note k="x.impactNote" /><Pending what={t('x.needPay')} /></Screen>;
 }
@@ -112,6 +112,6 @@ export function WhatsApp() {
 export function Tips() {
   const { t } = useTranslation();
   return <Screen title={`🎁 ${t('x.t.tips')}`}><Example /><Pending what={t('x.needPay')} />
-    {['Chef Mari', 'Coach Leo'].map((n) => <Card key={n}><Text style={s.h2}>{n}</Text><Row>{[1, 3, 5].map((a) => <Chip key={a} label={`$${a}`} onPress={() => alertPending(t)} />)}</Row></Card>)}
+    {['Chef Mari', 'Coach Leo'].map((n) => <Card key={n}><CardTitle>{n}</CardTitle><Row>{[1, 3, 5].map((a) => <Chip key={a} label={`$${a}`} onPress={() => alertPending(t)} />)}</Row></Card>)}
     <Note k="x.tipsNote" /></Screen>;
 }

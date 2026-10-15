@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import * as Speech from 'expo-speech';
-import { Screen, Card, Btn, T, s } from './ui';
+import { Screen, Card, Btn, T, s, InfoNote } from './ui';
 import { C } from './theme';
 import { fmtLocale } from './i18n';
 import { useStore } from './store';
@@ -46,5 +46,5 @@ export function CoachLocked() {
   );
 }
 
-export const Disclaimer = () => { const { t } = useTranslation(); return <Text style={[s.muted, { fontSize: 14 }]}>ℹ️ {t('coach.notMedical')}</Text>; };
+export const Disclaimer = () => { const { t } = useTranslation(); return <InfoNote icon="🩺" text={t('coach.notMedical')} />; };
 export const Row = ({ children }: { children: React.ReactNode }) => <View style={[s.row, { flexWrap: 'wrap' }]}>{children}</View>;
