@@ -101,6 +101,45 @@ export function FadeIn({ children, delay = 0, style }: { children: React.ReactNo
   return <Animated.View style={[{ opacity: a, transform: reduce ? [] : [{ translateY: a.interpolate({ inputRange: [0, 1], outputRange: [18, 0] }) }] }, style]}>{children}</Animated.View>;
 }
 
+// Foto de cabecera por sección (Unsplash, ver assets/sections/ATRIBUCION.md)
+const SEC: Record<string, any> = {
+  gym: require('../assets/sections/gym.jpg'), run: require('../assets/sections/run.jpg'), yoga: require('../assets/sections/yoga.jpg'), sleep: require('../assets/sections/sleep.jpg'),
+  family: require('../assets/sections/family.jpg'), money: require('../assets/sections/money.jpg'), phone: require('../assets/sections/phone.jpg'), security: require('../assets/sections/security.jpg'),
+  travel: require('../assets/sections/travel.jpg'), market: require('../assets/sections/market.jpg'), chef: require('../assets/sections/chef.jpg'), water: require('../assets/sections/water.jpg'),
+  friends: require('../assets/sections/friends.jpg'), docs: require('../assets/sections/docs.jpg'), coach: require('../assets/sections/coach.jpg'), pet: require('../assets/sections/pet.jpg'),
+  tablet: require('../assets/sections/tablet.jpg'), meditate: require('../assets/sections/meditate.jpg'),
+};
+const ROUTE_IMG: Record<string, string> = {
+  aggregate: 'tablet', avatar: 'friends', b2b: 'coach', backup: 'security', barcode: 'market', chat: 'phone', checkin: 'run', chef: 'chef', clon: 'gym', 'coach-setup': 'coach', coach: 'coach',
+  connect: 'phone', copy: 'bowl', corporate: 'friends', craving: 'fruit', 'datos-anual': 'docs', 'datos-mes': 'docs', datos: 'tablet', 'delete-account': 'security', diary: 'breakfast', diet: 'salad',
+  explore: 'travel', family: 'family', fasting: 'water', founder: 'money', gym: 'gym', health: 'salad', impact: 'friends', import: 'tablet', legal: 'docs', macros: 'bowl', manual: 'plate', market: 'coach',
+  mealprep: 'chef', memory: 'meditate', menu: 'plate', paywall: 'yoga', pet: 'pet', plans: 'yoga', player: 'run', plus: 'yoga', points: 'friends', quickadd: 'pancakes', recipes: 'chef', reminders: 'phone',
+  report: 'tablet', security: 'security', settings: 'phone', shopping: 'market', sleep: 'sleep', social: 'friends', store: 'market', subscription: 'money', sync: 'security', tips: 'fruit',
+  travel: 'travel', tutorial: 'phone', tutoriales: 'phone', twin: 'gym', video: 'run', voice: 'phone', weekly: 'meditate', weight: 'run', whatsapp: 'phone', workout: 'gym', scan: 'plate',
+};
+const ROUTE_ICON: Record<string, string> = { legal: '📜', settings: '⚙️', scan: '📸', diary: '📖', manual: '✍️', barcode: '🏷️', 'datos-mes': '📅', 'datos-anual': '📚', security: '🔐', subscription: '💳', backup: '☁️', sync: '🔄', tutorial: '🎬', tutoriales: '🎬', player: '▶️', video: '🎥', voice: '🎙️', chat: '💬', founder: '👑' };
+const heroImg = (path: string) => { const k = ROUTE_IMG[path.replace(/^\//, '').split('/')[0]]; return k ? (SEC[k] ?? (FOOD as any)[k]) : null; };
+const EMOJI_RE = /^((?:\p{Extended_Pictographic}|\p{Emoji_Component}|\u200D|\uFE0F)+)\s*/u;
+export function SectionHero({ title, source, fallbackIcon }: { title: string; source: ImageSourcePropType; fallbackIcon?: string }) {
+  const m = title.match(EMOJI_RE); const own = m && /\p{Extended_Pictographic}/u.test(m[1]) ? m[1] : null; const icon = own ?? fallbackIcon ?? null; const label = own ? title.slice(m![0].length) : title;
+  const dark = C.mode === 'dark';
+  return (
+    <View testID="section-hero" style={{ height: 156, borderRadius: R.hero, overflow: 'hidden', ...shadow('card') }}>
+      <Image source={source} accessibilityIgnoresInvertColors resizeMode="cover" style={{ position: 'absolute', width: '100%', height: '100%' }} />
+      <Svg pointerEvents="none" style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }} width="100%" height="100%">
+        <Defs><LinearGradient id="shv" x1="0" y1="0" x2="1" y2="1">
+          <Stop offset="0" stopColor={dark ? '#1B1430' : '#E11D48'} stopOpacity={dark ? 0.92 : 0.82} /><Stop offset="0.55" stopColor={dark ? '#4C1D95' : '#7C3AED'} stopOpacity={dark ? 0.7 : 0.55} /><Stop offset="1" stopColor={dark ? '#0F0A1F' : '#7C3AED'} stopOpacity={dark ? 0.25 : 0.1} />
+        </LinearGradient></Defs>
+        <Rect x="0" y="0" width="100%" height="100%" fill="url(#shv)" />
+      </Svg>
+      <View style={{ flex: 1, padding: 18, justifyContent: 'flex-end', gap: 10 }}>
+        {icon ? <View style={{ width: 54, height: 54, borderRadius: 18, backgroundColor: 'rgba(255,255,255,0.22)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.45)', alignItems: 'center', justifyContent: 'center', ...(WEB ? ({ backdropFilter: 'blur(12px)' } as any) : {}) }}><Text style={{ fontSize: 28 }}>{icon}</Text></View> : null}
+        <Text accessibilityRole="header" accessibilityLabel={title} numberOfLines={2} style={{ fontSize: 26, lineHeight: 31, fontWeight: '800', color: '#fff', letterSpacing: -0.3, ...(dark ? { fontFamily: serif, fontWeight: '600' } : {}), textShadowColor: 'rgba(0,0,0,0.35)', textShadowRadius: 8 } as any}>{label}</Text>
+      </View>
+    </View>
+  );
+}
+
 const TABS = ['/', '/scan', '/coach', '/diary', '/more', '/onboarding'];
 export function Screen({ children, nav = true, title }: { children: React.ReactNode; nav?: boolean; title?: string }) {
   const { t } = useTranslation(); const path = usePathname();
@@ -117,7 +156,7 @@ export function Screen({ children, nav = true, title }: { children: React.ReactN
             </View>
           ) : null}
           <FadeIn style={{ gap: 14 }}>
-            {title ? <Text style={s.h1} accessibilityRole="header">{title}</Text> : null}
+            {title ? (!isTab && heroImg(path) ? <SectionHero title={title} source={heroImg(path)} fallbackIcon={ROUTE_ICON[path.replace(/^\//, '').split('/')[0]]} /> : <Text style={s.h1} accessibilityRole="header">{title}</Text>) : null}
             {children}
           </FadeIn>
         </ScrollView>
@@ -167,7 +206,7 @@ export function IconBtn({ icon, onPress, a11y, testID, size = 56 }: { icon: stri
 // ---------------- Tarjetas, texto, chips ----------------
 export const Card = ({ children, style, testID }: { children: React.ReactNode; style?: ViewStyle; testID?: string }) => <View testID={testID} style={[s.card, style]}>{children}</View>;
 export const T = ({ children, style, testID }: { children: React.ReactNode; style?: TextStyle | TextStyle[]; testID?: string }) => <Text testID={testID} style={[s.t, style as any]}>{children}</Text>;
-export const H2 = ({ children }: { children: React.ReactNode }) => <Text style={s.h2} accessibilityRole="header">{children}</Text>;
+export const H2 = ({ children }: { children: React.ReactNode }) => <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}><View style={{ width: 5, height: 22, borderRadius: 3, backgroundColor: C.mode === 'dark' ? '#A78BFA' : '#E11D48' }} /><Text style={[s.h2, { flex: 1 }]} accessibilityRole="header">{children}</Text></View>;
 
 export function Chip({ label, active, onPress }: { label: string; active?: boolean; onPress: () => void }) {
   return (
@@ -236,7 +275,7 @@ export function ListRow({ icon, label, sub, onPress, testID, right }: { icon?: s
   return (
     <Pressable testID={testID} accessibilityRole="button" accessibilityLabel={label} onPress={onPress ? () => { hTap(); onPress(); } : undefined}
       style={({ pressed }) => ({ minHeight: 60, flexDirection: 'row', alignItems: 'center', gap: 14, paddingVertical: 8, opacity: pressed ? 0.7 : 1 })}>
-      {icon ? <View style={{ width: 44, height: 44, borderRadius: 14, backgroundColor: C.tint, alignItems: 'center', justifyContent: 'center' }}><Text style={{ fontSize: 22 }}>{icon}</Text></View> : null}
+      {icon ? <View style={{ width: 46, height: 46, borderRadius: 15, alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}><GradientFill colors={C.mode === 'dark' ? ['#3B2A66', '#241A3F'] : ['#FFE4E6', '#EDE9FE']} radius={15} /><Text style={{ fontSize: 22 }}>{icon}</Text></View> : null}
       <View style={{ flex: 1 }}><Text style={{ fontSize: 17, fontWeight: '700', color: C.text }}>{label}</Text>{sub ? <Text style={s.muted}>{sub}</Text> : null}</View>
       {right ?? (onPress ? <Text style={{ fontSize: 22, color: C.muted }}>{rtl ? '‹' : '›'}</Text> : null)}
     </Pressable>
@@ -247,7 +286,7 @@ export function EmptyState({ icon = '🍽️', title, sub, image }: { icon?: str
   return (
     <View style={{ alignItems: 'center', gap: 8, paddingVertical: 18 }} testID="empty-state">
       {image ? <Image source={image} style={{ width: 120, height: 120, borderRadius: 60 }} accessibilityIgnoresInvertColors /> :
-        <View style={{ width: 96, height: 96, borderRadius: 48, backgroundColor: C.tint, alignItems: 'center', justifyContent: 'center' }}><Text style={{ fontSize: 44 }}>{icon}</Text></View>}
+        <View style={{ width: 112, height: 112, borderRadius: 56, alignItems: 'center', justifyContent: 'center', overflow: 'hidden', borderWidth: 1, borderColor: C.glassBorder, ...shadow('card') }}><GradientFill colors={C.mode === 'dark' ? ['#4C1D95', '#1B1430'] : ['#FFE4E6', '#EDE9FE']} radius={56} /><Text style={{ fontSize: 50 }}>{icon}</Text></View>}
       <Text style={[s.h2, { textAlign: 'center' }]}>{title}</Text>
       {sub ? <Text style={[s.muted, { textAlign: 'center' }]}>{sub}</Text> : null}
     </View>
