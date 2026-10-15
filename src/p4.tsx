@@ -91,11 +91,13 @@ export function Pet() {
 
 /** Registro por WhatsApp: el texto se interpreta igual que llegaría por el canal (aquí, local). */
 export function parseMsg(msg: string, name: (id: string) => string) {
-  const low = msg.toLowerCase(); const out: { name: string; kcal: number; p: number; c: number; f: number }[] = [];
-  for (const f of LATIN_FOODS) { const ns = [f.name.es, f.name.en, name(f.id)].map((x) => x.toLowerCase().split(' (')[0]);
-    const hit = ns.find((n) => low.includes(n) || low.includes(n.split(' ')[0] + ' ') && n.split(' ')[0].length > 4);
-    if (hit) { const m = low.match(new RegExp(`(\\d+)\\s*${hit.split(' ')[0]}`)); const q = m ? Math.min(5, +m[1]) : 1;
-      out.push({ name: name(f.id), kcal: f.kcal * q, p: f.p * q, c: f.c * q, f: f.f * q }); } }
+  const low = msg.toLowerCase(); const out: { name: string; kcal: number; p: number; c: number; f: number }[] = []; const used = new Set<string>();
+  for (const f of LATIN_FOODS) {
+    for (const st of [f.name.es, f.name.en, name(f.id)].map((x) => x.toLowerCase().split(/[\s(]/)[0]).filter((x) => x.length > 3)) {
+      if (used.has(st)) continue; const m = low.match(new RegExp(`(?:(\\d+)\\s*)?${st.replace(/[.*+?^${}()|[\]\\]/g, '')}`));
+      if (m) { used.add(st); const q = m[1] ? Math.min(5, +m[1]) : 1; out.push({ name: name(f.id), kcal: f.kcal * q, p: f.p * q, c: f.c * q, f: f.f * q }); break; }
+    }
+  }
   return out.slice(0, 4);
 }
 export function WhatsApp() {
