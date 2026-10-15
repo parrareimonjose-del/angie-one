@@ -3,6 +3,7 @@ import React from 'react';
 import { View, Text, Pressable, Linking } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { useStore } from './store';
+import { isPremium } from './coach';
 import { C } from './theme';
 import { s, T, Card } from './ui';
 
@@ -24,6 +25,7 @@ export const Note = ({ k }: { k: string }) => { const { t } = useTranslation(); 
 export const ADS = [{ id: 'a1', brand: 'Verde Vivo', key: 'ad1' }, { id: 'a2', brand: 'Agua Clara', key: 'ad2' }];
 export function Sponsored({ i = 0 }: { i?: number }) {
   const { t } = useTranslation(); const { s: st } = useStore(); const a = ADS[i % ADS.length];
+  if (isPremium(st)) return null; // Premium nunca ve anuncios
   return <Card style={{ borderWidth: 2, borderColor: C.border }}>
     <Text testID="sponsored" style={[s.muted, { fontWeight: '800' }]}>{t('x.sponsored')} · {a.brand}</Text>
     <T>{t(`x.${a.key}`)}</T><Text style={[s.muted, { fontSize: 15 }]}>{t('x.adWhy')}</Text></Card>;

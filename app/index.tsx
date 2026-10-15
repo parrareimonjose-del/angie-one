@@ -3,13 +3,16 @@ import { View, Text, Image } from 'react-native';
 import { Redirect, router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import * as Speech from 'expo-speech';
-import { Screen, Card, Btn, Ring, Bar, T, s } from '../src/ui';
+import { Screen, Card, Btn, Ring, T, s } from '../src/ui';
 import { fmtLocale, fmtNum } from '../src/i18n';
 import { useStore, today, trialPhase, fmtCountdown, streak } from '../src/store';
 import { C } from '../src/theme';
 import { SmartTips } from '../src/p2';
 import { SecurityNudge } from '../src/faltantes-ui';
 import { CloneNudge } from '../src/clone-ui';
+import { MacroRings } from '../src/mfp5-ui';
+import { BillingReminder, UpsellNudge } from '../src/honest-ui';
+import { dayGoals } from '../src/mfp5';
 import { coachTarget, coachOf, burnedOn, isPremium, weekday } from '../src/coach';
 
 export default function Home() {
@@ -18,7 +21,7 @@ export default function Home() {
   useEffect(() => { const i = setInterval(() => setNow(Date.now()), 30000); return () => clearInterval(i); }, []);
   if (!ready) return <View style={{ flex: 1, backgroundColor: C.bg }} />;
   if (!st.profile) return <Redirect href="/onboarding" />;
-  const d = today(); const target = coachTarget(st); const co = coachOf(st); const burned = burnedOn(co, d);
+  const d = today(); const target = dayGoals(st); const co = coachOf(st); const burned = burnedOn(co, d);
   const ents = st.entries.filter((e) => e.date === d);
   const sum = ents.reduce((a, e) => ({ kcal: a.kcal + e.kcal, p: a.p + e.p, c: a.c + e.c, f: a.f + e.f }), { kcal: 0, p: 0, c: 0, f: 0 });
   const water = st.water[d] || 0; const tp = trialPhase(st.trialStart, now); const left = tp.daysLeft;
@@ -46,14 +49,7 @@ export default function Home() {
           <View style={{ alignItems: 'center' }}><Text testID="home-burned" style={[s.h2, { color: C.warning }]}>🔥 {fmtNum(burned)}</Text><Text style={s.muted}>{t('coach.burned')}</Text></View>
         </View>
       </Card>
-      <Card>
-        {([['protein', sum.p, target.p, C.protein], ['carbs', sum.c, target.c, C.carbs], ['fat', sum.f, target.f, C.fat]] as const).map(([k, v, m, col]) => (
-          <View key={k} style={{ gap: 4 }}>
-            <View style={[s.row, { justifyContent: 'space-between' }]}><T style={{ fontWeight: '700' }}>{t(`home.${k}`)}</T><Text style={s.muted}>{fmtNum(v)} / {fmtNum(m)} {t('u.g')}</Text></View>
-            <Bar value={v} max={m} color={col} />
-          </View>
-        ))}
-      </Card>
+      <MacroRings />
       <View style={[s.row, { alignItems: 'stretch' }]}>
         <Card style={{ flex: 1 }}>
           <Text style={s.h2}>💧 {t('home.water')}</Text>
@@ -63,12 +59,14 @@ export default function Home() {
         <Card style={{ flex: 1 }}>
           <Text style={s.h2}>🔥 {t('home.challenge')}</Text>
           <T>{ch}</T>
-          <Text style={[s.muted, { fontWeight: '700' }]}>{t('home.streak', { n: streak(st.challengeDays) })}</Text>
+          {st.streakOff ? null : <Text testID="streak" style={[s.muted, { fontWeight: '700' }]}>{t('home.streak', { n: streak(st.challengeDays) })}</Text>}
           {doneToday ? <Text style={{ color: C.success, fontWeight: '800', fontSize: 16 }}>✓ {t('home.challengeDone')}</Text>
             : <Btn small kind="primary" label={t('home.markDone')} onPress={() => set((x) => ({ ...x, challengeDays: [...x.challengeDays, d] }))} />}
         </Card>
       </View>
       {isPremium(st) && co.plan && !co.plan.workout.days[weekday()].rest && !co.workouts.some((w) => w.date === d) ? <Btn kind="secondary" label={`🏋️  ${t('coach.startToday')}`} onPress={() => router.push({ pathname: '/player', params: { day: String(weekday()) } })} /> : null}
+      <BillingReminder />
+      <UpsellNudge />
       <SecurityNudge />
       <CloneNudge />
       <SmartTips />

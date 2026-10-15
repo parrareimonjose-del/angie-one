@@ -39,7 +39,7 @@ export function Hub() {
   const { t } = useTranslation(); const prem = usePrem();
   const tiles: [string, string, string, boolean?][] = [['⚖️', 'weight', '/weight'], ['🎙️', 'voice', '/voice'], ['🧊', 'fridge', '/chef', true], ['👩‍🍳', 'plans', '/plans', true], ['📋', 'menu', '/menu', true],
     ['🍫', 'craving', '/craving'], ['😴', 'sleep', '/sleep'], ['🔔', 'rem', '/reminders'], ['🏆', 'points', '/points'], ['🗣️', 'weekly', '/weekly', true], ['🙂', 'avatar', '/avatar', true],
-    ['🧠', 'memory', '/memory'], ['📥', 'import', '/import']];
+    ['🧠', 'memory', '/memory'], ['📥', 'import', '/import'], ['🎯', 'macros', '/macros'], ['⚡', 'quick', '/quickadd'], ['🗓️', 'prep', '/mealprep', true], ['❤️', 'sync', '/sync']];
   return <Screen title={`🌱 ${t('p2.hub')}`}>
     <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, justifyContent: 'space-between' }}>
       {tiles.map(([i, k, h, p]) => <Tile key={k} icon={i} label={t(`p2.t.${k}`) + (p && !prem ? ' 🔒' : '')} onPress={() => router.push(h as any)} />)}</View>

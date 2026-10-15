@@ -36,8 +36,8 @@ export const coachOf = (s: State): Coach => {
   return c.plan && c.prefs?.injuries?.length ? { ...c, plan: withSafety(c.plan, c.prefs) } : c;
 };
 
-/** Premium = prueba de 7 días activa (los pagos aún no existen). */
-export const isPremium = (s: State, now = Date.now()) => trialPhase(s.trialStart, now).phase === 'trial';
+/** Premium = prueba de 7 días activa o suscripción pagada vigente (así quien paga nunca pierde Premium). */
+export const isPremium = (s: State, now = Date.now()) => trialPhase(s.trialStart, now).phase === 'trial' || !!(s.sub?.active && s.sub.renewAt > now);
 export const safeMin = (p?: Profile) => (p?.sex === 'male' ? 1500 : 1200);
 /** Meta diaria con el ajuste del coach, nunca por debajo del mínimo seguro. */
 export function coachTarget(s: State) {

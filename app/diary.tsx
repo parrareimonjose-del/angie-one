@@ -5,16 +5,18 @@ import { useTranslation } from 'react-i18next';
 import { Screen, Card, Btn, T, s } from '../src/ui';
 import { useStore, today } from '../src/store';
 import { coachTarget } from '../src/coach';
-import { fmtDate, fmtTime, fmtNum } from '../src/i18n';
+import { fmtDate, fmtNum } from '../src/i18n';
 import { C } from '../src/theme';
+import { DiaryMeals } from '../src/mfp5-ui';
+import { Row } from '../src/coach-ui';
+import { totals } from '../src/mfp5';
 
-const ICON = { photo: '📸', barcode: '🏷️', manual: '✍️' };
 export default function Diary() {
   const { t } = useTranslation(); const { s: st, set } = useStore();
   const [off, setOff] = useState(0);
   const dt = new Date(); dt.setDate(dt.getDate() + off); const d = today(dt);
   const ents = st.entries.filter((e) => e.date === d).sort((a, b) => a.time - b.time);
-  const total = ents.reduce((a, e) => a + e.kcal, 0);
+  const tt = totals(ents); const total = tt.kcal;
   return (
     <Screen title={off === 0 ? t('diary.title') : t('diary.day')}>
       <View style={s.row}>
@@ -24,17 +26,11 @@ export default function Diary() {
       </View>
       <Card style={{ backgroundColor: C.primary }}>
         <Text style={[s.h2, { color: C.white }]}>{t('diary.total')}: {fmtNum(total)} / {fmtNum(coachTarget(st).kcal)} {t('u.kcal')}</Text>
+        <Text testID="diary-net" style={{ color: C.white, fontWeight: '700' }}>{t('mf.netLine', { net: fmtNum(tt.net), fiber: fmtNum(tt.fiber) })}</Text>
       </Card>
-      {ents.length === 0 ? <Card><T>{t('diary.empty')}</T><Btn label={`📸  ${t('nav.scan')}`} onPress={() => router.push('/scan')} /></Card>
-        : ents.map((e) => (
-          <Card key={e.id} style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Text style={{ fontSize: 26 }}>{ICON[e.source]}</Text>
-            <View style={{ flex: 1 }}><T style={{ fontWeight: '800' }}>{e.name}</T><Text style={s.muted}>{fmtTime(new Date(e.time))} · {t('u.p')} {fmtNum(e.p)} · {t('u.c')} {fmtNum(e.c)} · {t('u.f')} {fmtNum(e.f)}</Text></View>
-            <View style={{ alignItems: 'flex-end', gap: 4 }}>
-              <Text style={{ fontWeight: '900', fontSize: 18, color: C.primary }}>{fmtNum(e.kcal)}</Text>
-              <Btn small kind="danger" label={t('diary.remove')} onPress={() => set((x) => ({ ...x, entries: x.entries.filter((y) => y.id !== e.id) }))} />
-            </View>
-          </Card>))}
+      <Row><Btn small kind="secondary" testID="diary-quick" label={`⚡ ${t('mf.quick')}`} onPress={() => router.push({ pathname: '/quickadd', params: { date: d } })} />
+        {ents.length ? <Btn small kind="secondary" testID="diary-copy" label={`📋 ${t('mf.copy')}`} onPress={() => router.push({ pathname: '/copy', params: { date: d } })} /> : null}</Row>
+      {ents.length === 0 ? <Card><T>{t('diary.empty')}</T><Btn label={`📸  ${t('nav.scan')}`} onPress={() => router.push('/scan')} /></Card> : <DiaryMeals d={d} ents={ents} />}
     </Screen>
   );
 }

@@ -6,7 +6,7 @@ import { Screen, Card, Btn, T, s } from '../src/ui';
 import { C } from '../src/theme';
 import { useStore, trialPhase, fmtCountdown } from '../src/store';
 import { LegalLinks } from '../src/legal-links';
-import { providerFor, purchase, restore, PLANS } from '../src/payments';
+import { providerFor, purchase, PLANS } from '../src/payments';
 import { Pending } from '../src/ext';
 
 // Pagos por plataforma (src/payments.ts): web Stripe, Android Google Play Billing, iPhone Apple IAP. Hoy NO cobra nada.
@@ -41,7 +41,8 @@ export default function Paywall() {
       <Text testID="pay-provider" style={[s.muted, { textAlign: 'center' }]}>🔒 {t('fx.payVia', { store: prov.name })}</Text>
       <Btn label={t('pay.cta')} onPress={buy} />
       {note && <Card><Pending /><T style={{ color: C.warning, fontWeight: '700' }}>{t('pay.soon')}</T></Card>}
-      {prov.canRestore ? <Btn kind="ghost" label={t('fx.restore')} onPress={async () => { await restore(); setNote(true); }} /> : null}
+      <Btn testID="pay-restore" kind="secondary" label={`↺ ${t('hb.restore')}`} onPress={() => router.push('/subscription')} />
+      <Text style={[s.muted, { textAlign: 'center' }]}>{t('hb.cancelAny')}</Text>
       <Btn kind="ghost" label={t('pay.free')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))} />
       <LegalLinks />
     </Screen>

@@ -18,6 +18,7 @@ export default function Settings() {
   };
   return (
     <Screen title={t('set.title')}>
+      <Btn testID="go-sub" kind="secondary" label={`💳 ${t('hb.title')}`} onPress={() => router.push('/subscription')} />
       <Btn testID="go-security" kind="secondary" label={`🔐 ${t('fx.secTitle')}`} onPress={() => router.push('/security')} />
       <Card>
         <Text style={s.h2}>🌐 {t('set.language')}</Text>
@@ -33,6 +34,9 @@ export default function Settings() {
         </View>
         <Text style={s.muted}>{t('set.aiDesc')}</Text>
       </Card>
+      <Card><View style={[s.row, { justifyContent: 'space-between' }]}><Text style={[s.h2, { flex: 1 }]}>🔥 {t('hb.streaks')}</Text>
+        <Switch testID="streak-toggle" accessibilityLabel={t('hb.streaks')} value={!st.streakOff} onValueChange={(v) => set((x) => ({ ...x, streakOff: !v }))} trackColor={{ true: C.secondary, false: C.border }} thumbColor={C.white} style={{ transform: [{ scale: 1.3 }] }} /></View>
+        <Text style={s.muted}>{t('hb.streaksDesc')}</Text></Card>
       <Btn kind="ghost" label={`🧠  ${t('p2.t.memory')}`} onPress={() => router.push('/memory')} />
       <Btn kind="ghost" label={`🔔  ${t('p2.t.rem')}`} onPress={() => router.push('/reminders')} />
       <FeedbackBox />

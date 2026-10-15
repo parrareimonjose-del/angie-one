@@ -6,7 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { Screen, Card, Btn, T, s } from '../src/ui';
 import { useStore, today, uid } from '../src/store';
 import { fmtLocale, fmtNum } from '../src/i18n';
-import { LATIN_FOODS } from '../src/foods';
+import { searchFoods, type VFood } from '../src/verified';
+import { FoodRow } from '../src/honest-ui';
 import { estimateText, Estimate } from '../src/ai';
 import { EstimateResult, aiErrorText } from '../src/estimate';
 import { C } from '../src/theme';
@@ -16,8 +17,9 @@ export default function Manual() {
   const fname = (id: string) => t(`foods.${id}`);
   const [q, setQ] = useState(''); const [bad, setBad] = useState(false); const [name, setName] = useState(''); const [kcal, setKcal] = useState('');
   const [desc, setDesc] = useState(''); const [busy, setBusy] = useState(false); const [err, setErr] = useState(''); const [est, setEst] = useState<Estimate | null>(null);
-  const add = (e: { name: string; kcal: number; p?: number; c?: number; f?: number }) => {
-    set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: e.name, kcal: e.kcal, p: e.p || 0, c: e.c || 0, f: e.f || 0, source: 'manual' }] }));
+  const add = (e: { name: string; kcal: number; p?: number; c?: number; f?: number; fiber?: number }, mine = false) => {
+    set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: e.name, kcal: e.kcal, p: e.p || 0, c: e.c || 0, f: e.f || 0, fiber: e.fiber, source: 'manual' }],
+      myFoods: mine ? [...(x.myFoods || []).filter((y) => y.name !== e.name), { id: 'u' + uid(), key: '', name: e.name, portion: '1', kcal: e.kcal, p: 0, c: 0, f: 0, verified: false, source: 'user' as const }].slice(-50) : x.myFoods }));
     router.replace('/diary');
   };
   const ask = async (text = desc) => {
@@ -29,7 +31,8 @@ export default function Manual() {
   const SR = voiceSupported(); const [lis, setLis] = useState<'idle' | 'listening' | 'working'>('idle'); const stopRef = useRef<null | (() => void)>(null);
   const dictate = () => { if (lis === 'listening') { stopRef.current?.(); return; } setErr('');
     stopRef.current = startVoice({ onText: (txt) => { setDesc(txt); ask(txt); }, onErr: (e) => setErr(t('voice.' + e)), onState: setLis }); };
-  const list = LATIN_FOODS.filter((f) => (fname(f.id) + ' ' + f.name.en + ' ' + f.name.es).toLowerCase().includes(q.toLowerCase()));
+  const label = (f: VFood) => (f.nameKey ? t(f.nameKey) : f.name || '?');
+  const list = searchFoods(q, label, st.myFoods || []);
   return (
     <Screen title={t('manual.title')}>
       {st.aiEnabled && <Card>
@@ -42,21 +45,16 @@ export default function Manual() {
       {est && <EstimateResult key={est.name + est.kcalMin} est={est} onLog={(x) => add(x)} />}
       <TextInput accessibilityLabel={t('manual.search')} style={s.input} placeholder={t('manual.search')} value={q} onChangeText={setQ} />
       <Card>
-        <Text style={s.h2}>🌎 {t('manual.latin')}</Text>
+        <Text style={s.h2}>🌎 {t('manual.latin')}</Text><Text style={s.muted}>{t('hb.verifiedHow')}</Text>
         {list.length === 0 ? <Text style={s.muted}>{t('manual.noMatch')}</Text> : null}
-        {list.slice(0, 12).map((f) => (
-          <Pressable key={f.id} accessibilityRole="button" onPress={() => add({ name: fname(f.id), kcal: f.kcal, p: f.p, c: f.c, f: f.f })}
-            style={({ pressed }) => [s.row, { minHeight: 60, justifyContent: 'space-between', borderBottomWidth: 1, borderColor: C.border, opacity: pressed ? 0.6 : 1 }]}>
-            <View style={{ flex: 1 }}><T style={{ fontWeight: '700' }}>{fname(f.id)}</T><Text style={s.muted}>{f.portion}</Text></View>
-            <Text style={{ fontWeight: '900', color: C.primary, fontSize: 17 }}>{fmtNum(f.kcal)} {t('u.kcal')}  ＋</Text>
-          </Pressable>))}
+        {list.slice(0, 12).map((f) => <FoodRow key={f.key} f={f} label={label(f)} onAdd={() => add({ name: label(f), kcal: f.kcal, p: f.p, c: f.c, f: f.f, fiber: f.fiber })} />)}
       </Card>
       <Card>
         <Text style={s.h2}>✍️ {t('manual.exact')}</Text>
         <TextInput accessibilityLabel={t('manual.name')} style={s.input} placeholder={t('manual.name')} value={name} onChangeText={setName} />
         <TextInput accessibilityLabel={t('manual.kcal')} style={s.input} placeholder={t('manual.kcal')} keyboardType="numeric" value={kcal} onChangeText={(v) => setKcal(v.replace(/[^0-9]/g, ''))} />
         {bad ? <T style={{ color: C.primary, fontWeight: '700' }}>{t('manual.badKcal')}</T> : null}
-        <Btn label={t('add')} onPress={() => { if (name.trim() && +kcal > 0 && +kcal < 5000) add({ name: name.trim(), kcal: +kcal }); else setBad(true); }} />
+        <Btn label={t('add')} onPress={() => { if (name.trim() && +kcal > 0 && +kcal < 5000) add({ name: name.trim(), kcal: +kcal }, true); else setBad(true); }} />
       </Card>
     </Screen>
   );
