@@ -121,7 +121,7 @@ export function Memory() {
       <Row><Chip label={`✓ ${t('p2.memOn')}`} active={m.on} onPress={() => setM((x) => ({ ...x, on: true }))} /><Chip label={t('p2.memOff')} active={!m.on} onPress={() => setM((x) => ({ ...x, on: false }))} /></Row></IconCard>
     <InfoNote icon="🔒" text={t('p2.memPrivacy')} />
     <IconCard icon="💭" title={t('p2.memList')} right={<Pill label={`${m.facts.length}/20`} />}>
-      {m.facts.length ? m.facts.map((f) => <View key={f.id} style={[s.row, { justifyContent: 'space-between', padding: 10, borderRadius: 14, backgroundColor: C.tint }]}><Text style={{ fontSize: 18 }}>💡</Text><T style={{ flex: 1 }}>{f.text}</T>
+      {m.facts.length ? m.facts.map((f) => <View key={f.id} style={[s.row, { justifyContent: 'space-between', padding: 10, borderRadius: 14, backgroundColor: C.tint }]}><Text style={{ fontSize: 18 }}>💡</Text><T style={{ flex: 1 }}>• {f.text}</T>
         <Btn small kind="danger" label="🗑️" a11y={t('p2.memDel')} onPress={() => setM((x) => ({ ...x, facts: x.facts.filter((y) => y.id !== f.id) }))} style={{ width: 56 }} /></View>) : <EmptyState icon="💭" title={t('p2.memEmpty')} />}
       <TextInput style={s.input} value={q} onChangeText={setQ} placeholder={t('p2.memPh')} onSubmitEditing={add} accessibilityLabel={t('p2.memPh')} />
       <Btn small label={`＋ ${t('add')}`} onPress={add} /></IconCard>
