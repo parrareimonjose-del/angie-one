@@ -1,7 +1,7 @@
 import { View, Text, Switch, Platform, Alert } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Screen, Card, Btn, Chip, T, s, ThemePicker, CardTitle } from '../src/ui';
+import { Screen, Card, Btn, Chip, T, s, ThemePicker, CardTitle, ListRow } from '../src/ui';
 import { useStore } from '../src/store';
 import i18n, { deviceLang, Lang, SUPPORTED, NATIVE } from '../src/i18n';
 import { C } from '../src/theme';
@@ -18,9 +18,11 @@ export default function Settings() {
   };
   return (
     <Screen title={t('set.title')}>
-      <Btn testID="go-sub" kind="secondary" label={`💳 ${t('hb.title')}`} onPress={() => router.push('/subscription')} />
-      <Btn testID="go-backup" kind="secondary" label={`☁️ ${t('bk.title')}`} onPress={() => router.push('/backup')} />
-      <Btn testID="go-security" kind="secondary" label={`🔐 ${t('fx.secTitle')}`} onPress={() => router.push('/security')} />
+      <Card style={{ gap: 2 }}>
+        <ListRow testID="go-sub" icon="💳" label={t('hb.title')} onPress={() => router.push('/subscription')} />
+        <ListRow testID="go-backup" icon="☁️" label={t('bk.title')} onPress={() => router.push('/backup')} />
+        <ListRow testID="go-security" icon="🔐" label={t('fx.secTitle')} onPress={() => router.push('/security')} />
+      </Card>
       <ThemePicker />
       <Card>
         <CardTitle>🌐 {t('set.language')}</CardTitle>

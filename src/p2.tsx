@@ -316,8 +316,8 @@ export function SmartTips() {
 }
 export function Reminders() {
   const { t } = useTranslation(); const [rem, setRem] = useExt<Rem>('rem', REM0);
-  return <Screen title={`🔔 ${t('p2.t.rem')}`}><T>{t('p2.remHow')}</T>
-    {(Object.keys(REM0) as (keyof Rem)[]).map((k) => <Card key={k}><CardTitle>{t('p2.rn.' + k)}</CardTitle>
+  return <Screen title={`🔔 ${t('p2.t.rem')}`}><InfoNote icon="🔔" text={t('p2.remHow')} />
+    {(Object.keys(REM0) as (keyof Rem)[]).map((k, ri) => <Card key={k}><CardTitle icon={({ water: '💧', meal: '🍽️', move: '🚶', sleep: '😴', checkin: '⚖️' } as Record<string, string>)[k] ?? '🔔'}>{t('p2.rn.' + k)}</CardTitle>
       <Row><Chip label={`✓ ${t('p2.on')}`} active={rem[k]} onPress={() => setRem((v) => ({ ...v, [k]: true }))} /><Chip label={t('p2.off')} active={!rem[k]} onPress={() => setRem((v) => ({ ...v, [k]: false }))} /></Row></Card>)}
     <Note k="p2.remNote" /></Screen>;
 }

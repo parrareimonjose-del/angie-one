@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImagePicker from 'expo-image-picker';
 import Svg, { Circle, Rect, Ellipse, Path, Defs, ClipPath, Image as SvgImage, G } from 'react-native-svg';
-import { Screen, Card, Btn, T, s, InfoNote, CardTitle } from './ui';
+import { Screen, Card, Btn, T, s, InfoNote, CardTitle, IconCard, IconTile } from './ui';
 import { C } from './theme';
 import { fmtNum, curLang } from './i18n';
 import { useStore, today } from './store';
@@ -112,7 +112,9 @@ export function Clone() {
   };
   // 1) Permiso aparte (casillas sin marcar) y mayor de edad
   if (!c && i === -1) return <Screen title={`🧬 ${t('cl.title')}`}>
-    <Card style={{ backgroundColor: C.tint }}><T style={{ fontWeight: '800' }}>{t('cl.intro')}</T><T>{t('cl.how')}</T></Card>
+    <IconCard icon="🧬" title={t('cl.intro')} sub={t('cl.how')}>
+      <View style={{ flexDirection: 'row', gap: 6 }}>{['🙂', '👤', '🙃', '🧍', '🚶', '🔙'].map((e, k) => <View key={k} style={{ flex: 1, alignItems: 'center', gap: 4 }}><IconTile icon={e} size={42} /><Text style={[s.muted, { fontSize: 12 }]}>{k + 1}</Text></View>)}</View>
+    </IconCard>
     <Card><CardTitle>🔒 {t('cl.rule')}</CardTitle><T>{t('cl.ruleTxt')}</T><T>👕 {t('cl.clothes')}</T></Card>
     <Check testID="cl-consent" on={consent} label={t('cl.consent')} onPress={() => setConsent(!consent)} />
     <Check testID="cl-adult" on={adult} label={t('cl.adult')} onPress={() => setAdult(!adult)} />

@@ -6,7 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
-import { Screen, Card, Btn, T, Bar, s, InfoNote, CardTitle } from './ui';
+import { Screen, Card, Btn, T, Bar, s, InfoNote, CardTitle, Ring } from './ui';
 import { C } from './theme';
 import { useStore, uid } from './store';
 import { fmtNum, curLang } from './i18n';
@@ -102,16 +102,17 @@ function ReportScreen({ kind }: { kind: 'month' | 'year' }) {
   const gap = kind === 'month' ? monthGap(d, period) : Math.max(0, 100 - d.points);
   const ded = deductions(rs);
   return <Screen title={kind === 'month' ? `📅 ${t('dt.month')}` : `📚 ${t('dt.year')}`}><Example />
-    {!d.consent ? <Card><T>{t('dt.needConsent')}</T><Btn label={t('dt.title')} onPress={() => router.push('/datos' as any)} /></Card> : null}
-    <Card testID="cost"><CardTitle>{t('dt.cost', { n: c.cost })}</CardTitle><T>{t('dt.youHave', { n: d.points })}</T>
+    {!d.consent ? <Card><CardTitle icon="🧾">{t('dt.needConsent')}</CardTitle><Btn label={t('dt.title')} onPress={() => router.push('/datos' as any)} /></Card> : null}
+    <Card testID="cost" style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}><Ring value={Math.min(d.points, c.cost)} max={c.cost} size={110} stroke={12}><Text style={{ fontSize: 24, fontWeight: '900', color: C.text }}>{d.points}</Text><Text style={[s.muted, { fontSize: 12 }]}>/ {c.cost}</Text></Ring>
+      <View style={{ flex: 1, gap: 6 }}><CardTitle icon="⭐">{t('dt.cost', { n: c.cost })}</CardTitle><T>{t('dt.youHave', { n: d.points })}</T>
       <Bar value={Math.min(d.points, c.cost)} max={c.cost} color={C.primary} />
-      {kind === 'month' ? <T>{t('dt.gapM', { n: gap })}</T> : <T>{t('dt.gapY')}</T>}</Card>
+      {kind === 'month' ? <T>{t('dt.gapM', { n: gap })}</T> : <T>{t('dt.gapY')}</T>}</View></Card>
     {d.consent && !c.gapDone ? <Card><CardTitle>🧩 {t('dt.gapT')}</CardTitle>
       <Survey id={gapSurveyId(kind, period)} onDone={(a) => { const r = ingest(d, 'survey', { id: gapSurveyId(kind, period), answers: { a } }, uid()); if (!r.error) setD(() => r.d); }} /></Card> : null}
     {!have ? <Btn label={c.ok ? `✓ ${t('dt.redeem', { n: c.cost })}` : `🔒 ${t('dt.notYet')}`} kind={c.ok ? 'primary' : 'ghost'} onPress={() => { const n = redeem(d, kind, period); if (n) setD(() => n); }} /> : null}
     {have ? <Card testID="report"><CardTitle>{t('dt.summary')} · {period}</CardTitle>
       <T>{t('dt.total')}: {money(sum.total)} · {sum.count} {t('dt.receipts').toLowerCase()}</T>
-      {sum.by.map((x) => <T key={x.cat}>• {t('dt.cat.' + x.cat)}: {money(x.v)}</T>)}
+      {sum.by.map((x) => <View key={x.cat} style={{ gap: 4 }}><T>{t('dt.cat.' + x.cat)}: {money(x.v)}</T><Bar value={x.v} max={Math.max(1, sum.total)} color={C.secondary} /></View>)}
       {kind === 'year' ? <>
         <CardTitle>💡 {t('dt.dedT')}</CardTitle>
         {Object.keys(ded).length ? Object.entries(ded).map(([k, v]) => <T key={k}>• {t('dt.ded.' + k)}: {money(v)}</T>) : <T>{t('dt.dedNone')}</T>}

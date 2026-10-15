@@ -170,8 +170,8 @@ export function Health() {
   const tog = (m: string) => setModes((a0) => { const a = cleanModes(a0); return a.includes(m) ? a.filter((x) => x !== m) : [...a, m]; });
   const nextP = cyc.last ? new Date(new Date(cyc.last + 'T12:00:00').getTime() + cyc.len * DAY) : null;
   return <Screen title={`🥗 ${t('x.t.health')}`}>
-    <Card style={{ backgroundColor: C.warnBg }}><T style={{ fontWeight: '800' }}>⚠️ {t('x.healthWarn')}</T></Card>
-    {MODES.map((m) => <Card key={m}><Row><Text style={[s.h2, { flex: 1 }]}>{t(`x.m.${m}`)}</Text><Btn small kind={modes.includes(m) ? 'secondary' : 'ghost'} label={modes.includes(m) ? '✓ ' + t('x.on') : t('x.off')} onPress={() => tog(m)} /></Row>
+    <InfoNote warn icon="⚠️" text={t('x.healthWarn')} />
+    {MODES.map((m, mi) => <Card key={m}><Row><IconTile icon={['🍬', '🧂', '🌾', '🥦', '🌸', '🥩', '🌱', '💧', '🫀', '🍋'][mi % 10]} size={44} /><Text style={[s.h2, { flex: 1 }]}>{t(`x.m.${m}`)}</Text><Btn small kind={modes.includes(m) ? 'secondary' : 'ghost'} label={modes.includes(m) ? '✓ ' + t('x.on') : t('x.off')} onPress={() => tog(m)} /></Row>
       {modes.includes(m) && <T testID={`mode-${m}`}>{t(`x.md.${m}`)}</T>}
       {m === 'cycle' && modes.includes(m) && <><Btn small kind="ghost" label={t('x.periodToday')} onPress={() => setCyc((c) => ({ ...c, last: today() }))} />
         {nextP && <T>{t('x.nextPeriod', { d: fmtDate(nextP) })}</T>}</>}</Card>)}
