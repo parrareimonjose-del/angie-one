@@ -1,0 +1,46 @@
+{
+  "expo": {
+    "name": "Angie One",
+    "slug": "angie-one",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.parraapps.angieone",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Angie One usa la cámara para analizar tus platos y códigos de barras.",
+        "NSPhotoLibraryUsageDescription": "Angie One usa tus fotos para analizar platos."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E11D48",
+        "foregroundImage": "./assets/icon.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.parraapps.angieone"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "output": "single",
+      "bundler": "metro"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-localization",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Angie One usa la cámara para analizar tus platos y códigos de barras."
+        }
+      ]
+    ],
+    "scheme": "angieone",
+    "experiments": {
+      "baseUrl": "/angie-one",
+      "typedRoutes": false
+    }
+  }
+}
