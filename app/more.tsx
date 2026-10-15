@@ -7,6 +7,8 @@ export default function More() {
     <Screen title={t('more.title')}>
       <Btn label={`🌱  ${t('p2.hub')}`} onPress={() => router.push('/plus')} />
       <Btn kind="accent" label={`✨  ${t('x.explore')}`} onPress={() => router.push('/explore')} />
+      <Btn kind="secondary" testID="more-tut" label={`🎬  ${t('tu.title')}`} onPress={() => router.push('/tutoriales' as any)} />
+      <Btn kind="secondary" testID="more-clone" label={`🧬  ${t('cl.title')}`} onPress={() => router.push('/clon' as any)} />
       <Btn label={`💪  ${t('coach.title')}`} onPress={() => router.push('/coach')} />
       <Btn label={`🏷️  ${t('more.barcode')}`} onPress={() => router.push('/barcode')} />
       <Btn kind="secondary" label={`✍️  ${t('more.manual')}`} onPress={() => router.push('/manual')} />

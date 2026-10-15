@@ -1510,5 +1510,167 @@
       "pending": "En attente"
     },
     "weighNever": "Aucun poids enregistré pour l’instant."
+  },
+  "sp": {
+    "tag": "Mange bien, sens-toi bien",
+    "skip": "Appuie pour entrer"
+  },
+  "cl": {
+    "title": "Clone IA",
+    "fromTwin": "Créer mon clone IA à partir de mes photos",
+    "intro": "Ton clone IA est ton double animé, avec ta taille et ton poids.",
+    "how": "Prends 6 photos guidées. Au fil de ta perte de poids ou de tes progrès, ton clone évolue avec toi.",
+    "rule": "Règle d'or",
+    "ruleTxt": "Tes photos et ton clone restent uniquement sur ce téléphone. Ils ne sont jamais vendus, jamais utilisés pour des pubs et jamais montrés à personne. Tu peux les supprimer quand tu veux.",
+    "clothes": "Porte des vêtements ajustés (comme une tenue de sport). Pas de photos en sous-vêtements ou maillot de bain.",
+    "consent": "J'accepte d'utiliser mes photos pour créer mon clone. Seules les photos de face sont envoyées une seule fois à l'IA pour lire les couleurs et les proportions, et elles n'y sont pas enregistrées.",
+    "adult": "J'ai 18 ans ou plus",
+    "start": "Commencer les photos",
+    "needBoth": "Coche les deux cases pour commencer.",
+    "notMed": "Ton clone est une illustration pour te motiver. Ce n'est pas une mesure médicale.",
+    "shot": {
+      "faceFront": "Visage, de face",
+      "faceLeft": "Visage, de profil gauche",
+      "faceRight": "Visage, de profil droit",
+      "bodyFront": "Corps, de face",
+      "bodySide": "Corps, de profil",
+      "bodyBack": "Corps, de dos"
+    },
+    "tip": {
+      "faceFront": "Regarde droit vers l'appareil. Place ton visage dans l'ovale. Bonne lumière, sans lunettes.",
+      "faceLeft": "Tourne un peu la tête vers la gauche.",
+      "faceRight": "Tourne un peu la tête vers la droite.",
+      "bodyFront": "Tiens-toi à 2 mètres. Tout le corps dans le contour, les bras légèrement écartés.",
+      "bodySide": "mets-toi de profil. Tiens-toi bien droit.",
+      "bodyBack": "Tourne le dos à l'appareil."
+    },
+    "take": "Prendre la photo",
+    "pick": "Choisir une photo",
+    "skipShot": "Passer cette photo",
+    "noCam": "Permission de l'appareil photo requise. Tu peux choisir une photo à la place.",
+    "camErr": "Impossible d'ouvrir la photo. Réessaie.",
+    "onDevice": "Enregistré uniquement sur ce téléphone.",
+    "review": "Tes photos (appuie sur une pour la refaire)",
+    "needFront": "Les photos du visage et du corps de face sont nécessaires.",
+    "build": "Créer mon clone",
+    "building": "Création de ton clone…",
+    "sendOnce": "Les 2 photos de face sont envoyées une fois à l'IA et ne sont pas enregistrées là-bas. Tout le reste reste sur ton téléphone.",
+    "noPerson": "Je n'ai pas pu voir d'adulte habillé sur les photos. Réessaie avec des vêtements ajustés.",
+    "localOnly": "IA indisponible pour le moment : j'ai créé ton clone avec les couleurs détectées sur ton téléphone.",
+    "byAi": "Créé par IA à partir de tes photos",
+    "byPhone": "Créé sur ton téléphone",
+    "before": "Avant",
+    "now": "Maintenant",
+    "goal": "Objectif",
+    "down": "Tu as perdu {{kg}} kg",
+    "up": "Tu as pris {{kg}} kg",
+    "same": "Même poids qu'au début",
+    "v": {
+      "front": "Face",
+      "side": "Profil",
+      "back": "Dos"
+    },
+    "morph": "À chaque fois que tu enregistres ton poids ou un entraînement, ton clone se met à jour : plus svelte si tu perds du poids, plus fort si tu t'entraînes.",
+    "logW": "Enregistrer mon poids",
+    "train": "S'entraîner",
+    "redo": "Refaire mes photos",
+    "del": "Supprimer mes photos et mon clone",
+    "delQ": "Supprimer tes 6 photos et ton clone de ce téléphone ?",
+    "delYes": "Oui, supprimer",
+    "delNo": "Non",
+    "nudge": "Crée ton clone IA : un double de toi qui change au fil de tes progrès.",
+    "nudgeGo": "Le créer",
+    "notNow": "Pas maintenant"
+  },
+  "tu": {
+    "title": "Apprendre à utiliser Angie",
+    "sub": "Courtes vidéos avec voix et sous-titres. Appuie sur le grand bouton lecture.",
+    "len": "3 étapes · 15 secondes",
+    "play": "Lire",
+    "again": "Revoir",
+    "step": "Étape {{n}}",
+    "prev": "Retour",
+    "next": "Suivant",
+    "pause": "Pause",
+    "resume": "Continuer",
+    "voiceOn": "Voix activée",
+    "voiceOff": "Voix désactivée",
+    "done": "C'est fait ! Essaie par toi-même.",
+    "try": "Essayer maintenant",
+    "all": "Tous les tutos",
+    "f": {
+      "photo": {
+        "t": "Photo de ton repas",
+        "s1": "Appuie sur Scanner en bas.",
+        "s2": "Prends en photo ton assiette ou choisis-en une.",
+        "s3": "Vérifie les calories et appuie sur Ajouter."
+      },
+      "voice": {
+        "t": "Enregistrer par la voix",
+        "s1": "Appuie sur le micro dans la barre du bas.",
+        "s2": "Dis ce que tu as mangé, par exemple : riz au poulet.",
+        "s3": "Vérifie le résultat et enregistre-le."
+      },
+      "barcode": {
+        "t": "Scanner un code-barres",
+        "s1": "Ouvre Code-barres dans Plus.",
+        "s2": "Appuie sur Scanner avec l'appareil photo et vise le code-barres.",
+        "s3": "S'il n'est pas trouvé, prends une photo de l'étiquette."
+      },
+      "coach": {
+        "t": "Ton coach personnel",
+        "s1": "Ouvre Coach dans Plus.",
+        "s2": "Réponds à ton objectif, tes jours et tes minutes.",
+        "s3": "Angie crée ton plan et l'adapte chaque semaine."
+      },
+      "plan": {
+        "t": "Ton plan de repas",
+        "s1": "Ouvre ton plan.",
+        "s2": "Consulte tes repas pour chaque jour.",
+        "s3": "Modifie n'importe quel repas qui ne te plaît pas."
+      },
+      "gym": {
+        "t": "Muscu et exercices",
+        "s1": "Ouvre Muscu.",
+        "s2": "Choisis une routine adaptée à ton niveau.",
+        "s3": "Suis le chronomètre et la voix."
+      },
+      "weight": {
+        "t": "Enregistrer ton poids",
+        "s1": "Ouvre Poids.",
+        "s2": "Écris ton poids et enregistre.",
+        "s3": "Consulte ton graphique et ta tendance."
+      },
+      "chef": {
+        "t": "Frigo et chef IA",
+        "s1": "Ouvre Chef IA.",
+        "s2": "Écris ou prends en photo ce que tu as dans le frigo.",
+        "s3": "Angie te donne des recettes faciles."
+      },
+      "menu": {
+        "t": "Menu de restaurant",
+        "s1": "Ouvre Menu.",
+        "s2": "Prends en photo le menu.",
+        "s3": "Angie te montre les meilleures options pour ton objectif."
+      },
+      "datos": {
+        "t": "Reçus et sondages",
+        "s1": "Ouvre la section Données.",
+        "s2": "Donne ton autorisation et prends en photo un reçu.",
+        "s3": "Gagne des points. Tes données de santé ne sont jamais vendues."
+      },
+      "security": {
+        "t": "Code PIN et empreinte",
+        "s1": "Ouvre Sécurité.",
+        "s2": "Crée un code PIN. Appuie sur l'œil pour le voir.",
+        "s3": "Active l'empreinte digitale ou Face ID."
+      },
+      "clone": {
+        "t": "Ton clone IA",
+        "s1": "Ouvre Clone IA et coche les deux cases.",
+        "s2": "Prends les 6 photos en suivant le contour.",
+        "s3": "Découvre ton clone : avant, maintenant et objectif."
+      }
+    }
   }
 }

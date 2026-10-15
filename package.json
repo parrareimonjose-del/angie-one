@@ -39,8 +39,9 @@
     "check:i18n": "node scripts/check-i18n.js",
     "test:safety": "node tests/run.mjs tests/safety.test.ts",
     "test:datos": "node tests/run.mjs tests/datos.test.ts",
-    "test": "npm run -s test:safety && npm run -s test:datos && npm run -s test:faltantes",
-    "test:faltantes": "node tests/run.mjs tests/faltantes.test.ts"
+    "test": "npm run -s test:safety && npm run -s test:datos && npm run -s test:faltantes && npm run -s test:clone",
+    "test:faltantes": "node tests/run.mjs tests/faltantes.test.ts",
+    "test:clone": "node tests/run.mjs tests/clone.test.ts"
   },
   "private": true
 }

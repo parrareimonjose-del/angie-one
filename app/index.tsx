@@ -9,6 +9,7 @@ import { useStore, today, trialPhase, fmtCountdown, streak } from '../src/store'
 import { C } from '../src/theme';
 import { SmartTips } from '../src/p2';
 import { SecurityNudge } from '../src/faltantes-ui';
+import { CloneNudge } from '../src/clone-ui';
 import { coachTarget, coachOf, burnedOn, isPremium, weekday } from '../src/coach';
 
 export default function Home() {
@@ -69,6 +70,7 @@ export default function Home() {
       </View>
       {isPremium(st) && co.plan && !co.plan.workout.days[weekday()].rest && !co.workouts.some((w) => w.date === d) ? <Btn kind="secondary" label={`🏋️  ${t('coach.startToday')}`} onPress={() => router.push({ pathname: '/player', params: { day: String(weekday()) } })} /> : null}
       <SecurityNudge />
+      <CloneNudge />
       <SmartTips />
       <Btn label={`📸  ${t('nav.scan')}`} onPress={() => router.push('/scan')} />
       <Btn kind="ghost" label={`🌱  ${t('p2.hub')}`} onPress={() => router.push('/plus')} />

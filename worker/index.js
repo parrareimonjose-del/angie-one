@@ -183,13 +183,26 @@ async function phase2(path, b, env, h) {
   return json(out, 200, h);
 }
 
+// Clon IA: rasgos visuales para un avatar estilizado. Las fotos NO se guardan ni se cachean: solo se analizan y se descartan.
+async function clone(b, env, h) {
+  const imgs = [b.face, b.body].filter((x) => typeof x === 'string' && x.length > 100 && x.length < 600000);
+  if (!imgs.length) return json({ error: 'need input' }, 400, h);
+  const parts = [{ text: 'You help draw a friendly cartoon avatar. From the photo(s) of an adult in fitted clothes, return ONLY JSON: {"ok":true,"skin":"#RRGGBB","hair":"#RRGGBB","hairLen":"short|medium|long","shoulders":1.0,"hips":1.0}. shoulders and hips are relative width 0.85-1.15 (1 = average). No names, no age, no health, no judgments. If no clothed adult person is visible, or there is nudity, return {"ok":false}.' }];
+  for (const d of imgs) parts.push({ inline_data: { mime_type: 'image/jpeg', data: d } });
+  const txt = await gemini(env, parts, 200, 30000, true);
+  if (txt === null) return json({ error: 'busy' }, 503, h);
+  const o = parseJson(txt); if (!o || o.ok === false) return json({ error: 'no_person' }, 422, h);
+  const hex = (v, d) => (/^#[0-9a-fA-F]{6}$/.test(v) ? v : d), num = (v) => Math.max(0.85, Math.min(1.15, +v || 1));
+  return json({ skin: hex(o.skin, '#E0AC8A'), hair: hex(o.hair, '#3B2A20'), hairLen: ['short', 'medium', 'long'].includes(o.hairLen) ? o.hairLen : 'medium', shoulders: num(o.shoulders), hips: num(o.hips) }, 200, h);
+}
+
 export default {
   async fetch(req, env) {
     const h = cors(req.headers.get('Origin'));
     if (!h) return json({ error: 'origin' }, 403);
     if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: h });
     const path = new URL(req.url).pathname;
-    if (req.method !== 'POST' || !['/estimate', '/plan', '/chat', '/vision', '/dev'].includes(path)) return json({ error: 'not found' }, 404, h);
+    if (req.method !== 'POST' || !['/estimate', '/plan', '/chat', '/vision', '/dev', '/clone'].includes(path)) return json({ error: 'not found' }, 404, h);
     const ip = req.headers.get('CF-Connecting-IP') || 'x';
     const now = Date.now(), arr = (hits.get(ip) || []).filter((t) => now - t < 60000);
     if (arr.length >= RATE) return json({ error: 'rate' }, 429, h);
@@ -200,6 +213,7 @@ export default {
     let b; try { b = JSON.parse(raw); } catch { return json({ error: 'bad json' }, 400, h); }
     if (path === '/plan' || path === '/chat') return coach(path, b, env, h);
     if (path === '/vision' || path === '/dev') return phase2(path, b, env, h);
+    if (path === '/clone') return clone(b, env, h);
     const LANGS = { es: 'Spanish', en: 'English', pt: 'Portuguese', fr: 'French', de: 'German', it: 'Italian', zh: 'Simplified Chinese', ja: 'Japanese', ko: 'Korean', hi: 'Hindi', ar: 'Arabic', ru: 'Russian', tr: 'Turkish' };
     const code = String(b.lang || 'en').slice(0, 5).toLowerCase().split('-')[0];
     const lang = LANGS[code] || 'English';
