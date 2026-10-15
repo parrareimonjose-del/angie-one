@@ -19,6 +19,7 @@ export default function Settings() {
   return (
     <Screen title={t('set.title')}>
       <Btn testID="go-sub" kind="secondary" label={`💳 ${t('hb.title')}`} onPress={() => router.push('/subscription')} />
+      <Btn testID="go-backup" kind="secondary" label={`☁️ ${t('bk.title')}`} onPress={() => router.push('/backup')} />
       <Btn testID="go-security" kind="secondary" label={`🔐 ${t('fx.secTitle')}`} onPress={() => router.push('/security')} />
       <Card>
         <Text style={s.h2}>🌐 {t('set.language')}</Text>

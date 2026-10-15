@@ -1,4 +1,6 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { searchCloud, ATTRIBUTION } from '../src/fooddb';
+import { region } from '../src/i18n';
 import { startVoice, voiceSupported } from '../src/voice';
 import { View, Text, TextInput, Pressable, Platform } from 'react-native';
 import { router } from 'expo-router';
@@ -32,7 +34,14 @@ export default function Manual() {
   const dictate = () => { if (lis === 'listening') { stopRef.current?.(); return; } setErr('');
     stopRef.current = startVoice({ onText: (txt) => { setDesc(txt); ask(txt); }, onErr: (e) => setErr(t('voice.' + e)), onState: setLis }); };
   const label = (f: VFood) => (f.nameKey ? t(f.nameKey) : f.name || '?');
-  const list = searchFoods(q, label, st.myFoods || []);
+  // Base grande en la nube (USDA + Open Food Facts + lista Angie); sin internet queda la lista local.
+  const [cloud, setCloud] = useState<VFood[]>([]); const [cst, setCst] = useState<'idle' | 'busy' | 'ok' | 'off'>('idle');
+  useEffect(() => { const qq = q.trim(); if (qq.length < 2) { setCloud([]); setCst('idle'); return; } let live = true; setCst('busy');
+    const tm = setTimeout(() => { searchCloud(qq, i18n.language.slice(0, 2), region() || '').then((r) => { if (live) { setCloud(r); setCst('ok'); } }).catch(() => { if (live) { setCloud([]); setCst('off'); } }); }, 350);
+    return () => { live = false; clearTimeout(tm); }; }, [q, i18n.language]);
+  const local = searchFoods(q, label, st.myFoods || []);
+  const seen = new Set(local.map((f) => label(f).toLowerCase()));
+  const list = [...local, ...cloud.filter((f) => !seen.has(label(f).toLowerCase()))].sort((a, b) => Number(b.verified) - Number(a.verified));
   return (
     <Screen title={t('manual.title')}>
       {st.aiEnabled && <Card>
@@ -47,7 +56,9 @@ export default function Manual() {
       <Card>
         <Text style={s.h2}>🌎 {t('manual.latin')}</Text><Text style={s.muted}>{t('hb.verifiedHow')}</Text>
         {list.length === 0 ? <Text style={s.muted}>{t('manual.noMatch')}</Text> : null}
-        {list.slice(0, 12).map((f) => <FoodRow key={f.key} f={f} label={label(f)} onAdd={() => add({ name: label(f), kcal: f.kcal, p: f.p, c: f.c, f: f.f, fiber: f.fiber })} />)}
+        {cst === 'busy' ? <Text testID="cloud-busy" style={s.muted}>⏳ {t('fdb.searching')}</Text> : cst === 'off' ? <Text testID="cloud-off" style={s.muted}>{t('fdb.offline')}</Text> : null}
+        {list.slice(0, 20).map((f) => <FoodRow key={f.key} f={f} label={label(f)} onAdd={() => add({ name: label(f), kcal: f.kcal, p: f.p, c: f.c, f: f.f, fiber: f.fiber })} />)}
+        {cloud.length ? <Text testID="food-attrib" style={[s.muted, { fontSize: 13 }]}>{t('fdb.source')}: {ATTRIBUTION}</Text> : null}
       </Card>
       <Card>
         <Text style={s.h2}>✍️ {t('manual.exact')}</Text>

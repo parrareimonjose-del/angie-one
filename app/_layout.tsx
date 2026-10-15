@@ -3,6 +3,7 @@ import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StoreProvider } from '../src/store';
+import { AutoSync } from './backup';
 import { C } from '../src/theme';
 import { AuthGate } from '../src/faltantes-ui';
 import { Splash } from '../src/splash';
@@ -15,7 +16,7 @@ export default function Layout() {
     <SafeAreaProvider>
       <StoreProvider>
         <StatusBar style="dark" />
-        <Splash><AuthGate><Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: C.bg }, animation: 'fade' }} /></AuthGate></Splash>
+        <AutoSync /><Splash><AuthGate><Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: C.bg }, animation: 'fade' }} /></AuthGate></Splash>
       </StoreProvider>
     </SafeAreaProvider>
   );

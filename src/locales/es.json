@@ -1834,5 +1834,43 @@
     "lentils": "Lentejas (cocidas)",
     "tortilla": "Tortilla de maíz",
     "cheddar": "Queso cheddar"
+  },
+  "fdb": {
+    "searching": "Buscando en la base grande de alimentos…",
+    "offline": "Sin conexión: te muestro los alimentos guardados en el teléfono.",
+    "source": "Datos"
+  },
+  "bk": {
+    "title": "Copia en la nube",
+    "what": "Guarda una copia cifrada de tu diario, peso, planes, metas, puntos, memoria y ajustes, y recupérala en un teléfono nuevo.",
+    "e2e": "Cifrada de extremo a extremo en tu teléfono. Ni Angie One puede leerla.",
+    "noPhotos": "Las fotos de tu Clon IA y las imágenes nunca se suben.",
+    "neverSold": "Tus datos nunca se venden.",
+    "turnOn": "Activar copia en la nube",
+    "codeTitle": "Tu código de recuperación",
+    "codeHow": "Anótalo o guárdalo en un lugar seguro. Solo se muestra una vez y es la única forma de recuperar tus datos. Nadie puede recuperarlo por ti.",
+    "saved": "Ya lo guardé, hacer la copia",
+    "working": "Trabajando…",
+    "done": "Copia guardada en la nube.",
+    "on": "Copia en la nube activada",
+    "last": "Última copia",
+    "auto": "Se copia sola cada {{h}} horas cuando algo cambia.",
+    "now": "Copiar ahora",
+    "del": "Borrar todo de la nube",
+    "delQ": "¿Borrar tu copia de la nube? Tu teléfono conserva sus datos.",
+    "deleted": "Se borró todo de la nube.",
+    "restoreTitle": "Restaurar en este teléfono",
+    "restoreHow": "Escribe tu código de recuperación para traer tus datos.",
+    "restore": "Recuperar mis datos",
+    "restored": "Tus datos están de vuelta.",
+    "goHome": "Ir al inicio",
+    "haveBackup": "Ya tengo una copia",
+    "err": {
+      "offline": "Sin internet. Inténtalo más tarde.",
+      "auth": "Ese código no coincide con ninguna copia.",
+      "empty": "No hay ninguna copia con ese código.",
+      "badcode": "El código tiene 20 letras y números.",
+      "server": "La nube está ocupada. Inténtalo en un rato."
+    }
   }
 }

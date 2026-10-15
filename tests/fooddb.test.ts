@@ -1,0 +1,43 @@
+import { toVFood, toProduct, rname } from '../src/fooddb';
+import { newCode, validCode, cleanCode, derive, encryptState, decryptBackup, snapshot } from '../src/cloudsync';
+import { toks, codeVariants, normCode, sKey, bKey, fromOFF, fromUSDA, searchKV, barcodeKV } from '../worker/foods.js';
+const ok = (n: string, c: boolean) => { if (!c) { console.error('FAIL', n); process.exitCode = 1; } else console.log('PASS', n); };
+const r: any = { i: 'usda:1', n: { es: 'Pechuga de pollo', en: 'Chicken breast' }, k: 165, p: 31, c: 0, f: 3.6, fb: 0, s: 'usda', v: 1, sv: ['1 pieza', 120] };
+const v = toVFood(r, 'es'); ok('porción en gramos escala por 100 g', v.kcal === 198 && v.p === 37.2 && v.portion.includes('120 g') && v.verified && v.source === 'usda');
+ok('nombre en idioma del usuario', rname(r, 'en') === 'Chicken breast' && rname(r, 'pt') === 'Pechuga de pollo');
+ok('sin porción → 100 g', toVFood({ ...r, sv: undefined }, 'es').portion === '100 g');
+ok('platos latinos por porción', toVFood({ ...r, ps: 1, sv: ['1 plato', null], k: 750 }, 'es').kcal === 750);
+const pr = toProduct({ ...r, fb: 2.5, na: 400 }, 'es'); ok('producto con fibra y sal', pr.fiber100 === 2.5 && pr.salt100 === 1);
+ok('tokens sin acentos ni plurales', JSON.stringify(toks('Arepas de Maíz con Queso')) === JSON.stringify(['arepa', 'maiz', 'queso']));
+ok('variantes de código UPC→EAN', codeVariants('49000028911').includes('0049000028911') && normCode('12345678') === '0000012345678');
+ok('claves de bucket', /^s:\d+$/.test(sKey('arepa')) && /^b:\d+$/.test(bKey('0049000028911')));
+const fo = fromOFF({ code: '123', product_name_es: 'Galleta', nutriments: { 'energy-kcal_100g': 450, proteins_100g: 6, carbohydrates_100g: 70, fat_100g: 16, fiber_100g: 3 } }, '7501000000001');
+ok('OFF normalizado con fibra', fo!.k === 450 && fo!.fb === 3 && fo!.n.es === 'Galleta' && fo!.v === 0);
+const fu = fromUSDA({ fdcId: 9, description: 'Rice', dataType: 'SR Legacy', foodNutrients: [{ nutrientNumber: '208', value: 130 }, { nutrientNumber: '203', value: 2.7 }, { nutrientNumber: '205', value: 28 }, { nutrientNumber: '204', value: 0.3 }, { nutrientNumber: '291', value: 0.4 }] });
+ok('USDA normalizado y verificado', fu!.k === 130 && fu!.fb === 0.4 && fu!.v === 1);
+// KV falso con el formato real
+const line = (t: string[], o: any) => ' ' + t.join(' ') + ' \t' + JSON.stringify(o);
+const kv = new Map<string, string>(); const add = (k: string, l: string) => kv.set(k, (kv.get(k) ? kv.get(k) + '\n' : '') + l);
+const A = { i: 'angie:arepa', n: { es: 'Arepa de maíz', en: 'Corn arepa' }, k: 220, p: 5, c: 42, f: 3, s: 'angie', v: 1, q: 100 };
+const B = { i: 'off:1', n: { es: 'Arepa congelada' }, k: 200, p: 4, c: 40, f: 2, s: 'off', v: 0, q: 60 };
+const P = { i: 'usda:2', n: { es: 'Pechuga de pollo asada', en: 'Chicken breast roasted' }, k: 165, p: 31, c: 0, f: 3.6, s: 'usda', v: 1, q: 90 };
+add(sKey('arepa'), line(['arepa', 'congelada'], B)); add(sKey('arepa'), line(['arepa', 'maiz', 'corn'], A));
+for (const t of ['pechuga', 'pollo', 'chicken', 'breast']) add(sKey(t), line(['pechuga', 'pollo', 'asada', 'chicken', 'breast', 'roasted'], P));
+add(bKey('0049000028911'), '0049000028911\t' + JSON.stringify({ ...B, i: 'off:0049000028911', bc: '0049000028911' }));
+kv.set('meta', JSON.stringify({ NS: 500, NB: 300 }));
+const env = { FOODS: { get: async (k: string) => kv.get(k) ?? null } };
+(async () => {
+  const s1 = await searchKV(env, 'arepas', 'es'); ok('busca "arepas" y el verificado va primero', s1.length === 2 && s1[0].i === 'angie:arepa');
+  const s2 = await searchKV(env, 'pollo pechuga', 'es'); ok('búsqueda multilingüe es', s2[0]?.i === 'usda:2');
+  const s3 = await searchKV(env, 'chicken breast', 'en'); ok('búsqueda en inglés', s3[0]?.i === 'usda:2');
+  ok('código de barras UPC de 11 dígitos', (await barcodeKV(env, '49000028911'))?.bc === '0049000028911');
+  ok('código inexistente → null', (await barcodeKV(env, '7790000000000')) === null);
+  // Copia cifrada
+  const code = newCode(); ok('código de 20 caracteres con guiones', validCode(code) && code.length === 24 && cleanCode(code.toLowerCase()) === cleanCode(code));
+  const d1 = await derive(code), d2 = await derive(code.toLowerCase()); ok('id y token deterministas', d1.id === d2.id && d1.tok === d2.tok && d1.id !== d1.tok && d1.id.length === 64);
+  const st: any = { aiEnabled: true, entries: [{ id: 'e', name: 'Arepa', kcal: 220, img: 'data:image/png;base64,AAAA' }], weight: [80], sync: { on: true, code } };
+  const snap = snapshot(st); ok('la copia no lleva imágenes ni el código', !JSON.stringify(snap).includes('data:image') && !('sync' in snap) && snap.entries[0].name === 'Arepa');
+  const b = await encryptState(st, code); ok('cifrado: el servidor no ve el texto', !b.ct.includes('Arepa') && !atob(b.ct).includes('Arepa'));
+  const back = await decryptBackup(b, code); ok('restaurar con el código', back.state.entries[0].kcal === 220);
+  let bad = false; try { await decryptBackup(b, newCode()); } catch { bad = true; } ok('otro código no puede descifrar', bad);
+})();

@@ -1834,5 +1834,43 @@
     "lentils": "Linsen (gekocht)",
     "tortilla": "Maistortilla",
     "cheddar": "Cheddar"
+  },
+  "fdb": {
+    "searching": "Durchsuche die große Lebensmitteldatenbank…",
+    "offline": "Keine Verbindung: Es werden auf diesem Handy gespeicherte Lebensmittel angezeigt.",
+    "source": "Daten"
+  },
+  "bk": {
+    "title": "Cloud-Backup",
+    "what": "Speichere eine verschlüsselte Kopie deines Tagebuchs, Gewichts, deiner Pläne, Ziele, Punkte, Erinnerungen und Einstellungen und stelle sie auf einem neuen Handy wieder her.",
+    "e2e": "Auf deinem Handy Ende-zu-Ende-verschlüsselt. Nicht einmal Angie One kann sie lesen.",
+    "noPhotos": "Fotos und Bilder deines KI-Klons werden niemals hochgeladen.",
+    "neverSold": "Deine Daten werden niemals verkauft.",
+    "turnOn": "Cloud-Backup aktivieren",
+    "codeTitle": "Dein Wiederherstellungscode",
+    "codeHow": "Schreibe ihn auf oder bewahre ihn an einem sicheren Ort auf. Er wird nur einmal angezeigt und ist der einzige Weg, deine Daten wiederherzustellen. Niemand sonst kann ihn für dich wiederherstellen.",
+    "saved": "Ich habe ihn gespeichert, Backup erstellen",
+    "working": "Arbeite daran…",
+    "done": "Backup in der Cloud gespeichert.",
+    "on": "Cloud-Backup aktiv",
+    "last": "Letztes Backup",
+    "auto": "Es wird automatisch alle {{h}} Stunden gesichert, wenn sich etwas ändert.",
+    "now": "Jetzt sichern",
+    "del": "Alles aus der Cloud löschen",
+    "delQ": "Dein Backup aus der Cloud löschen? Dein Handy behält seine Daten.",
+    "deleted": "Alles wurde aus der Cloud gelöscht.",
+    "restoreTitle": "Auf diesem Handy wiederherstellen",
+    "restoreHow": "Gib deinen Wiederherstellungscode ein, um deine Daten zurückzuholen.",
+    "restore": "Meine Daten wiederherstellen",
+    "restored": "Deine Daten sind wieder da.",
+    "goHome": "Zum Startbildschirm",
+    "haveBackup": "Ich habe bereits ein Backup",
+    "err": {
+      "offline": "Keine Internetverbindung. Versuche es später noch einmal.",
+      "auth": "Dieser Code stimmt mit keinem Backup überein.",
+      "empty": "Es gibt kein Backup mit diesem Code.",
+      "badcode": "Der Code besteht aus 20 Buchstaben und Zahlen.",
+      "server": "Die Cloud ist beschäftigt. Versuche es gleich noch einmal."
+    }
   }
 }

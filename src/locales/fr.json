@@ -1834,5 +1834,43 @@
     "lentils": "Lentilles (cuites)",
     "tortilla": "Tortilla de maïs",
     "cheddar": "Cheddar"
+  },
+  "fdb": {
+    "searching": "Recherche dans la grande base de données des aliments…",
+    "offline": "Pas de connexion : affichage des aliments enregistrés sur ce téléphone.",
+    "source": "Données"
+  },
+  "bk": {
+    "title": "Sauvegarde cloud",
+    "what": "Enregistre une copie chiffrée de ton journal, de ton poids, de tes programmes, de tes objectifs, de tes points, de ta mémoire et de tes réglages, et retrouve-la sur un nouveau téléphone.",
+    "e2e": "Chiffrement de bout en bout sur ton téléphone. Même Angie One ne peut pas les lire.",
+    "noPhotos": "Les photos et images de ton clone IA ne sont jamais envoyées en ligne.",
+    "neverSold": "Tes données ne sont jamais vendues.",
+    "turnOn": "Activer la sauvegarde cloud",
+    "codeTitle": "Ton code de récupération",
+    "codeHow": "Note-le ou mets-le en lieu sûr. Il ne s'affiche qu'une seule fois et c'est le seul moyen de restaurer tes données. Personne ne peut le récupérer à ta place.",
+    "saved": "C'est noté, lancer la sauvegarde",
+    "working": "En cours…",
+    "done": "Sauvegarde enregistrée dans le cloud.",
+    "on": "Sauvegarde cloud activée",
+    "last": "Dernière sauvegarde",
+    "auto": "Sauvegarde automatique toutes les {{h}} heures en cas de modification.",
+    "now": "Sauvegarder maintenant",
+    "del": "Tout supprimer du cloud",
+    "delQ": "Supprimer ta sauvegarde du cloud ? Ton téléphone conservera ses données.",
+    "deleted": "Tout a été supprimé du cloud.",
+    "restoreTitle": "Restaurer sur ce téléphone",
+    "restoreHow": "Entre ton code de récupération pour récupérer tes données.",
+    "restore": "Restaurer mes données",
+    "restored": "Tes données sont de retour.",
+    "goHome": "Aller à l'accueil",
+    "haveBackup": "J'ai déjà une sauvegarde",
+    "err": {
+      "offline": "Pas de connexion internet. Réessaie plus tard.",
+      "auth": "Ce code ne correspond à aucune sauvegarde.",
+      "empty": "Il n'y a aucune sauvegarde avec ce code.",
+      "badcode": "Le code comporte 20 lettres et chiffres.",
+      "server": "Le cloud est occupé. Réessaie dans un moment."
+    }
   }
 }

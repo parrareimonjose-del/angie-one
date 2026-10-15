@@ -23,3 +23,9 @@ Cuenta de Google Play de José: **PERSONAL** (no organización). Fuentes: Play C
 6. **Anuncios/patrocinios (Fase 4)**: sin SDK de anuncios en pantallas de salud; revisar antes de tiendas.
 7. **Revisión de médico y abogado** del aviso médico, términos y privacidad.
 8. **Cuentas en la nube**: si se crean, el borrado debe borrar también el servidor (hoy no hay).
+
+## Copia en la nube y base de alimentos (15-oct-2026)
+- Copia en la nube opcional, cifrada de extremo a extremo en el teléfono (AES-256-GCM, clave PBKDF2 del código de recuperación). El servidor (Cloudflare KV) solo guarda bytes cifrados; no hay correo ni nombre.
+- Nunca se suben fotos del Clon IA ni imágenes. "Borrar todo de la nube" y "Borrar cuenta" eliminan la copia. Los datos nunca se venden.
+- Declarar en Data Safety (Google) / Privacy Nutrition Label (Apple): datos de salud y fitness, cifrados en tránsito y en reposo, no compartidos, el usuario puede borrarlos.
+- Base de alimentos: Open Food Facts (ODbL, atribución en la app: búsqueda, código y Legal) + USDA FoodData Central (dominio público).

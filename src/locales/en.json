@@ -1834,5 +1834,43 @@
     "lentils": "Lentils (cooked)",
     "tortilla": "Corn tortilla",
     "cheddar": "Cheddar cheese"
+  },
+  "fdb": {
+    "searching": "Searching the big food database…",
+    "offline": "No connection: showing foods saved on this phone.",
+    "source": "Data"
+  },
+  "bk": {
+    "title": "Cloud backup",
+    "what": "Save an encrypted copy of your diary, weight, plans, goals, points, memory and settings, and get it back on a new phone.",
+    "e2e": "End-to-end encrypted on your phone. Not even Angie One can read it.",
+    "noPhotos": "Your AI Clone photos and images are never uploaded.",
+    "neverSold": "Your data is never sold.",
+    "turnOn": "Turn on cloud backup",
+    "codeTitle": "Your recovery code",
+    "codeHow": "Write it down or save it somewhere safe. It is shown only once and it is the only way to restore your data. Nobody can recover it for you.",
+    "saved": "I saved it, make the backup",
+    "working": "Working…",
+    "done": "Backup saved in the cloud.",
+    "on": "Cloud backup on",
+    "last": "Last backup",
+    "auto": "It backs up automatically every {{h}} hours when something changes.",
+    "now": "Back up now",
+    "del": "Delete everything from the cloud",
+    "delQ": "Delete your backup from the cloud? Your phone keeps its data.",
+    "deleted": "Everything was deleted from the cloud.",
+    "restoreTitle": "Restore on this phone",
+    "restoreHow": "Type your recovery code to bring back your data.",
+    "restore": "Restore my data",
+    "restored": "Your data is back.",
+    "goHome": "Go to home",
+    "haveBackup": "I already have a backup",
+    "err": {
+      "offline": "No internet connection. Try again later.",
+      "auth": "That code does not match any backup.",
+      "empty": "There is no backup with that code.",
+      "badcode": "The code has 20 letters and numbers.",
+      "server": "The cloud is busy. Try again in a while."
+    }
   }
 }

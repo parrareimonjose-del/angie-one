@@ -12,6 +12,7 @@ export type State = {
   coach?: Coach;
   macros?: import('./mfp5').MacroGoals; prep?: import('./mfp5').Prep; health?: import('./mfp5').HealthData;
   sub?: import('./billing').Sub; streakOff?: boolean; reports?: import('./verified').Report[]; myFoods?: import('./verified').VFood[];
+  sync?: { on: boolean; code: string; last?: number; err?: string };
 };
 const INITIAL: State = { aiEnabled: true, entries: [], water: {}, challengeDays: [], aiPhotos: {}, founder: {}, langOverride: null };
 const KEY = 'angieone:v1';

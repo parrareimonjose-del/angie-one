@@ -1834,5 +1834,43 @@
     "lentils": "Lenticchie (cotte)",
     "tortilla": "Tortilla di mais",
     "cheddar": "Cheddar"
+  },
+  "fdb": {
+    "searching": "Sto cercando nel grande database degli alimenti...",
+    "offline": "Nessuna connessione: mostro i cibi salvati su questo telefono.",
+    "source": "Fonte"
+  },
+  "bk": {
+    "title": "Backup su cloud",
+    "what": "Salva una copia cifrata del tuo diario, del peso, dei piani, degli obiettivi, dei punti, della memoria e delle impostazioni, e recuperala su un nuovo telefono.",
+    "e2e": "Cifrato end-to-end sul tuo telefono. Nemmeno Angie One può leggerlo.",
+    "noPhotos": "Le foto e le immagini del tuo clone IA non vengono mai caricate.",
+    "neverSold": "I tuoi dati non vengono mai venduti.",
+    "turnOn": "Attiva il backup su cloud",
+    "codeTitle": "Il tuo codice di recupero",
+    "codeHow": "Scrivilo o salvalo in un posto sicuro. Viene mostrato una sola volta ed è l'unico modo per ripristinare i tuoi dati. Nessuno può recuperarlo per te.",
+    "saved": "L'ho salvato, fai il backup",
+    "working": "In corso...",
+    "done": "Backup salvato nel cloud.",
+    "on": "Backup su cloud attivo",
+    "last": "Ultimo backup",
+    "auto": "Effettua il backup automaticamente ogni {{h}} ore quando ci sono modifiche.",
+    "now": "Fai il backup ora",
+    "del": "Elimina tutto dal cloud",
+    "delQ": "Vuoi eliminare il tuo backup dal cloud? Il tuo telefono conserverà i suoi dati.",
+    "deleted": "Tutto è stato eliminato dal cloud.",
+    "restoreTitle": "Ripristina su questo telefono",
+    "restoreHow": "Digita il tuo codice di recupero per riavere i tuoi dati.",
+    "restore": "Ripristina i miei dati",
+    "restored": "I tuoi dati sono tornati.",
+    "goHome": "Vai alla home",
+    "haveBackup": "Ho già un backup",
+    "err": {
+      "offline": "Nessuna connessione ad internet. Riprova più tardi.",
+      "auth": "Quel codice non corrisponde ad alcun backup.",
+      "empty": "Non c'è alcun backup con quel codice.",
+      "badcode": "Il codice è composto da 20 lettere e numeri.",
+      "server": "Il cloud è occupato. Riprova tra poco."
+    }
   }
 }

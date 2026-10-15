@@ -1834,5 +1834,43 @@
     "lentils": "Mercimek (pişmiş)",
     "tortilla": "Mısır tortillası",
     "cheddar": "Çedar peyniri"
+  },
+  "fdb": {
+    "searching": "Büyük besin veritabanında aranıyor…",
+    "offline": "Bağlantı yok: Bu telefona kaydedilen besinler gösteriliyor.",
+    "source": "Kaynak"
+  },
+  "bk": {
+    "title": "Bulut yedekleme",
+    "what": "Günlüğünün, kilonun, planlarının, hedeflerinin, puanlarının, anılarının ve ayarlarının şifreli bir kopyasını kaydet ve yeni bir telefonda geri yükle.",
+    "e2e": "Telefonunda uçtan uca şifrelenir. Angie One bile bunu okuyamaz.",
+    "noPhotos": "Yapay Zeka İkizi fotoğrafların ve görsellerin asla yüklenmez.",
+    "neverSold": "Verilerin asla satılmaz.",
+    "turnOn": "Bulut yedeklemeyi aç",
+    "codeTitle": "Kurtarma kodun",
+    "codeHow": "Bunu bir yere yaz veya güvenli bir yerde sakla. Yalnızca bir kez gösterilir ve verilerini geri yüklemenin tek yoludur. Kimse senin için bunu kurtaramaz.",
+    "saved": "Kaydettim, yedeklemeyi başlat",
+    "working": "İşleniyor…",
+    "done": "Yedekleme buluta kaydedildi.",
+    "on": "Bulut yedekleme açık",
+    "last": "Son yedekleme",
+    "auto": "Bir şeyler değiştiğinde her {{h}} saatte bir otomatik olarak yedeklenir.",
+    "now": "Şimdi yedekle",
+    "del": "Buluttaki her şeyi sil",
+    "delQ": "Yedeğin buluttan silinsin mi? Telefonun verilerini saklamaya devam edecek.",
+    "deleted": "Buluttaki her şey silindi.",
+    "restoreTitle": "Bu telefonda geri yükle",
+    "restoreHow": "Verilerini geri getirmek için kurtarma kodunu yaz.",
+    "restore": "Verilerimi geri yükle",
+    "restored": "Verilerin geri geldi.",
+    "goHome": "Ana sayfaya git",
+    "haveBackup": "Zaten bir yedeğim var",
+    "err": {
+      "offline": "İnternet bağlantısı yok. Daha sonra tekrar dene.",
+      "auth": "Bu kod hiçbir yedekle eşleşmiyor.",
+      "empty": "Bu kodla eşleşen bir yedek yok.",
+      "badcode": "Kod 20 harf ve rakamdan oluşur.",
+      "server": "Bulut şu an yoğun. Birazdan tekrar dene."
+    }
   }
 }

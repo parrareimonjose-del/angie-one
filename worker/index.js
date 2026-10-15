@@ -1,3 +1,5 @@
+import { handleFoods, foodReport } from './foods.js';
+import { handleSync } from './sync.js';
 // Angie One AI proxy: keeps GEMINI_API_KEY server-side (Worker secret).
 const MODEL = 'gemini-flash-lite-latest';
 const MODELS = ['gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-flash-lite-latest'];
@@ -6,12 +8,12 @@ const RATE = 20; // requests per minute per IP (per isolate, best effort)
 const ORIGINS = [/^https:\/\/parrareimonjose-del\.github\.io$/, /^http:\/\/localhost(:\d+)?$/, /^http:\/\/127\.0\.0\.1(:\d+)?$/];
 const hits = new Map();
 const PROMPT = `You are a nutrition estimator for Latin American and international food. Estimate the meal (from the photo or description) and answer ONLY JSON:
-{"isFood": true|false, "name": short dish name written in LANG (the user's language, native script), "kcalMin": int, "kcalMax": int, "p": grams protein, "c": grams carbs, "f": grams fat, "confidence": "high"|"medium"|"low"}
+{"isFood": true|false, "name": short dish name written in LANG (the user's language, native script), "kcalMin": int, "kcalMax": int, "p": grams protein, "c": grams carbs, "f": grams fat, "fib": grams fiber, "confidence": "high"|"medium"|"low"}
 If there is no food or drink in the photo/description, answer {"isFood": false}. Give a realistic RANGE, not a single value. Never comment on body weight or give medical advice.`;
 
 function cors(origin) {
   const ok = origin && ORIGINS.some((r) => r.test(origin));
-  return ok ? { 'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type', 'Vary': 'Origin' } : null;
+  return ok ? { 'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Authorization', 'Vary': 'Origin' } : null;
 }
 const json = (o, s, h) => new Response(JSON.stringify(o), { status: s, headers: { 'Content-Type': 'application/json', ...(h || {}) } });
 
@@ -224,7 +226,9 @@ export default {
     if (!h) return json({ error: 'origin' }, 403);
     if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: h });
     const path = new URL(req.url).pathname;
-    if (req.method !== 'POST' || !['/estimate', '/plan', '/chat', '/vision', '/dev', '/voice', '/clone'].includes(path)) return json({ error: 'not found' }, 404, h);
+    if (req.method === 'GET' && path.startsWith('/foods/')) return handleFoods(path, req, env, json, h);
+    if (path.startsWith('/sync/')) return handleSync(path, req, env, json, h, hits);
+    if (req.method !== 'POST' || !['/estimate', '/plan', '/chat', '/vision', '/dev', '/voice', '/clone', '/foods/report'].includes(path)) return json({ error: 'not found' }, 404, h);
     const ip = req.headers.get('CF-Connecting-IP') || 'x';
     const now = Date.now(), arr = (hits.get(ip) || []).filter((t) => now - t < 60000);
     if (arr.length >= RATE) return json({ error: 'rate' }, 429, h);
@@ -243,6 +247,7 @@ export default {
       const o = parseJson(txt); const t = str(o?.text, 500).trim();
       return t ? json({ text: t }, 200, h) : json({ error: 'no_speech' }, 422, h);
     }
+    if (path === '/foods/report') return foodReport(b, env, json, h);
     if (path === '/plan' || path === '/chat') return coach(path, b, env, h);
     if (path === '/vision' || path === '/dev') return phase2(path, b, env, h);
     if (path === '/clone') return clone(b, env, h);
@@ -250,7 +255,7 @@ export default {
     const code = String(b.lang || 'en').slice(0, 5).toLowerCase().split('-')[0];
     const lang = LANGS[code] || 'English';
     const parts = [{ text: b.label && b.image
-      ? `This photo shows a packaged food's nutrition facts label and/or package. Read the values PER SERVING (or per package if no serving). Answer ONLY JSON {"isFood": true, "name": product name or short description in ${lang}, "kcalMin": int, "kcalMax": int (same as kcalMin if read exactly), "p": g protein, "c": g carbs, "f": g fat, "confidence": "high" if read from the label else "low"}. If no food label or package is visible, {"isFood": false}.`
+      ? `This photo shows a packaged food's nutrition facts label and/or package. Read the values PER SERVING (or per package if no serving). Answer ONLY JSON {"isFood": true, "name": product name or short description in ${lang}, "kcalMin": int, "kcalMax": int (same as kcalMin if read exactly), "p": g protein, "c": g carbs, "f": g fat, "fib": g dietary fiber (0 if not shown), "confidence": "high" if read from the label else "low"}. If no food label or package is visible, {"isFood": false}.`
       : PROMPT.replace('LANG', lang) + ` Write the dish name in ${lang}.` }];
     if (b.image) {
       const mime = /^image\/(jpeg|png|webp|heic)$/.test(b.mime) ? b.mime : 'image/jpeg';
@@ -285,6 +290,6 @@ export default {
     const n = (v) => Math.max(0, Math.round(+v || 0));
     let lo = n(o.kcalMin), hi = n(o.kcalMax); if (lo > hi) [lo, hi] = [hi, lo];
     if (o.isFood === false || !hi) return json({ error: 'not_food' }, 422, h);
-    return json({ name: String(o.name || '?').slice(0, 80), kcalMin: lo, kcalMax: hi, p: n(o.p), c: n(o.c), f: n(o.f), confidence: ['high','medium','low'].includes(o.confidence) ? o.confidence : 'medium' }, 200, h);
+    return json({ name: String(o.name || '?').slice(0, 80), kcalMin: lo, kcalMax: hi, p: n(o.p), c: n(o.c), f: n(o.f), fib: n(o.fib), confidence: ['high','medium','low'].includes(o.confidence) ? o.confidence : 'medium' }, 200, h);
   },
 };

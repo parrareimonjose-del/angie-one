@@ -13,6 +13,7 @@ import { Pending } from './ext';
 import { reminderDue, nextCharge, CANCEL_URL, platformProvider, takeUpsell, notifyOnce, type Sub } from './billing';
 import { restore } from './payments';
 import { REASONS, type VFood } from './verified';
+import { reportCloud } from './fooddb';
 
 /** Aviso 1 día antes del fin de la prueba o de la renovación (en la app + notificación local si hay permiso). */
 export function BillingReminder() {
@@ -61,11 +62,11 @@ export function FoodRow({ f, label, onAdd }: { f: VFood; label: string; onAdd: (
     <Pressable accessibilityRole="button" onPress={onAdd} style={({ pressed }) => [s.row, { minHeight: 56, justifyContent: 'space-between', opacity: pressed ? 0.6 : 1 }]}>
       <View style={{ flex: 1 }}><T style={{ fontWeight: '700' }}>{label}</T>
         <Text style={s.muted}>{f.portion} · {t('u.p')} {fmtNum(f.p)} · {t('u.c')} {fmtNum(f.c)} · {t('u.f')} {fmtNum(f.f)}</Text>
-        {f.verified ? <Text testID="verified" style={{ color: C.success, fontWeight: '800' }}>{t('hb.verified')} · {f.source === 'usda' ? 'USDA' : 'Angie One'}</Text> : <Text testID="unverified" style={s.muted}>{t('hb.unverified')}</Text>}</View>
+        {f.verified ? <Text testID="verified" style={{ color: C.success, fontWeight: '800' }}>{t('hb.verified')} · {f.source === 'usda' ? 'USDA' : f.source === 'off' ? 'Open Food Facts' : 'Angie One'}</Text> : <Text testID="unverified" style={s.muted}>{t('hb.unverified')}</Text>}</View>
       <Text style={{ fontWeight: '900', color: C.primary, fontSize: 17 }}>{fmtNum(f.kcal)} {t('u.kcal')}  ＋</Text>
     </Pressable>
     {done ? <Text testID="reported" style={[s.muted, { fontWeight: '700' }]}>✓ {t('hb.reported')}</Text>
-      : rep ? <Row>{REASONS.map((r) => <Chip key={r} label={t(`hb.r.${r}`)} onPress={() => { set((x) => ({ ...x, reports: [...(x.reports || []), { key: f.key, name: label, reason: r, at: Date.now() }] })); setRep(false); }} />)}</Row>
+      : rep ? <Row>{REASONS.map((r) => <Chip key={r} label={t(`hb.r.${r}`)} onPress={() => { set((x) => ({ ...x, reports: [...(x.reports || []), { key: f.key, name: label, reason: r, at: Date.now() }] })); if (f.key.startsWith('db:')) reportCloud({ id: f.id, name: label, reason: r }); setRep(false); }} />)}</Row>
       : <Pressable testID="report" accessibilityRole="button" onPress={() => setRep(true)} style={{ minHeight: 40, justifyContent: 'center' }}><Text style={{ color: C.muted, fontWeight: '700' }}>⚠️ {t('hb.report')}</Text></Pressable>}
   </View>;
 }

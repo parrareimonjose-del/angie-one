@@ -1,5 +1,5 @@
 // Open Food Facts (API pública y gratuita) — https://world.openfoodfacts.org
-export type Product = { name: string; kcal100: number; p100: number; c100: number; f100: number; sugar100?: number; salt100?: number; sat100?: number; image?: string };
+export type Product = { name: string; kcal100: number; p100: number; c100: number; f100: number; sugar100?: number; salt100?: number; sat100?: number; fiber100?: number; image?: string; verified?: boolean; source?: string };
 /** Variantes del código: tal cual, con ceros a la izquierda (UPC-A 12 / EAN-13) y con dígito de control si falta. */
 export function codeVariants(raw: string): string[] {
   const c = raw.replace(/\D/g, ''); const out = [c];
@@ -21,7 +21,7 @@ async function lookupOne(code: string, host: string, lang: string, cc?: string):
   if (j.status !== 1 || !j.product) return null;
   const n = j.product.nutriments || {};
   return { name: j.product[`product_name_${lang}`] || j.product.product_name || j.product[`generic_name_${lang}`] || code, kcal100: +n['energy-kcal_100g'] || 0, p100: +n.proteins_100g || 0, c100: +n.carbohydrates_100g || 0, f100: +n.fat_100g || 0,
-    sugar100: n.sugars_100g, salt100: n.salt_100g, sat100: n['saturated-fat_100g'], image: j.product.image_front_small_url };
+    sugar100: n.sugars_100g, salt100: n.salt_100g, sat100: n['saturated-fat_100g'], fiber100: n.fiber_100g == null ? undefined : +n.fiber_100g, image: j.product.image_front_small_url };
 }
 /** Semáforo (umbrales UK FSA por 100 g). */
 export function light(kind: 'sugar' | 'salt' | 'sat', v?: number): 'green' | 'amber' | 'red' | 'na' {

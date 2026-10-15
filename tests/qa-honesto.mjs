@@ -37,7 +37,7 @@ for (const [bn, B, dev] of runs) {
     // Propio duplicado no crea entrada nueva
     await setSt((v) => ({ ...v, myFoods: [{ id: 'u1', key: '', name: 'Arroz blanco', portion: '1', kcal: 999, p: 0, c: 0, f: 0, verified: false, source: 'user' }, { id: 'u2', key: '', name: 'Arepa de la abuela', portion: '1', kcal: 300, p: 0, c: 0, f: 0, verified: false, source: 'user' }] }));
     await go('/manual'); await p.getByLabel(L ? 'Buscar comida' : 'Search food', { exact: false }).first().fill('arepa'); await p.waitForTimeout(400);
-    const txt = await p.locator('body').textContent(); ok(`${tag} propio sin verificar al final`, await tid('unverified').count() === 1 && txt.indexOf('abuela') > txt.indexOf(L ? 'Verificado' : 'Verified'));
+    const txt = await p.locator('body').textContent(); ok(`${tag} propio sin verificar al final`, await tid('unverified').count() >= 1 && txt.indexOf('abuela') > txt.indexOf(L ? 'Verificado' : 'Verified'));
     await go('/manual'); await p.getByLabel(L ? 'Buscar comida' : 'Search food', { exact: false }).first().fill(L ? 'arroz blanco' : 'white rice'); await p.waitForTimeout(400);
     ok(`${tag} duplicado fusionado`, !(await p.locator('body').textContent()).includes('999'));
     // Fin de prueba: 1 aviso por sesión; anuncios solo gratis

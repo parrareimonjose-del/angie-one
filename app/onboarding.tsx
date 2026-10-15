@@ -46,6 +46,7 @@ export default function Onboarding() {
         {step > 0 && <Btn kind="ghost" label={t('back')} onPress={() => setStep(step - 1)} style={{ flex: 1 }} />}
         <Btn label={step < 3 ? t('next') : t('ob.go')} onPress={next} style={{ flex: 2 }} />
       </View>
+      {step === 0 && <Btn testID="ob-restore" kind="ghost" small label={`☁️ ${t('bk.haveBackup')}`} onPress={() => router.push('/backup')} />}
     </Screen>
   );
 }

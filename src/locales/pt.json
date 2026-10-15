@@ -1834,5 +1834,43 @@
     "lentils": "Lentilhas (cozidas)",
     "tortilla": "Tortilha de milho",
     "cheddar": "Queijo cheddar"
+  },
+  "fdb": {
+    "searching": "Buscando na grande base de alimentos…",
+    "offline": "Sem conexão: mostrando os alimentos salvos no celular.",
+    "source": "Dados"
+  },
+  "bk": {
+    "title": "Backup na nuvem",
+    "what": "Salve uma cópia criptografada do seu diário, peso, planos, metas, pontos, memória e ajustes, e recupere em um celular novo.",
+    "e2e": "Criptografado de ponta a ponta no seu celular. Nem a Angie One consegue ler.",
+    "noPhotos": "As fotos do seu Clone IA e as imagens nunca são enviadas.",
+    "neverSold": "Seus dados nunca são vendidos.",
+    "turnOn": "Ativar backup na nuvem",
+    "codeTitle": "Seu código de recuperação",
+    "codeHow": "Anote ou guarde em um lugar seguro. Ele aparece só uma vez e é a única forma de recuperar seus dados. Ninguém pode recuperá-lo por você.",
+    "saved": "Já guardei, fazer o backup",
+    "working": "Trabalhando…",
+    "done": "Backup salvo na nuvem.",
+    "on": "Backup na nuvem ativado",
+    "last": "Último backup",
+    "auto": "Faz backup sozinho a cada {{h}} horas quando algo muda.",
+    "now": "Fazer backup agora",
+    "del": "Apagar tudo da nuvem",
+    "delQ": "Apagar seu backup da nuvem? Seu celular mantém os dados.",
+    "deleted": "Tudo foi apagado da nuvem.",
+    "restoreTitle": "Restaurar neste celular",
+    "restoreHow": "Digite seu código de recuperação para trazer seus dados.",
+    "restore": "Recuperar meus dados",
+    "restored": "Seus dados voltaram.",
+    "goHome": "Ir ao início",
+    "haveBackup": "Já tenho um backup",
+    "err": {
+      "offline": "Sem internet. Tente mais tarde.",
+      "auth": "Esse código não corresponde a nenhum backup.",
+      "empty": "Não há backup com esse código.",
+      "badcode": "O código tem 20 letras e números.",
+      "server": "A nuvem está ocupada. Tente daqui a pouco."
+    }
   }
 }

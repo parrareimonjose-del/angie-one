@@ -3,7 +3,7 @@
  * Llama al proxy gratis de Cloudflare Worker (la clave de Gemini vive solo en el Worker como secreto).
  * Si algo falla lanza AIError con un código claro para mostrar un mensaje entendible (nunca inventa datos).
  */
-export type Estimate = { name: string; kcalMin: number; kcalMax: number; p: number; c: number; f: number; confidence: 'high' | 'medium' | 'low'; mode: 'live' | 'demo' };
+export type Estimate = { name: string; kcalMin: number; kcalMax: number; p: number; c: number; f: number; fib?: number; confidence: 'high' | 'medium' | 'low'; mode: 'live' | 'demo' };
 export type AIErrorCode = 'offline' | 'busy' | 'tooLarge' | 'notFood' | 'server';
 export class AIError extends Error { constructor(public code: AIErrorCode) { super(code); } }
 
@@ -28,7 +28,7 @@ async function once(body: string): Promise<Estimate> {
   const n = (v: any) => Math.max(0, Math.round(+v || 0));
   let lo = n(o.kcalMin), hi = n(o.kcalMax); if (lo > hi) [lo, hi] = [hi, lo];
   if (!hi || !o.name) throw new AIError('notFood');
-  return { name: String(o.name), kcalMin: lo, kcalMax: hi, p: n(o.p), c: n(o.c), f: n(o.f), confidence: ['high', 'medium', 'low'].includes(o.confidence) ? o.confidence : 'medium', mode: 'live' };
+  return { name: String(o.name), kcalMin: lo, kcalMax: hi, p: n(o.p), c: n(o.c), f: n(o.f), fib: o.fib == null ? undefined : n(o.fib), confidence: ['high', 'medium', 'low'].includes(o.confidence) ? o.confidence : 'medium', mode: 'live' };
 }
 
 /** 1 reintento automático si la red o el servidor fallan (el Worker ya reintenta contra Google). */
@@ -59,5 +59,5 @@ export function refine(e: Estimate, a: { oil?: boolean; sauce?: boolean; fried?:
   if (a.sauce) { add += 60; fat += 4; }
   if (a.fried) { add += 120; fat += 12; }
   const k = a.portion;
-  return { min: Math.round((e.kcalMin + add) * k), max: Math.round((e.kcalMax + add) * k), p: Math.round(e.p * k), c: Math.round(e.c * k), f: Math.round((e.f + fat) * k) };
+  return { min: Math.round((e.kcalMin + add) * k), max: Math.round((e.kcalMax + add) * k), p: Math.round(e.p * k), c: Math.round(e.c * k), f: Math.round((e.f + fat) * k), fiber: e.fib == null ? undefined : Math.round(e.fib * k) };
 }

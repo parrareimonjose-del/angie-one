@@ -6,6 +6,7 @@ import { CameraView, useCameraPermissions } from 'expo-camera';
 import { Screen, Card, Btn, Chip, T, s } from '../src/ui';
 import { useStore, today, uid } from '../src/store';
 import { lookupBarcode, light, Product } from '../src/off';
+import { barcodeCloud, ATTRIBUTION } from '../src/fooddb';
 import { curLang, region, fmtNum } from '../src/i18n';
 import { C } from '../src/theme';
 import * as ImagePicker from 'expo-image-picker';
@@ -22,7 +23,7 @@ export default function Barcode() {
   const [msg, setMsg] = useState(''); const [grams, setGrams] = useState(100); const [cam, setCam] = useState(false);
   const [perm, ask] = useCameraPermissions(); const [wcam, setWcam] = useState(false); const [nf, setNf] = useState(false);
   const [lest, setLest] = useState<Estimate | null>(null); const [lbusy, setLbusy] = useState(false); const [mName, setMName] = useState(''); const [mKcal, setMKcal] = useState('');
-  const addE = (e: { name: string; kcal: number; p?: number; c?: number; f?: number }) => { set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: e.name, kcal: e.kcal, p: e.p || 0, c: e.c || 0, f: e.f || 0, source: 'barcode' }] })); router.replace('/diary'); };
+  const addE = (e: { name: string; kcal: number; p?: number; c?: number; f?: number; fiber?: number }) => { set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: e.name, kcal: e.kcal, p: e.p || 0, c: e.c || 0, f: e.f || 0, fiber: e.fiber, source: 'barcode' }] })); router.replace('/diary'); };
   const labelPhoto = async () => {
     const opt = { base64: true, quality: 0.7, mediaTypes: ['images'] as any };
     const r = Platform.OS !== 'web' ? await ImagePicker.launchCameraAsync(opt) : await ImagePicker.launchImageLibraryAsync(opt);
@@ -36,10 +37,10 @@ export default function Barcode() {
     if (!/^\d{6,14}$/.test(c.trim())) { setMsg(t('bar.badCode')); return; }
     if (typeof navigator !== 'undefined' && navigator.onLine === false) { setMsg(t('aiErr.offline')); return; }
     setMsg(`⏳ ${t('bar.searching')}`);
-    try { const p = await lookupBarcode(c.trim(), curLang(), region()); setProd(p); setMsg(p ? '' : t('bar.notFound2')); setNf(!p); } catch { const off = typeof navigator !== 'undefined' && navigator.onLine === false; setMsg(off ? t('aiErr.offline') : t('bar.notFound2')); setNf(!off); }
+    try { let p: Product | null; try { p = await barcodeCloud(c.trim(), curLang()); } catch { p = await lookupBarcode(c.trim(), curLang(), region()); } setProd(p); setMsg(p ? '' : t('bar.notFound2')); setNf(!p); } catch { const off = typeof navigator !== 'undefined' && navigator.onLine === false; setMsg(off ? t('aiErr.offline') : t('bar.notFound2')); setNf(!off); }
   };
   const k = grams / 100;
-  const log = () => { if (!prod) return; set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: prod.name, kcal: Math.round(prod.kcal100 * k), p: Math.round(prod.p100 * k), c: Math.round(prod.c100 * k), f: Math.round(prod.f100 * k), source: 'barcode' }] })); router.replace('/diary'); };
+  const log = () => { if (!prod) return; set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: prod.name, kcal: Math.round(prod.kcal100 * k), p: Math.round(prod.p100 * k), c: Math.round(prod.c100 * k), f: Math.round(prod.f100 * k), fiber: prod.fiber100 == null ? undefined : Math.round(prod.fiber100 * k * 10) / 10, source: 'barcode' }] })); router.replace('/diary'); };
   return (
     <Screen title={t('bar.title')}>
       <Text style={s.muted}>{t('bar.hint')}</Text>
@@ -61,7 +62,9 @@ export default function Barcode() {
       {prod && <>
         <Card>
           <View style={s.row}>{prod.image ? <Image source={{ uri: prod.image }} style={{ width: 64, height: 64, borderRadius: 12 }} /> : null}<Text style={[s.h2, { flex: 1 }]}>{prod.name}</Text></View>
-          <Text style={s.muted}>{fmtNum(prod.kcal100)} {t('u.kcal')} {t('bar.per100')} · {t('u.p')} {fmtNum(prod.p100, 1)} · {t('u.c')} {fmtNum(prod.c100, 1)} · {t('u.f')} {fmtNum(prod.f100, 1)}</Text>
+          <Text style={s.muted}>{fmtNum(prod.kcal100)} {t('u.kcal')} {t('bar.per100')} · {t('u.p')} {fmtNum(prod.p100, 1)} · {t('u.c')} {fmtNum(prod.c100, 1)} · {t('u.f')} {fmtNum(prod.f100, 1)}{prod.fiber100 != null ? ` · ${t('mf.fiber')} ${fmtNum(prod.fiber100, 1)}` : ''}</Text>
+          {prod.verified ? <Text testID="bar-verified" style={{ color: C.success, fontWeight: '800' }}>{t('hb.verified')}</Text> : null}
+          <Text testID="bar-attrib" style={[s.muted, { fontSize: 13 }]}>{t('fdb.source')}: {ATTRIBUTION}</Text>
           <Text style={[s.h2, { fontSize: 17 }]}>{t('bar.semaphore')}</Text>
           <View style={[s.row, { flexWrap: 'wrap' }]}>
             {([['sugar', prod.sugar100], ['salt', prod.salt100], ['satfat', prod.sat100]] as const).map(([n, v]) => (
