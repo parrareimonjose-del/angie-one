@@ -35,11 +35,13 @@ export default {
       parts.push({ inline_data: { mime_type: mime, data: String(b.image) } });
     } else if (b.text) parts.push({ text: 'Meal: ' + String(b.text).slice(0, 500) });
     else return json({ error: 'need image or text' }, 400, h);
-    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`, {
+    const call = () => fetch(`https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`, {
       method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': env.GEMINI_API_KEY },
       body: JSON.stringify({ contents: [{ parts }], generationConfig: { responseMimeType: 'application/json', temperature: 0.2, maxOutputTokens: 300 } }),
     });
-    if (!r.ok) return json({ error: 'upstream ' + r.status }, 502, h);
+    let r = await call();
+    if (r.status === 429 || r.status >= 500) { await new Promise((x) => setTimeout(x, 800)); r = await call(); }
+    if (!r.ok) { const d = (await r.text()).slice(0, 300); console.log('upstream', r.status, d); return json({ error: 'upstream ' + r.status, detail: d.replace(/AIza[\w-]+|AQ\.[\w-]+/g, '***') }, 502, h); }
     const j = await r.json();
     let o; try { o = JSON.parse(j?.candidates?.[0]?.content?.parts?.[0]?.text || '{}'); } catch { return json({ error: 'parse' }, 502, h); }
     return json({ name: String(o.name || '?'), kcalMin: +o.kcalMin || 0, kcalMax: +o.kcalMax || 0, p: +o.p || 0, c: +o.c || 0, f: +o.f || 0, confidence: ['high','medium','low'].includes(o.confidence) ? o.confidence : 'medium' }, 200, h);
