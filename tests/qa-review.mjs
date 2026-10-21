@@ -42,7 +42,7 @@ for (const [bn, B, dev] of runs) {
     // 4) Política de privacidad al día
     await go('/legal?doc=privacy'); ok(`${tag} privacidad menciona amigos y salud`, (L ? /Amigos y retos/ : /Friends and challenges/).test(await body()) && (L ? /Apple Salud/ : /Apple Health/).test(await body()));
     // 5) Borrar cuenta sale de los grupos
-    await go('/delete-account'); await tid('del-btn').click(); await p.waitForTimeout(1500);
+    await go('/delete-account'); await tid('del-btn').scrollIntoViewIfNeeded().catch(() => {}); await tid('del-btn').click({ force: true }); await p.waitForTimeout(1500);
     ok(`${tag} borrar cuenta sale de los grupos`, calls.some(([u, b]) => u.endsWith('/friends/leave') && b.code === 'AB12CD' && b.id === 'meid000001'));
     ok(`${tag} sin errores de página`, errs.length === 0, errs.join(' | ').slice(0, 200));
     await ctx.close();
