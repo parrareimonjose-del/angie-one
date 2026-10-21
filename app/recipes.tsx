@@ -1,1 +1,1 @@
-export { Recipes as default } from '../src/p3';
+export { RecipesScreen as default } from '../src/yazio5-ui';
