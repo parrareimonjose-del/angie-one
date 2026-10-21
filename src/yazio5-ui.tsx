@@ -166,8 +166,8 @@ export function DiarySetupScreen() {
   return <Screen title={`🛠️ ${t('y5.dsTitle')}`}>
     <InfoNote text={t('y5.dsHow')} />
     <Card>{names.map((n, i) => <View key={i} style={[s.row, { gap: 8 }]}><IconTile icon={['🌅', '☀️', '🍎', '🌙', '🥤', '🍽️'][i]} size={40} />
-      <TextInput testID={`ds-${i}`} accessibilityLabel={t('y5.mealName', { i: i + 1 })} value={n} maxLength={24} onChangeText={(v) => setNames(names.map((x, j) => (j === i ? v : x)))} style={[s.input, { flex: 1 }]} />
-      {names.length > 1 ? <Btn small kind="danger" testID={`ds-del-${i}`} label="✕" a11y={t('diary.remove')} style={{ width: 52 }} onPress={() => setNames(names.filter((_, j) => j !== i))} /> : null}</View>)}
+      <TextInput testID={`ds-${i}`} accessibilityLabel={t('y5.mealName', { i: i + 1 })} value={n} maxLength={24} onChangeText={(v) => setNames(names.map((x, j) => (j === i ? v : x)))} style={[s.input, { flex: 1, minWidth: 0, width: undefined }]} />
+      {names.length > 1 ? <Btn small kind="danger" testID={`ds-del-${i}`} label="✕" a11y={t('diary.remove')} style={{ width: 52, paddingHorizontal: 0, flexShrink: 0 }} onPress={() => setNames(names.filter((_, j) => j !== i))} /> : null}</View>)}
       {names.length < MAX_MEALS ? <Btn small kind="secondary" testID="ds-add" label={`＋ ${t('y5.addMeal')}`} onPress={() => setNames([...names, t('y5.newMeal')])} /> : null}</Card>
     <Btn testID="ds-save" label={`✓ ${t('save')}`} onPress={() => { const c = cleanMeals(names); set((x) => ({ ...x, diaryMeals: c && c.join('|') !== def.join('|') ? c : undefined })); setMsg(t('mf.saved')); }} />
     <Btn small kind="ghost" testID="ds-reset" label={`↺ ${t('y5.reset')}`} onPress={() => { setNames(def); set((x) => ({ ...x, diaryMeals: undefined })); }} />
