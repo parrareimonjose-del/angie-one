@@ -77,3 +77,7 @@ export const goalOf = (g: NutGoals | undefined, k: string) => g?.[k] ?? (k === '
 export function nutGaps(g: NutGoals | undefined, sum: Record<string, number>) {
   return Object.keys(g || {}).filter((k) => (sum[k] || 0) < goalOf(g, k) * 0.5);
 }
+export function tdeeOf(p?: { weight: number; height: number; age: number; sex: 'male' | 'female'; activity: 1 | 2 | 3 | 4 }) {
+  if (!p) return 2000; const bmr = 10 * p.weight + 6.25 * p.height - 5 * p.age + (p.sex === 'male' ? 5 : -161);
+  return Math.round((bmr * [1.2, 1.375, 1.55, 1.725][p.activity - 1]) / 10) * 10;
+}
