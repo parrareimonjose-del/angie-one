@@ -5,7 +5,7 @@ const now = 1_800_000_000_000;
 ok('correo e ID válidos', validWho(' Ana@Mail.com ') && validWho('user_1234') && !validWho('a@b') && !validWho('x'));
 ok('normaliza', normWho(' Ana@Mail.COM ') === 'ana@mail.com');
 let l = addGrant([], 'ana@mail.com', 30, 'amiga', now)!; ok('alta con caducidad', l.length === 1 && l[0].expiresAt === now + 30 * 864e5 && /^[A-Z2-9]{5}-[A-Z2-9]{5}$/.test(l[0].code));
-ok('rechaza inválido', addGrant(l, 'nope', null) === null);
+ok('rechaza inválido', addGrant(l, 'n@', null) === null);
 l = addGrant(l, 'ANA@mail.com', null, '', now + 1)!; ok('reemplaza la activa', l.filter((g) => grantState(g, now + 2) === 'active').length === 1 && !l[0].expiresAt);
 ok('activa para la persona', !!activeFor(l, 'ana@mail.com', now + 2));
 l = revokeGrant(l, l[0].id, now + 3); ok('revocar', grantState(l[0], now + 4) === 'revoked' && !activeFor(l, 'ana@mail.com', now + 4));
