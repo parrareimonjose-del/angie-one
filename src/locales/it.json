@@ -2270,7 +2270,7 @@
   "ck": {
     "title": "Il tuo team di professionisti",
     "sub": "Nutrizione, allenamento, fisioterapia, abitudini e sonno in un solo coach.",
-    "recT": "🍲 Ricette per il tuo piano",
+    "recT": "Ricette per il tuo piano",
     "recSub": "Ti restano {{kcal}} kcal oggi. Queste ci stanno:",
     "recNone": "Obiettivo di oggi raggiunto. Se hai fame, scegli frutta, verdura o uno yogurt.",
     "recCook": "👩‍🍳 Cucina",
@@ -2279,7 +2279,7 @@
     "guide": "📚 Guida professionale",
     "guideSub": "Piano settimanale, progressione e strumenti per il tuo obiettivo.",
     "weekT": "Settimana {{n}} di 4",
-    "checkT": "✅ Lista di oggi",
+    "checkT": "Lista di oggi",
     "c1": "Proteine a ogni pasto",
     "c2": "Metà piatto di verdure",
     "c3": "8 bicchieri d'acqua",

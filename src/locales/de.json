@@ -2270,7 +2270,7 @@
   "ck": {
     "title": "Dein Profi-Team",
     "sub": "Ernährung, Training, Physiotherapie, Gewohnheiten und Schlaf in einem Coach.",
-    "recT": "🍲 Rezepte für deinen Plan",
+    "recT": "Rezepte für deinen Plan",
     "recSub": "Heute bleiben dir {{kcal}} kcal. Diese passen:",
     "recNone": "Du hast dein Tagesziel erreicht. Bei Hunger: Obst, Gemüse oder Joghurt.",
     "recCook": "👩‍🍳 Kochen",
@@ -2279,7 +2279,7 @@
     "guide": "📚 Profi-Leitfaden",
     "guideSub": "Wochenplan, Steigerung und Werkzeuge für dein Ziel.",
     "weekT": "Woche {{n}} von 4",
-    "checkT": "✅ Heutige Liste",
+    "checkT": "Heutige Liste",
     "c1": "Eiweiß zu jeder Mahlzeit",
     "c2": "Halber Teller Gemüse",
     "c3": "8 Gläser Wasser",

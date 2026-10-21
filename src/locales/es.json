@@ -2270,7 +2270,7 @@
   "ck": {
     "title": "Tu equipo profesional",
     "sub": "Nutrición, entrenamiento, fisioterapia, hábitos y sueño en un solo coach.",
-    "recT": "🍲 Recetas para tu plan",
+    "recT": "Recetas para tu plan",
     "recSub": "Te quedan {{kcal}} kcal hoy. Estas te cuadran:",
     "recNone": "Hoy ya llegaste a tu meta. Si tienes hambre, elige fruta, verduras o un yogur.",
     "recCook": "👩‍🍳 Cocinar",
@@ -2279,7 +2279,7 @@
     "guide": "📚 Guía profesional",
     "guideSub": "Plan semanal, progresión y herramientas según tu meta.",
     "weekT": "Semana {{n}} de 4",
-    "checkT": "✅ Lista de hoy",
+    "checkT": "Lista de hoy",
     "c1": "Proteína en cada comida",
     "c2": "Media porción del plato con verduras",
     "c3": "8 vasos de agua",

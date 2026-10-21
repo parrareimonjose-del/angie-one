@@ -2270,7 +2270,7 @@
   "ck": {
     "title": "Votre équipe de pros",
     "sub": "Nutrition, entraînement, kiné, habitudes et sommeil dans un seul coach.",
-    "recT": "🍲 Recettes pour votre plan",
+    "recT": "Recettes pour votre plan",
     "recSub": "Il vous reste {{kcal}} kcal aujourd'hui. Celles-ci conviennent :",
     "recNone": "Objectif du jour atteint. En cas de faim, choisissez un fruit, des légumes ou un yaourt.",
     "recCook": "👩‍🍳 Cuisiner",
@@ -2279,7 +2279,7 @@
     "guide": "📚 Guide professionnel",
     "guideSub": "Plan hebdomadaire, progression et outils selon votre objectif.",
     "weekT": "Semaine {{n}} sur 4",
-    "checkT": "✅ Liste du jour",
+    "checkT": "Liste du jour",
     "c1": "Des protéines à chaque repas",
     "c2": "La moitié de l'assiette en légumes",
     "c3": "8 verres d'eau",

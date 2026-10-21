@@ -2270,7 +2270,7 @@
   "ck": {
     "title": "Your professional team",
     "sub": "Nutrition, training, physiotherapy, habits and sleep in one coach.",
-    "recT": "🍲 Recipes for your plan",
+    "recT": "Recipes for your plan",
     "recSub": "You have {{kcal}} kcal left today. These fit:",
     "recNone": "You reached your goal today. If you're hungry, choose fruit, vegetables or a yogurt.",
     "recCook": "👩‍🍳 Cook",
@@ -2279,7 +2279,7 @@
     "guide": "📚 Professional guide",
     "guideSub": "Weekly plan, progression and tools for your goal.",
     "weekT": "Week {{n}} of 4",
-    "checkT": "✅ Today's checklist",
+    "checkT": "Today's checklist",
     "c1": "Protein at every meal",
     "c2": "Half your plate vegetables",
     "c3": "8 glasses of water",

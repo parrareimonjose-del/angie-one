@@ -2270,7 +2270,7 @@
   "ck": {
     "title": "Sua equipe profissional",
     "sub": "Nutrição, treino, fisioterapia, hábitos e sono em um só coach.",
-    "recT": "🍲 Receitas para o seu plano",
+    "recT": "Receitas para o seu plano",
     "recSub": "Restam {{kcal}} kcal hoje. Estas cabem:",
     "recNone": "Você já chegou à meta de hoje. Se tiver fome, escolha fruta, legumes ou um iogurte.",
     "recCook": "👩‍🍳 Cozinhar",
@@ -2279,7 +2279,7 @@
     "guide": "📚 Guia profissional",
     "guideSub": "Plano semanal, progressão e ferramentas para a sua meta.",
     "weekT": "Semana {{n}} de 4",
-    "checkT": "✅ Lista de hoje",
+    "checkT": "Lista de hoje",
     "c1": "Proteína em cada refeição",
     "c2": "Metade do prato com legumes",
     "c3": "8 copos de água",

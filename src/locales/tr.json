@@ -2270,7 +2270,7 @@
   "ck": {
     "title": "Uzman ekibin",
     "sub": "Beslenme, antrenman, fizyoterapi, alışkanlık ve uyku tek koçta.",
-    "recT": "🍲 Planına uygun tarifler",
+    "recT": "Planına uygun tarifler",
     "recSub": "Bugün {{kcal}} kcal kaldı. Bunlar uygun:",
     "recNone": "Bugünkü hedefe ulaştın. Acıkırsan meyve, sebze veya yoğurt seç.",
     "recCook": "👩‍🍳 Pişir",
@@ -2279,7 +2279,7 @@
     "guide": "📚 Uzman rehberi",
     "guideSub": "Hedefine göre haftalık plan, ilerleme ve araçlar.",
     "weekT": "Hafta {{n}} / 4",
-    "checkT": "✅ Bugünün listesi",
+    "checkT": "Bugünün listesi",
     "c1": "Her öğünde protein",
     "c2": "Tabağın yarısı sebze",
     "c3": "8 bardak su",
