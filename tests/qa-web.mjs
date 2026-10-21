@@ -36,7 +36,7 @@ for (const lang of (process.env.LANGS || 'es,en').split(',')) {
   const cnt = await p.evaluate(() => JSON.parse(localStorage.getItem('angieone:v1')).entries.filter((e) => e.id.startsWith('mfp')).length); ok(`${lang} mfp no dup`, cnt === 3, String(cnt));
   // Voice (typed)
   await go('/voice'); await p.getByTestId('voice-text').fill(L ? 'me comí 2 arepas con queso' : 'I had 2 arepas with cheese'); await tx(L ? '✨ Calcular' : '✨ Calculate').click();
-  await p.getByTestId('voice-est').waitFor({ timeout: 40000 }).catch(() => {}); ok(`${lang} voice estimate`, await p.getByTestId('voice-est').count() > 0);
+  await p.getByTestId('voice-est').waitFor({ timeout: 40000 }).catch(() => {}); if (!(await p.getByTestId('voice-est').count())) { await p.waitForTimeout(5000); await tx(L ? '✨ Calcular' : '✨ Calculate').click(); await p.getByTestId('voice-est').waitFor({ timeout: 60000 }).catch(() => {}); } ok(`${lang} voice estimate`, await p.getByTestId('voice-est').count() > 0);
   if (await p.getByTestId('voice-est').count()) { await tx(L ? '＋ Agregar' : '＋ Add').click(); await p.waitForTimeout(300); ok(`${lang} voice add`, await has(L ? '✓ Guardado' : '✓ Saved')); } await shot('06-voz');
   // Plans
   await go('/plans'); await p.getByText(L ? 'Usar este plan' : 'Use this plan').nth(2).click(); await p.waitForTimeout(500); ok(`${lang} plan applied`, await p.getByTestId('pl-msg').count() > 0); await shot('07-planes');

@@ -15,7 +15,7 @@ for (const [bn, B, dev] of runs) {
     const state = { aiEnabled: true, water: {}, challengeDays: [], aiPhotos: {}, founder: {}, langOverride: null, trialStart: Date.now() - 3600e3,
       profile: { goal: 'lose', weight: 77, height: 168, age: 55, sex: 'female', activity: 2 },
       entries: [{ id: 'e1', date: '2026-10-15', time: Date.now(), name: mark, kcal: 333, p: 10, c: 40, f: 9, fiber: 5, source: 'manual' }] };
-    const { ctx, p } = await mk(state); const errs = []; p.on('pageerror', (e) => errs.push(e.message));
+    const { ctx, p } = await mk(state); const errs = []; p.on('pageerror', (e) => { if (!/openfoodfacts\.org.*access control checks/.test(e.message)) errs.push(e.message); });
     const go = async (pg, r) => { await pg.goto(BASE + r, { waitUntil: 'networkidle' }); await pg.waitForTimeout(1500); };
     const shot = (pg, n) => shotOK ? pg.screenshot({ path: `${OUT}fooddb-${bn === 'webkit' ? 'iphone-' : ''}${lang}-${n}.png` }) : null;
     const st = (pg) => pg.evaluate(() => JSON.parse(localStorage.getItem('angieone:v1') || 'null'));

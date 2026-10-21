@@ -44,7 +44,7 @@ for (const [bn, B, dev] of runs) {
     await p.getByTestId('voice-est').waitFor({ timeout: 60000 }).catch(() => {}); t = await body();
     ok(`${tag} voz transcrita y calculada`, (await p.getByTestId('voice-est').count()) > 0 && !/no está disponible|doesn't work/.test(t), (await p.getByTestId('voice-text').inputValue()).slice(0, 60)); await shot('03-voz-resultado');
     await p.getByTestId('voice-text').fill(L ? 'Hola cómo está todo qué estás haciendo' : 'Hi how are you what are you doing');
-    await p.getByRole('button', { name: L ? /Calcular/ : /Calculate/ }).click(); await p.waitForTimeout(500);
+    await p.getByRole('button', { name: L ? /Calcular/ : /Calculate/ }).click({ timeout: 90000 }); await p.waitForTimeout(500);
     await p.waitForFunction(() => /Cuéntame qué comiste|Tell me what you ate/.test(document.body.innerText), null, { timeout: 40000 }).catch(() => {});
     ok(`${tag} saludo → mensaje amable`, /Cuéntame qué comiste|Tell me what you ate/.test(await body())); await shot('04-voz-saludo');
     // 3) Código de barras

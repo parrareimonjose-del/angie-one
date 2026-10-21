@@ -46,7 +46,7 @@ export type SyncErr = 'offline' | 'auth' | 'empty' | 'server' | 'badcode';
 async function call(method: string, code: string, body?: string) {
   if (typeof navigator !== 'undefined' && navigator.onLine === false) throw new Error('offline');
   const { id, tok } = await derive(code);
-  let r: Response; try { r = await fetch(`${SYNC_URL}?id=${id}`, { method, headers: { Authorization: 'Bearer ' + tok, ...(body ? { 'Content-Type': 'application/json' } : {}) }, body }); } catch { throw new Error('offline'); }
+  let r: Response; try { r = await fetch(`${SYNC_URL}?id=${id}`, { method, cache: 'no-store', headers: { Authorization: 'Bearer ' + tok, ...(body ? { 'Content-Type': 'application/json' } : {}) }, body }); } catch { throw new Error('offline'); }
   if (r.status === 401) throw new Error('auth'); if (r.status === 404) throw new Error('empty'); if (!r.ok) throw new Error('server');
   return r.json();
 }
