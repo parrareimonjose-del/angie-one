@@ -2044,5 +2044,40 @@
       "na": "Sodium",
       "se": "Sélénium"
     }
+  },
+  "gr": {
+    "title": "Premium gratuit pour des personnes",
+    "sub": "Par e-mail ou ID, révocable, expiration facultative",
+    "who": "E-mail ou ID utilisateur",
+    "note": "Note (facultatif)",
+    "days": "{{n}} jours",
+    "forever": "Sans expiration",
+    "give": "Offrir Premium",
+    "bad": "Saisissez un e-mail ou ID valide",
+    "okSynced": "C’est fait. Code à envoyer : {{code}}",
+    "okLocal": "Enregistré sur ce téléphone (code {{code}}). Actif sur le serveur avec votre clé de fondateur.",
+    "until": "jusqu’au {{d}}",
+    "notSynced": "serveur en attente",
+    "st": {
+      "active": "Actif",
+      "expired": "Expiré",
+      "revoked": "Révoqué"
+    },
+    "revoke": "Révoquer",
+    "key": "Clé de fondateur (sur votre téléphone)",
+    "policy": "Web : activé par le serveur. Android : codes promo Google Play possibles. iPhone : Apple exige ses Offer Codes (App Store Connect).",
+    "youUntil": "Premium offert jusqu’au {{d}}",
+    "youForever": "Premium offert",
+    "storeCode": "Un code cadeau ? Utilisez-le dans la boutique.",
+    "redeem": "Utiliser",
+    "have": "J’ai un code cadeau",
+    "code": "Code",
+    "e": {
+      "invalid": "Code invalide, expiré ou pour quelqu’un d’autre",
+      "offline": "Hors ligne. Réessayez.",
+      "server": "Le serveur n’a pas répondu."
+    },
+    "founderOnly": "Panneau réservé au fondateur. Saisissez votre clé.",
+    "unlock": "Déverrouiller"
   }
 }

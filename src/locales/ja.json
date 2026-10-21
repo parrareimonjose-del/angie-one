@@ -2044,5 +2044,40 @@
       "na": "ナトリウム",
       "se": "セレン"
     }
+  },
+  "gr": {
+    "title": "特定の人に無料プレミアム",
+    "sub": "メールかIDで。取り消し可・期限は任意",
+    "who": "メールまたはユーザーID",
+    "note": "メモ（任意）",
+    "days": "{{n}} 日",
+    "forever": "無期限",
+    "give": "プレミアムを付与",
+    "bad": "有効なメールかIDを入力",
+    "okSynced": "完了。送るコード：{{code}}",
+    "okLocal": "この端末に保存（コード {{code}}）。創業者キー接続後にサーバーで有効。",
+    "until": "{{d}} まで",
+    "notSynced": "サーバー待ち",
+    "st": {
+      "active": "有効",
+      "expired": "期限切れ",
+      "revoked": "取り消し済み"
+    },
+    "revoke": "取り消す",
+    "key": "創業者キー（端末内のみ）",
+    "policy": "Web：サーバーで有効化。Android：Google Play プロモコードも可。iPhone：App Store Connect の Offer Code が必要です。",
+    "youUntil": "{{d}} までプレミアムをプレゼント中",
+    "youForever": "プレミアムをプレゼント中",
+    "storeCode": "ギフトコードはストアで引き換え。",
+    "redeem": "引き換え",
+    "have": "ギフトコードがある",
+    "code": "コード",
+    "e": {
+      "invalid": "無効・期限切れ・他人のコードです",
+      "offline": "オフラインです。後で再試行。",
+      "server": "サーバーが応答しません。"
+    },
+    "founderOnly": "創業者専用です。キーを入力。",
+    "unlock": "開く"
   }
 }

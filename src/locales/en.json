@@ -2044,5 +2044,40 @@
       "na": "Sodium",
       "se": "Selenium"
     }
+  },
+  "gr": {
+    "title": "Free Premium for people",
+    "sub": "By email or ID, revocable, optional expiry",
+    "who": "Email or user ID",
+    "note": "Note (optional)",
+    "days": "{{n}} days",
+    "forever": "No expiry",
+    "give": "Give free Premium",
+    "bad": "Enter a valid email or ID",
+    "okSynced": "Done. Code to send them: {{code}}",
+    "okLocal": "Saved on this phone (code {{code}}). It goes live on the server once your founder key is connected.",
+    "until": "until {{d}}",
+    "notSynced": "server pending",
+    "st": {
+      "active": "Active",
+      "expired": "Expired",
+      "revoked": "Revoked"
+    },
+    "revoke": "Revoke",
+    "key": "Founder key (only on your phone)",
+    "policy": "Web: unlocked by the server. Android: you can also use Google Play promo codes. iPhone: Apple requires its Offer Codes, created in App Store Connect.",
+    "youUntil": "You have gifted Premium until {{d}}",
+    "youForever": "You have gifted Premium",
+    "storeCode": "Have a gift code? Redeem it in your phone’s store.",
+    "redeem": "Redeem",
+    "have": "I have a gift code",
+    "code": "Code",
+    "e": {
+      "invalid": "Code invalid, expired or for someone else",
+      "offline": "No connection. Try later.",
+      "server": "The server did not answer. Try later."
+    },
+    "founderOnly": "This panel is for the founder only. Enter your founder key.",
+    "unlock": "Unlock"
   }
 }

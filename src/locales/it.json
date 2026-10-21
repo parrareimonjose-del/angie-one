@@ -2044,5 +2044,40 @@
       "na": "Sodio",
       "se": "Selenio"
     }
+  },
+  "gr": {
+    "title": "Premium gratis per persone",
+    "sub": "Per email o ID, revocabile, scadenza facoltativa",
+    "who": "Email o ID utente",
+    "note": "Nota (facoltativa)",
+    "days": "{{n}} giorni",
+    "forever": "Senza scadenza",
+    "give": "Regala Premium",
+    "bad": "Inserisci email o ID valido",
+    "okSynced": "Fatto. Codice da inviare: {{code}}",
+    "okLocal": "Salvato su questo telefono (codice {{code}}). Attivo sul server con la chiave del fondatore.",
+    "until": "fino al {{d}}",
+    "notSynced": "server in attesa",
+    "st": {
+      "active": "Attivo",
+      "expired": "Scaduto",
+      "revoked": "Revocato"
+    },
+    "revoke": "Revoca",
+    "key": "Chiave del fondatore (solo sul telefono)",
+    "policy": "Web: attivato dal server. Android: anche codici promo Google Play. iPhone: Apple richiede gli Offer Code da App Store Connect.",
+    "youUntil": "Hai Premium in regalo fino al {{d}}",
+    "youForever": "Hai Premium in regalo",
+    "storeCode": "Hai un codice regalo? Riscattalo nello store.",
+    "redeem": "Riscatta",
+    "have": "Ho un codice regalo",
+    "code": "Codice",
+    "e": {
+      "invalid": "Codice non valido, scaduto o di altri",
+      "offline": "Senza connessione. Riprova.",
+      "server": "Il server non risponde."
+    },
+    "founderOnly": "Solo per il fondatore. Inserisci la chiave.",
+    "unlock": "Sblocca"
   }
 }

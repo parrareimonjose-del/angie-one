@@ -10,7 +10,7 @@ for (const lang of (process.env.LANGS || 'es,en').split(',')) {
   const state = { aiEnabled: true, entries: [], water: {}, challengeDays: [d(1), d(2)], aiPhotos: {}, founder: {}, langOverride: null, trialStart: now - 3600e3,
     profile: { goal: 'lose', weight: 80, height: 170, age: 45, sex: 'female', activity: 2 },
     ext: { weights: [{ date: d(14), kg: 80 }, { date: d(10), kg: 80.1 }, { date: d(6), kg: 79.9 }, { date: d(2), kg: 80 }], sleep: [{ date: d(1), h: 6, stress: 3 }, { date: d(2), h: 8, stress: 2 }] } };
-  await ctx.addInitScript((s) => { if (!localStorage.getItem('angieone:v1')) localStorage.setItem('angieone:v1', JSON.stringify(s)); }, state);
+  await ctx.addInitScript((s) => { localStorage.setItem('angieone:founder', '1'); if (!localStorage.getItem('angieone:v1')) localStorage.setItem('angieone:v1', JSON.stringify(s)); }, state);
   const p = await ctx.newPage(); const errs = []; p.on('pageerror', (e) => errs.push(e.message));
   const go = async (r) => { await p.goto(BASE + r, { waitUntil: 'networkidle' }); await p.waitForTimeout(700); };
   const shot = async (n) => { if (shots) await p.screenshot({ path: `${OUT}pulido-${lang}-${n}.png`, fullPage: false }); };

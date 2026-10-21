@@ -2044,5 +2044,40 @@
       "na": "나트륨",
       "se": "셀레늄"
     }
+  },
+  "gr": {
+    "title": "지정한 사람에게 무료 프리미엄",
+    "sub": "이메일 또는 ID, 취소 가능, 만료 선택",
+    "who": "이메일 또는 사용자 ID",
+    "note": "메모(선택)",
+    "days": "{{n}}일",
+    "forever": "만료 없음",
+    "give": "프리미엄 주기",
+    "bad": "올바른 이메일 또는 ID를 입력하세요",
+    "okSynced": "완료. 보낼 코드: {{code}}",
+    "okLocal": "이 휴대폰에 저장됨(코드 {{code}}). 창업자 키 연결 후 서버에서 활성화됩니다.",
+    "until": "{{d}}까지",
+    "notSynced": "서버 대기",
+    "st": {
+      "active": "활성",
+      "expired": "만료됨",
+      "revoked": "취소됨"
+    },
+    "revoke": "취소",
+    "key": "창업자 키(휴대폰에만 저장)",
+    "policy": "웹: 서버로 활성화. Android: Google Play 프로모션 코드도 가능. iPhone: App Store Connect의 Offer Code가 필요합니다.",
+    "youUntil": "{{d}}까지 선물 받은 프리미엄",
+    "youForever": "선물 받은 프리미엄",
+    "storeCode": "선물 코드는 스토어에서 사용하세요.",
+    "redeem": "사용",
+    "have": "선물 코드가 있어요",
+    "code": "코드",
+    "e": {
+      "invalid": "잘못되었거나 만료되었거나 다른 사람의 코드예요",
+      "offline": "연결 없음. 나중에 다시.",
+      "server": "서버 응답 없음."
+    },
+    "founderOnly": "창업자 전용입니다. 키를 입력하세요.",
+    "unlock": "열기"
   }
 }

@@ -2044,5 +2044,40 @@
       "na": "钠",
       "se": "硒"
     }
+  },
+  "gr": {
+    "title": "为指定的人开通免费会员",
+    "sub": "按邮箱或 ID，可撤销，可设到期",
+    "who": "邮箱或用户 ID",
+    "note": "备注（可选）",
+    "days": "{{n}} 天",
+    "forever": "永久",
+    "give": "赠送会员",
+    "bad": "请输入有效的邮箱或 ID",
+    "okSynced": "完成。发给对方的代码：{{code}}",
+    "okLocal": "已保存在本机（代码 {{code}}）。连接创始人密钥后在服务器生效。",
+    "until": "至 {{d}}",
+    "notSynced": "待同步服务器",
+    "st": {
+      "active": "有效",
+      "expired": "已过期",
+      "revoked": "已撤销"
+    },
+    "revoke": "撤销",
+    "key": "创始人密钥（只存于你的手机）",
+    "policy": "网页：由服务器开通。安卓：也可用 Google Play 促销码。iPhone：苹果要求使用 App Store Connect 的优惠码。",
+    "youUntil": "你获赠会员至 {{d}}",
+    "youForever": "你获赠了会员",
+    "storeCode": "有礼品码？在手机应用商店兑换。",
+    "redeem": "兑换",
+    "have": "我有礼品码",
+    "code": "代码",
+    "e": {
+      "invalid": "代码无效、已过期或不属于你",
+      "offline": "无网络，请稍后再试。",
+      "server": "服务器无响应，请稍后再试。"
+    },
+    "founderOnly": "此面板仅限创始人。请输入创始人密钥。",
+    "unlock": "解锁"
   }
 }

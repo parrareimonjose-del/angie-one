@@ -8,7 +8,7 @@ for (const lang of ['es', 'en']) {
   const L = lang === 'es'; const ctx = await b.newContext({ viewport: { width: 400, height: 860 }, locale: L ? 'es-ES' : 'en-US', acceptDownloads: true });
   const state = { aiEnabled: true, entries: [{ id: 'e1', date: new Date().toISOString().slice(0, 10), time: 1, name: 'x', kcal: 3000, p: 1, c: 1, f: 1, source: 'manual' }], water: {}, challengeDays: [], aiPhotos: {}, founder: {}, langOverride: null, trialStart: Date.now() - 3600e3,
     profile: { goal: 'lose', weight: 80, height: 170, age: 70, sex: 'female', activity: 2 } };
-  await ctx.addInitScript((s) => { if (!localStorage.getItem('angieone:v1')) localStorage.setItem('angieone:v1', JSON.stringify(s)); }, state);
+  await ctx.addInitScript((s) => { localStorage.setItem('angieone:founder', '1'); if (!localStorage.getItem('angieone:v1')) localStorage.setItem('angieone:v1', JSON.stringify(s)); }, state);
   const p = await ctx.newPage(); const errs = []; p.on('pageerror', (e) => errs.push(e.message));
   const cdp = await ctx.newCDPSession(p); await cdp.send('WebAuthn.enable');
   await cdp.send('WebAuthn.addVirtualAuthenticator', { options: { protocol: 'ctap2', transport: 'internal', hasResidentKey: true, hasUserVerification: true, isUserVerified: true, automaticPresenceSimulation: true } });

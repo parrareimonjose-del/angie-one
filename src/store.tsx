@@ -14,6 +14,7 @@ export type State = {
   sub?: import('./billing').Sub; streakOff?: boolean; reports?: import('./verified').Report[]; myFoods?: import('./verified').VFood[];
   sync?: { on: boolean; code: string; last?: number; err?: string };
   dayPlan?: import('./yazio5').DayPlan; wellness?: Record<string, import('./yazio5').Wellness>; diaryMeals?: string[];
+  grants?: import('./grants').Grant[]; myGrant?: import('./grants').MyGrant;
 };
 const INITIAL: State = { aiEnabled: true, entries: [], water: {}, challengeDays: [], aiPhotos: {}, founder: {}, langOverride: null };
 const KEY = 'angieone:v1';

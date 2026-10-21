@@ -10,7 +10,7 @@ for (const lang of ['es', 'en']) {
   const now = Date.now();
   const st = { aiEnabled: true, entries: [{ id: 'e1', date: '2026-10-15', time: now, name: 'Arepa', kcal: 300, p: 1, c: 1, f: 1, source: 'manual' }], water: {}, challengeDays: [], aiPhotos: {}, founder: {}, langOverride: null, trialStart: now - 3600e3,
     profile: { goal: 'lose', weight: 80, height: 170, age: 45, sex: 'female', activity: 2 }, ext: { weights: [{ date: '2026-10-10', kg: 80 }], sleep: [{ date: '2026-10-14', h: 7, stress: 2 }] } };
-  await ctx.addInitScript((s) => { if (!localStorage.getItem('angieone:v1')) localStorage.setItem('angieone:v1', JSON.stringify(s)); }, st);
+  await ctx.addInitScript((s) => { localStorage.setItem('angieone:founder', '1'); if (!localStorage.getItem('angieone:v1')) localStorage.setItem('angieone:v1', JSON.stringify(s)); }, st);
   const p = await ctx.newPage(); const errs = []; p.on('pageerror', (e) => errs.push(e.message));
   const go = async (r) => { await p.goto(BASE + r, { waitUntil: 'networkidle' }); await p.waitForTimeout(600); };
   const shot = (n) => p.screenshot({ path: `${OUT}datos-${lang}-${n}.png` });
@@ -73,7 +73,7 @@ for (const lang of ['es', 'en']) {
 // Otros idiomas: la pantalla carga sin claves crudas
 for (const lc of ['ar', 'zh', 'hi', 'ru']) {
   const ctx = await b.newContext({ viewport: { width: 400, height: 860 }, locale: lc });
-  await ctx.addInitScript(() => { if (!localStorage.getItem('angieone:v1')) localStorage.setItem('angieone:v1', JSON.stringify({ aiEnabled: true, entries: [], water: {}, challengeDays: [], aiPhotos: {}, founder: {}, langOverride: null, trialStart: Date.now() - 3600e3, profile: { goal: 'lose', weight: 80, height: 170, age: 45, sex: 'female', activity: 2 } })); });
+  await ctx.addInitScript(() => { localStorage.setItem('angieone:founder', '1'); if (!localStorage.getItem('angieone:v1')) localStorage.setItem('angieone:v1', JSON.stringify({ aiEnabled: true, entries: [], water: {}, challengeDays: [], aiPhotos: {}, founder: {}, langOverride: null, trialStart: Date.now() - 3600e3, profile: { goal: 'lose', weight: 80, height: 170, age: 45, sex: 'female', activity: 2 } })); });
   const p = await ctx.newPage(); await p.goto(BASE + '/datos', { waitUntil: 'networkidle' }); await p.waitForTimeout(600);
   const txt = await p.evaluate(() => document.body.innerText); ok(`${lc} sin claves crudas`, !/dt\.\w/.test(txt)); await p.screenshot({ path: `${OUT}datos-${lc}-01.png` }); await ctx.close();
 }

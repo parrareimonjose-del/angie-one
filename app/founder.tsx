@@ -8,6 +8,7 @@ import { fmtNum } from '../src/i18n';
 import { ADS } from '../src/ext';
 import { DevAI } from '../src/p2';
 import { FounderData } from '../src/datos-ui';
+import { GrantsCard, useFounderMode, FounderUnlock } from '../src/grants-ui';
 import { LedgerCard, PanelMaestroCard, AdminAICard } from '../src/faltantes-ui';
 export const split = (net: number) => ({ ops: Math.round(net * 60) / 100, growth: Math.round(net * 25) / 100, social: Math.round(net * 15) / 100 });
 
@@ -15,6 +16,8 @@ export const split = (net: number) => ({ ops: Math.round(net * 60) / 100, growth
 const CARD_IDS = ['c1', 'c2', 'c3'];
 export default function Founder() {
   const { t, i18n } = useTranslation(); const { s: st, set } = useStore();
+  const [fm, setFm] = useFounderMode();
+  if (!fm) return <Screen title={`👑 ${t('fo.title')}`}><FounderUnlock onDone={() => setFm(true)} /></Screen>;
   const cards = CARD_IDS.map((id) => ({ id, title: t(`foCards.${id}.title`), body: t(`foCards.${id}.body`) }));
   const decide = (id: string, v: 'approved' | 'rejected') => set((x) => ({ ...x, founder: { ...x.founder, [id]: v } }));
   return (
@@ -32,6 +35,7 @@ export default function Founder() {
         <Text style={s.muted}>{t('x.splitNote')}</Text></Card>
       <Card><CardTitle>{t('x.adsTitle')}</CardTitle>{ADS.map((a) => <T key={a.id}>✓ {a.brand}</T>)}<Text style={s.muted}>{t('x.adWhy')}</Text></Card>
       <LedgerCard />
+      <GrantsCard />
       <AdminAICard />
       <PanelMaestroCard />
       <FounderData />

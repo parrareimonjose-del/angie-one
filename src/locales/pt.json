@@ -2044,5 +2044,40 @@
       "na": "Sódio",
       "se": "Selênio"
     }
+  },
+  "gr": {
+    "title": "Premium grátis para pessoas",
+    "sub": "Por e-mail ou ID, revogável, validade opcional",
+    "who": "E-mail ou ID de usuário",
+    "note": "Nota (opcional)",
+    "days": "{{n}} dias",
+    "forever": "Sem validade",
+    "give": "Dar Premium grátis",
+    "bad": "Digite um e-mail ou ID válido",
+    "okSynced": "Pronto. Código para enviar: {{code}}",
+    "okLocal": "Salvo neste telefone (código {{code}}). Será ativado no servidor com sua chave de fundador.",
+    "until": "até {{d}}",
+    "notSynced": "servidor pendente",
+    "st": {
+      "active": "Ativo",
+      "expired": "Expirado",
+      "revoked": "Revogado"
+    },
+    "revoke": "Revogar",
+    "key": "Chave de fundador (só no seu telefone)",
+    "policy": "Web: ativado pelo servidor. Android: também códigos promocionais do Google Play. iPhone: a Apple exige Offer Codes, criados no App Store Connect.",
+    "youUntil": "Você tem Premium de presente até {{d}}",
+    "youForever": "Você tem Premium de presente",
+    "storeCode": "Tem um código de presente? Resgate na loja do telefone.",
+    "redeem": "Resgatar",
+    "have": "Tenho um código de presente",
+    "code": "Código",
+    "e": {
+      "invalid": "Código inválido, expirado ou de outra pessoa",
+      "offline": "Sem conexão. Tente depois.",
+      "server": "O servidor não respondeu. Tente depois."
+    },
+    "founderOnly": "Este painel é só do fundador. Digite sua chave.",
+    "unlock": "Entrar"
   }
 }

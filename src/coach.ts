@@ -4,6 +4,7 @@
  */
 import { AI_URL } from './ai';
 import { withPlan } from './yazio5';
+import { grantValid } from './grants';
 import { State, Profile, dailyTarget, trialPhase, today, DAY } from './store';
 import { safePlanDays } from './safety';
 
@@ -38,7 +39,7 @@ export const coachOf = (s: State): Coach => {
 };
 
 /** Premium = prueba de 7 días activa o suscripción pagada vigente (así quien paga nunca pierde Premium). */
-export const isPremium = (s: State, now = Date.now()) => trialPhase(s.trialStart, now).phase === 'trial' || !!(s.sub?.active && s.sub.renewAt > now);
+export const isPremium = (s: State, now = Date.now()) => trialPhase(s.trialStart, now).phase === 'trial' || !!(s.sub?.active && s.sub.renewAt > now) || grantValid(s.myGrant, now);
 export const safeMin = (p?: Profile) => (p?.sex === 'male' ? 1500 : 1200);
 /** Meta diaria con el ajuste del coach, nunca por debajo del mínimo seguro. */
 export function coachTarget(s: State, d: Date = new Date()) {

@@ -1,4 +1,6 @@
 import { router } from 'expo-router';
+import { useState } from 'react';
+import { useFounderMode } from '../src/grants-ui';
 import { Text } from 'react-native';
 import { TaxesCard } from '../src/taxes-ui';
 import { useTranslation } from 'react-i18next';
@@ -6,6 +8,7 @@ import { Screen, Btn, Card, ListRow, s } from '../src/ui';
 /** «Más» agrupado en listas de vidrio con filas de 60 px (rediseño). */
 export default function More() {
   const { t } = useTranslation();
+  const [fm] = useFounderMode(); const [taps, setTaps] = useState(0);
   const go = (p: string) => () => router.push(p as any);
   return (
     <Screen title={t('more.title')}>
@@ -29,9 +32,9 @@ export default function More() {
       <Card style={{ gap: 2 }}>
         <ListRow icon="🧾" label={t('dt.title')} onPress={go('/datos')} />
         <ListRow icon="⚙️" label={t('more.settings')} onPress={go('/settings')} />
-        <ListRow icon="👑" label={t('more.founder')} onPress={go('/founder')} />
+        {fm ? <ListRow icon="👑" label={t('more.founder')} onPress={go('/founder')} /> : null}
       </Card>
-      <Text style={[s.muted, { textAlign: 'center' }]}>Angie One</Text>
+      <Text testID="more-brand" onPress={() => { const n = taps + 1; setTaps(n); if (n >= 5) router.push('/founder' as any); }} style={[s.muted, { textAlign: 'center' }]}>Angie One</Text>
     </Screen>
   );
 }

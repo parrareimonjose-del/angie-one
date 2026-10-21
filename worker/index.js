@@ -1,3 +1,4 @@
+import { handleGrants } from './grants.js';
 import { handleFoods, foodReport } from './foods.js';
 import { handleSync } from './sync.js';
 // Angie One AI proxy: keeps GEMINI_API_KEY server-side (Worker secret).
@@ -228,6 +229,7 @@ export default {
     const path = new URL(req.url).pathname;
     if (req.method === 'GET' && path.startsWith('/foods/')) return handleFoods(path, req, env, json, h);
     if (path.startsWith('/sync/')) return handleSync(path, req, env, json, h, hits);
+    if (path.startsWith('/grants/')) return handleGrants(path, req, env, json, h);
     if (req.method !== 'POST' || !['/estimate', '/plan', '/chat', '/vision', '/dev', '/voice', '/clone', '/foods/report'].includes(path)) return json({ error: 'not found' }, 404, h);
     const ip = req.headers.get('CF-Connecting-IP') || 'x';
     const now = Date.now(), arr = (hits.get(ip) || []).filter((t) => now - t < 60000);

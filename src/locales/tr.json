@@ -2044,5 +2044,40 @@
       "na": "Sodyum",
       "se": "Selenyum"
     }
+  },
+  "gr": {
+    "title": "Kişilere ücretsiz Premium",
+    "sub": "E-posta veya kimlikle, geri alınabilir, isteğe bağlı süre",
+    "who": "E-posta veya kullanıcı kimliği",
+    "note": "Not (isteğe bağlı)",
+    "days": "{{n}} gün",
+    "forever": "Süresiz",
+    "give": "Premium ver",
+    "bad": "Geçerli e-posta veya kimlik gir",
+    "okSynced": "Tamam. Gönderilecek kod: {{code}}",
+    "okLocal": "Bu telefona kaydedildi (kod {{code}}). Kurucu anahtarı bağlanınca sunucuda etkinleşir.",
+    "until": "{{d}} tarihine kadar",
+    "notSynced": "sunucu bekliyor",
+    "st": {
+      "active": "Aktif",
+      "expired": "Süresi doldu",
+      "revoked": "İptal edildi"
+    },
+    "revoke": "İptal et",
+    "key": "Kurucu anahtarı (yalnızca telefonunda)",
+    "policy": "Web: sunucuyla açılır. Android: Google Play promosyon kodları da olur. iPhone: Apple, App Store Connect Offer Code ister.",
+    "youUntil": "{{d}} tarihine kadar hediye Premium",
+    "youForever": "Hediye Premium",
+    "storeCode": "Hediye kodun mu var? Mağazada kullan.",
+    "redeem": "Kullan",
+    "have": "Hediye kodum var",
+    "code": "Kod",
+    "e": {
+      "invalid": "Kod geçersiz, süresi dolmuş ya da başkasına ait",
+      "offline": "Bağlantı yok. Sonra dene.",
+      "server": "Sunucu yanıt vermedi."
+    },
+    "founderOnly": "Yalnızca kurucu için. Anahtarını gir.",
+    "unlock": "Aç"
   }
 }

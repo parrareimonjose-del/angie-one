@@ -2044,5 +2044,40 @@
       "na": "Natrium",
       "se": "Selen"
     }
+  },
+  "gr": {
+    "title": "Kostenloses Premium für Personen",
+    "sub": "Per E-Mail oder ID, widerrufbar, optional befristet",
+    "who": "E-Mail oder Benutzer-ID",
+    "note": "Notiz (optional)",
+    "days": "{{n}} Tage",
+    "forever": "Unbefristet",
+    "give": "Premium schenken",
+    "bad": "Gültige E-Mail oder ID eingeben",
+    "okSynced": "Fertig. Code zum Senden: {{code}}",
+    "okLocal": "Auf diesem Handy gespeichert (Code {{code}}). Aktiv auf dem Server mit deinem Gründer-Schlüssel.",
+    "until": "bis {{d}}",
+    "notSynced": "Server ausstehend",
+    "st": {
+      "active": "Aktiv",
+      "expired": "Abgelaufen",
+      "revoked": "Widerrufen"
+    },
+    "revoke": "Widerrufen",
+    "key": "Gründer-Schlüssel (nur auf deinem Handy)",
+    "policy": "Web: über den Server. Android: auch Google-Play-Promocodes. iPhone: Apple verlangt Offer Codes aus App Store Connect.",
+    "youUntil": "Geschenktes Premium bis {{d}}",
+    "youForever": "Geschenktes Premium aktiv",
+    "storeCode": "Geschenkcode? Im Store einlösen.",
+    "redeem": "Einlösen",
+    "have": "Ich habe einen Geschenkcode",
+    "code": "Code",
+    "e": {
+      "invalid": "Code ungültig, abgelaufen oder für jemand anderen",
+      "offline": "Keine Verbindung. Später erneut.",
+      "server": "Server antwortet nicht."
+    },
+    "founderOnly": "Nur für den Gründer. Schlüssel eingeben.",
+    "unlock": "Entsperren"
   }
 }

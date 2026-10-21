@@ -2044,5 +2044,40 @@
       "na": "Sodio",
       "se": "Selenio"
     }
+  },
+  "gr": {
+    "title": "Premium gratis para personas",
+    "sub": "Por correo o ID, revocable, con caducidad opcional",
+    "who": "Correo o ID de usuario",
+    "note": "Nota (opcional)",
+    "days": "{{n}} días",
+    "forever": "Sin caducidad",
+    "give": "Dar Premium gratis",
+    "bad": "Escribe un correo o ID válido",
+    "okSynced": "Listo. Código para enviarle: {{code}}",
+    "okLocal": "Guardado en este teléfono (código {{code}}). Se activará en el servidor cuando esté conectado con tu clave de fundador.",
+    "until": "hasta {{d}}",
+    "notSynced": "pendiente de servidor",
+    "st": {
+      "active": "Activo",
+      "expired": "Caducado",
+      "revoked": "Revocado"
+    },
+    "revoke": "Revocar",
+    "key": "Clave de fundador (solo en tu teléfono)",
+    "policy": "Web: se activa con el servidor. Android: también puedes usar códigos promocionales de Google Play. iPhone: Apple exige sus Offer Codes; se crean en App Store Connect.",
+    "youUntil": "Tienes Premium de regalo hasta {{d}}",
+    "youForever": "Tienes Premium de regalo",
+    "storeCode": "¿Tienes un código de regalo? Se canjea en la tienda de tu teléfono.",
+    "redeem": "Canjear",
+    "have": "Tengo un código de regalo",
+    "code": "Código",
+    "e": {
+      "invalid": "Código no válido, caducado o de otra persona",
+      "offline": "Sin conexión. Inténtalo luego.",
+      "server": "El servidor no respondió. Inténtalo luego."
+    },
+    "founderOnly": "Este panel es solo para el fundador. Escribe tu clave de fundador.",
+    "unlock": "Entrar"
   }
 }
