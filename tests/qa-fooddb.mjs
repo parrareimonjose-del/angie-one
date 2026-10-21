@@ -51,7 +51,9 @@ for (const [bn, B, dev] of runs) {
     await go(p, '/backup'); await p.getByTestId('bk-del').click(); await p.getByTestId('bk-msg').waitFor({ timeout: 20000 }).catch(() => {});
     ok(`${tag} borrado de la nube`, (await st(p)).sync === undefined && await p.getByTestId('bk-on').count() === 1);
     const m = await mk(null); await go(m.p, '/backup'); await m.p.getByTestId('bk-rc').fill(code); await m.p.getByTestId('bk-restore').click();
-    await m.p.getByTestId('bk-err').waitFor({ timeout: 20000 }).catch(() => {}); ok(`${tag} tras borrar ya no se puede restaurar`, await m.p.getByTestId('bk-err').count() === 1); await m.ctx.close();
+    await m.p.getByTestId('bk-err').waitFor({ timeout: 20000 }).catch(() => {});
+    for (let i = 0; i < 4 && !(await m.p.getByTestId('bk-err').count()); i++) { await m.ctx.close(); await new Promise((r) => setTimeout(r, 20000)); Object.assign(m, await mk(null)); await go(m.p, '/backup'); await m.p.getByTestId('bk-rc').fill(code); await m.p.getByTestId('bk-restore').click(); await m.p.getByTestId('bk-err').waitFor({ timeout: 20000 }).catch(() => {}); } /* KV de Cloudflare: el borrado tarda ≤60 s en todas las regiones */
+    ok(`${tag} tras borrar ya no se puede restaurar`, await m.p.getByTestId('bk-err').count() === 1); await m.ctx.close();
     ok(`${tag} sin errores de página`, errs.length === 0, errs.join(' | ').slice(0, 200));
     await ctx.close();
   }
