@@ -1,6 +1,6 @@
 import { handleGrants } from './grants.js';
 import { handleFriends } from './friends.js';
-import { handleFoods, foodReport } from './foods.js';
+import { handleFoods, foodReport, foodContribute, foodQueue } from './foods.js';
 import { handleSync } from './sync.js';
 // Angie One AI proxy: keeps GEMINI_API_KEY server-side (Worker secret).
 const MODEL = 'gemini-flash-lite-latest';
@@ -15,7 +15,7 @@ If there is no food or drink in the photo/description, answer {"isFood": false}.
 
 function cors(origin) {
   const ok = origin && ORIGINS.some((r) => r.test(origin));
-  return ok ? { 'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Authorization', 'Vary': 'Origin' } : null;
+  return ok ? { 'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Authorization, x-founder-key', 'Vary': 'Origin' } : null;
 }
 const json = (o, s, h) => new Response(JSON.stringify(o), { status: s, headers: { 'Content-Type': 'application/json', ...(h || {}) } });
 
@@ -232,7 +232,7 @@ export default {
     if (path.startsWith('/sync/')) return handleSync(path, req, env, json, h, hits);
     if (path.startsWith('/grants/')) return handleGrants(path, req, env, json, h);
     if (path.startsWith('/friends/')) return handleFriends(path, req, env, json, h);
-    if (req.method !== 'POST' || !['/estimate', '/plan', '/chat', '/vision', '/dev', '/voice', '/clone', '/foods/report'].includes(path)) return json({ error: 'not found' }, 404, h);
+    if (req.method !== 'POST' || !['/estimate', '/plan', '/chat', '/vision', '/dev', '/voice', '/clone', '/foods/report', '/foods/contribute', '/foods/queue', '/foods/queue/delete'].includes(path)) return json({ error: 'not found' }, 404, h);
     const ip = req.headers.get('CF-Connecting-IP') || 'x';
     const now = Date.now(), arr = (hits.get(ip) || []).filter((t) => now - t < 60000);
     if (arr.length >= RATE) return json({ error: 'rate' }, 429, h);
@@ -252,6 +252,8 @@ export default {
       return t ? json({ text: t }, 200, h) : json({ error: 'no_speech' }, 422, h);
     }
     if (path === '/foods/report') return foodReport(b, env, json, h);
+    if (path === '/foods/contribute') return foodContribute(b, req, env, json, h);
+    if (path.startsWith('/foods/queue')) return foodQueue(path, b, req, env, json, h);
     if (path === '/plan' || path === '/chat') return coach(path, b, env, h);
     if (path === '/vision' || path === '/dev') return phase2(path, b, env, h);
     if (path === '/clone') return clone(b, env, h);
