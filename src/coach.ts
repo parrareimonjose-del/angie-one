@@ -144,10 +144,13 @@ export function rulesPlan(p: Profile, prefs: Prefs, kcal: number): Plan {
 const BASE = AI_URL.replace(/\/estimate$/, '');
 async function post(path: string, body: object, ms: number) {
   const ctl = new AbortController(); const tm = setTimeout(() => ctl.abort(), ms);
-  try {
+  let hard: any; const guard = new Promise<never>((_, rej) => { hard = setTimeout(() => { ctl.abort(); rej(new Error('timeout')); }, ms + 2000); });
+  const run = (async () => {
     const r = await fetch(BASE + path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), signal: ctl.signal });
     const o = await r.json().catch(() => ({})); if (!r.ok) throw new Error(o.error || 'server'); return o;
-  } finally { clearTimeout(tm); }
+  })();
+  // Tope duro: aunque el navegador no corte la lectura de la respuesta, nunca se queda colgado.
+  try { return await Promise.race([run, guard]); } finally { clearTimeout(tm); clearTimeout(hard); run.catch(() => {}); }
 }
 const DISLIKE_EN: Record<Dislike, string> = { fish: 'fish and seafood', eggs: 'eggs', dairy: 'dairy', beef: 'red meat', chicken: 'chicken', legumes: 'beans and lentils', nuts: 'nuts and peanuts', veg: 'any meat or fish (vegetarian)' };
 const CUISINE_EN: Record<Cuisine, string> = { latin: 'Latin American', mexican: 'Mexican', caribbean: 'Caribbean (Venezuelan, Dominican, Puerto Rican, Cuban)', andean: 'Colombian, Peruvian and Andean', brazilian: 'Brazilian', international: 'international, simple' };
@@ -174,7 +177,7 @@ export async function makePlan(p: Profile, prefs: Prefs, kcal: number, prot: num
     const o = await post('/plan', {
       lang, kcal, prot, sex: p.sex, age: p.age, weight: p.weight, goal: p.goal, meals: prefs.meals, days: prefs.days, minutes: prefs.minutes,
       place: prefs.place, level: prefs.level, injury, dislike: prefs.dislikes.map((x) => DISLIKE_EN[x]).join(', '), cuisine: CUISINE_EN[prefs.cuisine], budget: prefs.budget,
-    }, 120000);
+    }, 60000);
     const plan = validatePlan(o, kcal, safeMin(p));
     if (plan) return withSafety({ ...plan, lang }, prefs);
   } catch { /* respaldo abajo */ }

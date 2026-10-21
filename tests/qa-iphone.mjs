@@ -57,7 +57,7 @@ for (const [bn, B, dev] of runs) {
     await p.getByTestId('bar-nf').waitFor({ timeout: 60000 }).catch(() => {}); ok(`${tag} no encontrado → opciones`, await p.getByTestId('bar-nf').count() > 0); await shot('06-no-encontrado');
     const fc = p.waitForEvent('filechooser', { timeout: 8000 }).catch(() => null);
     await p.getByRole('button', { name: L ? /etiqueta nutricional/ : /nutrition label/ }).click(); const ch = await fc;
-    if (ch) await ch.setFiles('/tmp/label.jpg');
+    if (ch) await ch.setFiles(new URL('./fixtures/label.jpg', import.meta.url).pathname);
     await p.waitForFunction(() => /Barra|bar|granola/i.test(document.body.innerText) && /190/.test(document.body.innerText), null, { timeout: 60000 }).catch(() => {});
     ok(`${tag} foto etiqueta → 190 kcal`, /190/.test(await body())); await shot('07-etiqueta');
     ok(`${tag} sin errores js`, !errs.length, errs.join(' | ').slice(0, 200)); await ctx.close();
