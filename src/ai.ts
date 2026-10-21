@@ -36,7 +36,7 @@ async function callAI(payload: object): Promise<Estimate> {
   const body = JSON.stringify(payload);
   try { return await once(body); }
   catch (e: any) {
-    if (e instanceof AIError && (e.code === 'offline' || e.code === 'server')) { await new Promise((r) => setTimeout(r, 1200)); return once(body); }
+    if (e instanceof AIError && (e.code === 'offline' || e.code === 'server' || e.code === 'busy')) { await new Promise((r) => setTimeout(r, e.code === 'busy' ? 2500 : 1200)); return once(body); }
     throw e;
   }
 }
