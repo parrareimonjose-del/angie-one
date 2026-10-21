@@ -2266,5 +2266,85 @@
     "modDelete": "Löschen",
     "modEmpty": "Nichts zu überprüfen.",
     "modNote": "Meldungen verbergen niemanden automatisch: Du entscheidest. Antworte innerhalb von 24 Stunden, da die App-Stores dies fordern."
+  },
+  "ck": {
+    "title": "Dein Profi-Team",
+    "sub": "Ernährung, Training, Physiotherapie, Gewohnheiten und Schlaf in einem Coach.",
+    "recT": "🍲 Rezepte für deinen Plan",
+    "recSub": "Heute bleiben dir {{kcal}} kcal. Diese passen:",
+    "recNone": "Du hast dein Tagesziel erreicht. Bei Hunger: Obst, Gemüse oder Joghurt.",
+    "recCook": "👩‍🍳 Kochen",
+    "recAdd": "➕ Ins Tagebuch",
+    "recAdded": "✓ Hinzugefügt",
+    "guide": "📚 Profi-Leitfaden",
+    "guideSub": "Wochenplan, Steigerung und Werkzeuge für dein Ziel.",
+    "weekT": "Woche {{n}} von 4",
+    "checkT": "✅ Heutige Liste",
+    "c1": "Eiweiß zu jeder Mahlzeit",
+    "c2": "Halber Teller Gemüse",
+    "c3": "8 Gläser Wasser",
+    "c4": "30 Minuten Bewegung oder Training",
+    "c5": "7 bis 9 Stunden schlafen",
+    "redT": "⚠️ Sprich mit Fachleuten",
+    "redB": "Bei starken Schmerzen, Brustschmerz, Schwindel, Ohnmacht, Verletzung, Schwangerschaft, Krankheit, Medikamenten oder schwierigem Verhältnis zum Essen: Ärztin/Arzt, Physiotherapie oder Ernährungsberatung aufsuchen. Der Coach stellt keine Diagnosen und verschreibt nichts.",
+    "disc": "Allgemeine Hinweise nach öffentlichen Empfehlungen (WHO, ACSM u. a.). Keine medizinische Beratung.",
+    "lose": {
+      "w1": "Woche 1: alles eintragen und täglich 300 kcal weniger essen. 20 Minuten gehen.",
+      "w2": "Woche 2: Eiweiß zu jeder Mahlzeit und 2 Ganzkörper-Krafttage.",
+      "w3": "Woche 3: 1 Wiederholung oder etwas Gewicht mehr und 2.000 Schritte mehr.",
+      "w4": "Woche 4: leichte Woche (weniger Sätze); schau aufs Durchschnittsgewicht."
+    },
+    "keep": {
+      "w1": "Woche 1: iss auf dein Ziel und notiere, wie es dir geht.",
+      "w2": "Woche 2: 3 Krafttage und 150 Minuten leichtes Cardio pro Woche.",
+      "w3": "Woche 3: 2 neue Rezepte testen und Essen für 3 Tage vorbereiten.",
+      "w4": "Woche 4: leichte Woche und das Schwierigste anpassen."
+    },
+    "gain": {
+      "w1": "Woche 1: täglich 300 kcal mehr mit dichten Snacks (Hafer, Nüsse, Shakes).",
+      "w2": "Woche 2: 3 bis 4 Krafttage mit 8 bis 12 Wiederholungen.",
+      "w3": "Woche 3: etwas mehr Gewicht, wenn alle Sätze geschafft sind.",
+      "w4": "Woche 4: leichte Woche; Ziel +0,25 bis 0,5 % Gewicht pro Woche."
+    },
+    "nutrition": {
+      "t": "Ernährung",
+      "1": "Halber Teller Gemüse, ein Viertel Eiweiß, ein Viertel Kohlenhydrate.",
+      "2": "Zum Abnehmen sind 300 bis 500 kcal Defizit sicher. Zum Zunehmen 250 bis 500 kcal mehr."
+    },
+    "diets": {
+      "t": "Ernährungsformen",
+      "1": "Die beste Diät ist die, die du halten kannst. Mediterran hat die beste Evidenz.",
+      "2": "Meide extreme oder „Detox“-Diäten. Vegan braucht Vitamin B12."
+    },
+    "training": {
+      "t": "Training",
+      "1": "Kraft 2 bis 3 Tage pro Woche und 150 Minuten moderates Cardio.",
+      "2": "Langsam steigern: jede Woche 1 Wiederholung oder etwas Gewicht mehr."
+    },
+    "physio": {
+      "t": "Physiotherapie und Mobilität",
+      "1": "5 bis 10 Minuten aufwärmen, Hüfte, Schultern und Rücken bewegen.",
+      "2": "Bei stechendem Schmerz abbrechen und eine leichtere Variante wählen."
+    },
+    "habits": {
+      "t": "Gewohnheiten und Motivation",
+      "1": "Starte mit einer kleinen Gewohnheit, gekoppelt an etwas Bestehendes.",
+      "2": "Ein schlechter Tag löscht keinen Fortschritt: weiter bei der nächsten Mahlzeit."
+    },
+    "sleep": {
+      "t": "Schlaf",
+      "1": "7 bis 9 Stunden schlafen, immer zur gleichen Zeit aufstehen.",
+      "2": "Wenig Schlaf steigert Hunger und Heißhunger."
+    },
+    "hydration": {
+      "t": "Flüssigkeit",
+      "1": "Etwa 30 bis 35 ml pro kg am Tag, mehr bei Hitze oder Training.",
+      "2": "Ein Glas Wasser vor dem Essen hilft beim Sattwerden."
+    },
+    "sportsmed": {
+      "t": "Sportmedizin",
+      "1": "Umfang höchstens 10 % pro Woche steigern, Ruhetage einhalten.",
+      "2": "Bei Brustschmerz, Ohnmacht oder Schwellung: aufhören und zum Arzt."
+    }
   }
 }

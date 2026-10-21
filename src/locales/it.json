@@ -2266,5 +2266,85 @@
     "modDelete": "Elimina",
     "modEmpty": "Nulla da revisionare.",
     "modNote": "Le segnalazioni non nascondono mai nessuno automaticamente: decidi tu. Rispondi entro 24 ore, come richiesto dagli store delle app."
+  },
+  "ck": {
+    "title": "Il tuo team di professionisti",
+    "sub": "Nutrizione, allenamento, fisioterapia, abitudini e sonno in un solo coach.",
+    "recT": "🍲 Ricette per il tuo piano",
+    "recSub": "Ti restano {{kcal}} kcal oggi. Queste ci stanno:",
+    "recNone": "Obiettivo di oggi raggiunto. Se hai fame, scegli frutta, verdura o uno yogurt.",
+    "recCook": "👩‍🍳 Cucina",
+    "recAdd": "➕ Aggiungi al diario",
+    "recAdded": "✓ Aggiunto",
+    "guide": "📚 Guida professionale",
+    "guideSub": "Piano settimanale, progressione e strumenti per il tuo obiettivo.",
+    "weekT": "Settimana {{n}} di 4",
+    "checkT": "✅ Lista di oggi",
+    "c1": "Proteine a ogni pasto",
+    "c2": "Metà piatto di verdure",
+    "c3": "8 bicchieri d'acqua",
+    "c4": "Muoversi 30 minuti o allenarsi",
+    "c5": "Dormire 7-9 ore",
+    "redT": "⚠️ Parla con un professionista",
+    "redB": "Con dolore forte, dolore al petto, capogiri, svenimenti, infortuni, gravidanza, malattie, farmaci o un rapporto difficile con il cibo, consulta un medico, un fisioterapista o un dietista. Il coach non fa diagnosi né prescrizioni.",
+    "disc": "Indicazioni generali basate su raccomandazioni pubbliche (OMS, ACSM e altre). Non è un consiglio medico.",
+    "lose": {
+      "w1": "Settimana 1: registra tutto e mangia 300 kcal in meno al giorno. Cammina 20 minuti al giorno.",
+      "w2": "Settimana 2: proteine a ogni pasto e 2 giorni di forza total body.",
+      "w3": "Settimana 3: aggiungi 1 ripetizione o un po' di peso e 2.000 passi in più.",
+      "w4": "Settimana 4: settimana leggera (meno serie); guarda il peso medio, non quello di un giorno."
+    },
+    "keep": {
+      "w1": "Settimana 1: mangia al tuo obiettivo e annota come ti senti.",
+      "w2": "Settimana 2: 3 giorni di forza e 150 minuti di cardio leggero a settimana.",
+      "w3": "Settimana 3: prova 2 ricette nuove e prepara i pasti per 3 giorni.",
+      "w4": "Settimana 4: settimana leggera e sistema ciò che è stato più difficile."
+    },
+    "gain": {
+      "w1": "Settimana 1: aggiungi 300 kcal al giorno con spuntini densi (avena, frutta secca, frullati).",
+      "w2": "Settimana 2: 3-4 giorni di forza da 8-12 ripetizioni.",
+      "w3": "Settimana 3: aumenta un po' il peso quando completi tutte le serie.",
+      "w4": "Settimana 4: settimana leggera; punta a +0,25-0,5% di peso a settimana."
+    },
+    "nutrition": {
+      "t": "Nutrizione",
+      "1": "Metà piatto di verdure, un quarto di proteine e un quarto di carboidrati.",
+      "2": "Per dimagrire un deficit di 300-500 kcal è sicuro. Per aumentare, 250-500 kcal in più."
+    },
+    "diets": {
+      "t": "Stili alimentari",
+      "1": "La dieta migliore è quella che riesci a mantenere. La mediterranea ha le prove migliori.",
+      "2": "Evita diete estreme o «detox». Con la dieta vegana serve la vitamina B12."
+    },
+    "training": {
+      "t": "Allenamento",
+      "1": "Forza 2-3 giorni a settimana e 150 minuti di cardio moderato.",
+      "2": "Progredisci poco a poco: 1 ripetizione o un po' di peso in più ogni settimana."
+    },
+    "physio": {
+      "t": "Fisioterapia e mobilità",
+      "1": "Scaldati 5-10 minuti e muovi anche, spalle e schiena.",
+      "2": "Se un esercizio dà dolore acuto, fermati e usa una versione più facile."
+    },
+    "habits": {
+      "t": "Abitudini e motivazione",
+      "1": "Inizia con una piccola abitudine legata a qualcosa che già fai.",
+      "2": "Una brutta giornata non cancella i progressi: riparti dal pasto successivo."
+    },
+    "sleep": {
+      "t": "Sonno",
+      "1": "Dormi 7-9 ore e svegliati sempre alla stessa ora.",
+      "2": "Dormire poco aumenta fame e voglie."
+    },
+    "hydration": {
+      "t": "Idratazione",
+      "1": "Circa 30-35 ml per kg al giorno, di più con caldo o allenamento.",
+      "2": "Un bicchiere d'acqua prima dei pasti aiuta la sazietà."
+    },
+    "sportsmed": {
+      "t": "Medicina dello sport",
+      "1": "Aumenta il volume al massimo del 10% a settimana e rispetta il riposo.",
+      "2": "Con dolore al petto, svenimento o gonfiore, fermati e vai dal medico."
+    }
   }
 }

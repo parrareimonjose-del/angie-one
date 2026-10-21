@@ -2266,5 +2266,85 @@
     "modDelete": "Delete",
     "modEmpty": "Nothing to review.",
     "modNote": "Reports never hide anyone automatically: you decide. Answer within 24 hours, as the app stores ask."
+  },
+  "ck": {
+    "title": "Your professional team",
+    "sub": "Nutrition, training, physiotherapy, habits and sleep in one coach.",
+    "recT": "🍲 Recipes for your plan",
+    "recSub": "You have {{kcal}} kcal left today. These fit:",
+    "recNone": "You reached your goal today. If you're hungry, choose fruit, vegetables or a yogurt.",
+    "recCook": "👩‍🍳 Cook",
+    "recAdd": "➕ Add to diary",
+    "recAdded": "✓ Added",
+    "guide": "📚 Professional guide",
+    "guideSub": "Weekly plan, progression and tools for your goal.",
+    "weekT": "Week {{n}} of 4",
+    "checkT": "✅ Today's checklist",
+    "c1": "Protein at every meal",
+    "c2": "Half your plate vegetables",
+    "c3": "8 glasses of water",
+    "c4": "Move 30 minutes or do your workout",
+    "c5": "Sleep 7 to 9 hours",
+    "redT": "⚠️ Talk to a professional",
+    "redB": "If you have strong pain, chest pain, dizziness, fainting, an injury, pregnancy, an illness, take medication or have a difficult relationship with food, see a doctor, physiotherapist or dietitian. The coach does not diagnose or prescribe.",
+    "disc": "General guidance based on public recommendations (WHO, ACSM and others). Not medical advice.",
+    "lose": {
+      "w1": "Week 1: log everything and eat 300 kcal less per day. Walk 20 minutes daily.",
+      "w2": "Week 2: protein at every meal and 2 full-body strength days.",
+      "w3": "Week 3: add 1 rep or a little weight per exercise and 2,000 more steps.",
+      "w4": "Week 4: easy week (fewer sets) and check your average weight, not one day's."
+    },
+    "keep": {
+      "w1": "Week 1: eat at your target and note how you feel.",
+      "w2": "Week 2: 3 strength days and 150 minutes of easy cardio in the week.",
+      "w3": "Week 3: try 2 new recipes and prep meals for 3 days.",
+      "w4": "Week 4: easy week and adjust what was hardest."
+    },
+    "gain": {
+      "w1": "Week 1: add 300 kcal per day with dense snacks (oats, nuts, smoothies).",
+      "w2": "Week 2: 3 to 4 strength days with 8 to 12 reps.",
+      "w3": "Week 3: add a little weight when you complete all sets.",
+      "w4": "Week 4: easy week and check your weight: aim for 0.25 to 0.5% per week."
+    },
+    "nutrition": {
+      "t": "Nutrition",
+      "1": "Fill half the plate with vegetables, a quarter protein and a quarter carbs.",
+      "2": "To lose, a 300 to 500 kcal deficit is safe. To gain, 250 to 500 kcal more."
+    },
+    "diets": {
+      "t": "Diet styles",
+      "1": "The best diet is the one you can keep. Mediterranean has the best evidence.",
+      "2": "Avoid extreme or 'detox' diets. If you are vegan, you need vitamin B12."
+    },
+    "training": {
+      "t": "Training",
+      "1": "Strength 2 or 3 days a week and 150 minutes of moderate cardio.",
+      "2": "Progress little by little: 1 more rep or a bit more weight each week."
+    },
+    "physio": {
+      "t": "Physiotherapy and mobility",
+      "1": "Warm up 5 to 10 minutes and move hips, shoulders and back.",
+      "2": "If an exercise causes sharp pain, stop and use an easier version."
+    },
+    "habits": {
+      "t": "Habits and motivation",
+      "1": "Start with a tiny habit and tie it to something you already do.",
+      "2": "One bad day doesn't erase your progress: get back on track at the next meal."
+    },
+    "sleep": {
+      "t": "Sleep",
+      "1": "Sleep 7 to 9 hours and wake up at the same time every day.",
+      "2": "Short sleep increases hunger and cravings."
+    },
+    "hydration": {
+      "t": "Hydration",
+      "1": "About 30 to 35 ml per kg a day, more in heat or when training.",
+      "2": "A glass of water before meals helps you feel full."
+    },
+    "sportsmed": {
+      "t": "Sports medicine",
+      "1": "Increase volume by at most 10% per week and respect rest days.",
+      "2": "With chest pain, fainting or swelling, stop and see a doctor."
+    }
   }
 }

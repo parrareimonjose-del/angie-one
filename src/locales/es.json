@@ -2266,5 +2266,85 @@
     "modDelete": "Borrar",
     "modEmpty": "Nada que revisar.",
     "modNote": "Los reportes nunca ocultan a nadie solos: decides tú. Responde en menos de 24 horas, como piden las tiendas."
+  },
+  "ck": {
+    "title": "Tu equipo profesional",
+    "sub": "Nutrición, entrenamiento, fisioterapia, hábitos y sueño en un solo coach.",
+    "recT": "🍲 Recetas para tu plan",
+    "recSub": "Te quedan {{kcal}} kcal hoy. Estas te cuadran:",
+    "recNone": "Hoy ya llegaste a tu meta. Si tienes hambre, elige fruta, verduras o un yogur.",
+    "recCook": "👩‍🍳 Cocinar",
+    "recAdd": "➕ Añadir al diario",
+    "recAdded": "✓ Añadido",
+    "guide": "📚 Guía profesional",
+    "guideSub": "Plan semanal, progresión y herramientas según tu meta.",
+    "weekT": "Semana {{n}} de 4",
+    "checkT": "✅ Lista de hoy",
+    "c1": "Proteína en cada comida",
+    "c2": "Media porción del plato con verduras",
+    "c3": "8 vasos de agua",
+    "c4": "Moverte 30 minutos o tu entreno",
+    "c5": "Dormir 7 a 9 horas",
+    "redT": "⚠️ Habla con un profesional",
+    "redB": "Si tienes dolor fuerte, dolor en el pecho, mareos, desmayos, una lesión, embarazo, una enfermedad, tomas medicamentos o tienes una relación difícil con la comida, consulta a un médico, fisioterapeuta o nutricionista. El coach no diagnostica ni receta.",
+    "disc": "Guías generales basadas en recomendaciones públicas (OMS, ACSM y otras). No es consejo médico.",
+    "lose": {
+      "w1": "Semana 1: registra todo y baja 300 kcal al día. Camina 20 minutos diarios.",
+      "w2": "Semana 2: proteína en cada comida y 2 días de fuerza de cuerpo completo.",
+      "w3": "Semana 3: suma 1 repetición o un poco de peso por ejercicio y 2.000 pasos más.",
+      "w4": "Semana 4: semana suave (menos series) y revisa tu peso promedio, no el de un día."
+    },
+    "keep": {
+      "w1": "Semana 1: come a tu meta y anota cómo te sientes.",
+      "w2": "Semana 2: 3 días de fuerza y 150 minutos de cardio suave en la semana.",
+      "w3": "Semana 3: prueba 2 recetas nuevas y prepara comidas para 3 días.",
+      "w4": "Semana 4: semana suave y ajusta lo que más te costó."
+    },
+    "gain": {
+      "w1": "Semana 1: suma 300 kcal al día con snacks densos (avena, nueces, batidos).",
+      "w2": "Semana 2: 3 a 4 días de fuerza con 8 a 12 repeticiones.",
+      "w3": "Semana 3: sube un poco el peso cuando completes todas las series.",
+      "w4": "Semana 4: semana suave y revisa tu peso: busca ganar 0,25 a 0,5 % por semana."
+    },
+    "nutrition": {
+      "t": "Nutrición",
+      "1": "Llena medio plato de verduras, un cuarto de proteína y un cuarto de carbohidratos.",
+      "2": "Para bajar, un déficit de 300 a 500 kcal es seguro. Para subir, 250 a 500 kcal más."
+    },
+    "diets": {
+      "t": "Estilos de dieta",
+      "1": "La mejor dieta es la que puedes mantener. La mediterránea tiene la mejor evidencia.",
+      "2": "Evita las dietas extremas o «detox». Si eres vegana, necesitas vitamina B12."
+    },
+    "training": {
+      "t": "Entrenamiento",
+      "1": "Fuerza 2 o 3 días por semana y 150 minutos de cardio moderado.",
+      "2": "Progresa poco a poco: 1 repetición más o un poco más de peso cada semana."
+    },
+    "physio": {
+      "t": "Fisioterapia y movilidad",
+      "1": "Calienta 5 a 10 minutos y mueve caderas, hombros y espalda.",
+      "2": "Si un ejercicio duele de forma aguda, para y usa una versión más fácil."
+    },
+    "habits": {
+      "t": "Hábitos y motivación",
+      "1": "Empieza con un hábito pequeño y átalo a algo que ya haces.",
+      "2": "Un mal día no borra tu progreso: vuelve en la siguiente comida."
+    },
+    "sleep": {
+      "t": "Sueño",
+      "1": "Duerme 7 a 9 horas y levántate a la misma hora cada día.",
+      "2": "Dormir poco aumenta el hambre y los antojos."
+    },
+    "hydration": {
+      "t": "Hidratación",
+      "1": "Unos 30 a 35 ml por kilo al día, más si hace calor o entrenas.",
+      "2": "Un vaso de agua antes de comer ayuda a sentir saciedad."
+    },
+    "sportsmed": {
+      "t": "Medicina deportiva",
+      "1": "Sube el volumen máximo un 10 % por semana y respeta los días de descanso.",
+      "2": "Ante dolor en el pecho, desmayo o hinchazón, para y ve al médico."
+    }
   }
 }

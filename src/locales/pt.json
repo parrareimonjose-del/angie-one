@@ -2266,5 +2266,85 @@
     "modDelete": "Excluir",
     "modEmpty": "Nada para revisar.",
     "modNote": "Denúncias nunca ocultam ninguém automaticamente: você decide. Responda em até 24 horas, conforme exigido pelas lojas de aplicativos."
+  },
+  "ck": {
+    "title": "Sua equipe profissional",
+    "sub": "Nutrição, treino, fisioterapia, hábitos e sono em um só coach.",
+    "recT": "🍲 Receitas para o seu plano",
+    "recSub": "Restam {{kcal}} kcal hoje. Estas cabem:",
+    "recNone": "Você já chegou à meta de hoje. Se tiver fome, escolha fruta, legumes ou um iogurte.",
+    "recCook": "👩‍🍳 Cozinhar",
+    "recAdd": "➕ Adicionar ao diário",
+    "recAdded": "✓ Adicionado",
+    "guide": "📚 Guia profissional",
+    "guideSub": "Plano semanal, progressão e ferramentas para a sua meta.",
+    "weekT": "Semana {{n}} de 4",
+    "checkT": "✅ Lista de hoje",
+    "c1": "Proteína em cada refeição",
+    "c2": "Metade do prato com legumes",
+    "c3": "8 copos de água",
+    "c4": "Mexer-se 30 minutos ou treinar",
+    "c5": "Dormir 7 a 9 horas",
+    "redT": "⚠️ Fale com um profissional",
+    "redB": "Se tiver dor forte, dor no peito, tontura, desmaio, lesão, gravidez, uma doença, usar medicamentos ou tiver uma relação difícil com a comida, consulte um médico, fisioterapeuta ou nutricionista. O coach não diagnostica nem receita.",
+    "disc": "Orientações gerais baseadas em recomendações públicas (OMS, ACSM e outras). Não é conselho médico.",
+    "lose": {
+      "w1": "Semana 1: registre tudo e coma 300 kcal a menos por dia. Caminhe 20 minutos por dia.",
+      "w2": "Semana 2: proteína em cada refeição e 2 dias de força de corpo inteiro.",
+      "w3": "Semana 3: some 1 repetição ou um pouco de peso por exercício e 2.000 passos a mais.",
+      "w4": "Semana 4: semana leve (menos séries) e veja seu peso médio, não o de um dia."
+    },
+    "keep": {
+      "w1": "Semana 1: coma na sua meta e anote como se sente.",
+      "w2": "Semana 2: 3 dias de força e 150 minutos de cardio leve na semana.",
+      "w3": "Semana 3: teste 2 receitas novas e prepare refeições para 3 dias.",
+      "w4": "Semana 4: semana leve e ajuste o que foi mais difícil."
+    },
+    "gain": {
+      "w1": "Semana 1: some 300 kcal por dia com lanches densos (aveia, castanhas, vitaminas).",
+      "w2": "Semana 2: 3 a 4 dias de força com 8 a 12 repetições.",
+      "w3": "Semana 3: aumente um pouco o peso quando completar todas as séries.",
+      "w4": "Semana 4: semana leve e veja seu peso: busque ganhar 0,25 a 0,5% por semana."
+    },
+    "nutrition": {
+      "t": "Nutrição",
+      "1": "Metade do prato com legumes, um quarto de proteína e um quarto de carboidratos.",
+      "2": "Para perder, um déficit de 300 a 500 kcal é seguro. Para ganhar, 250 a 500 kcal a mais."
+    },
+    "diets": {
+      "t": "Estilos de dieta",
+      "1": "A melhor dieta é a que você consegue manter. A mediterrânea tem a melhor evidência.",
+      "2": "Evite dietas extremas ou «detox». Em dieta vegana, é preciso vitamina B12."
+    },
+    "training": {
+      "t": "Treino",
+      "1": "Força 2 ou 3 dias por semana e 150 minutos de cardio moderado.",
+      "2": "Progrida aos poucos: 1 repetição a mais ou um pouco mais de peso por semana."
+    },
+    "physio": {
+      "t": "Fisioterapia e mobilidade",
+      "1": "Aqueça 5 a 10 minutos e mova quadris, ombros e costas.",
+      "2": "Se um exercício causar dor aguda, pare e use uma versão mais fácil."
+    },
+    "habits": {
+      "t": "Hábitos e motivação",
+      "1": "Comece com um hábito pequeno e ligue-o a algo que você já faz.",
+      "2": "Um dia ruim não apaga seu progresso: volte na próxima refeição."
+    },
+    "sleep": {
+      "t": "Sono",
+      "1": "Durma 7 a 9 horas e acorde sempre no mesmo horário.",
+      "2": "Dormir pouco aumenta a fome e as vontades."
+    },
+    "hydration": {
+      "t": "Hidratação",
+      "1": "Cerca de 30 a 35 ml por kg por dia, mais no calor ou ao treinar.",
+      "2": "Um copo de água antes de comer ajuda na saciedade."
+    },
+    "sportsmed": {
+      "t": "Medicina esportiva",
+      "1": "Aumente o volume no máximo 10% por semana e respeite o descanso.",
+      "2": "Com dor no peito, desmaio ou inchaço, pare e procure um médico."
+    }
   }
 }

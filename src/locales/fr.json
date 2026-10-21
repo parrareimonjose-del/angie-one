@@ -2266,5 +2266,85 @@
     "modDelete": "Supprimer",
     "modEmpty": "Rien à examiner.",
     "modNote": "Les signalements ne masquent jamais personne automatiquement : c'est vous qui décidez. Répondez sous 24 heures, comme l'exigent les boutiques d'applications."
+  },
+  "ck": {
+    "title": "Votre équipe de pros",
+    "sub": "Nutrition, entraînement, kiné, habitudes et sommeil dans un seul coach.",
+    "recT": "🍲 Recettes pour votre plan",
+    "recSub": "Il vous reste {{kcal}} kcal aujourd'hui. Celles-ci conviennent :",
+    "recNone": "Objectif du jour atteint. En cas de faim, choisissez un fruit, des légumes ou un yaourt.",
+    "recCook": "👩‍🍳 Cuisiner",
+    "recAdd": "➕ Ajouter au journal",
+    "recAdded": "✓ Ajouté",
+    "guide": "📚 Guide professionnel",
+    "guideSub": "Plan hebdomadaire, progression et outils selon votre objectif.",
+    "weekT": "Semaine {{n}} sur 4",
+    "checkT": "✅ Liste du jour",
+    "c1": "Des protéines à chaque repas",
+    "c2": "La moitié de l'assiette en légumes",
+    "c3": "8 verres d'eau",
+    "c4": "Bouger 30 minutes ou faire sa séance",
+    "c5": "Dormir 7 à 9 heures",
+    "redT": "⚠️ Parlez à un professionnel",
+    "redB": "En cas de douleur forte, douleur à la poitrine, vertiges, malaise, blessure, grossesse, maladie, prise de médicaments ou relation difficile avec la nourriture, consultez un médecin, un kiné ou un diététicien. Le coach ne pose pas de diagnostic et ne prescrit rien.",
+    "disc": "Conseils généraux basés sur des recommandations publiques (OMS, ACSM, etc.). Pas un avis médical.",
+    "lose": {
+      "w1": "Semaine 1 : notez tout et mangez 300 kcal de moins par jour. Marchez 20 minutes par jour.",
+      "w2": "Semaine 2 : des protéines à chaque repas et 2 séances de renforcement complet.",
+      "w3": "Semaine 3 : ajoutez 1 répétition ou un peu de charge et 2 000 pas de plus.",
+      "w4": "Semaine 4 : semaine légère (moins de séries) ; regardez votre poids moyen, pas celui d'un jour."
+    },
+    "keep": {
+      "w1": "Semaine 1 : mangez à votre objectif et notez votre ressenti.",
+      "w2": "Semaine 2 : 3 séances de force et 150 minutes de cardio léger dans la semaine.",
+      "w3": "Semaine 3 : essayez 2 nouvelles recettes et préparez les repas de 3 jours.",
+      "w4": "Semaine 4 : semaine légère et ajustez ce qui a été le plus dur."
+    },
+    "gain": {
+      "w1": "Semaine 1 : ajoutez 300 kcal par jour avec des en-cas denses (avoine, noix, smoothies).",
+      "w2": "Semaine 2 : 3 à 4 séances de force de 8 à 12 répétitions.",
+      "w3": "Semaine 3 : augmentez un peu la charge quand toutes les séries sont faites.",
+      "w4": "Semaine 4 : semaine légère ; visez +0,25 à 0,5 % de poids par semaine."
+    },
+    "nutrition": {
+      "t": "Nutrition",
+      "1": "Moitié de l'assiette en légumes, un quart de protéines, un quart de glucides.",
+      "2": "Pour perdre, un déficit de 300 à 500 kcal est sûr. Pour prendre, 250 à 500 kcal de plus."
+    },
+    "diets": {
+      "t": "Styles d'alimentation",
+      "1": "Le meilleur régime est celui que l'on peut tenir. Le méditerranéen a les meilleures preuves.",
+      "2": "Évitez les régimes extrêmes ou « détox ». En alimentation végane, il faut de la vitamine B12."
+    },
+    "training": {
+      "t": "Entraînement",
+      "1": "Force 2 à 3 jours par semaine et 150 minutes de cardio modéré.",
+      "2": "Progressez peu à peu : 1 répétition ou un peu de charge en plus chaque semaine."
+    },
+    "physio": {
+      "t": "Kiné et mobilité",
+      "1": "Échauffez-vous 5 à 10 minutes et mobilisez hanches, épaules et dos.",
+      "2": "Si un exercice provoque une douleur vive, arrêtez et prenez une version plus facile."
+    },
+    "habits": {
+      "t": "Habitudes et motivation",
+      "1": "Commencez par une petite habitude liée à quelque chose que vous faites déjà.",
+      "2": "Une mauvaise journée n'efface pas vos progrès : reprenez au prochain repas."
+    },
+    "sleep": {
+      "t": "Sommeil",
+      "1": "Dormez 7 à 9 heures et levez-vous à heure fixe.",
+      "2": "Le manque de sommeil augmente la faim et les envies."
+    },
+    "hydration": {
+      "t": "Hydratation",
+      "1": "Environ 30 à 35 ml par kg par jour, plus s'il fait chaud ou en cas d'effort.",
+      "2": "Un verre d'eau avant le repas aide à la satiété."
+    },
+    "sportsmed": {
+      "t": "Médecine du sport",
+      "1": "Augmentez le volume de 10 % maximum par semaine et respectez le repos.",
+      "2": "En cas de douleur thoracique, malaise ou gonflement, arrêtez et consultez."
+    }
   }
 }

@@ -2266,5 +2266,85 @@
     "modDelete": "Sil",
     "modEmpty": "İncelenecek bir şey yok.",
     "modNote": "Bildirimler kimseyi otomatik olarak gizlemez: buna sen karar verirsin. Uygulama mağazalarının istediği gibi 24 saat içinde yanıt ver."
+  },
+  "ck": {
+    "title": "Uzman ekibin",
+    "sub": "Beslenme, antrenman, fizyoterapi, alışkanlık ve uyku tek koçta.",
+    "recT": "🍲 Planına uygun tarifler",
+    "recSub": "Bugün {{kcal}} kcal kaldı. Bunlar uygun:",
+    "recNone": "Bugünkü hedefe ulaştın. Acıkırsan meyve, sebze veya yoğurt seç.",
+    "recCook": "👩‍🍳 Pişir",
+    "recAdd": "➕ Günlüğe ekle",
+    "recAdded": "✓ Eklendi",
+    "guide": "📚 Uzman rehberi",
+    "guideSub": "Hedefine göre haftalık plan, ilerleme ve araçlar.",
+    "weekT": "Hafta {{n}} / 4",
+    "checkT": "✅ Bugünün listesi",
+    "c1": "Her öğünde protein",
+    "c2": "Tabağın yarısı sebze",
+    "c3": "8 bardak su",
+    "c4": "30 dakika hareket veya antrenman",
+    "c5": "7-9 saat uyku",
+    "redT": "⚠️ Bir uzmana danış",
+    "redB": "Şiddetli ağrı, göğüs ağrısı, baş dönmesi, bayılma, sakatlık, hamilelik, bir hastalık, ilaç kullanımı veya yemekle zor bir ilişki varsa doktor, fizyoterapist veya diyetisyene danış. Koç teşhis koymaz, ilaç önermez.",
+    "disc": "Kamuya açık önerilere (DSÖ, ACSM vb.) dayalı genel rehberlik. Tıbbi tavsiye değildir.",
+    "lose": {
+      "w1": "Hafta 1: her şeyi kaydet ve günde 300 kcal az ye. Her gün 20 dakika yürü.",
+      "w2": "Hafta 2: her öğünde protein ve 2 gün tüm vücut kuvvet.",
+      "w3": "Hafta 3: her harekete 1 tekrar veya biraz ağırlık ve 2.000 adım ekle.",
+      "w4": "Hafta 4: hafif hafta (daha az set); tek günü değil ortalama kiloyu izle."
+    },
+    "keep": {
+      "w1": "Hafta 1: hedefine göre ye ve nasıl hissettiğini not et.",
+      "w2": "Hafta 2: haftada 3 gün kuvvet ve 150 dakika hafif kardiyo.",
+      "w3": "Hafta 3: 2 yeni tarif dene ve 3 günlük yemek hazırla.",
+      "w4": "Hafta 4: hafif hafta ve en zor kısmı ayarla."
+    },
+    "gain": {
+      "w1": "Hafta 1: yoğun atıştırmalıklarla (yulaf, kuruyemiş, smoothie) günde 300 kcal ekle.",
+      "w2": "Hafta 2: 8-12 tekrarla haftada 3-4 gün kuvvet.",
+      "w3": "Hafta 3: tüm setleri tamamlayınca ağırlığı biraz artır.",
+      "w4": "Hafta 4: hafif hafta; haftada %0,25-0,5 kilo artışı hedefle."
+    },
+    "nutrition": {
+      "t": "Beslenme",
+      "1": "Tabağın yarısı sebze, çeyreği protein, çeyreği karbonhidrat.",
+      "2": "Vermek için 300-500 kcal açık güvenlidir. Almak için 250-500 kcal fazla."
+    },
+    "diets": {
+      "t": "Diyet türleri",
+      "1": "En iyi diyet sürdürebildiğin diyettir. Akdeniz diyetinin kanıtı en güçlüsüdür.",
+      "2": "Aşırı veya «detoks» diyetlerden kaçın. Vegan beslenmede B12 vitamini gerekir."
+    },
+    "training": {
+      "t": "Antrenman",
+      "1": "Haftada 2-3 gün kuvvet ve 150 dakika orta kardiyo.",
+      "2": "Yavaş ilerle: her hafta 1 tekrar veya biraz daha ağırlık."
+    },
+    "physio": {
+      "t": "Fizyoterapi ve hareketlilik",
+      "1": "5-10 dakika ısın; kalça, omuz ve sırtı hareket ettir.",
+      "2": "Bir hareket keskin ağrı yaparsa dur ve daha kolay versiyonunu yap."
+    },
+    "habits": {
+      "t": "Alışkanlık ve motivasyon",
+      "1": "Küçük bir alışkanlıkla başla ve zaten yaptığın bir şeye bağla.",
+      "2": "Kötü bir gün ilerlemeni silmez: bir sonraki öğünde devam et."
+    },
+    "sleep": {
+      "t": "Uyku",
+      "1": "7-9 saat uyu ve her gün aynı saatte kalk.",
+      "2": "Az uyku açlığı ve yeme isteğini artırır."
+    },
+    "hydration": {
+      "t": "Sıvı",
+      "1": "Günde kilo başına yaklaşık 30-35 ml, sıcakta veya antrenmanda daha fazla.",
+      "2": "Yemekten önce bir bardak su tokluğa yardım eder."
+    },
+    "sportsmed": {
+      "t": "Spor hekimliği",
+      "1": "Hacmi haftada en fazla %10 artır ve dinlenme günlerine uy.",
+      "2": "Göğüs ağrısı, bayılma veya şişlikte dur ve doktora git."
+    }
   }
 }
