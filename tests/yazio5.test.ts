@@ -33,3 +33,9 @@ ok('comidas limpias', cleanMeals([' A ', '', 'B', 'C', 'D', 'E', 'F', 'G'])!.len
 ok('slot dentro de n', slotIn(5, 4) === 3 && slotIn(1, 4) === 1);
 const e = { planned: true, date: '2026-10-21', time: 1 }; ok('lo comí', markEaten(e, '2026-10-21', 99).planned === undefined && markEaten(e, '2026-10-21', 99).time === 99 && eatenOnly([e, { ...e, planned: undefined }]).length === 1);
 console.log(res.join('\n')); const np = res.filter((r) => r.startsWith('PASS')).length; console.log(`yazio5 ${np}/${res.length}`); if (np !== res.length) process.exitCode = 1;
+{
+  const { moodFood } = await import('../src/yazio5');
+  const w = { a: { mood: 5 }, b: { mood: 4 }, c: { mood: 1 }, d: { mood: 2 } } as any;
+  const r = moodFood(w, [{ date: 'a', kcal: 1800 }, { date: 'b', kcal: 2000 }, { date: 'c', kcal: 2600 }, { date: 'd', kcal: 2400 }], ['a', 'b', 'c', 'd']);
+  console.log(r.ready && r.good === 1900 && r.low === 2500 ? 'PASS ánimo y comida' : 'FAIL ánimo y comida ' + JSON.stringify(r));
+}

@@ -2044,7 +2044,12 @@
       "na": "Sódio",
       "se": "Selênio"
     },
-    "repeat": "Repetir ontem"
+    "repeat": "Repetir ontem",
+    "mfTitle": "Humor e comida",
+    "mfGood": "kcal em dias bons",
+    "mfLow": "kcal em dias baixos",
+    "mfWait": "Registre seu humor por mais alguns dias para ver a relação com o que você come.",
+    "mfNote": "Apenas uma dica de bem-estar, não um conselho médico."
   },
   "gr": {
     "title": "Premium grátis para pessoas",

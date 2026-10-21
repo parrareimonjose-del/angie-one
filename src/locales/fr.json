@@ -2044,7 +2044,12 @@
       "na": "Sodium",
       "se": "Sélénium"
     },
-    "repeat": "Répéter hier"
+    "repeat": "Répéter hier",
+    "mfTitle": "Humeur et repas",
+    "mfGood": "kcal les bons jours",
+    "mfLow": "kcal les jours bas",
+    "mfWait": "Notez votre humeur quelques jours de plus pour voir le lien avec ce que vous mangez.",
+    "mfNote": "Simple indice bien-être, pas un avis médical."
   },
   "gr": {
     "title": "Premium gratuit pour des personnes",

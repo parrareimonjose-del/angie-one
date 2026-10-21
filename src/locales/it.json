@@ -2044,7 +2044,12 @@
       "na": "Sodio",
       "se": "Selenio"
     },
-    "repeat": "Ripeti ieri"
+    "repeat": "Ripeti ieri",
+    "mfTitle": "Umore e cibo",
+    "mfGood": "kcal nei giorni buoni",
+    "mfLow": "kcal nei giorni giù",
+    "mfWait": "Registra l'umore ancora qualche giorno per vedere il legame con ciò che mangi.",
+    "mfNote": "Solo un suggerimento di benessere, non un consiglio medico."
   },
   "gr": {
     "title": "Premium gratis per persone",

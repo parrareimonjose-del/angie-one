@@ -10,7 +10,7 @@ import { fmtNum, fmtDate, curLang } from './i18n';
 import { coachTarget, safeMin } from './coach';
 import { dayName, Row, speak } from './coach-ui';
 import { planDelta, weekTargets, weekAvg, type DayPlan, MOODS, FEEL, setWellness, wellnessWeek, NOTE_MAX, DV, VITS, MINS, dayMicro, pctDV, type Micro,
-  filterRecipes, stepNext, stepPrev, mmss, MAX_MEALS, cleanMeals, markEaten } from './yazio5';
+  filterRecipes, moodFood, stepNext, stepPrev, mmss, MAX_MEALS, cleanMeals, markEaten } from './yazio5';
 import { RECIPES, RECIPE_CREDIT, rText } from './recipes-data';
 import { Sponsored } from './ext';
 import { isPremium } from './coach';
@@ -81,6 +81,8 @@ export function WellnessScreen() {
     <StatRow items={[{ icon: sum.mood ? MOODS[Math.round(sum.mood) - 1] : '—', value: sum.mood ? fmtNum(sum.mood, 1) : '—', label: t('y5.avgMood') }, { icon: '📝', value: sum.days, label: t('y5.daysLogged') }]} />
     {sum.top.length ? <Card testID="w-top"><CardTitle>🔁 {t('y5.top')}</CardTitle><Row>{sum.top.map((k) => <Pill key={k} label={t(`y5.f.${k}`)} />)}</Row></Card> : null}
     <WellnessCard d={today()} />
+    {(() => { const d30 = Array.from({ length: 30 }, (_, i) => { const x = new Date(); x.setDate(x.getDate() - i); return today(x); }); const mf = moodFood(st.wellness, st.entries as any, d30);
+      return <Card testID="w-mf"><CardTitle>🔎 {t('y5.mfTitle')}</CardTitle>{mf.ready ? <StatRow items={[{ icon: '😄', value: fmtNum(mf.good), label: t('y5.mfGood') }, { icon: '😕', value: fmtNum(mf.low), label: t('y5.mfLow') }]} /> : <Text style={s.muted}>{t('y5.mfWait')}</Text>}<Text style={[s.muted, { fontSize: 12 }]}>{t('y5.mfNote')}</Text></Card>; })()}
     <H2>{t('y5.history')}</H2>
     {!prev.length ? <Card><EmptyState icon="📝" title={t('y5.noHistory')} /></Card>
       : prev.map((d) => { const w = st.wellness![d]; return <Card key={d}><Text style={{ fontWeight: '800', color: C.text }}>{w.mood ? MOODS[w.mood - 1] + ' ' : ''}{fmtDate(new Date(d + 'T12:00'))}</Text>

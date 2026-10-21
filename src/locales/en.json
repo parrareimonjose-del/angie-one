@@ -2044,7 +2044,12 @@
       "na": "Sodium",
       "se": "Selenium"
     },
-    "repeat": "Repeat yesterday"
+    "repeat": "Repeat yesterday",
+    "mfTitle": "Mood & food",
+    "mfGood": "kcal on good days",
+    "mfLow": "kcal on low days",
+    "mfWait": "Log your mood a few more days to see how it relates to what you eat.",
+    "mfNote": "Just a wellness hint, not medical advice."
   },
   "gr": {
     "title": "Free Premium for people",

@@ -2044,7 +2044,12 @@
       "na": "Sodyum",
       "se": "Selenyum"
     },
-    "repeat": "Dünü tekrarla"
+    "repeat": "Dünü tekrarla",
+    "mfTitle": "Ruh hali ve yemek",
+    "mfGood": "iyi günlerde kcal",
+    "mfLow": "düşük günlerde kcal",
+    "mfWait": "Yediklerinle ilişkisini görmek için ruh halini birkaç gün daha kaydet.",
+    "mfNote": "Sadece bir sağlıklı yaşam ipucu, tıbbi tavsiye değil."
   },
   "gr": {
     "title": "Kişilere ücretsiz Premium",

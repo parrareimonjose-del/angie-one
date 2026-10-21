@@ -2044,7 +2044,12 @@
       "na": "Natrium",
       "se": "Selen"
     },
-    "repeat": "Wie gestern"
+    "repeat": "Wie gestern",
+    "mfTitle": "Stimmung & Essen",
+    "mfGood": "kcal an guten Tagen",
+    "mfLow": "kcal an schlechten Tagen",
+    "mfWait": "Trage deine Stimmung noch ein paar Tage ein, um den Zusammenhang mit deinem Essen zu sehen.",
+    "mfNote": "Nur ein Wellness-Hinweis, kein medizinischer Rat."
   },
   "gr": {
     "title": "Kostenloses Premium für Personen",

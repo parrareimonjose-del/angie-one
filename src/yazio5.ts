@@ -107,3 +107,11 @@ export function cleanMeals(names: string[] | undefined): string[] | undefined {
 export const slotIn = (slot: number, n: number) => Math.max(0, Math.min(n - 1, slot));
 export const markEaten = <E extends { planned?: boolean; date: string; time: number }>(e: E, nowIso: string, now = Date.now()): E => ({ ...e, planned: undefined, time: e.date === nowIso ? now : e.time });
 export const eatenOnly = <E extends { planned?: boolean }>(es: E[]) => es.filter((e) => !e.planned);
+
+// ---------- Extra: ánimo y comida (bienestar, no médico) ----------
+export function moodFood(all: Record<string, Wellness> | undefined, entries: { date: string; kcal: number }[], days: string[]) {
+  const k: Record<string, number> = {}; entries.forEach((e) => (k[e.date] = (k[e.date] || 0) + (e.kcal || 0)));
+  const avg = (ds: string[]) => (ds.length ? Math.round(ds.reduce((a, d) => a + k[d], 0) / ds.length) : 0);
+  const good = days.filter((d) => (all?.[d]?.mood || 0) >= 4 && k[d]); const low = days.filter((d) => { const m = all?.[d]?.mood || 0; return m >= 1 && m <= 2 && k[d]; });
+  return { good: avg(good), low: avg(low), n: good.length + low.length, ready: good.length >= 2 && low.length >= 2 };
+}
