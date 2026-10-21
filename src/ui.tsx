@@ -110,6 +110,7 @@ const SEC: Record<string, any> = {
   tablet: require('../assets/sections/tablet.jpg'), meditate: require('../assets/sections/meditate.jpg'),
 };
 const ROUTE_IMG: Record<string, string> = {
+  daytargets: 'run', wellness: 'yoga', nutrients: 'fruit', cook: 'chef', diarysetup: 'breakfast',
   aggregate: 'tablet', avatar: 'friends', b2b: 'coach', backup: 'security', barcode: 'market', chat: 'phone', checkin: 'run', chef: 'chef', clon: 'gym', 'coach-setup': 'coach', coach: 'coach',
   connect: 'phone', copy: 'bowl', corporate: 'friends', craving: 'fruit', 'datos-anual': 'docs', 'datos-mes': 'docs', datos: 'tablet', 'delete-account': 'security', diary: 'breakfast', diet: 'salad',
   explore: 'travel', family: 'family', fasting: 'water', founder: 'money', gym: 'gym', health: 'salad', impact: 'friends', import: 'tablet', legal: 'docs', macros: 'bowl', manual: 'plate', market: 'coach',
@@ -117,7 +118,7 @@ const ROUTE_IMG: Record<string, string> = {
   report: 'tablet', security: 'security', settings: 'phone', shopping: 'market', sleep: 'sleep', social: 'friends', store: 'market', subscription: 'money', sync: 'security', tips: 'fruit',
   travel: 'travel', tutorial: 'phone', tutoriales: 'phone', twin: 'gym', video: 'run', voice: 'phone', weekly: 'meditate', weight: 'run', whatsapp: 'phone', workout: 'gym', scan: 'plate',
 };
-const ROUTE_ICON: Record<string, string> = { legal: '📜', settings: '⚙️', scan: '📸', diary: '📖', manual: '✍️', barcode: '🏷️', 'datos-mes': '📅', 'datos-anual': '📚', security: '🔐', subscription: '💳', backup: '☁️', sync: '🔄', tutorial: '🎬', tutoriales: '🎬', player: '▶️', video: '🎥', voice: '🎙️', chat: '💬', founder: '👑' };
+const ROUTE_ICON: Record<string, string> = { daytargets: '📅', wellness: '😊', nutrients: '🧪', cook: '👩‍🍳', diarysetup: '🛠️', legal: '📜', settings: '⚙️', scan: '📸', diary: '📖', manual: '✍️', barcode: '🏷️', 'datos-mes': '📅', 'datos-anual': '📚', security: '🔐', subscription: '💳', backup: '☁️', sync: '🔄', tutorial: '🎬', tutoriales: '🎬', player: '▶️', video: '🎥', voice: '🎙️', chat: '💬', founder: '👑' };
 const heroImg = (path: string) => { const k = ROUTE_IMG[path.replace(/^\//, '').split('/')[0]]; return k ? (SEC[k] ?? (FOOD as any)[k]) : null; };
 const EMOJI_RE = /^((?:\p{Extended_Pictographic}|\p{Emoji_Component}|\u200D|\uFE0F)+)\s*/u;
 export function SectionHero({ title, source, fallbackIcon }: { title: string; source: ImageSourcePropType; fallbackIcon?: string }) {

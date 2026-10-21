@@ -3,6 +3,7 @@
  * La IA (Worker /plan y /chat) es la primera opción; si falla, hay un plan por reglas, determinista y traducido.
  */
 import { AI_URL } from './ai';
+import { withPlan } from './yazio5';
 import { State, Profile, dailyTarget, trialPhase, today, DAY } from './store';
 import { safePlanDays } from './safety';
 
@@ -40,9 +41,9 @@ export const coachOf = (s: State): Coach => {
 export const isPremium = (s: State, now = Date.now()) => trialPhase(s.trialStart, now).phase === 'trial' || !!(s.sub?.active && s.sub.renewAt > now);
 export const safeMin = (p?: Profile) => (p?.sex === 'male' ? 1500 : 1200);
 /** Meta diaria con el ajuste del coach, nunca por debajo del mínimo seguro. */
-export function coachTarget(s: State) {
+export function coachTarget(s: State, d: Date = new Date()) {
   const base = dailyTarget(s.profile); const adj = s.coach?.adjust || 0;
-  const kcal = Math.max(safeMin(s.profile), Math.round((base.kcal + adj) / 10) * 10);
+  const kcal = withPlan(Math.max(safeMin(s.profile), Math.round((base.kcal + adj) / 10) * 10), s.dayPlan, d, safeMin(s.profile));
   const fat = Math.round((kcal * 0.28) / 9); const carbs = Math.max(0, Math.round((kcal - base.p * 4 - fat * 9) / 4));
   return { kcal, p: base.p, c: carbs, f: fat };
 }

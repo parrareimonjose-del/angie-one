@@ -9,6 +9,7 @@ import { estimateMeal, Estimate } from '../src/ai';
 import { EstimateResult, aiErrorText } from '../src/estimate';
 import { shrinkForUpload } from '../src/img';
 import { C } from '../src/theme';
+import { estimateMicro } from '../src/yazio5';
 
 export default function Scan() {
   const { t, i18n } = useTranslation(); const { s: st, set } = useStore();
@@ -49,7 +50,7 @@ export default function Scan() {
       {busy && <Card><T>⏳ {t('scan.analyzing')}</T></Card>}
       {err ? <Card><T style={{ color: C.primary, fontWeight: '700' }}>{err}</T><Btn small kind="ghost" label={t('more.manual')} onPress={() => router.push('/manual')} /></Card> : null}
       {est && <EstimateResult key={est.name + est.kcalMin} est={est} onLog={(x) => {
-        set((s0) => ({ ...s0, entries: [...s0.entries, { id: uid(), date: d, time: Date.now(), ...x, source: 'photo' }] }));
+        set((s0) => ({ ...s0, entries: [...s0.entries, { id: uid(), date: d, time: Date.now(), ...x, micro: estimateMicro(x.name, x.kcal), source: 'photo' }] }));
         router.replace('/diary');
       }} />}
     </Screen>

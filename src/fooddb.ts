@@ -5,7 +5,7 @@ import type { VFood } from './verified';
 import type { Product } from './off';
 export const FOODS_BASE = APP_AI.workerBase + '/foods';
 export const ATTRIBUTION = 'Open Food Facts (ODbL) · USDA FoodData Central';
-export type RFood = { i: string; n: Record<string, string>; b?: string; bc?: string; k: number; p: number; c: number; f: number; fb?: number; sg?: number; na?: number; sv?: [string, number | null]; s: 'usda' | 'off' | 'angie'; v: 0 | 1; ps?: 1; img?: string };
+export type RFood = { i: string; n: Record<string, string>; b?: string; bc?: string; k: number; p: number; c: number; f: number; fb?: number; sg?: number; na?: number; sv?: [string, number | null]; s: 'usda' | 'off' | 'angie'; v: 0 | 1; ps?: 1; img?: string; mi?: import('./yazio5').Micro };
 const r1 = (x: number) => Math.round(x * 10) / 10;
 export const rname = (r: RFood, lang: string) => (r.n[lang] || r.n.es || r.n.en || r.n.pt || Object.values(r.n)[0] || '?') + (r.b ? ` · ${r.b}` : '');
 /** Convierte a una fila de la app: por porción si se conoce en gramos, si no por 100 g. */
@@ -16,7 +16,7 @@ export function toVFood(r: RFood, lang: string): VFood {
     verified: !!r.v, source: r.s === 'angie' ? 'curated' : r.s };
 }
 export function toProduct(r: RFood, lang: string): Product {
-  return { name: rname(r, lang), kcal100: r.k, p100: r.p, c100: r.c, f100: r.f, fiber100: r.fb, sugar100: r.sg, salt100: r.na == null ? undefined : r1((r.na / 1000) * 2.5), image: r.img, verified: !!r.v, source: r.s };
+  return { name: rname(r, lang), kcal100: r.k, p100: r.p, c100: r.c, f100: r.f, fiber100: r.fb, sugar100: r.sg, salt100: r.na == null ? undefined : r1((r.na / 1000) * 2.5), micro100: r.mi, image: r.img, verified: !!r.v, source: r.s };
 }
 async function get(url: string, ms = 7000) {
   if (typeof navigator !== 'undefined' && navigator.onLine === false) throw new Error('offline');

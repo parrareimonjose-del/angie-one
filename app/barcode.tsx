@@ -14,6 +14,8 @@ import WebScanner from '../src/webscan';
 import { estimateLabel, Estimate } from '../src/ai';
 import { EstimateResult, aiErrorText } from '../src/estimate';
 import { shrinkForUpload } from '../src/img';
+import { scaleMicro } from '../src/yazio5';
+import { MicroPreview } from '../src/yazio5-ui';
 
 const LIGHT = { green: C.success, amber: C.accent, red: C.primary, na: C.border };
 
@@ -37,10 +39,11 @@ export default function Barcode() {
     if (!/^\d{6,14}$/.test(c.trim())) { setMsg(t('bar.badCode')); return; }
     if (typeof navigator !== 'undefined' && navigator.onLine === false) { setMsg(t('aiErr.offline')); return; }
     setMsg(`⏳ ${t('bar.searching')}`);
-    try { let p: Product | null; try { p = await barcodeCloud(c.trim(), curLang()); } catch { p = await lookupBarcode(c.trim(), curLang(), region()); } setProd(p); setMsg(p ? '' : t('bar.notFound2')); setNf(!p); } catch { const off = typeof navigator !== 'undefined' && navigator.onLine === false; setMsg(off ? t('aiErr.offline') : t('bar.notFound2')); setNf(!off); }
+    try { let p: Product | null; try { p = await barcodeCloud(c.trim(), curLang()); } catch { p = await lookupBarcode(c.trim(), curLang(), region()); } setProd(p); setMsg(p ? '' : t('bar.notFound2')); setNf(!p);
+      if (p && !p.micro100) lookupBarcode(c.trim(), curLang()).then((o) => o?.micro100 && setProd((x) => (x ? { ...x, micro100: o.micro100 } : x))).catch(() => {}); } catch { const off = typeof navigator !== 'undefined' && navigator.onLine === false; setMsg(off ? t('aiErr.offline') : t('bar.notFound2')); setNf(!off); }
   };
   const k = grams / 100;
-  const log = () => { if (!prod) return; set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: prod.name, kcal: Math.round(prod.kcal100 * k), p: Math.round(prod.p100 * k), c: Math.round(prod.c100 * k), f: Math.round(prod.f100 * k), fiber: prod.fiber100 == null ? undefined : Math.round(prod.fiber100 * k * 10) / 10, source: 'barcode' }] })); router.replace('/diary'); };
+  const log = () => { if (!prod) return; set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: prod.name, kcal: Math.round(prod.kcal100 * k), p: Math.round(prod.p100 * k), c: Math.round(prod.c100 * k), f: Math.round(prod.f100 * k), fiber: prod.fiber100 == null ? undefined : Math.round(prod.fiber100 * k * 10) / 10, micro: scaleMicro(prod.micro100, k), source: 'barcode' }] })); router.replace('/diary'); };
   return (
     <Screen title={t('bar.title')}>
       <Card style={{ alignItems: 'center', gap: 12 }}>
@@ -69,6 +72,7 @@ export default function Barcode() {
         <Card>
           <View style={s.row}>{prod.image ? <Image source={{ uri: prod.image }} style={{ width: 64, height: 64, borderRadius: 12 }} /> : null}<Text style={[s.h2, { flex: 1 }]}>{prod.name}</Text></View>
           <Text style={s.muted}>{fmtNum(prod.kcal100)} {t('u.kcal')} {t('bar.per100')} · {t('u.p')} {fmtNum(prod.p100, 1)} · {t('u.c')} {fmtNum(prod.c100, 1)} · {t('u.f')} {fmtNum(prod.f100, 1)}{prod.fiber100 != null ? ` · ${t('mf.fiber')} ${fmtNum(prod.fiber100, 1)}` : ''}</Text>
+          <MicroPreview m={scaleMicro(prod.micro100, k)} />
           {prod.verified ? <Text testID="bar-verified" style={{ color: C.success, fontWeight: '800' }}>{t('hb.verified')}</Text> : null}
           <Text testID="bar-attrib" style={[s.muted, { fontSize: 13 }]}>{t('fdb.source')}: {ATTRIBUTION}</Text>
           <Text style={[s.h2, { fontSize: 17 }]}>{t('bar.semaphore')}</Text>

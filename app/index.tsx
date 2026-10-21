@@ -23,7 +23,7 @@ export default function Home() {
   if (!ready) return <View style={{ flex: 1, backgroundColor: C.bg }} />;
   if (!st.profile) return <Redirect href="/onboarding" />;
   const d = today(); const target = dayGoals(st); const co = coachOf(st); const burned = burnedOn(co, d);
-  const ents = st.entries.filter((e) => e.date === d);
+  const ents = st.entries.filter((e) => e.date === d && !e.planned);
   const sum = ents.reduce((a, e) => ({ kcal: a.kcal + e.kcal, p: a.p + e.p, c: a.c + e.c, f: a.f + e.f }), { kcal: 0, p: 0, c: 0, f: 0 });
   const water = st.water[d] || 0; const tp = trialPhase(st.trialStart, now); const left = tp.daysLeft;
   const challenges = t('home.challenges') as unknown as string[];

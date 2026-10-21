@@ -15,6 +15,10 @@ export default function More() {
         <ListRow icon="✨" label={t('x.explore')} onPress={go('/explore')} />
         <ListRow icon="💪" label={t('coach.title')} onPress={go('/coach')} />
         <ListRow testID="more-clone" icon="🧬" label={t('cl.title')} onPress={go('/clon')} />
+        <ListRow testID="more-recipes" icon="🍲" label={t('y5.rTitle')} onPress={go('/recipes')} />
+        <ListRow testID="more-days" icon="📅" label={t('y5.dtTitle')} onPress={go('/daytargets')} />
+        <ListRow testID="more-well" icon="😊" label={t('y5.wTitle')} onPress={go('/wellness')} />
+        <ListRow testID="more-nutri" icon="🧪" label={t('y5.nTitle')} onPress={go('/nutrients')} />
         <ListRow testID="more-tut" icon="🎬" label={t('tu.title')} onPress={go('/tutoriales')} />
       </Card>
       <Card style={{ gap: 2 }}>

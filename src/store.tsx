@@ -4,7 +4,7 @@ import i18n, { deviceLang, Lang } from './i18n';
 import type { Coach } from './coach';
 
 export type Profile = { goal: 'lose' | 'keep' | 'gain'; weight: number; height: number; age: number; sex: 'female' | 'male'; activity: 1 | 2 | 3 | 4 };
-export type Entry = { id: string; date: string; time: number; name: string; kcal: number; p: number; c: number; f: number; source: 'photo' | 'barcode' | 'manual' | 'quick'; fiber?: number; meal?: number };
+export type Entry = { id: string; date: string; time: number; name: string; kcal: number; p: number; c: number; f: number; source: 'photo' | 'barcode' | 'manual' | 'quick'; fiber?: number; meal?: number; micro?: import('./yazio5').Micro; planned?: boolean };
 export type State = {
   profile?: Profile; trialStart?: number; langOverride?: Lang | null; aiEnabled: boolean;
   entries: Entry[]; water: Record<string, number>; challengeDays: string[]; aiPhotos: Record<string, number>;
@@ -13,6 +13,7 @@ export type State = {
   macros?: import('./mfp5').MacroGoals; prep?: import('./mfp5').Prep; health?: import('./mfp5').HealthData;
   sub?: import('./billing').Sub; streakOff?: boolean; reports?: import('./verified').Report[]; myFoods?: import('./verified').VFood[];
   sync?: { on: boolean; code: string; last?: number; err?: string };
+  dayPlan?: import('./yazio5').DayPlan; wellness?: Record<string, import('./yazio5').Wellness>; diaryMeals?: string[];
 };
 const INITIAL: State = { aiEnabled: true, entries: [], water: {}, challengeDays: [], aiPhotos: {}, founder: {}, langOverride: null };
 const KEY = 'angieone:v1';

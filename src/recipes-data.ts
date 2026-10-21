@@ -1,0 +1,57 @@
+/** Recetario de Angie One: recetas ORIGINALES escritas por Angie One (CC BY 4.0, «Angie One»), sin copiar de terceros.
+ *  Nutrientes estimados con USDA FoodData Central (dominio público). Texto en es/en/pt; los otros idiomas usan inglés. */
+import type { Recipe } from './yazio5';
+type L = { es: string; en: string; pt: string };
+export type RecipeText = { n: L; s: L[] };
+export const RECIPE_CREDIT = 'Recetas originales Angie One (CC BY 4.0) · Nutrientes: USDA FoodData Central';
+const S = (es: string, en: string, pt: string): L => ({ es, en, pt });
+export const RECIPES: (Recipe & RecipeText)[] = [
+  { id: 'arepa', emoji: '🫓', meal: 'breakfast', tags: ['latino', 'veggie'], min: 20, kcal: 380, p: 16, c: 48, f: 13, ing: ['cornflour', 'beans', 'cheese', 'avocado'],
+    n: S('Arepa de caraotas y queso', 'Black bean and cheese arepa', 'Arepa de feijão preto e queijo'),
+    s: [S('Mezcla 1/2 taza de harina de maíz con agua tibia y sal hasta que no se pegue.', 'Mix 1/2 cup corn flour with warm water and salt until it no longer sticks.', 'Misture 1/2 xícara de farinha de milho com água morna e sal até não grudar.'),
+      S('Forma 2 arepas y cocínalas en la plancha 6 minutos por lado.', 'Shape 2 arepas and cook on the griddle 6 minutes per side.', 'Faça 2 arepas e asse na chapa 6 minutos de cada lado.'),
+      S('Ábrelas y rellena con caraotas, queso fresco y aguacate.', 'Split them and fill with black beans, fresh cheese and avocado.', 'Abra e recheie com feijão, queijo fresco e abacate.')], steps: [{}, { t: 720 }, {}] },
+  { id: 'oats', emoji: '🥣', meal: 'breakfast', tags: ['veggie', 'quick', 'fiber'], min: 8, kcal: 330, p: 13, c: 55, f: 7, ing: ['oats', 'milk', 'banana', 'fruit'],
+    n: S('Avena cremosa con banana', 'Creamy banana oatmeal', 'Mingau de aveia com banana'),
+    s: [S('Pon 1/2 taza de avena y 1 taza de leche en una olla.', 'Put 1/2 cup oats and 1 cup milk in a pot.', 'Coloque 1/2 xícara de aveia e 1 xícara de leite na panela.'),
+      S('Cocina a fuego medio 4 minutos, moviendo.', 'Cook on medium heat 4 minutes, stirring.', 'Cozinhe em fogo médio 4 minutos, mexendo.'),
+      S('Sirve con banana en rodajas y fruta por encima.', 'Serve topped with sliced banana and fruit.', 'Sirva com banana em rodelas e frutas por cima.')], steps: [{}, { t: 240 }, {}] },
+  { id: 'eggs', emoji: '🍳', meal: 'breakfast', tags: ['protein', 'lowcarb', 'quick', 'veggie'], min: 10, kcal: 290, p: 20, c: 8, f: 19, ing: ['eggs', 'tomato', 'onion', 'cheese'],
+    n: S('Perico (huevos con tomate y cebolla)', 'Perico (eggs with tomato and onion)', 'Ovos mexidos com tomate e cebola'),
+    s: [S('Pica tomate y cebolla y sofríe con 1 cucharadita de aceite.', 'Chop tomato and onion and sauté with 1 teaspoon of oil.', 'Pique tomate e cebola e refogue com 1 colher de chá de óleo.'),
+      S('Añade 3 huevos batidos y mueve 3 minutos.', 'Add 3 beaten eggs and stir for 3 minutes.', 'Junte 3 ovos batidos e mexa por 3 minutos.'),
+      S('Termina con queso rallado.', 'Finish with grated cheese.', 'Finalize com queijo ralado.')], steps: [{ t: 180 }, { t: 180 }, {}] },
+  { id: 'pollo', emoji: '🍗', meal: 'lunch', tags: ['protein', 'latino'], min: 35, kcal: 520, p: 42, c: 55, f: 12, ing: ['chicken', 'rice', 'vegetables', 'onion'],
+    n: S('Arroz con pollo ligero', 'Light chicken and rice', 'Arroz com frango leve'),
+    s: [S('Dora el pollo en trozos con cebolla y pimentón.', 'Brown the chicken pieces with onion and bell pepper.', 'Doure o frango em pedaços com cebola e pimentão.'),
+      S('Añade 1 taza de arroz, 2 de agua y las verduras.', 'Add 1 cup rice, 2 cups water and the vegetables.', 'Junte 1 xícara de arroz, 2 de água e os legumes.'),
+      S('Tapa y cocina a fuego bajo 20 minutos.', 'Cover and cook on low heat for 20 minutes.', 'Tampe e cozinhe em fogo baixo por 20 minutos.'),
+      S('Deja reposar 5 minutos y sirve.', 'Let it rest 5 minutes and serve.', 'Deixe descansar 5 minutos e sirva.')], steps: [{ t: 360 }, {}, { t: 1200 }, { t: 300 }] },
+  { id: 'lentejas', emoji: '🍲', meal: 'lunch', tags: ['veggie', 'fiber'], min: 30, kcal: 410, p: 22, c: 62, f: 6, ing: ['lentils', 'potato', 'onion', 'tomato'],
+    n: S('Lentejas guisadas', 'Hearty lentil stew', 'Lentilhas ensopadas'),
+    s: [S('Sofríe cebolla y tomate picados.', 'Sauté chopped onion and tomato.', 'Refogue cebola e tomate picados.'),
+      S('Añade 1 taza de lentejas, papa en cubos y 3 tazas de agua.', 'Add 1 cup lentils, diced potato and 3 cups water.', 'Junte 1 xícara de lentilhas, batata em cubos e 3 xícaras de água.'),
+      S('Cocina 25 minutos hasta que estén suaves.', 'Simmer 25 minutes until tender.', 'Cozinhe 25 minutos até ficarem macias.')], steps: [{ t: 240 }, {}, { t: 1500 }] },
+  { id: 'tacos', emoji: '🌮', meal: 'dinner', tags: ['protein', 'latino', 'quick'], min: 15, kcal: 450, p: 32, c: 40, f: 17, ing: ['tortillas', 'fish', 'salad', 'avocado'],
+    n: S('Tacos de pescado', 'Fish tacos', 'Tacos de peixe'),
+    s: [S('Sazona el pescado con limón, sal y comino.', 'Season the fish with lime, salt and cumin.', 'Tempere o peixe com limão, sal e cominho.'),
+      S('Cocina el pescado en sartén 4 minutos por lado.', 'Pan-cook the fish 4 minutes per side.', 'Grelhe o peixe 4 minutos de cada lado.'),
+      S('Calienta las tortillas y arma con lechuga y aguacate.', 'Warm the tortillas and fill with lettuce and avocado.', 'Aqueça as tortilhas e monte com alface e abacate.')], steps: [{}, { t: 480 }, {}] },
+  { id: 'ropa', emoji: '🥘', meal: 'dinner', tags: ['protein', 'latino', 'lowcarb'], min: 45, kcal: 430, p: 38, c: 14, f: 24, ing: ['beef', 'tomato', 'onion', 'salad'],
+    n: S('Ropa vieja al horno', 'Baked ropa vieja', 'Carne desfiada assada'),
+    s: [S('Cocina la carne magra en agua 30 minutos y desmenúzala.', 'Simmer the lean beef 30 minutes and shred it.', 'Cozinhe a carne magra 30 minutos e desfie.'),
+      S('Sofríe tomate, cebolla y pimentón; añade la carne.', 'Sauté tomato, onion and pepper; add the beef.', 'Refogue tomate, cebola e pimentão; junte a carne.'),
+      S('Hornea 10 minutos y sirve con ensalada.', 'Bake 10 minutes and serve with salad.', 'Asse 10 minutos e sirva com salada.')], steps: [{ t: 1800 }, { t: 300 }, { t: 600 }] },
+  { id: 'atun', emoji: '🥗', meal: 'dinner', tags: ['protein', 'lowcarb', 'quick'], min: 10, kcal: 340, p: 30, c: 12, f: 19, ing: ['tuna', 'salad', 'tomato', 'avocado', 'eggs'],
+    n: S('Ensalada de atún completa', 'Hearty tuna salad', 'Salada de atum completa'),
+    s: [S('Cuece 1 huevo 9 minutos.', 'Boil 1 egg for 9 minutes.', 'Cozinhe 1 ovo por 9 minutos.'),
+      S('Mezcla lechuga, tomate, atún escurrido y aguacate.', 'Toss lettuce, tomato, drained tuna and avocado.', 'Misture alface, tomate, atum escorrido e abacate.'),
+      S('Añade el huevo y aliña con limón.', 'Add the egg and dress with lime.', 'Junte o ovo e tempere com limão.')], steps: [{ t: 540 }, {}, {}] },
+  { id: 'bowl', emoji: '🍍', meal: 'snack', tags: ['veggie', 'quick'], min: 5, kcal: 250, p: 10, c: 42, f: 5, ing: ['yogurt', 'fruit', 'oats'],
+    n: S('Bowl de frutas tropicales', 'Tropical fruit bowl', 'Tigela de frutas tropicais'),
+    s: [S('Pica lechosa, mango y piña.', 'Dice papaya, mango and pineapple.', 'Pique mamão, manga e abacaxi.'), S('Sirve sobre yogur natural con avena.', 'Serve over plain yogurt with oats.', 'Sirva sobre iogurte natural com aveia.')], steps: [{}, {}] },
+  { id: 'tostones', emoji: '🍌', meal: 'snack', tags: ['veggie', 'latino'], min: 20, kcal: 230, p: 3, c: 40, f: 8, ing: ['plantain'],
+    n: S('Tostones al horno', 'Baked tostones', 'Tostones de banana assados'),
+    s: [S('Corta el plátano verde en rodajas gruesas.', 'Cut the green plantain into thick slices.', 'Corte a banana-da-terra em rodelas grossas.'), S('Hornea 8 minutos, aplástalas y hornea 8 minutos más.', 'Bake 8 minutes, flatten them, then bake 8 more.', 'Asse 8 minutos, amasse e asse mais 8.')], steps: [{}, { t: 960 }] },
+];
+export const rText = (l: L, lang: string) => (l as any)[lang] || l.en;

@@ -26,7 +26,7 @@ export function mealGoals(st: State): Macro[] {
 // ---------- 5) Hora y comida de cada registro, carbohidratos netos ----------
 /** Comida por la hora (si el usuario no la eligió): <11 desayuno, <16 almuerzo, <19 merienda, resto cena. */
 export const slotOfTime = (ms: number) => { const h = new Date(ms).getHours(); return h < 11 ? 0 : h < 16 ? 1 : h < 19 ? 2 : 3; };
-export const slotOf = (e: Entry) => (typeof e.meal === 'number' && e.meal >= 0 && e.meal < SLOTS ? e.meal : slotOfTime(e.time));
+export const slotOf = (e: Entry) => (typeof e.meal === 'number' && e.meal >= 0 && e.meal < 8 ? e.meal : slotOfTime(e.time));
 export const netCarbs = (e: { c: number; fiber?: number }) => Math.max(0, Math.round((e.c || 0) - (e.fiber || 0)));
 export const hhmm = (ms: number) => { const d = new Date(ms); return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; };
 /** "8:05", "08:05", "805", "20.30" → ms en el día de la entrada; null si no es válida. */

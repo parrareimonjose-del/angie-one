@@ -15,6 +15,8 @@ import { useWeights } from './p2';
 import { dayGoals, mealGoals, kcalOf, clampG, SLOTS, SHARE, type Macro, slotOf, netCarbs, hhmm, parseTime, totals, copyEntries, quickEntry,
   mondayOf, dayOfWeek, grocery, groceryText, mealFiber, parseHealthFile, mergeHealth, EMPTY_HEALTH, type Prep } from './mfp5';
 import { nativeAdapter, sourceName } from './healthsync';
+import { useMealNames, PlannedRow } from './yazio5-ui';
+import { slotIn } from './yazio5';
 
 const MCOL = { p: C.protein, c: C.carbs, f: C.fat };
 /** Anillo de un macro (gramos comidos / meta). */
@@ -36,7 +38,7 @@ export function MacroRing({ k, v, max, label, testID }: { k: 'p' | 'c' | 'f'; v:
 /** Tarjeta de inicio: 3 anillos + netos + pasos importados. */
 export function MacroRings() {
   const { t } = useTranslation(); const { s: st } = useStore(); const d = today();
-  const g = dayGoals(st); const sum = totals(st.entries.filter((e) => e.date === d)); const net = !!st.macros?.net;
+  const g = dayGoals(st); const sum = totals(st.entries.filter((e) => e.date === d && !e.planned)); const net = !!st.macros?.net;
   const steps = st.health?.steps?.[d];
   return <Card testID="macro-rings">
     <View style={s.row}>
@@ -102,11 +104,11 @@ export function MacrosScreen() {
 export function QuickAddScreen() {
   const { t } = useTranslation(); const { set } = useStore(); const prm = useLocalSearchParams<{ date?: string }>(); const d = prm.date || today();
   const [v, setV] = useState({ kcal: 0, p: 0, c: 0, f: 0, fiber: 0 }); const [meal, setMeal] = useState(-1); const [name, setName] = useState(''); const [msg, setMsg] = useState('');
-  const slots = t('coach.slots4') as unknown as string[]; const auto = new Date().getHours(); const m = meal >= 0 ? meal : auto < 11 ? 0 : auto < 16 ? 1 : auto < 19 ? 2 : 3;
+  const slots = useMealNames(); const auto = new Date().getHours(); const m = slotIn(meal >= 0 ? meal : auto < 11 ? 0 : auto < 16 ? 1 : auto < 19 ? 2 : 3, slots.length); const fut = d > today();
   const est = v.kcal || kcalOf(v);
-  const add = () => { const e = quickEntry({ ...v, meal: m, name: name || t('mf.quickName') }, d); if (!e) { setMsg(t('mf.quickEmpty')); return; } set((x) => ({ ...x, entries: [...x.entries, e] })); setMsg(t('mf.quickOk', { kcal: e.kcal })); setV({ kcal: 0, p: 0, c: 0, f: 0, fiber: 0 }); setName(''); };
+  const add = () => { const e = quickEntry({ ...v, meal: m, name: name || t('mf.quickName') }, d); if (!e) { setMsg(t('mf.quickEmpty')); return; } if (fut) e.planned = true; set((x) => ({ ...x, entries: [...x.entries, e] })); setMsg(t('mf.quickOk', { kcal: e.kcal })); setV({ kcal: 0, p: 0, c: 0, f: 0, fiber: 0 }); setName(''); };
   return <Screen title={`⚡ ${t('mf.quick')}`}>
-    <Card><Text style={s.muted}>{t('mf.quickHow')}</Text>
+    <Card>{fut ? <Text testID="q-planned" style={{ color: C.secondary, fontWeight: '800' }}>🗓️ {t('y5.planFor', { day: fmtDate(new Date(d + 'T12:00')) })}</Text> : null}<Text style={s.muted}>{t('mf.quickHow')}</Text>
       <Row>{slots.map((l, i) => <Chip key={i} label={l} active={i === m} onPress={() => setMeal(i)} />)}</Row>
       <TextInput testID="q-name" accessibilityLabel={t('mf.name')} placeholder={t('mf.name')} value={name} onChangeText={setName} style={s.input} />
       <Stepper testID="q-kcal" label={t('u.kcal')} step={50} value={v.kcal} onChange={(kcal) => setV({ ...v, kcal: Math.min(5000, kcal * 1) })} />
@@ -117,7 +119,7 @@ export function QuickAddScreen() {
       <Text testID="q-est" style={[s.t, { fontWeight: '800' }]}>= {fmtNum(est)} {t('u.kcal')}{!v.kcal && est ? ` (${t('mf.fromMacros')})` : ''} · {t('mf.net')} {fmtNum(Math.max(0, v.c - v.fiber))} g</Text>
     </Card>
     <Btn testID="q-add" label={`＋ ${t('mf.addTo', { meal: slots[m] })}`} onPress={add} />
-    {msg ? <Card><Text testID="q-msg" style={{ fontWeight: '800', fontSize: 17, color: C.success }}>{msg}</Text><Btn small kind="secondary" label={`📒 ${t('diary.title')}`} onPress={() => router.replace('/diary')} /></Card> : null}
+    {msg ? <Card><Text testID="q-msg" style={{ fontWeight: '800', fontSize: 17, color: C.success }}>{msg}</Text><Btn small kind="secondary" label={`📒 ${t('diary.title')}`} onPress={() => router.replace({ pathname: '/diary', params: { date: d } })} /></Card> : null}
   </Screen>;
 }
 
@@ -128,13 +130,13 @@ export function CopyScreen() {
   const [ids, setIds] = useState<string[]>(ents.map((e) => e.id)); const [days, setDays] = useState<string[]>([]); const [msg, setMsg] = useState('');
   const opts = Array.from({ length: 14 }, (_, i) => { const x = new Date(); x.setDate(x.getDate() - 6 + i); return x; }).filter((x) => today(x) !== from);
   const tog = <V,>(a: V[], v: V) => (a.includes(v) ? a.filter((y) => y !== v) : [...a, v]);
-  const slots = t('coach.slots4') as unknown as string[];
+  const slots = useMealNames();
   const go = () => { if (!ids.length || !days.length) { setMsg(t('mf.copyPick')); return; } const n = copyEntries(st.entries, ids, days); set((x) => ({ ...x, entries: [...x.entries, ...n] })); setMsg(t('mf.copyOk', { n: ids.length, d: days.length })); setDays([]); };
   return <Screen title={`📋 ${t('mf.copy')}`}>
     <StatRow items={[{ icon: '🍽️', value: ents.length, label: t('mf.copyFrom', { day: fmtDate(new Date(from + 'T12:00')) }) }, { icon: '✅', value: ids.length, label: t('mf.copy') }, { icon: '📅', value: days.length, label: t('mf.copyTo') }]} />
     <H2>{t('mf.copyFrom', { day: fmtDate(new Date(from + 'T12:00')) })}</H2>
     {ents.length === 0 ? <Card><EmptyState icon="📋" title={t('diary.empty')} /></Card> : <Card>
-      {slots.map((l, i) => { const es = ents.filter((e) => slotOf(e) === i); if (!es.length) return null; const all = es.every((e) => ids.includes(e.id));
+      {slots.map((l, i) => { const es = ents.filter((e) => slotIn(slotOf(e), slots.length) === i); if (!es.length) return null; const all = es.every((e) => ids.includes(e.id));
         return <View key={i} style={{ gap: 4 }}>
           <Pressable testID={`cp-meal-${i}`} accessibilityRole="checkbox" accessibilityState={{ checked: all }} onPress={() => setIds(all ? ids.filter((x) => !es.some((e) => e.id === x)) : [...new Set([...ids, ...es.map((e) => e.id)])])} style={[s.row, { minHeight: 48 }]}>
             <Text style={{ fontSize: 24 }}>{all ? '☑' : '☐'}</Text><CardTitle>{l}</CardTitle></Pressable>
@@ -152,13 +154,13 @@ export function CopyScreen() {
 export function DiaryMeals({ d, ents }: { d: string; ents: Entry[] }) {
   const { t } = useTranslation(); const { s: st, set } = useStore(); const prem = isPremium(st); const mg = mealGoals(st);
   const [edit, setEdit] = useState<string | null>(null); const [txt, setTxt] = useState(''); const [bad, setBad] = useState(false);
-  const slots = t('coach.slots4') as unknown as string[]; const ICON: Record<string, string> = { photo: '📸', barcode: '🏷️', manual: '✍️', quick: '⚡' };
+  const slots = useMealNames(); const ICON: Record<string, string> = { photo: '📸', barcode: '🏷️', manual: '✍️', quick: '⚡' };
   const saveTime = (e: Entry) => { const ms = parseTime(txt, d); if (ms == null) { setBad(true); return; } set((x) => ({ ...x, entries: x.entries.map((y) => (y.id === e.id ? { ...y, time: ms, meal: undefined } : y)) })); setEdit(null); setBad(false); };
   const move = (e: Entry, m: number) => set((x) => ({ ...x, entries: x.entries.map((y) => (y.id === e.id ? { ...y, meal: m } : y)) }));
-  return <>{slots.map((l, i) => { const es = ents.filter((e) => slotOf(e) === i).sort((a, b) => a.time - b.time); const sm = totals(es);
+  return <>{slots.map((l, i) => { const es = ents.filter((e) => slotIn(slotOf(e), slots.length) === i).sort((a, b) => a.time - b.time); const sm = totals(es);
     return <View key={i} testID={`meal-${i}`} style={{ gap: 8 }}>
       <View style={[s.row, { justifyContent: 'space-between' }]}><CardTitle>{l}</CardTitle><Text style={[s.muted, { fontWeight: '800' }]}>{fmtNum(sm.kcal)} {t('u.kcal')}</Text></View>
-      {prem && es.length ? <Text testID={`meal-${i}-vs`} style={s.muted}>{t('u.p')} {fmtNum(sm.p)}/{mg[i].p} · {t('u.c')} {fmtNum(sm.c)}/{mg[i].c} · {t('u.f')} {fmtNum(sm.f)}/{mg[i].f} g</Text> : null}
+      {prem && es.length && mg[i] ? <Text testID={`meal-${i}-vs`} style={s.muted}>{t('u.p')} {fmtNum(sm.p)}/{mg[i].p} · {t('u.c')} {fmtNum(sm.c)}/{mg[i].c} · {t('u.f')} {fmtNum(sm.f)}/{mg[i].f} g</Text> : null}
       {es.map((e) => <Card key={e.id} testID="entry">
         <View style={[s.row, { alignItems: 'center' }]}>
           <Text style={{ fontSize: 26 }}>{ICON[e.source] || '✍️'}</Text>
@@ -166,11 +168,12 @@ export function DiaryMeals({ d, ents }: { d: string; ents: Entry[] }) {
             <Text style={s.muted}>{t('u.p')} {fmtNum(e.p)} · {t('u.c')} {fmtNum(e.c)} · {t('u.f')} {fmtNum(e.f)}{e.fiber ? ` · ${t('mf.net')} ${fmtNum(netCarbs(e))}` : ''}</Text></View>
           <Text style={{ fontWeight: '900', fontSize: 18, color: C.primary }}>{fmtNum(e.kcal)}</Text>
         </View>
+        {e.planned ? <PlannedRow e={e} /> : null}
         {edit === e.id ? <View style={{ gap: 6 }}>
           <View style={s.row}><TextInput testID="time-input" accessibilityLabel={t('mf.time')} value={txt} onChangeText={(x) => { setTxt(x); setBad(false); }} placeholder="08:30" inputMode="numeric" style={[s.input, { width: 110, fontSize: 20, textAlign: 'center' }]} />
             <Btn small testID="time-save" label={`✓ ${t('save')}`} onPress={() => saveTime(e)} /><Btn small kind="ghost" label={t('cancel')} onPress={() => setEdit(null)} /></View>
           {bad ? <Text testID="time-bad" style={{ color: C.primary, fontWeight: '800' }}>{t('mf.timeBad')}</Text> : null}
-          <Row>{slots.map((ml, j) => <Chip key={j} label={ml} active={j === slotOf(e)} onPress={() => move(e, j)} />)}</Row>
+          <Row>{slots.map((ml, j) => <Chip key={j} label={ml} active={j === slotIn(slotOf(e), slots.length)} onPress={() => move(e, j)} />)}</Row>
         </View> : <Row>
           <Btn small kind="ghost" testID="time-btn" a11y={t('mf.changeTime')} label={`🕒 ${hhmm(e.time)}`} onPress={() => { setEdit(e.id); setTxt(hhmm(e.time)); }} />
           <Btn small kind="danger" label={t('diary.remove')} onPress={() => set((x) => ({ ...x, entries: x.entries.filter((y) => y.id !== e.id) }))} />
