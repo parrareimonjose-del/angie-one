@@ -1,4 +1,4 @@
-import { CLONE_ENABLED } from './flags';
+import { CLONE_ENABLED, DEMOS_ENABLED, DEMO_KEYS } from './flags';
 /** Fase 3 (web): red social, recetas, gimnasio, conexiones, ayuno, gemelo digital, resumen en video,
  *  modos de salud, familia, informe médico, compras, viaje, anuncios y B2B. Datos locales o de ejemplo. */
 import { useEffect, useRef, useState } from 'react';
@@ -18,11 +18,11 @@ import { useExt, Pending, Example, Note, Sponsored, Tile } from './ext';
 
 export function Explore() {
   const { t } = useTranslation();
-  const p3: [string, string, string, boolean?][] = [['🤳', 'social', '/social'], ['🍲', 'recipes', '/recipes'], ['🏋️', 'gym', '/gym'], ['⌚', 'connect', '/connect', true], ['⏱️', 'fasting', '/fasting'], ['🧍', 'twin', '/twin'],
+  const p3: [string, string, string, boolean?][] = [['🤳', 'social', '/social'], ['🤝', 'friends', '/friends'], ['🍲', 'recipes', '/recipes'], ['🏋️', 'gym', '/gym'], ['⌚', 'connect', '/connect', true], ['⏱️', 'fasting', '/fasting'], ['🧍', 'twin', '/twin'],
     ['🎬', 'video', '/video'], ['🥗', 'health', '/health'], ['👨‍👩‍👧', 'family', '/family'], ['📄', 'report', '/report'], ['🛒', 'shop', '/shopping', true], ['✈️', 'travel', '/travel'], ['🧑‍🏫', 'b2b', '/b2b']];
   const p4: [string, string, string, boolean?][] = [['🧑‍⚕️', 'market', '/market', true], ['🏢', 'corp', '/corporate'], ['🐶', 'pet', '/pet'], ['💬', 'whatsapp', '/whatsapp', true]];
   if (FEATURES.purposeStore) p4.splice(2, 0, ['🛍️', 'store', '/store', true]);
-  const grid = (a: typeof p3) => <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, justifyContent: 'space-between' }}>{a.filter(([, k]) => CLONE_ENABLED || k !== 'twin').map(([i, k, h, p]) => <Tile key={k} icon={i} label={t(`x.t.${k}`)} pending={p} onPress={() => router.push(h as any)} />)}</View>;
+  const grid = (a: typeof p3) => <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, justifyContent: 'space-between' }}>{a.filter(([, k]) => (CLONE_ENABLED || k !== 'twin') && (DEMOS_ENABLED || !(DEMO_KEYS as readonly string[]).includes(k))).map(([i, k, h, p]) => <Tile key={k} icon={i} label={k === 'friends' ? t('t6.fTitle') : t(`x.t.${k}`)} pending={p} onPress={() => router.push(h as any)} />)}</View>;
   return <Screen title={`✨ ${t('x.explore')}`}>{grid(p3)}<CardTitle>{t('x.more4')}</CardTitle>{grid(p4)}<Note k="x.pendingLegend" /></Screen>;
 }
 
