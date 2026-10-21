@@ -2085,5 +2085,140 @@
     },
     "founderOnly": "Nur für den Gründer. Schlüssel eingeben.",
     "unlock": "Entsperren"
+  },
+  "t6": {
+    "hTitle": "Gewohnheits-Score",
+    "hSub": "Essen, Wasser, Schlaf und Schritte heute",
+    "hGreat": "Super Tag! Weiter so.",
+    "hGood": "Guter Fortschritt. Ein kleiner Schritt mehr.",
+    "hStart": "Jede kleine Gewohnheit zählt. Fang mit einem Glas Wasser an.",
+    "p": {
+      "food": "Essen",
+      "water": "Wasser",
+      "sleep": "Schlaf",
+      "steps": "Schritte"
+    },
+    "week": "Letzte 7 Tage",
+    "avg": "Durchschnitt",
+    "colors": "Lebensmittelfarben",
+    "noFood": "Trage eine Mahlzeit ein, um ihre Farbe zu sehen.",
+    "c": {
+      "green": "Oft essen",
+      "yellow": "Im Gleichgewicht",
+      "orange": "In Maßen genießen"
+    },
+    "colorsNote": "Farben sind eine einfache Orientierung nach Protein und Ballaststoffen pro Kalorie. Kein Lebensmittel ist schlecht.",
+    "eTitle": "Geschätzter Energieverbrauch",
+    "eEst": "kcal/Tag verbrannt",
+    "eIntake": "Durchschnitt gegessen",
+    "eGoal": "Dein Ziel",
+    "eReady": "Mit deinen echten Daten angepasst",
+    "eWait": "Logge 7 Tage lang Essen und wiege dich zweimal (bisher {{n}} Tage)",
+    "eHow": "Dein Coach vergleicht, was du isst, mit der Veränderung deines Gewichts, um zu schätzen, was dein Körper täglich verbrennt, und passt dein Ziel sanft an.",
+    "eFormula": "Startschätzung aus deinem Profil",
+    "eNote": "Eine Schätzung für das Wohlbefinden, keine medizinische Messung.",
+    "pTitle": "Fortschritt",
+    "mTitle": "Körpermaße",
+    "mSub": "In Zentimetern, wann immer du möchtest",
+    "m": {
+      "waist": "Taille",
+      "hip": "Hüfte",
+      "chest": "Brust",
+      "arm": "Arm",
+      "thigh": "Oberschenkel"
+    },
+    "mSave": "Maße speichern",
+    "mSaved": "Gespeichert",
+    "mHist": "Verlauf",
+    "phTitle": "Fortschrittsfotos",
+    "phSub": "Vergleiche, wie du dich über die Zeit veränderst",
+    "phNone": "Noch keine Fotos",
+    "phAdd": "Foto hinzufügen",
+    "phDel": "Alle Fotos löschen",
+    "phPrivacy": "Fotos bleiben nur auf diesem Handy. Sie werden niemals hochgeladen, geteilt oder verkauft.",
+    "lTitle": "2-Minuten-Lektionen",
+    "lDone": "Abgeschlossen",
+    "lEach": "Jede Lektion",
+    "lListen": "Anhören",
+    "lMark": "Erledigt",
+    "lNote": "Kurze Lektionen zu Gewohnheiten. Das sind allgemeine Wellnesstipps, keine medizinische Beratung.",
+    "l": {
+      "plate": {
+        "t": "Der ausgewogene Teller",
+        "1": "Fülle die Hälfte deines Tellers mit Gemüse oder Obst.",
+        "2": "Füge ein Viertel Protein hinzu, wie Eier, Hähnchen, Bohnen oder Fisch.",
+        "3": "Das letzte Viertel kann Reis, Arepa, Tortilla oder Kartoffel sein."
+      },
+      "hunger": {
+        "t": "Hunger oder Heißhunger?",
+        "1": "Echter Hunger wächst langsam und jedes Essen klingt gut.",
+        "2": "Heißhunger kommt plötzlich und verlangt nach etwas Bestimmtem.",
+        "3": "Warte zehn Minuten und trinke Wasser; entscheide dann ganz ruhig."
+      },
+      "water": {
+        "t": "Wasser zuerst",
+        "1": "Manchmal fühlt sich Durst wie Hunger an.",
+        "2": "Stelle eine Flasche dorthin, wo du sie sehen kannst.",
+        "3": "Ein Glas zu jeder Mahlzeit ist ein einfacher Start."
+      },
+      "sleep": {
+        "t": "Schlaf hilft",
+        "1": "Wenig Schlaf kann den Appetit am nächsten Tag steigern.",
+        "2": "Versuche, jeden Abend zur gleichen Zeit ins Bett zu gehen.",
+        "3": "Lege das Handy dreißig Minuten vor dem Schlafen weg."
+      },
+      "protein": {
+        "t": "Protein hält satt",
+        "1": "Protein hilft dir, dich länger satt zu fühlen.",
+        "2": "Integriere etwas davon in jede Mahlzeit.",
+        "3": "Eier, Joghurt, Bohnen und Hähnchen sind einfache Optionen."
+      },
+      "slip": {
+        "t": "Ein Ausrutscher ist kein Versagen",
+        "1": "Eine große Mahlzeit macht deinen Fortschritt nicht zunichte.",
+        "2": "Lass die nächste Mahlzeit nicht aus, um das auszugleichen.",
+        "3": "Kehre einfach zu deinem gewohnten Plan zurück."
+      },
+      "move": {
+        "t": "Beweg dich ein bisschen mehr",
+        "1": "Kleine Spaziergänge summieren sich über den Tag.",
+        "2": "Nimm die Treppe oder geh spazieren, während du telefonierst.",
+        "3": "Zehn Minuten nach dem Essen fühlen sich großartig an."
+      },
+      "plan": {
+        "t": "Plane im Voraus",
+        "1": "Im Voraus zu entscheiden macht die Auswahl leichter.",
+        "2": "Plane die Mahlzeiten für morgen schon heute Abend.",
+        "3": "Halte gesunde Snacks zu Hause griffbereit."
+      }
+    },
+    "fTitle": "Freunde und Challenges",
+    "fMyPts": "Meine Punkte diese Woche",
+    "fGroups": "Gruppen",
+    "fYou": "Dein Spitzname",
+    "fPrivacy": "Freunde sehen nur deinen Spitznamen und deine Challenge-Punkte. Niemals dein Gewicht, dein Essen oder Gesundheitsdaten.",
+    "fNickL": "Spitzname (2-20 Buchstaben)",
+    "fNick": "Wähle einen freundlichen Spitznamen (keine Links oder Schimpfwörter).",
+    "fCreate": "Gruppe erstellen",
+    "fCodeL": "Einladungscode",
+    "fCode": "Der Code hat 6 Buchstaben oder Zahlen.",
+    "fJoin": "Beitreten",
+    "fNotFound": "Diese Gruppe existiert nicht.",
+    "fFull": "Diese Gruppe ist voll.",
+    "fErr": "Verbindung fehlgeschlagen. Versuche es noch einmal.",
+    "fReported": "Danke. Wir werden das überprüfen.",
+    "fInviteText": "Mach mit bei meiner wöchentlichen Healthy-Habits-Challenge auf Angie One:",
+    "fMe": "du",
+    "fPts": "Pkt",
+    "fReport": "Melden",
+    "fInvite": "Über WhatsApp einladen",
+    "fLeave": "Verlassen",
+    "fRules": "Sei nett. Melde anstößige Spitznamen mit 🚩; wir prüfen Meldungen und entfernen Regelverstöße.",
+    "nTitle": "Nährstoffziele",
+    "nGaps": "Heute könntest du mehr hinzufügen: {{list}}",
+    "nNone": "Wähle die Nährstoffe aus, die du verfolgen möchtest.",
+    "nPick": "Ziel hinzufügen",
+    "nNote": "Die Ziele basieren auf den täglichen Richtwerten. Ein Wellness-Leitfaden, keine Diagnose.",
+    "fiber": "Ballaststoffe"
   }
 }

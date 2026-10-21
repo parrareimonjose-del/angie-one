@@ -2085,5 +2085,140 @@
     },
     "founderOnly": "Solo per il fondatore. Inserisci la chiave.",
     "unlock": "Sblocca"
+  },
+  "t6": {
+    "hTitle": "Punteggio abitudini",
+    "hSub": "Cibo, acqua, sonno e passi di oggi",
+    "hGreat": "Ottima giornata! Continua così.",
+    "hGood": "Buoni progressi. Un piccolo passo in più.",
+    "hStart": "Ogni piccola abitudine conta. Inizia con un bicchiere d'acqua.",
+    "p": {
+      "food": "Cibo",
+      "water": "Acqua",
+      "sleep": "Sonno",
+      "steps": "Passi"
+    },
+    "week": "Ultimi 7 giorni",
+    "avg": "Media",
+    "colors": "Colori del cibo",
+    "noFood": "Registra un pasto per vederne il colore.",
+    "c": {
+      "green": "Mangia spesso",
+      "yellow": "In equilibrio",
+      "orange": "Da gustare con moderazione"
+    },
+    "colorsNote": "I colori sono una semplice guida basata su proteine e fibre per caloria. Nessun cibo è cattivo.",
+    "eTitle": "Energia stimata",
+    "eEst": "kcal/giorno bruciate",
+    "eIntake": "Media assunta",
+    "eGoal": "Il tuo obiettivo",
+    "eReady": "Aggiornato con i tuoi dati reali",
+    "eWait": "Registra il cibo per 7 giorni e pesati due volte ({{n}} giorni finora)",
+    "eHow": "Il tuo coach confronta ciò che mangi con i cambiamenti del tuo peso per stimare quanto brucia il tuo corpo ogni giorno, e adegua dolcemente il tuo obiettivo.",
+    "eFormula": "Stima iniziale dal tuo profilo",
+    "eNote": "Una stima per il benessere, non una misurazione medica.",
+    "pTitle": "Progressi",
+    "mTitle": "Misure corporee",
+    "mSub": "In centimetri, quando vuoi",
+    "m": {
+      "waist": "Vita",
+      "hip": "Fianchi",
+      "chest": "Petto",
+      "arm": "Braccio",
+      "thigh": "Coscia"
+    },
+    "mSave": "Salva misurazioni",
+    "mSaved": "Salvato",
+    "mHist": "Cronologia",
+    "phTitle": "Foto dei progressi",
+    "phSub": "Confronta come cambi nel tempo",
+    "phNone": "Ancora nessuna foto",
+    "phAdd": "Aggiungi foto",
+    "phDel": "Elimina tutte le foto",
+    "phPrivacy": "Le foto rimangono solo su questo telefono. Non vengono mai caricate, condivise o vendute.",
+    "lTitle": "Lezioni di 2 minuti",
+    "lDone": "Completata",
+    "lEach": "Ogni lezione",
+    "lListen": "Ascolta",
+    "lMark": "Fatto",
+    "lNote": "Brevi lezioni sulle abitudini. Sono consigli generali di benessere, non pareri medici.",
+    "l": {
+      "plate": {
+        "t": "Il piatto bilanciato",
+        "1": "Riempi metà del tuo piatto con verdure o frutta.",
+        "2": "Aggiungi un quarto di proteine, come uova, pollo, legumi o pesce.",
+        "3": "L'ultimo quarto può essere riso, arepa, tortilla o patate."
+      },
+      "hunger": {
+        "t": "Fame o voglia?",
+        "1": "La vera fame cresce lentamente e qualsiasi cibo sembra buono.",
+        "2": "Una voglia arriva improvvisa e chiede qualcosa di specifico.",
+        "3": "Aspetta dieci minuti e bevi dell'acqua; poi decidi con calma."
+      },
+      "water": {
+        "t": "Prima l'acqua",
+        "1": "A volte la sete sembra fame.",
+        "2": "Tieni una bottiglia dove puoi vederla.",
+        "3": "Un bicchiere a ogni pasto è un inizio facile."
+      },
+      "sleep": {
+        "t": "Il sonno aiuta",
+        "1": "Dormire poco può aumentare l'appetito il giorno dopo.",
+        "2": "Prova ad andare a letto alla stessa ora ogni sera.",
+        "3": "Metti via il telefono trenta minuti prima di dormire."
+      },
+      "protein": {
+        "t": "Le proteine ti mantengono sazio",
+        "1": "Le proteine ti aiutano a sentirti soddisfatto più a lungo.",
+        "2": "Includine un po' in ogni pasto.",
+        "3": "Uova, yogurt, legumi e pollo sono opzioni semplici."
+      },
+      "slip": {
+        "t": "Un passo falso non è un fallimento",
+        "1": "Un pasto abbondante non cancella i tuoi progressi.",
+        "2": "Non saltare il pasto successivo per compensare.",
+        "3": "Torna semplicemente al tuo piano abituale."
+      },
+      "move": {
+        "t": "Muoviti un po' di più",
+        "1": "Brevi camminate si sommano durante la giornata.",
+        "2": "Prendi le scale o cammina mentre parli al telefono.",
+        "3": "Dieci minuti dopo aver mangiato fanno sentire benissimo."
+      },
+      "plan": {
+        "t": "Pianifica in anticipo",
+        "1": "Decidere in anticipo rende le scelte più semplici.",
+        "2": "Pianifica i pasti di domani stasera.",
+        "3": "Tieni snack sani pronti a casa."
+      }
+    },
+    "fTitle": "Amici e sfide",
+    "fMyPts": "I miei punti questa settimana",
+    "fGroups": "Gruppi",
+    "fYou": "Il tuo nickname",
+    "fPrivacy": "Gli amici vedono solo il tuo nickname e i punti delle sfide. Mai il tuo peso, cibo o dati sulla salute.",
+    "fNickL": "Nickname (2-20 lettere)",
+    "fNick": "Scegli un nickname amichevole (niente link o parolacce).",
+    "fCreate": "Crea gruppo",
+    "fCodeL": "Codice invito",
+    "fCode": "Il codice ha 6 lettere o numeri.",
+    "fJoin": "Unisciti",
+    "fNotFound": "Quel gruppo non esiste.",
+    "fFull": "Quel gruppo è pieno.",
+    "fErr": "Impossibile connettersi. Riprova.",
+    "fReported": "Grazie. Lo esamineremo.",
+    "fInviteText": "Unisciti alla mia sfida settimanale di sane abitudini su Angie One:",
+    "fMe": "tu",
+    "fPts": "pti",
+    "fReport": "Segnala",
+    "fInvite": "Invita tramite WhatsApp",
+    "fLeave": "Lascia",
+    "fRules": "Sii gentile. Segnala qualsiasi nickname offensivo con 🚩; esaminiamo le segnalazioni e rimuoviamo chi infrange le regole.",
+    "nTitle": "Obiettivi di nutrienti",
+    "nGaps": "Oggi potresti aggiungere più: {{list}}",
+    "nNone": "Scegli i nutrienti che vuoi seguire.",
+    "nPick": "Aggiungi un obiettivo",
+    "nNote": "Gli obiettivi partono dai valori di riferimento giornaliferi. Una guida per il benessere, non una diagnosi.",
+    "fiber": "Fibre"
   }
 }

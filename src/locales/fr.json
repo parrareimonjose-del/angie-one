@@ -2085,5 +2085,140 @@
     },
     "founderOnly": "Panneau réservé au fondateur. Saisissez votre clé.",
     "unlock": "Déverrouiller"
+  },
+  "t6": {
+    "hTitle": "Score d'habitudes",
+    "hSub": "Alimentation, eau, sommeil et pas aujourd'hui",
+    "hGreat": "Super journée ! Continue comme ça.",
+    "hGood": "Belle progression. Encore un petit pas.",
+    "hStart": "Chaque petite habitude compte. Commence par un verre d'eau.",
+    "p": {
+      "food": "Alimentation",
+      "water": "Eau",
+      "sleep": "Sommeil",
+      "steps": "Pas"
+    },
+    "week": "7 derniers jours",
+    "avg": "Moyenne",
+    "colors": "Couleurs des aliments",
+    "noFood": "Enregistre un repas pour voir sa couleur.",
+    "c": {
+      "green": "À consommer souvent",
+      "yellow": "En équilibre",
+      "orange": "À savourer avec modération"
+    },
+    "colorsNote": "Les couleurs sont un guide simple basé sur les protéines et les fibres par calorie. Aucun aliment n'est mauvais.",
+    "eTitle": "Énergie estimée",
+    "eEst": "kcal/jour brûlées",
+    "eIntake": "Moyenne mangée",
+    "eGoal": "Ton objectif",
+    "eReady": "Ajusté avec tes vraies données",
+    "eWait": "Enregistre tes repas pendant 7 jours et pèse-toi deux fois ({{n}} jours pour l'instant)",
+    "eHow": "Ton coach compare ce que tu manges à l'évolution de ton poids pour estimer ce que ton corps brûle chaque jour, et ajuste ton objectif en douceur.",
+    "eFormula": "Estimation de départ basée sur ton profil",
+    "eNote": "Une estimation pour le bien-être, pas une mesure médicale.",
+    "pTitle": "Progrès",
+    "mTitle": "Mesures corporelles",
+    "mSub": "En centimètres, quand tu veux",
+    "m": {
+      "waist": "Taille",
+      "hip": "Hanches",
+      "chest": "Poitrine",
+      "arm": "Bras",
+      "thigh": "Cuisse"
+    },
+    "mSave": "Enregistrer les mesures",
+    "mSaved": "Enregistré",
+    "mHist": "Historique",
+    "phTitle": "Photos de progression",
+    "phSub": "Compare ton évolution au fil du temps",
+    "phNone": "Pas encore de photos",
+    "phAdd": "Ajouter une photo",
+    "phDel": "Supprimer toutes les photos",
+    "phPrivacy": "Les photos restent uniquement sur ce téléphone. Elles ne sont jamais mises en ligne, partagées ou vendues.",
+    "lTitle": "Leçons de 2 minutes",
+    "lDone": "Terminé",
+    "lEach": "Chaque leçon",
+    "lListen": "Écouter",
+    "lMark": "Fait",
+    "lNote": "Courtes leçons sur les habitudes. Ce sont des conseils généraux de bien-être, pas un avis médical.",
+    "l": {
+      "plate": {
+        "t": "L'assiette équilibrée",
+        "1": "Remplis la moitié de ton assiette de légumes ou de fruits.",
+        "2": "Ajoute un quart de protéines, comme des œufs, du poulet, des haricots ou du poisson.",
+        "3": "Le dernier quart peut être du riz, une arepa, une tortilla ou de la pomme de terre."
+      },
+      "hunger": {
+        "t": "Faim ou envie soudaine ?",
+        "1": "La vraie faim s'installe lentement et n'importe quel aliment fait l'envie.",
+        "2": "Une envie soudaine surgit d'un coup et réclame quelque chose de précis.",
+        "3": "Attends dix minutes et bois de l'eau, puis décide calmement."
+      },
+      "water": {
+        "t": "L'eau en premier",
+        "1": "Parfois, la soif ressemble à la faim.",
+        "2": "Garde une bouteille là où tu peux la voir.",
+        "3": "Un verre à chaque repas est un bon début."
+      },
+      "sleep": {
+        "t": "Le sommeil aide",
+        "1": "Dormir peu peut augmenter l'appétit le lendemain.",
+        "2": "Essaie de te coucher à la même heure chaque soir.",
+        "3": "Éloigne ton téléphone trente minutes avant de dormir."
+      },
+      "protein": {
+        "t": "Les protéines calent",
+        "1": "Les protéines aident à se sentir rassasié plus longtemps.",
+        "2": "Intègre-en à chaque repas.",
+        "3": "Œufs, yaourt, haricots et poulet sont des options simples."
+      },
+      "slip": {
+        "t": "Un faux pas n'est pas un échec",
+        "1": "Un gros repas n'efface pas tes efforts.",
+        "2": "Ne saute pas le repas suivant pour compenser.",
+        "3": "Reprends tout simplement ton rythme habituel."
+      },
+      "move": {
+        "t": "Bouge un peu plus",
+        "1": "De petites marches s'additionnent au cours de la journée.",
+        "2": "Prends les escaliers ou marche en téléphonant.",
+        "3": "Dix minutes après manger, ça fait un bien fou."
+      },
+      "plan": {
+        "t": "Prévois à l'avance",
+        "1": "Décider à l'avance simplifie les choix.",
+        "2": "Prépare les repas du lendemain dès ce soir.",
+        "3": "Garde des en-cas sains à portée de main à la maison."
+      }
+    },
+    "fTitle": "Amis et défis",
+    "fMyPts": "Mes points cette semaine",
+    "fGroups": "Groupes",
+    "fYou": "Ton pseudo",
+    "fPrivacy": "Les amis voient uniquement ton pseudo et tes points de défi. Jamais ton poids, tes repas ou tes données de santé.",
+    "fNickL": "Pseudo (2-20 lettres)",
+    "fNick": "Choisis un pseudo sympa (sans liens ni gros mots).",
+    "fCreate": "Créer un groupe",
+    "fCodeL": "Code d'invitation",
+    "fCode": "Le code comporte 6 lettres ou chiffres.",
+    "fJoin": "Rejoindre",
+    "fNotFound": "Ce groupe n'existe pas.",
+    "fFull": "Ce groupe est complet.",
+    "fErr": "Connexion impossible. Réessaie.",
+    "fReported": "Merci. Nous allons examiner cela.",
+    "fInviteText": "Rejoins mon défi hebdomadaires d'habitudes saines sur Angie One :",
+    "fMe": "toi",
+    "fPts": "pts",
+    "fReport": "Signaler",
+    "fInvite": "Inviter par WhatsApp",
+    "fLeave": "Quitter",
+    "fRules": "Sois bienveillant. Signale tout pseudo offensant avec 🚩 ; nous examinons les signalements et excluons les contrevenants.",
+    "nTitle": "Objectifs en nutriments",
+    "nGaps": "Aujourd'hui, tu pourrais ajouter plus de : {{list}}",
+    "nNone": "Choisis les nutriments à suivre.",
+    "nPick": "Ajouter un objectif",
+    "nNote": "Les objectifs commencent aux valeurs de référence quotidiennes. Un guide bien-être, pas un diagnostic.",
+    "fiber": "Fibres"
   }
 }

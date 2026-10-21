@@ -2085,5 +2085,140 @@
     },
     "founderOnly": "Este painel é só do fundador. Digite sua chave.",
     "unlock": "Entrar"
+  },
+  "t6": {
+    "hTitle": "Pontuação de hábitos",
+    "hSub": "Comida, água, sono e passos de hoje",
+    "hGreat": "Ótimo dia! Continue assim.",
+    "hGood": "Bom progresso. Mais um pequeno passo.",
+    "hStart": "Cada pequeno hábito conta. Comece com um copo de água.",
+    "p": {
+      "food": "Comida",
+      "water": "Água",
+      "sleep": "Sono",
+      "steps": "Passos"
+    },
+    "week": "Últimos 7 dias",
+    "avg": "Média",
+    "colors": "Cores dos alimentos",
+    "noFood": "Registre uma refeição para ver a cor dela.",
+    "c": {
+      "green": "Coma sempre",
+      "yellow": "Em equilíbrio",
+      "orange": "Aproveite com moderação"
+    },
+    "colorsNote": "As cores são um guia simples baseado em proteína e fibras por caloria. Nenhum alimento é ruim.",
+    "eTitle": "Energia estimada",
+    "eEst": "kcal/dia queimadas",
+    "eIntake": "Média consumida",
+    "eGoal": "Sua meta",
+    "eReady": "Ajustado com seus dados reais",
+    "eWait": "Registre comida por 7 dias e se pese duas vezes ({{n}} dias até agora)",
+    "eHow": "Seu coach compara o que você come com a mudança no seu peso para estimar o que seu corpo queima todos os dias, e ajusta sua meta suavemente.",
+    "eFormula": "Estimativa inicial do seu perfil",
+    "eNote": "Uma estimativa para o bem-estar, não uma medição médica.",
+    "pTitle": "Progresso",
+    "mTitle": "Medidas corporais",
+    "mSub": "Em centímetros, quando você quiser",
+    "m": {
+      "waist": "Cintura",
+      "hip": "Quadril",
+      "chest": "Peito",
+      "arm": "Braço",
+      "thigh": "Perna"
+    },
+    "mSave": "Salvar medidas",
+    "mSaved": "Salvo",
+    "mHist": "Histórico",
+    "phTitle": "Fotos de progresso",
+    "phSub": "Compare como você muda ao longo do tempo",
+    "phNone": "Nenhuma foto ainda",
+    "phAdd": "Adicionar foto",
+    "phDel": "Excluir todas as fotos",
+    "phPrivacy": "As fotos ficam apenas neste celular. Elas nunca são enviadas, compartilhadas ou vendidas.",
+    "lTitle": "Aulas de 2 minutos",
+    "lDone": "Concluído",
+    "lEach": "Cada aula",
+    "lListen": "Ouvir",
+    "lMark": "Feito",
+    "lNote": "Curtas aulas de hábitos. São dicas gerais de bem-estar, não conselhos médicos.",
+    "l": {
+      "plate": {
+        "t": "O prato equilibrado",
+        "1": "Encha metade do seu prato com vegetais ou frutas.",
+        "2": "Adicione um quarto de proteína, como ovos, frango, feijão ou peixe.",
+        "3": "O último quarto pode ser arroz, arepa, tortilha ou batata."
+      },
+      "hunger": {
+        "t": "Fome ou vontade de comer?",
+        "1": "A fome real chega devagar e qualquer comida parece boa.",
+        "2": "A vontade de comer vem de repente e pede algo específico.",
+        "3": "Espere dez minutos e beba água; depois decida com calma."
+      },
+      "water": {
+        "t": "Água primeiro",
+        "1": "Às vezes a sede se parece com fome.",
+        "2": "Deixe uma garrafa onde você possa vê-la.",
+        "3": "Um copo em cada refeição é um começo fácil."
+      },
+      "sleep": {
+        "t": "O sono ajuda",
+        "1": "Dormir pouco pode aumentar o apetite no dia seguinte.",
+        "2": "Tente ir para a cama no mesmo horário todas as noites.",
+        "3": "Guarde o celular trinta minutos antes de dormir."
+      },
+      "protein": {
+        "t": "A proteína mantém você saciado",
+        "1": "A proteína ajuda você a se sentir satisfeito por mais tempo.",
+        "2": "Inclua um pouco em cada refeição.",
+        "3": "Ovos, iogurte, feijão e frango são opções simples."
+      },
+      "slip": {
+        "t": "Um deslize não é um fracasso",
+        "1": "Uma refeição grande não apaga seu progresso.",
+        "2": "Não pule a próxima refeição para compensar.",
+        "3": "Simplesmente volte ao seu plano habitual."
+      },
+      "move": {
+        "t": "Movimente-se um pouco mais",
+        "1": "Pequenas caminhadas somam ao longo do dia.",
+        "2": "Use as escadas ou caminhe enquanto fala ao telefone.",
+        "3": "Dez minutos depois de comer faz muito bem."
+      },
+      "plan": {
+        "t": "Planeje com antecedência",
+        "1": "Decidir antes torna as escolhas mais fáceis.",
+        "2": "Planeje as refeições de amanhã hoje à noite.",
+        "3": "Mantenha lanches saudáveis prontos em casa."
+      }
+    },
+    "fTitle": "Amigos e desafios",
+    "fMyPts": "Meus pontos esta semana",
+    "fGroups": "Grupos",
+    "fYou": "Seu apelido",
+    "fPrivacy": "Os amigos só veem seu apelido e pontos de desafio. Nunca seu peso, comida ou dados de saúde.",
+    "fNickL": "Apelido (2 a 20 letras)",
+    "fNick": "Escolha um apelido amigável (sem links ou palavrões).",
+    "fCreate": "Criar grupo",
+    "fCodeL": "Código de convite",
+    "fCode": "O código tem 6 letras ou números.",
+    "fJoin": "Entrar",
+    "fNotFound": "Esse grupo não existe.",
+    "fFull": "Esse grupo está cheio.",
+    "fErr": "Não foi possível conectar. Tente novamente.",
+    "fReported": "Obrigado. Vamos analisar.",
+    "fInviteText": "Participe do meu desafio semanal de hábitos saudáveis no Angie One:",
+    "fMe": "você",
+    "fPts": "pts",
+    "fReport": "Denunciar",
+    "fInvite": "Convidar pelo WhatsApp",
+    "fLeave": "Sair",
+    "fRules": "Seja gentil. Denuncie qualquer apelido ofensivo com 🚩; analisamos as denúncias e removemos quem quebrar as regras.",
+    "nTitle": "Metas de nutrientes",
+    "nGaps": "Hoje você pode adicionar mais: {{list}}",
+    "nNone": "Escolha os nutrientes que deseja acompanhar.",
+    "nPick": "Adicionar uma meta",
+    "nNote": "As metas começam nos valores de referência diários. Um guia de bem-estar, não um diagnóstico.",
+    "fiber": "Fibra"
   }
 }

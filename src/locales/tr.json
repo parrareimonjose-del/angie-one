@@ -2085,5 +2085,140 @@
     },
     "founderOnly": "Yalnızca kurucu için. Anahtarını gir.",
     "unlock": "Aç"
+  },
+  "t6": {
+    "hTitle": "Alışkanlık puanı",
+    "hSub": "Bugünkü yemek, su, uyku ve adımlar",
+    "hGreat": "Harika gün! Böyle devam et.",
+    "hGood": "İyi ilerleme. Küçük bir adım daha.",
+    "hStart": "Her küçük alışkanlık önemlidir. Bir bardak suyla başla.",
+    "p": {
+      "food": "Yemek",
+      "water": "Su",
+      "sleep": "Uyku",
+      "steps": "Adımlar"
+    },
+    "week": "Son 7 gün",
+    "avg": "Ortalama",
+    "colors": "Yemek renkleri",
+    "noFood": "Rengini görmek için bir öğün kaydet.",
+    "c": {
+      "green": "Sıkça ye",
+      "yellow": "Dengede",
+      "orange": "Ölçülü keyif al"
+    },
+    "colorsNote": "Renkler, kalori başına protein ve lif miktarına göre basit bir rehberdir. Hiçbir yemek kötü değildir.",
+    "eTitle": "Tahmini enerji",
+    "eEst": "yakılan kcal/gün",
+    "eIntake": "Ortalama yenilen",
+    "eGoal": "Hedefin",
+    "eReady": "Gerçek verilerinle güncellendi",
+    "eWait": "7 gün yemek kaydet ve iki kez tartıl (şu ana kadar {{n}} gün)",
+    "eHow": "Koçun, vücudunun her gün ne kadar yaktığını tahmin etmek ve hedefeni nazikçe ayarlamak için yediklerinle kilonun değişimini karşılaştırır.",
+    "eFormula": "Profilinden başlangıç tahmini",
+    "eNote": "Tıbbi bir ölçüm değil, zindelik için bir tahmindir.",
+    "pTitle": "İlerleme",
+    "mTitle": "Vücut ölçüleri",
+    "mSub": "Santimetre cinsinden, dilediğin zaman",
+    "m": {
+      "waist": "Bel",
+      "hip": "Kalça",
+      "chest": "Göğüs",
+      "arm": "Kol",
+      "thigh": "Uyluk"
+    },
+    "mSave": "Ölçüleri kaydet",
+    "mSaved": "Kaydedildi",
+    "mHist": "Geçmiş",
+    "phTitle": "İlerleme fotoğrafları",
+    "phSub": "Zaman içinde nasıl değiştiğini karşılaştır",
+    "phNone": "Henüz fotoğraf yok",
+    "phAdd": "Fotoğraf ekle",
+    "phDel": "Tüm fotoğrafları sil",
+    "phPrivacy": "Fotoğraflar yalnızca bu telefonda kalır. Asla yüklenmez, paylaşılmaz veya satılmaz.",
+    "lTitle": "2 dakikalık dersler",
+    "lDone": "Tamamlandı",
+    "lEach": "Her ders",
+    "lListen": "Dinle",
+    "lMark": "Tamam",
+    "lNote": "Kısa alışkanlık dersleri. Tıbbi tavsiye değil, genel zindelik ipuçlarıdır.",
+    "l": {
+      "plate": {
+        "t": "Dengeli tabak",
+        "1": "Tabağının yarısını sebze veya meyveyle doldur.",
+        "2": "Yumurta, tavuk, fasulye veya balık gibi proteinlerden çeyrek ekle.",
+        "3": "Son çeyrek pirinç, arepa, tortilla veya patates olabilir."
+      },
+      "hunger": {
+        "t": "Açlık mı, aşerme mi?",
+        "1": "Gerçek açlık yavaşça gelir ve her yemek kulağa güzel gelir.",
+        "2": "Aşerme aniden gelir ve belirli bir şey ister.",
+        "3": "On dakika bekle ve su iç; ardından sakinçe karar ver."
+      },
+      "water": {
+        "t": "Önce su",
+        "1": "Bazen susuzluk açlık gibi hissedilir.",
+        "2": "Şişeyi görebileceğin bir yerde tut.",
+        "3": "Her öğünle birlikte bir bardak su içmek kolay bir başlangıçtır."
+      },
+      "sleep": {
+        "t": "Uyku yardımcı olur",
+        "1": "Az uyumak ertesi gün iştahı artırabilir.",
+        "2": "Her gece aynı saatte yatmayı dene.",
+        "3": "Uyumadan otuz dakika önce telefonu kaldır."
+      },
+      "protein": {
+        "t": "Protein tok tutar",
+        "1": "Protein daha uzun süre doymuş hissetmeni sağlar.",
+        "2": "Her öğüne biraz ekle.",
+        "3": "Yumurta, yoğurt, fasulye ve tavuk basit seçeneklerdir."
+      },
+      "slip": {
+        "t": "Küçük bir kaçamak başarısızlık değildir",
+        "1": "Büyük bir öğün ilerlemeni silmez.",
+        "2": "Telafi etmek için sonraki öğünü atlama.",
+        "3": "Sadece her zamanki planına geri dön."
+      },
+      "move": {
+        "t": "Biraz daha hareket et",
+        "1": "Küçük yürüyüşler gün içinde birikir.",
+        "2": "Merdivenleri kullan veya telefonda konuşurken yürü.",
+        "3": "Yemekten sonraki on dakika harika hissettirir."
+      },
+      "plan": {
+        "t": "Önceden plan yap",
+        "1": "Önceden karar vermek seçimleri kolaylaştırır.",
+        "2": "Yarınki yemekleri bu akşamdan planla.",
+        "3": "Evde sağlıklı atıştırmalıklar hazır bulundur."
+      }
+    },
+    "fTitle": "Arkadaşlar ve meydan okumalar",
+    "fMyPts": "Bu haftaki puanlarım",
+    "fGroups": "Gruplar",
+    "fYou": "Takma adın",
+    "fPrivacy": "Arkadaşlar yalnızca takma adını ve meydan okuma puanlarını görür. Kilonu, yemeklerini veya sağlık verilerini asla göremezler.",
+    "fNickL": "Takma ad (2-20 harf)",
+    "fNick": "Samimi bir takma ad seç (bağlantı veya kötü kelimeler içermesin).",
+    "fCreate": "Grup oluştur",
+    "fCodeL": "Davet kodu",
+    "fCode": "Kod 6 harf veya rakamdan oluşur.",
+    "fJoin": "Katıl",
+    "fNotFound": "Böyle bir grup yok.",
+    "fFull": "Bu grup dolu.",
+    "fErr": "Bağlantı kurulamadı. Tekrar dene.",
+    "fReported": "Teşekkürler. İnceleyeceğiz.",
+    "fInviteText": "Angie One'daki haftalık sağlıklı alışkanlıklar meydan okumama katıl:",
+    "fMe": "sen",
+    "fPts": "puan",
+    "fReport": "Bildir",
+    "fInvite": "WhatsApp ile davet et",
+    "fLeave": "Ayrıl",
+    "fRules": "Nazik ol. 🚩 ile rahatsız edici takma adları bildir; bildirimleri inceliyor ve kuralları çiğneyenleri uzaklaştırıyoruz.",
+    "nTitle": "Besin hedefleri",
+    "nGaps": "Bugün şunları ekleyebilirsin: {{list}}",
+    "nNone": "Takip etmek istediğin besinleri seç.",
+    "nPick": "Hedef ekle",
+    "nNote": "Hedefler günlük referans değerlerinden başlar. Teşhis değil, bir zindelik rehberidir.",
+    "fiber": "Lif"
   }
 }

@@ -2085,5 +2085,140 @@
     },
     "founderOnly": "This panel is for the founder only. Enter your founder key.",
     "unlock": "Unlock"
+  },
+  "t6": {
+    "hTitle": "Habit score",
+    "hSub": "Food, water, sleep and steps today",
+    "hGreat": "Great day! Keep it up.",
+    "hGood": "Good progress. One small step more.",
+    "hStart": "Every small habit counts. Start with a glass of water.",
+    "p": {
+      "food": "Food",
+      "water": "Water",
+      "sleep": "Sleep",
+      "steps": "Steps"
+    },
+    "week": "Last 7 days",
+    "avg": "Average",
+    "colors": "Food colors",
+    "noFood": "Log a meal to see its color.",
+    "c": {
+      "green": "Eat often",
+      "yellow": "In balance",
+      "orange": "Enjoy in moderation"
+    },
+    "colorsNote": "Colors are a simple guide by protein and fiber per calorie. No food is bad.",
+    "eTitle": "Estimated energy",
+    "eEst": "kcal/day burned",
+    "eIntake": "Average eaten",
+    "eGoal": "Your goal",
+    "eReady": "Adjusted with your real data",
+    "eWait": "Log food 7 days and weigh in twice ({{n}} days so far)",
+    "eHow": "Your coach compares what you eat with how your weight changes to estimate what your body burns each day, and adjusts your goal gently.",
+    "eFormula": "Starting estimate from your profile",
+    "eNote": "An estimate for wellness, not a medical measurement.",
+    "pTitle": "Progress",
+    "mTitle": "Body measurements",
+    "mSub": "In centimeters, whenever you like",
+    "m": {
+      "waist": "Waist",
+      "hip": "Hip",
+      "chest": "Chest",
+      "arm": "Arm",
+      "thigh": "Thigh"
+    },
+    "mSave": "Save measurements",
+    "mSaved": "Saved",
+    "mHist": "History",
+    "phTitle": "Progress photos",
+    "phSub": "Compare how you change over time",
+    "phNone": "No photos yet",
+    "phAdd": "Add photo",
+    "phDel": "Delete all photos",
+    "phPrivacy": "Photos stay only on this phone. They are never uploaded, shared or sold.",
+    "lTitle": "2-minute lessons",
+    "lDone": "Completed",
+    "lEach": "Each lesson",
+    "lListen": "Listen",
+    "lMark": "Done",
+    "lNote": "Short habit lessons. They are general wellness tips, not medical advice.",
+    "l": {
+      "plate": {
+        "t": "The balanced plate",
+        "1": "Fill half your plate with vegetables or fruit.",
+        "2": "Add a quarter of protein, like eggs, chicken, beans or fish.",
+        "3": "The last quarter can be rice, arepa, tortilla or potato."
+      },
+      "hunger": {
+        "t": "Hunger or craving?",
+        "1": "Real hunger grows slowly and any food sounds good.",
+        "2": "A craving comes suddenly and asks for something specific.",
+        "3": "Wait ten minutes and drink water; then decide calmly."
+      },
+      "water": {
+        "t": "Water first",
+        "1": "Sometimes thirst feels like hunger.",
+        "2": "Keep a bottle where you can see it.",
+        "3": "A glass with each meal is an easy start."
+      },
+      "sleep": {
+        "t": "Sleep helps",
+        "1": "Sleeping little can increase appetite the next day.",
+        "2": "Try going to bed at the same time each night.",
+        "3": "Put the phone away thirty minutes before sleeping."
+      },
+      "protein": {
+        "t": "Protein keeps you full",
+        "1": "Protein helps you feel satisfied for longer.",
+        "2": "Include some in every meal.",
+        "3": "Eggs, yogurt, beans and chicken are simple options."
+      },
+      "slip": {
+        "t": "One slip is not failure",
+        "1": "A big meal does not erase your progress.",
+        "2": "Do not skip the next meal to compensate.",
+        "3": "Simply return to your usual plan."
+      },
+      "move": {
+        "t": "Move a little more",
+        "1": "Small walks add up during the day.",
+        "2": "Take the stairs or walk while you talk on the phone.",
+        "3": "Ten minutes after eating feels great."
+      },
+      "plan": {
+        "t": "Plan ahead",
+        "1": "Deciding in advance makes choices easier.",
+        "2": "Plan tomorrow's meals tonight.",
+        "3": "Keep healthy snacks ready at home."
+      }
+    },
+    "fTitle": "Friends and challenges",
+    "fMyPts": "My points this week",
+    "fGroups": "Groups",
+    "fYou": "Your nickname",
+    "fPrivacy": "Friends only see your nickname and challenge points. Never your weight, food or health data.",
+    "fNickL": "Nickname (2-20 letters)",
+    "fNick": "Choose a friendly nickname (no links or bad words).",
+    "fCreate": "Create group",
+    "fCodeL": "Invite code",
+    "fCode": "The code has 6 letters or numbers.",
+    "fJoin": "Join",
+    "fNotFound": "That group doesn't exist.",
+    "fFull": "That group is full.",
+    "fErr": "Couldn't connect. Try again.",
+    "fReported": "Thanks. We'll review it.",
+    "fInviteText": "Join my weekly healthy-habits challenge on Angie One:",
+    "fMe": "you",
+    "fPts": "pts",
+    "fReport": "Report",
+    "fInvite": "Invite by WhatsApp",
+    "fLeave": "Leave",
+    "fRules": "Be kind. Report any offensive nickname with 🚩; we review reports and remove whoever breaks the rules.",
+    "nTitle": "Nutrient goals",
+    "nGaps": "Today you could add more: {{list}}",
+    "nNone": "Pick the nutrients you want to follow.",
+    "nPick": "Add a goal",
+    "nNote": "Goals start at the daily reference values. A wellness guide, not a diagnosis.",
+    "fiber": "Fiber"
   }
 }
