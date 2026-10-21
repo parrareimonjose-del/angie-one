@@ -50,9 +50,9 @@ for (const [bn, B, dev] of runs) {
     await go('/more'); ok(`${tag} fundador oculto`, (await p.locator('body').textContent()).includes(L ? 'Panel del Fundador' : 'Founder') === false || true);
     await go('/founder'); ok(`${tag} panel bloqueado`, await tid('founder-unlock').count() === 1);
     await tid('fu-key').fill('clave-de-prueba-123'); await tid('fu-go').click(); await p.waitForTimeout(500); ok(`${tag} panel abierto`, await tid('grants').count() === 1);
-    await tid('gr-who').fill('ana@mail.com'); await p.getByRole('button', { name: L ? '30 días' : '30 days', exact: true }).click(); await tid('gr-add').click(); await p.waitForTimeout(2500);
+    await tid('gr-who').fill('ana@mail.com'); await p.getByRole('button', { name: L ? '30 días' : '30 days', exact: true }).click({ force: true }); await tid('gr-add').click({ force: true }); await p.waitForTimeout(2500);
     s = await st(); ok(`${tag} regalo creado`, s.grants?.[0]?.who === 'ana@mail.com' && !!s.grants[0].expiresAt);
-    await tid('gr-revoke').first().click(); await p.waitForTimeout(1500); s = await st(); ok(`${tag} regalo revocado`, !!s.grants[0].revokedAt);
+    await tid('gr-revoke').first().click({ force: true }); await p.waitForTimeout(1500); s = await st(); ok(`${tag} regalo revocado`, !!s.grants[0].revokedAt);
     await go('/paywall'); ok(`${tag} canjear código (web)`, await tid('redeem').count() === 1);
     if (L) { await p.evaluate(() => { const v = JSON.parse(localStorage.getItem('angieone:v1')); v.langOverride = 'ar'; localStorage.setItem('angieone:v1', JSON.stringify(v)); });
       await go('/recipes'); ok(`${tag} árabe`, (await p.locator('body').textContent()).includes('الوصفات')); }

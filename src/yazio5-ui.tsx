@@ -12,6 +12,8 @@ import { dayName, Row, speak } from './coach-ui';
 import { planDelta, weekTargets, weekAvg, type DayPlan, MOODS, FEEL, setWellness, wellnessWeek, NOTE_MAX, DV, VITS, MINS, dayMicro, pctDV, type Micro,
   filterRecipes, stepNext, stepPrev, mmss, MAX_MEALS, cleanMeals, markEaten } from './yazio5';
 import { RECIPES, RECIPE_CREDIT, rText } from './recipes-data';
+import { Sponsored } from './ext';
+import { isPremium } from './coach';
 
 export function useMealNames(): string[] {
   const { t } = useTranslation(); const { s: st } = useStore();
@@ -111,7 +113,7 @@ export function NutrientsScreen() {
 // ---------- 4) Recetario + modo cocina ----------
 const MEALK = ['breakfast', 'lunch', 'dinner', 'snack'] as const; const TAGS = ['protein', 'veggie', 'lowcarb', 'quick', 'latino', 'fiber'];
 export function RecipesScreen() {
-  const { t } = useTranslation(); const lang = curLang(); const [q, setQ] = useState(''); const [meal, setMeal] = useState(''); const [tags, setTags] = useState<string[]>([]); const [maxK, setMaxK] = useState(0);
+  const { t } = useTranslation(); const { s: st } = useStore(); const lang = curLang(); const [q, setQ] = useState(''); const [meal, setMeal] = useState(''); const [tags, setTags] = useState<string[]>([]); const [maxK, setMaxK] = useState(0);
   const list = filterRecipes(RECIPES, { q, meal: meal || undefined, tags, maxKcal: maxK || undefined }, (r) => rText(r.n, lang));
   return <Screen title={`🍲 ${t('y5.rTitle')}`}>
     <TextInput testID="r-q" accessibilityLabel={t('y5.rSearch')} placeholder={`🔎 ${t('y5.rSearch')}`} value={q} onChangeText={setQ} style={s.input} />
@@ -123,6 +125,7 @@ export function RecipesScreen() {
       <Card><View style={[s.row, { gap: 12 }]}><IconTile icon={r.emoji} size={56} /><View style={{ flex: 1 }}><Text style={{ fontSize: 18, fontWeight: '800', color: C.text }}>{rText(r.n, lang)}</Text>
         <Text style={s.muted}>⏱️ {r.min} min · 🔥 {fmtNum(r.kcal)} {t('u.kcal')} · {t('u.p')} {r.p} g</Text>
         <Row>{r.tags.slice(0, 3).map((g) => <Pill key={g} label={t(`y5.tag.${g}`)} />)}</Row></View></View></Card></Pressable>)}
+    {!isPremium(st) ? <Sponsored i={0} /> : null}
     <Text style={[s.muted, { fontSize: 12 }]}>{RECIPE_CREDIT}</Text></Screen>;
 }
 export function CookScreen() {
