@@ -6,6 +6,7 @@ import { C } from '../src/theme';
 import { today } from '../src/store';
 import { fmtNum } from '../src/i18n';
 import { useCoach, CoachLocked, useNames, Disclaimer } from '../src/coach-ui';
+import { RecipeSuggest } from '../src/coachkb-ui';
 import { coachTarget, weekday, burnedOn, workoutStreak, weekWorkouts, nextCheckInDays, planBurn } from '../src/coach';
 
 export default function CoachHub() {
@@ -19,6 +20,8 @@ export default function CoachHub() {
         <View style={{ flexDirection: 'row', gap: 10, marginTop: 4 }}>{[['🍽️', t('coach.diet')], ['🏋️', t('coach.workout')], ['⚖️', t('coach.checkin')]].map(([i, l]) => <View key={i} style={{ flex: 1, alignItems: 'center', gap: 6, padding: 10, borderRadius: 16, backgroundColor: C.tint }}><IconTile icon={i} size={44} /><Text style={{ fontWeight: '700', color: C.text, fontSize: 13, textAlign: 'center' }}>{l}</Text></View>)}</View>
       </IconCard>
       <Btn label={`✨ ${t('coach.create')}`} onPress={() => router.push('/coach-setup')} />
+      <RecipeSuggest />
+      <Btn kind="secondary" testID="ck-guide" label={t('ck.guide')} onPress={() => router.push('/coachguide')} />
       <Disclaimer />
     </Screen>
   );
@@ -36,6 +39,8 @@ export default function CoachHub() {
         {!day.rest && (done ? <Text style={{ color: C.success, fontWeight: '800', fontSize: 17 }}>✓ {t('coach.doneToday')}</Text>
           : <Btn label={`▶️ ${t('coach.startToday')}`} onPress={() => router.push({ pathname: '/player', params: { day: String(weekday()) } })} />)}
       </IconCard>
+      <RecipeSuggest />
+      <Btn kind="secondary" testID="ck-guide" label={t('ck.guide')} onPress={() => router.push('/coachguide')} />
       <Btn label={`🍽️  ${t('coach.diet')}`} onPress={() => router.push('/diet')} />
       <Btn kind="secondary" label={`🏋️  ${t('coach.workout')}`} onPress={() => router.push('/workout')} />
       <Btn kind={due ? 'accent' : 'ghost'} label={`⚖️  ${t('coach.checkin')}${due ? ' · ' + t('coach.due') : ''}`} onPress={() => router.push('/checkin')} />
