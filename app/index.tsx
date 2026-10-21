@@ -1,3 +1,4 @@
+import { CLONE_ENABLED } from '../src/flags';
 import { useEffect, useState } from 'react';
 import { View, Text, Image } from 'react-native';
 import { Redirect, router } from 'expo-router';
@@ -72,7 +73,7 @@ export default function Home() {
       <BillingReminder />
       <UpsellNudge />
       <SecurityNudge />
-      <CloneNudge />
+      {CLONE_ENABLED ? <CloneNudge /> : null}
       <TaxesCard />
       <SmartTips />
       <Btn label={`📸  ${t('nav.scan')}`} onPress={() => router.push('/scan')} />

@@ -1,3 +1,4 @@
+import { CLONE_ENABLED } from '../src/flags';
 import { router } from 'expo-router';
 import { useState } from 'react';
 import { useFounderMode } from '../src/grants-ui';
@@ -17,7 +18,7 @@ export default function More() {
         <ListRow icon="🌱" label={t('p2.hub')} onPress={go('/plus')} />
         <ListRow icon="✨" label={t('x.explore')} onPress={go('/explore')} />
         <ListRow icon="💪" label={t('coach.title')} onPress={go('/coach')} />
-        <ListRow testID="more-clone" icon="🧬" label={t('cl.title')} onPress={go('/clon')} />
+        {CLONE_ENABLED ? <ListRow testID="more-clone" icon="🧬" label={t('cl.title')} onPress={go('/clon')} /> : null}
         <ListRow testID="more-recipes" icon="🍲" label={t('y5.rTitle')} onPress={go('/recipes')} />
         <ListRow testID="more-days" icon="📅" label={t('y5.dtTitle')} onPress={go('/daytargets')} />
         <ListRow testID="more-well" icon="😊" label={t('y5.wTitle')} onPress={go('/wellness')} />

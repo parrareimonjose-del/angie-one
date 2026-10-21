@@ -1,3 +1,4 @@
+import { CLONE_ENABLED } from './flags';
 /** Tutoriales en video generados en la app: capturas reales de cada pantalla + subtítulos + voz del teléfono (gratis, sin servidor). */
 import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Pressable, Animated, Easing, AccessibilityInfo, Image, Platform } from 'react-native';
@@ -10,7 +11,7 @@ import { curLang, fmtLocale } from './i18n';
 
 export type Tut = { id: string; icon: string; route: string; focus: [number, number, number] };
 /** focus = posición vertical (0 arriba … 1 abajo) que se acerca en cada uno de los 3 pasos. */
-export const TUTS: Tut[] = [
+const ALL_TUTS: Tut[] = [
   { id: 'photo', icon: '📸', route: '/scan', focus: [0.2, 0.45, 0.75] }, { id: 'voice', icon: '🎙️', route: '/voice', focus: [0.2, 0.5, 0.8] },
   { id: 'barcode', icon: '🏷️', route: '/barcode', focus: [0.25, 0.5, 0.75] }, { id: 'coach', icon: '💪', route: '/coach', focus: [0.2, 0.5, 0.8] },
   { id: 'plan', icon: '🥗', route: '/diet', focus: [0.2, 0.5, 0.8] }, { id: 'gym', icon: '🏋️', route: '/gym', focus: [0.2, 0.5, 0.8] },
@@ -18,6 +19,7 @@ export const TUTS: Tut[] = [
   { id: 'menu', icon: '🍽️', route: '/menu', focus: [0.2, 0.5, 0.8] }, { id: 'datos', icon: '🧾', route: '/datos', focus: [0.2, 0.5, 0.8] },
   { id: 'security', icon: '🔐', route: '/security', focus: [0.2, 0.5, 0.8] }, { id: 'clone', icon: '🧬', route: '/clon', focus: [0.2, 0.5, 0.8] },
 ];
+export const TUTS: Tut[] = ALL_TUTS.filter((x) => CLONE_ENABLED || x.id !== 'clone');
 // Capturas reales de la app (Playwright). Español para es; inglés para el resto (los subtítulos y la voz sí van en cada idioma).
 const IMG: Record<string, Record<'es' | 'en', any>> = {
   photo: { es: require('../assets/tutoriales/es-photo.jpg'), en: require('../assets/tutoriales/en-photo.jpg') },

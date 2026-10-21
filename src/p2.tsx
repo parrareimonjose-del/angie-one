@@ -1,3 +1,4 @@
+import { CLONE_ENABLED } from './flags';
 /** Fase 2 (web): coach adaptativo, memoria, importar MyFitnessPal, voz, peso, recetas y planes, nevera/chef,
  *  antojos, sueño y estrés, avisos, menú, puntos, resumen semanal en voz, avatar 2D e IA Programadora. Todo local. */
 import { useRef, useState } from 'react';
@@ -399,7 +400,7 @@ export function Avatar() {
         <CardTitle>{t('p2.avShirt')}</CardTitle><Row>{SHIRT.map((c, i) => <Pressable key={i} accessibilityRole="button" accessibilityLabel={`${t('p2.avShirt')} ${i + 1}`} onPress={() => setAv((v) => ({ ...v, shirt: i }))} style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: c, borderWidth: av.shirt === i ? 4 : 0, borderColor: C.text }} />)}</Row></Card>
       <Card><CardTitle>🎁 {t('p2.ptRewards')}</CardTitle><Row><Chip label={t('p2.avNone')} active={!av.acc} onPress={() => setAv((v) => ({ ...v, acc: '' }))} />
         {REWARDS.map((r) => <Chip key={r.k} label={`${pts >= r.at ? r.icon : '🔒'} ${t('p2.rw.' + r.k)}`} active={av.acc === r.k} onPress={() => pts >= r.at && setAv((v) => ({ ...v, acc: r.k }))} />)}</Row></Card></>}
-    <Btn kind="secondary" label={`🧍 ${t('p2.avTwin')}`} onPress={() => router.push('/twin')} />
+    {CLONE_ENABLED ? <Btn kind="secondary" label={`🧍 ${t('p2.avTwin')}`} onPress={() => router.push('/twin')} /> : null}
     <Note k="p2.avNote" /></Screen>;
 }
 

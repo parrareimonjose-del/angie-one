@@ -1,3 +1,4 @@
+import { CLONE_ENABLED } from './flags';
 /** Fase 3 (web): red social, recetas, gimnasio, conexiones, ayuno, gemelo digital, resumen en video,
  *  modos de salud, familia, informe médico, compras, viaje, anuncios y B2B. Datos locales o de ejemplo. */
 import { useEffect, useRef, useState } from 'react';
@@ -21,7 +22,7 @@ export function Explore() {
     ['🎬', 'video', '/video'], ['🥗', 'health', '/health'], ['👨‍👩‍👧', 'family', '/family'], ['📄', 'report', '/report'], ['🛒', 'shop', '/shopping', true], ['✈️', 'travel', '/travel'], ['🧑‍🏫', 'b2b', '/b2b']];
   const p4: [string, string, string, boolean?][] = [['🧑‍⚕️', 'market', '/market', true], ['🏢', 'corp', '/corporate'], ['🐶', 'pet', '/pet'], ['💬', 'whatsapp', '/whatsapp', true]];
   if (FEATURES.purposeStore) p4.splice(2, 0, ['🛍️', 'store', '/store', true]);
-  const grid = (a: typeof p3) => <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, justifyContent: 'space-between' }}>{a.map(([i, k, h, p]) => <Tile key={k} icon={i} label={t(`x.t.${k}`)} pending={p} onPress={() => router.push(h as any)} />)}</View>;
+  const grid = (a: typeof p3) => <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, justifyContent: 'space-between' }}>{a.filter(([, k]) => CLONE_ENABLED || k !== 'twin').map(([i, k, h, p]) => <Tile key={k} icon={i} label={t(`x.t.${k}`)} pending={p} onPress={() => router.push(h as any)} />)}</View>;
   return <Screen title={`✨ ${t('x.explore')}`}>{grid(p3)}<CardTitle>{t('x.more4')}</CardTitle>{grid(p4)}<Note k="x.pendingLegend" /></Screen>;
 }
 
@@ -143,7 +144,7 @@ export function Twin() {
         <Rect x={70 - 24 * w} y={64} width={48 * w} height={70} rx={20} fill={C.primary} /><Rect x={70 - 22} y={132} width={18} height={56} rx={8} fill={C.secondary} /><Rect x={74} y={132} width={18} height={56} rx={8} fill={C.secondary} /></Svg></Animated.View>
       <Text style={{ fontSize: 40 }}>{props[act]}</Text><T style={{ textAlign: 'center' }}>{t(`x.tw.${act}`, { kcal: fmtNum(coachTarget(st).kcal) })}</T></Card>
     <Row>{(['talk', 'eat', 'cook', 'train'] as const).map((k) => <Chip key={k} label={t(`x.twa.${k}`)} active={act === k} onPress={() => go(k)} />)}</Row>
-    <Btn label={`🧬  ${t('cl.fromTwin')}`} onPress={() => router.push('/clon' as any)} />
+    {CLONE_ENABLED ? <Btn label={`🧬  ${t('cl.fromTwin')}`} onPress={() => router.push('/clon' as any)} /> : null}
     <Note k="x.twinNote" /><Disclaimer /></Screen>;
 }
 
