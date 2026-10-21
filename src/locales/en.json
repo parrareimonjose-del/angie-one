@@ -221,43 +221,55 @@
   "docs": {
     "privacy": {
       "title": "Privacy Policy",
-      "updated": "Last updated: October 15, 2026",
+      "updated": "Last updated: October 21, 2026",
       "sections": [
         [
           "Who we are",
           "Angie One is an app by Parra Apps. Contact: angieoneapp.support@gmail.com."
         ],
         [
-          "Data we use",
-          "Your profile (goal, weight, height, age, sex, activity), your food diary, water and challenges. Today they are stored only on your device; we have no accounts or servers holding your diary."
+          "Data on your phone",
+          "Your profile (goal, weight, height, age, sex, activity), food diary, water, mood notes, measurements, progress photos and habits are stored only on your device. We have no accounts or servers with your diary."
         ],
         [
-          "Photos and text for the AI",
-          "If AI is on, the photo or description of your meal is sent to our proxy (Cloudflare) and to Google Gemini only to calculate the estimate. We do not store it. You can turn AI off in Settings and then nothing is sent."
+          "Photos, voice and text for the AI",
+          "If the AI is on, the photo, voice recording or description of your meal (and, for the coach and the plan, the age, weight, goal and preferences you typed in your profile) is sent to our intermediate server (Cloudflare) and to Google Gemini only to answer. We don't keep it. You can turn the AI off in Settings. Progress photos are never sent."
         ],
         [
-          "Barcodes",
-          "The barcode number is looked up in Open Food Facts, a public database. No personal data is sent."
+          "Food database and barcodes",
+          "Barcode numbers and searches are checked in our food list (Open Food Facts and USDA). If you add a missing product, we store only the barcode, name, brand and label values, with no personal data, so other people can use it."
+        ],
+        [
+          "Health apps",
+          "If you connect Apple Health or Health Connect, Angie One only reads steps, weight and workouts to adjust your daily goal. That data stays on your phone, is never sent to the AI or to third parties, and is never used for ads."
+        ],
+        [
+          "Encrypted cloud backup (optional)",
+          "If you turn on the backup, your data is encrypted on your phone with a code only you have. Our server only sees encrypted bytes. You can delete it at any time."
+        ],
+        [
+          "Friends and challenges (optional)",
+          "If you join a group, we store your nickname, an anonymous ID and your weekly challenge points. Never your weight, food or health data. You can report and block, and we review every report."
+        ],
+        [
+          "Reports",
+          "If you report food data or an AI answer, we store the report text for up to 180 days to fix errors, with no personal data."
         ],
         [
           "We never sell your health data",
-          "We do not sell, rent or share your health or food data with advertisers or third parties. We do not use your health data for advertising."
+          "We don't sell, rent or share your health or food data with advertisers or third parties, and we don't use it for ads. There are no ad trackers."
         ],
         [
-          "Your rights",
-          "You can view and delete all your data in Settings → Delete my data. If you live in California (CCPA), the EU (GDPR) or anywhere with privacy laws, you can exercise your rights by emailing us."
+          "Your rights and deleting your account",
+          "You can delete your account and all your data in Settings → Delete account; this also deletes your cloud backup and takes you out of your friend groups. If you live in California (CCPA), the EU (GDPR) or another place with privacy laws, write to our email to exercise your rights."
         ],
         [
-          "Children",
-          "Angie One is not directed to children under 13 (16 in the EU)."
+          "Minors",
+          "Angie One is not directed at children under 13 (16 in the EU)."
         ],
         [
-          "Security and breaches",
-          "We use encrypted connections (HTTPS). If a breach affects your data we will notify you as required by law (including the FTC Health Breach Notification Rule)."
-        ],
-        [
-          "Changes",
-          "If we change this policy we will show it in the app before it applies."
+          "Security, breaches and changes",
+          "We use encrypted connections (HTTPS). If a breach affects your data we will notify you as the law requires (including the FTC Health Breach Notification Rule). If we change this policy we will show it in the app before it applies."
         ]
       ]
     },
@@ -2220,5 +2232,39 @@
     "nPick": "Add a goal",
     "nNote": "Goals start at the daily reference values. A wellness guide, not a diagnosis.",
     "fiber": "Fiber"
+  },
+  "rv": {
+    "aiLabel": "AI-generated answer. It can be wrong.",
+    "aiReport": "Report this AI answer",
+    "aiReported": "Thanks. We'll review this answer.",
+    "cTitle": "Add it for everyone",
+    "cSub": "Type the label values per 100 g. It helps other people right away, and we review it.",
+    "cName": "Product name",
+    "cBrand": "Brand (optional)",
+    "cK": "kcal",
+    "cP": "Protein g",
+    "cC": "Carbs g",
+    "cF": "Fat g",
+    "cSend": "Send and log",
+    "cThanks": "Thank you! It's now in the Angie One food list.",
+    "cSaved": "Logged. We couldn't send it now; try again later.",
+    "cBad": "Check the numbers: calories don't match protein, carbs and fat.",
+    "fBlocked": "Blocked: you won't see them anymore. We'll review the report.",
+    "fReportBlock": "Report and block",
+    "fUnblock": "Unblock ({{n}})",
+    "fRules": "Be kind. Tap 🚩 to report and block someone: you stop seeing them right away, and a person from our team reviews every report. Nobody is removed without review.",
+    "modTitle": "Moderation",
+    "modSub": "Reports from friends, food data and AI answers, plus products added by users.",
+    "modLoad": "Load reports",
+    "modNeedKey": "Type the founder key in Free Premium first.",
+    "modErr": "Couldn't load. Check the key and your connection.",
+    "modFriends": "Friends",
+    "modFood": "Food and AI",
+    "modContrib": "Products added by users",
+    "modRemove": "Remove from group",
+    "modDismiss": "Dismiss",
+    "modDelete": "Delete",
+    "modEmpty": "Nothing to review.",
+    "modNote": "Reports never hide anyone automatically: you decide. Answer within 24 hours, as the app stores ask."
   }
 }

@@ -1,3 +1,4 @@
+import { AIReport } from '../src/review-ui';
 import { useState } from 'react';
 import { View, Text, TextInput, ActivityIndicator } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -39,6 +40,7 @@ export default function Chat() {
       {c.chat.map((m, i) => (
         <View key={i} testID={m.role === 'coach' ? 'chat-reply' : undefined} style={{ alignSelf: m.role === 'user' ? 'flex-end' : 'flex-start', maxWidth: '88%', backgroundColor: m.role === 'user' ? C.secondary : C.card, borderRadius: 20, padding: 14 }}>
           <Text style={{ color: m.role === 'user' ? C.white : C.text, fontSize: 17, lineHeight: 24 }}>{plain(m.text)}</Text>
+          {m.role === 'coach' ? <AIReport kind="chat" text={m.text} /> : null}
         </View>
       ))}
       {busy && <ActivityIndicator size="large" color={C.primary} />}

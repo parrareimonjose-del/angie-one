@@ -9,6 +9,7 @@ import { ADS } from '../src/ext';
 import { DevAI } from '../src/p2';
 import { FounderData } from '../src/datos-ui';
 import { GrantsCard, useFounderMode, FounderUnlock } from '../src/grants-ui';
+import { ModerationCard } from '../src/review-ui';
 import { LedgerCard, PanelMaestroCard, AdminAICard } from '../src/faltantes-ui';
 export const split = (net: number) => ({ ops: Math.round(net * 60) / 100, growth: Math.round(net * 25) / 100, social: Math.round(net * 15) / 100 });
 
@@ -36,6 +37,7 @@ export default function Founder() {
       <Card><CardTitle>{t('x.adsTitle')}</CardTitle>{ADS.map((a) => <T key={a.id}>✓ {a.brand}</T>)}<Text style={s.muted}>{t('x.adWhy')}</Text></Card>
       <LedgerCard />
       <GrantsCard />
+      <ModerationCard />
       <AdminAICard />
       <PanelMaestroCard />
       <FounderData />

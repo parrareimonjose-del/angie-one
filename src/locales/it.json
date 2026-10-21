@@ -259,43 +259,55 @@
   "docs": {
     "privacy": {
       "title": "Informativa sulla privacy",
-      "updated": "Ultimo aggiornamento: 15 ottobre 2026",
+      "updated": "Ultimo aggiornamento: 21 ottobre 2026",
       "sections": [
         [
           "Chi siamo",
-          "Angie One è un'applicazione di Parra Apps. Contatto: angieoneapp.support@gmail.com."
+          "Angie One è un'app di Parra Apps. Contatto: angieoneapp.support@gmail.com."
         ],
         [
-          "Dati che utilizziamo",
-          "Il tuo profilo (obiettivo, peso, altezza, età, sesso, attività), il tuo diario alimentare, l'acqua e le sfide. Attualmente sono memorizzati solo sul tuo dispositivo; non abbiamo account o server che conservano il tuo diario."
+          "Dati sul tuo telefono",
+          "Il tuo profilo (obiettivo, peso, altezza, età, sesso, attività), il diario alimentare, l'acqua, le note sull'umore, le misurazioni, le foto dei progressi e le abitudini sono memorizzati solo sul tuo dispositivo. Non abbiamo account o server con il tuo diario."
         ],
         [
-          "Foto e testo per l'IA",
-          "Se l'IA è attiva, la foto o la descrizione del tuo pasto vengono inviate al nostro proxy (Cloudflare) e a Google Gemini esclusivamente per calcolare la stima. Non le memorizziamo. Puoi disattivare l'IA nelle Impostazioni e in tal caso non verrà inviato nulla."
+          "Foto, voce e testo per l'IA",
+          "Se l'IA è attiva, la foto, la registrazione vocale o la descrizione del tuo pasto (e, per il coach e il piano, l'età, il peso, l'obiettivo e le preferenze inserite nel profilo) vengono inviate al nostro server intermedio (Cloudflare) e a Google Gemini solo per rispondere. Non li conserviamo. Puoi disattivare l'IA nelle Impostazioni. Le foto dei progressi non vengono mai inviate."
         ],
         [
-          "Codici a barre",
-          "Il numero del codice a barre viene cercato su Open Food Facts, un database pubblico. Non viene inviato alcun dato personale."
+          "Database alimentare e codici a barre",
+          "I numeri dei codici a barre e le ricerche vengono verificati nel nostro elenco di cibi (Open Food Facts e USDA). Se aggiungi un prodotto mancante, memorizziamo solo codice a barre, nome, marca e valori dell'etichetta, senza dati personali, in modo che altre persone possano usarlo."
         ],
         [
-          "Non vendiamo mai i tuoi dati sanitari",
-          "Non vendiamo, prendiamo a noleggio o condividiamo i tuoi dati sanitari o alimentari con inserzionisti o terze parti. Non utilizziamo i tuoi dati sanitari a fini pubblicitari."
+          "App per la salute",
+          "Se colleghi Apple Health o Health Connect, Angie One legge solo passi, peso e allenamenti per regolare il tuo obiettivo giornaliero. Questi dati rimangono sul tuo telefono, non vengono mai inviati all'IA o a terze parti e non vengono mai utilizzati per scopi pubblicitari."
         ],
         [
-          "I tuoi diritti",
-          "Puoi visualizzare ed eliminare tutti i tuoi dati in Impostazioni → Elimina i miei dati. Se vivi in California (CCPA), nell'UE (GDPR) o in qualsiasi altro luogo dotato di leggi sulla privacy, puoi esercitare i tuoi diritti inviandoci un'e-mail."
+          "Backup cloud crittografato (facoltativo)",
+          "Se attivi il backup, i tuoi dati vengono crittografati sul tuo telefono con un codice che solo tu possiedi. Il nostro server vede solo byte crittografati. Puoi eliminarlo in qualsiasi momento."
+        ],
+        [
+          "Amici e sfide (facoltativo)",
+          "Se ti unisci a un gruppo, memorizziamo il tuo nickname, un ID anonimo e i tuoi punti delle sfide settimanali. Mai il tuo peso, i tuoi dati alimentari o sulla salute. Puoi segnalare e bloccare, e noi esamineremo ogni segnalazione."
+        ],
+        [
+          "Segnalazioni",
+          "Se segnali dati alimentari o una risposta dell'IA, memorizziamo il testo della segnalazione fino a 180 giorni per correggere gli errori, senza dati personali."
+        ],
+        [
+          "Non vendiamo mai i tuoi dati sulla salute",
+          "Non vendiamo, prendiamo a noleggio o condividiamo i tuoi dati sulla salute o alimentari con inserzionisti o terze parti, e non li usiamo per annunci pubblicitari. Non sono presenti tracker pubblicitari."
+        ],
+        [
+          "I tuoi diritti e l'eliminazione del tuo account",
+          "Puoi eliminare il tuo account e tutti i tuoi dati in Impostazioni → Elimina account; questo elimina anche il tuo backup sul cloud e ti rimuove dai gruppi di amici. Se risiedi in California (CCPA), nell'UE (GDPR) o in un'altra area con leggi sulla privacy, scrivi alla nostra email per esercitare i tuoi diritti."
         ],
         [
           "Minori",
-          "Angie One non è rivolta a minori di 13 anni (16 nell'UE)."
+          "Angie One non è rivolto a minori di 13 anni (16 nell'UE)."
         ],
         [
-          "Sicurezza e violazioni",
-          "Utilizziamo connessioni crittografate (HTTPS). In caso di violazione che interessi i tuoi dati, ti avviseremo come richiesto dalla legge (inclusa la FTC Health Breach Notification Rule)."
-        ],
-        [
-          "Modifiche",
-          "Se modifichiamo questa informativa, la mostreremo nell'app prima che diventi effettiva."
+          "Sicurezza, violazioni e modifiche",
+          "Utilizziamo connessioni crittografate (HTTPS). Se una violazione dovesse interessare i tuoi dati, ti avviseremo come richiesto dalla legge (inclusa la FTC Health Breach Notification Rule). Se modifichiamo questa informativa, la mostreremo nell'app prima che diventi effettiva."
         ]
       ]
     },
@@ -2220,5 +2232,39 @@
     "nPick": "Aggiungi un obiettivo",
     "nNote": "Gli obiettivi partono dai valori di riferimento giornaliferi. Una guida per il benessere, non una diagnosi.",
     "fiber": "Fibre"
+  },
+  "rv": {
+    "aiLabel": "Risposta generata dall'IA. Potrebbe non essere corretta.",
+    "aiReport": "Segnala questa risposta dell'IA",
+    "aiReported": "Grazie. Revisioneremo questa risposta.",
+    "cTitle": "Aggiungilo per tutti",
+    "cSub": "Inserisci i valori dell'etichetta per 100 g. Aiuta subito gli altri e noi lo verificheremo.",
+    "cName": "Nome del prodotto",
+    "cBrand": "Marca (facoltativo)",
+    "cK": "kcal",
+    "cP": "Proteine g",
+    "cC": "Carboidrati g",
+    "cF": "Grassi g",
+    "cSend": "Invia e registra",
+    "cThanks": "Grazie! Ora è nell'elenco dei cibi di Angie One.",
+    "cSaved": "Registrato. Non è stato possibile inviarlo adesso; riprova più tardi.",
+    "cBad": "Controlla i numeri: le calorie non corrispondono a proteine, carboidrati e grassi.",
+    "fBlocked": "Bloccato: non li vedrai più. Esamineremo la segnalazione.",
+    "fReportBlock": "Segnala e blocca",
+    "fUnblock": "Sblocca ({{n}})",
+    "fRules": "Sii gentile. Tocca 🚩 per segnalare e bloccare qualcuno: smetterai di vederlo immediatamente e un membro del nostro team esaminerà ogni segnalazione. Nessuno viene rimosso senza una revisione.",
+    "modTitle": "Moderazione",
+    "modSub": "Segnalazioni da amici, dati alimentari e risposte dell'IA, oltre ai prodotti aggiunti dagli utenti.",
+    "modLoad": "Carica segnalazioni",
+    "modNeedKey": "Inserisci prima la chiave fondatore in Free Premium.",
+    "modErr": "Impossibile caricare. Controlla la chiave e la tua connessione.",
+    "modFriends": "Amici",
+    "modFood": "Cibo e IA",
+    "modContrib": "Prodotti aggiunti dagli utenti",
+    "modRemove": "Rimuovi dal gruppo",
+    "modDismiss": "Ignora",
+    "modDelete": "Elimina",
+    "modEmpty": "Nulla da revisionare.",
+    "modNote": "Le segnalazioni non nascondono mai nessuno automaticamente: decidi tu. Rispondi entro 24 ore, come richiesto dagli store delle app."
   }
 }

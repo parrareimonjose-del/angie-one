@@ -259,43 +259,55 @@
   "docs": {
     "privacy": {
       "title": "Gizlilik Politikası",
-      "updated": "Son güncelleme: 15 Ekim 2026",
+      "updated": "Son güncelleme: 21 Ekim 2026",
       "sections": [
         [
-          "Biz Kimiz?",
-          "Angie One, bir Parra Apps uygulamasıdır. İletişim: angieoneapp.support@gmail.com."
+          "Biz kimiz",
+          "Angie One, Parra Apps tarafından sunulan bir uygulamadır. İletişim: angieoneapp.support@gmail.com."
         ],
         [
-          "Kullandığımız Veriler",
-          "Profiliniz (hedefiniz, kilo, boy, yaş, cinsiyet, aktivite düzeyiniz), yemek günlüğünüz, su tüketiminiz ve meydan okumalarınız. Şu anda bunlar yalnızca cihazınızda saklanır; günlüğünüzü barındıran herhangi bir hesabımız veya sunucumuz yoktur."
+          "Telefonunuzdaki veriler",
+          "Profiliniz (hedef, kilo, boy, yaş, cinsiyet, aktivite), yemek günlüğünüz, su, ruh hali notlarınız, ölçümleriniz, ilerleme fotoğraflarınız ve alışkanlıklarınız yalnızca cihazınızda saklanır. Günlüğünüze ait hiçbir hesabımız veya sunucumuz yoktur."
         ],
         [
-          "Yapay Zeka İçin Fotoğraflar ve Metinler",
-          "Yapay zeka açıksa, yemeğinizin fotoğrafı veya açıklaması, yalnızca tahmini hesaplamak amacıyla vekil sunucumuza (Cloudflare) ve Google Gemini'ye gönderilir. Bunu saklamıyoruz. Yapay zekayı Ayarlar'dan kapatabilirsiniz; bu durumda hiçbir şey gönderilmez."
+          "Yapay zeka için fotoğraflar, ses ve metin",
+          "Yapay zeka açıksa, fotoğrafınız, ses kaydınız veya öğününüzün açıklaması (koç ve plan için ise profilinizde girdiğiniz yaş, kilo, hedef ve tercihleriniz) yalnızca yanıt vermek üzere ara sunucumuza (Cloudflare) ve Google Gemini'ye gönderilir. Bunu saklamıyoruz. Yapay zekayı Ayarlar'dan kapatabilirsiniz. İlerleme fotoğrafları asla gönderilmez."
         ],
         [
-          "Barkodlar",
-          "Barkod numarası, açık bir veritabanı olan Open Food Facts üzerinden sorgulanır. Hiçbir kişisel veri gönderilmez."
+          "Yemek veritabanı ve barkodlar",
+          "Barkod numaraları ve aramalar yemek listemizde (Open Food Facts ve USDA) kontrol edilir. Eksik bir ürün eklerseniz, diğer kişilerin kullanabilmesi için kişisel veri olmaksızın yalnızca barkodu, adı, markayı ve etiket değerlerini saklarız."
         ],
         [
-          "Sağlık Verilerinizi Asla Satmayız",
-          "Sağlık veya yemek verilerinizi reklamverenlerle veya üçüncü taraflarla satmaz, kiralamaz veya paylaşmayız. Sağlık verilerinizi reklam amacıyla kullanmayız."
+          "Sağlık uygulamaları",
+          "Apple Health veya Health Connect'i bağlarsanız, Angie One günlük hedefinizi ayarlamak için yalnızca adımları, kiloyu ve antrenmanları okur. Bu veriler telefonunuzda kalır, yapay zekaya veya üçüncü taraflara asla gönderilmez ve reklamlar için asla kullanılmaz."
         ],
         [
-          "Haklarınız",
-          "Tüm verilerinizi Ayarlar → Verilerimi Sil bölümünden görüntüleyebilir ve silebilirsiniz. Kaliforniya (CCPA), AB (GDPR) veya gizlilik yasalarına sahip herhangi bir yerde yaşıyorsanız, bize e-posta göndererek haklarınızı kullanabilirsiniz."
+          "Şifrelenmiş bulut yedeklemesi (isteğe bağlı)",
+          "Yedeklemeyi açarsanız, verileriniz telefonunuzda yalnızca sizin bildiğiniz bir kodla şifrelenir. Sunucumuz yalnızca şifrelenmiş baytları görür. İstediğiniz zaman silebilirsiniz."
         ],
         [
-          "Çocuklar",
+          "Arkadaşlar ve yarışmalar (isteğe bağlı)",
+          "Bir gruba katılırsanız takma adınızı, anonim bir kimliği ve haftalık yarışma puanlarınızı saklarız. Kilonuz, yemek veya sağlık verileriniz asla saklanmaz. Bildirebilir ve engelleyebilirsiniz; her bildirimi inceleriz."
+        ],
+        [
+          "Bildirimler",
+          "Yemek verilerini veya yapay zeka yanıtını bildirirseniz, hataları düzeltmek için bildirim metnini kişisel veri olmaksızın 180 güne kadar saklarız."
+        ],
+        [
+          "Sağlık verilerinizi asla satmayız",
+          "Sağlık veya yemek verilerinizi reklam verenlerle veya üçüncü taraflarla satmaz, kiralamaz veya paylaşmaz ve bunları reklamlar için kullanmayiz. Reklam takipçileri yoktur."
+        ],
+        [
+          "Haklarınız ve hesabınızı silme",
+          "Hesabınızı ve tüm verilerinizi Ayarlar → Hesabı sil bölümünden silebilirsiniz; bu işlem ayrıca bulut yedeğinizi siler ve arkadaş gruplarınızdan çıkarır. Kaliforniya (CCPA), AB (GDPR) veya gizlilik yasalarına sahip başka bir yerde yaşıyorsanız, haklarınızı kullanmak için e-posta adresimize yazın."
+        ],
+        [
+          "Küçük yaştakiler",
           "Angie One, 13 yaşın altındaki çocuklara (AB'de 16) yönelik değildir."
         ],
         [
-          "Güvenlik ve İhlaller",
-          "Şifreli bağlantılar (HTTPS) kullanıyoruz. Bir veri ihlali sizi etkilerse, yasaların gerektirdiği şekilde (FTC Sağlık İhlali Bildirim Kuralı dahil) sizi bilgilendireceğiz."
-        ],
-        [
-          "Değişiklikler",
-          "Bu politikayı değiştirirsek, yürürlüğe girmeden önce bunu uygulamada göstereceğiz."
+          "Güvenlik, ihlaller ve değişiklikler",
+          "Şifrelenmiş bağlantılar (HTTPS) kullanıyoruz. Bir ihlal verilerinizi etkilerse yasaların gerektirdiği şekilde (FTC Sağlık İhlali Bildirim Kuralı dahil) sizi bilgilendireceğiz. Bu politikayı değiştirirsek, yürürlüğe girmeden önce uygulamada göstereceğiz."
         ]
       ]
     },
@@ -2220,5 +2232,39 @@
     "nPick": "Hedef ekle",
     "nNote": "Hedefler günlük referans değerlerinden başlar. Teşhis değil, bir zindelik rehberidir.",
     "fiber": "Lif"
+  },
+  "rv": {
+    "aiLabel": "Yapay zeka tarafından üretilen yanıt. Yanlış olabilir.",
+    "aiReport": "Bu yapay zeka yanıtını bildir",
+    "aiReported": "Teşekkürler. Bu yanıtı inceleyeceğiz.",
+    "cTitle": "Herkes için ekle",
+    "cSub": "Etiket değerlerini 100 g başına gir. Diğer kişilere hemen yardımcı olur ve bunu inceleriz.",
+    "cName": "Ürün adı",
+    "cBrand": "Marka (isteğe bağlı)",
+    "cK": "kcal",
+    "cP": "Protein g",
+    "cC": "Karbonhidrat g",
+    "cF": "Yağ g",
+    "cSend": "Gönder ve kaydet",
+    "cThanks": "Teşekkürler! Artık Angie One yemek listesinde.",
+    "cSaved": "Kaydedildi. Şu anda gönderemedik; daha sonra tekrar dene.",
+    "cBad": "Sayıları kontrol et: kaloriler protein, karbonhidrat ve yağ ile uyuşmuyor.",
+    "fBlocked": "Engellendi: onları artık görmeyeceksin. Bildirimi inceleyeceğiz.",
+    "fReportBlock": "Bildir ve engelle",
+    "fUnblock": "Engeli kaldır ({{n}})",
+    "fRules": "Nazik ol. Birini bildirmek ve engellemek için 🚩 simgesine dokun: onları görmeyi hemen bırakırsın ve ekibimizden biri her bildirimi inceler. Kimse inceleme olmadan çıkarılmaz.",
+    "modTitle": "Moderasyon",
+    "modSub": "Arkadaşlardan gelen bildirimler, yemek verileri ve yapay zeka yanıtları ile kullanıcılar tarafından eklenen ürünler.",
+    "modLoad": "Bildirimleri yükle",
+    "modNeedKey": "Önce Free Premium'da kurucu anahtarını gir.",
+    "modErr": "Yüklenemedi. Anahtarını ve bağlantını kontrol et.",
+    "modFriends": "Arkadaşlar",
+    "modFood": "Yemek ve yapay zeka",
+    "modContrib": "Kullanıcılar tarafından eklenen ürünler",
+    "modRemove": "Gruptan çıkar",
+    "modDismiss": "Kapat",
+    "modDelete": "Sil",
+    "modEmpty": "İncelenecek bir şey yok.",
+    "modNote": "Bildirimler kimseyi otomatik olarak gizlemez: buna sen karar verirsin. Uygulama mağazalarının istediği gibi 24 saat içinde yanıt ver."
   }
 }

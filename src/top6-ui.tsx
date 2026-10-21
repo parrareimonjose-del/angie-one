@@ -103,8 +103,8 @@ export function LessonsScreen() {
 }
 
 // ---------- 5) Amigos y retos ----------
-type Grp = { code: string; name: string; members: { id: string; nick: string; pts: number }[] };
-type Fr = { id: string; nick: string; groups: string[]; sent?: string };
+type Grp = { code: string; name: string; me?: string; members: { pid: string; nick: string; pts: number }[] };
+type Fr = { id: string; nick: string; groups: string[]; sent?: string; blocked?: string[] };
 const rid = () => Array.from(crypto.getRandomValues(new Uint8Array(10))).map((x) => (x % 36).toString(36)).join('');
 async function fx(path: string, body: object): Promise<any> {
   const ctl = new AbortController(); const tm = setTimeout(() => ctl.abort(), 15000);
@@ -116,7 +116,7 @@ export function FriendsScreen() {
   const week = Array.from({ length: 7 }, (_, i) => dayIso(i)); const pts = challengePoints(week.map((d) => useHabit(d).total));
   const me = fr.id || rid();
   const ensure = () => { const n = cleanNick(nick); if (!n) { setErr(t('t6.fNick')); return null; } if (!fr.id || fr.nick !== n) setFr((v) => ({ ...v, id: me, nick: n })); return n; };
-  const refresh = async (list = fr.groups) => { const out: Grp[] = []; for (const c of list) { try { out.push(await fx('get', { code: c })); } catch { /* grupo borrado */ } } setGs(out); };
+  const refresh = async (list = fr.groups) => { const out: Grp[] = []; for (const c of list) { try { out.push(await fx('get', { code: c, id: fr.id })); } catch { /* grupo borrado */ } } setGs(out); };
   useEffect(() => { refresh(); }, [fr.groups.join()]);
   useEffect(() => { // 1 envío de puntos al día como máximo (ahorra escrituras gratis)
     if (!fr.id || !fr.groups.length || fr.sent === today()) return; Promise.all(fr.groups.map((c) => fx('score', { code: c, id: fr.id, pts }).catch(() => {}))).then(() => { setFr((v) => ({ ...v, sent: today() })); refresh(); }); }, [fr.id, fr.groups.join()]);
@@ -124,7 +124,9 @@ export function FriendsScreen() {
   const create = () => run(async () => { const n = ensure(); if (!n) return; const g = await fx('create', { id: me, nick: n }); setFr((v) => ({ ...v, id: me, nick: n, groups: [...v.groups, g.code] })); });
   const join = () => run(async () => { const n = ensure(); const c = code.trim().toUpperCase(); if (!n) return; if (!validGroup(c)) { setErr(t('t6.fCode')); return; } await fx('join', { code: c, id: me, nick: n }); setFr((v) => ({ ...v, id: me, nick: n, groups: [...new Set([...v.groups, c])] })); setCode(''); });
   const leave = (c: string) => run(async () => { await fx('leave', { code: c, id: fr.id }).catch(() => {}); setFr((v) => ({ ...v, groups: v.groups.filter((x) => x !== c) })); });
-  const report = (c: string, target: string) => run(async () => { await fx('report', { code: c, id: fr.id, target, why: 'nick' }); setErr(t('t6.fReported')); });
+  // Reportar = bloquear para mí + enviar a la cola del fundador. Nadie queda oculto para los demás sin revisión humana.
+  const report = (c: string, target: string) => run(async () => { setFr((v) => ({ ...v, blocked: [...new Set([...(v.blocked || []), target])] })); await fx('report', { code: c, id: fr.id, target, why: 'abuse' }).catch(() => {}); setErr(t('rv.fBlocked')); });
+  const unblock = () => setFr((v) => ({ ...v, blocked: [] }));
   const invite = (c: string) => { const url = whatsappLink(c, t('t6.fInviteText')); Platform.OS === 'web' ? window.open(url, '_blank') : Linking.openURL(url); };
   return <Screen title={`🤝 ${t('t6.fTitle')}`}>
     <StatRow items={[{ icon: '🏆', value: pts, label: t('t6.fMyPts') }, { icon: '👥', value: gs.length, label: t('t6.fGroups') }]} />
@@ -135,11 +137,12 @@ export function FriendsScreen() {
       <Btn testID="f-join" kind="secondary" label={`🔗 ${t('t6.fJoin')}`} onPress={join} />
       {busy ? <Text style={s.muted}>…</Text> : null}{err ? <Text testID="f-err" style={{ color: C.primary, fontWeight: '800' }}>{err}</Text> : null}</IconCard>
     {gs.map((g) => <Card key={g.code} testID="f-group"><CardTitle>👥 {g.name} · {g.code}</CardTitle>
-      {[...g.members].sort((a, b) => b.pts - a.pts).map((m, i) => <View key={m.id} style={[s.row, { gap: 8, alignItems: 'center' }]}><Text style={{ flex: 1, fontWeight: '800', color: C.text }}>{['🥇', '🥈', '🥉'][i] || '•'} {m.nick}{m.id === fr.id ? ` (${t('t6.fMe')})` : ''}</Text><Pill label={`${m.pts} ${t('t6.fPts')}`} />
-        {m.id !== fr.id ? <Btn small kind="ghost" testID="f-report" label="🚩" a11y={t('t6.fReport')} onPress={() => report(g.code, m.id)} style={{ width: 52, paddingHorizontal: 0 }} /> : null}</View>)}
+      {[...g.members].filter((m) => !(fr.blocked || []).includes(m.pid)).sort((a, b) => b.pts - a.pts).map((m, i) => <View key={m.pid} style={[s.row, { gap: 8, alignItems: 'center' }]}><Text style={{ flex: 1, fontWeight: '800', color: C.text }}>{['🥇', '🥈', '🥉'][i] || '•'} {m.nick}{m.pid === g.me ? ` (${t('t6.fMe')})` : ''}</Text><Pill label={`${m.pts} ${t('t6.fPts')}`} />
+        {m.pid !== g.me ? <Btn small kind="ghost" testID="f-report" label="🚩" a11y={t('rv.fReportBlock')} onPress={() => report(g.code, m.pid)} style={{ width: 52, paddingHorizontal: 0 }} /> : null}</View>)}
       <Row><Btn small label={`💬 ${t('t6.fInvite')}`} onPress={() => invite(g.code)} style={{ flex: 1 }} /><Btn small kind="ghost" label={t('t6.fLeave')} onPress={() => leave(g.code)} style={{ flex: 1 }} /></Row>
       <Text style={[s.muted, { fontSize: 12 }]} selectable>{inviteLink(g.code)}</Text></Card>)}
-    <InfoNote text={t('t6.fRules')} /></Screen>;
+    {(fr.blocked || []).length ? <Btn small kind="ghost" testID="f-unblock" label={t('rv.fUnblock', { n: fr.blocked!.length })} onPress={unblock} /> : null}
+    <InfoNote text={t('rv.fRules')} /></Screen>;
 }
 
 // ---------- 7) Metas por nutriente ----------

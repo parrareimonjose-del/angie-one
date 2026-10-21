@@ -5,6 +5,7 @@ import { Card, Btn, Chip, T, s, CardTitle } from './ui';
 import { refine, Estimate, AIError } from './ai';
 import { C } from './theme';
 import { fmtNum } from './i18n';
+import { AIReport } from './review-ui';
 
 const PORTIONS = [0.5, 0.75, 1, 1.5, 2];
 
@@ -35,6 +36,7 @@ export function EstimateResult({ est, onLog }: { est: Estimate; onLog: (x: { nam
       <T style={{ fontWeight: '700' }}>{t('scan.portion')}</T>
       <View style={[s.row, { flexWrap: 'wrap' }]}>{PORTIONS.map((p) => <Chip key={p} label={`${p}×`} active={q.portion === p} onPress={() => setQ({ ...q, portion: p })} />)}</View>
     </Card>
+    <AIReport kind="estimate" text={`${est.name} ${est.kcalMin}-${est.kcalMax} kcal`} />
     <Btn label={`✓  ${t('scan.log')}`} onPress={() => onLog({ name: est.name, kcal: Math.round((r.min + r.max) / 2), p: r.p, c: r.c, f: r.f, fiber: r.fiber })} />
   </>;
 }

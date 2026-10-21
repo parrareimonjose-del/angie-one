@@ -221,43 +221,55 @@
   "docs": {
     "privacy": {
       "title": "Política de privacidad",
-      "updated": "Última actualización: 15 de octubre de 2026",
+      "updated": "Última actualización: 21 de octubre de 2026",
       "sections": [
         [
           "Quiénes somos",
           "Angie One es una app de Parra Apps. Contacto: angieoneapp.support@gmail.com."
         ],
         [
-          "Qué datos usamos",
-          "Los datos de tu perfil (objetivo, peso, altura, edad, sexo, actividad), tu diario de comidas, agua y retos. Hoy se guardan solo en tu dispositivo; no tenemos cuentas ni servidores con tu diario."
+          "Datos en tu teléfono",
+          "Tu perfil (objetivo, peso, altura, edad, sexo, actividad), diario de comidas, agua, notas de ánimo, medidas, fotos de progreso y hábitos se guardan solo en tu dispositivo. No tenemos cuentas ni servidores con tu diario."
         ],
         [
-          "Fotos y textos para la IA",
-          "Si la IA está encendida, la foto o la descripción de tu plato se envía a nuestro servidor intermedio (Cloudflare) y a Google Gemini solo para calcular la estimación. No la guardamos. Puedes apagar la IA en Ajustes y entonces no se envía nada."
+          "Fotos, voz y textos para la IA",
+          "Si la IA está encendida, la foto, la grabación de voz o la descripción de tu comida (y, para el coach y el plan, la edad, el peso, la meta y las preferencias que escribiste en tu perfil) se envía a nuestro servidor intermedio (Cloudflare) y a Google Gemini solo para responder. No la guardamos. Puedes apagar la IA en Ajustes. Las fotos de progreso nunca se envían."
         ],
         [
-          "Códigos de barras",
-          "El número del código se consulta en Open Food Facts, una base de datos pública. No se envían tus datos personales."
+          "Base de alimentos y códigos de barras",
+          "Los códigos de barras y las búsquedas se consultan en nuestra lista de alimentos (Open Food Facts y USDA). Si añades un producto que falta, guardamos solo el código, el nombre, la marca y los datos de la etiqueta, sin datos personales, para que otras personas lo usen."
+        ],
+        [
+          "Apps de salud",
+          "Si conectas Apple Salud o Health Connect, Angie One solo lee pasos, peso y entrenamientos para ajustar tu meta diaria. Esos datos se quedan en tu teléfono, nunca se envían a la IA ni a terceros y nunca se usan para anuncios."
+        ],
+        [
+          "Copia en la nube cifrada (opcional)",
+          "Si activas la copia, tus datos se cifran en tu teléfono con un código que solo tienes tú. Nuestro servidor solo ve bytes cifrados. Puedes borrarla cuando quieras."
+        ],
+        [
+          "Amigos y retos (opcional)",
+          "Si entras en un grupo, guardamos tu apodo, un identificador anónimo y tus puntos del reto semanal. Nunca tu peso, tu comida ni tus datos de salud. Puedes reportar y bloquear, y revisamos cada reporte."
+        ],
+        [
+          "Reportes",
+          "Si reportas un dato de alimento o una respuesta de la IA, guardamos el texto del reporte hasta 180 días para corregir errores, sin datos personales."
         ],
         [
           "Nunca vendemos tus datos de salud",
-          "No vendemos, alquilamos ni compartimos tus datos de salud o de comidas con anunciantes ni con terceros. No usamos tus datos de salud para publicidad."
+          "No vendemos, alquilamos ni compartimos tus datos de salud o de comidas con anunciantes ni con terceros, ni los usamos para publicidad. No hay rastreadores de anuncios."
         ],
         [
-          "Tus derechos",
-          "Puedes ver y borrar todos tus datos en Ajustes → Borrar mis datos. Si vives en California (CCPA), la UE (RGPD) u otro lugar con leyes de privacidad, puedes ejercer tus derechos escribiendo a nuestro correo."
+          "Tus derechos y borrar tu cuenta",
+          "Puedes borrar tu cuenta y todos tus datos en Ajustes → Borrar cuenta; también se borra tu copia en la nube y sales de tus grupos de amigos. Si vives en California (CCPA), la UE (RGPD) u otro lugar con leyes de privacidad, escribe a nuestro correo para ejercer tus derechos."
         ],
         [
           "Menores",
           "Angie One no está dirigida a menores de 13 años (16 en la UE)."
         ],
         [
-          "Seguridad y brechas",
-          "Usamos conexiones cifradas (HTTPS). Si ocurre una brecha que afecte tus datos te avisaremos según la ley aplicable (incluida la regla de la FTC sobre notificación de brechas de salud)."
-        ],
-        [
-          "Cambios",
-          "Si cambiamos esta política te lo mostraremos en la app antes de que aplique."
+          "Seguridad, brechas y cambios",
+          "Usamos conexiones cifradas (HTTPS). Si ocurre una brecha que afecte tus datos te avisaremos según la ley (incluida la regla de la FTC sobre brechas de salud). Si cambiamos esta política te lo mostraremos en la app antes de que aplique."
         ]
       ]
     },
@@ -2220,5 +2232,39 @@
     "nPick": "Añadir una meta",
     "nNote": "Las metas empiezan en los valores diarios de referencia. Es una guía de bienestar, no un diagnóstico.",
     "fiber": "Fibra"
+  },
+  "rv": {
+    "aiLabel": "Respuesta generada por IA. Puede equivocarse.",
+    "aiReport": "Reportar esta respuesta de la IA",
+    "aiReported": "Gracias. Revisaremos esta respuesta.",
+    "cTitle": "Añádelo para todos",
+    "cSub": "Escribe los datos de la etiqueta por 100 g. Ayuda a otras personas al momento y lo revisamos.",
+    "cName": "Nombre del producto",
+    "cBrand": "Marca (opcional)",
+    "cK": "kcal",
+    "cP": "Proteína g",
+    "cC": "Carbos g",
+    "cF": "Grasa g",
+    "cSend": "Enviar y anotar",
+    "cThanks": "¡Gracias! Ya está en la lista de alimentos de Angie One.",
+    "cSaved": "Anotado. No se pudo enviar ahora; inténtalo más tarde.",
+    "cBad": "Revisa los números: las calorías no cuadran con la proteína, los carbos y la grasa.",
+    "fBlocked": "Bloqueado: ya no lo verás. Revisaremos el reporte.",
+    "fReportBlock": "Reportar y bloquear",
+    "fUnblock": "Desbloquear ({{n}})",
+    "fRules": "Sé amable. Toca 🚩 para reportar y bloquear a alguien: dejas de verlo al momento y una persona de nuestro equipo revisa cada reporte. Nadie sale del grupo sin revisión.",
+    "modTitle": "Moderación",
+    "modSub": "Reportes de amigos, de datos de alimentos y de respuestas de IA, y productos añadidos por usuarios.",
+    "modLoad": "Cargar reportes",
+    "modNeedKey": "Primero escribe la clave de fundador en Premium gratis.",
+    "modErr": "No se pudo cargar. Revisa la clave y la conexión.",
+    "modFriends": "Amigos",
+    "modFood": "Alimentos e IA",
+    "modContrib": "Productos añadidos por usuarios",
+    "modRemove": "Quitar del grupo",
+    "modDismiss": "Descartar",
+    "modDelete": "Borrar",
+    "modEmpty": "Nada que revisar.",
+    "modNote": "Los reportes nunca ocultan a nadie solos: decides tú. Responde en menos de 24 horas, como piden las tiendas."
   }
 }

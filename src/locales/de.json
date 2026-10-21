@@ -259,43 +259,55 @@
   "docs": {
     "privacy": {
       "title": "Datenschutzerklärung",
-      "updated": "Zuletzt aktualisiert: 15. Oktober 2026",
+      "updated": "Zuletzt aktualisiert: 21. Oktober 2026",
       "sections": [
         [
           "Wer wir sind",
           "Angie One ist eine App von Parra Apps. Kontakt: angieoneapp.support@gmail.com."
         ],
         [
-          "Daten, die wir nutzen",
-          "Dein Profil (Ziel, Gewicht, Größe, Alter, Geschlecht, Aktivität), dein Ernährungstagebuch, Wasser und Herausforderungen. Momentan werden diese ausschließlich auf deinem Gerät gespeichert; wir besitzen keine Konten oder Server, auf denen dein Tagebuch gespeichert wird."
+          "Daten auf deinem Telefon",
+          "Dein Profil (Ziel, Gewicht, Größe, Alter, Geschlecht, Aktivität), Ernährungstagebuch, Wasser, Stimmungsmotizen, Messwerte, Fortschrittsfotos und Gewohnheiten werden nur auf deinem Gerät gespeichert. Wir haben keine Konten oder Server mit deinem Tagebuch."
         ],
         [
-          "Fotos und Texte für die KI",
-          "Wenn die KI aktiviert ist, werden das Foto oder die Beschreibung deiner Mahlzeit an unseren Proxy (Cloudflare) und an Google Gemini gesendet, ausschließlich um die Schätzung zu berechnen. Wir speichern diese Daten nicht. Du kannst die KI in den Einstellungen ausschalten, sodass nichts gesendet wird."
+          "Fotos, Sprache und Text für die KI",
+          "Wenn die KI eingeschaltet ist, werden das Foto, die Sprachaufnahme oder die Beschreibung deiner Mahlzeit (sowie für den Coach und den Plan das Alter, Gewicht, Ziel und die Einstellungen, die du in deinem Profil eingegeben hast) an unseren Zwischenserver (Cloudflare) und an Google Gemini gesendet, um die Anfrage zu beantworten. Wir speichern diese Daten nicht. Du kannst die KI in den Einstellungen ausschalten. Fortschrittsfotos werden niemals gesendet."
         ],
         [
-          "Barcodes",
-          "Die Barcodenummer wird in Open Food Facts, einer öffentlichen Datenbank, abgefragt. Es werden keine personenbezogenen Daten übermittelt."
+          "Lebensmitteldatenbank und Barcodes",
+          "Barcodenummern und Suchanfragen werden in unserer Lebensmittelliste (Open Food Facts und USDA) überprüft. Wenn du ein fehlendes Produkt hinzufügst, speichern wir nur den Barcode, den Namen, die Marke und die Nährwerte ohne persönliche Daten, damit andere es nutzen können."
         ],
         [
-          "Wir verkaufen niemals deine Gesundheitsdaten",
-          "Wir verkaufen, vermieten oder teilen deine Gesundheits- oder Ernährungsdaten weder an Werbetreibende noch an Dritte. Wir nutzen deine Gesundheitsdaten nicht für Werbezwecke."
+          "Health-Apps",
+          "Wenn du Apple Health oder Health Connect verbindest, liest Angie One nur Schritte, Gewicht und Trainingseinheiten aus, um dein Tagesziel anzupassen. Diese Daten verbleiben auf deinem Telefon, werden niemals an die KI oder Dritte gesendet und niemals für Werbung verwendet."
         ],
         [
-          "Deine Rechte",
-          "Du kannst alle deine Daten in den Einstellungen unter „Meine Daten löschen“ einsehen und löschen. Wenn du in Kalifornien (CCPA), der EU (DSGVO) oder an einem anderen Ort mit Datenschutzgesetzen lebst, kannst du deine Rechte ausüben, indem du uns eine E-Mail schreibst."
+          "Verschlüsseltes Cloud-Backup (optional)",
+          "Wenn du das Backup aktivierst, werden deine Daten auf deinem Telefon mit einem Code verschlüsselt, den nur du kennst. Unser Server sieht nur verschlüsselte Bytes. Du kannst es jederzeit löschen."
         ],
         [
-          "Kinder",
-          "Angie One richtet sich nicht an Kinder unter 13 Jahren (16 Jahren in der EU)."
+          "Freunde und Challenges (optional)",
+          "Wenn du einer Gruppe betritts, speichern wir deinen Spitznamen, eine anonyme ID und deine wöchentlichen Challenge-Punkte. Niemals dein Gewicht, deine Ernährungs- oder Gesundheitsdaten. Du kannst Personen melden und blockieren, und wir prüfen jede Meldung."
         ],
         [
-          "Sicherheit und Datenschutzvorfälle",
-          "Wir verwenden verschlüsselte Verbindungen (HTTPS). Wenn ein Sicherheitsvorfall deine Daten betrifft, werden wir dich gemäß den gesetzlichen Bestimmungen benachrichtigen (einschließlich der FTC Health Breach Notification Rule)."
+          "Meldungen",
+          "Wenn du Lebensmitteldaten oder eine KI-Antwort meldest, speichern wir den Meldungstext bis zu 180 Tage lang zur Fehlerbehebung, ohne persönliche Daten."
         ],
         [
-          "Änderungen",
-          "Wenn wir diese Richtlinie ändern, zeigen wir dir dies in der App an, bevor sie in Kraft tritt."
+          "Wir verkaufen deine Gesundheitsdaten niemals",
+          "Wir verkaufen, vermieten oder teilen deine Gesundheits- oder Ernährungsdaten weder mit Werbetreibenden noch mit Dritten und wir verwenden sie nicht für Werbung. Es gibt keine Werbe-Tracker."
+        ],
+        [
+          "Deine Rechte und das Löschen deines Kontos",
+          "Du kannst dein Konto und alle deine Daten unter Einstellungen → Konto löschen; dadurch wird auch dein Cloud-Backup gelöscht und du wirst aus deinen Freundesgruppen entfernt. Wenn du in Kalifornien (CCPA), der EU (DSGVO) oder an einem anderen Ort mit Datenschutzgesetzen lebst, schreibe uns eine E-Mail, um deine Rechte auszuüben."
+        ],
+        [
+          "Minderjährige",
+          "Angie One richtet sich nicht an Kinder unter 13 Jahren (16 in der EU)."
+        ],
+        [
+          "Sicherheit, Sicherheitsvorfälle und Änderungen",
+          "Wir verwenden verschlüsselte Verbindungen (HTTPS). Wenn ein Sicherheitsvorfall deine Daten betrifft, benachrichtigen wir dich gemäß den gesetzlichen Bestimmungen (einschließlich der FTC Health Breach Notification Rule). Wenn wir diese Richtlinie ändern, zeigen wir dies in der App an, bevor sie in Kraft tritt."
         ]
       ]
     },
@@ -2220,5 +2232,39 @@
     "nPick": "Ziel hinzufügen",
     "nNote": "Die Ziele basieren auf den täglichen Richtwerten. Ein Wellness-Leitfaden, keine Diagnose.",
     "fiber": "Ballaststoffe"
+  },
+  "rv": {
+    "aiLabel": "KI-generierte Antwort. Sie kann fehlerhaft sein.",
+    "aiReport": "Diese KI-Antwort melden",
+    "aiReported": "Vielen Dank. Wir prüfen diese Antwort.",
+    "cTitle": "Für alle hinzufügen",
+    "cSub": "Gib die Nährwerte pro 100 g ein. Das hilft anderen sofort und wird von uns überprüft.",
+    "cName": "Produktname",
+    "cBrand": "Marke (optional)",
+    "cK": "kcal",
+    "cP": "Protein g",
+    "cC": "Kohlenhydrate g",
+    "cF": "Fett g",
+    "cSend": "Senden und eintragen",
+    "cThanks": "Viele Dank! Es ist jetzt in der Angie One Lebensmittelliste.",
+    "cSaved": "Eingetragen. Es konnte gerade nicht gesendet werden; versuche es später noch einmal.",
+    "cBad": "Überprüfe die Zahlen: Die Kalorien passen nicht zu Protein, Kohlenhydraten und Fett.",
+    "fBlocked": "Blockiert: Du wirst diese Person nicht mehr sehen. Wir prüfen die Meldung.",
+    "fReportBlock": "Melden und blockieren",
+    "fUnblock": "Entblocken ({{n}})",
+    "fRules": "Sei nett. Tippe auf 🚩, um jemanden zu melden und zu blockieren: Du siehst diese Person sofort nicht mehr, und jemand aus unserem Team prüft jede Meldung. Niemand wird ohne Prüfung entfernt.",
+    "modTitle": "Moderation",
+    "modSub": "Meldungen von Freunden, Lebensmitteldaten, KI-Antworten sowie von Nutzern hinzugefügte Produkte.",
+    "modLoad": "Meldungen laden",
+    "modNeedKey": "Gib zuerst den Gründer-Schlüssel in Free Premium ein.",
+    "modErr": "Laden fehlgeschlagen. Überprüfe den Schlüssel und deine Verbindung.",
+    "modFriends": "Freunde",
+    "modFood": "Lebensmittel und KI",
+    "modContrib": "Von Nutzern hinzugefügte Produkte",
+    "modRemove": "Aus Gruppe entfernen",
+    "modDismiss": "Verwerfen",
+    "modDelete": "Löschen",
+    "modEmpty": "Nichts zu überprüfen.",
+    "modNote": "Meldungen verbergen niemanden automatisch: Du entscheidest. Antworte innerhalb von 24 Stunden, da die App-Stores dies fordern."
   }
 }

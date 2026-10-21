@@ -1,0 +1,47 @@
+// Revisión 21-oct-2026: amigos sin abuso de reportes, id secreto, aportes de productos, reportes de IA.
+import { handleFriends, pidOf } from '../worker/friends.js';
+import { checkContribution, foodContribute, barcodeKV, foodQueue } from '../worker/foods.js';
+import { validContribution, aiReportBody } from '../src/review';
+const res: string[] = []; const ok = (n: string, c: boolean) => res.push(`${c ? 'PASS' : 'FAIL'} ${n}`);
+const store = new Map<string, string>();
+const env: any = { FOUNDER_KEY: 'fk', FOODS: { get: async (k: string) => store.get(k) ?? null, put: async (k: string, v: string) => { store.set(k, v); }, delete: async (k: string) => { store.delete(k); },
+  list: async ({ prefix }: any) => ({ keys: [...store.keys()].filter((k) => k.startsWith(prefix)).map((name) => ({ name, metadata: {} })) }) } };
+const json = (o: any, st = 200) => ({ st, o });
+let ip = 0;
+const call = async (path: string, body: any, fk = '') => { const r: any = await handleFriends(path, { method: 'POST', json: async () => body, headers: { get: (h: string) => (h === 'x-founder-key' ? fk : h === 'CF-Connecting-IP' ? 'ip' + ip++ : null) } } as any, env, json, {}); return r; };
+const owner = 'owner0001', vic = 'victim0001';
+const g = (await call('/friends/create', { id: owner, nick: 'Jose' })).o; const code = g.code;
+ok('crear grupo', /^[A-Z0-9]{6}$/.test(code) && g.members.length === 1);
+await call('/friends/join', { code, id: vic, nick: 'Ana' });
+for (let i = 0; i < 3; i++) await call('/friends/join', { code, id: 'fake000' + i + 'x', nick: 'Fake' + i });
+const view = (await call('/friends/get', { code })).o;
+ok('el grupo no muestra ids secretos', view.members.every((m: any) => !('id' in m) && /^[0-9a-f]{12}$/.test(m.pid)));
+const vp = await pidOf(vic);
+for (let i = 0; i < 3; i++) await call('/friends/report', { code, id: 'fake000' + i + 'x', target: vp, why: 'abuse' });
+const after = (await call('/friends/get', { code })).o;
+ok('3 reportes falsos NO ocultan a nadie', after.members.some((m: any) => m.pid === vp));
+ok('el reporte llega a la cola del fundador', (await call('/friends/reports', {}, 'fk')).o.items.length >= 1);
+ok('la cola pide clave', (await call('/friends/reports', {}, 'mal')).st === 401);
+await call('/friends/leave', { code, id: vp });
+ok('nadie puede sacar a otro con su id público', (await call('/friends/get', { code })).o.members.some((m: any) => m.pid === vp));
+await call('/friends/score', { code, id: vp, pts: 70 });
+ok('nadie puede cambiar los puntos de otro', (await call('/friends/get', { code })).o.members.find((m: any) => m.pid === vp).pts === 0);
+const rep = (await call('/friends/reports', {}, 'fk')).o.items[0];
+await call('/friends/remove', { code, target: vp, key: rep.key }, 'fk');
+ok('el fundador quita y cierra el reporte', !(await call('/friends/get', { code })).o.members.some((m: any) => m.pid === vp) && !store.has(rep.key));
+ok('sin clave no se quita', (await call('/friends/remove', { code, target: vp }, '')).st === 401);
+// Aportes
+ok('aporte válido', !!checkContribution({ code: '7501234567890', name: 'Galletas María', k: 430, p: 7, c: 72, f: 13 }).rec);
+ok('aporte incoherente rechazado', checkContribution({ code: '7501234567890', name: 'X producto', k: 50, p: 30, c: 30, f: 30 }).err === 'nums');
+ok('aporte con enlace rechazado', checkContribution({ code: '7501234567890', name: 'www.spam.com', k: 100, p: 5, c: 15, f: 2 }).err === 'name');
+ok('validación igual en la app', validContribution({ code: '7501234567890', name: 'Galletas', k: '430', p: '7', c: '72', f: '13' }) && !validContribution({ code: '12', name: 'Galletas', k: '430', p: '7', c: '72', f: '13' }));
+env.FOODS.get = async (k: string) => store.get(k) ?? null;
+const rq = { headers: { get: (h: string) => (h === 'CF-Connecting-IP' ? 'z' : h === 'x-founder-key' ? 'fk' : null) } } as any;
+const cr: any = await foodContribute({ code: '7501234567890', name: 'Galletas María', k: 430, p: 7, c: 72, f: 13 }, rq, env, json, {});
+const found: any = await barcodeKV(env, '7501234567890');
+ok('el aporte se encuentra al escanear', cr.st === 200 && found?.s === 'user' && found.v === 0 && found.k === 430);
+const q: any = await foodQueue('/foods/queue', {}, rq, env, json, {});
+ok('el aporte aparece en la cola del fundador', q.o.contributions.length === 1);
+const ai = aiReportBody('chat', 'Respuesta larga de la IA '.repeat(10));
+ok('reporte de IA sin datos del usuario', ai.reason === 'ai' && ai.id === 'ai:chat' && ai.name.length <= 80 && Object.keys(ai).length === 4);
+console.log(res.join('\n')); const np = res.filter((r) => r.startsWith('PASS')).length; console.log(`review ${np}/${res.length}`); if (np !== res.length) process.exitCode = 1;

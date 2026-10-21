@@ -221,43 +221,55 @@
   "docs": {
     "privacy": {
       "title": "Politique de confidentialité",
-      "updated": "Dernière mise à jour : 15 octobre 2026",
+      "updated": "Dernière mise à jour : 21 octobre 2026",
       "sections": [
         [
           "Qui nous sommes",
-          "Angie One est une application développée par Parra Apps. Contact : angieoneapp.support@gmail.com."
+          "Angie One est une application créée par Parra Apps. Contact : angieoneapp.support@gmail.com."
         ],
         [
-          "Données que nous utilisons",
-          "Votre profil (objectif, poids, taille, âge, sexe, activité), votre journal alimentaire, votre suivi d'eau et vos défis. À ce jour, ces données sont stockées uniquement sur votre appareil ; nous n'avons aucun compte ni serveur hébergeant votre journal."
+          "Données sur votre téléphone",
+          "Votre profil (objectif, poids, taille, âge, sexe, activité), journal alimentaire, eau, notes d'humeur, mesures, photos de progression et habitudes sont stockés uniquement sur votre appareil. Nous n'avons ni compte ni serveur enregistrant votre journal."
         ],
         [
-          "Photos et textes pour l'IA",
-          "Si l'IA est activée, la photo ou la description de votre repas est envoyée à notre proxy (Cloudflare) et à Google Gemini uniquement pour calculer l'estimation. Nous ne la conservons pas. Vous pouvez désactiver l'IA dans les Paramètres ; ainsi, rien n'est envoyé."
+          "Photos, voix et texte pour l'IA",
+          "Si l'IA est activée, la photo, l'enregistrement vocal ou la description de votre repas (ainsi que, pour le coach et le programme, l'âge, le poids, l'objectif et les préférences saisis dans votre profil) sont envoyés à notre serveur intermédiaire (Cloudflare) et à Google Gemini uniquement pour répondre. Nous ne les conservons pas. Vous pouvez désactiver l'IA dans les Paramètres. Les photos de progression ne sont jamais envoyées."
         ],
         [
-          "Codes-barres",
-          "Le numéro du code-barres est recherché dans Open Food Facts, une base de données publique. Aucune donnée personnelle n'est envoyée."
+          "Base de données alimentaires et codes-barres",
+          "Les numéros de codes-barres et les recherches sont vérifiés dans notre liste d'aliments (Open Food Facts et USDA). Si vous ajoutez un produit manquant, nous stockons uniquement le code-barres, le nom, la marque et les valeurs nutritionnelles, sans données personnelles, afin que d'autres puissent l'utiliser."
+        ],
+        [
+          "Applications de santé",
+          "Si vous connectez Apple Health ou Health Connect, Angie One lit uniquement les pas, le poids et les entraînements pour ajuster votre objectif quotidien. Ces données restent sur votre téléphone, ne sont jamais envoyées à l'IA ni à des tiers, et ne sont jamais utilisées à des fins publicitaires."
+        ],
+        [
+          "Sauvegarde cloud chiffrée (facultatif)",
+          "Si vous activez la sauvegarde, vos données sont chiffrées sur votre téléphone à l'aide d'un code que vous seul possédez. Notre serveur ne voit que des octets chiffrés. Vous pouvez la supprimer à tout moment."
+        ],
+        [
+          "Amis et défis (facultatif)",
+          "Si vous rejoignez un groupe, nous stockons votre pseudo, un identifiant anonyme et vos points de défi hebdomadaires. Jamais votre poids, vos aliments ou vos données de santé. Vous pouvez signaler et bloquer, et nous examinons chaque signalement."
+        ],
+        [
+          "Signalements",
+          "Si vous signalez des données alimentaires ou une réponse de l'IA, nous conservons le texte du signalement pendant 180 jours maximum pour corriger les erreurs, sans données personnelles."
         ],
         [
           "Nous ne vendons jamais vos données de santé",
-          "Nous ne vendons, ne louons et ne partageons pas vos données de santé ou d'alimentation avec des annonceurs ou des tiers. Nous n'utilisons pas vos données de santé à des fins publicitaires."
+          "Nous ne vendons, ne louons et ne partageons pas vos données de santé ou alimentaires avec des annonceurs ou des tiers, et nous ne les utilisons pas pour la publicité. Il n'y a aucun traqueur publicitaire."
         ],
         [
-          "Vos droits",
-          "Vous pouvez consulter et supprimer toutes vos données dans Paramètres → Supprimer mes données. Si vous résidez en Californie (CCPA), dans l'Union européenne (RGPD) ou dans toute région dotée de lois sur la vie privée, vous pouvez exercer vos droits en nous envoyant un e-mail."
+          "Vos droits et suppression de votre compte",
+          "Vous pouvez supprimer votre compte et toutes vos données dans Paramètres → Supprimer le compte ; cela supprime également votre sauvegarde cloud et vous retire de vos groupes d'amis. Si vous résidez en Californie (CCPA), dans l'UE (RGPD) ou dans une autre région dotée de lois sur la confidentialité, écrivez à notre adresse e-mail pour exercer vos droits."
         ],
         [
-          "Enfants",
+          "Mineurs",
           "Angie One ne s'adresse pas aux enfants de moins de 13 ans (16 ans dans l'UE)."
         ],
         [
-          "Sécurité et violations de données",
-          "Nous utilisons des connexions chiffrées (HTTPS). En cas de violation affectant vos données, nous vous en informerons conformément à la loi (y compris la FTC Health Breach Notification Rule)."
-        ],
-        [
-          "Modifications",
-          "Si nous modifions cette politique, nous l'afficherons dans l'application avant son entrée en vigueur."
+          "Sécurité, violations et modifications",
+          "Nous utilisons des connexions chiffrées (HTTPS). Si une violation de données vous concerne, nous vous en informerons conformément à la loi (y compris la règle FTC Health Breach Notification). Si nous modifions cette politique, nous l'afficherons dans l'application avant son entrée en vigueur."
         ]
       ]
     },
@@ -2220,5 +2232,39 @@
     "nPick": "Ajouter un objectif",
     "nNote": "Les objectifs commencent aux valeurs de référence quotidiennes. Un guide bien-être, pas un diagnostic.",
     "fiber": "Fibres"
+  },
+  "rv": {
+    "aiLabel": "Réponse générée par l'IA. Elle peut être erronée.",
+    "aiReport": "Signaler cette réponse de l'IA",
+    "aiReported": "Merci. Nous allons examiner cette réponse.",
+    "cTitle": "L'ajouter pour tout le monde",
+    "cSub": "Saisissez les valeurs nutritionnelles pour 100 g. Cela aide immédiatement la communauté et nous vérifions les données.",
+    "cName": "Nom du produit",
+    "cBrand": "Marque (facultatif)",
+    "cK": "kcal",
+    "cP": "Protéines g",
+    "cC": "Glucides g",
+    "cF": "Lipides g",
+    "cSend": "Envoyer et enregistrer",
+    "cThanks": "Merci ! Le produit figure désormais dans la liste des aliments d'Angie One.",
+    "cSaved": "Enregistré. Impossible de l'envoyer pour le moment ; réessayez plus tard.",
+    "cBad": "Vérifiez les chiffres : les calories ne correspondent pas aux protéines, glucides et lipides.",
+    "fBlocked": "Bloqué : vous ne les verrez plus. Nous allons examiner le signalement.",
+    "fReportBlock": "Signaler et bloquer",
+    "fUnblock": "Débloquer ({{n}})",
+    "fRules": "Restez bienveillant. Appuyez sur 🚩 pour signaler et bloquer quelqu'un : vous ne le verrez plus immédiatement, et un membre de notre équipe examine chaque signalement. Personne n'est exclu sans vérification.",
+    "modTitle": "Modération",
+    "modSub": "Signalements d'amis, données alimentaires, réponses de l'IA et produits ajoutés par les utilisateurs.",
+    "modLoad": "Charger les signalements",
+    "modNeedKey": "Saisissez d'abord la clé du fondateur dans Free Premium.",
+    "modErr": "Échec du chargement. Vérifiez la clé et votre connexion.",
+    "modFriends": "Amis",
+    "modFood": "Aliments et IA",
+    "modContrib": "Produits ajoutés par les utilisateurs",
+    "modRemove": "Retirer du groupe",
+    "modDismiss": "Ignorer",
+    "modDelete": "Supprimer",
+    "modEmpty": "Rien à examiner.",
+    "modNote": "Les signalements ne masquent jamais personne automatiquement : c'est vous qui décidez. Répondez sous 24 heures, comme l'exigent les boutiques d'applications."
   }
 }
