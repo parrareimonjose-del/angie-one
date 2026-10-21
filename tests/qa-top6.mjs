@@ -16,11 +16,11 @@ for (const [bn, B, dev] of runs) {
       ext: { sleep: [{ date: d0, h: 7.5, stress: 2 }], weights: [{ date: iso(w0), kg: 81 }, { date: d0, kg: 80 }] } };
     const ctx = await b.newContext({ ...dev, locale: L ? 'es-ES' : 'en-US', colorScheme: L ? 'light' : 'dark' });
     await ctx.addInitScript((s) => { sessionStorage.setItem('angie:splash', '1'); if (!localStorage.getItem('angieone:v1')) localStorage.setItem('angieone:v1', JSON.stringify(s)); }, state);
-    const G = { code: 'AB12CD', name: 'Ana', members: [{ id: 'other123', nick: 'Luis', pts: 30 }] }; const calls = []; const bodies = [];
+    const G = { code: 'AB12CD', name: 'Ana', members: [{ id: 'other123', pid: 'aaaaaaaaaaaa', nick: 'Luis', pts: 30 }] }; const PUB = (id) => ({ code: G.code, name: G.name, me: id ? 'p' + id.slice(0, 11) : undefined, members: G.members.map((m) => ({ pid: m.pid, nick: m.nick, pts: m.pts })) }); const calls = []; const bodies = [];
     await ctx.route('**/friends/**', async (r) => { const path = new URL(r.request().url()).pathname.split('/').pop(); const body = JSON.parse(r.request().postData() || '{}'); calls.push(path); bodies.push(Object.keys(body).sort().join(','));
-      if (body.id && !G.members.some((m) => m.id === body.id) && ['create', 'join'].includes(path)) G.members.push({ id: body.id, nick: body.nick, pts: 0 });
+      if (body.id && !G.members.some((m) => m.id === body.id) && ['create', 'join'].includes(path)) G.members.push({ id: body.id, pid: 'p' + body.id.slice(0, 11), nick: body.nick, pts: 0 });
       if (path === 'score') G.members.find((m) => m.id === body.id).pts = body.pts;
-      r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify(path === 'report' || path === 'leave' ? { ok: true } : G) }); });
+      r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*' }, body: JSON.stringify(path === 'report' || path === 'leave' ? { ok: true } : PUB(body.id)) }); });
     const p = await ctx.newPage(); const errs = []; p.on('pageerror', (e) => errs.push(e.message));
     const go = async (r) => { await p.goto(BASE + r, { waitUntil: 'networkidle' }); await p.waitForTimeout(1500); }; const tid = (x) => p.getByTestId(x); const body = () => p.locator('body').innerText();
     const st = () => p.evaluate(() => JSON.parse(localStorage.getItem('angieone:v1'))); const shot = (n) => SHOTS && p.screenshot({ path: `${SHOTS}/${L ? 'light' : 'dark'}-${n}.png` });
@@ -38,7 +38,8 @@ for (const [bn, B, dev] of runs) {
     await go('/friends'); await tid('f-nick').fill('puta'); await tid('f-create').click(); await p.waitForTimeout(400); ok(`${tag} apodo moderado`, await tid('f-err').count() === 1);
     await tid('f-nick').fill('Pepe'); await tid('f-code').fill('ab12cd'); await tid('f-join').click(); await p.waitForTimeout(2500);
     ok(`${tag} unido al grupo`, await tid('f-group').count() === 1 && /Luis/.test(await body())); ok(`${tag} puntos enviados`, calls.includes('score'));
-    await tid('f-report').first().click(); await p.waitForTimeout(800); ok(`${tag} reportar`, calls.includes('report')); await shot(6);
+    await tid('f-report').first().click(); await p.waitForTimeout(800); ok(`${tag} reportar`, calls.includes('report')); ok(`${tag} reportar bloquea solo para mí`, !/Luis/.test(await body()) && await tid('f-unblock').count() === 1); await shot(6);
+    await tid('f-unblock').click(); await p.waitForTimeout(300); ok(`${tag} desbloquear`, /Luis/.test(await body()));
     ok(`${tag} sin datos de salud al servidor`, bodies.every((k) => /^(code,)?(id,)?(nick)?$|^code,id,pts$|^code,id,target,why$|^code$|^code,id$/.test(k)), bodies.join(' / '));
     ok(`${tag} sin errores de página`, errs.length === 0, errs.join(' | ').slice(0, 200));
     await ctx.close();
