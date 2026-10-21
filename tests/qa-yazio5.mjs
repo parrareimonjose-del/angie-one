@@ -15,6 +15,7 @@ for (const [bn, B, dev] of runs) {
       entries: [{ id: 'e1', date: d0, time: Date.now() - 3600e3, name: 'Avena', kcal: 350, p: 12, c: 60, f: 7, source: 'barcode', micro: { vitC: 45, ca: 650, fe: 9 } },
         { id: 'y1', date: iso(y), time: y.getTime(), name: 'Arepa', kcal: 300, p: 10, c: 40, f: 10, source: 'manual' }] };
     await ctx.addInitScript((s) => { sessionStorage.setItem('angie:splash', '1'); if (!localStorage.getItem('angieone:v1')) localStorage.setItem('angieone:v1', JSON.stringify(s)); }, state);
+    await ctx.route('**/grants/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', headers: { 'access-control-allow-origin': '*', 'access-control-allow-headers': '*' }, body: '{"ok":true}' }));
     const p = await ctx.newPage(); const errs = []; p.on('pageerror', (e) => errs.push(e.message));
     const go = async (r) => { await p.goto(BASE + r, { waitUntil: 'networkidle' }); await p.waitForTimeout(1500); };
     const tid = (x) => p.getByTestId(x); const st = () => p.evaluate(() => JSON.parse(localStorage.getItem('angieone:v1')));

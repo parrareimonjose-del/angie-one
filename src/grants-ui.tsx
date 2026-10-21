@@ -15,9 +15,11 @@ export function GrantsCard() {
   const [who, setWho] = useState(''); const [note, setNote] = useState(''); const [days, setDays] = useState<number | null>(null); const [msg, setMsg] = useState(''); const [key, setKey] = useState('');
   useEffect(() => { AsyncStorage.getItem(FKEY).then((k) => k && setKey(k)).catch(() => {}); }, []);
   const sync = async (g: any) => { if (!key) return false; try { await pushGrant(g, key); return true; } catch { return false; } };
-  const add = async () => { const n = addGrant(list, who, days, note); if (!n) { setMsg(t('gr.bad')); return; } const ok = await sync(n[0]); n[0].synced = ok;
-    set((x) => ({ ...x, grants: n })); setWho(''); setNote(''); setMsg(ok ? t('gr.okSynced', { code: n[0].code }) : t('gr.okLocal', { code: n[0].code })); };
-  const revoke = async (id: string) => { const n = revokeGrant(list, id); const g = n.find((x) => x.id === id)!; g.synced = await sync(g); set((x) => ({ ...x, grants: n })); };
+  const add = async () => { const n = addGrant(list, who, days, note); if (!n) { setMsg(t('gr.bad')); return; } const g0 = n[0];
+    set((x) => ({ ...x, grants: n })); setWho(''); setNote(''); setMsg(t('gr.okLocal', { code: g0.code }));
+    const ok = await sync(g0); if (ok) { set((x) => ({ ...x, grants: (x.grants || []).map((y) => (y.id === g0.id ? { ...y, synced: true } : y)) })); setMsg(t('gr.okSynced', { code: g0.code })); } };
+  const revoke = async (id: string) => { let g: any; set((x) => { const n = revokeGrant(x.grants || [], id); g = { ...n.find((y) => y.id === id)!, synced: false }; return { ...x, grants: n.map((y) => (y.id === id ? g : y)) }; });
+    if (g && (await sync(g))) set((x) => ({ ...x, grants: (x.grants || []).map((y) => (y.id === id ? { ...y, synced: true } : y)) })); };
   return <IconCard testID="grants" icon="🎁" title={t('gr.title')} sub={t('gr.sub')}>
     <TextInput testID="gr-who" accessibilityLabel={t('gr.who')} placeholder={t('gr.who')} autoCapitalize="none" value={who} onChangeText={(v) => { setWho(v); setMsg(''); }} style={s.input} />
     <TextInput testID="gr-note" accessibilityLabel={t('gr.note')} placeholder={t('gr.note')} value={note} onChangeText={setNote} style={s.input} />
