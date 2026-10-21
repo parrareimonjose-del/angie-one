@@ -1,0 +1,18 @@
+import { addGrant, revokeGrant, grantState, activeFor, grantValid, validWho, normWho, redeemStore, newCode } from '../src/grants';
+import { isPremium } from '../src/coach';
+const res: string[] = []; const ok = (n: string, c: boolean) => res.push(`${c ? 'PASS' : 'FAIL'} ${n}`);
+const now = 1_800_000_000_000;
+ok('correo e ID válidos', validWho(' Ana@Mail.com ') && validWho('user_1234') && !validWho('a@b') && !validWho('x'));
+ok('normaliza', normWho(' Ana@Mail.COM ') === 'ana@mail.com');
+let l = addGrant([], 'ana@mail.com', 30, 'amiga', now)!; ok('alta con caducidad', l.length === 1 && l[0].expiresAt === now + 30 * 864e5 && /^[A-Z2-9]{5}-[A-Z2-9]{5}$/.test(l[0].code));
+ok('rechaza inválido', addGrant(l, 'nope', null) === null);
+l = addGrant(l, 'ANA@mail.com', null, '', now + 1)!; ok('reemplaza la activa', l.filter((g) => grantState(g, now + 2) === 'active').length === 1 && !l[0].expiresAt);
+ok('activa para la persona', !!activeFor(l, 'ana@mail.com', now + 2));
+l = revokeGrant(l, l[0].id, now + 3); ok('revocar', grantState(l[0], now + 4) === 'revoked' && !activeFor(l, 'ana@mail.com', now + 4));
+const e = addGrant([], 'bob@mail.com', 1, '', now)!; ok('caduca', grantState(e[0], now + 2 * 864e5) === 'expired');
+ok('canje válido y caduca', grantValid({ code: 'x', who: 'a', until: now + 1000, checkedAt: now }, now) && !grantValid({ code: 'x', who: 'a', until: now - 1, checkedAt: now }, now));
+ok('sin revalidar 7 días deja de valer', !grantValid({ code: 'x', who: 'a', checkedAt: now }, now + 8 * 864e5));
+ok('Premium por regalo', isPremium({ entries: [], trialStart: now - 40 * 864e5, myGrant: { code: 'x', who: 'a', checkedAt: now } } as any, now) && !isPremium({ entries: [], trialStart: now - 40 * 864e5 } as any, now));
+ok('tienda por plataforma', redeemStore('ios') === 'apple' && redeemStore('android') === 'play' && redeemStore('web') === 'server');
+ok('códigos distintos', newCode() !== newCode());
+console.log(res.join('\n')); const np = res.filter((r) => r.startsWith('PASS')).length; console.log(`grants ${np}/${res.length}`); if (np !== res.length) process.exitCode = 1;

@@ -42,13 +42,14 @@
     "check:i18n": "node scripts/check-i18n.js",
     "test:safety": "node tests/run.mjs tests/safety.test.ts",
     "test:datos": "node tests/run.mjs tests/datos.test.ts",
-    "test": "npm run -s test:safety && npm run -s test:datos && npm run -s test:faltantes && npm run -s test:clone && npm run -s test:mfp5 && npm run -s test:fooddb && npm run -s test:taxes && npm run -s test:yazio5",
+    "test": "npm run -s test:safety && npm run -s test:datos && npm run -s test:faltantes && npm run -s test:clone && npm run -s test:mfp5 && npm run -s test:fooddb && npm run -s test:taxes && npm run -s test:yazio5 && npm run -s test:grants",
     "test:mfp5": "node tests/run.mjs tests/mfp5.test.ts",
     "test:faltantes": "node tests/run.mjs tests/faltantes.test.ts",
     "test:clone": "node tests/run.mjs tests/clone.test.ts",
     "test:fooddb": "node tests/run.mjs tests/fooddb.test.ts",
     "test:taxes": "node tests/run.mjs tests/taxes.test.ts",
-    "test:yazio5": "node tests/run.mjs tests/yazio5.test.ts"
+    "test:yazio5": "node tests/run.mjs tests/yazio5.test.ts",
+    "test:grants": "node tests/run.mjs tests/grants.test.ts"
   },
   "private": true
 }
