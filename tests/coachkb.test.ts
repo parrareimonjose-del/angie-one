@@ -1,5 +1,5 @@
 // Coach profesional (21-oct-2026): recetas según el plan, base de conocimiento, señales de alarma.
-import { suggestRecipes, kcalLeft, kbContext, areasFor, redFlag, toggleCheck, programWeek, allSuggestible, BRIEF, AREAS } from '../src/coachkb';
+import { specialFor, SPECIAL, suggestRecipes, kcalLeft, kbContext, areasFor, redFlag, toggleCheck, programWeek, allSuggestible, BRIEF, AREAS } from '../src/coachkb';
 const res: string[] = []; const ok = (n: string, c: boolean) => res.push(`${c ? 'PASS' : 'FAIL'} ${n}`);
 const E = (kcal: number, date = '2026-10-21', planned?: boolean) => ({ id: String(Math.random()), date, time: 0, name: 'x', kcal, p: 0, c: 0, f: 0, source: 'manual' as const, planned });
 ok('kcal restantes ignoran lo planificado y otros días', kcalLeft(2000, [E(500), E(300, '2026-10-20'), E(400, '2026-10-21', true)], '2026-10-21') === 1500);
@@ -20,4 +20,8 @@ ok('alarma: pecho, desmayo, embarazo, medicamento, TCA', ['tengo dolor en el pec
 ok('sin falsas alarmas', !['quiero más proteína', 'receta de arepa', 'how do I squat'].some(redFlag));
 const c1 = toggleCheck({}, '2026-10-21', 'c1'); const c2 = toggleCheck(c1, '2026-10-21', 'c1'); ok('lista diaria marca y desmarca', c1['2026-10-21'][0] === 'c1' && c2['2026-10-21'].length === 0);
 ok('semana del programa 1-4', programWeek(Date.now()) === 1 && programWeek(Date.now() - 15 * 864e5) === 3 && programWeek(Date.now() - 29 * 864e5) === 1);
+ok('casos especiales detectados', specialFor('tengo diabetes tipo 2').includes('diabetes') && specialFor('I am pregnant').includes('pregnancy') && specialFor('x', 15).includes('teen') && specialFor('x', 76).includes('older') && specialFor('me provoco el vómito').includes('ed') && specialFor('presión alta').includes('hypertension'));
+ok('contexto con caso especial cabe en 700 tras el perfil', kbContext('tengo diabetes', 'lose', 'goal lose, 55 y, 98 kg, male, target 2000 kcal/day').slice(0, 700).includes('Diabetes (ADA)'));
+ok('casos especiales derivan', Object.values(SPECIAL).every((t) => /doctor|provider|physio|pediatrician|psycholog|team|surgeon/i.test(t)));
+ok('opresión en el pecho es alarma', redFlag('siento opresión en el pecho') && redFlag('chest tightness on stairs'));
 console.log(res.join('\n')); const np = res.filter((r) => r.startsWith('PASS')).length; console.log(`coachkb ${np}/${res.length}`); if (np !== res.length) process.exitCode = 1;
