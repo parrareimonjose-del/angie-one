@@ -1404,7 +1404,10 @@
       "pinLen": "O PIN deve ter de 4 a 8 números.",
       "weakPin": "Muito fácil. Evite 1111 ou 1234.",
       "pwLen": "Mínimo de 6 caracteres.",
-      "match": "Não coincidem. Tente de novo."
+      "match": "Não coincidem. Tente de novo.",
+      "badRec": "Código incorreto.",
+      "locked": "Tentativas demais. Espere 30 segundos.",
+      "noRec": "Sem código de recuperação."
     },
     "bioTitle": "Digital ou Face ID",
     "bioNone": "Este navegador ou celular não permite digital/Face ID. Seu PIN continua funcionando.",
@@ -1541,7 +1544,15 @@
       "approved": "Aprovadas",
       "pending": "Pendentes"
     },
-    "weighNever": "Ainda não há peso registrado."
+    "weighNever": "Ainda não há peso registrado.",
+    "recTitle": "Código de recuperação",
+    "recHow": "Esqueceu o PIN ou a senha? Digite o código de recuperação e escolha um novo. Seus dados ficam.",
+    "recGo": "Definir o novo",
+    "recOk": "Pronto, seu novo PIN ou senha está ativo.",
+    "recNew": "Guarde este código NOVO (o anterior não vale mais):",
+    "recNone": "Este bloqueio não tem código de recuperação. Só é possível apagar o bloqueio e os dados deste aparelho.",
+    "recSave": "Guarde este código em lugar seguro (foto, papel ou gerenciador de senhas). Ele só aparece agora e serve se você esquecer o PIN ou a senha.",
+    "recSaved": "Já guardei"
   },
   "voice": {
     "stop": "Toque para terminar",

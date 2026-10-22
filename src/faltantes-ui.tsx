@@ -1,3 +1,5 @@
+import { newRecovery, recoverWith, pwAutofill } from './auth';
+import { biometricEnroll, biometricUnlock } from './biometric';
 import React, { useEffect, useState } from 'react';
 import { View, Text, TextInput, Pressable, Platform, ScrollView } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -25,11 +27,11 @@ const pdfT = () => { const t = i18n.getFixedT(LATIN.includes(curLang()) ? curLan
 const wrap = (L: string[]) => L.flatMap((l) => l.match(/.{1,90}(\s|$)|.{1,90}/g) || ['']);
 
 // ---------- campo secreto con ojo 👁 ----------
-export function SecretField({ value, onChange, kind, testID, label }: { value: string; onChange: (v: string) => void; kind: 'pin' | 'password'; testID?: string; label: string }) {
+export function SecretField({ value, onChange, kind, testID, label, mode = 'current' }: { value: string; onChange: (v: string) => void; kind: 'pin' | 'password'; testID?: string; label: string; mode?: 'current' | 'new' }) {
   const { t } = useTranslation(); const [show, setShow] = useState(false);
   return <View style={[s.row, { alignItems: 'center', width: '100%' }]}>
     <TextInput testID={testID} accessibilityLabel={label} style={[s.input, { flex: 1, minWidth: 0, width: '100%', fontSize: 22, letterSpacing: kind === 'pin' && !show ? 6 : 0 }]} value={value} onChangeText={(v) => onChange(kind === 'pin' ? v.replace(/\D/g, '').slice(0, 8) : v)}
-      secureTextEntry={!show} keyboardType={kind === 'pin' ? 'number-pad' : 'default'} autoCapitalize="none" autoCorrect={false} placeholder={label} />
+      secureTextEntry={!show} keyboardType={kind === 'pin' ? 'number-pad' : 'default'} autoCapitalize="none" autoCorrect={false} placeholder={label} {...(pwAutofill(mode, kind) as any)} />
     <Pressable testID={testID ? testID + '-eye' : undefined} accessibilityRole="button" accessibilityLabel={show ? t('fx.hide') : t('fx.show')} onPress={() => setShow(!show)}
       style={{ width: 64, height: 58, borderRadius: 16, borderWidth: 2, borderColor: C.border, backgroundColor: C.card, alignItems: 'center', justifyContent: 'center' }}>
       <Text style={{ fontSize: 26 }}>{show ? '🙈' : '👁️'}</Text></Pressable></View>;
@@ -56,19 +58,33 @@ function Unlock({ auth, onAuth, onOpen, onReset }: { auth: Auth; onAuth: (a: Aut
   const go = async () => { const r = await checkSecret(auth, v); setV('');
     if (r.ok) { onAuth({ ...r.auth, remember }); onOpen(); return; } onAuth(r.auth);
     setMsg(r.locked ? t('fx.locked', { s: Math.ceil(r.locked / 1000) }) : t('fx.wrong', { n: 5 - r.auth.fails })); };
-  const bio = async () => { if (auth.passkeyId && (await bioUnlock(auth.passkeyId))) { onAuth({ ...auth, remember }); onOpen(); } else setMsg(t('fx.bioFail')); };
+  const bio = async () => { if (auth.passkeyId && (await biometricUnlock(auth.passkeyId, t('fx.bioUse')))) { onAuth({ ...auth, remember }); onOpen(); } else setMsg(t('fx.bioFail')); };
   useEffect(() => { if (auth.passkeyId) bio(); }, []); // abre la huella sola al entrar
   return <ScrollView testID="unlock" contentContainerStyle={{ padding: 22, gap: 16, maxWidth: 520, width: '100%', alignSelf: 'center', backgroundColor: C.bg, flexGrow: 1 }}>
     <Text style={[s.h1, { textAlign: 'center', marginTop: 30 }]}>👋 {t('fx.hello', { name: auth.name || 'Angie One' })}</Text>
     <Text style={[s.t, { textAlign: 'center' }]}>{t(auth.kind === 'pin' ? 'fx.enterPin' : 'fx.enterPw')}</Text>
     {auth.passkeyId ? <Btn label={`👆 ${t('fx.bioUse')}`} onPress={bio} style={{ minHeight: 72 }} /> : null}
+    <TextInput testID="unlock-user" value={auth.name || 'Angie One'} editable={false} {...({ autoComplete: 'username', textContentType: 'username' } as any)} accessibilityLabel={t('fx.name')} style={[s.input, { opacity: 0.7 }]} />
     <SecretField testID="unlock-secret" kind={auth.kind} value={v} onChange={setV} label={t(auth.kind === 'pin' ? 'fx.pin' : 'fx.password')} />
     <Check testID="unlock-remember" on={remember} label={t('fx.remember')} onPress={() => setRemember(!remember)} />
     <Btn label={`✓ ${t('fx.enter')}`} onPress={go} style={{ minHeight: 72 }} />
     {msg ? <Text testID="unlock-msg" style={{ color: C.primary, fontWeight: '800', fontSize: 18, textAlign: 'center' }}>{msg}</Text> : null}
     <Btn kind="ghost" label={t('fx.forgot')} onPress={() => setForgot(!forgot)} />
+    {forgot ? <RecoverCard auth={auth} onDone={(a) => { onAuth(a); onOpen(); }} /> : null}
     {forgot ? <Card><T>{t('fx.forgotInfo')}</T><Btn kind="danger" label={t('fx.resetAll')} onPress={() => { if (Platform.OS !== 'web' || window.confirm(t('fx.resetQ'))) { reset(); onReset(); router.replace('/onboarding'); } }} /></Card> : null}
     <Note k="fx.localNote" /></ScrollView>;
+}
+
+function RecoverCard({ auth, onDone }: { auth: Auth; onDone: (a: Auth) => void }) {
+  const { t } = useTranslation(); const [code, setCode] = useState(''); const [kind, setKind] = useState<Auth['kind']>(auth.kind); const [a, setA] = useState(''); const [msg, setMsg] = useState(''); const [newCode, setNewCode] = useState(''); const [done, setDone] = useState<Auth | null>(null);
+  if (!auth.recHash) return <Card testID="rec-none"><T>{t('fx.recNone')}</T></Card>;
+  if (done) return <Card testID="rec-ok"><T style={{ fontWeight: '900', color: C.success }}>✓ {t('fx.recOk')}</T><T>{t('fx.recNew')}</T><Text testID="rec-code" selectable style={[s.h2, { textAlign: 'center', letterSpacing: 2 }]}>{newCode}</Text><Btn testID="rec-continue" label={`✓ ${t('fx.enter')}`} onPress={() => onDone(done)} /></Card>;
+  const go = async () => { const r = await recoverWith(auth, code, kind, a); if (r.ok) { setNewCode(r.code!); setDone(r.auth); } else setMsg(t('fx.err.' + (r.err === 'badRec' || r.err === 'locked' || r.err === 'noRec' ? r.err : r.err!))); };
+  return <Card testID="rec-card"><CardTitle icon="🔑">{t('fx.recTitle')}</CardTitle><T>{t('fx.recHow')}</T>
+    <TextInput testID="rec-input" accessibilityLabel={t('fx.recTitle')} style={s.input} value={code} onChangeText={setCode} autoCapitalize="characters" autoCorrect={false} placeholder="ABCD-EFGH-JKLM" {...({ autoComplete: 'one-time-code', textContentType: 'oneTimeCode' } as any)} />
+    <View style={s.row}><Chip label={`🔢 ${t('fx.pin')}`} active={kind === 'pin'} onPress={() => setKind('pin')} /><Chip label={`🔤 ${t('fx.password')}`} active={kind === 'password'} onPress={() => setKind('password')} /></View>
+    <SecretField testID="rec-new" mode="new" kind={kind} value={a} onChange={setA} label={t(kind === 'pin' ? 'fx.pin' : 'fx.password')} />
+    <Btn testID="rec-go" label={`✓ ${t('fx.recGo')}`} onPress={go} />{msg ? <Text testID="rec-msg" style={{ color: C.primary, fontWeight: '800' }}>{msg}</Text> : null}</Card>;
 }
 
 // ---------- Pantalla "Entrada y seguridad" (crear, cambiar o quitar; siempre se puede saltar) ----------
@@ -76,17 +92,19 @@ export function SecurityScreenBody() {
   const { t } = useTranslation(); const { auth, setAuth } = useAuth(); const [, setAsked] = useExt<boolean>('authAsked', false);
   const [name, setName] = useState(auth?.name || ''); const [kind, setKind] = useState<'pin' | 'password'>(auth?.kind || 'pin');
   const [a, setA] = useState(''); const [b, setB] = useState(''); const [remember, setRemember] = useState(auth?.remember ?? true); const [msg, setMsg] = useState('');
-  const [bioOk, setBioOk] = useState<boolean | null>(null);
+  const [bioOk, setBioOk] = useState<boolean | null>(null); const [recCode, setRecCode] = useState('');
   useEffect(() => { bioAvailable().then(setBioOk); }, []);
   const save = async () => { const e = validSecret(kind, a); if (e) return setMsg(t('fx.err.' + e)); if (a !== b) return setMsg(t('fx.err.match'));
-    const n = await createAuth(name, kind, a, remember); setAuth({ ...n, passkeyId: auth?.passkeyId }); setAsked(() => true); setA(''); setB(''); setMsg('✓ ' + t('fx.saved')); };
-  const addBio = async () => { if (!auth) return; try { const id = await bioRegister(auth.name); setAuth({ ...auth, passkeyId: id }); setMsg('✓ ' + t('fx.bioOn')); } catch { setMsg(t('fx.bioFail')); } };
+    const n = await createAuth(name, kind, a, remember); const rec = await newRecovery(); setAuth({ ...n, passkeyId: auth?.passkeyId, recSalt: rec.recSalt, recHash: rec.recHash }); setRecCode(rec.code); setAsked(() => true); setA(''); setB(''); setMsg('✓ ' + t('fx.saved')); };
+  const addBio = async () => { if (!auth) return; try { const id = await biometricEnroll(auth.name); setAuth({ ...auth, passkeyId: id }); setMsg('✓ ' + t('fx.bioOn')); } catch { setMsg(t('fx.bioFail')); } };
   const skip = () => { setAsked(() => true); router.replace('/'); };
   return <>
     <Card style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
       <View style={{ width: 84, height: 84, borderRadius: 42, alignItems: 'center', justifyContent: 'center', backgroundColor: auth ? C.success + '22' : C.tint, borderWidth: 3, borderColor: auth ? C.success : C.secondary }}><Text style={{ fontSize: 40 }}>{auth ? '🛡️' : '🔓'}</Text></View>
       <View style={{ flex: 1, gap: 6 }}><Pill label={auth ? '✓ ON' : 'OFF'} color={auth ? C.success : C.muted} /><Text style={s.muted}>{t('fx.secSub')}</Text></View></Card>
     <View style={{ flexDirection: 'row', gap: 10 }}>{[['🔢', t('fx.pin')], ['🔤', t('fx.password')], ['👆', '🔐']].map(([i, l]) => <View key={i} style={[s.card, { flex: 1, alignItems: 'center', padding: 12, gap: 6 }]}><IconTile icon={i} size={42} /><Text style={{ fontWeight: '700', color: C.text, fontSize: 13 }}>{l}</Text></View>)}</View>
+    {recCode ? <Card testID="sec-rec" style={{ borderColor: C.warning, borderWidth: 3 }}><CardTitle icon="🔑">{t('fx.recTitle')}</CardTitle><T>{t('fx.recSave')}</T>
+      <Text testID="sec-rec-code" selectable style={[s.h2, { textAlign: 'center', letterSpacing: 2 }]}>{recCode}</Text><Btn small kind="secondary" label={`✓ ${t('fx.recSaved')}`} onPress={() => setRecCode('')} /></Card> : null}
     {auth ? <Card testID="sec-on"><T style={{ fontWeight: '900', color: C.success }}>🔐 {t('fx.isOn', { name: auth.name || '—' })}</T>
       <Check testID="sec-remember" on={auth.remember} label={t('fx.remember')} onPress={() => setAuth({ ...auth, remember: !auth.remember })} />
       <Btn kind="danger" label={t('fx.remove')} onPress={() => { setAuth(null); setMsg('✓ ' + t('fx.removed')); }} /></Card> : null}
@@ -94,8 +112,9 @@ export function SecurityScreenBody() {
       <TextInput testID="sec-name" accessibilityLabel={t('fx.name')} style={s.input} value={name} onChangeText={setName} placeholder={t('fx.name')} />
       <View style={s.row}><Chip label={`🔢 ${t('fx.pin')}`} active={kind === 'pin'} onPress={() => setKind('pin')} /><Chip label={`🔤 ${t('fx.password')}`} active={kind === 'password'} onPress={() => setKind('password')} /></View>
       <Text style={s.muted}>{t(kind === 'pin' ? 'fx.pinHint' : 'fx.pwHint')}</Text>
-      <SecretField testID="sec-a" kind={kind} value={a} onChange={setA} label={t(kind === 'pin' ? 'fx.pin' : 'fx.password')} />
-      <SecretField testID="sec-b" kind={kind} value={b} onChange={setB} label={t('fx.repeat')} />
+      <TextInput testID="sec-user" style={{ height: 0, width: 0, opacity: 0, position: 'absolute' }} value={name || 'Angie One'} editable={false} {...({ autoComplete: 'username', textContentType: 'username' } as any)} />
+      <SecretField testID="sec-a" mode="new" kind={kind} value={a} onChange={setA} label={t(kind === 'pin' ? 'fx.pin' : 'fx.password')} />
+      <SecretField testID="sec-b" mode="new" kind={kind} value={b} onChange={setB} label={t('fx.repeat')} />
       <Check testID="sec-remember-new" on={remember} label={t('fx.remember')} onPress={() => setRemember(!remember)} />
       <Text style={s.muted}>{t('fx.rememberHint')}</Text>
       <Btn label={`✓ ${t('fx.save')}`} onPress={save} />

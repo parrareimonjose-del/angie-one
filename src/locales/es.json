@@ -1404,7 +1404,10 @@
       "pinLen": "El PIN debe tener de 4 a 8 números.",
       "weakPin": "Muy fácil. Evita 1111 o 1234.",
       "pwLen": "Mínimo 6 caracteres.",
-      "match": "No coinciden. Inténtalo otra vez."
+      "match": "No coinciden. Inténtalo otra vez.",
+      "badRec": "Código incorrecto.",
+      "locked": "Demasiados intentos. Espera 30 segundos.",
+      "noRec": "No hay código de recuperación."
     },
     "bioTitle": "Huella o Face ID",
     "bioNone": "Este navegador o teléfono no permite huella/Face ID. Tu PIN sigue funcionando.",
@@ -1541,7 +1544,15 @@
       "approved": "Aprobados",
       "pending": "Pendientes"
     },
-    "weighNever": "Aún no hay ningún peso registrado."
+    "weighNever": "Aún no hay ningún peso registrado.",
+    "recTitle": "Código de recuperación",
+    "recHow": "¿Olvidaste tu PIN o contraseña? Escribe tu código de recuperación y elige uno nuevo. Tus datos no se borran.",
+    "recGo": "Poner el nuevo",
+    "recOk": "Listo, ya tienes tu nuevo PIN o contraseña.",
+    "recNew": "Guarda este código NUEVO (el anterior ya no sirve):",
+    "recNone": "Esta entrada no tiene código de recuperación. Solo puedes borrar el bloqueo y los datos de este dispositivo.",
+    "recSave": "Guarda este código en un lugar seguro (foto, papel o tu gestor de contraseñas). Solo se muestra ahora y sirve si olvidas tu PIN o contraseña.",
+    "recSaved": "Ya lo guardé"
   },
   "voice": {
     "stop": "Toca para terminar",

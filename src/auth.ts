@@ -1,7 +1,7 @@
 // Entrada fácil para mayores. TODO queda en este dispositivo: el PIN/contraseña se guarda como hash PBKDF2 con sal,
 // nunca en texto. Huella/Face ID usa la llave de acceso (WebAuthn) del propio teléfono. Cuentas en la nube: pendiente de conexión.
 import AsyncStorage from '@react-native-async-storage/async-storage';
-export type Auth = { name: string; kind: 'pin' | 'password'; salt: string; hash: string; remember: boolean; passkeyId?: string; fails: number; lockUntil: number; createdAt: number };
+export type Auth = { name: string; kind: 'pin' | 'password'; salt: string; hash: string; remember: boolean; passkeyId?: string; recSalt?: string; recHash?: string; fails: number; lockUntil: number; createdAt: number };
 export const AUTH_KEY = 'angieone:auth'; export const SESSION_KEY = 'angieone:unlocked';
 export const MAX_FAILS = 5, LOCK_MS = 30000;
 const hex = (b: ArrayBuffer | Uint8Array) => Array.from(new Uint8Array(b as ArrayBuffer), (x) => x.toString(16).padStart(2, '0')).join('');
@@ -55,3 +55,25 @@ export async function bioUnlock(id: string): Promise<boolean> {
   try { const a: any = await navigator.credentials.get({ publicKey: { challenge: crypto.getRandomValues(new Uint8Array(32)), allowCredentials: [{ type: 'public-key', id: unb64u(id) }], userVerification: 'required', timeout: 60000 } });
     return !!a && b64u(a.rawId) === id; } catch { return false; }
 }
+
+// ---------- «Olvidé mi contraseña» sin servidor (gratis): código de recuperación de un solo uso ----------
+// Se muestra UNA vez al crear la entrada; solo se guarda su hash PBKDF2. Con él se pone un PIN/contraseña nuevo sin perder datos.
+const RC = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+export const normRec = (c: string) => String(c || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+export async function newRecovery(): Promise<{ code: string; recSalt: string; recHash: string }> {
+  const r = crypto.getRandomValues(new Uint8Array(12)); const raw = Array.from(r, (x) => RC[x % RC.length]).join('');
+  const code = raw.match(/.{4}/g)!.join('-'); const recSalt = randHex(); return { code, recSalt, recHash: await hashSecret(normRec(code), recSalt) };
+}
+/** Comparte el límite de intentos con el PIN (5 fallos → 30 s). */
+export async function recoverWith(a: Auth, code: string, kind: Auth['kind'], secret: string, now = Date.now()): Promise<{ ok: boolean; auth: Auth; err?: string; code?: string }> {
+  if (!a.recHash || !a.recSalt) return { ok: false, auth: a, err: 'noRec' };
+  if (a.lockUntil > now) return { ok: false, auth: a, err: 'locked' };
+  if ((await hashSecret(normRec(code), a.recSalt)) !== a.recHash) { const fails = a.fails + 1; const lockUntil = fails >= MAX_FAILS ? now + LOCK_MS : 0; return { ok: false, auth: { ...a, fails: lockUntil ? 0 : fails, lockUntil }, err: 'badRec' }; }
+  const e = validSecret(kind, secret); if (e) return { ok: false, auth: a, err: e };
+  const n = await createAuth(a.name, kind, secret, a.remember); const rec = await newRecovery(); // el código usado deja de valer: se da uno nuevo
+  return { ok: true, auth: { ...n, passkeyId: a.passkeyId, recSalt: rec.recSalt, recHash: rec.recHash }, code: rec.code };
+}
+/** Campos para que el navegador / iCloud Keychain / Google ofrezcan guardar y rellenar la contraseña. */
+export const pwAutofill = (mode: 'current' | 'new', kind: Auth['kind']) => kind === 'pin'
+  ? ({ autoComplete: mode === 'new' ? 'new-password' : 'current-password', textContentType: mode === 'new' ? 'newPassword' : 'password', importantForAutofill: 'yes' } as const)
+  : ({ autoComplete: mode === 'new' ? 'new-password' : 'current-password', textContentType: mode === 'new' ? 'newPassword' : 'password', importantForAutofill: 'yes' } as const);

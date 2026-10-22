@@ -1404,7 +1404,10 @@
       "pinLen": "Le PIN doit avoir 4 à 8 chiffres.",
       "weakPin": "Trop facile. Évitez 1111 ou 1234.",
       "pwLen": "Au moins 6 caractères.",
-      "match": "Ils ne correspondent pas. Réessayez."
+      "match": "Ils ne correspondent pas. Réessayez.",
+      "badRec": "Code incorrect.",
+      "locked": "Trop d'essais. Attendez 30 secondes.",
+      "noRec": "Aucun code de récupération."
     },
     "bioTitle": "Empreinte ou Face ID",
     "bioNone": "Ce navigateur ou téléphone ne permet pas l'empreinte/Face ID. Votre PIN fonctionne toujours.",
@@ -1541,7 +1544,15 @@
       "approved": "Approuves",
       "pending": "En attente"
     },
-    "weighNever": "Aucun poids enregistré pour l’instant."
+    "weighNever": "Aucun poids enregistré pour l’instant.",
+    "recTitle": "Code de récupération",
+    "recHow": "PIN ou mot de passe oublié ? Saisissez votre code de récupération et choisissez-en un nouveau. Vos données restent.",
+    "recGo": "Définir le nouveau",
+    "recOk": "C'est fait, votre nouveau PIN ou mot de passe est actif.",
+    "recNew": "Gardez ce NOUVEAU code (l'ancien ne marche plus) :",
+    "recNone": "Ce verrou n'a pas de code de récupération. Vous pouvez seulement effacer le verrou et les données de cet appareil.",
+    "recSave": "Gardez ce code en lieu sûr (photo, papier ou gestionnaire de mots de passe). Il n'est affiché que maintenant et sert si vous oubliez votre PIN ou mot de passe.",
+    "recSaved": "Je l'ai gardé"
   },
   "voice": {
     "stop": "Touchez pour terminer",

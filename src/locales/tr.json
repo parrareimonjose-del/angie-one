@@ -1404,7 +1404,10 @@
       "pinLen": "PIN 4 ila 8 rakam olmalı.",
       "weakPin": "Çok kolay. 1111 veya 1234 kullanma.",
       "pwLen": "En az 6 karakter.",
-      "match": "Eşleşmiyor. Tekrar dene."
+      "match": "Eşleşmiyor. Tekrar dene.",
+      "badRec": "Yanlış kod.",
+      "locked": "Çok fazla deneme. 30 saniye bekle.",
+      "noRec": "Kurtarma kodu yok."
     },
     "bioTitle": "Parmak izi veya Face ID",
     "bioNone": "Bu tarayıcı veya telefon parmak izi/Face ID desteklemiyor. PIN'in çalışmaya devam eder.",
@@ -1541,7 +1544,15 @@
       "approved": "Onaylanan",
       "pending": "Bekleyen"
     },
-    "weighNever": "Henüz kilo kaydı yok."
+    "weighNever": "Henüz kilo kaydı yok.",
+    "recTitle": "Kurtarma kodu",
+    "recHow": "PIN'ini veya şifreni mi unuttun? Kurtarma kodunu yaz ve yenisini seç. Verilerin kalır.",
+    "recGo": "Yenisini ayarla",
+    "recOk": "Tamam, yeni PIN'in veya şifren etkin.",
+    "recNew": "Bu YENİ kodu sakla (eskisi artık geçmez):",
+    "recNone": "Bu kilidin kurtarma kodu yok. Yalnızca bu cihazdaki kilidi ve verileri silebilirsin.",
+    "recSave": "Bu kodu güvenli bir yerde sakla (fotoğraf, kâğıt veya şifre yöneticisi). Yalnızca şimdi gösterilir ve PIN'ini veya şifreni unutursan işe yarar.",
+    "recSaved": "Sakladım"
   },
   "voice": {
     "stop": "Bitirmek için dokunun",

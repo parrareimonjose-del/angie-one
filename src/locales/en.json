@@ -1404,7 +1404,10 @@
       "pinLen": "The PIN must have 4 to 8 numbers.",
       "weakPin": "Too easy. Avoid 1111 or 1234.",
       "pwLen": "At least 6 characters.",
-      "match": "They don't match. Try again."
+      "match": "They don't match. Try again.",
+      "badRec": "Wrong code.",
+      "locked": "Too many tries. Wait 30 seconds.",
+      "noRec": "No recovery code."
     },
     "bioTitle": "Fingerprint or Face ID",
     "bioNone": "This browser or phone can't use fingerprint/Face ID. Your PIN keeps working.",
@@ -1541,7 +1544,15 @@
       "approved": "Approved",
       "pending": "Pending"
     },
-    "weighNever": "No weight logged yet."
+    "weighNever": "No weight logged yet.",
+    "recTitle": "Recovery code",
+    "recHow": "Forgot your PIN or password? Enter your recovery code and choose a new one. Your data stays.",
+    "recGo": "Set the new one",
+    "recOk": "Done, your new PIN or password is set.",
+    "recNew": "Save this NEW code (the old one no longer works):",
+    "recNone": "This lock has no recovery code. You can only erase the lock and this device's data.",
+    "recSave": "Keep this code somewhere safe (photo, paper or your password manager). It's shown only now and works if you forget your PIN or password.",
+    "recSaved": "I saved it"
   },
   "voice": {
     "stop": "Tap to finish",

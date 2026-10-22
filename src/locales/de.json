@@ -1404,7 +1404,10 @@
       "pinLen": "Die PIN muss 4 bis 8 Ziffern haben.",
       "weakPin": "Zu einfach. Vermeide 1111 oder 1234.",
       "pwLen": "Mindestens 6 Zeichen.",
-      "match": "Stimmt nicht überein. Versuch es nochmal."
+      "match": "Stimmt nicht überein. Versuch es nochmal.",
+      "badRec": "Falscher Code.",
+      "locked": "Zu viele Versuche. Warte 30 Sekunden.",
+      "noRec": "Kein Wiederherstellungscode."
     },
     "bioTitle": "Fingerabdruck oder Face ID",
     "bioNone": "Dieser Browser oder dieses Handy unterstützt keinen Fingerabdruck/Face ID. Deine PIN funktioniert weiter.",
@@ -1541,7 +1544,15 @@
       "approved": "Genehmigt",
       "pending": "Offen"
     },
-    "weighNever": "Noch kein Gewicht eingetragen."
+    "weighNever": "Noch kein Gewicht eingetragen.",
+    "recTitle": "Wiederherstellungscode",
+    "recHow": "PIN oder Passwort vergessen? Gib deinen Wiederherstellungscode ein und wähle einen neuen. Deine Daten bleiben.",
+    "recGo": "Neu festlegen",
+    "recOk": "Fertig, dein neuer PIN bzw. dein neues Passwort ist aktiv.",
+    "recNew": "Speichere diesen NEUEN Code (der alte gilt nicht mehr):",
+    "recNone": "Diese Sperre hat keinen Wiederherstellungscode. Du kannst nur die Sperre und die Daten dieses Geräts löschen.",
+    "recSave": "Bewahre diesen Code sicher auf (Foto, Papier oder Passwort-Manager). Er wird nur jetzt gezeigt und hilft, wenn du PIN oder Passwort vergisst.",
+    "recSaved": "Gespeichert"
   },
   "voice": {
     "stop": "Tippen zum Beenden",
