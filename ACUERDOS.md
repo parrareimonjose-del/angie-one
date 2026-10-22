@@ -184,3 +184,7 @@ DECISIÓN JOSÉ 2026-10-15 12:38 ET: en la sección de datos solo entran recibos
 - **Secretos para el deploy (cuando toque):** `wrangler secret put STRIPE_SK` (sk_test) y `STRIPE_WHSEC` (de un webhook de Stripe apuntando al Worker). Sin ellos, /pay responde «not_configured».
 - **Entrada:** autocompletar de contraseñas, «Olvidé mi contraseña» con código de recuperación de un solo uso (gratis, sin servidor) y gancho Face ID (`src/biometric.ts`: WebAuthn en web, iOS listo para expo-local-authentication). No se creó la cuenta del fundador.
 - **Apple:** /workspace/calorias/cumplimiento-apple.md + .pdf.
+
+## 2026-10-22 ~13:00 — Rerun suites: NO se publica
+- clon 72/72, stripe-ui 21/21, web 79/5 (IA calcular/voz/menú), iphone 34/6 (voz, saludo IA). Causa: Gemini free tier lento/503.
+- Regla: no publicar con fallas. Rama feat-stripe-test sin merge; master cca100a sin push; worker no desplegado.
