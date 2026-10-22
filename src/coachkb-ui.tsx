@@ -21,7 +21,7 @@ export function RecipeSuggest() {
   return <IconCard testID="ck-recipes" icon="🍲" title={t('ck.recT')} sub={list.length ? t('ck.recSub', { kcal: fmtNum(left) }) : undefined}>
     {!list.length ? <T testID="ck-rec-none">{t('ck.recNone')}</T> : list.map((x) => <View key={x.id} testID="ck-rec" style={{ gap: 6, padding: 10, borderRadius: 16, backgroundColor: C.tint }}>
       <Text style={{ fontSize: 17, fontWeight: '800', color: C.text }}>{x.emoji} {nm(x, l)}</Text>
-      <Text style={s.muted}>{fmtNum(x.kcal)} {t('u.kcal')} · P {x.p} g · C {x.c} g · G {x.f} g{x.min ? ` · ⏱ ${x.min} min` : ''}{x.portion ? ` · ${x.portion}` : ''}</Text>
+      <Text style={s.muted}>{fmtNum(x.kcal)} {t('u.kcal')} · P {x.p} g · C {x.c} g · {['es', 'pt', 'it'].includes(l) ? 'G' : 'F'} {x.f} g{x.min ? ` · ⏱ ${x.min} min` : ''}{x.portion && /\d+\s*g\b/.test(x.portion) ? ` · ${x.portion.match(/(\d+\s*g)\b/)![1]}` : ''}</Text>
       {x.kind === 'recipe' ? <Btn small testID="ck-cook" label={t('ck.recCook')} onPress={() => router.push({ pathname: '/cook', params: { id: x.id } })} />
         : added.includes(x.id) ? <Text testID="ck-added" style={{ color: C.success, fontWeight: '800' }}>{t('ck.recAdded')}</Text>
         : <Btn small kind="secondary" testID="ck-add" label={t('ck.recAdd')} onPress={() => add(x)} />}
