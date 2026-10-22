@@ -43,6 +43,7 @@ for (const lang of ['es', 'en']) {
   await p.evaluate(() => sessionStorage.clear()); await go('/'); ok(`${lang} remembered device`, await p.getByTestId('unlock').count() === 0);
   // Pago y condiciones
   await go('/paywall'); ok(`${lang} terms`, await p.getByTestId('sub-terms').count() > 0); ok(`${lang} stripe on web`, /Stripe/.test(await p.getByTestId('pay-provider').textContent()));
+  { const tx = await p.locator('body').innerText(); ok(`${lang} precio único 2,49`, /2[.,]49/.test(tx) && /24[.,]99/.test(tx) && !/0[.,]99|14[.,]99|\b1[.,]99/.test(tx)); ok(`${lang} sin compra activa sin Stripe`, await p.getByTestId('pay-soon').count() === 1); }
   await p.getByTestId('sub-terms').scrollIntoViewIfNeeded(); await shot('05-suscripcion');
   // Tienda y donaciones ocultas
   await go('/explore'); ok(`${lang} no store tile`, !(await has(L ? 'Tienda' : 'Store'))); ok(`${lang} no impact tile`, !(await has(L ? 'Nuestro impacto' : 'Our impact')));

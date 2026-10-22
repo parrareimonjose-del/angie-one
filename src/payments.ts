@@ -3,17 +3,17 @@
 // Hoy NADA cobra: todos los proveedores están «Pendiente de conexión» (sin claves). No hay dinero real.
 // Las tiendas obligan a usar su sistema para contenido digital dentro de la app: nunca mostrar Stripe en Android/iOS.
 import { Platform } from 'react-native';
-export type PlanId = 'monthly' | 'yearly' | 'latam_monthly';
+// Decisión de José 2026-10-22: UN solo precio mundial: 2,49 USD/mes o 24,99 USD/año. Sin precio regional.
+export type PlanId = 'monthly' | 'yearly';
 export const PLANS: Record<PlanId, { usd: number; period: 'month' | 'year'; productId: string }> = {
-  monthly: { usd: 1.99, period: 'month', productId: 'angieone_premium_monthly' },
-  yearly: { usd: 14.99, period: 'year', productId: 'angieone_premium_yearly' },
-  latam_monthly: { usd: 0.99, period: 'month', productId: 'angieone_premium_latam_monthly' },
+  monthly: { usd: 2.49, period: 'month', productId: 'angieone_premium_monthly' },
+  yearly: { usd: 24.99, period: 'year', productId: 'angieone_premium_yearly' },
 };
 export const TRIAL_DAYS = 7;
 export type ProviderId = 'stripe' | 'play' | 'apple';
 export type Provider = { id: ProviderId; name: string; connected: boolean; manageUrl: string; canRestore: boolean };
 /** Enlaces de pago de Stripe: se rellenan cuando José cree su cuenta (solo enlaces públicos; las claves secretas nunca van en la app). */
-export const STRIPE_LINKS: Record<PlanId, string> = { monthly: '', yearly: '', latam_monthly: '' };
+export const STRIPE_LINKS: Record<PlanId, string> = { monthly: '', yearly: '' };
 export function providerFor(os: string = Platform.OS): Provider {
   if (os === 'android') return { id: 'play', name: 'Google Play', connected: false, manageUrl: 'https://play.google.com/store/account/subscriptions', canRestore: true };
   if (os === 'ios') return { id: 'apple', name: 'App Store', connected: false, manageUrl: 'https://apps.apple.com/account/subscriptions', canRestore: true };

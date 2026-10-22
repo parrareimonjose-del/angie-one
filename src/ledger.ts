@@ -10,10 +10,10 @@ export function split3(net: number) {
 }
 export const net = (c: Charge) => (c2(c.gross) - c2(c.fee)) / 100;
 export const SAMPLE_CHARGES: Charge[] = [
-  { id: 'ej-1', date: '2026-10-01', desc: 'Premium mensual (EJEMPLO)', gross: 1.99, fee: 0.36, currency: 'USD', sample: true, status: 'pending' },
-  { id: 'ej-2', date: '2026-10-03', desc: 'Premium anual (EJEMPLO)', gross: 14.99, fee: 0.73, currency: 'USD', sample: true, status: 'pending' },
-  { id: 'ej-3', date: '2026-10-07', desc: 'Premium LatAm (EJEMPLO)', gross: 0.99, fee: 0.33, currency: 'USD', sample: true, status: 'pending' },
-  { id: 'ej-4', date: '2026-10-12', desc: 'Premium mensual (EJEMPLO)', gross: 1.99, fee: 0.36, currency: 'USD', sample: true, status: 'pending' },
+  { id: 'ej-1', date: '2026-10-01', desc: 'Premium mensual (EJEMPLO)', gross: 2.49, fee: 0.37, currency: 'USD', sample: true, status: 'pending' },
+  { id: 'ej-2', date: '2026-10-03', desc: 'Premium anual (EJEMPLO)', gross: 24.99, fee: 1.02, currency: 'USD', sample: true, status: 'pending' },
+  { id: 'ej-3', date: '2026-10-07', desc: 'Premium mensual (EJEMPLO)', gross: 2.49, fee: 0.37, currency: 'USD', sample: true, status: 'pending' },
+  { id: 'ej-4', date: '2026-10-12', desc: 'Premium mensual (EJEMPLO)', gross: 2.49, fee: 0.37, currency: 'USD', sample: true, status: 'pending' },
 ];
 export function decideCharge(list: Charge[], id: string, v: 'approved' | 'rejected', now = new Date()): Charge[] {
   const n = list.filter((x) => x.receipt).length + 1;
