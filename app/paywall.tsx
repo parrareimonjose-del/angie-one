@@ -33,14 +33,13 @@ export default function Paywall() {
       <Card>{(['f1', 'f2', 'f3', 'f4', 'f5'] as const).map((f) => <T key={f}>✅ {t(`pay.${f}`)}</T>)}</Card>
       {opt('y', t('pay.yearly'), t('pay.yearlySave'))}
       {opt('m', t('pay.monthly'))}
-      <Text style={[s.muted, { textAlign: 'center' }]}>{t('pay.latam')}</Text>
       <Card style={{ backgroundColor: C.warnBg }}><T>⏳ {t('pay.offer')}</T>
         <T style={{ fontWeight: '800', color: tp.phase === 'offer' ? C.primary : C.text }}>{tp.phase === 'offer' ? t('pay.offerLive', { time: fmtCountdown(tp.offerMsLeft) }) : tp.phase === 'free' ? t('pay.offerGone') : t('pay.offerAfter')}</T></Card>
       <Card testID="sub-terms"><CardTitle>📋 {t('fx.termsT')}</CardTitle>
         <T>{t('fx.terms', { price: plan === 'y' ? '$' + PLANS.yearly.usd : '$' + PLANS.monthly.usd, period: t(plan === 'y' ? 'fx.perYear' : 'fx.perMonth'), store: prov.name })}</T>
         <Text style={[s.muted, { fontSize: 15 }]}>{t('pay.renew')}</Text><Text style={[s.muted, { fontSize: 15 }]}>⚕️ {t('fx.healthDisc')}</Text></Card>
       <Text testID="pay-provider" style={[s.muted, { textAlign: 'center' }]}>🔒 {t('fx.payVia', { store: prov.name })}</Text>
-      <Btn label={t('pay.cta')} onPress={buy} />
+      {prov.connected ? <Btn label={t('pay.cta')} onPress={buy} /> : <Card testID="pay-soon"><Pending /><T style={{ color: C.warning, fontWeight: '700' }}>{t('pay.soon')}</T></Card>}
       {note && <Card><Pending /><T style={{ color: C.warning, fontWeight: '700' }}>{t('pay.soon')}</T></Card>}
       <RedeemCard />
       <Btn testID="pay-restore" kind="secondary" label={`↺ ${t('hb.restore')}`} onPress={() => router.push('/subscription')} />

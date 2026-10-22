@@ -160,10 +160,7 @@
   "pay": {
     "title": "Angie One Premium",
     "sub": "İhtiyacın olan her şey, dürüst fiyat",
-    "monthly": "1,99 US$ / ay",
-    "yearly": "14,99 US$ / yıl",
-    "yearlySave": "%37 tasarruf et",
-    "latam": "Latin Amerika: 0,99 US$ / ay",
+    "monthly": "2,49 US$ / ay",
     "f1": "Sınırsız yapay zeka fotoğrafı (adil kullanım)",
     "f2": "Kişiselleştirilmiş diyet ve egzersiz planları",
     "f3": "Haftalık koç ve sohbet",
@@ -176,7 +173,9 @@
     "free": "Ücretsiz sürümle devam et",
     "offerLive": "🔒 Sabit fiyat sadece {{time}} daha geçerli",
     "offerAfter": "Deneme süren bittiğinde bu fiyatı sonsuza kadar sabitlemek için 48 saatin olacak.",
-    "offerGone": "48 saatlik teklif sona erdi; güncel fiyat yukarıda gösterilmektedir."
+    "offerGone": "48 saatlik teklif sona erdi; güncel fiyat yukarıda gösterilmektedir.",
+    "yearly": "24,99 US$ / yıl",
+    "yearlySave": "%16 tasarruf et"
   },
   "fo": {
     "title": "Kurucu Paneli v1",

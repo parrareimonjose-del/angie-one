@@ -160,10 +160,7 @@
   "pay": {
     "title": "Angie One Premium",
     "sub": "Todo lo que necesitas, a precio honesto",
-    "monthly": "1,99 $ / mes",
-    "yearly": "14,99 $ / año",
-    "yearlySave": "Ahorras 37 %",
-    "latam": "Latinoamérica: 0,99 $ / mes",
+    "monthly": "2,49 $ / mes",
     "f1": "Fotos con IA ilimitadas (uso justo)",
     "f2": "Planes de dieta y ejercicio personalizados",
     "f3": "Coach semanal y chat",
@@ -176,7 +173,9 @@
     "free": "Seguir con la versión gratis",
     "offerLive": "🔒 Precio congelado disponible solo {{time}} más",
     "offerAfter": "Cuando termine tu prueba tendrás 48 h para congelar este precio para siempre.",
-    "offerGone": "La oferta de 48 h ya terminó; el precio actual se muestra arriba."
+    "offerGone": "La oferta de 48 h ya terminó; el precio actual se muestra arriba.",
+    "yearly": "24,99 $ / año",
+    "yearlySave": "Ahorras 16 %"
   },
   "fo": {
     "title": "Panel del Fundador v1",

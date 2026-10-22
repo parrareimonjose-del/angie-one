@@ -58,7 +58,7 @@ ok(aiUrl('chat', other) === 'https://x.workers.dev/chat' && other.locales.length
 
 // 6) Pagos por plataforma + banderas
 ok(providerFor('web').id === 'stripe' && providerFor('android').id === 'play' && providerFor('ios').id === 'apple', 'proveedor por plataforma');
-ok(PLANS.monthly.usd === 1.99 && PLANS.yearly.usd === 14.99 && PLANS.latam_monthly.usd === 0.99, 'precios');
+ok(PLANS.monthly.usd === 2.49 && PLANS.yearly.usd === 24.99 && Object.keys(PLANS).join() === 'monthly,yearly', 'precio único mundial 2,49 $/mes y 24,99 $/año, sin regional');
 for (const os of ['web', 'android', 'ios']) { const x = await purchase('monthly', os); ok(!x.ok && x.reason === 'pending_connection', 'nunca simula cobro ' + os); }
 ok(FEATURES.purposeStore === false && FEATURES.donations === false, 'tienda oculta y sin donaciones');
 console.log(`✓ faltantes: ${n} pruebas`);
