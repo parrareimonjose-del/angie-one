@@ -71,16 +71,18 @@ export const BRIEF: Record<Area, string> = {
 };
 /** Casos especiales: guía general segura + derivar al profesional que trata (ADA Standards of Care, AHA/ACC, ACOG 2020, OMS mayores, AAP, NEDA/APA). */
 export const SPECIAL = {
+  supps: 'SUPPLEMENTS: never give any dose, amount or timing of creatine, protein powder servings, vitamins, melatonin, caffeine pills or other supplements; say food first and that a doctor, pharmacist or dietitian decides doses.',
   diabetes: 'Diabetes (ADA): plate method, half non-starchy veg, quarter lean protein, quarter whole-grain/fiber carbs; consistent carb portions; regular activity; check glucose around exercise, carry fast carbs if on insulin/sulfonylureas; never change or stop medication or insulin: that is for their doctor/diabetes team.',
   hypertension: 'High blood pressure (AHA): DASH pattern, salt <5 g (sodium <2,000-2,300 mg), more potassium from fruit/veg/legumes, limit alcohol, regular cardio; strength with moderate loads and normal breathing (no breath holding); never stop or change medication (that is for their doctor); chest pain or tightness = urgent care.',
   pregnancy: 'Pregnancy/postpartum (ACOG 2020): no weight-loss dieting while pregnant; 150 min/wk moderate activity if their obstetric provider agrees (talk test, walking, swimming, avoid contact sports, lying flat after 1st trimester, overheating); avoid alcohol, raw/undercooked meat, fish high in mercury, unpasteurized foods; postpartum/breastfeeding: gradual loss ~0.5 kg/wk, extra ~300-500 kcal for milk; check with their provider.',
   older: 'Older adults 65+ (WHO 2020): strength 2+ days, balance training 3+ days to prevent falls (use a chair or wall for support), 150 min moderate activity as able; protein 1.0-1.2 g/kg spread over meals to protect muscle; check with doctor before starting if conditions.',
   teen: 'Teens under 18 (AAP, WHO): growing body, no calorie restriction diets or rapid weight loss; focus on balanced meals, 60 min activity daily, sleep 8-10 h; lifting is fine with good technique, supervision and gradual progress; involve family, pediatrician for weight concerns.',
-  ed: 'Possible eating-disorder signals (NEDA/APA): never help eat less, skip meals, purge or compensate; respond with empathy, no numbers or weight talk, encourage regular meals and suggest talking to a doctor, psychologist or eating-disorder helpline; they are not alone.',
+  ed: 'EATING-DISORDER SIGNALS (NEDA/APA): never mention calories, kcal targets, numbers or weight; never help eat less, skip meals, purge or compensate; respond with empathy, no numbers or weight talk, encourage regular meals and suggest talking to a doctor, psychologist or eating-disorder helpline; they are not alone.',
   joints: 'Joint pain/arthritis/post-injury: low-impact activity (swimming, cycling, walking), strengthen around the joint in pain-free range; follow their physiotherapist/surgeon plan, do not create rehab or return-to-sport plans.',
   cholesterol: 'High cholesterol (AHA): more soluble fiber (oats, beans), nuts, olive oil, fatty fish, plants; less saturated and trans fat and processed meat; medication decisions are for their doctor.',
 };
 const SPECIAL_KW: Record<keyof typeof SPECIAL, RegExp> = {
+  supps: /(suplement|supplement|creatin|whey|prote[ií]na en polvo|protein powder|batido de prote|melaton|vitamina [a-z]\b|vitamin [a-z]\b|pre.?work|bcaa|col[aá]geno|collagen|omega.?3 en c[aá]psula|pastillas|pills)/i,
   diabetes: /(diabet|insulin|metformin|gluc|azúcar en (la )?sangre|blood sugar|糖尿|당뇨|मधुमेह|سكري|диабет|şeker hastal)/i,
   hypertension: /(hipertens|hypertens|presi[oó]n (alta|arterial)|blood pressure|pressão alta|tension art|bluthochdruck|давлен|高血压|고혈압|रक्तचाप|ضغط الدم|tansiyon)/i,
   pregnancy: /(embaraz|pregnan|gr[aá]vid|enceinte|schwanger|incinta|беремен|妊娠|怀孕|임신|गर्भ|حامل|hamile|postpart|posparto|lactan|breastfe|amamant|baby weight|beb[eé])/i,
@@ -115,7 +117,7 @@ export const SAFETY = 'Safety: no diagnosis, med/insulin changes, supplement dos
 export function kbContext(q: string, goal: Goal | undefined, userCtx: string, max = 1400) {
   const age = +(userCtx.match(/(\d{1,3}) y\b/)?.[1] || NaN); const sp = specialFor(q + ' ' + userCtx, isNaN(age) ? undefined : age);
   const kb = areasFor(q, goal).map((a) => BRIEF[a]).join(' ');
-  return `${userCtx}. ${SAFETY} ${sp.map((k) => SPECIAL[k]).join(' ')} Pro knowledge: ${kb}`.replace(/\s+/g, ' ').slice(0, max);
+  return `${sp.map((k) => SPECIAL[k]).join(' ')} ${SAFETY} User: ${userCtx}. Pro knowledge: ${kb}`.replace(/\s+/g, ' ').slice(0, max);
 }
 
 // ---------- 3) Seguridad: señales de alarma → profesional ----------
@@ -131,3 +133,12 @@ export function toggleCheck(all: Record<string, string[]> | undefined, d: string
 }
 /** Semana del programa (1-4, luego repite con progresión) desde la creación del plan. */
 export const programWeek = (created: number | undefined, now = Date.now()) => (created ? (Math.floor((now - created) / (7 * 864e5)) % 4) + 1 : 1);
+
+// ---------- 5) Red de seguridad sobre la respuesta de la IA ----------
+const DOSE_SENT = /[^.!?\n]*(creatin|suplement|supplement|whey|melaton|vitamin|cafe[ií]na en|caffeine pill|pre.?work|bcaa|col[aá]geno|collagen|insulin|metformin|medicamento|medication)[^.!?\n]*\b\d+([.,]\d+)?\s*((a|to|-|–)\s*\d+([.,]\d+)?\s*)?(g|gramos|grams|mg|mcg|µg|ui|iu|unidades|units)\b[^.!?\n]*[.!?]?/gi;
+/** Quita frases con dosis de suplementos o medicamentos que la IA pudiera colar (Apple 1.4.1) y añade el aviso de consultar. */
+export function safeReply(text: string, lang = 'es') {
+  if (!DOSE_SENT.test(text)) return text; DOSE_SENT.lastIndex = 0;
+  const note = lang === 'es' ? 'Las dosis de suplementos o medicamentos las decide tu médico, farmacéutico o nutricionista.' : lang === 'pt' ? 'Doses de suplementos ou remédios são definidas pelo seu médico, farmacêutico ou nutricionista.' : 'Supplement or medication doses are for your doctor, pharmacist or dietitian to decide.';
+  return (text.replace(DOSE_SENT, '').replace(/\n{3,}/g, '\n\n').trim() + '\n\n' + note).trim();
+}

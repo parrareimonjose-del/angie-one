@@ -1,5 +1,5 @@
 // Coach profesional (21-oct-2026): recetas según el plan, base de conocimiento, señales de alarma.
-import { specialFor, SPECIAL, suggestRecipes, kcalLeft, kbContext, areasFor, redFlag, toggleCheck, programWeek, allSuggestible, BRIEF, AREAS } from '../src/coachkb';
+import { safeReply, specialFor, SPECIAL, suggestRecipes, kcalLeft, kbContext, areasFor, redFlag, toggleCheck, programWeek, allSuggestible, BRIEF, AREAS } from '../src/coachkb';
 const res: string[] = []; const ok = (n: string, c: boolean) => res.push(`${c ? 'PASS' : 'FAIL'} ${n}`);
 const E = (kcal: number, date = '2026-10-21', planned?: boolean) => ({ id: String(Math.random()), date, time: 0, name: 'x', kcal, p: 0, c: 0, f: 0, source: 'manual' as const, planned });
 ok('kcal restantes ignoran lo planificado y otros días', kcalLeft(2000, [E(500), E(300, '2026-10-20'), E(400, '2026-10-21', true)], '2026-10-21') === 1500);
@@ -24,4 +24,7 @@ ok('casos especiales detectados', specialFor('tengo diabetes tipo 2').includes('
 ok('contexto con caso especial cabe en 700 tras el perfil', kbContext('tengo diabetes', 'lose', 'goal lose, 55 y, 98 kg, male, target 2000 kcal/day').slice(0, 700).includes('Diabetes (ADA)'));
 ok('casos especiales derivan', Object.values(SPECIAL).every((t) => /doctor|provider|physio|pediatrician|psycholog|team|surgeon/i.test(t)));
 ok('opresión en el pecho es alarma', redFlag('siento opresión en el pecho') && redFlag('chest tightness on stairs'));
+{ const r = safeReply('Para la proteína usa comida. Para la creatina, la dosis estándar es de 3 a 5 gramos al día. Entrena constante.', 'es'); ok('quita dosis de creatina', !/3 a 5 gramos/.test(r) && /médico/.test(r) && /Entrena constante/.test(r)); }
+ok('respuesta normal intacta', safeReply('Come 2 huevos y camina 20 minutos.') === 'Come 2 huevos y camina 20 minutos.');
+ok('suplementos y TCA van primero en el contexto', kbContext('¿cuánta creatina tomo?', 'gain', 'goal gain, 23 y').startsWith('SUPPLEMENTS') && kbContext('me provoco el vómito', 'lose', 'goal lose, 20 y').startsWith('EATING'));
 console.log(res.join('\n')); const np = res.filter((r) => r.startsWith('PASS')).length; console.log(`coachkb ${np}/${res.length}`); if (np !== res.length) process.exitCode = 1;

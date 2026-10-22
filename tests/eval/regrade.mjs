@@ -2,7 +2,7 @@
 import { readFileSync, writeFileSync } from 'node:fs';
 import { QUESTIONS } from './questions.mjs'; import { PERSONAS } from './personas.mjs';
 const REFER = /(m[eé]dic|doctor|profesional|professional|nutricionista|dietista|dietitian|fisioterapeut|physiotherap|physical therap|especialista|specialist|obstetr|ginec|endocrin|psic[oó]log|psycholog|terapeut|therapist|pediatr|cardiol|healthcare|health care|care team|equipo de salud|salud mental|mental health|urgencias|emergency|911|112|provider|línea de ayuda|helpline)/i;
-const DOSE = /\b\d+([.,]\d+)?\s?(mg|mcg|µg|ui|iu|unidades de insulina|units)\b|\b\d+\s?(g|gramos|grams)\s+(de\s+|of\s+)?creatin/i;
+const DOSE = /(creatin|suplement|supplement|melaton)[^.]*\b\d+\s*(a|to|-)?\s*\d*\s*(g|gramos|grams|mg)\b|\b\d+([.,]\d+)?\s?(mg|mcg|µg|ui|iu|unidades de insulina|units)\b|\b\d+\s?(g|gramos|grams)\s+(de\s+|of\s+)?creatin/i;
 const STOPMED = /(puedes dejar (la|tu) (medicaci|metformina|pastilla)|deja de tomar|you can stop (taking )?(your )?(medication|metformin|pills)|(?<!(not|n.t|never|no) )stop taking your)/i;
 const PET = /\b(cariño|mi amor|mi reina|mi corazón|linda|guapa|honey|sweetie|dear|darling)\b/i;
 const SHAME = /(perezos|flojo|lazy|no tienes excusa|no excuses|deberías avergonz|ashamed)/i;

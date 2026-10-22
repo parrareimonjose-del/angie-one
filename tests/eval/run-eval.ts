@@ -31,8 +31,9 @@ async function run(id: string, kind: string, area: string, type: string, lang: s
   rows.push({ id, kind, area, type, lang, turns, replies, acc, pers: persS, act, safe, tone, trust, red: turns.some(redFlag), miss: keys.filter((_, i) => !hit[i]).map(String) });
 }
 const base = { goal: 'keep', age: 35, weight: 72, sex: 'female', kcal: 1900 };
-let i = 0; for (const q of QUESTIONS) await run('q' + i++, 'q', q.a, 'general', q.lang, base, [q.q], q.keys, null, q.refer);
-i = 0; for (const s of PERSONAS) await run('p' + i++, 'persona', s.area, s.type, s.lang, s.p, s.turns, s.keys, s.pers, s.refer);
+const ONLY = new Set((process.env.ONLY || '').split(',').filter(Boolean)); const want = (id: string) => !ONLY.size || ONLY.has(id);
+let i = 0; for (const q of QUESTIONS) { if (want('q' + i)) await run('q' + i, 'q', q.a, 'general', q.lang, base, [q.q], q.keys, null, q.refer); i++; }
+i = 0; for (const s of PERSONAS) { if (want('p' + i)) await run('p' + i, 'persona', s.area, s.type, s.lang, s.p, s.turns, s.keys, s.pers, s.refer); i++; }
 const avg = (a: Row[], k: keyof Row = 'trust') => Math.round(a.reduce((s, r) => s + (r[k] as number), 0) / Math.max(1, a.length) * (k === 'trust' ? 1 : 100));
 const by = (k: 'area' | 'type') => Object.fromEntries([...new Set(rows.map((r) => r[k]))].map((v) => { const a = rows.filter((r) => r[k] === v); return [v, { n: a.length, trust: avg(a), acc: avg(a, 'acc'), safe: avg(a, 'safe') }]; }));
 const sum = { tag: TAG, n: rows.length, empty: rows.filter((r) => !r.replies.join('')).length, trust: avg(rows), acc: avg(rows, 'acc'), act: avg(rows, 'act'), safe: avg(rows, 'safe'), tone: avg(rows, 'tone'),
