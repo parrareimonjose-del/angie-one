@@ -259,43 +259,55 @@
   "docs": {
     "privacy": {
       "title": "Gizlilik Politikası",
-      "updated": "Son güncelleme: 15 Ekim 2026",
+      "updated": "Son güncelleme: 21 Ekim 2026",
       "sections": [
         [
-          "Biz Kimiz?",
-          "Angie One, bir Parra Apps uygulamasıdır. İletişim: angieoneapp.support@gmail.com."
+          "Biz kimiz",
+          "Angie One, Parra Apps tarafından sunulan bir uygulamadır. İletişim: angieoneapp.support@gmail.com."
         ],
         [
-          "Kullandığımız Veriler",
-          "Profiliniz (hedefiniz, kilo, boy, yaş, cinsiyet, aktivite düzeyiniz), yemek günlüğünüz, su tüketiminiz ve meydan okumalarınız. Şu anda bunlar yalnızca cihazınızda saklanır; günlüğünüzü barındıran herhangi bir hesabımız veya sunucumuz yoktur."
+          "Telefonunuzdaki veriler",
+          "Profiliniz (hedef, kilo, boy, yaş, cinsiyet, aktivite), yemek günlüğünüz, su, ruh hali notlarınız, ölçümleriniz, ilerleme fotoğraflarınız ve alışkanlıklarınız yalnızca cihazınızda saklanır. Günlüğünüze ait hiçbir hesabımız veya sunucumuz yoktur."
         ],
         [
-          "Yapay Zeka İçin Fotoğraflar ve Metinler",
-          "Yapay zeka açıksa, yemeğinizin fotoğrafı veya açıklaması, yalnızca tahmini hesaplamak amacıyla vekil sunucumuza (Cloudflare) ve Google Gemini'ye gönderilir. Bunu saklamıyoruz. Yapay zekayı Ayarlar'dan kapatabilirsiniz; bu durumda hiçbir şey gönderilmez."
+          "Yapay zeka için fotoğraflar, ses ve metin",
+          "Yapay zeka açıksa, fotoğrafınız, ses kaydınız veya öğününüzün açıklaması (koç ve plan için ise profilinizde girdiğiniz yaş, kilo, hedef ve tercihleriniz) yalnızca yanıt vermek üzere ara sunucumuza (Cloudflare) ve Google Gemini'ye gönderilir. Bunu saklamıyoruz. Yapay zekayı Ayarlar'dan kapatabilirsiniz. İlerleme fotoğrafları asla gönderilmez."
         ],
         [
-          "Barkodlar",
-          "Barkod numarası, açık bir veritabanı olan Open Food Facts üzerinden sorgulanır. Hiçbir kişisel veri gönderilmez."
+          "Yemek veritabanı ve barkodlar",
+          "Barkod numaraları ve aramalar yemek listemizde (Open Food Facts ve USDA) kontrol edilir. Eksik bir ürün eklerseniz, diğer kişilerin kullanabilmesi için kişisel veri olmaksızın yalnızca barkodu, adı, markayı ve etiket değerlerini saklarız."
         ],
         [
-          "Sağlık Verilerinizi Asla Satmayız",
-          "Sağlık veya yemek verilerinizi reklamverenlerle veya üçüncü taraflarla satmaz, kiralamaz veya paylaşmayız. Sağlık verilerinizi reklam amacıyla kullanmayız."
+          "Sağlık uygulamaları",
+          "Apple Health veya Health Connect'i bağlarsanız, Angie One günlük hedefinizi ayarlamak için yalnızca adımları, kiloyu ve antrenmanları okur. Bu veriler telefonunuzda kalır, yapay zekaya veya üçüncü taraflara asla gönderilmez ve reklamlar için asla kullanılmaz."
         ],
         [
-          "Haklarınız",
-          "Tüm verilerinizi Ayarlar → Verilerimi Sil bölümünden görüntüleyebilir ve silebilirsiniz. Kaliforniya (CCPA), AB (GDPR) veya gizlilik yasalarına sahip herhangi bir yerde yaşıyorsanız, bize e-posta göndererek haklarınızı kullanabilirsiniz."
+          "Şifrelenmiş bulut yedeklemesi (isteğe bağlı)",
+          "Yedeklemeyi açarsanız, verileriniz telefonunuzda yalnızca sizin bildiğiniz bir kodla şifrelenir. Sunucumuz yalnızca şifrelenmiş baytları görür. İstediğiniz zaman silebilirsiniz."
         ],
         [
-          "Çocuklar",
+          "Arkadaşlar ve yarışmalar (isteğe bağlı)",
+          "Bir gruba katılırsanız takma adınızı, anonim bir kimliği ve haftalık yarışma puanlarınızı saklarız. Kilonuz, yemek veya sağlık verileriniz asla saklanmaz. Bildirebilir ve engelleyebilirsiniz; her bildirimi inceleriz."
+        ],
+        [
+          "Bildirimler",
+          "Yemek verilerini veya yapay zeka yanıtını bildirirseniz, hataları düzeltmek için bildirim metnini kişisel veri olmaksızın 180 güne kadar saklarız."
+        ],
+        [
+          "Sağlık verilerinizi asla satmayız",
+          "Sağlık veya yemek verilerinizi reklam verenlerle veya üçüncü taraflarla satmaz, kiralamaz veya paylaşmaz ve bunları reklamlar için kullanmayiz. Reklam takipçileri yoktur."
+        ],
+        [
+          "Haklarınız ve hesabınızı silme",
+          "Hesabınızı ve tüm verilerinizi Ayarlar → Hesabı sil bölümünden silebilirsiniz; bu işlem ayrıca bulut yedeğinizi siler ve arkadaş gruplarınızdan çıkarır. Kaliforniya (CCPA), AB (GDPR) veya gizlilik yasalarına sahip başka bir yerde yaşıyorsanız, haklarınızı kullanmak için e-posta adresimize yazın."
+        ],
+        [
+          "Küçük yaştakiler",
           "Angie One, 13 yaşın altındaki çocuklara (AB'de 16) yönelik değildir."
         ],
         [
-          "Güvenlik ve İhlaller",
-          "Şifreli bağlantılar (HTTPS) kullanıyoruz. Bir veri ihlali sizi etkilerse, yasaların gerektirdiği şekilde (FTC Sağlık İhlali Bildirim Kuralı dahil) sizi bilgilendireceğiz."
-        ],
-        [
-          "Değişiklikler",
-          "Bu politikayı değiştirirsek, yürürlüğe girmeden önce bunu uygulamada göstereceğiz."
+          "Güvenlik, ihlaller ve değişiklikler",
+          "Şifrelenmiş bağlantılar (HTTPS) kullanıyoruz. Bir ihlal verilerinizi etkilerse yasaların gerektirdiği şekilde (FTC Sağlık İhlali Bildirim Kuralı dahil) sizi bilgilendireceğiz. Bu politikayı değiştirirsek, yürürlüğe girmeden önce uygulamada göstereceğiz."
         ]
       ]
     },
@@ -2085,5 +2097,255 @@
     },
     "founderOnly": "Yalnızca kurucu için. Anahtarını gir.",
     "unlock": "Aç"
+  },
+  "t6": {
+    "hTitle": "Alışkanlık puanı",
+    "hSub": "Bugünkü yemek, su, uyku ve adımlar",
+    "hGreat": "Harika gün! Böyle devam et.",
+    "hGood": "İyi ilerleme. Küçük bir adım daha.",
+    "hStart": "Her küçük alışkanlık önemlidir. Bir bardak suyla başla.",
+    "p": {
+      "food": "Yemek",
+      "water": "Su",
+      "sleep": "Uyku",
+      "steps": "Adımlar"
+    },
+    "week": "Son 7 gün",
+    "avg": "Ortalama",
+    "colors": "Yemek renkleri",
+    "noFood": "Rengini görmek için bir öğün kaydet.",
+    "c": {
+      "green": "Sıkça ye",
+      "yellow": "Dengede",
+      "orange": "Ölçülü keyif al"
+    },
+    "colorsNote": "Renkler, kalori başına protein ve lif miktarına göre basit bir rehberdir. Hiçbir yemek kötü değildir.",
+    "eTitle": "Tahmini enerji",
+    "eEst": "yakılan kcal/gün",
+    "eIntake": "Ortalama yenilen",
+    "eGoal": "Hedefin",
+    "eReady": "Gerçek verilerinle güncellendi",
+    "eWait": "7 gün yemek kaydet ve iki kez tartıl (şu ana kadar {{n}} gün)",
+    "eHow": "Koçun, vücudunun her gün ne kadar yaktığını tahmin etmek ve hedefeni nazikçe ayarlamak için yediklerinle kilonun değişimini karşılaştırır.",
+    "eFormula": "Profilinden başlangıç tahmini",
+    "eNote": "Tıbbi bir ölçüm değil, zindelik için bir tahmindir.",
+    "pTitle": "İlerleme",
+    "mTitle": "Vücut ölçüleri",
+    "mSub": "Santimetre cinsinden, dilediğin zaman",
+    "m": {
+      "waist": "Bel",
+      "hip": "Kalça",
+      "chest": "Göğüs",
+      "arm": "Kol",
+      "thigh": "Uyluk"
+    },
+    "mSave": "Ölçüleri kaydet",
+    "mSaved": "Kaydedildi",
+    "mHist": "Geçmiş",
+    "phTitle": "İlerleme fotoğrafları",
+    "phSub": "Zaman içinde nasıl değiştiğini karşılaştır",
+    "phNone": "Henüz fotoğraf yok",
+    "phAdd": "Fotoğraf ekle",
+    "phDel": "Tüm fotoğrafları sil",
+    "phPrivacy": "Fotoğraflar yalnızca bu telefonda kalır. Asla yüklenmez, paylaşılmaz veya satılmaz.",
+    "lTitle": "2 dakikalık dersler",
+    "lDone": "Tamamlandı",
+    "lEach": "Her ders",
+    "lListen": "Dinle",
+    "lMark": "Tamam",
+    "lNote": "Kısa alışkanlık dersleri. Tıbbi tavsiye değil, genel zindelik ipuçlarıdır.",
+    "l": {
+      "plate": {
+        "t": "Dengeli tabak",
+        "1": "Tabağının yarısını sebze veya meyveyle doldur.",
+        "2": "Yumurta, tavuk, fasulye veya balık gibi proteinlerden çeyrek ekle.",
+        "3": "Son çeyrek pirinç, arepa, tortilla veya patates olabilir."
+      },
+      "hunger": {
+        "t": "Açlık mı, aşerme mi?",
+        "1": "Gerçek açlık yavaşça gelir ve her yemek kulağa güzel gelir.",
+        "2": "Aşerme aniden gelir ve belirli bir şey ister.",
+        "3": "On dakika bekle ve su iç; ardından sakinçe karar ver."
+      },
+      "water": {
+        "t": "Önce su",
+        "1": "Bazen susuzluk açlık gibi hissedilir.",
+        "2": "Şişeyi görebileceğin bir yerde tut.",
+        "3": "Her öğünle birlikte bir bardak su içmek kolay bir başlangıçtır."
+      },
+      "sleep": {
+        "t": "Uyku yardımcı olur",
+        "1": "Az uyumak ertesi gün iştahı artırabilir.",
+        "2": "Her gece aynı saatte yatmayı dene.",
+        "3": "Uyumadan otuz dakika önce telefonu kaldır."
+      },
+      "protein": {
+        "t": "Protein tok tutar",
+        "1": "Protein daha uzun süre doymuş hissetmeni sağlar.",
+        "2": "Her öğüne biraz ekle.",
+        "3": "Yumurta, yoğurt, fasulye ve tavuk basit seçeneklerdir."
+      },
+      "slip": {
+        "t": "Küçük bir kaçamak başarısızlık değildir",
+        "1": "Büyük bir öğün ilerlemeni silmez.",
+        "2": "Telafi etmek için sonraki öğünü atlama.",
+        "3": "Sadece her zamanki planına geri dön."
+      },
+      "move": {
+        "t": "Biraz daha hareket et",
+        "1": "Küçük yürüyüşler gün içinde birikir.",
+        "2": "Merdivenleri kullan veya telefonda konuşurken yürü.",
+        "3": "Yemekten sonraki on dakika harika hissettirir."
+      },
+      "plan": {
+        "t": "Önceden plan yap",
+        "1": "Önceden karar vermek seçimleri kolaylaştırır.",
+        "2": "Yarınki yemekleri bu akşamdan planla.",
+        "3": "Evde sağlıklı atıştırmalıklar hazır bulundur."
+      }
+    },
+    "fTitle": "Arkadaşlar ve meydan okumalar",
+    "fMyPts": "Bu haftaki puanlarım",
+    "fGroups": "Gruplar",
+    "fYou": "Takma adın",
+    "fPrivacy": "Arkadaşlar yalnızca takma adını ve meydan okuma puanlarını görür. Kilonu, yemeklerini veya sağlık verilerini asla göremezler.",
+    "fNickL": "Takma ad (2-20 harf)",
+    "fNick": "Samimi bir takma ad seç (bağlantı veya kötü kelimeler içermesin).",
+    "fCreate": "Grup oluştur",
+    "fCodeL": "Davet kodu",
+    "fCode": "Kod 6 harf veya rakamdan oluşur.",
+    "fJoin": "Katıl",
+    "fNotFound": "Böyle bir grup yok.",
+    "fFull": "Bu grup dolu.",
+    "fErr": "Bağlantı kurulamadı. Tekrar dene.",
+    "fReported": "Teşekkürler. İnceleyeceğiz.",
+    "fInviteText": "Angie One'daki haftalık sağlıklı alışkanlıklar meydan okumama katıl:",
+    "fMe": "sen",
+    "fPts": "puan",
+    "fReport": "Bildir",
+    "fInvite": "WhatsApp ile davet et",
+    "fLeave": "Ayrıl",
+    "fRules": "Nazik ol. 🚩 ile rahatsız edici takma adları bildir; bildirimleri inceliyor ve kuralları çiğneyenleri uzaklaştırıyoruz.",
+    "nTitle": "Besin hedefleri",
+    "nGaps": "Bugün şunları ekleyebilirsin: {{list}}",
+    "nNone": "Takip etmek istediğin besinleri seç.",
+    "nPick": "Hedef ekle",
+    "nNote": "Hedefler günlük referans değerlerinden başlar. Teşhis değil, bir zindelik rehberidir.",
+    "fiber": "Lif"
+  },
+  "rv": {
+    "aiLabel": "Yapay zeka tarafından üretilen yanıt. Yanlış olabilir.",
+    "aiReport": "Bu yapay zeka yanıtını bildir",
+    "aiReported": "Teşekkürler. Bu yanıtı inceleyeceğiz.",
+    "cTitle": "Herkes için ekle",
+    "cSub": "Etiket değerlerini 100 g başına gir. Diğer kişilere hemen yardımcı olur ve bunu inceleriz.",
+    "cName": "Ürün adı",
+    "cBrand": "Marka (isteğe bağlı)",
+    "cK": "kcal",
+    "cP": "Protein g",
+    "cC": "Karbonhidrat g",
+    "cF": "Yağ g",
+    "cSend": "Gönder ve kaydet",
+    "cThanks": "Teşekkürler! Artık Angie One yemek listesinde.",
+    "cSaved": "Kaydedildi. Şu anda gönderemedik; daha sonra tekrar dene.",
+    "cBad": "Sayıları kontrol et: kaloriler protein, karbonhidrat ve yağ ile uyuşmuyor.",
+    "fBlocked": "Engellendi: onları artık görmeyeceksin. Bildirimi inceleyeceğiz.",
+    "fReportBlock": "Bildir ve engelle",
+    "fUnblock": "Engeli kaldır ({{n}})",
+    "fRules": "Nazik ol. Birini bildirmek ve engellemek için 🚩 simgesine dokun: onları görmeyi hemen bırakırsın ve ekibimizden biri her bildirimi inceler. Kimse inceleme olmadan çıkarılmaz.",
+    "modTitle": "Moderasyon",
+    "modSub": "Arkadaşlardan gelen bildirimler, yemek verileri ve yapay zeka yanıtları ile kullanıcılar tarafından eklenen ürünler.",
+    "modLoad": "Bildirimleri yükle",
+    "modNeedKey": "Önce Free Premium'da kurucu anahtarını gir.",
+    "modErr": "Yüklenemedi. Anahtarını ve bağlantını kontrol et.",
+    "modFriends": "Arkadaşlar",
+    "modFood": "Yemek ve yapay zeka",
+    "modContrib": "Kullanıcılar tarafından eklenen ürünler",
+    "modRemove": "Gruptan çıkar",
+    "modDismiss": "Kapat",
+    "modDelete": "Sil",
+    "modEmpty": "İncelenecek bir şey yok.",
+    "modNote": "Bildirimler kimseyi otomatik olarak gizlemez: buna sen karar verirsin. Uygulama mağazalarının istediği gibi 24 saat içinde yanıt ver."
+  },
+  "ck": {
+    "title": "Uzman ekibin",
+    "sub": "Beslenme, antrenman, fizyoterapi, alışkanlık ve uyku tek koçta.",
+    "recT": "Planına uygun tarifler",
+    "recSub": "Bugün {{kcal}} kcal kaldı. Bunlar uygun:",
+    "recNone": "Bugünkü hedefe ulaştın. Acıkırsan meyve, sebze veya yoğurt seç.",
+    "recCook": "👩‍🍳 Pişir",
+    "recAdd": "➕ Günlüğe ekle",
+    "recAdded": "✓ Eklendi",
+    "guide": "📚 Uzman rehberi",
+    "guideSub": "Hedefine göre haftalık plan, ilerleme ve araçlar.",
+    "weekT": "Hafta {{n}} / 4",
+    "checkT": "Bugünün listesi",
+    "c1": "Her öğünde protein",
+    "c2": "Tabağın yarısı sebze",
+    "c3": "8 bardak su",
+    "c4": "30 dakika hareket veya antrenman",
+    "c5": "7-9 saat uyku",
+    "redT": "⚠️ Bir uzmana danış",
+    "redB": "Şiddetli ağrı, göğüs ağrısı, baş dönmesi, bayılma, sakatlık, hamilelik, bir hastalık, ilaç kullanımı veya yemekle zor bir ilişki varsa doktor, fizyoterapist veya diyetisyene danış. Koç teşhis koymaz, ilaç önermez.",
+    "disc": "Kamuya açık önerilere (DSÖ, ACSM vb.) dayalı genel rehberlik. Tıbbi tavsiye değildir.",
+    "lose": {
+      "w1": "Hafta 1: her şeyi kaydet ve günde 300 kcal az ye. Her gün 20 dakika yürü.",
+      "w2": "Hafta 2: her öğünde protein ve 2 gün tüm vücut kuvvet.",
+      "w3": "Hafta 3: her harekete 1 tekrar veya biraz ağırlık ve 2.000 adım ekle.",
+      "w4": "Hafta 4: hafif hafta (daha az set); tek günü değil ortalama kiloyu izle."
+    },
+    "keep": {
+      "w1": "Hafta 1: hedefine göre ye ve nasıl hissettiğini not et.",
+      "w2": "Hafta 2: haftada 3 gün kuvvet ve 150 dakika hafif kardiyo.",
+      "w3": "Hafta 3: 2 yeni tarif dene ve 3 günlük yemek hazırla.",
+      "w4": "Hafta 4: hafif hafta ve en zor kısmı ayarla."
+    },
+    "gain": {
+      "w1": "Hafta 1: yoğun atıştırmalıklarla (yulaf, kuruyemiş, smoothie) günde 300 kcal ekle.",
+      "w2": "Hafta 2: 8-12 tekrarla haftada 3-4 gün kuvvet.",
+      "w3": "Hafta 3: tüm setleri tamamlayınca ağırlığı biraz artır.",
+      "w4": "Hafta 4: hafif hafta; haftada %0,25-0,5 kilo artışı hedefle."
+    },
+    "nutrition": {
+      "t": "Beslenme",
+      "1": "Tabağın yarısı sebze, çeyreği protein, çeyreği karbonhidrat.",
+      "2": "Vermek için 300-500 kcal açık güvenlidir. Almak için 250-500 kcal fazla."
+    },
+    "diets": {
+      "t": "Diyet türleri",
+      "1": "En iyi diyet sürdürebildiğin diyettir. Akdeniz diyetinin kanıtı en güçlüsüdür.",
+      "2": "Aşırı veya «detoks» diyetlerden kaçın. Vegan beslenmede B12 vitamini gerekir."
+    },
+    "training": {
+      "t": "Antrenman",
+      "1": "Haftada 2-3 gün kuvvet ve 150 dakika orta kardiyo.",
+      "2": "Yavaş ilerle: her hafta 1 tekrar veya biraz daha ağırlık."
+    },
+    "physio": {
+      "t": "Fizyoterapi ve hareketlilik",
+      "1": "5-10 dakika ısın; kalça, omuz ve sırtı hareket ettir.",
+      "2": "Bir hareket keskin ağrı yaparsa dur ve daha kolay versiyonunu yap."
+    },
+    "habits": {
+      "t": "Alışkanlık ve motivasyon",
+      "1": "Küçük bir alışkanlıkla başla ve zaten yaptığın bir şeye bağla.",
+      "2": "Kötü bir gün ilerlemeni silmez: bir sonraki öğünde devam et."
+    },
+    "sleep": {
+      "t": "Uyku",
+      "1": "7-9 saat uyu ve her gün aynı saatte kalk.",
+      "2": "Az uyku açlığı ve yeme isteğini artırır."
+    },
+    "hydration": {
+      "t": "Sıvı",
+      "1": "Günde kilo başına yaklaşık 30-35 ml, sıcakta veya antrenmanda daha fazla.",
+      "2": "Yemekten önce bir bardak su tokluğa yardım eder."
+    },
+    "sportsmed": {
+      "t": "Spor hekimliği",
+      "1": "Hacmi haftada en fazla %10 artır ve dinlenme günlerine uy.",
+      "2": "Göğüs ağrısı, bayılma veya şişlikte dur ve doktora git."
+    },
+    "referNote": "Senin durumunda doktoruna veya bir sağlık uzmanına da danış."
   }
 }

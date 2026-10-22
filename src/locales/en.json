@@ -221,43 +221,55 @@
   "docs": {
     "privacy": {
       "title": "Privacy Policy",
-      "updated": "Last updated: October 15, 2026",
+      "updated": "Last updated: October 21, 2026",
       "sections": [
         [
           "Who we are",
           "Angie One is an app by Parra Apps. Contact: angieoneapp.support@gmail.com."
         ],
         [
-          "Data we use",
-          "Your profile (goal, weight, height, age, sex, activity), your food diary, water and challenges. Today they are stored only on your device; we have no accounts or servers holding your diary."
+          "Data on your phone",
+          "Your profile (goal, weight, height, age, sex, activity), food diary, water, mood notes, measurements, progress photos and habits are stored only on your device. We have no accounts or servers with your diary."
         ],
         [
-          "Photos and text for the AI",
-          "If AI is on, the photo or description of your meal is sent to our proxy (Cloudflare) and to Google Gemini only to calculate the estimate. We do not store it. You can turn AI off in Settings and then nothing is sent."
+          "Photos, voice and text for the AI",
+          "If the AI is on, the photo, voice recording or description of your meal (and, for the coach and the plan, the age, weight, goal and preferences you typed in your profile) is sent to our intermediate server (Cloudflare) and to Google Gemini only to answer. We don't keep it. You can turn the AI off in Settings. Progress photos are never sent."
         ],
         [
-          "Barcodes",
-          "The barcode number is looked up in Open Food Facts, a public database. No personal data is sent."
+          "Food database and barcodes",
+          "Barcode numbers and searches are checked in our food list (Open Food Facts and USDA). If you add a missing product, we store only the barcode, name, brand and label values, with no personal data, so other people can use it."
+        ],
+        [
+          "Health apps",
+          "If you connect Apple Health or Health Connect, Angie One only reads steps, weight and workouts to adjust your daily goal. That data stays on your phone, is never sent to the AI or to third parties, and is never used for ads."
+        ],
+        [
+          "Encrypted cloud backup (optional)",
+          "If you turn on the backup, your data is encrypted on your phone with a code only you have. Our server only sees encrypted bytes. You can delete it at any time."
+        ],
+        [
+          "Friends and challenges (optional)",
+          "If you join a group, we store your nickname, an anonymous ID and your weekly challenge points. Never your weight, food or health data. You can report and block, and we review every report."
+        ],
+        [
+          "Reports",
+          "If you report food data or an AI answer, we store the report text for up to 180 days to fix errors, with no personal data."
         ],
         [
           "We never sell your health data",
-          "We do not sell, rent or share your health or food data with advertisers or third parties. We do not use your health data for advertising."
+          "We don't sell, rent or share your health or food data with advertisers or third parties, and we don't use it for ads. There are no ad trackers."
         ],
         [
-          "Your rights",
-          "You can view and delete all your data in Settings → Delete my data. If you live in California (CCPA), the EU (GDPR) or anywhere with privacy laws, you can exercise your rights by emailing us."
+          "Your rights and deleting your account",
+          "You can delete your account and all your data in Settings → Delete account; this also deletes your cloud backup and takes you out of your friend groups. If you live in California (CCPA), the EU (GDPR) or another place with privacy laws, write to our email to exercise your rights."
         ],
         [
-          "Children",
-          "Angie One is not directed to children under 13 (16 in the EU)."
+          "Minors",
+          "Angie One is not directed at children under 13 (16 in the EU)."
         ],
         [
-          "Security and breaches",
-          "We use encrypted connections (HTTPS). If a breach affects your data we will notify you as required by law (including the FTC Health Breach Notification Rule)."
-        ],
-        [
-          "Changes",
-          "If we change this policy we will show it in the app before it applies."
+          "Security, breaches and changes",
+          "We use encrypted connections (HTTPS). If a breach affects your data we will notify you as the law requires (including the FTC Health Breach Notification Rule). If we change this policy we will show it in the app before it applies."
         ]
       ]
     },
@@ -2085,5 +2097,255 @@
     },
     "founderOnly": "This panel is for the founder only. Enter your founder key.",
     "unlock": "Unlock"
+  },
+  "t6": {
+    "hTitle": "Habit score",
+    "hSub": "Food, water, sleep and steps today",
+    "hGreat": "Great day! Keep it up.",
+    "hGood": "Good progress. One small step more.",
+    "hStart": "Every small habit counts. Start with a glass of water.",
+    "p": {
+      "food": "Food",
+      "water": "Water",
+      "sleep": "Sleep",
+      "steps": "Steps"
+    },
+    "week": "Last 7 days",
+    "avg": "Average",
+    "colors": "Food colors",
+    "noFood": "Log a meal to see its color.",
+    "c": {
+      "green": "Eat often",
+      "yellow": "In balance",
+      "orange": "Enjoy in moderation"
+    },
+    "colorsNote": "Colors are a simple guide by protein and fiber per calorie. No food is bad.",
+    "eTitle": "Estimated energy",
+    "eEst": "kcal/day burned",
+    "eIntake": "Average eaten",
+    "eGoal": "Your goal",
+    "eReady": "Adjusted with your real data",
+    "eWait": "Log food 7 days and weigh in twice ({{n}} days so far)",
+    "eHow": "Your coach compares what you eat with how your weight changes to estimate what your body burns each day, and adjusts your goal gently.",
+    "eFormula": "Starting estimate from your profile",
+    "eNote": "An estimate for wellness, not a medical measurement.",
+    "pTitle": "Progress",
+    "mTitle": "Body measurements",
+    "mSub": "In centimeters, whenever you like",
+    "m": {
+      "waist": "Waist",
+      "hip": "Hip",
+      "chest": "Chest",
+      "arm": "Arm",
+      "thigh": "Thigh"
+    },
+    "mSave": "Save measurements",
+    "mSaved": "Saved",
+    "mHist": "History",
+    "phTitle": "Progress photos",
+    "phSub": "Compare how you change over time",
+    "phNone": "No photos yet",
+    "phAdd": "Add photo",
+    "phDel": "Delete all photos",
+    "phPrivacy": "Photos stay only on this phone. They are never uploaded, shared or sold.",
+    "lTitle": "2-minute lessons",
+    "lDone": "Completed",
+    "lEach": "Each lesson",
+    "lListen": "Listen",
+    "lMark": "Done",
+    "lNote": "Short habit lessons. They are general wellness tips, not medical advice.",
+    "l": {
+      "plate": {
+        "t": "The balanced plate",
+        "1": "Fill half your plate with vegetables or fruit.",
+        "2": "Add a quarter of protein, like eggs, chicken, beans or fish.",
+        "3": "The last quarter can be rice, arepa, tortilla or potato."
+      },
+      "hunger": {
+        "t": "Hunger or craving?",
+        "1": "Real hunger grows slowly and any food sounds good.",
+        "2": "A craving comes suddenly and asks for something specific.",
+        "3": "Wait ten minutes and drink water; then decide calmly."
+      },
+      "water": {
+        "t": "Water first",
+        "1": "Sometimes thirst feels like hunger.",
+        "2": "Keep a bottle where you can see it.",
+        "3": "A glass with each meal is an easy start."
+      },
+      "sleep": {
+        "t": "Sleep helps",
+        "1": "Sleeping little can increase appetite the next day.",
+        "2": "Try going to bed at the same time each night.",
+        "3": "Put the phone away thirty minutes before sleeping."
+      },
+      "protein": {
+        "t": "Protein keeps you full",
+        "1": "Protein helps you feel satisfied for longer.",
+        "2": "Include some in every meal.",
+        "3": "Eggs, yogurt, beans and chicken are simple options."
+      },
+      "slip": {
+        "t": "One slip is not failure",
+        "1": "A big meal does not erase your progress.",
+        "2": "Do not skip the next meal to compensate.",
+        "3": "Simply return to your usual plan."
+      },
+      "move": {
+        "t": "Move a little more",
+        "1": "Small walks add up during the day.",
+        "2": "Take the stairs or walk while you talk on the phone.",
+        "3": "Ten minutes after eating feels great."
+      },
+      "plan": {
+        "t": "Plan ahead",
+        "1": "Deciding in advance makes choices easier.",
+        "2": "Plan tomorrow's meals tonight.",
+        "3": "Keep healthy snacks ready at home."
+      }
+    },
+    "fTitle": "Friends and challenges",
+    "fMyPts": "My points this week",
+    "fGroups": "Groups",
+    "fYou": "Your nickname",
+    "fPrivacy": "Friends only see your nickname and challenge points. Never your weight, food or health data.",
+    "fNickL": "Nickname (2-20 letters)",
+    "fNick": "Choose a friendly nickname (no links or bad words).",
+    "fCreate": "Create group",
+    "fCodeL": "Invite code",
+    "fCode": "The code has 6 letters or numbers.",
+    "fJoin": "Join",
+    "fNotFound": "That group doesn't exist.",
+    "fFull": "That group is full.",
+    "fErr": "Couldn't connect. Try again.",
+    "fReported": "Thanks. We'll review it.",
+    "fInviteText": "Join my weekly healthy-habits challenge on Angie One:",
+    "fMe": "you",
+    "fPts": "pts",
+    "fReport": "Report",
+    "fInvite": "Invite by WhatsApp",
+    "fLeave": "Leave",
+    "fRules": "Be kind. Report any offensive nickname with 🚩; we review reports and remove whoever breaks the rules.",
+    "nTitle": "Nutrient goals",
+    "nGaps": "Today you could add more: {{list}}",
+    "nNone": "Pick the nutrients you want to follow.",
+    "nPick": "Add a goal",
+    "nNote": "Goals start at the daily reference values. A wellness guide, not a diagnosis.",
+    "fiber": "Fiber"
+  },
+  "rv": {
+    "aiLabel": "AI-generated answer. It can be wrong.",
+    "aiReport": "Report this AI answer",
+    "aiReported": "Thanks. We'll review this answer.",
+    "cTitle": "Add it for everyone",
+    "cSub": "Type the label values per 100 g. It helps other people right away, and we review it.",
+    "cName": "Product name",
+    "cBrand": "Brand (optional)",
+    "cK": "kcal",
+    "cP": "Protein g",
+    "cC": "Carbs g",
+    "cF": "Fat g",
+    "cSend": "Send and log",
+    "cThanks": "Thank you! It's now in the Angie One food list.",
+    "cSaved": "Logged. We couldn't send it now; try again later.",
+    "cBad": "Check the numbers: calories don't match protein, carbs and fat.",
+    "fBlocked": "Blocked: you won't see them anymore. We'll review the report.",
+    "fReportBlock": "Report and block",
+    "fUnblock": "Unblock ({{n}})",
+    "fRules": "Be kind. Tap 🚩 to report and block someone: you stop seeing them right away, and a person from our team reviews every report. Nobody is removed without review.",
+    "modTitle": "Moderation",
+    "modSub": "Reports from friends, food data and AI answers, plus products added by users.",
+    "modLoad": "Load reports",
+    "modNeedKey": "Type the founder key in Free Premium first.",
+    "modErr": "Couldn't load. Check the key and your connection.",
+    "modFriends": "Friends",
+    "modFood": "Food and AI",
+    "modContrib": "Products added by users",
+    "modRemove": "Remove from group",
+    "modDismiss": "Dismiss",
+    "modDelete": "Delete",
+    "modEmpty": "Nothing to review.",
+    "modNote": "Reports never hide anyone automatically: you decide. Answer within 24 hours, as the app stores ask."
+  },
+  "ck": {
+    "title": "Your professional team",
+    "sub": "Nutrition, training, physiotherapy, habits and sleep in one coach.",
+    "recT": "Recipes for your plan",
+    "recSub": "You have {{kcal}} kcal left today. These fit:",
+    "recNone": "You reached your goal today. If you're hungry, choose fruit, vegetables or a yogurt.",
+    "recCook": "👩‍🍳 Cook",
+    "recAdd": "➕ Add to diary",
+    "recAdded": "✓ Added",
+    "guide": "📚 Professional guide",
+    "guideSub": "Weekly plan, progression and tools for your goal.",
+    "weekT": "Week {{n}} of 4",
+    "checkT": "Today's checklist",
+    "c1": "Protein at every meal",
+    "c2": "Half your plate vegetables",
+    "c3": "8 glasses of water",
+    "c4": "Move 30 minutes or do your workout",
+    "c5": "Sleep 7 to 9 hours",
+    "redT": "⚠️ Talk to a professional",
+    "redB": "If you have strong pain, chest pain, dizziness, fainting, an injury, pregnancy, an illness, take medication or have a difficult relationship with food, see a doctor, physiotherapist or dietitian. The coach does not diagnose or prescribe.",
+    "disc": "General guidance based on public recommendations (WHO, ACSM and others). Not medical advice.",
+    "lose": {
+      "w1": "Week 1: log everything and eat 300 kcal less per day. Walk 20 minutes daily.",
+      "w2": "Week 2: protein at every meal and 2 full-body strength days.",
+      "w3": "Week 3: add 1 rep or a little weight per exercise and 2,000 more steps.",
+      "w4": "Week 4: easy week (fewer sets) and check your average weight, not one day's."
+    },
+    "keep": {
+      "w1": "Week 1: eat at your target and note how you feel.",
+      "w2": "Week 2: 3 strength days and 150 minutes of easy cardio in the week.",
+      "w3": "Week 3: try 2 new recipes and prep meals for 3 days.",
+      "w4": "Week 4: easy week and adjust what was hardest."
+    },
+    "gain": {
+      "w1": "Week 1: add 300 kcal per day with dense snacks (oats, nuts, smoothies).",
+      "w2": "Week 2: 3 to 4 strength days with 8 to 12 reps.",
+      "w3": "Week 3: add a little weight when you complete all sets.",
+      "w4": "Week 4: easy week and check your weight: aim for 0.25 to 0.5% per week."
+    },
+    "nutrition": {
+      "t": "Nutrition",
+      "1": "Fill half the plate with vegetables, a quarter protein and a quarter carbs.",
+      "2": "To lose, a 300 to 500 kcal deficit is safe. To gain, 250 to 500 kcal more."
+    },
+    "diets": {
+      "t": "Diet styles",
+      "1": "The best diet is the one you can keep. Mediterranean has the best evidence.",
+      "2": "Avoid extreme or 'detox' diets. If you are vegan, you need vitamin B12."
+    },
+    "training": {
+      "t": "Training",
+      "1": "Strength 2 or 3 days a week and 150 minutes of moderate cardio.",
+      "2": "Progress little by little: 1 more rep or a bit more weight each week."
+    },
+    "physio": {
+      "t": "Physiotherapy and mobility",
+      "1": "Warm up 5 to 10 minutes and move hips, shoulders and back.",
+      "2": "If an exercise causes sharp pain, stop and use an easier version."
+    },
+    "habits": {
+      "t": "Habits and motivation",
+      "1": "Start with a tiny habit and tie it to something you already do.",
+      "2": "One bad day doesn't erase your progress: get back on track at the next meal."
+    },
+    "sleep": {
+      "t": "Sleep",
+      "1": "Sleep 7 to 9 hours and wake up at the same time every day.",
+      "2": "Short sleep increases hunger and cravings."
+    },
+    "hydration": {
+      "t": "Hydration",
+      "1": "About 30 to 35 ml per kg a day, more in heat or when training.",
+      "2": "A glass of water before meals helps you feel full."
+    },
+    "sportsmed": {
+      "t": "Sports medicine",
+      "1": "Increase volume by at most 10% per week and respect rest days.",
+      "2": "With chest pain, fainting or swelling, stop and see a doctor."
+    },
+    "referNote": "For your situation, please also check with your doctor or a health professional."
   }
 }

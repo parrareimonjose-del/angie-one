@@ -259,43 +259,55 @@
   "docs": {
     "privacy": {
       "title": "Informativa sulla privacy",
-      "updated": "Ultimo aggiornamento: 15 ottobre 2026",
+      "updated": "Ultimo aggiornamento: 21 ottobre 2026",
       "sections": [
         [
           "Chi siamo",
-          "Angie One è un'applicazione di Parra Apps. Contatto: angieoneapp.support@gmail.com."
+          "Angie One è un'app di Parra Apps. Contatto: angieoneapp.support@gmail.com."
         ],
         [
-          "Dati che utilizziamo",
-          "Il tuo profilo (obiettivo, peso, altezza, età, sesso, attività), il tuo diario alimentare, l'acqua e le sfide. Attualmente sono memorizzati solo sul tuo dispositivo; non abbiamo account o server che conservano il tuo diario."
+          "Dati sul tuo telefono",
+          "Il tuo profilo (obiettivo, peso, altezza, età, sesso, attività), il diario alimentare, l'acqua, le note sull'umore, le misurazioni, le foto dei progressi e le abitudini sono memorizzati solo sul tuo dispositivo. Non abbiamo account o server con il tuo diario."
         ],
         [
-          "Foto e testo per l'IA",
-          "Se l'IA è attiva, la foto o la descrizione del tuo pasto vengono inviate al nostro proxy (Cloudflare) e a Google Gemini esclusivamente per calcolare la stima. Non le memorizziamo. Puoi disattivare l'IA nelle Impostazioni e in tal caso non verrà inviato nulla."
+          "Foto, voce e testo per l'IA",
+          "Se l'IA è attiva, la foto, la registrazione vocale o la descrizione del tuo pasto (e, per il coach e il piano, l'età, il peso, l'obiettivo e le preferenze inserite nel profilo) vengono inviate al nostro server intermedio (Cloudflare) e a Google Gemini solo per rispondere. Non li conserviamo. Puoi disattivare l'IA nelle Impostazioni. Le foto dei progressi non vengono mai inviate."
         ],
         [
-          "Codici a barre",
-          "Il numero del codice a barre viene cercato su Open Food Facts, un database pubblico. Non viene inviato alcun dato personale."
+          "Database alimentare e codici a barre",
+          "I numeri dei codici a barre e le ricerche vengono verificati nel nostro elenco di cibi (Open Food Facts e USDA). Se aggiungi un prodotto mancante, memorizziamo solo codice a barre, nome, marca e valori dell'etichetta, senza dati personali, in modo che altre persone possano usarlo."
         ],
         [
-          "Non vendiamo mai i tuoi dati sanitari",
-          "Non vendiamo, prendiamo a noleggio o condividiamo i tuoi dati sanitari o alimentari con inserzionisti o terze parti. Non utilizziamo i tuoi dati sanitari a fini pubblicitari."
+          "App per la salute",
+          "Se colleghi Apple Health o Health Connect, Angie One legge solo passi, peso e allenamenti per regolare il tuo obiettivo giornaliero. Questi dati rimangono sul tuo telefono, non vengono mai inviati all'IA o a terze parti e non vengono mai utilizzati per scopi pubblicitari."
         ],
         [
-          "I tuoi diritti",
-          "Puoi visualizzare ed eliminare tutti i tuoi dati in Impostazioni → Elimina i miei dati. Se vivi in California (CCPA), nell'UE (GDPR) o in qualsiasi altro luogo dotato di leggi sulla privacy, puoi esercitare i tuoi diritti inviandoci un'e-mail."
+          "Backup cloud crittografato (facoltativo)",
+          "Se attivi il backup, i tuoi dati vengono crittografati sul tuo telefono con un codice che solo tu possiedi. Il nostro server vede solo byte crittografati. Puoi eliminarlo in qualsiasi momento."
+        ],
+        [
+          "Amici e sfide (facoltativo)",
+          "Se ti unisci a un gruppo, memorizziamo il tuo nickname, un ID anonimo e i tuoi punti delle sfide settimanali. Mai il tuo peso, i tuoi dati alimentari o sulla salute. Puoi segnalare e bloccare, e noi esamineremo ogni segnalazione."
+        ],
+        [
+          "Segnalazioni",
+          "Se segnali dati alimentari o una risposta dell'IA, memorizziamo il testo della segnalazione fino a 180 giorni per correggere gli errori, senza dati personali."
+        ],
+        [
+          "Non vendiamo mai i tuoi dati sulla salute",
+          "Non vendiamo, prendiamo a noleggio o condividiamo i tuoi dati sulla salute o alimentari con inserzionisti o terze parti, e non li usiamo per annunci pubblicitari. Non sono presenti tracker pubblicitari."
+        ],
+        [
+          "I tuoi diritti e l'eliminazione del tuo account",
+          "Puoi eliminare il tuo account e tutti i tuoi dati in Impostazioni → Elimina account; questo elimina anche il tuo backup sul cloud e ti rimuove dai gruppi di amici. Se risiedi in California (CCPA), nell'UE (GDPR) o in un'altra area con leggi sulla privacy, scrivi alla nostra email per esercitare i tuoi diritti."
         ],
         [
           "Minori",
-          "Angie One non è rivolta a minori di 13 anni (16 nell'UE)."
+          "Angie One non è rivolto a minori di 13 anni (16 nell'UE)."
         ],
         [
-          "Sicurezza e violazioni",
-          "Utilizziamo connessioni crittografate (HTTPS). In caso di violazione che interessi i tuoi dati, ti avviseremo come richiesto dalla legge (inclusa la FTC Health Breach Notification Rule)."
-        ],
-        [
-          "Modifiche",
-          "Se modifichiamo questa informativa, la mostreremo nell'app prima che diventi effettiva."
+          "Sicurezza, violazioni e modifiche",
+          "Utilizziamo connessioni crittografate (HTTPS). Se una violazione dovesse interessare i tuoi dati, ti avviseremo come richiesto dalla legge (inclusa la FTC Health Breach Notification Rule). Se modifichiamo questa informativa, la mostreremo nell'app prima che diventi effettiva."
         ]
       ]
     },
@@ -2085,5 +2097,255 @@
     },
     "founderOnly": "Solo per il fondatore. Inserisci la chiave.",
     "unlock": "Sblocca"
+  },
+  "t6": {
+    "hTitle": "Punteggio abitudini",
+    "hSub": "Cibo, acqua, sonno e passi di oggi",
+    "hGreat": "Ottima giornata! Continua così.",
+    "hGood": "Buoni progressi. Un piccolo passo in più.",
+    "hStart": "Ogni piccola abitudine conta. Inizia con un bicchiere d'acqua.",
+    "p": {
+      "food": "Cibo",
+      "water": "Acqua",
+      "sleep": "Sonno",
+      "steps": "Passi"
+    },
+    "week": "Ultimi 7 giorni",
+    "avg": "Media",
+    "colors": "Colori del cibo",
+    "noFood": "Registra un pasto per vederne il colore.",
+    "c": {
+      "green": "Mangia spesso",
+      "yellow": "In equilibrio",
+      "orange": "Da gustare con moderazione"
+    },
+    "colorsNote": "I colori sono una semplice guida basata su proteine e fibre per caloria. Nessun cibo è cattivo.",
+    "eTitle": "Energia stimata",
+    "eEst": "kcal/giorno bruciate",
+    "eIntake": "Media assunta",
+    "eGoal": "Il tuo obiettivo",
+    "eReady": "Aggiornato con i tuoi dati reali",
+    "eWait": "Registra il cibo per 7 giorni e pesati due volte ({{n}} giorni finora)",
+    "eHow": "Il tuo coach confronta ciò che mangi con i cambiamenti del tuo peso per stimare quanto brucia il tuo corpo ogni giorno, e adegua dolcemente il tuo obiettivo.",
+    "eFormula": "Stima iniziale dal tuo profilo",
+    "eNote": "Una stima per il benessere, non una misurazione medica.",
+    "pTitle": "Progressi",
+    "mTitle": "Misure corporee",
+    "mSub": "In centimetri, quando vuoi",
+    "m": {
+      "waist": "Vita",
+      "hip": "Fianchi",
+      "chest": "Petto",
+      "arm": "Braccio",
+      "thigh": "Coscia"
+    },
+    "mSave": "Salva misurazioni",
+    "mSaved": "Salvato",
+    "mHist": "Cronologia",
+    "phTitle": "Foto dei progressi",
+    "phSub": "Confronta come cambi nel tempo",
+    "phNone": "Ancora nessuna foto",
+    "phAdd": "Aggiungi foto",
+    "phDel": "Elimina tutte le foto",
+    "phPrivacy": "Le foto rimangono solo su questo telefono. Non vengono mai caricate, condivise o vendute.",
+    "lTitle": "Lezioni di 2 minuti",
+    "lDone": "Completata",
+    "lEach": "Ogni lezione",
+    "lListen": "Ascolta",
+    "lMark": "Fatto",
+    "lNote": "Brevi lezioni sulle abitudini. Sono consigli generali di benessere, non pareri medici.",
+    "l": {
+      "plate": {
+        "t": "Il piatto bilanciato",
+        "1": "Riempi metà del tuo piatto con verdure o frutta.",
+        "2": "Aggiungi un quarto di proteine, come uova, pollo, legumi o pesce.",
+        "3": "L'ultimo quarto può essere riso, arepa, tortilla o patate."
+      },
+      "hunger": {
+        "t": "Fame o voglia?",
+        "1": "La vera fame cresce lentamente e qualsiasi cibo sembra buono.",
+        "2": "Una voglia arriva improvvisa e chiede qualcosa di specifico.",
+        "3": "Aspetta dieci minuti e bevi dell'acqua; poi decidi con calma."
+      },
+      "water": {
+        "t": "Prima l'acqua",
+        "1": "A volte la sete sembra fame.",
+        "2": "Tieni una bottiglia dove puoi vederla.",
+        "3": "Un bicchiere a ogni pasto è un inizio facile."
+      },
+      "sleep": {
+        "t": "Il sonno aiuta",
+        "1": "Dormire poco può aumentare l'appetito il giorno dopo.",
+        "2": "Prova ad andare a letto alla stessa ora ogni sera.",
+        "3": "Metti via il telefono trenta minuti prima di dormire."
+      },
+      "protein": {
+        "t": "Le proteine ti mantengono sazio",
+        "1": "Le proteine ti aiutano a sentirti soddisfatto più a lungo.",
+        "2": "Includine un po' in ogni pasto.",
+        "3": "Uova, yogurt, legumi e pollo sono opzioni semplici."
+      },
+      "slip": {
+        "t": "Un passo falso non è un fallimento",
+        "1": "Un pasto abbondante non cancella i tuoi progressi.",
+        "2": "Non saltare il pasto successivo per compensare.",
+        "3": "Torna semplicemente al tuo piano abituale."
+      },
+      "move": {
+        "t": "Muoviti un po' di più",
+        "1": "Brevi camminate si sommano durante la giornata.",
+        "2": "Prendi le scale o cammina mentre parli al telefono.",
+        "3": "Dieci minuti dopo aver mangiato fanno sentire benissimo."
+      },
+      "plan": {
+        "t": "Pianifica in anticipo",
+        "1": "Decidere in anticipo rende le scelte più semplici.",
+        "2": "Pianifica i pasti di domani stasera.",
+        "3": "Tieni snack sani pronti a casa."
+      }
+    },
+    "fTitle": "Amici e sfide",
+    "fMyPts": "I miei punti questa settimana",
+    "fGroups": "Gruppi",
+    "fYou": "Il tuo nickname",
+    "fPrivacy": "Gli amici vedono solo il tuo nickname e i punti delle sfide. Mai il tuo peso, cibo o dati sulla salute.",
+    "fNickL": "Nickname (2-20 lettere)",
+    "fNick": "Scegli un nickname amichevole (niente link o parolacce).",
+    "fCreate": "Crea gruppo",
+    "fCodeL": "Codice invito",
+    "fCode": "Il codice ha 6 lettere o numeri.",
+    "fJoin": "Unisciti",
+    "fNotFound": "Quel gruppo non esiste.",
+    "fFull": "Quel gruppo è pieno.",
+    "fErr": "Impossibile connettersi. Riprova.",
+    "fReported": "Grazie. Lo esamineremo.",
+    "fInviteText": "Unisciti alla mia sfida settimanale di sane abitudini su Angie One:",
+    "fMe": "tu",
+    "fPts": "pti",
+    "fReport": "Segnala",
+    "fInvite": "Invita tramite WhatsApp",
+    "fLeave": "Lascia",
+    "fRules": "Sii gentile. Segnala qualsiasi nickname offensivo con 🚩; esaminiamo le segnalazioni e rimuoviamo chi infrange le regole.",
+    "nTitle": "Obiettivi di nutrienti",
+    "nGaps": "Oggi potresti aggiungere più: {{list}}",
+    "nNone": "Scegli i nutrienti che vuoi seguire.",
+    "nPick": "Aggiungi un obiettivo",
+    "nNote": "Gli obiettivi partono dai valori di riferimento giornaliferi. Una guida per il benessere, non una diagnosi.",
+    "fiber": "Fibre"
+  },
+  "rv": {
+    "aiLabel": "Risposta generata dall'IA. Potrebbe non essere corretta.",
+    "aiReport": "Segnala questa risposta dell'IA",
+    "aiReported": "Grazie. Revisioneremo questa risposta.",
+    "cTitle": "Aggiungilo per tutti",
+    "cSub": "Inserisci i valori dell'etichetta per 100 g. Aiuta subito gli altri e noi lo verificheremo.",
+    "cName": "Nome del prodotto",
+    "cBrand": "Marca (facoltativo)",
+    "cK": "kcal",
+    "cP": "Proteine g",
+    "cC": "Carboidrati g",
+    "cF": "Grassi g",
+    "cSend": "Invia e registra",
+    "cThanks": "Grazie! Ora è nell'elenco dei cibi di Angie One.",
+    "cSaved": "Registrato. Non è stato possibile inviarlo adesso; riprova più tardi.",
+    "cBad": "Controlla i numeri: le calorie non corrispondono a proteine, carboidrati e grassi.",
+    "fBlocked": "Bloccato: non li vedrai più. Esamineremo la segnalazione.",
+    "fReportBlock": "Segnala e blocca",
+    "fUnblock": "Sblocca ({{n}})",
+    "fRules": "Sii gentile. Tocca 🚩 per segnalare e bloccare qualcuno: smetterai di vederlo immediatamente e un membro del nostro team esaminerà ogni segnalazione. Nessuno viene rimosso senza una revisione.",
+    "modTitle": "Moderazione",
+    "modSub": "Segnalazioni da amici, dati alimentari e risposte dell'IA, oltre ai prodotti aggiunti dagli utenti.",
+    "modLoad": "Carica segnalazioni",
+    "modNeedKey": "Inserisci prima la chiave fondatore in Free Premium.",
+    "modErr": "Impossibile caricare. Controlla la chiave e la tua connessione.",
+    "modFriends": "Amici",
+    "modFood": "Cibo e IA",
+    "modContrib": "Prodotti aggiunti dagli utenti",
+    "modRemove": "Rimuovi dal gruppo",
+    "modDismiss": "Ignora",
+    "modDelete": "Elimina",
+    "modEmpty": "Nulla da revisionare.",
+    "modNote": "Le segnalazioni non nascondono mai nessuno automaticamente: decidi tu. Rispondi entro 24 ore, come richiesto dagli store delle app."
+  },
+  "ck": {
+    "title": "Il tuo team di professionisti",
+    "sub": "Nutrizione, allenamento, fisioterapia, abitudini e sonno in un solo coach.",
+    "recT": "Ricette per il tuo piano",
+    "recSub": "Ti restano {{kcal}} kcal oggi. Queste ci stanno:",
+    "recNone": "Obiettivo di oggi raggiunto. Se hai fame, scegli frutta, verdura o uno yogurt.",
+    "recCook": "👩‍🍳 Cucina",
+    "recAdd": "➕ Aggiungi al diario",
+    "recAdded": "✓ Aggiunto",
+    "guide": "📚 Guida professionale",
+    "guideSub": "Piano settimanale, progressione e strumenti per il tuo obiettivo.",
+    "weekT": "Settimana {{n}} di 4",
+    "checkT": "Lista di oggi",
+    "c1": "Proteine a ogni pasto",
+    "c2": "Metà piatto di verdure",
+    "c3": "8 bicchieri d'acqua",
+    "c4": "Muoversi 30 minuti o allenarsi",
+    "c5": "Dormire 7-9 ore",
+    "redT": "⚠️ Parla con un professionista",
+    "redB": "Con dolore forte, dolore al petto, capogiri, svenimenti, infortuni, gravidanza, malattie, farmaci o un rapporto difficile con il cibo, consulta un medico, un fisioterapista o un dietista. Il coach non fa diagnosi né prescrizioni.",
+    "disc": "Indicazioni generali basate su raccomandazioni pubbliche (OMS, ACSM e altre). Non è un consiglio medico.",
+    "lose": {
+      "w1": "Settimana 1: registra tutto e mangia 300 kcal in meno al giorno. Cammina 20 minuti al giorno.",
+      "w2": "Settimana 2: proteine a ogni pasto e 2 giorni di forza total body.",
+      "w3": "Settimana 3: aggiungi 1 ripetizione o un po' di peso e 2.000 passi in più.",
+      "w4": "Settimana 4: settimana leggera (meno serie); guarda il peso medio, non quello di un giorno."
+    },
+    "keep": {
+      "w1": "Settimana 1: mangia al tuo obiettivo e annota come ti senti.",
+      "w2": "Settimana 2: 3 giorni di forza e 150 minuti di cardio leggero a settimana.",
+      "w3": "Settimana 3: prova 2 ricette nuove e prepara i pasti per 3 giorni.",
+      "w4": "Settimana 4: settimana leggera e sistema ciò che è stato più difficile."
+    },
+    "gain": {
+      "w1": "Settimana 1: aggiungi 300 kcal al giorno con spuntini densi (avena, frutta secca, frullati).",
+      "w2": "Settimana 2: 3-4 giorni di forza da 8-12 ripetizioni.",
+      "w3": "Settimana 3: aumenta un po' il peso quando completi tutte le serie.",
+      "w4": "Settimana 4: settimana leggera; punta a +0,25-0,5% di peso a settimana."
+    },
+    "nutrition": {
+      "t": "Nutrizione",
+      "1": "Metà piatto di verdure, un quarto di proteine e un quarto di carboidrati.",
+      "2": "Per dimagrire un deficit di 300-500 kcal è sicuro. Per aumentare, 250-500 kcal in più."
+    },
+    "diets": {
+      "t": "Stili alimentari",
+      "1": "La dieta migliore è quella che riesci a mantenere. La mediterranea ha le prove migliori.",
+      "2": "Evita diete estreme o «detox». Con la dieta vegana serve la vitamina B12."
+    },
+    "training": {
+      "t": "Allenamento",
+      "1": "Forza 2-3 giorni a settimana e 150 minuti di cardio moderato.",
+      "2": "Progredisci poco a poco: 1 ripetizione o un po' di peso in più ogni settimana."
+    },
+    "physio": {
+      "t": "Fisioterapia e mobilità",
+      "1": "Scaldati 5-10 minuti e muovi anche, spalle e schiena.",
+      "2": "Se un esercizio dà dolore acuto, fermati e usa una versione più facile."
+    },
+    "habits": {
+      "t": "Abitudini e motivazione",
+      "1": "Inizia con una piccola abitudine legata a qualcosa che già fai.",
+      "2": "Una brutta giornata non cancella i progressi: riparti dal pasto successivo."
+    },
+    "sleep": {
+      "t": "Sonno",
+      "1": "Dormi 7-9 ore e svegliati sempre alla stessa ora.",
+      "2": "Dormire poco aumenta fame e voglie."
+    },
+    "hydration": {
+      "t": "Idratazione",
+      "1": "Circa 30-35 ml per kg al giorno, di più con caldo o allenamento.",
+      "2": "Un bicchiere d'acqua prima dei pasti aiuta la sazietà."
+    },
+    "sportsmed": {
+      "t": "Medicina dello sport",
+      "1": "Aumenta il volume al massimo del 10% a settimana e rispetta il riposo.",
+      "2": "Con dolore al petto, svenimento o gonfiore, fermati e vai dal medico."
+    },
+    "referNote": "Nel tuo caso, consulta anche il tuo medico o un professionista della salute."
   }
 }

@@ -221,43 +221,55 @@
   "docs": {
     "privacy": {
       "title": "Política de privacidad",
-      "updated": "Última actualización: 15 de octubre de 2026",
+      "updated": "Última actualización: 21 de octubre de 2026",
       "sections": [
         [
           "Quiénes somos",
           "Angie One es una app de Parra Apps. Contacto: angieoneapp.support@gmail.com."
         ],
         [
-          "Qué datos usamos",
-          "Los datos de tu perfil (objetivo, peso, altura, edad, sexo, actividad), tu diario de comidas, agua y retos. Hoy se guardan solo en tu dispositivo; no tenemos cuentas ni servidores con tu diario."
+          "Datos en tu teléfono",
+          "Tu perfil (objetivo, peso, altura, edad, sexo, actividad), diario de comidas, agua, notas de ánimo, medidas, fotos de progreso y hábitos se guardan solo en tu dispositivo. No tenemos cuentas ni servidores con tu diario."
         ],
         [
-          "Fotos y textos para la IA",
-          "Si la IA está encendida, la foto o la descripción de tu plato se envía a nuestro servidor intermedio (Cloudflare) y a Google Gemini solo para calcular la estimación. No la guardamos. Puedes apagar la IA en Ajustes y entonces no se envía nada."
+          "Fotos, voz y textos para la IA",
+          "Si la IA está encendida, la foto, la grabación de voz o la descripción de tu comida (y, para el coach y el plan, la edad, el peso, la meta y las preferencias que escribiste en tu perfil) se envía a nuestro servidor intermedio (Cloudflare) y a Google Gemini solo para responder. No la guardamos. Puedes apagar la IA en Ajustes. Las fotos de progreso nunca se envían."
         ],
         [
-          "Códigos de barras",
-          "El número del código se consulta en Open Food Facts, una base de datos pública. No se envían tus datos personales."
+          "Base de alimentos y códigos de barras",
+          "Los códigos de barras y las búsquedas se consultan en nuestra lista de alimentos (Open Food Facts y USDA). Si añades un producto que falta, guardamos solo el código, el nombre, la marca y los datos de la etiqueta, sin datos personales, para que otras personas lo usen."
+        ],
+        [
+          "Apps de salud",
+          "Si conectas Apple Salud o Health Connect, Angie One solo lee pasos, peso y entrenamientos para ajustar tu meta diaria. Esos datos se quedan en tu teléfono, nunca se envían a la IA ni a terceros y nunca se usan para anuncios."
+        ],
+        [
+          "Copia en la nube cifrada (opcional)",
+          "Si activas la copia, tus datos se cifran en tu teléfono con un código que solo tienes tú. Nuestro servidor solo ve bytes cifrados. Puedes borrarla cuando quieras."
+        ],
+        [
+          "Amigos y retos (opcional)",
+          "Si entras en un grupo, guardamos tu apodo, un identificador anónimo y tus puntos del reto semanal. Nunca tu peso, tu comida ni tus datos de salud. Puedes reportar y bloquear, y revisamos cada reporte."
+        ],
+        [
+          "Reportes",
+          "Si reportas un dato de alimento o una respuesta de la IA, guardamos el texto del reporte hasta 180 días para corregir errores, sin datos personales."
         ],
         [
           "Nunca vendemos tus datos de salud",
-          "No vendemos, alquilamos ni compartimos tus datos de salud o de comidas con anunciantes ni con terceros. No usamos tus datos de salud para publicidad."
+          "No vendemos, alquilamos ni compartimos tus datos de salud o de comidas con anunciantes ni con terceros, ni los usamos para publicidad. No hay rastreadores de anuncios."
         ],
         [
-          "Tus derechos",
-          "Puedes ver y borrar todos tus datos en Ajustes → Borrar mis datos. Si vives en California (CCPA), la UE (RGPD) u otro lugar con leyes de privacidad, puedes ejercer tus derechos escribiendo a nuestro correo."
+          "Tus derechos y borrar tu cuenta",
+          "Puedes borrar tu cuenta y todos tus datos en Ajustes → Borrar cuenta; también se borra tu copia en la nube y sales de tus grupos de amigos. Si vives en California (CCPA), la UE (RGPD) u otro lugar con leyes de privacidad, escribe a nuestro correo para ejercer tus derechos."
         ],
         [
           "Menores",
           "Angie One no está dirigida a menores de 13 años (16 en la UE)."
         ],
         [
-          "Seguridad y brechas",
-          "Usamos conexiones cifradas (HTTPS). Si ocurre una brecha que afecte tus datos te avisaremos según la ley aplicable (incluida la regla de la FTC sobre notificación de brechas de salud)."
-        ],
-        [
-          "Cambios",
-          "Si cambiamos esta política te lo mostraremos en la app antes de que aplique."
+          "Seguridad, brechas y cambios",
+          "Usamos conexiones cifradas (HTTPS). Si ocurre una brecha que afecte tus datos te avisaremos según la ley (incluida la regla de la FTC sobre brechas de salud). Si cambiamos esta política te lo mostraremos en la app antes de que aplique."
         ]
       ]
     },
@@ -2085,5 +2097,255 @@
     },
     "founderOnly": "Este panel es solo para el fundador. Escribe tu clave de fundador.",
     "unlock": "Entrar"
+  },
+  "t6": {
+    "hTitle": "Puntuación de hábitos",
+    "hSub": "Comida, agua, sueño y pasos de hoy",
+    "hGreat": "¡Gran día! Sigue así.",
+    "hGood": "Buen avance. Un pasito más.",
+    "hStart": "Cada pequeño hábito cuenta. Empieza con un vaso de agua.",
+    "p": {
+      "food": "Comida",
+      "water": "Agua",
+      "sleep": "Sueño",
+      "steps": "Pasos"
+    },
+    "week": "Últimos 7 días",
+    "avg": "Promedio",
+    "colors": "Colores de la comida",
+    "noFood": "Anota una comida para ver su color.",
+    "c": {
+      "green": "Para comer seguido",
+      "yellow": "Con equilibrio",
+      "orange": "Disfrutar con medida"
+    },
+    "colorsNote": "Los colores son una guía sencilla según la proteína y la fibra por caloría. Ninguna comida es mala.",
+    "eTitle": "Energía estimada",
+    "eEst": "kcal/día que gastas",
+    "eIntake": "Media que comes",
+    "eGoal": "Tu meta",
+    "eReady": "Ajustado con tus datos reales",
+    "eWait": "Anota la comida 7 días y pésate 2 veces (llevas {{n}} días)",
+    "eHow": "Tu coach compara lo que comes con cómo cambia tu peso para estimar lo que gasta tu cuerpo cada día, y ajusta tu meta con suavidad.",
+    "eFormula": "Estimación inicial según tu perfil",
+    "eNote": "Es una estimación de bienestar, no una medida médica.",
+    "pTitle": "Progreso",
+    "mTitle": "Medidas del cuerpo",
+    "mSub": "En centímetros, cuando quieras",
+    "m": {
+      "waist": "Cintura",
+      "hip": "Cadera",
+      "chest": "Pecho",
+      "arm": "Brazo",
+      "thigh": "Muslo"
+    },
+    "mSave": "Guardar medidas",
+    "mSaved": "Guardado",
+    "mHist": "Historial",
+    "phTitle": "Fotos de progreso",
+    "phSub": "Compara cómo cambias con el tiempo",
+    "phNone": "Aún no hay fotos",
+    "phAdd": "Añadir foto",
+    "phDel": "Borrar todas las fotos",
+    "phPrivacy": "Las fotos se quedan solo en este teléfono. Nunca se suben, se comparten ni se venden.",
+    "lTitle": "Lecciones de 2 minutos",
+    "lDone": "Completadas",
+    "lEach": "Cada lección",
+    "lListen": "Escuchar",
+    "lMark": "Hecha",
+    "lNote": "Lecciones cortas de hábitos. Son consejos generales de bienestar, no consejo médico.",
+    "l": {
+      "plate": {
+        "t": "El plato equilibrado",
+        "1": "Llena la mitad del plato con verduras o fruta.",
+        "2": "Añade un cuarto de proteína, como huevo, pollo, frijoles o pescado.",
+        "3": "El último cuarto puede ser arroz, arepa, tortilla o papa."
+      },
+      "hunger": {
+        "t": "¿Hambre o antojo?",
+        "1": "El hambre real crece despacio y cualquier comida te apetece.",
+        "2": "El antojo llega de golpe y pide algo concreto.",
+        "3": "Espera diez minutos y toma agua; luego decide con calma."
+      },
+      "water": {
+        "t": "Primero, agua",
+        "1": "A veces la sed se siente como hambre.",
+        "2": "Ten una botella donde la veas.",
+        "3": "Un vaso con cada comida es un buen comienzo."
+      },
+      "sleep": {
+        "t": "Dormir ayuda",
+        "1": "Dormir poco puede aumentar el apetito al día siguiente.",
+        "2": "Intenta acostarte a la misma hora cada noche.",
+        "3": "Deja el teléfono treinta minutos antes de dormir."
+      },
+      "protein": {
+        "t": "La proteína sacia",
+        "1": "La proteína te ayuda a sentirte lleno por más tiempo.",
+        "2": "Incluye un poco en cada comida.",
+        "3": "Huevos, yogur, frijoles y pollo son opciones sencillas."
+      },
+      "slip": {
+        "t": "Un tropiezo no es un fracaso",
+        "1": "Una comida grande no borra tu avance.",
+        "2": "No te saltes la siguiente comida para compensar.",
+        "3": "Simplemente vuelve a tu plan de siempre."
+      },
+      "move": {
+        "t": "Muévete un poco más",
+        "1": "Las caminatas cortas suman durante el día.",
+        "2": "Usa las escaleras o camina mientras hablas por teléfono.",
+        "3": "Diez minutos después de comer sientan muy bien."
+      },
+      "plan": {
+        "t": "Planifica antes",
+        "1": "Decidir con tiempo hace más fácil elegir bien.",
+        "2": "Planea esta noche las comidas de mañana.",
+        "3": "Ten meriendas sanas listas en casa."
+      }
+    },
+    "fTitle": "Amigos y retos",
+    "fMyPts": "Mis puntos esta semana",
+    "fGroups": "Grupos",
+    "fYou": "Tu apodo",
+    "fPrivacy": "Tus amigos solo ven tu apodo y tus puntos del reto. Nunca tu peso, tu comida ni tus datos de salud.",
+    "fNickL": "Apodo (2 a 20 letras)",
+    "fNick": "Elige un apodo amable (sin enlaces ni groserías).",
+    "fCreate": "Crear grupo",
+    "fCodeL": "Código de invitación",
+    "fCode": "El código tiene 6 letras o números.",
+    "fJoin": "Unirme",
+    "fNotFound": "Ese grupo no existe.",
+    "fFull": "Ese grupo está lleno.",
+    "fErr": "No pude conectar. Inténtalo otra vez.",
+    "fReported": "Gracias. Lo revisaremos.",
+    "fInviteText": "Únete a mi reto semanal de hábitos sanos en Angie One:",
+    "fMe": "tú",
+    "fPts": "pts",
+    "fReport": "Reportar",
+    "fInvite": "Invitar por WhatsApp",
+    "fLeave": "Salir",
+    "fRules": "Sé amable. Reporta cualquier apodo ofensivo con 🚩; revisamos los reportes y sacamos a quien no respete las reglas.",
+    "nTitle": "Metas por nutriente",
+    "nGaps": "Hoy podrías sumar más: {{list}}",
+    "nNone": "Elige los nutrientes que quieres seguir.",
+    "nPick": "Añadir una meta",
+    "nNote": "Las metas empiezan en los valores diarios de referencia. Es una guía de bienestar, no un diagnóstico.",
+    "fiber": "Fibra"
+  },
+  "rv": {
+    "aiLabel": "Respuesta generada por IA. Puede equivocarse.",
+    "aiReport": "Reportar esta respuesta de la IA",
+    "aiReported": "Gracias. Revisaremos esta respuesta.",
+    "cTitle": "Añádelo para todos",
+    "cSub": "Escribe los datos de la etiqueta por 100 g. Ayuda a otras personas al momento y lo revisamos.",
+    "cName": "Nombre del producto",
+    "cBrand": "Marca (opcional)",
+    "cK": "kcal",
+    "cP": "Proteína g",
+    "cC": "Carbos g",
+    "cF": "Grasa g",
+    "cSend": "Enviar y anotar",
+    "cThanks": "¡Gracias! Ya está en la lista de alimentos de Angie One.",
+    "cSaved": "Anotado. No se pudo enviar ahora; inténtalo más tarde.",
+    "cBad": "Revisa los números: las calorías no cuadran con la proteína, los carbos y la grasa.",
+    "fBlocked": "Bloqueado: ya no lo verás. Revisaremos el reporte.",
+    "fReportBlock": "Reportar y bloquear",
+    "fUnblock": "Desbloquear ({{n}})",
+    "fRules": "Sé amable. Toca 🚩 para reportar y bloquear a alguien: dejas de verlo al momento y una persona de nuestro equipo revisa cada reporte. Nadie sale del grupo sin revisión.",
+    "modTitle": "Moderación",
+    "modSub": "Reportes de amigos, de datos de alimentos y de respuestas de IA, y productos añadidos por usuarios.",
+    "modLoad": "Cargar reportes",
+    "modNeedKey": "Primero escribe la clave de fundador en Premium gratis.",
+    "modErr": "No se pudo cargar. Revisa la clave y la conexión.",
+    "modFriends": "Amigos",
+    "modFood": "Alimentos e IA",
+    "modContrib": "Productos añadidos por usuarios",
+    "modRemove": "Quitar del grupo",
+    "modDismiss": "Descartar",
+    "modDelete": "Borrar",
+    "modEmpty": "Nada que revisar.",
+    "modNote": "Los reportes nunca ocultan a nadie solos: decides tú. Responde en menos de 24 horas, como piden las tiendas."
+  },
+  "ck": {
+    "title": "Tu equipo profesional",
+    "sub": "Nutrición, entrenamiento, fisioterapia, hábitos y sueño en un solo coach.",
+    "recT": "Recetas para tu plan",
+    "recSub": "Te quedan {{kcal}} kcal hoy. Estas te cuadran:",
+    "recNone": "Hoy ya llegaste a tu meta. Si tienes hambre, elige fruta, verduras o un yogur.",
+    "recCook": "👩‍🍳 Cocinar",
+    "recAdd": "➕ Añadir al diario",
+    "recAdded": "✓ Añadido",
+    "guide": "📚 Guía profesional",
+    "guideSub": "Plan semanal, progresión y herramientas según tu meta.",
+    "weekT": "Semana {{n}} de 4",
+    "checkT": "Lista de hoy",
+    "c1": "Proteína en cada comida",
+    "c2": "Media porción del plato con verduras",
+    "c3": "8 vasos de agua",
+    "c4": "Moverte 30 minutos o tu entreno",
+    "c5": "Dormir 7 a 9 horas",
+    "redT": "⚠️ Habla con un profesional",
+    "redB": "Si tienes dolor fuerte, dolor en el pecho, mareos, desmayos, una lesión, embarazo, una enfermedad, tomas medicamentos o tienes una relación difícil con la comida, consulta a un médico, fisioterapeuta o nutricionista. El coach no diagnostica ni receta.",
+    "disc": "Guías generales basadas en recomendaciones públicas (OMS, ACSM y otras). No es consejo médico.",
+    "lose": {
+      "w1": "Semana 1: registra todo y baja 300 kcal al día. Camina 20 minutos diarios.",
+      "w2": "Semana 2: proteína en cada comida y 2 días de fuerza de cuerpo completo.",
+      "w3": "Semana 3: suma 1 repetición o un poco de peso por ejercicio y 2.000 pasos más.",
+      "w4": "Semana 4: semana suave (menos series) y revisa tu peso promedio, no el de un día."
+    },
+    "keep": {
+      "w1": "Semana 1: come a tu meta y anota cómo te sientes.",
+      "w2": "Semana 2: 3 días de fuerza y 150 minutos de cardio suave en la semana.",
+      "w3": "Semana 3: prueba 2 recetas nuevas y prepara comidas para 3 días.",
+      "w4": "Semana 4: semana suave y ajusta lo que más te costó."
+    },
+    "gain": {
+      "w1": "Semana 1: suma 300 kcal al día con snacks densos (avena, nueces, batidos).",
+      "w2": "Semana 2: 3 a 4 días de fuerza con 8 a 12 repeticiones.",
+      "w3": "Semana 3: sube un poco el peso cuando completes todas las series.",
+      "w4": "Semana 4: semana suave y revisa tu peso: busca ganar 0,25 a 0,5 % por semana."
+    },
+    "nutrition": {
+      "t": "Nutrición",
+      "1": "Llena medio plato de verduras, un cuarto de proteína y un cuarto de carbohidratos.",
+      "2": "Para bajar, un déficit de 300 a 500 kcal es seguro. Para subir, 250 a 500 kcal más."
+    },
+    "diets": {
+      "t": "Estilos de dieta",
+      "1": "La mejor dieta es la que puedes mantener. La mediterránea tiene la mejor evidencia.",
+      "2": "Evita las dietas extremas o «detox». Si eres vegana, necesitas vitamina B12."
+    },
+    "training": {
+      "t": "Entrenamiento",
+      "1": "Fuerza 2 o 3 días por semana y 150 minutos de cardio moderado.",
+      "2": "Progresa poco a poco: 1 repetición más o un poco más de peso cada semana."
+    },
+    "physio": {
+      "t": "Fisioterapia y movilidad",
+      "1": "Calienta 5 a 10 minutos y mueve caderas, hombros y espalda.",
+      "2": "Si un ejercicio duele de forma aguda, para y usa una versión más fácil."
+    },
+    "habits": {
+      "t": "Hábitos y motivación",
+      "1": "Empieza con un hábito pequeño y átalo a algo que ya haces.",
+      "2": "Un mal día no borra tu progreso: vuelve en la siguiente comida."
+    },
+    "sleep": {
+      "t": "Sueño",
+      "1": "Duerme 7 a 9 horas y levántate a la misma hora cada día.",
+      "2": "Dormir poco aumenta el hambre y los antojos."
+    },
+    "hydration": {
+      "t": "Hidratación",
+      "1": "Unos 30 a 35 ml por kilo al día, más si hace calor o entrenas.",
+      "2": "Un vaso de agua antes de comer ayuda a sentir saciedad."
+    },
+    "sportsmed": {
+      "t": "Medicina deportiva",
+      "1": "Sube el volumen máximo un 10 % por semana y respeta los días de descanso.",
+      "2": "Ante dolor en el pecho, desmayo o hinchazón, para y ve al médico."
+    },
+    "referNote": "Para tu caso, consulta también con tu médico o un profesional de la salud."
   }
 }

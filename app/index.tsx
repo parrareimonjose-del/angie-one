@@ -1,3 +1,4 @@
+import { HabitCard } from '../src/top6-ui';
 import { CLONE_ENABLED } from '../src/flags';
 import { useEffect, useState } from 'react';
 import { View, Text, Image } from 'react-native';
@@ -74,6 +75,7 @@ export default function Home() {
       <UpsellNudge />
       <SecurityNudge />
       {CLONE_ENABLED ? <CloneNudge /> : null}
+      <HabitCard />
       <TaxesCard />
       <SmartTips />
       <Btn label={`📸  ${t('nav.scan')}`} onPress={() => router.push('/scan')} />

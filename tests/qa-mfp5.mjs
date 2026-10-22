@@ -44,7 +44,7 @@ for (const [bn, B, dev] of runs) {
     // 5) Diario por comidas, hora editable, netos
     await go('/diary'); ok(`${tag} diario por comidas`, await tid('meal-0').count() === 1 && await tid('meal-3').count() === 1);
     ok(`${tag} netos en diario`, /\d/.test(await tid('diary-net').textContent()));
-    await tid('time-btn').first().click(); await tid('time-input').fill('99:99'); await tid('time-save').click(); await p.waitForTimeout(200);
+    await p.getByTestId('entry').filter({ hasText: L ? 'Avena' : 'Oatmeal' }).first().getByTestId('time-btn').click(); await tid('time-input').fill('99:99'); await tid('time-save').click(); await p.waitForTimeout(200);
     ok(`${tag} hora inválida avisa`, await tid('time-bad').count() === 1);
     await tid('time-input').fill('20:15'); await tid('time-save').click(); await p.waitForTimeout(400);
     s = await st(); const e1 = s.entries.find((e) => e.id === 'e1'); ok(`${tag} hora cambiada`, new Date(e1.time).getHours() === 20 && new Date(e1.time).getMinutes() === 15);

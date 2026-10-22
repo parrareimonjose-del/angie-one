@@ -9,12 +9,14 @@ import { useStore } from '../src/store';
 import { useAuth } from '../src/faltantes-ui';
 import { Note } from '../src/ext';
 import { deleteBackup } from '../src/cloudsync';
+import { leaveAllFriends } from '../src/review';
 // Borrar cuenta y datos desde la app (Google Play y App Store lo exigen). También es la página web pública de borrado:
 // https://parrareimonjose-del.github.io/angie-one/delete-account
 export default function DeleteAccount() {
   const { t } = useTranslation(); const { s: st, reset } = useStore(); const { setAuth } = useAuth(); const [done, setDone] = useState(false);
   const del = async () => { if (Platform.OS === 'web' && !window.confirm(t('fx.delQ'))) return;
     if (st.sync?.code) { try { await deleteBackup(st.sync.code); } catch { /* sin red: se avisa en la nota */ } }
+    await leaveAllFriends((st as any).ext?.friends);
     setAuth(null); reset(); try { const ks = await AsyncStorage.getAllKeys(); await AsyncStorage.multiRemove(ks.filter((k) => k.startsWith('angieone'))); } catch {}
     if (typeof sessionStorage !== 'undefined') sessionStorage.clear(); setDone(true); };
   return <Screen title={`🗑️ ${t('fx.delTitle')}`}>

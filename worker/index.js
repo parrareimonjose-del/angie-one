@@ -1,5 +1,6 @@
 import { handleGrants } from './grants.js';
-import { handleFoods, foodReport } from './foods.js';
+import { handleFriends } from './friends.js';
+import { handleFoods, foodReport, foodContribute, foodQueue } from './foods.js';
 import { handleSync } from './sync.js';
 // Angie One AI proxy: keeps GEMINI_API_KEY server-side (Worker secret).
 const MODEL = 'gemini-flash-lite-latest';
@@ -14,7 +15,7 @@ If there is no food or drink in the photo/description, answer {"isFood": false}.
 
 function cors(origin) {
   const ok = origin && ORIGINS.some((r) => r.test(origin));
-  return ok ? { 'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Authorization', 'Vary': 'Origin' } : null;
+  return ok ? { 'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Authorization, x-founder-key', 'Vary': 'Origin' } : null;
 }
 const json = (o, s, h) => new Response(JSON.stringify(o), { status: s, headers: { 'Content-Type': 'application/json', ...(h || {}) } });
 
@@ -97,7 +98,7 @@ function cleanPlan(o, b) {
   return { diet: { days: ddays, shopping }, workout: { days: wdays, safety: str(o.workout.safety, 300) } };
 }
 
-const CHAT_PROMPT = `You are "Angie", the coach inside the Angie One app: warm, motivating, guilt-free, practical, Latin-friendly. Answer questions about food, nutrition, cooking and exercise in LANG, in at most 120 words, simple words, plain text without markdown. Tone rules (strict, in every language): never use pet names or terms of endearment (e.g. mi amor, cariño, mi reina, linda, guapa, corazón, mija, mi vida, honey, sweetie, dear, darling, querida, chérie, Schatz, tesoro); never compliment or comment on the user's looks or body; never assume the user's gender: in gendered languages (Spanish, Portuguese, French, Italian, Arabic, etc.) use neutral wording (e.g. "te doy la bienvenida" instead of "bienvenida/o", "qué buena pregunta", avoid adjectives that agree with the user's gender, such as saciada/saciado, lista/listo, cansada/cansado; keep wording neutral even if the user states their gender, e.g. "te mantiene con saciedad"). You are NOT a doctor: never diagnose, never prescribe medication, never suggest eating below 1200 kcal (women) / 1500 kcal (men), never praise extreme restriction, purging or over-exercise. If the user mentions symptoms, pain, pregnancy, a disease, or signs of an eating disorder, kindly suggest talking to a health professional. If the question is unrelated to food, health habits or exercise, gently steer back. User context: CTX.`;
+const CHAT_PROMPT = `You are "Angie", the coach inside the Angie One app: warm, motivating, guilt-free, practical, Latin-friendly. You combine the knowledge of a professional team: registered dietitian, certified personal trainer (ACSM), physiotherapist (mobility, warm-up, injury prevention only), habit/behavior coach, sleep coach and sports-medicine basics. Use the "Pro knowledge" in the user context and the user's goal, target and remaining kcal to give a concrete, personalized next step (a tool, checklist, weekly progression or recipe idea). Answer questions about food, nutrition, diets, cooking, exercise, mobility, sleep, hydration and motivation in LANG, in at most 140 words, simple words, plain text without markdown. Tone rules (strict, in every language): never use pet names or terms of endearment (e.g. mi amor, cariño, mi reina, linda, guapa, corazón, mija, mi vida, honey, sweetie, dear, darling, querida, chérie, Schatz, tesoro); never compliment or comment on the user's looks or body; never assume the user's gender: in gendered languages (Spanish, Portuguese, French, Italian, Arabic, etc.) use neutral wording (e.g. "te doy la bienvenida" instead of "bienvenida/o", "qué buena pregunta", avoid adjectives that agree with the user's gender, such as saciada/saciado, lista/listo, cansada/cansado; keep wording neutral even if the user states their gender, e.g. "te mantiene con saciedad"). You are NOT a doctor: never diagnose, never prescribe medication or supplement doses, never create rehab plans for injuries, never suggest eating below 1200 kcal (women) / 1500 kcal (men), never praise extreme restriction, purging or over-exercise. If the user mentions symptoms, pain, pregnancy, a disease, or signs of an eating disorder, kindly suggest talking to a health professional. If the question is unrelated to food, health habits or exercise, gently steer back. User context: CTX.`;
 
 // Red de seguridad del tono: quita apelativos cariñosos que la IA cuele (13 idiomas).
 const PET = /(?:,\s*|(?<=(?:^|[¡¿\s])(?:hola|hey|hi|hello|oi|olá|ola|salut|bonjour|ciao|hallo|merhaba|привет)\s+))(?:mi\s+(?:amor|vida|cielo|reina|rey|corazón|corazon|niña|niño|nena|linda|lindo|bella|hermosa|querida|querido|princesa)|cariño|cariñ[oa]|mija|mijo|mamita|papito|mami|papi|guap[oa]|lind[oa]|herman[oa]sa|preciosa?|querid[oa]|corazón|bonit[oa]|chula|amorcito|reina|princesa|honey|sweetie|sweetheart|darling|babe|baby|dear|hun|gorgeous|beautiful|handsome|love|meu\s+amor|minha\s+querida|meu\s+querido|benzinho|ma\s+(?:chérie|belle)|mon\s+(?:chéri|cœur|ange)|ma\s+puce|schatz|liebling|süße|tesoro|carissim[oa]|cara\s+mia|tatlım|canım|güzelim|дорог(?:ая|ой)|милая|солнышко|亲爱的|宝贝|ダーリン|자기야|حبيبتي|حبيبي|عزيزتي)\b(?=\s*[,.!?¡¿;:)]|\s*$)/giu;
@@ -142,8 +143,8 @@ async function coach(path, b, env, h) {
   // /chat
   const msgs = (Array.isArray(b.messages) ? b.messages : []).slice(-6).map((m) => ({ role: m.role === 'user' ? 'User' : 'Angie', text: str(m.text, 600) })).filter((m) => m.text);
   if (!msgs.length || msgs[msgs.length - 1].role !== 'User') return json({ error: 'need question' }, 400, h);
-  const lang = langOf(b.lang); const ctx = str(b.context, 700) || 'none';
-  const out = await cached('chat-v4', { lang, ctx, msgs }, 86400, async () => {
+  const lang = langOf(b.lang); const ctx = str(b.context, 1400) || 'none';
+  const out = await cached('chat-v5', { lang, ctx, msgs }, 86400, async () => {
     const txt = await gemini(env, [{ text: CHAT_PROMPT.replace('LANG', lang).replace('CTX', ctx) + '\n\n' + msgs.map((m) => `${m.role}: ${m.text}`).join('\n') + '\nAngie:' }], 500, 25000, false);
     if (txt === null) return { error: 'busy' };
     return txt ? { reply: cleanTone(txt.replace(/^Angie:\s*/, '')).slice(0, 1500) } : { error: 'parse' };
@@ -230,7 +231,8 @@ export default {
     if (req.method === 'GET' && path.startsWith('/foods/')) return handleFoods(path, req, env, json, h);
     if (path.startsWith('/sync/')) return handleSync(path, req, env, json, h, hits);
     if (path.startsWith('/grants/')) return handleGrants(path, req, env, json, h);
-    if (req.method !== 'POST' || !['/estimate', '/plan', '/chat', '/vision', '/dev', '/voice', '/clone', '/foods/report'].includes(path)) return json({ error: 'not found' }, 404, h);
+    if (path.startsWith('/friends/')) return handleFriends(path, req, env, json, h);
+    if (req.method !== 'POST' || !['/estimate', '/plan', '/chat', '/vision', '/dev', '/voice', '/clone', '/foods/report', '/foods/contribute', '/foods/queue', '/foods/queue/delete'].includes(path)) return json({ error: 'not found' }, 404, h);
     const ip = req.headers.get('CF-Connecting-IP') || 'x';
     const now = Date.now(), arr = (hits.get(ip) || []).filter((t) => now - t < 60000);
     if (arr.length >= RATE) return json({ error: 'rate' }, 429, h);
@@ -250,6 +252,8 @@ export default {
       return t ? json({ text: t }, 200, h) : json({ error: 'no_speech' }, 422, h);
     }
     if (path === '/foods/report') return foodReport(b, env, json, h);
+    if (path === '/foods/contribute') return foodContribute(b, req, env, json, h);
+    if (path.startsWith('/foods/queue')) return foodQueue(path, b, req, env, json, h);
     if (path === '/plan' || path === '/chat') return coach(path, b, env, h);
     if (path === '/vision' || path === '/dev') return phase2(path, b, env, h);
     if (path === '/clone') return clone(b, env, h);

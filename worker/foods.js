@@ -72,6 +72,8 @@ export async function barcodeKV(env, code) {
     const s = i === 0 ? 0 : i + 1; const e = txt.indexOf('\n', s);
     try { return JSON.parse(txt.slice(s + v.length + 1, e < 0 ? undefined : e)); } catch { return null; }
   }
+  // Productos aportados por usuarios (ub:<código>), mientras no entren en la próxima reconstrucción de la base.
+  for (const v of codeVariants(code)) { const u = await env.FOODS.get('ub:' + v, { cacheTtl: 600 }); if (u) { try { return JSON.parse(u); } catch { /* roto */ } } }
   return null;
 }
 // ---- Fuentes en vivo (con caché) ----
@@ -140,9 +142,43 @@ export async function handleFoods(path, req, env, json, h) {
 }
 /** Reporte de datos erróneos: se guarda 180 días en KV para la cola de revisión. Sin datos personales. */
 export async function foodReport(b, env, json, h) {
-  const reason = ['kcal', 'macros', 'portion', 'dup', 'name', 'other'].includes(b.reason) ? b.reason : null; const id = String(b.id || '').slice(0, 40);
+  const reason = ['kcal', 'macros', 'portion', 'dup', 'name', 'other', 'ai'].includes(b.reason) ? b.reason : null; const id = String(b.id || '').slice(0, 40);
   if (!reason || !id) return json({ error: 'bad report' }, 400, h);
   const rec = { id, reason, name: String(b.name || '').replace(/[<>]/g, '').slice(0, 80), value: String(b.value || '').replace(/[<>]/g, '').slice(0, 120), at: new Date().toISOString() };
   try { await env.FOODS.put(`r:${Date.now()}:${crypto.randomUUID().slice(0, 8)}`, JSON.stringify(rec), { expirationTtl: 180 * 86400 }); } catch { return json({ error: 'busy' }, 503, h); }
   return json({ ok: true }, 200, h);
+}
+
+/** Validación de un producto aportado por un usuario (por 100 g). Devuelve el registro o un error. */
+export function checkContribution(b) {
+  const code = normCode(String(b.code || '').replace(/\D/g, '')); if (!/^\d{8,14}$/.test(code)) return { err: 'code' };
+  const name = String(b.name || '').replace(/[<>]/g, '').trim().slice(0, 70); if (name.length < 2 || /(http|www\.|@)/i.test(name)) return { err: 'name' };
+  const num = (v, max) => { const x = +String(v ?? '').replace(',', '.'); return x >= 0 && x <= max ? Math.round(x * 10) / 10 : NaN; };
+  const k = num(b.k, 950), p = num(b.p, 100), c = num(b.c, 100), f = num(b.f, 100);
+  if ([k, p, c, f].some(isNaN) || p + c + f > 101) return { err: 'nums' };
+  if (Math.abs(k - (4 * p + 4 * c + 9 * f)) > Math.max(60, 0.35 * k)) return { err: 'nums' };
+  const brand = String(b.brand || '').replace(/[<>]/g, '').trim().slice(0, 40);
+  const lang = ['es', 'en', 'pt'].includes(b.lang) ? b.lang : 'es';
+  return { rec: { i: 'user:' + code, bc: code, n: { [lang]: name }, b: brand || undefined, k: Math.round(k), p, c, f, s: 'user', v: 0, q: 30, at: new Date().toISOString().slice(0, 10) } };
+}
+const chits = new Map();
+/** POST /foods/contribute: el producto queda disponible al momento para todos (marcado «de usuarios», sin sello) y en la cola del fundador. */
+export async function foodContribute(b, req, env, json, h) {
+  const ip = req.headers.get('CF-Connecting-IP') || 'x'; const day = new Date().toISOString().slice(0, 10); const key = ip + day; const n = chits.get(key) || 0;
+  if (n >= 10) return json({ error: 'rate' }, 429, h); chits.set(key, n + 1); if (chits.size > 5000) chits.clear();
+  const { rec, err } = checkContribution(b); if (err) return json({ error: err }, 400, h);
+  if (await barcodeKV(env, rec.bc)) return json({ ok: true, exists: true }, 200, h);
+  try { await env.FOODS.put('ub:' + rec.bc, JSON.stringify(rec), { metadata: { n: Object.values(rec.n)[0], k: rec.k } }); } catch { return json({ error: 'busy' }, 503, h); }
+  return json({ ok: true, item: rec }, 200, h);
+}
+/** Cola del fundador: reportes de alimentos e IA (r:) y aportes de usuarios (ub:). Requiere x-founder-key. */
+export async function foodQueue(path, b, req, env, json, h) {
+  if (!env.FOUNDER_KEY || req.headers.get('x-founder-key') !== env.FOUNDER_KEY) return json({ error: 'auth' }, 401, h);
+  if (path === '/foods/queue') {
+    const [r, u] = await Promise.all([env.FOODS.list({ prefix: 'r:', limit: 100 }), env.FOODS.list({ prefix: 'ub:', limit: 100 })]);
+    const reports = []; for (const k of r.keys.slice(-50)) { const v = await env.FOODS.get(k.name); if (v) reports.push({ key: k.name, ...JSON.parse(v) }); }
+    return json({ reports, contributions: u.keys.map((k) => ({ key: k.name, ...(k.metadata || {}) })) }, 200, h);
+  }
+  if (path === '/foods/queue/delete') { const k = String(b.key || ''); if (!/^(r|ub):/.test(k)) return json({ error: 'bad' }, 400, h); await env.FOODS.delete(k); return json({ ok: true }, 200, h); }
+  return json({ error: 'not found' }, 404, h);
 }

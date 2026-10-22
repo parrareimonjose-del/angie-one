@@ -259,43 +259,55 @@
   "docs": {
     "privacy": {
       "title": "Datenschutzerklärung",
-      "updated": "Zuletzt aktualisiert: 15. Oktober 2026",
+      "updated": "Zuletzt aktualisiert: 21. Oktober 2026",
       "sections": [
         [
           "Wer wir sind",
           "Angie One ist eine App von Parra Apps. Kontakt: angieoneapp.support@gmail.com."
         ],
         [
-          "Daten, die wir nutzen",
-          "Dein Profil (Ziel, Gewicht, Größe, Alter, Geschlecht, Aktivität), dein Ernährungstagebuch, Wasser und Herausforderungen. Momentan werden diese ausschließlich auf deinem Gerät gespeichert; wir besitzen keine Konten oder Server, auf denen dein Tagebuch gespeichert wird."
+          "Daten auf deinem Telefon",
+          "Dein Profil (Ziel, Gewicht, Größe, Alter, Geschlecht, Aktivität), Ernährungstagebuch, Wasser, Stimmungsmotizen, Messwerte, Fortschrittsfotos und Gewohnheiten werden nur auf deinem Gerät gespeichert. Wir haben keine Konten oder Server mit deinem Tagebuch."
         ],
         [
-          "Fotos und Texte für die KI",
-          "Wenn die KI aktiviert ist, werden das Foto oder die Beschreibung deiner Mahlzeit an unseren Proxy (Cloudflare) und an Google Gemini gesendet, ausschließlich um die Schätzung zu berechnen. Wir speichern diese Daten nicht. Du kannst die KI in den Einstellungen ausschalten, sodass nichts gesendet wird."
+          "Fotos, Sprache und Text für die KI",
+          "Wenn die KI eingeschaltet ist, werden das Foto, die Sprachaufnahme oder die Beschreibung deiner Mahlzeit (sowie für den Coach und den Plan das Alter, Gewicht, Ziel und die Einstellungen, die du in deinem Profil eingegeben hast) an unseren Zwischenserver (Cloudflare) und an Google Gemini gesendet, um die Anfrage zu beantworten. Wir speichern diese Daten nicht. Du kannst die KI in den Einstellungen ausschalten. Fortschrittsfotos werden niemals gesendet."
         ],
         [
-          "Barcodes",
-          "Die Barcodenummer wird in Open Food Facts, einer öffentlichen Datenbank, abgefragt. Es werden keine personenbezogenen Daten übermittelt."
+          "Lebensmitteldatenbank und Barcodes",
+          "Barcodenummern und Suchanfragen werden in unserer Lebensmittelliste (Open Food Facts und USDA) überprüft. Wenn du ein fehlendes Produkt hinzufügst, speichern wir nur den Barcode, den Namen, die Marke und die Nährwerte ohne persönliche Daten, damit andere es nutzen können."
         ],
         [
-          "Wir verkaufen niemals deine Gesundheitsdaten",
-          "Wir verkaufen, vermieten oder teilen deine Gesundheits- oder Ernährungsdaten weder an Werbetreibende noch an Dritte. Wir nutzen deine Gesundheitsdaten nicht für Werbezwecke."
+          "Health-Apps",
+          "Wenn du Apple Health oder Health Connect verbindest, liest Angie One nur Schritte, Gewicht und Trainingseinheiten aus, um dein Tagesziel anzupassen. Diese Daten verbleiben auf deinem Telefon, werden niemals an die KI oder Dritte gesendet und niemals für Werbung verwendet."
         ],
         [
-          "Deine Rechte",
-          "Du kannst alle deine Daten in den Einstellungen unter „Meine Daten löschen“ einsehen und löschen. Wenn du in Kalifornien (CCPA), der EU (DSGVO) oder an einem anderen Ort mit Datenschutzgesetzen lebst, kannst du deine Rechte ausüben, indem du uns eine E-Mail schreibst."
+          "Verschlüsseltes Cloud-Backup (optional)",
+          "Wenn du das Backup aktivierst, werden deine Daten auf deinem Telefon mit einem Code verschlüsselt, den nur du kennst. Unser Server sieht nur verschlüsselte Bytes. Du kannst es jederzeit löschen."
         ],
         [
-          "Kinder",
-          "Angie One richtet sich nicht an Kinder unter 13 Jahren (16 Jahren in der EU)."
+          "Freunde und Challenges (optional)",
+          "Wenn du einer Gruppe betritts, speichern wir deinen Spitznamen, eine anonyme ID und deine wöchentlichen Challenge-Punkte. Niemals dein Gewicht, deine Ernährungs- oder Gesundheitsdaten. Du kannst Personen melden und blockieren, und wir prüfen jede Meldung."
         ],
         [
-          "Sicherheit und Datenschutzvorfälle",
-          "Wir verwenden verschlüsselte Verbindungen (HTTPS). Wenn ein Sicherheitsvorfall deine Daten betrifft, werden wir dich gemäß den gesetzlichen Bestimmungen benachrichtigen (einschließlich der FTC Health Breach Notification Rule)."
+          "Meldungen",
+          "Wenn du Lebensmitteldaten oder eine KI-Antwort meldest, speichern wir den Meldungstext bis zu 180 Tage lang zur Fehlerbehebung, ohne persönliche Daten."
         ],
         [
-          "Änderungen",
-          "Wenn wir diese Richtlinie ändern, zeigen wir dir dies in der App an, bevor sie in Kraft tritt."
+          "Wir verkaufen deine Gesundheitsdaten niemals",
+          "Wir verkaufen, vermieten oder teilen deine Gesundheits- oder Ernährungsdaten weder mit Werbetreibenden noch mit Dritten und wir verwenden sie nicht für Werbung. Es gibt keine Werbe-Tracker."
+        ],
+        [
+          "Deine Rechte und das Löschen deines Kontos",
+          "Du kannst dein Konto und alle deine Daten unter Einstellungen → Konto löschen; dadurch wird auch dein Cloud-Backup gelöscht und du wirst aus deinen Freundesgruppen entfernt. Wenn du in Kalifornien (CCPA), der EU (DSGVO) oder an einem anderen Ort mit Datenschutzgesetzen lebst, schreibe uns eine E-Mail, um deine Rechte auszuüben."
+        ],
+        [
+          "Minderjährige",
+          "Angie One richtet sich nicht an Kinder unter 13 Jahren (16 in der EU)."
+        ],
+        [
+          "Sicherheit, Sicherheitsvorfälle und Änderungen",
+          "Wir verwenden verschlüsselte Verbindungen (HTTPS). Wenn ein Sicherheitsvorfall deine Daten betrifft, benachrichtigen wir dich gemäß den gesetzlichen Bestimmungen (einschließlich der FTC Health Breach Notification Rule). Wenn wir diese Richtlinie ändern, zeigen wir dies in der App an, bevor sie in Kraft tritt."
         ]
       ]
     },
@@ -2085,5 +2097,255 @@
     },
     "founderOnly": "Nur für den Gründer. Schlüssel eingeben.",
     "unlock": "Entsperren"
+  },
+  "t6": {
+    "hTitle": "Gewohnheits-Score",
+    "hSub": "Essen, Wasser, Schlaf und Schritte heute",
+    "hGreat": "Super Tag! Weiter so.",
+    "hGood": "Guter Fortschritt. Ein kleiner Schritt mehr.",
+    "hStart": "Jede kleine Gewohnheit zählt. Fang mit einem Glas Wasser an.",
+    "p": {
+      "food": "Essen",
+      "water": "Wasser",
+      "sleep": "Schlaf",
+      "steps": "Schritte"
+    },
+    "week": "Letzte 7 Tage",
+    "avg": "Durchschnitt",
+    "colors": "Lebensmittelfarben",
+    "noFood": "Trage eine Mahlzeit ein, um ihre Farbe zu sehen.",
+    "c": {
+      "green": "Oft essen",
+      "yellow": "Im Gleichgewicht",
+      "orange": "In Maßen genießen"
+    },
+    "colorsNote": "Farben sind eine einfache Orientierung nach Protein und Ballaststoffen pro Kalorie. Kein Lebensmittel ist schlecht.",
+    "eTitle": "Geschätzter Energieverbrauch",
+    "eEst": "kcal/Tag verbrannt",
+    "eIntake": "Durchschnitt gegessen",
+    "eGoal": "Dein Ziel",
+    "eReady": "Mit deinen echten Daten angepasst",
+    "eWait": "Logge 7 Tage lang Essen und wiege dich zweimal (bisher {{n}} Tage)",
+    "eHow": "Dein Coach vergleicht, was du isst, mit der Veränderung deines Gewichts, um zu schätzen, was dein Körper täglich verbrennt, und passt dein Ziel sanft an.",
+    "eFormula": "Startschätzung aus deinem Profil",
+    "eNote": "Eine Schätzung für das Wohlbefinden, keine medizinische Messung.",
+    "pTitle": "Fortschritt",
+    "mTitle": "Körpermaße",
+    "mSub": "In Zentimetern, wann immer du möchtest",
+    "m": {
+      "waist": "Taille",
+      "hip": "Hüfte",
+      "chest": "Brust",
+      "arm": "Arm",
+      "thigh": "Oberschenkel"
+    },
+    "mSave": "Maße speichern",
+    "mSaved": "Gespeichert",
+    "mHist": "Verlauf",
+    "phTitle": "Fortschrittsfotos",
+    "phSub": "Vergleiche, wie du dich über die Zeit veränderst",
+    "phNone": "Noch keine Fotos",
+    "phAdd": "Foto hinzufügen",
+    "phDel": "Alle Fotos löschen",
+    "phPrivacy": "Fotos bleiben nur auf diesem Handy. Sie werden niemals hochgeladen, geteilt oder verkauft.",
+    "lTitle": "2-Minuten-Lektionen",
+    "lDone": "Abgeschlossen",
+    "lEach": "Jede Lektion",
+    "lListen": "Anhören",
+    "lMark": "Erledigt",
+    "lNote": "Kurze Lektionen zu Gewohnheiten. Das sind allgemeine Wellnesstipps, keine medizinische Beratung.",
+    "l": {
+      "plate": {
+        "t": "Der ausgewogene Teller",
+        "1": "Fülle die Hälfte deines Tellers mit Gemüse oder Obst.",
+        "2": "Füge ein Viertel Protein hinzu, wie Eier, Hähnchen, Bohnen oder Fisch.",
+        "3": "Das letzte Viertel kann Reis, Arepa, Tortilla oder Kartoffel sein."
+      },
+      "hunger": {
+        "t": "Hunger oder Heißhunger?",
+        "1": "Echter Hunger wächst langsam und jedes Essen klingt gut.",
+        "2": "Heißhunger kommt plötzlich und verlangt nach etwas Bestimmtem.",
+        "3": "Warte zehn Minuten und trinke Wasser; entscheide dann ganz ruhig."
+      },
+      "water": {
+        "t": "Wasser zuerst",
+        "1": "Manchmal fühlt sich Durst wie Hunger an.",
+        "2": "Stelle eine Flasche dorthin, wo du sie sehen kannst.",
+        "3": "Ein Glas zu jeder Mahlzeit ist ein einfacher Start."
+      },
+      "sleep": {
+        "t": "Schlaf hilft",
+        "1": "Wenig Schlaf kann den Appetit am nächsten Tag steigern.",
+        "2": "Versuche, jeden Abend zur gleichen Zeit ins Bett zu gehen.",
+        "3": "Lege das Handy dreißig Minuten vor dem Schlafen weg."
+      },
+      "protein": {
+        "t": "Protein hält satt",
+        "1": "Protein hilft dir, dich länger satt zu fühlen.",
+        "2": "Integriere etwas davon in jede Mahlzeit.",
+        "3": "Eier, Joghurt, Bohnen und Hähnchen sind einfache Optionen."
+      },
+      "slip": {
+        "t": "Ein Ausrutscher ist kein Versagen",
+        "1": "Eine große Mahlzeit macht deinen Fortschritt nicht zunichte.",
+        "2": "Lass die nächste Mahlzeit nicht aus, um das auszugleichen.",
+        "3": "Kehre einfach zu deinem gewohnten Plan zurück."
+      },
+      "move": {
+        "t": "Beweg dich ein bisschen mehr",
+        "1": "Kleine Spaziergänge summieren sich über den Tag.",
+        "2": "Nimm die Treppe oder geh spazieren, während du telefonierst.",
+        "3": "Zehn Minuten nach dem Essen fühlen sich großartig an."
+      },
+      "plan": {
+        "t": "Plane im Voraus",
+        "1": "Im Voraus zu entscheiden macht die Auswahl leichter.",
+        "2": "Plane die Mahlzeiten für morgen schon heute Abend.",
+        "3": "Halte gesunde Snacks zu Hause griffbereit."
+      }
+    },
+    "fTitle": "Freunde und Challenges",
+    "fMyPts": "Meine Punkte diese Woche",
+    "fGroups": "Gruppen",
+    "fYou": "Dein Spitzname",
+    "fPrivacy": "Freunde sehen nur deinen Spitznamen und deine Challenge-Punkte. Niemals dein Gewicht, dein Essen oder Gesundheitsdaten.",
+    "fNickL": "Spitzname (2-20 Buchstaben)",
+    "fNick": "Wähle einen freundlichen Spitznamen (keine Links oder Schimpfwörter).",
+    "fCreate": "Gruppe erstellen",
+    "fCodeL": "Einladungscode",
+    "fCode": "Der Code hat 6 Buchstaben oder Zahlen.",
+    "fJoin": "Beitreten",
+    "fNotFound": "Diese Gruppe existiert nicht.",
+    "fFull": "Diese Gruppe ist voll.",
+    "fErr": "Verbindung fehlgeschlagen. Versuche es noch einmal.",
+    "fReported": "Danke. Wir werden das überprüfen.",
+    "fInviteText": "Mach mit bei meiner wöchentlichen Healthy-Habits-Challenge auf Angie One:",
+    "fMe": "du",
+    "fPts": "Pkt",
+    "fReport": "Melden",
+    "fInvite": "Über WhatsApp einladen",
+    "fLeave": "Verlassen",
+    "fRules": "Sei nett. Melde anstößige Spitznamen mit 🚩; wir prüfen Meldungen und entfernen Regelverstöße.",
+    "nTitle": "Nährstoffziele",
+    "nGaps": "Heute könntest du mehr hinzufügen: {{list}}",
+    "nNone": "Wähle die Nährstoffe aus, die du verfolgen möchtest.",
+    "nPick": "Ziel hinzufügen",
+    "nNote": "Die Ziele basieren auf den täglichen Richtwerten. Ein Wellness-Leitfaden, keine Diagnose.",
+    "fiber": "Ballaststoffe"
+  },
+  "rv": {
+    "aiLabel": "KI-generierte Antwort. Sie kann fehlerhaft sein.",
+    "aiReport": "Diese KI-Antwort melden",
+    "aiReported": "Vielen Dank. Wir prüfen diese Antwort.",
+    "cTitle": "Für alle hinzufügen",
+    "cSub": "Gib die Nährwerte pro 100 g ein. Das hilft anderen sofort und wird von uns überprüft.",
+    "cName": "Produktname",
+    "cBrand": "Marke (optional)",
+    "cK": "kcal",
+    "cP": "Protein g",
+    "cC": "Kohlenhydrate g",
+    "cF": "Fett g",
+    "cSend": "Senden und eintragen",
+    "cThanks": "Viele Dank! Es ist jetzt in der Angie One Lebensmittelliste.",
+    "cSaved": "Eingetragen. Es konnte gerade nicht gesendet werden; versuche es später noch einmal.",
+    "cBad": "Überprüfe die Zahlen: Die Kalorien passen nicht zu Protein, Kohlenhydraten und Fett.",
+    "fBlocked": "Blockiert: Du wirst diese Person nicht mehr sehen. Wir prüfen die Meldung.",
+    "fReportBlock": "Melden und blockieren",
+    "fUnblock": "Entblocken ({{n}})",
+    "fRules": "Sei nett. Tippe auf 🚩, um jemanden zu melden und zu blockieren: Du siehst diese Person sofort nicht mehr, und jemand aus unserem Team prüft jede Meldung. Niemand wird ohne Prüfung entfernt.",
+    "modTitle": "Moderation",
+    "modSub": "Meldungen von Freunden, Lebensmitteldaten, KI-Antworten sowie von Nutzern hinzugefügte Produkte.",
+    "modLoad": "Meldungen laden",
+    "modNeedKey": "Gib zuerst den Gründer-Schlüssel in Free Premium ein.",
+    "modErr": "Laden fehlgeschlagen. Überprüfe den Schlüssel und deine Verbindung.",
+    "modFriends": "Freunde",
+    "modFood": "Lebensmittel und KI",
+    "modContrib": "Von Nutzern hinzugefügte Produkte",
+    "modRemove": "Aus Gruppe entfernen",
+    "modDismiss": "Verwerfen",
+    "modDelete": "Löschen",
+    "modEmpty": "Nichts zu überprüfen.",
+    "modNote": "Meldungen verbergen niemanden automatisch: Du entscheidest. Antworte innerhalb von 24 Stunden, da die App-Stores dies fordern."
+  },
+  "ck": {
+    "title": "Dein Profi-Team",
+    "sub": "Ernährung, Training, Physiotherapie, Gewohnheiten und Schlaf in einem Coach.",
+    "recT": "Rezepte für deinen Plan",
+    "recSub": "Heute bleiben dir {{kcal}} kcal. Diese passen:",
+    "recNone": "Du hast dein Tagesziel erreicht. Bei Hunger: Obst, Gemüse oder Joghurt.",
+    "recCook": "👩‍🍳 Kochen",
+    "recAdd": "➕ Ins Tagebuch",
+    "recAdded": "✓ Hinzugefügt",
+    "guide": "📚 Profi-Leitfaden",
+    "guideSub": "Wochenplan, Steigerung und Werkzeuge für dein Ziel.",
+    "weekT": "Woche {{n}} von 4",
+    "checkT": "Heutige Liste",
+    "c1": "Eiweiß zu jeder Mahlzeit",
+    "c2": "Halber Teller Gemüse",
+    "c3": "8 Gläser Wasser",
+    "c4": "30 Minuten Bewegung oder Training",
+    "c5": "7 bis 9 Stunden schlafen",
+    "redT": "⚠️ Sprich mit Fachleuten",
+    "redB": "Bei starken Schmerzen, Brustschmerz, Schwindel, Ohnmacht, Verletzung, Schwangerschaft, Krankheit, Medikamenten oder schwierigem Verhältnis zum Essen: Ärztin/Arzt, Physiotherapie oder Ernährungsberatung aufsuchen. Der Coach stellt keine Diagnosen und verschreibt nichts.",
+    "disc": "Allgemeine Hinweise nach öffentlichen Empfehlungen (WHO, ACSM u. a.). Keine medizinische Beratung.",
+    "lose": {
+      "w1": "Woche 1: alles eintragen und täglich 300 kcal weniger essen. 20 Minuten gehen.",
+      "w2": "Woche 2: Eiweiß zu jeder Mahlzeit und 2 Ganzkörper-Krafttage.",
+      "w3": "Woche 3: 1 Wiederholung oder etwas Gewicht mehr und 2.000 Schritte mehr.",
+      "w4": "Woche 4: leichte Woche (weniger Sätze); schau aufs Durchschnittsgewicht."
+    },
+    "keep": {
+      "w1": "Woche 1: iss auf dein Ziel und notiere, wie es dir geht.",
+      "w2": "Woche 2: 3 Krafttage und 150 Minuten leichtes Cardio pro Woche.",
+      "w3": "Woche 3: 2 neue Rezepte testen und Essen für 3 Tage vorbereiten.",
+      "w4": "Woche 4: leichte Woche und das Schwierigste anpassen."
+    },
+    "gain": {
+      "w1": "Woche 1: täglich 300 kcal mehr mit dichten Snacks (Hafer, Nüsse, Shakes).",
+      "w2": "Woche 2: 3 bis 4 Krafttage mit 8 bis 12 Wiederholungen.",
+      "w3": "Woche 3: etwas mehr Gewicht, wenn alle Sätze geschafft sind.",
+      "w4": "Woche 4: leichte Woche; Ziel +0,25 bis 0,5 % Gewicht pro Woche."
+    },
+    "nutrition": {
+      "t": "Ernährung",
+      "1": "Halber Teller Gemüse, ein Viertel Eiweiß, ein Viertel Kohlenhydrate.",
+      "2": "Zum Abnehmen sind 300 bis 500 kcal Defizit sicher. Zum Zunehmen 250 bis 500 kcal mehr."
+    },
+    "diets": {
+      "t": "Ernährungsformen",
+      "1": "Die beste Diät ist die, die du halten kannst. Mediterran hat die beste Evidenz.",
+      "2": "Meide extreme oder „Detox“-Diäten. Vegan braucht Vitamin B12."
+    },
+    "training": {
+      "t": "Training",
+      "1": "Kraft 2 bis 3 Tage pro Woche und 150 Minuten moderates Cardio.",
+      "2": "Langsam steigern: jede Woche 1 Wiederholung oder etwas Gewicht mehr."
+    },
+    "physio": {
+      "t": "Physiotherapie und Mobilität",
+      "1": "5 bis 10 Minuten aufwärmen, Hüfte, Schultern und Rücken bewegen.",
+      "2": "Bei stechendem Schmerz abbrechen und eine leichtere Variante wählen."
+    },
+    "habits": {
+      "t": "Gewohnheiten und Motivation",
+      "1": "Starte mit einer kleinen Gewohnheit, gekoppelt an etwas Bestehendes.",
+      "2": "Ein schlechter Tag löscht keinen Fortschritt: weiter bei der nächsten Mahlzeit."
+    },
+    "sleep": {
+      "t": "Schlaf",
+      "1": "7 bis 9 Stunden schlafen, immer zur gleichen Zeit aufstehen.",
+      "2": "Wenig Schlaf steigert Hunger und Heißhunger."
+    },
+    "hydration": {
+      "t": "Flüssigkeit",
+      "1": "Etwa 30 bis 35 ml pro kg am Tag, mehr bei Hitze oder Training.",
+      "2": "Ein Glas Wasser vor dem Essen hilft beim Sattwerden."
+    },
+    "sportsmed": {
+      "t": "Sportmedizin",
+      "1": "Umfang höchstens 10 % pro Woche steigern, Ruhetage einhalten.",
+      "2": "Bei Brustschmerz, Ohnmacht oder Schwellung: aufhören und zum Arzt."
+    },
+    "referNote": "In deinem Fall sprich bitte auch mit deiner Ärztin, deinem Arzt oder einer Fachperson."
   }
 }

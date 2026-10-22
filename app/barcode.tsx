@@ -16,6 +16,7 @@ import { EstimateResult, aiErrorText } from '../src/estimate';
 import { shrinkForUpload } from '../src/img';
 import { scaleMicro } from '../src/yazio5';
 import { MicroPreview } from '../src/yazio5-ui';
+import { ContributeCard } from '../src/review-ui';
 
 const LIGHT = { green: C.success, amber: C.accent, red: C.primary, na: C.border };
 
@@ -63,6 +64,7 @@ export default function Barcode() {
       {nf && !prod && <Card testID="bar-nf">
         <Btn label={lbusy ? `⏳ ${t('scan.analyzing')}` : `🏷️  ${t('bar.labelPhoto')}`} onPress={labelPhoto} />
         {lest && <EstimateResult key={lest.name + lest.kcalMin} est={lest} onLog={(x) => addE(x)} />}
+        <ContributeCard code={code.trim()} onLogged={(x) => addE(x)} />
         <CardTitle>✍️ {t('manual.exact')}</CardTitle>
         <TextInput accessibilityLabel={t('manual.name')} style={s.input} placeholder={t('manual.name')} value={mName} onChangeText={setMName} />
         <TextInput accessibilityLabel={t('manual.kcal')} style={s.input} placeholder={t('manual.kcal')} keyboardType="numeric" value={mKcal} onChangeText={(v) => setMKcal(v.replace(/[^0-9]/g, ''))} />
