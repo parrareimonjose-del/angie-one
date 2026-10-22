@@ -175,7 +175,9 @@
     "offerAfter": "Wenn deine Testphase endet, hast du 48 Stunden Zeit, diesen Preis für immer einzufrieren.",
     "offerGone": "Das 48h-Angebot ist abgelaufen; der aktuelle Preis wird oben angezeigt.",
     "yearly": "24,99 US$ / Jahr",
-    "yearlySave": "16% sparen"
+    "yearlySave": "16% sparen",
+    "testBadge": "TESTMODUS · Stripe-Testkarten, kein echtes Geld",
+    "ok": "✅ Zahlung erhalten! Du bist jetzt Premium."
   },
   "fo": {
     "title": "Gründer-Panel v1",
@@ -188,7 +190,16 @@
     "kpi": "Zusammenfassung",
     "users": "Benutzer",
     "paying": "Zahlend",
-    "mrr": "Monatlicher Umsatz"
+    "mrr": "Monatlicher Umsatz",
+    "stripeT": "Stripe: Einnahmen und Erstattungen",
+    "payLoad": "Buchungen laden",
+    "payTot": "Brutto {{g}} · erstattet {{r}} · netto {{n}}",
+    "refund": "Erstatten",
+    "refundAsk": "{{amt}} erstatten und dieses Abo kündigen?",
+    "payErr": "Stripe nicht erreichbar.",
+    "k_charge": "Zahlung",
+    "k_refund": "Erstattung",
+    "k_failed": "Zahlung fehlgeschlagen"
   },
   "aiErr": {
     "offline": "Keine Verbindung oder der Server hat zu lange gebraucht. Überprüfe deine Internetverbindung und versuche es erneut.",

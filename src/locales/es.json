@@ -175,7 +175,9 @@
     "offerAfter": "Cuando termine tu prueba tendrás 48 h para congelar este precio para siempre.",
     "offerGone": "La oferta de 48 h ya terminó; el precio actual se muestra arriba.",
     "yearly": "24,99 $ / año",
-    "yearlySave": "Ahorras 16 %"
+    "yearlySave": "Ahorras 16 %",
+    "testBadge": "MODO PRUEBA · tarjetas de prueba de Stripe, sin dinero real",
+    "ok": "✅ ¡Pago recibido! Ya eres Premium."
   },
   "fo": {
     "title": "Panel del Fundador v1",
@@ -188,7 +190,16 @@
     "kpi": "Resumen",
     "users": "Usuarios",
     "paying": "Pagando",
-    "mrr": "Ingreso mensual"
+    "mrr": "Ingreso mensual",
+    "stripeT": "Stripe: ingresos y reembolsos",
+    "payLoad": "Cargar movimientos",
+    "payTot": "Bruto {{g}} · reembolsado {{r}} · neto {{n}}",
+    "refund": "Reembolsar",
+    "refundAsk": "¿Reembolsar {{amt}} y cancelar esa suscripción?",
+    "payErr": "No se pudo conectar con Stripe.",
+    "k_charge": "Cobro",
+    "k_refund": "Reembolso",
+    "k_failed": "Pago fallido"
   },
   "aiErr": {
     "offline": "Sin conexión o el servidor tardó demasiado. Revisa tu internet y prueba otra vez.",

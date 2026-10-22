@@ -175,7 +175,9 @@
     "offerAfter": "Quando la prova gratuita finirà, avrai 48h per bloccare questo prezzo per sempre.",
     "offerGone": "L'offerta di 48h è terminata; il prezzo attuale è mostrato sopra.",
     "yearly": "24,99 US$ / anno",
-    "yearlySave": "Risparmia 16%"
+    "yearlySave": "Risparmia 16%",
+    "testBadge": "MODALITÀ TEST · carte di prova Stripe, niente soldi veri",
+    "ok": "✅ Pagamento ricevuto! Ora sei Premium."
   },
   "fo": {
     "title": "Pannello Fondatore v1",
@@ -188,7 +190,16 @@
     "kpi": "Riepilogo",
     "users": "Utenti",
     "paying": "Paganti",
-    "mrr": "Ricavi mensili"
+    "mrr": "Ricavi mensili",
+    "stripeT": "Stripe: entrate e rimborsi",
+    "payLoad": "Carica movimenti",
+    "payTot": "Lordo {{g}} · rimborsato {{r}} · netto {{n}}",
+    "refund": "Rimborsa",
+    "refundAsk": "Rimborsare {{amt}} e annullare l'abbonamento?",
+    "payErr": "Impossibile contattare Stripe.",
+    "k_charge": "Addebito",
+    "k_refund": "Rimborso",
+    "k_failed": "Pagamento non riuscito"
   },
   "aiErr": {
     "offline": "Nessuna connessione o il server ha impiegato troppo tempo. Controlla internet e riprova.",

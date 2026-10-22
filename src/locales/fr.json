@@ -175,7 +175,9 @@
     "offerAfter": "À la fin de votre essai, vous aurez 48 h pour bloquer ce tarif à vie.",
     "offerGone": "L'offre de 48 h est terminée ; le tarif actuel est affiché ci-dessus.",
     "yearly": "24,99 US$ / an",
-    "yearlySave": "Économisez 16 %"
+    "yearlySave": "Économisez 16 %",
+    "testBadge": "MODE TEST · cartes de test Stripe, pas d'argent réel",
+    "ok": "✅ Paiement reçu ! Vous êtes Premium."
   },
   "fo": {
     "title": "Tableau de bord du fondateur v1",
@@ -188,7 +190,16 @@
     "kpi": "Résumé",
     "users": "Utilisateurs",
     "paying": "Payants",
-    "mrr": "Revenus mensuels"
+    "mrr": "Revenus mensuels",
+    "stripeT": "Stripe : revenus et remboursements",
+    "payLoad": "Charger les opérations",
+    "payTot": "Brut {{g}} · remboursé {{r}} · net {{n}}",
+    "refund": "Rembourser",
+    "refundAsk": "Rembourser {{amt}} et annuler cet abonnement ?",
+    "payErr": "Impossible de joindre Stripe.",
+    "k_charge": "Paiement",
+    "k_refund": "Remboursement",
+    "k_failed": "Paiement échoué"
   },
   "aiErr": {
     "offline": "Pas de connexion ou le serveur a mis trop de temps à répondre. Vérifiez votre connexion internet et réessayez.",

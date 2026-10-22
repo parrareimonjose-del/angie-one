@@ -175,7 +175,9 @@
     "offerAfter": "Deneme süren bittiğinde bu fiyatı sonsuza kadar sabitlemek için 48 saatin olacak.",
     "offerGone": "48 saatlik teklif sona erdi; güncel fiyat yukarıda gösterilmektedir.",
     "yearly": "24,99 US$ / yıl",
-    "yearlySave": "%16 tasarruf et"
+    "yearlySave": "%16 tasarruf et",
+    "testBadge": "TEST MODU · Stripe test kartları, gerçek para yok",
+    "ok": "✅ Ödeme alındı! Artık Premium'sun."
   },
   "fo": {
     "title": "Kurucu Paneli v1",
@@ -188,7 +190,16 @@
     "kpi": "Özet",
     "users": "Kullanıcılar",
     "paying": "Ödeme yapan",
-    "mrr": "Aylık gelir"
+    "mrr": "Aylık gelir",
+    "stripeT": "Stripe: gelir ve iadeler",
+    "payLoad": "İşlemleri yükle",
+    "payTot": "Brüt {{g}} · iade {{r}} · net {{n}}",
+    "refund": "İade et",
+    "refundAsk": "{{amt}} iade edilip bu abonelik iptal edilsin mi?",
+    "payErr": "Stripe'a bağlanılamadı.",
+    "k_charge": "Ödeme",
+    "k_refund": "İade",
+    "k_failed": "Ödeme başarısız"
   },
   "aiErr": {
     "offline": "Bağlantı yok veya sunucu çok uzun sürdü. İnternetini kontrol edip tekrar dene.",

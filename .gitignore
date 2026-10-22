@@ -45,3 +45,4 @@ yarn-error.*
 *.aab
 keystore.properties
 node_modules
+worker/.dev.vars

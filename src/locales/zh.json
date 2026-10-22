@@ -175,7 +175,9 @@
     "offerAfter": "试用期结束后，你将有 48 小时来永久锁定此价格。",
     "offerGone": "48小时优惠已结束；当前价格如上所示。",
     "yearly": "24.99 US$ / 年",
-    "yearlySave": "省 16%"
+    "yearlySave": "省 16%",
+    "testBadge": "测试模式 · Stripe 测试卡，无真实资金",
+    "ok": "✅ 已收到付款！你现在是 Premium。"
   },
   "fo": {
     "title": "创始人面板 v1",
@@ -188,7 +190,16 @@
     "kpi": "摘要",
     "users": "用户",
     "paying": "付费用户",
-    "mrr": "月收入"
+    "mrr": "月收入",
+    "stripeT": "Stripe：收入与退款",
+    "payLoad": "加载记录",
+    "payTot": "总额 {{g}} · 已退款 {{r}} · 净额 {{n}}",
+    "refund": "退款",
+    "refundAsk": "退款 {{amt}} 并取消该订阅？",
+    "payErr": "无法连接 Stripe。",
+    "k_charge": "收费",
+    "k_refund": "退款",
+    "k_failed": "付款失败"
   },
   "aiErr": {
     "offline": "无连接或服务器响应超时。请检查网络后重试。",

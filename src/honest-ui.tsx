@@ -1,3 +1,5 @@
+import { usePaySync, openPortal, TestBadge } from './pay-ui';
+import { PAY_MODE } from './payments';
 /** Cobro honesto + lista verificada (UI). */
 import { useEffect, useState } from 'react';
 import { View, Text, Pressable, Platform, Linking } from 'react-native';
@@ -36,10 +38,11 @@ export function UpsellNudge() {
 }
 /** Mi suscripción: estado, próximo cobro, cancelar en 2 toques (aquí 1 + botón de la tienda), restaurar compra. */
 export function SubscriptionScreen() {
-  const { t } = useTranslation(); const { s: st, set } = useStore(); const prov: Sub['provider'] = st.sub?.provider || platformProvider();
+  const { t } = useTranslation(); const { s: st, set } = useStore(); const prov: Sub['provider'] = st.sub?.provider || platformProvider(); usePaySync();
   const [steps, setSteps] = useState(false); const [rmsg, setRmsg] = useState(''); const n = nextCharge(st.trialStart, st.sub); const prem = isPremium(st);
   const store = { stripe: 'Stripe', play: 'Google Play', apple: 'App Store' }[prov];
   return <Screen title={`💳 ${t('hb.title')}`}>
+    <TestBadge />
     <Card testID="sub-status"><CardTitle>{prem ? `⭐ ${t('hb.premium')}` : t('hb.free')}</CardTitle>
       <T>{n ? t(n.kind === 'trial' ? 'hb.trialEnds' : 'hb.renews', { date: fmtDate(new Date(n.at)) }) : t('hb.noCharge')}</T>
       <Text style={s.muted}>{t('hb.trialFree')}</Text></Card>
@@ -47,7 +50,7 @@ export function SubscriptionScreen() {
     {steps ? <Card testID="cancel-steps"><CardTitle>{t('hb.howTo', { store })}</CardTitle>
       {(t(`hb.steps.${prov}`) as unknown as string[]).map((x, i) => <T key={i}>{i + 1}. {x}</T>)}
       {CANCEL_URL[prov] ? <Btn testID="cancel-2" label={`↗ ${t('hb.openStore', { store })}`} onPress={() => Linking.openURL(CANCEL_URL[prov])} />
-        : <><Btn testID="cancel-2" label={`↗ ${t('hb.openStore', { store })}`} onPress={() => setRmsg(t('hb.portalSoon'))} /><Pending what="Stripe" /></>}
+        : PAY_MODE !== 'off' ? <Btn testID="cancel-2" label={`↗ ${t('hb.openStore', { store })}`} onPress={() => openPortal(() => setRmsg(t('hb.portalSoon')))} /> : <><Btn testID="cancel-2" label={`↗ ${t('hb.openStore', { store })}`} onPress={() => setRmsg(t('hb.portalSoon'))} /><Pending what="Stripe" /></>}
       {!st.sub?.active ? <Text testID="cancel-trial" style={[s.muted, { fontWeight: '700' }]}>{t('hb.trialNoCard')}</Text> : null}</Card> : null}
     <Btn testID="restore" kind="secondary" label={`↺ ${t('hb.restore')}`} onPress={async () => { const r = await restore(); setRmsg(r.ok ? t('hb.restored') : t(prov === 'stripe' ? 'hb.restoreWeb' : 'hb.restorePending')); }} />
     {rmsg ? <Card><Text testID="restore-msg" style={{ fontWeight: '800', fontSize: 16 }}>{rmsg}</Text></Card> : null}

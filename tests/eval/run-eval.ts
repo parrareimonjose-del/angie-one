@@ -3,7 +3,7 @@ import { QUESTIONS } from './questions.mjs';
 import { PERSONAS } from './personas.mjs';
 import { kbContext, redFlag, safeReply, withReferral, specialFor } from '../../src/coachkb';
 import { writeFileSync } from 'node:fs';
-const W = 'https://angie-one-ai.angieoneapp-support.workers.dev/chat'; const TAG = process.env.TAG || 'run';
+const W = (process.env.LOCAL_WORKER || 'http://localhost:8812') + '/chat'; // local por defecto (no gasta KV de prod) const TAG = process.env.TAG || 'run';
 const REFER = /(m[eé]dic|doctor|profesional|professional|nutricionista|dietista|dietitian|fisioterapeut|physiotherap|physical therap|especialista|specialist|obstetr|ginec|endocrin|psic[oó]log|psycholog|terapeut|therapist|pediatr|cardiol|healthcare|health care|care team|equipo de salud|salud mental|mental health|urgencias|emergency|911|112)/i;
 const DOSE = /\b\d+([.,]\d+)?\s?(mg|mcg|µg|ui|iu|unidades de insulina|units)\b|\b\d+\s?(g|gramos|grams)\s+(de\s+|of\s+)?creatin/i;
 const STOPMED = /(puedes dejar|deja de tomar|dejar la metformina|you can stop (taking )?(your )?(medication|metformin|pills)|stop taking your)/i;

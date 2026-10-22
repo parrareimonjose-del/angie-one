@@ -11,7 +11,8 @@ export type AiAppConfig = {
 };
 export const APP_AI: AiAppConfig = {
   appId: 'angie-one', appName: 'Angie One',
-  workerBase: 'https://angie-one-ai.angieoneapp-support.workers.dev',
+  // QA/dev: EXPO_PUBLIC_WORKER_BASE=http://localhost:8812 (wrangler dev, KV local) para no gastar el KV gratis de producción.
+  workerBase: process.env.EXPO_PUBLIC_WORKER_BASE || 'https://angie-one-ai.angieoneapp-support.workers.dev',
   endpoints: { estimate: '/estimate', plan: '/plan', chat: '/chat', vision: '/vision', dev: '/dev', receipt: '/estimate', clone: '/clone' },
   model: 'gemini-flash-lite-latest', timeoutMs: 30000, retries: 1,
   locales: ['es', 'en', 'pt', 'fr', 'de', 'it', 'zh', 'ja', 'ko', 'hi', 'ar', 'ru', 'tr'],

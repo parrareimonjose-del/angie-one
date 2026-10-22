@@ -2,6 +2,7 @@ import { handleGrants } from './grants.js';
 import { handleFriends } from './friends.js';
 import { handleFoods, foodReport, foodContribute, foodQueue } from './foods.js';
 import { handleSync } from './sync.js';
+import { handlePay } from './pay.js';
 // Angie One AI proxy: keeps GEMINI_API_KEY server-side (Worker secret).
 const MODEL = 'gemini-flash-lite-latest';
 const MODELS = ['gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-flash-lite-latest'];
@@ -224,14 +225,22 @@ async function clone(b, env, h) {
 
 export default {
   async fetch(req, env) {
+    const path0 = new URL(req.url).pathname;
+    if (path0 === '/pay/webhook' && req.method === 'POST') return handlePay(path0, req, env, json, {}); // Stripe no envía Origin; se valida la firma
     const h = cors(req.headers.get('Origin'));
     if (!h) return json({ error: 'origin' }, 403);
     if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: h });
     const path = new URL(req.url).pathname;
-    if (req.method === 'GET' && path.startsWith('/foods/')) return handleFoods(path, req, env, json, h);
+    if (req.method === 'GET' && path.startsWith('/foods/')) { // Cache API delante del KV: búsquedas repetidas no gastan lecturas de KV
+      const ck = new Request('https://cache.angie/' + req.url.split('/foods/')[1], { method: 'GET' }); const hit = await caches.default.match(ck);
+      if (hit) { const r = new Response(hit.body, hit); for (const [k, v] of Object.entries(h)) r.headers.set(k, v); r.headers.set('x-cache', 'hit'); return r; }
+      const res = await handleFoods(path, req, env, json, h);
+      if (res.status === 200) { const c = new Response(res.clone().body, { status: 200, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'public, max-age=3600' } }); try { await caches.default.put(ck, c); } catch {} }
+      return res; }
     if (path.startsWith('/sync/')) return handleSync(path, req, env, json, h, hits);
     if (path.startsWith('/grants/')) return handleGrants(path, req, env, json, h);
     if (path.startsWith('/friends/')) return handleFriends(path, req, env, json, h);
+    if (path.startsWith('/pay/')) { try { return await handlePay(path, req, env, json, h); } catch (e) { return json({ error: 'pay', code: String(e.message || e).slice(0, 60) }, 502, h); } }
     if (req.method !== 'POST' || !['/estimate', '/plan', '/chat', '/vision', '/dev', '/voice', '/clone', '/foods/report', '/foods/contribute', '/foods/queue', '/foods/queue/delete'].includes(path)) return json({ error: 'not found' }, 404, h);
     const ip = req.headers.get('CF-Connecting-IP') || 'x';
     const now = Date.now(), arr = (hits.get(ip) || []).filter((t) => now - t < 60000);

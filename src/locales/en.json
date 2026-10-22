@@ -175,7 +175,9 @@
     "offerAfter": "When your trial ends you will have 48h to lock this price forever.",
     "offerGone": "The 48h offer has ended; the current price is shown above.",
     "yearly": "$24.99 / year",
-    "yearlySave": "Save 16%"
+    "yearlySave": "Save 16%",
+    "testBadge": "TEST MODE · Stripe test cards, no real money",
+    "ok": "✅ Payment received! You're Premium now."
   },
   "fo": {
     "title": "Founder Panel v1",
@@ -188,7 +190,16 @@
     "kpi": "Summary",
     "users": "Users",
     "paying": "Paying",
-    "mrr": "Monthly revenue"
+    "mrr": "Monthly revenue",
+    "stripeT": "Stripe: revenue and refunds",
+    "payLoad": "Load transactions",
+    "payTot": "Gross {{g}} · refunded {{r}} · net {{n}}",
+    "refund": "Refund",
+    "refundAsk": "Refund {{amt}} and cancel that subscription?",
+    "payErr": "Couldn't reach Stripe.",
+    "k_charge": "Charge",
+    "k_refund": "Refund",
+    "k_failed": "Failed payment"
   },
   "aiErr": {
     "offline": "No connection or the server took too long. Check your internet and try again.",

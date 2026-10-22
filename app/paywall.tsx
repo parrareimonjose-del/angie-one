@@ -1,3 +1,4 @@
+import { TestBadge, usePaySync } from '../src/pay-ui';
 import { useEffect, useState } from 'react';
 import { View, Text, Pressable } from 'react-native';
 import { router } from 'expo-router';
@@ -6,7 +7,7 @@ import { Screen, Card, Btn, T, s, CardTitle } from '../src/ui';
 import { C } from '../src/theme';
 import { useStore, trialPhase, fmtCountdown } from '../src/store';
 import { LegalLinks } from '../src/legal-links';
-import { providerFor, purchase, PLANS } from '../src/payments';
+import { providerFor, purchase, PLANS, PAY_MODE } from '../src/payments';
 import { Pending } from '../src/ext';
 import { RedeemCard } from '../src/grants-ui';
 
@@ -16,7 +17,8 @@ export default function Paywall() {
   const { s: st } = useStore(); const [now, setNow] = useState(Date.now());
   useEffect(() => { const i = setInterval(() => setNow(Date.now()), 30000); return () => clearInterval(i); }, []);
   const tp = trialPhase(st.trialStart, now); const prov = providerFor();
-  const buy = async () => { const r = await purchase(plan === 'y' ? 'yearly' : 'monthly'); if (r.ok && r.url && typeof window !== 'undefined') window.open(r.url, '_blank'); else setNote(true); };
+  const paid = usePaySync();
+  const buy = async () => { const r = await purchase(plan === 'y' ? 'yearly' : 'monthly'); if (r.ok && r.url && typeof window !== 'undefined') { if (PAY_MODE !== 'off') window.location.assign(r.url); else window.open(r.url, '_blank'); } else setNote(true); };
   const opt = (k: 'y' | 'm', label: string, extra?: string) => (
     <Pressable accessibilityRole="radio" accessibilityState={{ checked: plan === k }} onPress={() => setPlan(k)}
       style={{ minHeight: 72, borderRadius: 20, borderWidth: 3, borderColor: plan === k ? C.primary : C.border, backgroundColor: C.card, padding: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -30,6 +32,8 @@ export default function Paywall() {
         <Text style={[s.h1, { color: C.white }]}>⭐ {t('pay.title')}</Text>
         <Text style={[s.t, { color: C.white }]}>{t('pay.sub')}</Text>
       </Card>
+      <TestBadge />
+      {paid ? <Card testID="pay-ok"><T style={{ fontWeight: '800', color: C.success }}>{t('pay.ok')}</T></Card> : null}
       <Card>{(['f1', 'f2', 'f3', 'f4', 'f5'] as const).map((f) => <T key={f}>✅ {t(`pay.${f}`)}</T>)}</Card>
       {opt('y', t('pay.yearly'), t('pay.yearlySave'))}
       {opt('m', t('pay.monthly'))}
@@ -39,7 +43,7 @@ export default function Paywall() {
         <T>{t('fx.terms', { price: plan === 'y' ? '$' + PLANS.yearly.usd : '$' + PLANS.monthly.usd, period: t(plan === 'y' ? 'fx.perYear' : 'fx.perMonth'), store: prov.name })}</T>
         <Text style={[s.muted, { fontSize: 15 }]}>{t('pay.renew')}</Text><Text style={[s.muted, { fontSize: 15 }]}>⚕️ {t('fx.healthDisc')}</Text></Card>
       <Text testID="pay-provider" style={[s.muted, { textAlign: 'center' }]}>🔒 {t('fx.payVia', { store: prov.name })}</Text>
-      {prov.connected ? <Btn label={t('pay.cta')} onPress={buy} /> : <Card testID="pay-soon"><Pending /><T style={{ color: C.warning, fontWeight: '700' }}>{t('pay.soon')}</T></Card>}
+      {prov.connected ? <Btn testID="pay-buy" label={(PAY_MODE === 'test' ? '🧪 TEST · ' : '') + t('pay.cta')} onPress={buy} /> : <Card testID="pay-soon"><Pending /><T style={{ color: C.warning, fontWeight: '700' }}>{t('pay.soon')}</T></Card>}
       {note && <Card><Pending /><T style={{ color: C.warning, fontWeight: '700' }}>{t('pay.soon')}</T></Card>}
       <RedeemCard />
       <Btn testID="pay-restore" kind="secondary" label={`↺ ${t('hb.restore')}`} onPress={() => router.push('/subscription')} />
