@@ -111,7 +111,7 @@ export function areasFor(q: string, goal?: Goal): Area[] {
 }
 /** Contexto para la IA. Orden por prioridad (el Worker publicado corta a 700 caracteres; el nuevo acepta 1.400):
  *  perfil → seguridad → casos especiales → conocimiento del área. */
-export const SAFETY = 'Safety: general guidance only; no diagnosis, no medication/insulin changes, no supplement doses, no rehab plans; if a condition, pain, pregnancy or medication is involved give safe general tips AND tell them to check with their doctor/physio/dietitian; red flags = stop and seek medical care.';
+export const SAFETY = 'Safety: general guidance only; no diagnosis, no medication/insulin changes, no supplement doses, no rehab plans; if a condition, pain, pregnancy or medication is involved give safe general tips AND tell them to check with their doctor/physio/dietitian; red flags = stop and seek medical care. Use the user profile (age, goal, limits) and end with one concrete next step for today.';
 export function kbContext(q: string, goal: Goal | undefined, userCtx: string, max = 1400) {
   const age = +(userCtx.match(/(\d{1,3}) y\b/)?.[1] || NaN); const sp = specialFor(q + ' ' + userCtx, isNaN(age) ? undefined : age);
   const kb = areasFor(q, goal).map((a) => BRIEF[a]).join(' ');
