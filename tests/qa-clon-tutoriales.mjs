@@ -1,5 +1,5 @@
 // QA: pantalla de logo (splash), tutoriales y Clon IA. Chromium (escritorio móvil) + WebKit (iPhone). ES + EN.
-import { chromium, webkit, devices } from '/workspace/e2e/node_modules/playwright-core/index.mjs';
+import { chromium, webkit, devices } from 'playwright-core';
 const BASE = process.env.BASE || 'http://localhost:8797/angie-one'; const OUT = '/workspace/calorias/mvp-capturas/';
 const res = []; const ok = (n, c, x = '') => res.push(`${c ? 'PASS' : 'FAIL'} ${n} ${x}`);
 const st = (w) => ({ aiEnabled: true, entries: [], water: {}, challengeDays: [], aiPhotos: {}, founder: {}, langOverride: null, trialStart: Date.now() - 3600e3, profile: { goal: 'lose', weight: 84, height: 168, age: 45, sex: 'female', activity: 2 }, ext: { weights: w } });
