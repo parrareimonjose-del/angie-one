@@ -37,7 +37,7 @@ for (const [bn, B, dev] of runs) {
     if (SHOTS) await p.screenshot({ path: `${SHOTS}/${bn}-${lang}-guide.png`, fullPage: true });
     // 5) Chat: contexto profesional + alarma
     await go('/chat'); await tid('chat-input').fill(L ? '¿Cuánta proteína necesito para entrenar fuerza?' : 'How much protein do I need for strength training?'); await p.getByText(/➤/).first().click(); await p.waitForTimeout(1500);
-    const c0 = sent[0]?.context || ''; ok(`${tag} chat envía conocimiento profesional`, /Pro knowledge/.test(c0) && /protein 1\.6/.test(c0) && /Safety/.test(c0) && c0.length <= 1400);
+    const c0 = sent[0]?.context || ''; ok(`${tag} chat envía conocimiento profesional`, /Pro knowledge/.test(c0) && /protein 1\.2-1\.6/.test(c0) && /Safety/.test(c0) && c0.length <= 1400);
     ok(`${tag} sin alarma en pregunta normal`, (await tid('ck-red').count()) === 0);
     await tid('chat-input').fill(L ? 'Tengo dolor en el pecho cuando corro' : 'I have chest pain when I run'); await p.getByText(/➤/).first().click(); await p.waitForTimeout(1500);
     ok(`${tag} alarma → profesional`, (await tid('ck-red').count()) === 1);
