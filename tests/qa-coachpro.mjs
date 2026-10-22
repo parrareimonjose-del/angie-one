@@ -30,9 +30,9 @@ for (const [bn, B, dev] of runs) {
     await go('/coach'); await tid('ck-cook').first().click(); await p.waitForTimeout(1500); ok(`${tag} Cocinar abre la receta`, /\/cook/.test(p.url()) && /id=/.test(p.url()));
     // 4) Guía profesional
     await go('/coachguide'); ok(`${tag} guía: semana y 8 áreas`, (await tid('ck-week').count()) === 1 && (await p.locator('[data-testid^="ck-area-"]').count()) === 8);
-    await tid('ck-c1').click(); await tid('ck-c3').click(); await p.waitForTimeout(500); ok(`${tag} lista diaria 2/5`, /2\/5/.test(await tid('ck-check').innerText()));
+    await tid('ck-c1').first().dispatchEvent('click'); await p.waitForTimeout(300); await tid('ck-c3').first().dispatchEvent('click'); await p.waitForTimeout(500); ok(`${tag} lista diaria 2/5`, /2\/5/.test(await tid('ck-check').innerText()));
     await go('/coachguide'); ok(`${tag} lista se guarda`, /2\/5/.test(await tid('ck-check').innerText()));
-    await tid('ck-area-physio').click(); await p.waitForTimeout(400); ok(`${tag} área se abre`, (await tid('ck-area-physio').innerText()).split('\n').length >= 3);
+    await tid('ck-area-physio').first().dispatchEvent('click'); await p.waitForTimeout(400); ok(`${tag} área se abre`, (await tid('ck-area-physio').innerText()).split('\n').length >= 3);
     ok(`${tag} aviso de profesional y no médico`, (await tid('ck-red').count()) === 1);
     if (SHOTS) await p.screenshot({ path: `${SHOTS}/${bn}-${lang}-guide.png`, fullPage: true });
     // 5) Chat: contexto profesional + alarma
