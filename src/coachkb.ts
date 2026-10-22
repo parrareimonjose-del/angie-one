@@ -137,6 +137,9 @@ export const programWeek = (created: number | undefined, now = Date.now()) => (c
 // ---------- 5) Red de seguridad sobre la respuesta de la IA ----------
 const DOSE_SENT = /[^.!?\n]*(creatin|suplement|supplement|whey|melaton|vitamin|cafe[ií]na en|caffeine pill|pre.?work|bcaa|col[aá]geno|collagen|insulin|metformin|medicamento|medication)[^.!?\n]*\b\d+([.,]\d+)?\s*((a|to|-|–)\s*\d+([.,]\d+)?\s*)?(g|gramos|grams|mg|mcg|µg|ui|iu|unidades|units)\b[^.!?\n]*[.!?]?/gi;
 /** Quita frases con dosis de suplementos o medicamentos que la IA pudiera colar (Apple 1.4.1) y añade el aviso de consultar. */
+const REFER_RE = /(m[eé]dic|doctor|profesional|professional|profissional|nutricionista|dietist|dietitian|fisioterap|physiother|psic[oó]log|psycholog|pediatr|obstetr|farmac|pharmac|especialista|specialist|arzt|ärzt|médecin|医|의사|डॉक्टर|طبيب|врач|doktor)/i;
+/** Si el caso necesita un profesional (casos especiales o alarma) y la IA no lo dijo, la app lo añade. */
+export const withReferral = (text: string, need: boolean, note: string) => (need && !REFER_RE.test(text) ? `${text.trim()}\n\n${note}` : text);
 export function safeReply(text: string, lang = 'es') {
   if (!DOSE_SENT.test(text)) return text; DOSE_SENT.lastIndex = 0;
   const note = lang === 'es' ? 'Las dosis de suplementos o medicamentos las decide tu médico, farmacéutico o nutricionista.' : lang === 'pt' ? 'Doses de suplementos ou remédios são definidas pelo seu médico, farmacêutico ou nutricionista.' : 'Supplement or medication doses are for your doctor, pharmacist or dietitian to decide.';

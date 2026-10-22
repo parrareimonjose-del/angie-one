@@ -9,7 +9,7 @@ import { today } from '../src/store';
 import { useCoach, CoachLocked, Row, speak } from '../src/coach-ui';
 import { useExt } from '../src/ext';
 import { Mem, MEM0, learnFact, memContext } from '../src/p2';
-import { kbContext, redFlag, safeReply } from '../src/coachkb';
+import { kbContext, redFlag, safeReply, withReferral, specialFor } from '../src/coachkb';
 import { RedFlagNote } from '../src/coachkb-ui';
 import { askCoach, coachTarget, ChatMsg } from '../src/coach';
 
@@ -30,7 +30,7 @@ export default function Chat() {
     const p = st.profile; const pr = c.prefs;
     const ctx = p ? `goal ${p.goal}, ${p.age} y, ${p.weight} kg, target ${coachTarget(st).kcal} kcal/day${pr ? `, trains at ${pr.place} ${pr.days} days/week, level ${pr.level}${pr.injuries.length ? ', limits: ' + pr.injuries.join(' ') : ''}` : ''}` : '';
     const fact = mem.on ? learnFact(text) : null; if (fact) setMem((m) => ({ ...m, facts: [...m.facts, { id: String(Date.now()), text: fact }].slice(-20) }));
-    try { const r = await askCoach(msgs, curLang(), kbContext(text, p?.goal, ctx + memContext(mem))); upd((x) => ({ ...x, chat: [...msgs, { role: 'coach' as const, text: safeReply(r, curLang()) }].slice(-30) })); }
+    try { const r = await askCoach(msgs, curLang(), kbContext(text, p?.goal, ctx + memContext(mem))); upd((x) => ({ ...x, chat: [...msgs, { role: 'coach' as const, text: withReferral(safeReply(r, curLang()), redFlag(text) || specialFor(text + ' ' + ctx, p?.age).filter((k) => k !== 'supps').length > 0, t('ck.referNote')) }].slice(-30) })); }
     catch { setErr(t('chat.offline')); }
     finally { setBusy(false); }
   };
