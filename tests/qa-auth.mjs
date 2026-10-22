@@ -1,0 +1,36 @@
+// QA entrada: autocompletar (gestores de contraseñas), código de recuperación, «Olvidé mi contraseña», huella WebAuthn virtual.
+import { chromium } from 'playwright-core';
+const BASE = process.env.BASE || 'http://localhost:8801/angie-one';
+let pass = 0, fail = 0; const ok = (n, c, x = '') => { c ? pass++ : fail++; console.log((c ? 'OK   ' : 'FALLA ') + n + (c ? '' : ' ' + x)); };
+const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome', args: ['--no-sandbox'] });
+const state = { aiEnabled: true, entries: [], water: {}, challengeDays: [], aiPhotos: {}, founder: {}, langOverride: null, trialStart: Date.now(), profile: { goal: 'lose', weight: 80, height: 170, age: 40, sex: 'female', activity: 2 } };
+for (const lang of ['es', 'en']) { const L = lang === 'es';
+  const ctx = await b.newContext({ viewport: { width: 400, height: 860 }, locale: L ? 'es-ES' : 'en-US' });
+  await ctx.addInitScript((s) => { if (!localStorage.getItem('angieone:v1')) localStorage.setItem('angieone:v1', JSON.stringify(s)); }, state);
+  const p = await ctx.newPage(); const errs = []; p.on('pageerror', (e) => errs.push(e.message)); const id = (x) => p.getByTestId(x);
+  await p.goto(BASE + '/security', { waitUntil: 'networkidle' });
+  await id('sec-name').fill('Ana'); await p.getByText(L ? '🔤 Contraseña' : '🔤 Password', { exact: true }).first().click().catch(() => {});
+  const ac = await id('sec-a').getAttribute('autocomplete'); ok(`${lang} crear: autocomplete=new-password`, ac === 'new-password', ac);
+  ok(`${lang} crear: campo usuario para el gestor`, (await id('sec-user').getAttribute('autocomplete')) === 'username');
+  await id('sec-a').fill('clave-segura-7'); await id('sec-b').fill('clave-segura-7');
+  if (await id('sec-remember-new').getAttribute('aria-checked') === 'true') await id('sec-remember-new').click();
+  await id('sec-save').click(); await p.waitForTimeout(1500);
+  await id('sec-rec-code').waitFor({ timeout: 8000 }).catch(() => {}); const code = (await id('sec-rec-code').textContent().catch(() => '')).trim();
+  ok(`${lang} muestra código de recuperación una vez`, /^[A-Z2-9]{4}-[A-Z2-9]{4}-[A-Z2-9]{4}$/.test(code), code);
+  ok(`${lang} el código no se guarda en claro`, !(await p.evaluate(() => JSON.stringify(localStorage))).includes(code.replace(/-/g, '')) && !(await p.evaluate(() => JSON.stringify(localStorage))).includes(code));
+  const p2 = await ctx.newPage(); await p2.goto(BASE + '/', { waitUntil: 'networkidle' }); const id2 = (x) => p2.getByTestId(x);
+  await id2('unlock').waitFor({ timeout: 8000 }).catch(() => {});
+  ok(`${lang} pide entrada`, (await id2('unlock').count()) === 1);
+  ok(`${lang} entrar: autocomplete=current-password + username`, (await id2('unlock-secret').getAttribute('autocomplete')) === 'current-password' && (await id2('unlock-user').getAttribute('autocomplete')) === 'username');
+  await p2.getByText(L ? /Olvid/ : /Forgot/).first().click(); await id2('rec-card').waitFor({ timeout: 5000 }).catch(() => {});
+  ok(`${lang} Olvidé: tarjeta de recuperación`, (await id2('rec-card').count()) === 1);
+  await id2('rec-input').fill('AAAA-BBBB-CCCC'); await id2('rec-new').fill('otra-clave-8'); await id2('rec-go').click(); await p2.waitForTimeout(800);
+  ok(`${lang} código malo rechazado`, (await id2('rec-msg').count()) === 1);
+  await id2('rec-input').fill(code.toLowerCase()); await id2('rec-go').click(); await id2('rec-ok').waitFor({ timeout: 8000 }).catch(() => {});
+  const code2 = (await id2('rec-code').textContent().catch(() => '')).trim();
+  ok(`${lang} recupera y da código nuevo`, (await id2('rec-ok').count()) === 1 && code2 && code2 !== code);
+  await id2('rec-continue').click(); await p2.waitForTimeout(1000); ok(`${lang} entra sin perder datos`, (await id2('unlock').count()) === 0);
+  const p3 = await ctx.newPage(); await p3.goto(BASE + '/', { waitUntil: 'networkidle' }); await p3.getByTestId('unlock-secret').fill('otra-clave-8'); await p3.getByTestId('unlock-go').click(); await p3.waitForTimeout(1200);
+  ok(`${lang} la nueva contraseña abre`, (await p3.getByTestId('unlock').count()) === 0);
+  ok(`${lang} sin errores JS`, errs.length === 0, errs.join('|').slice(0, 200)); await ctx.close(); }
+await b.close(); console.log(`\nAuth QA: ${pass} OK, ${fail} FALLA`); process.exit(fail ? 1 : 0);

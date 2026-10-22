@@ -67,7 +67,7 @@ function Unlock({ auth, onAuth, onOpen, onReset }: { auth: Auth; onAuth: (a: Aut
     <TextInput testID="unlock-user" value={auth.name || 'Angie One'} editable={false} {...({ autoComplete: 'username', textContentType: 'username' } as any)} accessibilityLabel={t('fx.name')} style={[s.input, { opacity: 0.7 }]} />
     <SecretField testID="unlock-secret" kind={auth.kind} value={v} onChange={setV} label={t(auth.kind === 'pin' ? 'fx.pin' : 'fx.password')} />
     <Check testID="unlock-remember" on={remember} label={t('fx.remember')} onPress={() => setRemember(!remember)} />
-    <Btn label={`✓ ${t('fx.enter')}`} onPress={go} style={{ minHeight: 72 }} />
+    <Btn testID="unlock-go" label={`✓ ${t('fx.enter')}`} onPress={go} style={{ minHeight: 72 }} />
     {msg ? <Text testID="unlock-msg" style={{ color: C.primary, fontWeight: '800', fontSize: 18, textAlign: 'center' }}>{msg}</Text> : null}
     <Btn kind="ghost" label={t('fx.forgot')} onPress={() => setForgot(!forgot)} />
     {forgot ? <RecoverCard auth={auth} onDone={(a) => { onAuth(a); onOpen(); }} /> : null}
@@ -117,7 +117,7 @@ export function SecurityScreenBody() {
       <SecretField testID="sec-b" mode="new" kind={kind} value={b} onChange={setB} label={t('fx.repeat')} />
       <Check testID="sec-remember-new" on={remember} label={t('fx.remember')} onPress={() => setRemember(!remember)} />
       <Text style={s.muted}>{t('fx.rememberHint')}</Text>
-      <Btn label={`✓ ${t('fx.save')}`} onPress={save} />
+      <Btn testID="sec-save" label={`✓ ${t('fx.save')}`} onPress={save} />
       {msg ? <Text testID="sec-msg" style={{ fontWeight: '800', fontSize: 18, color: msg.startsWith('✓') ? C.success : C.primary }}>{msg}</Text> : null}</Card>
     <Card testID="bio-card"><CardTitle>👆 {t('fx.bioTitle')}</CardTitle>
       {bioOk === null ? <T>…</T> : !bioOk ? <T testID="bio-none">{t('fx.bioNone')}</T> : !auth ? <T>{t('fx.bioFirst')}</T>
