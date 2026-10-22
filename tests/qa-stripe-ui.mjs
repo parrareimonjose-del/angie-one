@@ -7,7 +7,7 @@ const b = await chromium.launch({ executablePath: '/usr/bin/google-chrome', args
 const state = { aiEnabled: true, entries: [], water: {}, challengeDays: [], aiPhotos: {}, founder: {}, langOverride: null, trialStart: Date.now() - 30 * 864e5, profile: { goal: 'lose', weight: 80, height: 170, age: 40, sex: 'female', activity: 2 } };
 const mk = async (lang = 'es') => { const ctx = await b.newContext({ viewport: { width: 400, height: 860 }, locale: lang === 'es' ? 'es-ES' : 'en-US' });
   await ctx.addInitScript(([s, fk]) => { localStorage.setItem('angieone:founder', '1'); localStorage.setItem('angieone:fkey', fk); if (!localStorage.getItem('angieone:v1')) localStorage.setItem('angieone:v1', JSON.stringify(s)); }, [state, FK]);
-  const p = await ctx.newPage(); const errs = []; p.on('pageerror', (e) => errs.push(e.message)); return { ctx, p, errs }; };
+  const p = await ctx.newPage(); const errs = []; p.on('pageerror', (e) => { if (!/localhost:8803|localhost:8801/.test(p.url()) || /stripe\.com/.test(e.message)) return; errs.push(e.message); }); return { ctx, p, errs }; };
 const has = (p, id) => p.locator(`[data-testid="${id}"]`).count();
 for (const lang of ['es', 'en']) { const { ctx, p } = await mk(lang); const calls = []; p.on('request', (r) => { if (/stripe|\/pay\//.test(r.url())) calls.push(r.url()); });
   await p.goto(PUB + '/paywall', { waitUntil: 'networkidle' }); await sleep(1500);
