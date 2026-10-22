@@ -188,3 +188,4 @@ DECISIÓN JOSÉ 2026-10-15 12:38 ET: en la sección de datos solo entran recibos
 ## 2026-10-22 ~13:00 — Rerun suites: NO se publica
 - clon 72/72, stripe-ui 21/21, web 79/5 (IA calcular/voz/menú), iphone 34/6 (voz, saludo IA). Causa: Gemini free tier lento/503.
 - Regla: no publicar con fallas. Rama feat-stripe-test sin merge; master cca100a sin push; worker no desplegado.
+- 2026-10-22 12:40 PM: feat-stripe-test 6acff59: Stripe prueba OK (API 32/32, UI 21/21), login (autocompletar, recuperación, Face ID stub), guard KV, auditoría Apple en /workspace/calorias/cumplimiento-apple.pdf. NO publicado: qa-web/qa-iphone fallan por Gemini gratis lento/503. Reintentar más tarde. KV: culpable Carta al Futuro (avisado). Cuenta Stripe prueba compartida "chisme"; Angie One tendrá cuenta propia en real. Recomendado rotar sk_test y whsec (fragmento en log local).
