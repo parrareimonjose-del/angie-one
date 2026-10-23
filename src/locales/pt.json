@@ -2221,52 +2221,52 @@
     "lNote": "Curtas aulas de hábitos. São dicas gerais de bem-estar, não conselhos médicos.",
     "l": {
       "plate": {
-        "t": "O prato equilibrado",
         "1": "Encha metade do seu prato com vegetais ou frutas.",
         "2": "Adicione um quarto de proteína, como ovos, frango, feijão ou peixe.",
-        "3": "O último quarto pode ser arroz, arepa, tortilha ou batata."
+        "3": "O último quarto pode ser arroz, arepa, tortilha ou batata.",
+        "t": "O prato equilibrado"
       },
       "hunger": {
-        "t": "Fome ou vontade de comer?",
         "1": "A fome real chega devagar e qualquer comida parece boa.",
         "2": "A vontade de comer vem de repente e pede algo específico.",
-        "3": "Espere dez minutos e beba água; depois decida com calma."
+        "3": "Espere dez minutos e beba água; depois decida com calma.",
+        "t": "Fome ou vontade de comer?"
       },
       "water": {
-        "t": "Água primeiro",
         "1": "Às vezes a sede se parece com fome.",
         "2": "Deixe uma garrafa onde você possa vê-la.",
-        "3": "Um copo em cada refeição é um começo fácil."
+        "3": "Um copo em cada refeição é um começo fácil.",
+        "t": "Água primeiro"
       },
       "sleep": {
-        "t": "O sono ajuda",
         "1": "Dormir pouco pode aumentar o apetite no dia seguinte.",
         "2": "Tente ir para a cama no mesmo horário todas as noites.",
-        "3": "Guarde o celular trinta minutos antes de dormir."
+        "3": "Guarde o celular trinta minutos antes de dormir.",
+        "t": "O sono ajuda"
       },
       "protein": {
-        "t": "A proteína mantém você saciado",
         "1": "A proteína ajuda você a se sentir satisfeito por mais tempo.",
         "2": "Inclua um pouco em cada refeição.",
-        "3": "Ovos, iogurte, feijão e frango são opções simples."
+        "3": "Ovos, iogurte, feijão e frango são opções simples.",
+        "t": "A proteína mantém você saciado"
       },
       "slip": {
-        "t": "Um deslize não é um fracasso",
         "1": "Uma refeição grande não apaga seu progresso.",
         "2": "Não pule a próxima refeição para compensar.",
-        "3": "Simplesmente volte ao seu plano habitual."
+        "3": "Simplesmente volte ao seu plano habitual.",
+        "t": "Um deslize não é um fracasso"
       },
       "move": {
-        "t": "Movimente-se um pouco mais",
         "1": "Pequenas caminhadas somam ao longo do dia.",
         "2": "Use as escadas ou caminhe enquanto fala ao telefone.",
-        "3": "Dez minutos depois de comer faz muito bem."
+        "3": "Dez minutos depois de comer faz muito bem.",
+        "t": "Movimente-se um pouco mais"
       },
       "plan": {
-        "t": "Planeje com antecedência",
         "1": "Decidir antes torna as escolhas mais fáceis.",
         "2": "Planeje as refeições de amanhã hoje à noite.",
-        "3": "Mantenha lanches saudáveis prontos em casa."
+        "3": "Mantenha lanches saudáveis prontos em casa.",
+        "t": "Planeje com antecedência"
       }
     },
     "fTitle": "Amigos e desafios",
@@ -2372,44 +2372,44 @@
       "w4": "Semana 4: semana leve e veja seu peso: busque ganhar 0,25 a 0,5% por semana."
     },
     "nutrition": {
-      "t": "Nutrição",
       "1": "Metade do prato com legumes, um quarto de proteína e um quarto de carboidratos.",
-      "2": "Para perder, um déficit de 300 a 500 kcal é seguro. Para ganhar, 250 a 500 kcal a mais."
+      "2": "Para perder, um déficit de 300 a 500 kcal é seguro. Para ganhar, 250 a 500 kcal a mais.",
+      "t": "Nutrição"
     },
     "diets": {
-      "t": "Estilos de dieta",
       "1": "A melhor dieta é a que você consegue manter. A mediterrânea tem a melhor evidência.",
-      "2": "Evite dietas extremas ou «detox». Em dieta vegana, é preciso vitamina B12."
+      "2": "Evite dietas extremas ou «detox». Em dieta vegana, é preciso vitamina B12.",
+      "t": "Estilos de dieta"
     },
     "training": {
-      "t": "Treino",
       "1": "Força 2 ou 3 dias por semana e 150 minutos de cardio moderado.",
-      "2": "Progrida aos poucos: 1 repetição a mais ou um pouco mais de peso por semana."
+      "2": "Progrida aos poucos: 1 repetição a mais ou um pouco mais de peso por semana.",
+      "t": "Treino"
     },
     "physio": {
-      "t": "Fisioterapia e mobilidade",
       "1": "Aqueça 5 a 10 minutos e mova quadris, ombros e costas.",
-      "2": "Se um exercício causar dor aguda, pare e use uma versão mais fácil."
+      "2": "Se um exercício causar dor aguda, pare e use uma versão mais fácil.",
+      "t": "Fisioterapia e mobilidade"
     },
     "habits": {
-      "t": "Hábitos e motivação",
       "1": "Comece com um hábito pequeno e ligue-o a algo que você já faz.",
-      "2": "Um dia ruim não apaga seu progresso: volte na próxima refeição."
+      "2": "Um dia ruim não apaga seu progresso: volte na próxima refeição.",
+      "t": "Hábitos e motivação"
     },
     "sleep": {
-      "t": "Sono",
       "1": "Durma 7 a 9 horas e acorde sempre no mesmo horário.",
-      "2": "Dormir pouco aumenta a fome e as vontades."
+      "2": "Dormir pouco aumenta a fome e as vontades.",
+      "t": "Sono"
     },
     "hydration": {
-      "t": "Hidratação",
       "1": "Cerca de 30 a 35 ml por kg por dia, mais no calor ou ao treinar.",
-      "2": "Um copo de água antes de comer ajuda na saciedade."
+      "2": "Um copo de água antes de comer ajuda na saciedade.",
+      "t": "Hidratação"
     },
     "sportsmed": {
-      "t": "Medicina esportiva",
       "1": "Aumente o volume no máximo 10% por semana e respeite o descanso.",
-      "2": "Com dor no peito, desmaio ou inchaço, pare e procure um médico."
+      "2": "Com dor no peito, desmaio ou inchaço, pare e procure um médico.",
+      "t": "Medicina esportiva"
     },
     "referNote": "No seu caso, consulte também seu médico ou um profissional de saúde."
   },
@@ -2420,5 +2420,34 @@
     "read": "Ler Termos",
     "accept": "Aceito os Termos",
     "mod": "Pode denunciar; removemos e podemos banir em 24 h."
+  },
+  "faces": {
+    "angieName": "Angie AI",
+    "coachName": "Coach",
+    "angieRole": "Your nutrition AI",
+    "coachRole": "Motivation and habits",
+    "angieTag": "Learns from you · clear tips",
+    "coachTag": "Routines · consistency · cheer",
+    "angieHint": "Based on your goal and your day",
+    "coachHint": "Your coach walks with you step by step",
+    "angieOnline": "Online · learns from you",
+    "coachOnline": "Motivation · habits",
+    "angieShort": "Nutrition",
+    "coachShort": "Habits",
+    "angieHello": "Hi 👋 I'm Angie. What's your goal this week?",
+    "coachHello": "Let's go! Just 10 minutes of walking today. Shall we?",
+    "angiePlaceholder": "Message Angie...",
+    "coachPlaceholder": "Message your Coach...",
+    "tipAngie": "Today: drink 2 more glasses of water",
+    "tipCoach": "Challenge: 10 min walk today",
+    "welcome": "Welcome",
+    "meetTitle": "Meet your team",
+    "meetSub": "Angie is the AI · he is your Coach",
+    "choose": "Choose",
+    "storyTitle": "Inspired by Angie",
+    "storyBlurb": "and her partner's support. She is the face of the AI · He is the Coach.",
+    "historiaTitle": "The story of Angie One",
+    "historiaSub": "About · Parra Apps",
+    "start": "Start with Angie One"
   }
 }

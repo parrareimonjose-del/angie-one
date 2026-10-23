@@ -2221,52 +2221,52 @@
     "lNote": "Brevi lezioni sulle abitudini. Sono consigli generali di benessere, non pareri medici.",
     "l": {
       "plate": {
-        "t": "Il piatto bilanciato",
         "1": "Riempi metà del tuo piatto con verdure o frutta.",
         "2": "Aggiungi un quarto di proteine, come uova, pollo, legumi o pesce.",
-        "3": "L'ultimo quarto può essere riso, arepa, tortilla o patate."
+        "3": "L'ultimo quarto può essere riso, arepa, tortilla o patate.",
+        "t": "Il piatto bilanciato"
       },
       "hunger": {
-        "t": "Fame o voglia?",
         "1": "La vera fame cresce lentamente e qualsiasi cibo sembra buono.",
         "2": "Una voglia arriva improvvisa e chiede qualcosa di specifico.",
-        "3": "Aspetta dieci minuti e bevi dell'acqua; poi decidi con calma."
+        "3": "Aspetta dieci minuti e bevi dell'acqua; poi decidi con calma.",
+        "t": "Fame o voglia?"
       },
       "water": {
-        "t": "Prima l'acqua",
         "1": "A volte la sete sembra fame.",
         "2": "Tieni una bottiglia dove puoi vederla.",
-        "3": "Un bicchiere a ogni pasto è un inizio facile."
+        "3": "Un bicchiere a ogni pasto è un inizio facile.",
+        "t": "Prima l'acqua"
       },
       "sleep": {
-        "t": "Il sonno aiuta",
         "1": "Dormire poco può aumentare l'appetito il giorno dopo.",
         "2": "Prova ad andare a letto alla stessa ora ogni sera.",
-        "3": "Metti via il telefono trenta minuti prima di dormire."
+        "3": "Metti via il telefono trenta minuti prima di dormire.",
+        "t": "Il sonno aiuta"
       },
       "protein": {
-        "t": "Le proteine ti mantengono sazio",
         "1": "Le proteine ti aiutano a sentirti soddisfatto più a lungo.",
         "2": "Includine un po' in ogni pasto.",
-        "3": "Uova, yogurt, legumi e pollo sono opzioni semplici."
+        "3": "Uova, yogurt, legumi e pollo sono opzioni semplici.",
+        "t": "Le proteine ti mantengono sazio"
       },
       "slip": {
-        "t": "Un passo falso non è un fallimento",
         "1": "Un pasto abbondante non cancella i tuoi progressi.",
         "2": "Non saltare il pasto successivo per compensare.",
-        "3": "Torna semplicemente al tuo piano abituale."
+        "3": "Torna semplicemente al tuo piano abituale.",
+        "t": "Un passo falso non è un fallimento"
       },
       "move": {
-        "t": "Muoviti un po' di più",
         "1": "Brevi camminate si sommano durante la giornata.",
         "2": "Prendi le scale o cammina mentre parli al telefono.",
-        "3": "Dieci minuti dopo aver mangiato fanno sentire benissimo."
+        "3": "Dieci minuti dopo aver mangiato fanno sentire benissimo.",
+        "t": "Muoviti un po' di più"
       },
       "plan": {
-        "t": "Pianifica in anticipo",
         "1": "Decidere in anticipo rende le scelte più semplici.",
         "2": "Pianifica i pasti di domani stasera.",
-        "3": "Tieni snack sani pronti a casa."
+        "3": "Tieni snack sani pronti a casa.",
+        "t": "Pianifica in anticipo"
       }
     },
     "fTitle": "Amici e sfide",
@@ -2372,44 +2372,44 @@
       "w4": "Settimana 4: settimana leggera; punta a +0,25-0,5% di peso a settimana."
     },
     "nutrition": {
-      "t": "Nutrizione",
       "1": "Metà piatto di verdure, un quarto di proteine e un quarto di carboidrati.",
-      "2": "Per dimagrire un deficit di 300-500 kcal è sicuro. Per aumentare, 250-500 kcal in più."
+      "2": "Per dimagrire un deficit di 300-500 kcal è sicuro. Per aumentare, 250-500 kcal in più.",
+      "t": "Nutrizione"
     },
     "diets": {
-      "t": "Stili alimentari",
       "1": "La dieta migliore è quella che riesci a mantenere. La mediterranea ha le prove migliori.",
-      "2": "Evita diete estreme o «detox». Con la dieta vegana serve la vitamina B12."
+      "2": "Evita diete estreme o «detox». Con la dieta vegana serve la vitamina B12.",
+      "t": "Stili alimentari"
     },
     "training": {
-      "t": "Allenamento",
       "1": "Forza 2-3 giorni a settimana e 150 minuti di cardio moderato.",
-      "2": "Progredisci poco a poco: 1 ripetizione o un po' di peso in più ogni settimana."
+      "2": "Progredisci poco a poco: 1 ripetizione o un po' di peso in più ogni settimana.",
+      "t": "Allenamento"
     },
     "physio": {
-      "t": "Fisioterapia e mobilità",
       "1": "Scaldati 5-10 minuti e muovi anche, spalle e schiena.",
-      "2": "Se un esercizio dà dolore acuto, fermati e usa una versione più facile."
+      "2": "Se un esercizio dà dolore acuto, fermati e usa una versione più facile.",
+      "t": "Fisioterapia e mobilità"
     },
     "habits": {
-      "t": "Abitudini e motivazione",
       "1": "Inizia con una piccola abitudine legata a qualcosa che già fai.",
-      "2": "Una brutta giornata non cancella i progressi: riparti dal pasto successivo."
+      "2": "Una brutta giornata non cancella i progressi: riparti dal pasto successivo.",
+      "t": "Abitudini e motivazione"
     },
     "sleep": {
-      "t": "Sonno",
       "1": "Dormi 7-9 ore e svegliati sempre alla stessa ora.",
-      "2": "Dormire poco aumenta fame e voglie."
+      "2": "Dormire poco aumenta fame e voglie.",
+      "t": "Sonno"
     },
     "hydration": {
-      "t": "Idratazione",
       "1": "Circa 30-35 ml per kg al giorno, di più con caldo o allenamento.",
-      "2": "Un bicchiere d'acqua prima dei pasti aiuta la sazietà."
+      "2": "Un bicchiere d'acqua prima dei pasti aiuta la sazietà.",
+      "t": "Idratazione"
     },
     "sportsmed": {
-      "t": "Medicina dello sport",
       "1": "Aumenta il volume al massimo del 10% a settimana e rispetta il riposo.",
-      "2": "Con dolore al petto, svenimento o gonfiore, fermati e vai dal medico."
+      "2": "Con dolore al petto, svenimento o gonfiore, fermati e vai dal medico.",
+      "t": "Medicina dello sport"
     },
     "referNote": "Nel tuo caso, consulta anche il tuo medico o un professionista della salute."
   },
@@ -2420,5 +2420,34 @@
     "read": "Leggi i Termini",
     "accept": "Accetto i Termini",
     "mod": "Puoi segnalare; rimozione e ban entro 24 h."
+  },
+  "faces": {
+    "angieName": "Angie AI",
+    "coachName": "Coach",
+    "angieRole": "Your nutrition AI",
+    "coachRole": "Motivation and habits",
+    "angieTag": "Learns from you · clear tips",
+    "coachTag": "Routines · consistency · cheer",
+    "angieHint": "Based on your goal and your day",
+    "coachHint": "Your coach walks with you step by step",
+    "angieOnline": "Online · learns from you",
+    "coachOnline": "Motivation · habits",
+    "angieShort": "Nutrition",
+    "coachShort": "Habits",
+    "angieHello": "Hi 👋 I'm Angie. What's your goal this week?",
+    "coachHello": "Let's go! Just 10 minutes of walking today. Shall we?",
+    "angiePlaceholder": "Message Angie...",
+    "coachPlaceholder": "Message your Coach...",
+    "tipAngie": "Today: drink 2 more glasses of water",
+    "tipCoach": "Challenge: 10 min walk today",
+    "welcome": "Welcome",
+    "meetTitle": "Meet your team",
+    "meetSub": "Angie is the AI · he is your Coach",
+    "choose": "Choose",
+    "storyTitle": "Inspired by Angie",
+    "storyBlurb": "and her partner's support. She is the face of the AI · He is the Coach.",
+    "historiaTitle": "The story of Angie One",
+    "historiaSub": "About · Parra Apps",
+    "start": "Start with Angie One"
   }
 }

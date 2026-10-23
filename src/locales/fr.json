@@ -2221,52 +2221,52 @@
     "lNote": "Courtes leçons sur les habitudes. Ce sont des conseils généraux de bien-être, pas un avis médical.",
     "l": {
       "plate": {
-        "t": "L'assiette équilibrée",
         "1": "Remplis la moitié de ton assiette de légumes ou de fruits.",
         "2": "Ajoute un quart de protéines, comme des œufs, du poulet, des haricots ou du poisson.",
-        "3": "Le dernier quart peut être du riz, une arepa, une tortilla ou de la pomme de terre."
+        "3": "Le dernier quart peut être du riz, une arepa, une tortilla ou de la pomme de terre.",
+        "t": "L'assiette équilibrée"
       },
       "hunger": {
-        "t": "Faim ou envie soudaine ?",
         "1": "La vraie faim s'installe lentement et n'importe quel aliment fait l'envie.",
         "2": "Une envie soudaine surgit d'un coup et réclame quelque chose de précis.",
-        "3": "Attends dix minutes et bois de l'eau, puis décide calmement."
+        "3": "Attends dix minutes et bois de l'eau, puis décide calmement.",
+        "t": "Faim ou envie soudaine ?"
       },
       "water": {
-        "t": "L'eau en premier",
         "1": "Parfois, la soif ressemble à la faim.",
         "2": "Garde une bouteille là où tu peux la voir.",
-        "3": "Un verre à chaque repas est un bon début."
+        "3": "Un verre à chaque repas est un bon début.",
+        "t": "L'eau en premier"
       },
       "sleep": {
-        "t": "Le sommeil aide",
         "1": "Dormir peu peut augmenter l'appétit le lendemain.",
         "2": "Essaie de te coucher à la même heure chaque soir.",
-        "3": "Éloigne ton téléphone trente minutes avant de dormir."
+        "3": "Éloigne ton téléphone trente minutes avant de dormir.",
+        "t": "Le sommeil aide"
       },
       "protein": {
-        "t": "Les protéines calent",
         "1": "Les protéines aident à se sentir rassasié plus longtemps.",
         "2": "Intègre-en à chaque repas.",
-        "3": "Œufs, yaourt, haricots et poulet sont des options simples."
+        "3": "Œufs, yaourt, haricots et poulet sont des options simples.",
+        "t": "Les protéines calent"
       },
       "slip": {
-        "t": "Un faux pas n'est pas un échec",
         "1": "Un gros repas n'efface pas tes efforts.",
         "2": "Ne saute pas le repas suivant pour compenser.",
-        "3": "Reprends tout simplement ton rythme habituel."
+        "3": "Reprends tout simplement ton rythme habituel.",
+        "t": "Un faux pas n'est pas un échec"
       },
       "move": {
-        "t": "Bouge un peu plus",
         "1": "De petites marches s'additionnent au cours de la journée.",
         "2": "Prends les escaliers ou marche en téléphonant.",
-        "3": "Dix minutes après manger, ça fait un bien fou."
+        "3": "Dix minutes après manger, ça fait un bien fou.",
+        "t": "Bouge un peu plus"
       },
       "plan": {
-        "t": "Prévois à l'avance",
         "1": "Décider à l'avance simplifie les choix.",
         "2": "Prépare les repas du lendemain dès ce soir.",
-        "3": "Garde des en-cas sains à portée de main à la maison."
+        "3": "Garde des en-cas sains à portée de main à la maison.",
+        "t": "Prévois à l'avance"
       }
     },
     "fTitle": "Amis et défis",
@@ -2372,44 +2372,44 @@
       "w4": "Semaine 4 : semaine légère ; visez +0,25 à 0,5 % de poids par semaine."
     },
     "nutrition": {
-      "t": "Nutrition",
       "1": "Moitié de l'assiette en légumes, un quart de protéines, un quart de glucides.",
-      "2": "Pour perdre, un déficit de 300 à 500 kcal est sûr. Pour prendre, 250 à 500 kcal de plus."
+      "2": "Pour perdre, un déficit de 300 à 500 kcal est sûr. Pour prendre, 250 à 500 kcal de plus.",
+      "t": "Nutrition"
     },
     "diets": {
-      "t": "Styles d'alimentation",
       "1": "Le meilleur régime est celui que l'on peut tenir. Le méditerranéen a les meilleures preuves.",
-      "2": "Évitez les régimes extrêmes ou « détox ». En alimentation végane, il faut de la vitamine B12."
+      "2": "Évitez les régimes extrêmes ou « détox ». En alimentation végane, il faut de la vitamine B12.",
+      "t": "Styles d'alimentation"
     },
     "training": {
-      "t": "Entraînement",
       "1": "Force 2 à 3 jours par semaine et 150 minutes de cardio modéré.",
-      "2": "Progressez peu à peu : 1 répétition ou un peu de charge en plus chaque semaine."
+      "2": "Progressez peu à peu : 1 répétition ou un peu de charge en plus chaque semaine.",
+      "t": "Entraînement"
     },
     "physio": {
-      "t": "Kiné et mobilité",
       "1": "Échauffez-vous 5 à 10 minutes et mobilisez hanches, épaules et dos.",
-      "2": "Si un exercice provoque une douleur vive, arrêtez et prenez une version plus facile."
+      "2": "Si un exercice provoque une douleur vive, arrêtez et prenez une version plus facile.",
+      "t": "Kiné et mobilité"
     },
     "habits": {
-      "t": "Habitudes et motivation",
       "1": "Commencez par une petite habitude liée à quelque chose que vous faites déjà.",
-      "2": "Une mauvaise journée n'efface pas vos progrès : reprenez au prochain repas."
+      "2": "Une mauvaise journée n'efface pas vos progrès : reprenez au prochain repas.",
+      "t": "Habitudes et motivation"
     },
     "sleep": {
-      "t": "Sommeil",
       "1": "Dormez 7 à 9 heures et levez-vous à heure fixe.",
-      "2": "Le manque de sommeil augmente la faim et les envies."
+      "2": "Le manque de sommeil augmente la faim et les envies.",
+      "t": "Sommeil"
     },
     "hydration": {
-      "t": "Hydratation",
       "1": "Environ 30 à 35 ml par kg par jour, plus s'il fait chaud ou en cas d'effort.",
-      "2": "Un verre d'eau avant le repas aide à la satiété."
+      "2": "Un verre d'eau avant le repas aide à la satiété.",
+      "t": "Hydratation"
     },
     "sportsmed": {
-      "t": "Médecine du sport",
       "1": "Augmentez le volume de 10 % maximum par semaine et respectez le repos.",
-      "2": "En cas de douleur thoracique, malaise ou gonflement, arrêtez et consultez."
+      "2": "En cas de douleur thoracique, malaise ou gonflement, arrêtez et consultez.",
+      "t": "Médecine du sport"
     },
     "referNote": "Dans votre cas, consultez aussi votre médecin ou un professionnel de santé."
   },
@@ -2420,5 +2420,34 @@
     "read": "Lire les Conditions",
     "accept": "J’accepte les Conditions",
     "mod": "Vous pouvez signaler ; retrait et bans possibles sous 24 h."
+  },
+  "faces": {
+    "angieName": "Angie AI",
+    "coachName": "Coach",
+    "angieRole": "Your nutrition AI",
+    "coachRole": "Motivation and habits",
+    "angieTag": "Learns from you · clear tips",
+    "coachTag": "Routines · consistency · cheer",
+    "angieHint": "Based on your goal and your day",
+    "coachHint": "Your coach walks with you step by step",
+    "angieOnline": "Online · learns from you",
+    "coachOnline": "Motivation · habits",
+    "angieShort": "Nutrition",
+    "coachShort": "Habits",
+    "angieHello": "Hi 👋 I'm Angie. What's your goal this week?",
+    "coachHello": "Let's go! Just 10 minutes of walking today. Shall we?",
+    "angiePlaceholder": "Message Angie...",
+    "coachPlaceholder": "Message your Coach...",
+    "tipAngie": "Today: drink 2 more glasses of water",
+    "tipCoach": "Challenge: 10 min walk today",
+    "welcome": "Welcome",
+    "meetTitle": "Meet your team",
+    "meetSub": "Angie is the AI · he is your Coach",
+    "choose": "Choose",
+    "storyTitle": "Inspired by Angie",
+    "storyBlurb": "and her partner's support. She is the face of the AI · He is the Coach.",
+    "historiaTitle": "The story of Angie One",
+    "historiaSub": "About · Parra Apps",
+    "start": "Start with Angie One"
   }
 }

@@ -2221,52 +2221,52 @@
     "lNote": "简短的习惯小贴士。这些是一般健康建议，而非医疗指导。",
     "l": {
       "plate": {
-        "t": "均衡餐盘",
         "1": "让蔬菜或水果填满餐盘的一半。",
         "2": "四分之一留给蛋白质，比如鸡蛋、鸡肉、豆类或鱼类。",
-        "3": "最后四分之一可以是米饭、玉米饼、薄饼或土豆。"
+        "3": "最后四分之一可以是米饭、玉米饼、薄饼或土豆。",
+        "t": "均衡餐盘"
       },
       "hunger": {
-        "t": "是饿了还是嘴馋？",
         "1": "真正的饥饿是慢慢产生的，而且吃什么都觉得香。",
         "2": "嘴馋往往来得很突然，并且渴望特定的食物。",
-        "3": "等十分钟并喝点水，然后冷静地做决定。"
+        "3": "等十分钟并喝点水，然后冷静地做决定。",
+        "t": "是饿了还是嘴馋？"
       },
       "water": {
-        "t": "先喝水",
         "1": "有时候口渴会被误认为是饥饿。",
         "2": "把水杯放在你看得到的地方。",
-        "3": "每顿饭配一杯水是个轻松的开始。"
+        "3": "每顿饭配一杯水是个轻松的开始。",
+        "t": "先喝水"
       },
       "sleep": {
-        "t": "睡眠有助健康",
         "1": "睡眠不足可能会增加次日的食欲。",
         "2": "尽量每天晚上在同一时间上床睡觉。",
-        "3": "睡觉前三十分钟放下手机。"
+        "3": "睡觉前三十分钟放下手机。",
+        "t": "睡眠有助健康"
       },
       "protein": {
-        "t": "蛋白质让你有饱腹感",
         "1": "蛋白质能帮你维持更久的饱腹感。",
         "2": "每顿饭都加一点。",
-        "3": "鸡蛋、酸奶、豆类和鸡肉都是简单的选择。"
+        "3": "鸡蛋、酸奶、豆类和鸡肉都是简单的选择。",
+        "t": "蛋白质让你有饱腹感"
       },
       "slip": {
-        "t": "偶尔破例不是失败",
         "1": "大吃一顿并不会抹杀你的进步。",
         "2": "不要为了弥补而跳过下一餐。",
-        "3": "只需回归你平常的计划即可。"
+        "3": "只需回归你平常的计划即可。",
+        "t": "偶尔破例不是失败"
       },
       "move": {
-        "t": "多动一动",
         "1": "全天累积的小步行走也很可观。",
         "2": "走楼梯，或者在打电话时走动。",
-        "3": "饭后散步十分钟感觉很棒。"
+        "3": "饭后散步十分钟感觉很棒。",
+        "t": "多动一动"
       },
       "plan": {
-        "t": "提前计划",
         "1": "提前决定会让选择变得更轻松。",
         "2": "今晚计划好明天的饮食。",
-        "3": "在家准备好健康的零食。"
+        "3": "在家准备好健康的零食。",
+        "t": "提前计划"
       }
     },
     "fTitle": "好友与挑战",
@@ -2372,44 +2372,44 @@
       "w4": "第 4 周：轻松周；目标每周增重 0.25% 到 0.5%。"
     },
     "nutrition": {
-      "t": "营养",
       "1": "半盘蔬菜、四分之一蛋白质、四分之一碳水。",
-      "2": "减重时每天缺口 300 到 500 千卡是安全的；增重时多吃 250 到 500 千卡。"
+      "2": "减重时每天缺口 300 到 500 千卡是安全的；增重时多吃 250 到 500 千卡。",
+      "t": "营养"
     },
     "diets": {
-      "t": "饮食方式",
       "1": "最好的饮食是你能坚持的。地中海饮食证据最充分。",
-      "2": "避免极端或“排毒”饮食。纯素饮食需要补充维生素 B12。"
+      "2": "避免极端或“排毒”饮食。纯素饮食需要补充维生素 B12。",
+      "t": "饮食方式"
     },
     "training": {
-      "t": "训练",
       "1": "每周力量训练 2 到 3 天，加 150 分钟中等强度有氧。",
-      "2": "循序渐进：每周多 1 次或稍加重量。"
+      "2": "循序渐进：每周多 1 次或稍加重量。",
+      "t": "训练"
     },
     "physio": {
-      "t": "理疗与灵活性",
       "1": "热身 5 到 10 分钟，活动髋部、肩部和背部。",
-      "2": "如果动作引起刺痛，立即停止并换更简单的版本。"
+      "2": "如果动作引起刺痛，立即停止并换更简单的版本。",
+      "t": "理疗与灵活性"
     },
     "habits": {
-      "t": "习惯与动力",
       "1": "从一个小习惯开始，并把它和已有习惯连在一起。",
-      "2": "一天没做好不会抹掉进步：下一餐重新开始。"
+      "2": "一天没做好不会抹掉进步：下一餐重新开始。",
+      "t": "习惯与动力"
     },
     "sleep": {
-      "t": "睡眠",
       "1": "睡 7 到 9 小时，每天同一时间起床。",
-      "2": "睡眠不足会增加饥饿感和嘴馋。"
+      "2": "睡眠不足会增加饥饿感和嘴馋。",
+      "t": "睡眠"
     },
     "hydration": {
-      "t": "补水",
       "1": "每天约每公斤 30 到 35 毫升，炎热或训练时更多。",
-      "2": "饭前喝一杯水有助于饱腹。"
+      "2": "饭前喝一杯水有助于饱腹。",
+      "t": "补水"
     },
     "sportsmed": {
-      "t": "运动医学",
       "1": "训练量每周最多增加 10%，并保证休息日。",
-      "2": "出现胸痛、昏厥或肿胀时，停止并就医。"
+      "2": "出现胸痛、昏厥或肿胀时，停止并就医。",
+      "t": "运动医学"
     },
     "referNote": "针对你的情况，也请咨询你的医生或专业医护人员。"
   },
@@ -2420,5 +2420,34 @@
     "read": "Read Terms",
     "accept": "I accept the Terms",
     "mod": "You can report content; we remove and may ban within 24 hours."
+  },
+  "faces": {
+    "angieName": "Angie AI",
+    "coachName": "Coach",
+    "angieRole": "Your nutrition AI",
+    "coachRole": "Motivation and habits",
+    "angieTag": "Learns from you · clear tips",
+    "coachTag": "Routines · consistency · cheer",
+    "angieHint": "Based on your goal and your day",
+    "coachHint": "Your coach walks with you step by step",
+    "angieOnline": "Online · learns from you",
+    "coachOnline": "Motivation · habits",
+    "angieShort": "Nutrition",
+    "coachShort": "Habits",
+    "angieHello": "Hi 👋 I'm Angie. What's your goal this week?",
+    "coachHello": "Let's go! Just 10 minutes of walking today. Shall we?",
+    "angiePlaceholder": "Message Angie...",
+    "coachPlaceholder": "Message your Coach...",
+    "tipAngie": "Today: drink 2 more glasses of water",
+    "tipCoach": "Challenge: 10 min walk today",
+    "welcome": "Welcome",
+    "meetTitle": "Meet your team",
+    "meetSub": "Angie is the AI · he is your Coach",
+    "choose": "Choose",
+    "storyTitle": "Inspired by Angie",
+    "storyBlurb": "and her partner's support. She is the face of the AI · He is the Coach.",
+    "historiaTitle": "The story of Angie One",
+    "historiaSub": "About · Parra Apps",
+    "start": "Start with Angie One"
   }
 }

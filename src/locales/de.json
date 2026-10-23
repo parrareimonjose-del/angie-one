@@ -2221,52 +2221,52 @@
     "lNote": "Kurze Lektionen zu Gewohnheiten. Das sind allgemeine Wellnesstipps, keine medizinische Beratung.",
     "l": {
       "plate": {
-        "t": "Der ausgewogene Teller",
         "1": "Fülle die Hälfte deines Tellers mit Gemüse oder Obst.",
         "2": "Füge ein Viertel Protein hinzu, wie Eier, Hähnchen, Bohnen oder Fisch.",
-        "3": "Das letzte Viertel kann Reis, Arepa, Tortilla oder Kartoffel sein."
+        "3": "Das letzte Viertel kann Reis, Arepa, Tortilla oder Kartoffel sein.",
+        "t": "Der ausgewogene Teller"
       },
       "hunger": {
-        "t": "Hunger oder Heißhunger?",
         "1": "Echter Hunger wächst langsam und jedes Essen klingt gut.",
         "2": "Heißhunger kommt plötzlich und verlangt nach etwas Bestimmtem.",
-        "3": "Warte zehn Minuten und trinke Wasser; entscheide dann ganz ruhig."
+        "3": "Warte zehn Minuten und trinke Wasser; entscheide dann ganz ruhig.",
+        "t": "Hunger oder Heißhunger?"
       },
       "water": {
-        "t": "Wasser zuerst",
         "1": "Manchmal fühlt sich Durst wie Hunger an.",
         "2": "Stelle eine Flasche dorthin, wo du sie sehen kannst.",
-        "3": "Ein Glas zu jeder Mahlzeit ist ein einfacher Start."
+        "3": "Ein Glas zu jeder Mahlzeit ist ein einfacher Start.",
+        "t": "Wasser zuerst"
       },
       "sleep": {
-        "t": "Schlaf hilft",
         "1": "Wenig Schlaf kann den Appetit am nächsten Tag steigern.",
         "2": "Versuche, jeden Abend zur gleichen Zeit ins Bett zu gehen.",
-        "3": "Lege das Handy dreißig Minuten vor dem Schlafen weg."
+        "3": "Lege das Handy dreißig Minuten vor dem Schlafen weg.",
+        "t": "Schlaf hilft"
       },
       "protein": {
-        "t": "Protein hält satt",
         "1": "Protein hilft dir, dich länger satt zu fühlen.",
         "2": "Integriere etwas davon in jede Mahlzeit.",
-        "3": "Eier, Joghurt, Bohnen und Hähnchen sind einfache Optionen."
+        "3": "Eier, Joghurt, Bohnen und Hähnchen sind einfache Optionen.",
+        "t": "Protein hält satt"
       },
       "slip": {
-        "t": "Ein Ausrutscher ist kein Versagen",
         "1": "Eine große Mahlzeit macht deinen Fortschritt nicht zunichte.",
         "2": "Lass die nächste Mahlzeit nicht aus, um das auszugleichen.",
-        "3": "Kehre einfach zu deinem gewohnten Plan zurück."
+        "3": "Kehre einfach zu deinem gewohnten Plan zurück.",
+        "t": "Ein Ausrutscher ist kein Versagen"
       },
       "move": {
-        "t": "Beweg dich ein bisschen mehr",
         "1": "Kleine Spaziergänge summieren sich über den Tag.",
         "2": "Nimm die Treppe oder geh spazieren, während du telefonierst.",
-        "3": "Zehn Minuten nach dem Essen fühlen sich großartig an."
+        "3": "Zehn Minuten nach dem Essen fühlen sich großartig an.",
+        "t": "Beweg dich ein bisschen mehr"
       },
       "plan": {
-        "t": "Plane im Voraus",
         "1": "Im Voraus zu entscheiden macht die Auswahl leichter.",
         "2": "Plane die Mahlzeiten für morgen schon heute Abend.",
-        "3": "Halte gesunde Snacks zu Hause griffbereit."
+        "3": "Halte gesunde Snacks zu Hause griffbereit.",
+        "t": "Plane im Voraus"
       }
     },
     "fTitle": "Freunde und Challenges",
@@ -2372,44 +2372,44 @@
       "w4": "Woche 4: leichte Woche; Ziel +0,25 bis 0,5 % Gewicht pro Woche."
     },
     "nutrition": {
-      "t": "Ernährung",
       "1": "Halber Teller Gemüse, ein Viertel Eiweiß, ein Viertel Kohlenhydrate.",
-      "2": "Zum Abnehmen sind 300 bis 500 kcal Defizit sicher. Zum Zunehmen 250 bis 500 kcal mehr."
+      "2": "Zum Abnehmen sind 300 bis 500 kcal Defizit sicher. Zum Zunehmen 250 bis 500 kcal mehr.",
+      "t": "Ernährung"
     },
     "diets": {
-      "t": "Ernährungsformen",
       "1": "Die beste Diät ist die, die du halten kannst. Mediterran hat die beste Evidenz.",
-      "2": "Meide extreme oder „Detox“-Diäten. Vegan braucht Vitamin B12."
+      "2": "Meide extreme oder „Detox“-Diäten. Vegan braucht Vitamin B12.",
+      "t": "Ernährungsformen"
     },
     "training": {
-      "t": "Training",
       "1": "Kraft 2 bis 3 Tage pro Woche und 150 Minuten moderates Cardio.",
-      "2": "Langsam steigern: jede Woche 1 Wiederholung oder etwas Gewicht mehr."
+      "2": "Langsam steigern: jede Woche 1 Wiederholung oder etwas Gewicht mehr.",
+      "t": "Training"
     },
     "physio": {
-      "t": "Physiotherapie und Mobilität",
       "1": "5 bis 10 Minuten aufwärmen, Hüfte, Schultern und Rücken bewegen.",
-      "2": "Bei stechendem Schmerz abbrechen und eine leichtere Variante wählen."
+      "2": "Bei stechendem Schmerz abbrechen und eine leichtere Variante wählen.",
+      "t": "Physiotherapie und Mobilität"
     },
     "habits": {
-      "t": "Gewohnheiten und Motivation",
       "1": "Starte mit einer kleinen Gewohnheit, gekoppelt an etwas Bestehendes.",
-      "2": "Ein schlechter Tag löscht keinen Fortschritt: weiter bei der nächsten Mahlzeit."
+      "2": "Ein schlechter Tag löscht keinen Fortschritt: weiter bei der nächsten Mahlzeit.",
+      "t": "Gewohnheiten und Motivation"
     },
     "sleep": {
-      "t": "Schlaf",
       "1": "7 bis 9 Stunden schlafen, immer zur gleichen Zeit aufstehen.",
-      "2": "Wenig Schlaf steigert Hunger und Heißhunger."
+      "2": "Wenig Schlaf steigert Hunger und Heißhunger.",
+      "t": "Schlaf"
     },
     "hydration": {
-      "t": "Flüssigkeit",
       "1": "Etwa 30 bis 35 ml pro kg am Tag, mehr bei Hitze oder Training.",
-      "2": "Ein Glas Wasser vor dem Essen hilft beim Sattwerden."
+      "2": "Ein Glas Wasser vor dem Essen hilft beim Sattwerden.",
+      "t": "Flüssigkeit"
     },
     "sportsmed": {
-      "t": "Sportmedizin",
       "1": "Umfang höchstens 10 % pro Woche steigern, Ruhetage einhalten.",
-      "2": "Bei Brustschmerz, Ohnmacht oder Schwellung: aufhören und zum Arzt."
+      "2": "Bei Brustschmerz, Ohnmacht oder Schwellung: aufhören und zum Arzt.",
+      "t": "Sportmedizin"
     },
     "referNote": "In deinem Fall sprich bitte auch mit deiner Ärztin, deinem Arzt oder einer Fachperson."
   },
@@ -2420,5 +2420,34 @@
     "read": "Bedingungen lesen",
     "accept": "Ich akzeptiere die Bedingungen",
     "mod": "Melden möglich; Entfernung und Sperren binnen 24 Std."
+  },
+  "faces": {
+    "angieName": "Angie AI",
+    "coachName": "Coach",
+    "angieRole": "Your nutrition AI",
+    "coachRole": "Motivation and habits",
+    "angieTag": "Learns from you · clear tips",
+    "coachTag": "Routines · consistency · cheer",
+    "angieHint": "Based on your goal and your day",
+    "coachHint": "Your coach walks with you step by step",
+    "angieOnline": "Online · learns from you",
+    "coachOnline": "Motivation · habits",
+    "angieShort": "Nutrition",
+    "coachShort": "Habits",
+    "angieHello": "Hi 👋 I'm Angie. What's your goal this week?",
+    "coachHello": "Let's go! Just 10 minutes of walking today. Shall we?",
+    "angiePlaceholder": "Message Angie...",
+    "coachPlaceholder": "Message your Coach...",
+    "tipAngie": "Today: drink 2 more glasses of water",
+    "tipCoach": "Challenge: 10 min walk today",
+    "welcome": "Welcome",
+    "meetTitle": "Meet your team",
+    "meetSub": "Angie is the AI · he is your Coach",
+    "choose": "Choose",
+    "storyTitle": "Inspired by Angie",
+    "storyBlurb": "and her partner's support. She is the face of the AI · He is the Coach.",
+    "historiaTitle": "The story of Angie One",
+    "historiaSub": "About · Parra Apps",
+    "start": "Start with Angie One"
   }
 }

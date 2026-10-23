@@ -1447,7 +1447,7 @@
     "sample": "ÖRNEK VERİ: henüz gerçek ödeme yok.",
     "ledTitle": "Ödeme kaydı 55/5/25/15",
     "ledTot": "Onaylanan: {{n}} · net {{net}} → Kurucu {{f}} · Angie y familia {{fam}} · Uygulama {{a}} · Vergi {{x}}",
-    "ledLine": "Net {{net}} → %60 {{f}} · %25 {{a}} · %15 {{x}}",
+    "ledLine": "Net {{net}} → 55% {{f}} · 5% Angie y familia {{fam}} · 25% {{a}} · 15% {{x}}",
     "approveSplit": "Paylaşımı onayla",
     "pdfR": "PDF makbuz",
     "accTitle": "Muhasebeci için",
@@ -2221,52 +2221,52 @@
     "lNote": "Kısa alışkanlık dersleri. Tıbbi tavsiye değil, genel zindelik ipuçlarıdır.",
     "l": {
       "plate": {
-        "t": "Dengeli tabak",
         "1": "Tabağının yarısını sebze veya meyveyle doldur.",
         "2": "Yumurta, tavuk, fasulye veya balık gibi proteinlerden çeyrek ekle.",
-        "3": "Son çeyrek pirinç, arepa, tortilla veya patates olabilir."
+        "3": "Son çeyrek pirinç, arepa, tortilla veya patates olabilir.",
+        "t": "Dengeli tabak"
       },
       "hunger": {
-        "t": "Açlık mı, aşerme mi?",
         "1": "Gerçek açlık yavaşça gelir ve her yemek kulağa güzel gelir.",
         "2": "Aşerme aniden gelir ve belirli bir şey ister.",
-        "3": "On dakika bekle ve su iç; ardından sakinçe karar ver."
+        "3": "On dakika bekle ve su iç; ardından sakinçe karar ver.",
+        "t": "Açlık mı, aşerme mi?"
       },
       "water": {
-        "t": "Önce su",
         "1": "Bazen susuzluk açlık gibi hissedilir.",
         "2": "Şişeyi görebileceğin bir yerde tut.",
-        "3": "Her öğünle birlikte bir bardak su içmek kolay bir başlangıçtır."
+        "3": "Her öğünle birlikte bir bardak su içmek kolay bir başlangıçtır.",
+        "t": "Önce su"
       },
       "sleep": {
-        "t": "Uyku yardımcı olur",
         "1": "Az uyumak ertesi gün iştahı artırabilir.",
         "2": "Her gece aynı saatte yatmayı dene.",
-        "3": "Uyumadan otuz dakika önce telefonu kaldır."
+        "3": "Uyumadan otuz dakika önce telefonu kaldır.",
+        "t": "Uyku yardımcı olur"
       },
       "protein": {
-        "t": "Protein tok tutar",
         "1": "Protein daha uzun süre doymuş hissetmeni sağlar.",
         "2": "Her öğüne biraz ekle.",
-        "3": "Yumurta, yoğurt, fasulye ve tavuk basit seçeneklerdir."
+        "3": "Yumurta, yoğurt, fasulye ve tavuk basit seçeneklerdir.",
+        "t": "Protein tok tutar"
       },
       "slip": {
-        "t": "Küçük bir kaçamak başarısızlık değildir",
         "1": "Büyük bir öğün ilerlemeni silmez.",
         "2": "Telafi etmek için sonraki öğünü atlama.",
-        "3": "Sadece her zamanki planına geri dön."
+        "3": "Sadece her zamanki planına geri dön.",
+        "t": "Küçük bir kaçamak başarısızlık değildir"
       },
       "move": {
-        "t": "Biraz daha hareket et",
         "1": "Küçük yürüyüşler gün içinde birikir.",
         "2": "Merdivenleri kullan veya telefonda konuşurken yürü.",
-        "3": "Yemekten sonraki on dakika harika hissettirir."
+        "3": "Yemekten sonraki on dakika harika hissettirir.",
+        "t": "Biraz daha hareket et"
       },
       "plan": {
-        "t": "Önceden plan yap",
         "1": "Önceden karar vermek seçimleri kolaylaştırır.",
         "2": "Yarınki yemekleri bu akşamdan planla.",
-        "3": "Evde sağlıklı atıştırmalıklar hazır bulundur."
+        "3": "Evde sağlıklı atıştırmalıklar hazır bulundur.",
+        "t": "Önceden plan yap"
       }
     },
     "fTitle": "Arkadaşlar ve meydan okumalar",
@@ -2372,44 +2372,44 @@
       "w4": "Hafta 4: hafif hafta; haftada %0,25-0,5 kilo artışı hedefle."
     },
     "nutrition": {
-      "t": "Beslenme",
       "1": "Tabağın yarısı sebze, çeyreği protein, çeyreği karbonhidrat.",
-      "2": "Vermek için 300-500 kcal açık güvenlidir. Almak için 250-500 kcal fazla."
+      "2": "Vermek için 300-500 kcal açık güvenlidir. Almak için 250-500 kcal fazla.",
+      "t": "Beslenme"
     },
     "diets": {
-      "t": "Diyet türleri",
       "1": "En iyi diyet sürdürebildiğin diyettir. Akdeniz diyetinin kanıtı en güçlüsüdür.",
-      "2": "Aşırı veya «detoks» diyetlerden kaçın. Vegan beslenmede B12 vitamini gerekir."
+      "2": "Aşırı veya «detoks» diyetlerden kaçın. Vegan beslenmede B12 vitamini gerekir.",
+      "t": "Diyet türleri"
     },
     "training": {
-      "t": "Antrenman",
       "1": "Haftada 2-3 gün kuvvet ve 150 dakika orta kardiyo.",
-      "2": "Yavaş ilerle: her hafta 1 tekrar veya biraz daha ağırlık."
+      "2": "Yavaş ilerle: her hafta 1 tekrar veya biraz daha ağırlık.",
+      "t": "Antrenman"
     },
     "physio": {
-      "t": "Fizyoterapi ve hareketlilik",
       "1": "5-10 dakika ısın; kalça, omuz ve sırtı hareket ettir.",
-      "2": "Bir hareket keskin ağrı yaparsa dur ve daha kolay versiyonunu yap."
+      "2": "Bir hareket keskin ağrı yaparsa dur ve daha kolay versiyonunu yap.",
+      "t": "Fizyoterapi ve hareketlilik"
     },
     "habits": {
-      "t": "Alışkanlık ve motivasyon",
       "1": "Küçük bir alışkanlıkla başla ve zaten yaptığın bir şeye bağla.",
-      "2": "Kötü bir gün ilerlemeni silmez: bir sonraki öğünde devam et."
+      "2": "Kötü bir gün ilerlemeni silmez: bir sonraki öğünde devam et.",
+      "t": "Alışkanlık ve motivasyon"
     },
     "sleep": {
-      "t": "Uyku",
       "1": "7-9 saat uyu ve her gün aynı saatte kalk.",
-      "2": "Az uyku açlığı ve yeme isteğini artırır."
+      "2": "Az uyku açlığı ve yeme isteğini artırır.",
+      "t": "Uyku"
     },
     "hydration": {
-      "t": "Sıvı",
       "1": "Günde kilo başına yaklaşık 30-35 ml, sıcakta veya antrenmanda daha fazla.",
-      "2": "Yemekten önce bir bardak su tokluğa yardım eder."
+      "2": "Yemekten önce bir bardak su tokluğa yardım eder.",
+      "t": "Sıvı"
     },
     "sportsmed": {
-      "t": "Spor hekimliği",
       "1": "Hacmi haftada en fazla %10 artır ve dinlenme günlerine uy.",
-      "2": "Göğüs ağrısı, bayılma veya şişlikte dur ve doktora git."
+      "2": "Göğüs ağrısı, bayılma veya şişlikte dur ve doktora git.",
+      "t": "Spor hekimliği"
     },
     "referNote": "Senin durumunda doktoruna veya bir sağlık uzmanına da danış."
   },
@@ -2420,5 +2420,34 @@
     "read": "Read Terms",
     "accept": "I accept the Terms",
     "mod": "You can report content; we remove and may ban within 24 hours."
+  },
+  "faces": {
+    "angieName": "Angie AI",
+    "coachName": "Coach",
+    "angieRole": "Your nutrition AI",
+    "coachRole": "Motivation and habits",
+    "angieTag": "Learns from you · clear tips",
+    "coachTag": "Routines · consistency · cheer",
+    "angieHint": "Based on your goal and your day",
+    "coachHint": "Your coach walks with you step by step",
+    "angieOnline": "Online · learns from you",
+    "coachOnline": "Motivation · habits",
+    "angieShort": "Nutrition",
+    "coachShort": "Habits",
+    "angieHello": "Hi 👋 I'm Angie. What's your goal this week?",
+    "coachHello": "Let's go! Just 10 minutes of walking today. Shall we?",
+    "angiePlaceholder": "Message Angie...",
+    "coachPlaceholder": "Message your Coach...",
+    "tipAngie": "Today: drink 2 more glasses of water",
+    "tipCoach": "Challenge: 10 min walk today",
+    "welcome": "Welcome",
+    "meetTitle": "Meet your team",
+    "meetSub": "Angie is the AI · he is your Coach",
+    "choose": "Choose",
+    "storyTitle": "Inspired by Angie",
+    "storyBlurb": "and her partner's support. She is the face of the AI · He is the Coach.",
+    "historiaTitle": "The story of Angie One",
+    "historiaSub": "About · Parra Apps",
+    "start": "Start with Angie One"
   }
 }
