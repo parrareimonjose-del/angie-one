@@ -26,8 +26,15 @@ export default function Onboarding() {
   };
   const finish = (prof: Profile = p) => {
     const profile = safeGoal(prof);
-    set((x) => ({ ...x, profile, trialStart: x.trialStart || Date.now() }));
-    router.replace('/');
+    // Primera vez (registro): mandar a tutoriales. Si ya los vio (p. ej. editar perfil), ir a Inicio.
+    const seenTut = !!(st as any).ext?.seenFirstTutorials;
+    set((x: any) => ({
+      ...x,
+      profile,
+      trialStart: x.trialStart || Date.now(),
+      ext: { ...(x.ext || {}), seenFirstTutorials: true },
+    }));
+    router.replace(seenTut ? '/' : '/tutoriales');
   };
   return (
     <Screen nav={false}>

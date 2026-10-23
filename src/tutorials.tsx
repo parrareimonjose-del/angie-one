@@ -41,6 +41,7 @@ export function Tutorials() {
   const { t } = useTranslation();
   return <Screen title={`🎬 ${t('tu.title')}`}>
     <T>{t('tu.sub')}</T>
+    <Btn testID="tut-go-home" label={`🏠  ${t('nav.home')}`} onPress={() => router.replace('/')} />
     {TUTS.map((x) => <Pressable key={x.id} testID={`tut-${x.id}`} accessibilityRole="button" accessibilityLabel={`${t('tu.play')}: ${t(`tu.f.${x.id}.t`)}`}
       onPress={() => router.push({ pathname: '/tutorial', params: { id: x.id } } as any)}
       style={({ pressed }) => [s.card, s.row, { minHeight: 80, gap: 14, opacity: pressed ? 0.7 : 1 }]}>
