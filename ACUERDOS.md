@@ -3,6 +3,11 @@
 Leer al empezar cada conversación. Actualizar tras cada respuesta de José.
 
 
+
+## 2026-10-23 ~00:45 ET — Apple listo + QA verde → publicar
+- Suites QA: todas 0 falla (clon…stripe-ui). Unit tests OK. IA estimate ~0.9s.
+- StoreKit/IAP preparado; Stripe web-only; EULA/edad/Pending/fuentes hechos.
+- Publicar: merge feat-stripe-test→master, worker deploy, push, deploy web.
 ## 2026-10-23 ~00:10 ET — Apple: StoreKit/IAP + EULA + edad + fuentes
 - José eligió **preparar StoreKit/IAP** (no v1 gratis-only): productos `angieone_premium_monthly` 2,49 USD y `angieone_premium_yearly` 24,99 USD; Restore Purchases; Stripe **solo web**.
 - Código: `src/iap.ts` (`IAP_NATIVE_READY=false` hasta Developer), wire en `payments.ts` + Restore en `honest-ui`; `EulaGate` antes de Amigos/aportes; `age.ts` <13 / teen; Pending oculto en iOS; fuentes OMS/DGA/ACSM/ISSN en Ajustes; términos UGC tolerancia cero (13 idiomas).
