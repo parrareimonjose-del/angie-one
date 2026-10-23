@@ -1572,7 +1572,30 @@
     "recNew": "यह नया कोड सहेजें (पुराना अब काम नहीं करेगा):",
     "recNone": "इस लॉक का कोई रिकवरी कोड नहीं है। आप केवल इस डिवाइस का लॉक और डेटा मिटा सकते हैं।",
     "recSave": "इस कोड को सुरक्षित जगह रखें (फ़ोटो, काग़ज़ या पासवर्ड मैनेजर)। यह केवल अभी दिखेगा और PIN या पासवर्ड भूलने पर काम आएगा।",
-    "recSaved": "मैंने सहेज लिया"
+    "recSaved": "मैंने सहेज लिया",
+    "alTitle": "प्रत्येक उपयोगकर्ता के लिए AI ज्ञान",
+    "alSub": "Separate Founder Panel module. Verify the AI is gaining knowledge from each person legally (on-device only).",
+    "alLegal": "Legal & private",
+    "alLegal2": "Health data is NEVER sold. Learning stays on the user’s device. Here you only see counts and neutral labels.",
+    "alUsers": "उपयोगकर्ता",
+    "alFacts": "मेमोरी तथ्य",
+    "alEvents": "सीख",
+    "alLast7": "पिछले 7 दिन",
+    "alGrowing": "AI ज्ञान बढ़ा रही है",
+    "alIdle": "हाल की सीख नहीं",
+    "alMemOn": "मेमोरी ON",
+    "alMemOff": "मेमोरी OFF",
+    "alByKind": "सीख प्रकार अनुसार",
+    "alRecent": "हाल की घटनाएँ (निष्पक्ष)",
+    "alEmpty": "अभी कोई सीख नहीं। स्कैन, चैट या मेमोरी उपयोग करें।",
+    "alNever": "Health data is never sold. No clone/voice until revenue. Only anonymous aggregates if the user consents.",
+    "lk": {
+      "preference": "पसंद",
+      "portion": "हिस्सा",
+      "dish": "व्यंजन",
+      "correction": "सुधार",
+      "chat_fact": "चैट तथ्य"
+    }
   },
   "voice": {
     "stop": "ख़त्म करने के लिए टैप करें",

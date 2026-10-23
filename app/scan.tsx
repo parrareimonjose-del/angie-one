@@ -10,9 +10,12 @@ import { EstimateResult, aiErrorText } from '../src/estimate';
 import { shrinkForUpload } from '../src/img';
 import { C } from '../src/theme';
 import { estimateMicro } from '../src/yazio5';
+import { useExt } from '../src/ext';
+import { LEARN0, LearnLog, applyMealLearn } from '../src/ailearn';
 
 export default function Scan() {
   const { t, i18n } = useTranslation(); const { s: st, set } = useStore();
+  const [, setLearn] = useExt<LearnLog>('ailearn', LEARN0);
   const [img, setImg] = useState<string | null>(null);
   const [busy, setBusy] = useState(false); const [err, setErr] = useState('');
   const [est, setEst] = useState<Estimate | null>(null);
@@ -49,8 +52,9 @@ export default function Scan() {
       {img && <Image source={{ uri: img }} style={{ width: '100%', height: 240, borderRadius: 24 }} resizeMode="cover" />}
       {busy && <Card><T>⏳ {t('scan.analyzing')}</T></Card>}
       {err ? <Card><T style={{ color: C.primary, fontWeight: '700' }}>{err}</T><Btn small kind="ghost" label={t('more.manual')} onPress={() => router.push('/manual')} /></Card> : null}
-      {est && <EstimateResult key={est.name + est.kcalMin} est={est} onLog={(x) => {
+      {est && <EstimateResult key={est.name + est.kcalMin} est={est} onLog={(x, learn) => {
         set((s0) => ({ ...s0, entries: [...s0.entries, { id: uid(), date: d, time: Date.now(), ...x, micro: estimateMicro(x.name, x.kcal), source: 'photo' }] }));
+        setLearn((L) => applyMealLearn(L, x.name, learn));
         router.replace('/diary');
       }} />}
     </Screen>

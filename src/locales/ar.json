@@ -1572,7 +1572,30 @@
     "recNew": "احفظ هذا الرمز الجديد (القديم لم يعد صالحًا):",
     "recNone": "هذا القفل ليس له رمز استرداد. يمكنك فقط مسح القفل وبيانات هذا الجهاز.",
     "recSave": "احفظ هذا الرمز في مكان آمن (صورة أو ورقة أو مدير كلمات المرور). يظهر الآن فقط ويفيدك إذا نسيت رمز PIN أو كلمة المرور.",
-    "recSaved": "حفظته"
+    "recSaved": "حفظته",
+    "alTitle": "معرفة الذكاء لكل مستخدم",
+    "alSub": "Separate Founder Panel module. Verify the AI is gaining knowledge from each person legally (on-device only).",
+    "alLegal": "Legal & private",
+    "alLegal2": "Health data is NEVER sold. Learning stays on the user’s device. Here you only see counts and neutral labels.",
+    "alUsers": "المستخدمون",
+    "alFacts": "حقائق الذاكرة",
+    "alEvents": "تعلّم",
+    "alLast7": "آخر 7 أيام",
+    "alGrowing": "الذكاء يكتسب معرفة",
+    "alIdle": "لا تعلّم حديث",
+    "alMemOn": "الذاكرة ON",
+    "alMemOff": "الذاكرة OFF",
+    "alByKind": "حسب نوع التعلّم",
+    "alRecent": "أحداث حديثة (محايدة)",
+    "alEmpty": "لا تعلّم بعد. استخدم المسح أو الدردشة أو الذاكرة.",
+    "alNever": "Health data is never sold. No clone/voice until revenue. Only anonymous aggregates if the user consents.",
+    "lk": {
+      "preference": "تفضيل",
+      "portion": "حصة",
+      "dish": "طبق",
+      "correction": "تصحيح",
+      "chat_fact": "حقيقة الدردشة"
+    }
   },
   "voice": {
     "stop": "اضغط للإنهاء",

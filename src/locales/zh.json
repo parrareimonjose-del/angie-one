@@ -1572,7 +1572,30 @@
     "recNew": "请保存这个新恢复码（旧的已失效）：",
     "recNone": "此锁没有恢复码。只能清除此设备上的锁和数据。",
     "recSave": "请把这个恢复码存放在安全的地方（照片、纸张或密码管理器）。它只显示这一次，忘记 PIN 或密码时可用。",
-    "recSaved": "我已保存"
+    "recSaved": "我已保存",
+    "alTitle": "每位用户的 AI 知识",
+    "alSub": "Separate Founder Panel module. Verify the AI is gaining knowledge from each person legally (on-device only).",
+    "alLegal": "Legal & private",
+    "alLegal2": "Health data is NEVER sold. Learning stays on the user’s device. Here you only see counts and neutral labels.",
+    "alUsers": "用户",
+    "alFacts": "记忆事实",
+    "alEvents": "学习次数",
+    "alLast7": "近7天",
+    "alGrowing": "AI 正在获得知识",
+    "alIdle": "暂无近期学习",
+    "alMemOn": "记忆开",
+    "alMemOff": "记忆关",
+    "alByKind": "按学习类型",
+    "alRecent": "近期事件（中性）",
+    "alEmpty": "尚无学习记录。请使用扫描、聊天或记忆。",
+    "alNever": "Health data is never sold. No clone/voice until revenue. Only anonymous aggregates if the user consents.",
+    "lk": {
+      "preference": "偏好",
+      "portion": "份量",
+      "dish": "菜肴",
+      "correction": "纠正",
+      "chat_fact": "聊天事实"
+    }
   },
   "voice": {
     "stop": "点击结束",

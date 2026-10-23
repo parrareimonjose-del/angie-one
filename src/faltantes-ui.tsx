@@ -14,7 +14,8 @@ import { Auth, loadAuth, saveAuth, isUnlocked, markUnlocked, needsUnlock, checkS
 import { Charge, SAMPLE_CHARGES, decideCharge, totals, toCsv, receiptLines, accountantLines, split3, net, money } from './ledger';
 import { buildSummary } from './panelmaestro';
 import { adminMetrics, adminProposals, toSpec, specMarkdown, Proposal, TaskSpec } from './adminai';
-import { Fb } from './p2';
+import { Fb, Mem, MEM0 } from './p2';
+import { LEARN0, LearnLog, founderLearnView, LearnKind } from './ailearn';
 
 // ---------- descarga de archivos (web) ----------
 export function download(name: string, mime: string, data: string | Uint8Array) {
@@ -191,4 +192,64 @@ export function AdminAICard() {
         <Text style={[s.t, { fontWeight: '900' }]}>📝 {t(`fx.ap.${sp.rule}.t`)}</Text><Text style={s.muted}>{t('fx.spInfo', { f: sp.files.length, s: sp.steps.length })}</Text>
         <Btn small kind="ghost" label={`⬇️ ${t('fx.spDl')}`} onPress={() => download(`${sp.id}.md`, 'text/markdown', specMarkdown(sp))} /></View>)}
       <Note k="fx.spNever" /></Card></>;
+}
+
+// ---------- Módulo aparte: conocimiento de la IA por usuario (legal, solo dispositivo) ----------
+
+const KIND_I18N: Record<LearnKind, string> = {
+  preference: 'fx.lk.preference',
+  portion: 'fx.lk.portion',
+  dish: 'fx.lk.dish',
+  correction: 'fx.lk.correction',
+  chat_fact: 'fx.lk.chat_fact',
+};
+
+export function AiLearnCard() {
+  const { t } = useTranslation();
+  const [log] = useExt<LearnLog>('ailearn', LEARN0);
+  const [mem] = useExt<Mem>('mem', MEM0);
+  const v = founderLearnView(log, !!mem.on, mem.facts.length);
+  const bar = (n: number, max: number) => {
+    const pct = max ? Math.min(100, Math.round((n / max) * 100)) : 0;
+    return <View style={{ height: 10, flex: 1, backgroundColor: C.border, borderRadius: 6, overflow: 'hidden' }}>
+      <View style={{ width: `${pct}%` as any, height: '100%', backgroundColor: C.secondary }} /></View>;
+  };
+  const maxK = Math.max(1, ...Object.values(v.byKind));
+  return <Card testID="ailearn">
+    <CardTitle>📈 {t('fx.alTitle')}</CardTitle>
+    <Text style={s.muted}>{t('fx.alSub')}</Text>
+    <View style={{ backgroundColor: C.tint, borderRadius: 12, padding: 10, gap: 4 }}>
+      <Text style={{ fontWeight: '800', color: C.secondary }}>🔒 {t('fx.alLegal')}</Text>
+      <Text style={s.muted}>{t('fx.alLegal2')}</Text>
+    </View>
+    <View style={[s.row, { flexWrap: 'wrap', justifyContent: 'space-around' }]}>
+      {([[t('fx.alUsers'), v.usersTracked], [t('fx.alFacts'), v.memoryFacts], [t('fx.alEvents'), v.learnEvents], [t('fx.alLast7'), v.last7]] as const).map(([k, n]) => (
+        <View key={String(k)} testID="al-kpi" style={{ width: '22%', minWidth: 72, alignItems: 'center', padding: 4 }}>
+          <Text style={[s.h2, { color: C.primary }]}>{n}</Text>
+          <Text style={[s.muted, { fontSize: 13, textAlign: 'center' }]}>{k}</Text>
+        </View>
+      ))}
+    </View>
+    <Text testID="al-status" style={{ fontWeight: '900', fontSize: 17, color: v.growing ? C.success : C.muted }}>
+      {v.growing ? `✓ ${t('fx.alGrowing')}` : `· ${t('fx.alIdle')}`}
+      {v.memoryOn ? ` · ${t('fx.alMemOn')}` : ` · ${t('fx.alMemOff')}`}
+    </Text>
+    <CardTitle>{t('fx.alByKind')}</CardTitle>
+    {(Object.keys(KIND_I18N) as LearnKind[]).map((k) => (
+      <View key={k} testID="al-kind" style={[s.row, { alignItems: 'center', gap: 8 }]}>
+        <Text style={{ width: 110, fontSize: 14, fontWeight: '700' }}>{t(KIND_I18N[k])}</Text>
+        {bar(v.byKind[k], maxK)}
+        <Text style={{ width: 28, textAlign: 'right', fontWeight: '800' }}>{v.byKind[k]}</Text>
+      </View>
+    ))}
+    <CardTitle>{t('fx.alRecent')}</CardTitle>
+    {!v.recent.length ? <T testID="al-empty">{t('fx.alEmpty')}</T>
+      : v.recent.map((e) => (
+        <View key={e.id} testID="al-ev" style={{ borderTopWidth: 1, borderColor: C.border, paddingTop: 6 }}>
+          <Text style={{ fontWeight: '800' }}>{t(KIND_I18N[e.kind])} · {e.label}</Text>
+          <Text style={s.muted}>{new Date(e.at).toLocaleString()}</Text>
+        </View>
+      ))}
+    <Note k="fx.alNever" />
+  </Card>;
 }

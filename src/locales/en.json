@@ -1572,7 +1572,30 @@
     "recNew": "Save this NEW code (the old one no longer works):",
     "recNone": "This lock has no recovery code. You can only erase the lock and this device's data.",
     "recSave": "Keep this code somewhere safe (photo, paper or your password manager). It's shown only now and works if you forget your PIN or password.",
-    "recSaved": "I saved it"
+    "recSaved": "I saved it",
+    "alTitle": "AI knowledge per user",
+    "alSub": "Separate Founder Panel module. Verify the AI is gaining knowledge from each person legally (on-device only).",
+    "alLegal": "Legal & private",
+    "alLegal2": "Health data is NEVER sold. Learning stays on the user’s device. Here you only see counts and neutral labels.",
+    "alUsers": "Users",
+    "alFacts": "Memory facts",
+    "alEvents": "Learnings",
+    "alLast7": "Last 7 days",
+    "alGrowing": "AI is gaining knowledge",
+    "alIdle": "No recent learnings",
+    "alMemOn": "Memory ON",
+    "alMemOff": "Memory OFF",
+    "alByKind": "By learning type",
+    "alRecent": "Recent events (neutral)",
+    "alEmpty": "No learnings yet. Use scan, chat, or memory.",
+    "alNever": "Health data is never sold. No clone/voice until revenue. Only anonymous aggregates if the user consents.",
+    "lk": {
+      "preference": "Preference",
+      "portion": "Portion",
+      "dish": "Dish",
+      "correction": "Correction",
+      "chat_fact": "Chat fact"
+    }
   },
   "voice": {
     "stop": "Tap to finish",

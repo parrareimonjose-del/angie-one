@@ -1572,7 +1572,30 @@
     "recNew": "Bu YENİ kodu sakla (eskisi artık geçmez):",
     "recNone": "Bu kilidin kurtarma kodu yok. Yalnızca bu cihazdaki kilidi ve verileri silebilirsin.",
     "recSave": "Bu kodu güvenli bir yerde sakla (fotoğraf, kâğıt veya şifre yöneticisi). Yalnızca şimdi gösterilir ve PIN'ini veya şifreni unutursan işe yarar.",
-    "recSaved": "Sakladım"
+    "recSaved": "Sakladım",
+    "alTitle": "Kullanıcı başına YZ bilgisi",
+    "alSub": "Separate Founder Panel module. Verify the AI is gaining knowledge from each person legally (on-device only).",
+    "alLegal": "Legal & private",
+    "alLegal2": "Health data is NEVER sold. Learning stays on the user’s device. Here you only see counts and neutral labels.",
+    "alUsers": "Kullanıcılar",
+    "alFacts": "Bellek gerçekleri",
+    "alEvents": "Öğrenmeler",
+    "alLast7": "Son 7 gün",
+    "alGrowing": "YZ bilgi kazanıyor",
+    "alIdle": "Yakın öğrenme yok",
+    "alMemOn": "Bellek AÇIK",
+    "alMemOff": "Bellek KAPALI",
+    "alByKind": "Öğrenme türüne göre",
+    "alRecent": "Son olaylar (nötr)",
+    "alEmpty": "Henüz öğrenme yok. Tarama, sohbet veya bellek kullanın.",
+    "alNever": "Health data is never sold. No clone/voice until revenue. Only anonymous aggregates if the user consents.",
+    "lk": {
+      "preference": "Tercih",
+      "portion": "Porsiyon",
+      "dish": "Yemek",
+      "correction": "Düzeltme",
+      "chat_fact": "Sohbet gerçeği"
+    }
   },
   "voice": {
     "stop": "Bitirmek için dokunun",

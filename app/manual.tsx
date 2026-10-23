@@ -13,9 +13,12 @@ import { FoodRow } from '../src/honest-ui';
 import { estimateText, Estimate } from '../src/ai';
 import { EstimateResult, aiErrorText } from '../src/estimate';
 import { C } from '../src/theme';
+import { useExt } from '../src/ext';
+import { LEARN0, LearnLog, applyMealLearn, pushLearn } from '../src/ailearn';
 
 export default function Manual() {
   const { t, i18n } = useTranslation(); const { s: st, set } = useStore();
+  const [, setLearn] = useExt<LearnLog>('ailearn', LEARN0);
   const fname = (id: string) => t(`foods.${id}`);
   const [q, setQ] = useState(''); const [bad, setBad] = useState(false); const [name, setName] = useState(''); const [kcal, setKcal] = useState('');
   const [desc, setDesc] = useState(''); const [busy, setBusy] = useState(false); const [err, setErr] = useState(''); const [est, setEst] = useState<Estimate | null>(null);
@@ -51,13 +54,13 @@ export default function Manual() {
         {SR && <Btn kind="secondary" small label={lis === 'working' ? `⏳ ${t('voice.working')}` : lis === 'listening' ? `⏹️ ${t('voice.stop')}` : `🎙️  ${t('manual.dictate')}`} onPress={dictate} />}
         {err ? <T style={{ color: C.primary, fontWeight: '700' }}>{err}</T> : null}
       </Card>}
-      {est && <EstimateResult key={est.name + est.kcalMin} est={est} onLog={(x) => add(x)} />}
+      {est && <EstimateResult key={est.name + est.kcalMin} est={est} onLog={(x, learn) => { add(x); setLearn((L) => applyMealLearn(L, x.name, learn)); }} />}
       <TextInput accessibilityLabel={t('manual.search')} style={s.input} placeholder={t('manual.search')} value={q} onChangeText={setQ} />
       <Card>
         <CardTitle>🌎 {t('manual.latin')}</CardTitle><Text style={s.muted}>{t('hb.verifiedHow')}</Text>
         {list.length === 0 ? <Text style={s.muted}>{t('manual.noMatch')}</Text> : null}
         {cst === 'busy' ? <Text testID="cloud-busy" style={s.muted}>⏳ {t('fdb.searching')}</Text> : cst === 'off' ? <Text testID="cloud-off" style={s.muted}>{t('fdb.offline')}</Text> : null}
-        {list.slice(0, 20).map((f) => <FoodRow key={f.key} f={f} label={label(f)} onAdd={() => add({ name: label(f), kcal: f.kcal, p: f.p, c: f.c, f: f.f, fiber: f.fiber })} />)}
+        {list.slice(0, 20).map((f) => <FoodRow key={f.key} f={f} label={label(f)} onAdd={() => { const n = label(f); add({ name: n, kcal: f.kcal, p: f.p, c: f.c, f: f.f, fiber: f.fiber }); setLearn((L) => pushLearn(L, 'dish', n)); }} />)}
         {cloud.length ? <Text testID="food-attrib" style={[s.muted, { fontSize: 13 }]}>{t('fdb.source')}: {ATTRIBUTION}</Text> : null}
       </Card>
       <Card>

@@ -1572,7 +1572,30 @@
     "recNew": "Speichere diesen NEUEN Code (der alte gilt nicht mehr):",
     "recNone": "Diese Sperre hat keinen Wiederherstellungscode. Du kannst nur die Sperre und die Daten dieses Geräts löschen.",
     "recSave": "Bewahre diesen Code sicher auf (Foto, Papier oder Passwort-Manager). Er wird nur jetzt gezeigt und hilft, wenn du PIN oder Passwort vergisst.",
-    "recSaved": "Gespeichert"
+    "recSaved": "Gespeichert",
+    "alTitle": "KI-Wissen pro Nutzer",
+    "alSub": "Separates Gründer-Modul. Prüft, dass die KI legal Wissen von jeder Person gewinnt (nur auf dem Gerät).",
+    "alLegal": "Legal & privat",
+    "alLegal2": "Gesundheitsdaten werden NIE verkauft. Lernen bleibt auf dem Gerät. Hier nur Zähler und neutrale Labels.",
+    "alUsers": "Nutzer",
+    "alFacts": "Gedächtnis-Fakten",
+    "alEvents": "Lernereignisse",
+    "alLast7": "Letzte 7 Tage",
+    "alGrowing": "KI gewinnt Wissen",
+    "alIdle": "Keine jüngsten Lernereignisse",
+    "alMemOn": "Gedächtnis AN",
+    "alMemOff": "Gedächtnis AUS",
+    "alByKind": "Nach Lerntyp",
+    "alRecent": "Aktuelle Ereignisse (neutral)",
+    "alEmpty": "Noch keine Lernereignisse. Scan, Chat oder Gedächtnis nutzen.",
+    "alNever": "Gesundheitsdaten werden nie verkauft. Kein Klon/Stimme bis Umsatz. Nur anonyme Aggregate mit Einwilligung.",
+    "lk": {
+      "preference": "Präferenz",
+      "portion": "Portion",
+      "dish": "Gericht",
+      "correction": "Korrektur",
+      "chat_fact": "Chat-Fakt"
+    }
   },
   "voice": {
     "stop": "Tippen zum Beenden",

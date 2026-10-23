@@ -1572,7 +1572,30 @@
     "recNew": "Guarda este código NUEVO (el anterior ya no sirve):",
     "recNone": "Esta entrada no tiene código de recuperación. Solo puedes borrar el bloqueo y los datos de este dispositivo.",
     "recSave": "Guarda este código en un lugar seguro (foto, papel o tu gestor de contraseñas). Solo se muestra ahora y sirve si olvidas tu PIN o contraseña.",
-    "recSaved": "Ya lo guardé"
+    "recSaved": "Ya lo guardé",
+    "alTitle": "Conocimiento de la IA por usuario",
+    "alSub": "Módulo aparte del Panel del Fundador. Verifica que la IA gana conocimiento de cada persona de forma legal (solo en su dispositivo).",
+    "alLegal": "Legal y privado",
+    "alLegal2": "Los datos de salud NUNCA se venden. El aprendizaje queda en el dispositivo del usuario. Aquí solo ves conteos y etiquetas neutras.",
+    "alUsers": "Usuarios",
+    "alFacts": "Hechos memoria",
+    "alEvents": "Aprendizajes",
+    "alLast7": "Últimos 7 días",
+    "alGrowing": "La IA está ganando conocimiento",
+    "alIdle": "Sin aprendizajes recientes",
+    "alMemOn": "Memoria ON",
+    "alMemOff": "Memoria OFF",
+    "alByKind": "Por tipo de aprendizaje",
+    "alRecent": "Eventos recientes (neutros)",
+    "alEmpty": "Aún no hay aprendizajes. Usa escanear, chat o memoria.",
+    "alNever": "Nunca se venden datos de salud. Sin clon ni voz hasta ingresos. Solo agregados anónimos si el usuario consiente.",
+    "lk": {
+      "preference": "Preferencia",
+      "portion": "Porción",
+      "dish": "Plato",
+      "correction": "Corrección",
+      "chat_fact": "Hecho del chat"
+    }
   },
   "voice": {
     "stop": "Toca para terminar",

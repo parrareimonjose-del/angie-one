@@ -14,7 +14,8 @@ export function aiErrorText(t: (k: string) => string, e: unknown) {
 }
 
 /** Resultado de la IA: rango, afinado en 1 toque, porción y botón para guardar en el diario. */
-export function EstimateResult({ est, onLog }: { est: Estimate; onLog: (x: { name: string; kcal: number; p: number; c: number; f: number; fiber?: number }) => void }) {
+export type LearnMeta = { portion: number; oil?: boolean; sauce?: boolean; fried?: boolean };
+export function EstimateResult({ est, onLog }: { est: Estimate; onLog: (x: { name: string; kcal: number; p: number; c: number; f: number; fiber?: number }, learn: LearnMeta) => void }) {
   const { t } = useTranslation();
   const [q, setQ] = useState<{ oil?: boolean; sauce?: boolean; fried?: boolean; portion: number }>({ portion: 1 });
   const r = refine(est, q);
@@ -37,6 +38,6 @@ export function EstimateResult({ est, onLog }: { est: Estimate; onLog: (x: { nam
       <View style={[s.row, { flexWrap: 'wrap' }]}>{PORTIONS.map((p) => <Chip key={p} label={`${p}×`} active={q.portion === p} onPress={() => setQ({ ...q, portion: p })} />)}</View>
     </Card>
     <AIReport kind="estimate" text={`${est.name} ${est.kcalMin}-${est.kcalMax} kcal`} />
-    <Btn label={`✓  ${t('scan.log')}`} onPress={() => onLog({ name: est.name, kcal: Math.round((r.min + r.max) / 2), p: r.p, c: r.c, f: r.f, fiber: r.fiber })} />
+    <Btn label={`✓  ${t('scan.log')}`} onPress={() => onLog({ name: est.name, kcal: Math.round((r.min + r.max) / 2), p: r.p, c: r.c, f: r.f, fiber: r.fiber }, { portion: q.portion, oil: q.oil, sauce: q.sauce, fried: q.fried })} />
   </>;
 }

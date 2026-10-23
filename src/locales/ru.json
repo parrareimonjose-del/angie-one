@@ -1572,7 +1572,30 @@
     "recNew": "Сохраните этот НОВЫЙ код (старый больше не действует):",
     "recNone": "У этой блокировки нет кода восстановления. Можно только стереть блокировку и данные на этом устройстве.",
     "recSave": "Сохраните этот код в надёжном месте (фото, бумага или менеджер паролей). Он показывается только сейчас и поможет, если вы забудете PIN или пароль.",
-    "recSaved": "Я сохранил(а)"
+    "recSaved": "Я сохранил(а)",
+    "alTitle": "Знания ИИ по пользователю",
+    "alSub": "Separate Founder Panel module. Verify the AI is gaining knowledge from each person legally (on-device only).",
+    "alLegal": "Legal & private",
+    "alLegal2": "Health data is NEVER sold. Learning stays on the user’s device. Here you only see counts and neutral labels.",
+    "alUsers": "Пользователи",
+    "alFacts": "Факты памяти",
+    "alEvents": "Обучения",
+    "alLast7": "За 7 дней",
+    "alGrowing": "ИИ набирает знания",
+    "alIdle": "Нет недавних обучений",
+    "alMemOn": "Память ON",
+    "alMemOff": "Память OFF",
+    "alByKind": "По типу обучения",
+    "alRecent": "Недавние события (нейтральные)",
+    "alEmpty": "Пока нет обучений. Используйте скан, чат или память.",
+    "alNever": "Health data is never sold. No clone/voice until revenue. Only anonymous aggregates if the user consents.",
+    "lk": {
+      "preference": "Предпочтение",
+      "portion": "Порция",
+      "dish": "Блюдо",
+      "correction": "Исправление",
+      "chat_fact": "Факт чата"
+    }
   },
   "voice": {
     "stop": "Нажмите, чтобы закончить",

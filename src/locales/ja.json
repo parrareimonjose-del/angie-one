@@ -1572,7 +1572,30 @@
     "recNew": "この新しいコードを保存してください（古いコードは無効です）：",
     "recNone": "このロックにはリカバリーコードがありません。この端末のロックとデータを消去することしかできません。",
     "recSave": "このコードを安全な場所（写真、紙、パスワード管理アプリ）に保管してください。表示は今回だけで、PINやパスワードを忘れたときに使えます。",
-    "recSaved": "保存しました"
+    "recSaved": "保存しました",
+    "alTitle": "ユーザーごとのAI知識",
+    "alSub": "Separate Founder Panel module. Verify the AI is gaining knowledge from each person legally (on-device only).",
+    "alLegal": "Legal & private",
+    "alLegal2": "Health data is NEVER sold. Learning stays on the user’s device. Here you only see counts and neutral labels.",
+    "alUsers": "ユーザー",
+    "alFacts": "記憶ファクト",
+    "alEvents": "学習",
+    "alLast7": "直近7日",
+    "alGrowing": "AIが知識を獲得中",
+    "alIdle": "最近の学習なし",
+    "alMemOn": "記憶ON",
+    "alMemOff": "記憶OFF",
+    "alByKind": "学習タイプ別",
+    "alRecent": "最近のイベント（中立）",
+    "alEmpty": "まだ学習がありません。スキャン・チャット・記憶を使ってください。",
+    "alNever": "Health data is never sold. No clone/voice until revenue. Only anonymous aggregates if the user consents.",
+    "lk": {
+      "preference": "好み",
+      "portion": "分量",
+      "dish": "料理",
+      "correction": "修正",
+      "chat_fact": "チャット事実"
+    }
   },
   "voice": {
     "stop": "タップして終了",

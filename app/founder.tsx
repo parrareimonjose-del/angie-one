@@ -11,7 +11,7 @@ import { FounderData } from '../src/datos-ui';
 import { GrantsCard, useFounderMode, FounderUnlock } from '../src/grants-ui';
 import { ModerationCard } from '../src/review-ui';
 import { StripeLedgerCard } from '../src/pay-ui';
-import { LedgerCard, PanelMaestroCard, AdminAICard } from '../src/faltantes-ui';
+import { LedgerCard, PanelMaestroCard, AdminAICard, AiLearnCard } from '../src/faltantes-ui';
 export const split = (net: number) => ({ ops: Math.round(net * 60) / 100, growth: Math.round(net * 25) / 100, social: Math.round(net * 15) / 100 });
 
 // Panel del Fundador v1 (placeholder): la IA Administrativa propone, Jose aprueba. Nunca mueve dinero.
@@ -40,6 +40,7 @@ export default function Founder() {
       <StripeLedgerCard />
       <GrantsCard />
       <ModerationCard />
+      <AiLearnCard />
       <AdminAICard />
       <PanelMaestroCard />
       <FounderData />

@@ -1572,7 +1572,30 @@
     "recNew": "이 새 코드를 저장하세요(이전 코드는 더 이상 쓸 수 없습니다):",
     "recNone": "이 잠금에는 복구 코드가 없습니다. 이 기기의 잠금과 데이터를 지우는 것만 가능합니다.",
     "recSave": "이 코드를 안전한 곳(사진, 종이, 비밀번호 관리자)에 보관하세요. 지금만 표시되며 PIN이나 비밀번호를 잊었을 때 쓸 수 있습니다.",
-    "recSaved": "저장했어요"
+    "recSaved": "저장했어요",
+    "alTitle": "사용자별 AI 지식",
+    "alSub": "Separate Founder Panel module. Verify the AI is gaining knowledge from each person legally (on-device only).",
+    "alLegal": "Legal & private",
+    "alLegal2": "Health data is NEVER sold. Learning stays on the user’s device. Here you only see counts and neutral labels.",
+    "alUsers": "사용자",
+    "alFacts": "기억 사실",
+    "alEvents": "학습",
+    "alLast7": "최근 7일",
+    "alGrowing": "AI가 지식을 쌓는 중",
+    "alIdle": "최근 학습 없음",
+    "alMemOn": "기억 ON",
+    "alMemOff": "기억 OFF",
+    "alByKind": "학습 유형별",
+    "alRecent": "최근 이벤트(중립)",
+    "alEmpty": "아직 학습이 없습니다. 스캔, 채팅 또는 기억을 사용하세요.",
+    "alNever": "Health data is never sold. No clone/voice until revenue. Only anonymous aggregates if the user consents.",
+    "lk": {
+      "preference": "선호",
+      "portion": "분량",
+      "dish": "요리",
+      "correction": "수정",
+      "chat_fact": "채팅 사실"
+    }
   },
   "voice": {
     "stop": "탭하여 끝내기",

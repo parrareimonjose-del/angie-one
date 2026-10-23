@@ -1572,7 +1572,30 @@
     "recNew": "Gardez ce NOUVEAU code (l'ancien ne marche plus) :",
     "recNone": "Ce verrou n'a pas de code de récupération. Vous pouvez seulement effacer le verrou et les données de cet appareil.",
     "recSave": "Gardez ce code en lieu sûr (photo, papier ou gestionnaire de mots de passe). Il n'est affiché que maintenant et sert si vous oubliez votre PIN ou mot de passe.",
-    "recSaved": "Je l'ai gardé"
+    "recSaved": "Je l'ai gardé",
+    "alTitle": "Connaissance IA par utilisateur",
+    "alSub": "Module séparé du Panneau Fondateur. Vérifie que l’IA gagne des connaissances de chaque personne légalement (sur l’appareil).",
+    "alLegal": "Légal et privé",
+    "alLegal2": "Les données de santé ne sont JAMAIS vendues. L’apprentissage reste sur l’appareil. Ici : compteurs et libellés neutres.",
+    "alUsers": "Utilisateurs",
+    "alFacts": "Faits mémoire",
+    "alEvents": "Apprentissages",
+    "alLast7": "7 derniers jours",
+    "alGrowing": "L’IA gagne des connaissances",
+    "alIdle": "Pas d’apprentissages récents",
+    "alMemOn": "Mémoire ON",
+    "alMemOff": "Mémoire OFF",
+    "alByKind": "Par type d’apprentissage",
+    "alRecent": "Événements récents (neutres)",
+    "alEmpty": "Pas encore d’apprentissages. Utilisez scan, chat ou mémoire.",
+    "alNever": "Données de santé jamais vendues. Pas de clone/voix avant revenus. Agrégats anonymes seulement avec consentement.",
+    "lk": {
+      "preference": "Préférence",
+      "portion": "Portion",
+      "dish": "Plat",
+      "correction": "Correction",
+      "chat_fact": "Fait du chat"
+    }
   },
   "voice": {
     "stop": "Touchez pour terminer",

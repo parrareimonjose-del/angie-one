@@ -61,4 +61,11 @@ ok(providerFor('web').id === 'stripe' && providerFor('android').id === 'play' &&
 ok(PLANS.monthly.usd === 2.49 && PLANS.yearly.usd === 24.99 && Object.keys(PLANS).join() === 'monthly,yearly', 'precio único mundial 2,49 $/mes y 24,99 $/año, sin regional');
 for (const os of ['web', 'android', 'ios']) { const x = await purchase('monthly', os); ok(!x.ok && x.reason === 'pending_connection', 'nunca simula cobro ' + os); }
 ok(FEATURES.purposeStore === false && FEATURES.donations === false, 'tienda oculta y sin donaciones');
+
+// 9) Aprendizaje legal + precios Premium actuales
+import { LEARN0, pushLearn, founderLearnView, safeLabel } from '../src/ailearn';
+ok(safeLabel('70 kg') === '' && pushLearn(LEARN0, 'dish', 'empanada').events.length === 1, 'ailearn filtra salud y guarda plato');
+ok(founderLearnView(LEARN0, true, 0).legal === 'device_only_no_health_sale', 'fundador: sin venta de salud');
+ok(PLANS.monthly.usd === 2.49 && PLANS.yearly.usd === 24.99, 'Premium 2.49/24.99 mundial');
+
 console.log(`✓ faltantes: ${n} pruebas`);

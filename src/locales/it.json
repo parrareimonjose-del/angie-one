@@ -1572,7 +1572,30 @@
     "recNew": "Salva questo NUOVO codice (il vecchio non vale più):",
     "recNone": "Questo blocco non ha un codice di recupero. Puoi solo cancellare il blocco e i dati di questo dispositivo.",
     "recSave": "Conserva questo codice in un posto sicuro (foto, carta o gestore di password). Si vede solo ora e serve se dimentichi PIN o password.",
-    "recSaved": "L'ho salvato"
+    "recSaved": "L'ho salvato",
+    "alTitle": "Conoscenza IA per utente",
+    "alSub": "Modulo separato del Pannello Fondatore. Verifica che l’IA acquisisca conoscenza da ciascuna persona legalmente (sul dispositivo).",
+    "alLegal": "Legale e privato",
+    "alLegal2": "I dati sanitari NON si vendono mai. L’apprendimento resta sul dispositivo. Qui solo conteggi e etichette neutre.",
+    "alUsers": "Utenti",
+    "alFacts": "Fatti memoria",
+    "alEvents": "Apprendimenti",
+    "alLast7": "Ultimi 7 giorni",
+    "alGrowing": "L’IA sta acquisendo conoscenza",
+    "alIdle": "Nessun apprendimento recente",
+    "alMemOn": "Memoria ON",
+    "alMemOff": "Memoria OFF",
+    "alByKind": "Per tipo di apprendimento",
+    "alRecent": "Eventi recenti (neutri)",
+    "alEmpty": "Ancora nessun apprendimento. Usa scansione, chat o memoria.",
+    "alNever": "Dati sanitari mai venduti. Niente clone/voce fino ai ricavi. Solo aggregati anonimi con consenso.",
+    "lk": {
+      "preference": "Preferenza",
+      "portion": "Porzione",
+      "dish": "Piatto",
+      "correction": "Correzione",
+      "chat_fact": "Fatto chat"
+    }
   },
   "voice": {
     "stop": "Tocca per finire",

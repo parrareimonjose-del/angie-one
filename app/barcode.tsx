@@ -13,6 +13,8 @@ import * as ImagePicker from 'expo-image-picker';
 import WebScanner from '../src/webscan';
 import { estimateLabel, Estimate } from '../src/ai';
 import { EstimateResult, aiErrorText } from '../src/estimate';
+import { useExt } from '../src/ext';
+import { LEARN0, LearnLog, applyMealLearn } from '../src/ailearn';
 import { shrinkForUpload } from '../src/img';
 import { scaleMicro } from '../src/yazio5';
 import { MicroPreview } from '../src/yazio5-ui';
@@ -22,6 +24,7 @@ const LIGHT = { green: C.success, amber: C.accent, red: C.primary, na: C.border 
 
 export default function Barcode() {
   const { t } = useTranslation(); const { set } = useStore();
+  const [, setLearn] = useExt<LearnLog>('ailearn', LEARN0);
   const [code, setCode] = useState(''); const [prod, setProd] = useState<Product | null>(null);
   const [msg, setMsg] = useState(''); const [grams, setGrams] = useState(100); const [cam, setCam] = useState(false);
   const [perm, ask] = useCameraPermissions(); const [wcam, setWcam] = useState(false); const [nf, setNf] = useState(false);
@@ -63,7 +66,7 @@ export default function Barcode() {
       {msg ? <T testID="bar-msg">{msg}</T> : null}
       {nf && !prod && <Card testID="bar-nf">
         <Btn label={lbusy ? `⏳ ${t('scan.analyzing')}` : `🏷️  ${t('bar.labelPhoto')}`} onPress={labelPhoto} />
-        {lest && <EstimateResult key={lest.name + lest.kcalMin} est={lest} onLog={(x) => addE(x)} />}
+        {lest && <EstimateResult key={lest.name + lest.kcalMin} est={lest} onLog={(x, learn) => { addE(x); setLearn((L) => applyMealLearn(L, x.name, learn)); }} />}
         <ContributeCard code={code.trim()} onLogged={(x) => addE(x)} />
         <CardTitle>✍️ {t('manual.exact')}</CardTitle>
         <TextInput accessibilityLabel={t('manual.name')} style={s.input} placeholder={t('manual.name')} value={mName} onChangeText={setMName} />

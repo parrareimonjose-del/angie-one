@@ -14,6 +14,7 @@ import { fmtNum, fmtDate, fmtLocale, curLang } from './i18n';
 import { coachTarget, coachOf, burnedOn, isPremium, weekday, safeMin, rulesPlan, DEFAULT_PREFS, Prefs, nextCheckInDays } from './coach';
 import { speak, Row, Disclaimer } from './coach-ui';
 import { useExt, Example, Note, Tile } from './ext';
+import { LEARN0, LearnLog, pushLearn } from './ailearn';
 import { estimateText, AI_URL, AIError } from './ai';
 import { startVoice, voiceSupported } from './voice';
 import { aiErrorText } from './estimate';
@@ -115,8 +116,8 @@ export const neutralFact = (text: string) => { for (const [r, v] of NEUTRAL) if 
 export const learnFact = (text: string) => neutralFact(text) ?? (LEARN.test(text) ? text.trim().slice(0, 120) : null);
 export const memContext = (m?: Mem) => (m && m.on && m.facts.length ? ' Remember about user: ' + m.facts.map((f) => f.text).join('; ').slice(0, 350) : '');
 export function Memory() {
-  const { t } = useTranslation(); const [m, setM] = useExt<Mem>('mem', MEM0); const [q, setQ] = useState('');
-  const add = () => { const v = neutralFact(q) ?? q.trim(); if (!v) return; setM((x) => ({ ...x, facts: [...x.facts, { id: uid(), text: v.slice(0, 120) }].slice(-20) })); setQ(''); };
+  const { t } = useTranslation(); const [m, setM] = useExt<Mem>('mem', MEM0); const [, setLearn] = useExt<LearnLog>('ailearn', LEARN0); const [q, setQ] = useState('');
+  const add = () => { const v = neutralFact(q) ?? q.trim(); if (!v) return; setM((x) => ({ ...x, facts: [...x.facts, { id: uid(), text: v.slice(0, 120) }].slice(-20) })); setLearn((L) => pushLearn(L, 'preference', v.slice(0, 80))); setQ(''); };
   return <Screen title={`🧠 ${t('p2.t.memory')}`}>
     <IconCard icon="🧠" title={t('p2.t.memory')} sub={t('p2.memWhat')} right={<Pill label={m.on ? '✓' : '—'} color={m.on ? C.success : C.muted} />}>
       <Row><Chip label={`✓ ${t('p2.memOn')}`} active={m.on} onPress={() => setM((x) => ({ ...x, on: true }))} /><Chip label={t('p2.memOff')} active={!m.on} onPress={() => setM((x) => ({ ...x, on: false }))} /></Row></IconCard>
