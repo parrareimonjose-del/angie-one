@@ -205,3 +205,16 @@ DECISIÓN JOSÉ 2026-10-15 12:38 ET: en la sección de datos solo entran recibos
 - Regla: no publicar con fallas. Rama feat-stripe-test sin merge; master cca100a sin push; worker no desplegado.
 - 2026-10-22 12:40 PM: feat-stripe-test 6acff59: Stripe prueba OK (API 32/32, UI 21/21), login (autocompletar, recuperación, Face ID stub), guard KV, auditoría Apple en /workspace/calorias/cumplimiento-apple.pdf. NO publicado: qa-web/qa-iphone fallan por Gemini gratis lento/503. Reintentar más tarde. KV: culpable Carta al Futuro (avisado). Cuenta Stripe prueba compartida "chisme"; Angie One tendrá cuenta propia en real. Recomendado rotar sk_test y whsec (fragmento en log local).
 - 2026-10-22/23: José pidió arreglar Apple YA (EULA, pendientes, puerta de edad, fuentes, privacidad) y preparar StoreKit/IAP 2,49/mes + 24,99/año + Restaurar compras, antes/junto a publicar la web.
+- 2026-10-23 ~12:46 AM: PUBLICADO web + Worker. QA todo verde. Apple: IAP prep 2,49/24,99 + Restore, EULA, edad, Pending oculto, fuentes/privacidad. Live: https://parrareimonjose-del.github.io/angie-one/ (PAY_MODE=off, clon oculto). Pendiente: StoreKit al tener Apple Developer; Stripe real tras pruebas.
+- 2026-10-23 ~3:18 PM (voz): José ordenó que TODAS las apps tengan el módulo de base de datos con valor comercial (parra-data-hub); bases se combinan en servidor central. Mensaje enviado a Grok Bot, Chisme, Venture, Févora, Carta, Garaje, Lluvia. Sin construir/publicar aún.
+- 2026-10-23 3:22 PM: José APROBÓ terminar servidor compartido gratis (Worker+Supabase), conectarlo ACTIVO en todas las apps, IA revisa avance de la lista, avisar si valor estimado >1M USD. Sin vender sin su toque. En construcción.
+
+## 2026-10-23 ~3:22–3:40 PM ET: Parra Data Hub ACTIVE (aprobado José)
+- José APROBÓ terminar el servidor compartido gratis, conectarlo ACTIVE, que la IA admin revise el avance de las listas y avise si el valor estimado combinado supera USD 1.000.000. Sin vender sin su toque.
+- **Live:** `https://parra-data-hub.angieoneapp-support.workers.dev` (status ACTIVE). Storage hoy: Cloudflare KV. Esquema Supabase listo en `/workspace/activo-base-de-datos/schema-supabase-parra-data-hub.sql` — falta que José cree el proyecto gratis en supabase.com.
+- **Angie One:** proxy `/datahub/*` en Worker `angie-one-ai` vía **service binding** `DATA_HUB` → `parra-data-hub` (evita error 1042 Worker→workers.dev). Secretos en el Worker: `DATA_HUB_APP_KEY`, `DATA_HUB_FOUNDER_KEY`, `DATA_HUB_URL` (nunca en chat/repo). Cliente `src/datahub.ts`; Sección de Datos sincroniza con consentimiento; Panel del Fundador muestra ACTIVE + avance + valor estimado; Admin AI `adminDataHubReview` + `million_alert`.
+- **Fallback local:** si el hub cae, la app sigue con copia en el teléfono.
+- **Ventas:** `sales_enabled: false`. Aprobar solo registra decisión.
+- **k-anonymity:** ≥ 50 usuarios por lista antes de «lista lista».
+- **Docs:** `/workspace/activo-base-de-datos/parra-data-hub.md` (cómo conectar otras apps).
+- **Pendiente José:** (1) crear proyecto Supabase free y pasar URL+keys al Worker cuando quiera migrar de KV; (2) OK para publicar la web de Angie One con los cambios de UI del hub (Worker ya está desplegado); (3) registrar otras apps (Févora, Carta, etc.) con claves propias.

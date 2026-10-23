@@ -1241,7 +1241,7 @@
     "title": "Mis recibos y datos",
     "lock": "Los recibos, encuestas e informes de gastos son parte de Premium.",
     "noHealth": "Tus datos de salud (peso, comidas, sueño, memoria, chat) nunca entran en esta sección y nunca se venden. Solo recibos y encuestas.",
-    "server": "servidor seguro",
+    "server": "servidor de datos Parra Apps (ACTIVE)",
     "consentT": "Permiso aparte",
     "consentBody": "Si aceptas, tus recibos y respuestas se usan sin tu nombre, en grupos de 50 o más personas, para estudios de mercado. Tus datos personales siguen siendo tuyos.",
     "consentBox": "Acepto compartir mis recibos y encuestas de forma anónima",
@@ -1344,7 +1344,7 @@
         "c": "Casi a diario"
       }
     },
-    "localNote": "Guardado solo en este equipo hasta que se apruebe el servidor seguro.",
+    "localNote": "Copia local + hub central ACTIVE.",
     "foT": "Listas de datos (anónimas)",
     "foMaster": "Copia maestra: {{n}} datos · {{p}} punteros · {{bad}} rotos",
     "foConsent": "Permisos: {{g}} dados · {{r}} retirados",
@@ -1380,7 +1380,14 @@
     "noSale": "Pendiente de conexión. No se vendió nada.",
     "later": "Todavía no",
     "min50": "Solo se vende en grupos de {{n}} personas o más.",
-    "foNote": "Aprobar solo guarda tu decisión: nada se vende ni se comparte sin servidor, contrato y tu toque."
+    "foNote": "Aprobar solo guarda tu decisión: nada se vende ni se comparte sin contrato y tu toque. Valores = ESTIMADOS.",
+    "hubActive": "Servidor de datos Parra Apps: ACTIVO",
+    "hubFallback": "Servidor de datos: usando copia local (hub no alcanzable)",
+    "hubHint": "Recibos y encuestas con tu permiso van al hub central anónimo. La salud nunca. Nada se vende sin el toque de José.",
+    "hubNote": "Copia local + hub central ACTIVE. Si el hub cae, sigues en este equipo.",
+    "hubEst": "Valor comercial estimado combinado: {{n}} USD",
+    "hubAi": "IA admin (listas)",
+    "millionAlert": "La lista combinada supera {{n}} USD estimados. Avísale a José. Aún no se vende nada."
   },
   "fx": {
     "secTitle": "Entrada y seguridad",

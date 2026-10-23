@@ -6,3 +6,8 @@ workers_dev = true
 [[kv_namespaces]]
 binding = "FOODS"
 id = "8b701be74f274c4eb68a1b17b0cea224"
+
+# Service binding to central Parra Data Hub (avoids workers.dev 1042 on Worker-to-Worker fetch)
+[[services]]
+binding = "DATA_HUB"
+service = "parra-data-hub"

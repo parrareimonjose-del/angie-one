@@ -3,6 +3,7 @@
 import { dailyTarget, today, DAY, streak, trialPhase, type State } from './store';
 import { aiMayDo } from './ai-config';
 import type { Charge } from './ledger';
+import { dataHubAdminReview, type HubSummary } from './datahub';
 
 const dayStr = (n: number, now: number) => today(new Date(now - n * DAY));
 export function adminMetrics(st: State, ledger: Charge[] = [], now = Date.now()) {
@@ -67,3 +68,10 @@ export function specMarkdown(s: TaskSpec) {
 }
 /** Las IAs nunca pueden hacer estas acciones. */
 export const canAct = (action: string) => aiMayDo(action);
+
+/** IA admin revisa el avance de las listas comerciales del hub (sin vender). */
+export function adminDataHubReview(sum: HubSummary | null | undefined) {
+  if (!sum) return { status: 'unknown', action: 'keep_collecting', ready_lists: [], progress: [], estimated_value_usd: 0, estimated: true as const, million_alert: false, note: 'Sin resumen del hub.' };
+  const r = dataHubAdminReview(sum);
+  return r;
+}

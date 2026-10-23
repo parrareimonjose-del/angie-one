@@ -1241,7 +1241,7 @@
     "title": "Mes reçus et données",
     "lock": "Les reçus, sondages et rapports de dépenses font partie de Premium.",
     "noHealth": "Vos données de santé (poids, repas, sommeil, mémoire, chat) n'entrent jamais ici et ne sont jamais vendues. Seulement reçus et sondages.",
-    "server": "serveur sécurisé",
+    "server": "Parra Apps data server (ACTIVE)",
     "consentT": "Autorisation séparée",
     "consentBody": "Si vous acceptez, vos reçus et réponses sont utilisés sans votre nom, en groupes de 50+ personnes, pour des études de marché. Vos données personnelles restent à vous.",
     "consentBox": "J'accepte de partager mes reçus et sondages de façon anonyme",
@@ -1344,7 +1344,7 @@
         "c": "Presque chaque jour"
       }
     },
-    "localNote": "Enregistré uniquement sur cet appareil jusqu'à l'approbation du serveur sécurisé.",
+    "localNote": "Local copy + central hub ACTIVE.",
     "foT": "Listes de données (anonymes)",
     "foMaster": "Copie maîtresse : {{n}} données · {{p}} pointeurs · {{bad}} cassés",
     "foConsent": "Autorisations : {{g}} données · {{r}} retirées",
@@ -1380,7 +1380,14 @@
     "noSale": "En attente de connexion. Rien n'a été vendu.",
     "later": "Pas encore",
     "min50": "Vendu seulement en groupes de {{n}}+ personnes.",
-    "foNote": "Approuver enregistre seulement votre décision : rien n'est vendu ni partagé sans serveur, contrat et votre geste."
+    "foNote": "Approve only records your decision: nothing is sold without a contract and your tap. Values = ESTIMATES.",
+    "hubActive": "Parra Apps data server: ACTIVE",
+    "hubFallback": "Data server: using local copy (hub unreachable)",
+    "hubHint": "Receipts and surveys with your consent go to the anonymous central hub. Health never. Nothing is sold without José’s tap.",
+    "hubNote": "Local copy + central hub ACTIVE. If the hub is down, you keep data on this device.",
+    "hubEst": "Combined estimated commercial value: {{n}} USD",
+    "hubAi": "Admin AI (lists)",
+    "millionAlert": "Combined list exceeds {{n}} USD estimated. Notify José. Still nothing is sold."
   },
   "fx": {
     "secTitle": "Connexion et sécurité",

@@ -1241,7 +1241,7 @@
     "title": "मेरी रसीदें और डेटा",
     "lock": "रसीदें, सर्वे और खर्च रिपोर्ट Premium का हिस्सा हैं।",
     "noHealth": "आपका स्वास्थ्य डेटा (वज़न, भोजन, नींद, मेमोरी, चैट) यहाँ कभी नहीं आता और कभी नहीं बिकता। सिर्फ़ रसीदें और सर्वे।",
-    "server": "सुरक्षित सर्वर",
+    "server": "Parra Apps data server (ACTIVE)",
     "consentT": "अलग अनुमति",
     "consentBody": "अगर आप सहमत हैं, तो आपकी रसीदें और जवाब बिना नाम के, 50+ लोगों के समूह में बाज़ार अध्ययन के लिए उपयोग होते हैं। आपका निजी डेटा आपका ही रहता है।",
     "consentBox": "मैं अपनी रसीदें और सर्वे गुमनाम रूप से साझा करने के लिए सहमत हूँ",
@@ -1344,7 +1344,7 @@
         "c": "लगभग रोज़"
       }
     },
-    "localNote": "सुरक्षित सर्वर मंज़ूर होने तक सिर्फ़ इस डिवाइस पर सहेजा गया।",
+    "localNote": "Local copy + central hub ACTIVE.",
     "foT": "डेटा सूचियाँ (गुमनाम)",
     "foMaster": "मास्टर कॉपी: {{n}} डेटा · {{p}} पॉइंटर · {{bad}} टूटे",
     "foConsent": "अनुमतियाँ: {{g}} दी गईं · {{r}} वापस",
@@ -1380,7 +1380,14 @@
     "noSale": "कनेक्शन बाकी। कुछ नहीं बेचा गया।",
     "later": "अभी नहीं",
     "min50": "सिर्फ़ {{n}}+ लोगों के समूह में बिकता है।",
-    "foNote": "मंज़ूरी सिर्फ़ आपका फ़ैसला दर्ज करती है: सर्वर, अनुबंध और आपके टैप के बिना कुछ भी बेचा या साझा नहीं होता।"
+    "foNote": "Approve only records your decision: nothing is sold without a contract and your tap. Values = ESTIMATES.",
+    "hubActive": "Parra Apps data server: ACTIVE",
+    "hubFallback": "Data server: using local copy (hub unreachable)",
+    "hubHint": "Receipts and surveys with your consent go to the anonymous central hub. Health never. Nothing is sold without José’s tap.",
+    "hubNote": "Local copy + central hub ACTIVE. If the hub is down, you keep data on this device.",
+    "hubEst": "Combined estimated commercial value: {{n}} USD",
+    "hubAi": "Admin AI (lists)",
+    "millionAlert": "Combined list exceeds {{n}} USD estimated. Notify José. Still nothing is sold."
   },
   "fx": {
     "secTitle": "साइन-इन और सुरक्षा",

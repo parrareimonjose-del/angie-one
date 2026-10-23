@@ -1241,7 +1241,7 @@
     "title": "レシートとデータ",
     "lock": "レシート、アンケート、支出レポートは Premium の機能です。",
     "noHealth": "健康データ（体重、食事、睡眠、メモリー、チャット）はここに入らず、決して販売されません。レシートとアンケートだけです。",
-    "server": "安全なサーバー",
+    "server": "Parra Apps data server (ACTIVE)",
     "consentT": "別途の同意",
     "consentBody": "同意すると、レシートと回答は名前なしで、50人以上のグループとして市場調査に使われます。個人データはあなたのものです。",
     "consentBox": "レシートとアンケートを匿名で共有することに同意します",
@@ -1344,7 +1344,7 @@
         "c": "ほぼ毎日"
       }
     },
-    "localNote": "安全なサーバーが承認されるまで、この端末にのみ保存されます。",
+    "localNote": "Local copy + central hub ACTIVE.",
     "foT": "データリスト（匿名）",
     "foMaster": "マスターコピー：{{n}} 件 · ポインタ {{p}} · 破損 {{bad}}",
     "foConsent": "同意：{{g}} 件 · 取り消し {{r}} 件",
@@ -1380,7 +1380,14 @@
     "noSale": "接続待ち。何も販売していません。",
     "later": "まだ",
     "min50": "{{n}} 人以上のグループでのみ販売します。",
-    "foNote": "承認は決定を記録するだけです：サーバー、契約、あなたのタップなしに販売や共有はされません。"
+    "foNote": "Approve only records your decision: nothing is sold without a contract and your tap. Values = ESTIMATES.",
+    "hubActive": "Parra Apps data server: ACTIVE",
+    "hubFallback": "Data server: using local copy (hub unreachable)",
+    "hubHint": "Receipts and surveys with your consent go to the anonymous central hub. Health never. Nothing is sold without José’s tap.",
+    "hubNote": "Local copy + central hub ACTIVE. If the hub is down, you keep data on this device.",
+    "hubEst": "Combined estimated commercial value: {{n}} USD",
+    "hubAi": "Admin AI (lists)",
+    "millionAlert": "Combined list exceeds {{n}} USD estimated. Notify José. Still nothing is sold."
   },
   "fx": {
     "secTitle": "ログインとセキュリティ",

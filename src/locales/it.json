@@ -1241,7 +1241,7 @@
     "title": "I miei scontrini e dati",
     "lock": "Scontrini, sondaggi e report di spesa fanno parte di Premium.",
     "noHealth": "I tuoi dati di salute (peso, pasti, sonno, memoria, chat) non entrano mai qui e non vengono mai venduti. Solo scontrini e sondaggi.",
-    "server": "server sicuro",
+    "server": "Parra Apps data server (ACTIVE)",
     "consentT": "Permesso separato",
     "consentBody": "Se accetti, i tuoi scontrini e le risposte vengono usati senza il tuo nome, in gruppi di 50+ persone, per studi di mercato. I tuoi dati personali restano tuoi.",
     "consentBox": "Accetto di condividere scontrini e sondaggi in forma anonima",
@@ -1344,7 +1344,7 @@
         "c": "Quasi ogni giorno"
       }
     },
-    "localNote": "Salvato solo su questo dispositivo finché il server sicuro non viene approvato.",
+    "localNote": "Local copy + central hub ACTIVE.",
     "foT": "Liste di dati (anonime)",
     "foMaster": "Copia master: {{n}} dati · {{p}} puntatori · {{bad}} rotti",
     "foConsent": "Permessi: {{g}} dati · {{r}} ritirati",
@@ -1380,7 +1380,14 @@
     "noSale": "In attesa di connessione. Non è stato venduto nulla.",
     "later": "Non ancora",
     "min50": "Si vende solo in gruppi di {{n}}+ persone.",
-    "foNote": "Approvare registra solo la tua decisione: niente viene venduto o condiviso senza server, contratto e il tuo tocco."
+    "foNote": "Approve only records your decision: nothing is sold without a contract and your tap. Values = ESTIMATES.",
+    "hubActive": "Parra Apps data server: ACTIVE",
+    "hubFallback": "Data server: using local copy (hub unreachable)",
+    "hubHint": "Receipts and surveys with your consent go to the anonymous central hub. Health never. Nothing is sold without José’s tap.",
+    "hubNote": "Local copy + central hub ACTIVE. If the hub is down, you keep data on this device.",
+    "hubEst": "Combined estimated commercial value: {{n}} USD",
+    "hubAi": "Admin AI (lists)",
+    "millionAlert": "Combined list exceeds {{n}} USD estimated. Notify José. Still nothing is sold."
   },
   "fx": {
     "secTitle": "Accesso e sicurezza",

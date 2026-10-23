@@ -1241,7 +1241,7 @@
     "title": "إيصالاتي وبياناتي",
     "lock": "الإيصالات والاستبيانات وتقارير الإنفاق جزء من Premium.",
     "noHealth": "بياناتك الصحية (الوزن، الوجبات، النوم، الذاكرة، الدردشة) لا تدخل هنا أبدًا ولا تُباع أبدًا. فقط الإيصالات والاستبيانات.",
-    "server": "خادم آمن",
+    "server": "Parra Apps data server (ACTIVE)",
     "consentT": "إذن منفصل",
     "consentBody": "إذا وافقت، تُستخدم إيصالاتك وإجاباتك دون اسمك، ضمن مجموعات من 50 شخصًا أو أكثر، لدراسات السوق. بياناتك الشخصية تبقى ملكك.",
     "consentBox": "أوافق على مشاركة إيصالاتي واستبياناتي بشكل مجهول",
@@ -1344,7 +1344,7 @@
         "c": "كل يوم تقريبًا"
       }
     },
-    "localNote": "محفوظ على هذا الجهاز فقط حتى تتم الموافقة على الخادم الآمن.",
+    "localNote": "Local copy + central hub ACTIVE.",
     "foT": "قوائم البيانات (مجهولة)",
     "foMaster": "النسخة الرئيسية: {{n}} بيانات · {{p}} مؤشرات · {{bad}} معطلة",
     "foConsent": "الأذونات: {{g}} ممنوحة · {{r}} مسحوبة",
@@ -1380,7 +1380,14 @@
     "noSale": "بانتظار الاتصال. لم يُبع شيء.",
     "later": "ليس بعد",
     "min50": "يُباع فقط في مجموعات من {{n}} شخصًا أو أكثر.",
-    "foNote": "الموافقة تسجّل قرارك فقط: لا يُباع أو يُشارك شيء دون خادم وعقد ولمستك."
+    "foNote": "Approve only records your decision: nothing is sold without a contract and your tap. Values = ESTIMATES.",
+    "hubActive": "Parra Apps data server: ACTIVE",
+    "hubFallback": "Data server: using local copy (hub unreachable)",
+    "hubHint": "Receipts and surveys with your consent go to the anonymous central hub. Health never. Nothing is sold without José’s tap.",
+    "hubNote": "Local copy + central hub ACTIVE. If the hub is down, you keep data on this device.",
+    "hubEst": "Combined estimated commercial value: {{n}} USD",
+    "hubAi": "Admin AI (lists)",
+    "millionAlert": "Combined list exceeds {{n}} USD estimated. Notify José. Still nothing is sold."
   },
   "fx": {
     "secTitle": "الدخول والأمان",

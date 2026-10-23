@@ -1241,7 +1241,7 @@
     "title": "Meus recibos e dados",
     "lock": "Recibos, pesquisas e relatórios de gastos fazem parte do Premium.",
     "noHealth": "Seus dados de saúde (peso, refeições, sono, memória, chat) nunca entram nesta seção e nunca são vendidos. Só recibos e pesquisas.",
-    "server": "servidor seguro",
+    "server": "Parra Apps data server (ACTIVE)",
     "consentT": "Permissão separada",
     "consentBody": "Se você aceitar, seus recibos e respostas são usados sem seu nome, em grupos de 50+ pessoas, para estudos de mercado. Seus dados pessoais continuam seus.",
     "consentBox": "Aceito compartilhar meus recibos e pesquisas de forma anônima",
@@ -1344,7 +1344,7 @@
         "c": "Quase todo dia"
       }
     },
-    "localNote": "Salvo só neste aparelho até o servidor seguro ser aprovado.",
+    "localNote": "Local copy + central hub ACTIVE.",
     "foT": "Listas de dados (anônimas)",
     "foMaster": "Cópia mestre: {{n}} dados · {{p}} ponteiros · {{bad}} quebrados",
     "foConsent": "Permissões: {{g}} dadas · {{r}} retiradas",
@@ -1380,7 +1380,14 @@
     "noSale": "Pendente de conexão. Nada foi vendido.",
     "later": "Ainda não",
     "min50": "Só é vendido em grupos de {{n}}+ pessoas.",
-    "foNote": "Aprovar só registra sua decisão: nada é vendido ou compartilhado sem servidor, contrato e seu toque."
+    "foNote": "Approve only records your decision: nothing is sold without a contract and your tap. Values = ESTIMATES.",
+    "hubActive": "Parra Apps data server: ACTIVE",
+    "hubFallback": "Data server: using local copy (hub unreachable)",
+    "hubHint": "Receipts and surveys with your consent go to the anonymous central hub. Health never. Nothing is sold without José’s tap.",
+    "hubNote": "Local copy + central hub ACTIVE. If the hub is down, you keep data on this device.",
+    "hubEst": "Combined estimated commercial value: {{n}} USD",
+    "hubAi": "Admin AI (lists)",
+    "millionAlert": "Combined list exceeds {{n}} USD estimated. Notify José. Still nothing is sold."
   },
   "fx": {
     "secTitle": "Entrada e segurança",

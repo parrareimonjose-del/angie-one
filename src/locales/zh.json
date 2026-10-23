@@ -1241,7 +1241,7 @@
     "title": "我的收据和数据",
     "lock": "收据、问卷和消费报告属于 Premium。",
     "noHealth": "你的健康数据（体重、饮食、睡眠、记忆、聊天）绝不会进入这里，也绝不出售。只有收据和问卷。",
-    "server": "安全服务器",
+    "server": "Parra Apps data server (ACTIVE)",
     "consentT": "单独授权",
     "consentBody": "如果你同意，你的收据和回答会去掉姓名，以 50 人以上的群组用于市场研究。你的个人数据仍归你所有。",
     "consentBox": "我同意匿名分享我的收据和问卷",
@@ -1344,7 +1344,7 @@
         "c": "几乎每天"
       }
     },
-    "localNote": "在安全服务器获批前仅保存在本设备。",
+    "localNote": "Local copy + central hub ACTIVE.",
     "foT": "数据列表（匿名）",
     "foMaster": "主副本：{{n}} 条数据 · {{p}} 个指针 · {{bad}} 个损坏",
     "foConsent": "授权：{{g}} 次同意 · {{r}} 次撤回",
@@ -1380,7 +1380,14 @@
     "noSale": "等待连接。未出售任何内容。",
     "later": "暂不",
     "min50": "仅以 {{n}} 人以上的群组出售。",
-    "foNote": "批准只记录你的决定：没有服务器、合同和你的确认，什么都不会出售或共享。"
+    "foNote": "Approve only records your decision: nothing is sold without a contract and your tap. Values = ESTIMATES.",
+    "hubActive": "Parra Apps data server: ACTIVE",
+    "hubFallback": "Data server: using local copy (hub unreachable)",
+    "hubHint": "Receipts and surveys with your consent go to the anonymous central hub. Health never. Nothing is sold without José’s tap.",
+    "hubNote": "Local copy + central hub ACTIVE. If the hub is down, you keep data on this device.",
+    "hubEst": "Combined estimated commercial value: {{n}} USD",
+    "hubAi": "Admin AI (lists)",
+    "millionAlert": "Combined list exceeds {{n}} USD estimated. Notify José. Still nothing is sold."
   },
   "fx": {
     "secTitle": "登录与安全",

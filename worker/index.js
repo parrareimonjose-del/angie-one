@@ -3,6 +3,7 @@ import { handleFriends } from './friends.js';
 import { handleFoods, foodReport, foodContribute, foodQueue } from './foods.js';
 import { handleSync } from './sync.js';
 import { handlePay } from './pay.js';
+import { handleDatahub } from './datahub.js';
 // Angie One AI proxy: keeps GEMINI_API_KEY server-side (Worker secret).
 const MODEL = 'gemini-flash-lite-latest';
 const MODELS = ['gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-flash-lite-latest', 'gemini-flash-latest', 'gemini-flash-lite-latest'];
@@ -241,6 +242,7 @@ export default {
     if (path.startsWith('/grants/')) return handleGrants(path, req, env, json, h);
     if (path.startsWith('/friends/')) return handleFriends(path, req, env, json, h);
     if (path.startsWith('/pay/')) { try { return await handlePay(path, req, env, json, h); } catch (e) { return json({ error: 'pay', code: String(e.message || e).slice(0, 60) }, 502, h); } }
+    if (path.startsWith('/datahub')) { try { return await handleDatahub(path, req, env, json, h); } catch (e) { return json({ error: 'datahub', code: String(e.message || e).slice(0, 60) }, 502, h); } }
     if (req.method !== 'POST' || !['/estimate', '/plan', '/chat', '/vision', '/dev', '/voice', '/clone', '/foods/report', '/foods/contribute', '/foods/queue', '/foods/queue/delete'].includes(path)) return json({ error: 'not found' }, 404, h);
     const ip = req.headers.get('CF-Connecting-IP') || 'x';
     const now = Date.now(), arr = (hits.get(ip) || []).filter((t) => now - t < 60000);

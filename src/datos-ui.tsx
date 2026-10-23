@@ -1,6 +1,6 @@
 /** Sección de Datos (Premium): permiso aparte, recibos, encuestas, puntos, informes mensual y anual, panel del fundador.
- *  SOLO recibos y encuestas; la salud nunca entra. Todo local / DATOS DE EJEMPLO hasta aprobar un servidor. */
-import { useState } from 'react';
+ *  SOLO recibos y encuestas; la salud nunca entra. Hub central Parra Data Hub ACTIVE; fallback local si cae. */
+import { useState, useEffect } from 'react';
 import { View, Text, TextInput, Pressable, Platform } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -15,8 +15,9 @@ import { useExt, Pending, Example, Note, hidePending } from './ext';
 import { AI_URL } from './ai';
 import { shrinkForUpload } from './img';
 import { DatosTabs } from './taxes-ui';
+import { hubSummary, hubHealth, syncConsentToHub, syncIngestToHub, dataHubAdminReview, HubSummary } from './datahub';
 import { INIT_DATA, DataState, grant, revoke, ingest, receiptsToday, MAX_RECEIPTS_DAY, monthReceipts, summarize, monthlyCost, monthGap, canRedeem, redeem,
-  gapSurveyId, deductions, ACCOUNTANT_QS, LISTS, ListId, listInfo, SAMPLE_USERS, filteredView, decideList, Decision, MIN_GROUP, Receipt, danglingPointers } from './datos';
+  gapSurveyId, deductions, ACCOUNTANT_QS, LISTS, ListId, listInfo, filteredView, decideList, Decision, MIN_GROUP, Receipt, danglingPointers } from './datos';
 
 const BASE = AI_URL.replace(/\/estimate$/, '');
 export const useData = () => useExt<DataState>('datos', INIT_DATA);
@@ -45,9 +46,11 @@ export function Datos() {
   const { t } = useTranslation(); const { s: st } = useStore(); const [d, setD] = useData();
   const [box, setBox] = useState(false); const [msg, setMsg] = useState(''); const [busy, setBusy] = useState(false);
   if (!isPremium(st)) return <Screen title={`🧾 ${t('dt.title')}`}><DatosTabs /><PremLock /><Health /></Screen>;
+  const seed = String((st as any).userId || (st as any).profile?.id || 'local');
   const add = (src: 'receipt' | 'survey', payload: any) => {
-    const r = ingest(d, src, payload, uid()); if (r.error) { setMsg(t('dt.err.' + (['limit', 'done', 'no_consent'].includes(r.error) ? r.error : 'bad'))); return; }
+    const id = uid(); const r = ingest(d, src, payload, id); if (r.error) { setMsg(t('dt.err.' + (['limit', 'done', 'no_consent'].includes(r.error) ? r.error : 'bad'))); return; }
     setD(() => r.d); setMsg(t('dt.plus', { n: r.pts }));
+    const rec = r.d.master[id]; if (rec) void syncIngestToHub(seed, rec);
   };
   const read = async (b64: string, mime: string) => {
     setBusy(true); setMsg('');
@@ -62,17 +65,17 @@ export function Datos() {
     inp.onchange = () => { const f = inp.files?.[0]; if (!f) return; if (f.size > 2.8e6) { setMsg(t('dt.err.big')); return; } const fr = new FileReader(); fr.onload = () => read(String(fr.result).split(',')[1], 'application/pdf'); fr.readAsDataURL(f); }; inp.click(); };
   const done = new Set(Object.values(d.master).map((m) => m.survey?.id));
   return <Screen title={`🧾 ${t('dt.title')}`}>
-    <DatosTabs /><Example />{!hidePending ? <Pending what={t('dt.server')} /> : null}<Health />
+    <DatosTabs /><Example /><HubStatusBanner /><Health />
     <Card testID="consent"><CardTitle>✋ {t('dt.consentT')}</CardTitle>
       {d.consent ? <><T testID="consent-on">✓ {t('dt.consentOn')}</T>
-        <Btn kind="danger" label={t('dt.revoke')} onPress={() => { setD((x) => revoke(x)); setMsg(t('dt.revoked')); }} />
-        <Btn small kind="ghost" label={t('dt.deleteAll')} onPress={() => { setD((x) => revoke(x, Date.now(), 'delete')); setMsg(t('dt.revoked')); }} /></>
+        <Btn kind="danger" label={t('dt.revoke')} onPress={() => { setD((x) => revoke(x)); setMsg(t('dt.revoked')); void syncConsentToHub(seed, 'revoke'); }} />
+        <Btn small kind="ghost" label={t('dt.deleteAll')} onPress={() => { setD((x) => revoke(x, Date.now(), 'delete')); setMsg(t('dt.revoked')); void syncConsentToHub(seed, 'delete'); }} /></>
       : <><T>{t('dt.consentBody')}</T>
         <Pressable testID="consent-box" accessibilityState={{ checked: box }} aria-checked={box} role="checkbox" accessibilityLabel={t('dt.consentBox')} onPress={() => setBox((v) => !v)}
           style={{ flexDirection: 'row', gap: 10, alignItems: 'center', minHeight: 48 }}>
           <View style={{ width: 32, height: 32, borderRadius: 8, borderWidth: 3, borderColor: C.secondary, alignItems: 'center', justifyContent: 'center', backgroundColor: box ? C.secondary : C.white }}><Text style={{ color: C.white, fontWeight: '900' }}>{box ? '✓' : ''}</Text></View>
           <Text style={[s.t, { flex: 1 }]}>{t('dt.consentBox')}</Text></Pressable>
-        <Btn label={t('dt.accept')} kind={box ? 'primary' : 'ghost'} onPress={() => box && setD((x) => grant(x))} />
+        <Btn label={t('dt.accept')} kind={box ? 'primary' : 'ghost'} onPress={() => { if (!box) return; setD((x) => grant(x)); void syncConsentToHub(seed, 'grant'); }} />
         <Text style={[s.muted, { fontSize: 14 }]}>{t('dt.consentLegal')}</Text></>}</Card>
     {msg ? <Text testID="dt-msg" style={[s.h2, { color: C.secondary }]}>{msg}</Text> : null}
     {d.consent ? <>
@@ -89,7 +92,7 @@ export function Datos() {
       <Btn kind="accent" label={`📅 ${t('dt.month')}`} onPress={() => router.push('/datos-mes' as any)} />
       <Btn kind="accent" label={`📚 ${t('dt.year')}`} onPress={() => router.push('/datos-anual' as any)} />
     </> : null}
-    <Note k="dt.localNote" /></Screen>;
+    <Note k="dt.hubNote" /></Screen>;
 }
 
 function ReportScreen({ kind }: { kind: 'month' | 'year' }) {
@@ -122,7 +125,7 @@ function ReportScreen({ kind }: { kind: 'month' | 'year' }) {
         {!hidePending ? <><Btn kind="ghost" label={`✉️ ${t('dt.toAcc')}`} onPress={() => {}} /><Pending what={t('dt.toAccP')} /></> : null}
       </> : null}
       <Text testID="disclaimer" style={[s.muted, { fontWeight: '800' }]}>⚠️ {t('dt.disclaimer')}</Text></Card> : null}
-    <Note k="dt.localNote" /></Screen>;
+    <Note k="dt.hubNote" /></Screen>;
 }
 export const MonthReport = () => <ReportScreen kind="month" />;
 export const YearReport = () => <ReportScreen kind="year" />;
@@ -157,13 +160,49 @@ function downloadPdf(period: string, sum: ReturnType<typeof summarize>, ded: Rec
 }
 
 // ---------- Panel del fundador: listas, aviso de lista lista, estudio de mercado, copia maestra ----------
+function HubStatusBanner() {
+  const { t } = useTranslation();
+  const [st, setSt] = useState('…');
+  useEffect(() => { void hubHealth().then((h) => setSt(h.status)).catch(() => setSt('local_fallback')); }, []);
+  return <Card testID="hub-status" style={{ borderWidth: 2, borderColor: st === 'ACTIVE' ? C.success : C.warning }}>
+    <Text style={[s.h2, { color: st === 'ACTIVE' ? C.success : C.warning }]}>
+      {st === 'ACTIVE' ? `🟢 ${t('dt.hubActive')}` : `🟡 ${t('dt.hubFallback')}`}
+    </Text>
+    <T>{t('dt.hubHint')}</T>
+  </Card>;
+}
+
+function useHubOnce() {
+  const [sum, setSum] = useState<HubSummary | null>(null);
+  useEffect(() => { void hubSummary().then(setSum).catch(() => setSum({ status: 'local_fallback', estimated: true })); }, []);
+  return sum;
+}
+
 export function FounderData() {
   const { t } = useTranslation(); const [d] = useData(); const [dec, setDec] = useExt<Record<string, Decision>>('datosDec', {}); const [open, setOpen] = useState<ListId | null>(null);
+  const hub = useHubOnce();
   const mine = (l: ListId) => (d.lists[l] || []).length;
-  const infos = LISTS.map((l) => listInfo(l, SAMPLE_USERS[l] + (mine(l) ? 1 : 0), SAMPLE_USERS[l] * 9 + mine(l), Math.round(SAMPLE_USERS[l] / 8)));
+  // Prefer hub live counts; fall back to local-only progress (no fake SAMPLE_USERS when hub ACTIVE)
+  const infos = LISTS.map((l) => {
+    const h = hub?.lists?.[l];
+    if (h) return listInfo(l, h.users, h.records, 0);
+    return listInfo(l, mine(l), mine(l), 0);
+  });
   const ready = infos.filter((i) => i.ready && dec[i.id]?.v !== 'approved');
   const pointers = LISTS.reduce((n, l) => n + mine(l), 0);
-  return <Card testID="founder-data"><CardTitle>🗂️ {t('dt.foT')}</CardTitle><Example />{!hidePending ? <Pending what={t('dt.server')} /> : null}
+  const review = hub ? dataHubAdminReview(hub) : null;
+  const hubOn = hub?.status === 'ACTIVE';
+  return <Card testID="founder-data"><CardTitle>🗂️ {t('dt.foT')}</CardTitle>
+    <View testID="hub-active-badge" style={{ backgroundColor: hubOn ? C.success : C.warning, borderRadius: 12, padding: 10 }}>
+      <Text style={[s.h2, { color: C.white }]}>{hubOn ? `🟢 ${t('dt.hubActive')}` : `🟡 ${t('dt.hubFallback')}`}</Text>
+      <Text style={{ color: C.white }}>{t('dt.hubHint')}</Text>
+    </View>
+    {review?.million_alert ? <View testID="million-alert" style={{ backgroundColor: C.warnBg, borderRadius: 12, padding: 10 }}>
+      <Text style={[s.h2, { color: C.warning }]}>🚨 {t('dt.millionAlert', { n: fmtNum(review.estimated_value_usd) })}</Text>
+      <T>{t('dt.estimated')} · {t('dt.noSale')}</T>
+    </View> : null}
+    {hubOn && hub?.estimated_value_usd != null ? <T testID="hub-est">💰 {t('dt.hubEst', { n: fmtNum(hub.estimated_value_usd) })} · {t('dt.estimated')}</T> : null}
+    {review ? <T testID="hub-ai">🤖 {t('dt.hubAi')}: {review.action} · {t('dt.readyN', { n: review.ready_lists.length })}</T> : null}
     <T>{t('dt.foMaster', { n: Object.keys(d.master).length, p: pointers, bad: danglingPointers(d).length })}</T>
     <T>{t('dt.foConsent', { g: d.log.filter((x) => x.action === 'grant').length, r: d.log.filter((x) => x.action !== 'grant').length })}</T>
     {ready.length ? <View testID="ready-notice" style={{ backgroundColor: C.warnBg, borderRadius: 12, padding: 10, gap: 4 }}><Text style={[s.h2, { color: C.warning }]}>🔔 {t('dt.readyN', { n: ready.length })}</Text></View> : null}
