@@ -52,7 +52,11 @@ export function SubscriptionScreen() {
       {CANCEL_URL[prov] ? <Btn testID="cancel-2" label={`↗ ${t('hb.openStore', { store })}`} onPress={() => Linking.openURL(CANCEL_URL[prov])} />
         : PAY_MODE !== 'off' ? <Btn testID="cancel-2" label={`↗ ${t('hb.openStore', { store })}`} onPress={() => openPortal(() => setRmsg(t('hb.portalSoon')))} /> : <><Btn testID="cancel-2" label={`↗ ${t('hb.openStore', { store })}`} onPress={() => setRmsg(t('hb.portalSoon'))} /><Pending what="Stripe" /></>}
       {!st.sub?.active ? <Text testID="cancel-trial" style={[s.muted, { fontWeight: '700' }]}>{t('hb.trialNoCard')}</Text> : null}</Card> : null}
-    <Btn testID="restore" kind="secondary" label={`↺ ${t('hb.restore')}`} onPress={async () => { const r = await restore(); setRmsg(r.ok ? t('hb.restored') : t(prov === 'stripe' ? 'hb.restoreWeb' : 'hb.restorePending')); }} />
+    <Btn testID="restore" kind="secondary" label={`↺ ${t('hb.restore')}`} onPress={async () => {
+      const r = await restore();
+      if (r.ok) { set((x) => ({ ...x, sub: { active: true, plan: r.plan || 'monthly', renewAt: 0, provider: prov === 'apple' ? 'apple' : prov === 'play' ? 'play' : 'stripe' } })); setRmsg(t('hb.restored')); }
+      else setRmsg(t(prov === 'stripe' ? 'hb.restoreWeb' : r.reason === 'cancelled' ? 'hb.restoreNone' : 'hb.restorePending'));
+    }} />
     {rmsg ? <Card><Text testID="restore-msg" style={{ fontWeight: '800', fontSize: 16 }}>{rmsg}</Text></Card> : null}
     <InfoNote icon="🤝" text={t('hb.promise')} />
   </Screen>;

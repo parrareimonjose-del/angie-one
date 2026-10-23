@@ -14,7 +14,7 @@ import { fmtNum, fmtDate } from './i18n';
 import { coachTarget, coachOf, burnedOn } from './coach';
 import { speak, Row, Disclaimer } from './coach-ui';
 import { FEATURES } from './flags';
-import { useExt, Pending, Example, Note, Sponsored, Tile } from './ext';
+import { useExt, Pending, Example, Note, Sponsored, Tile, hidePending } from './ext';
 
 export function Explore() {
   const { t } = useTranslation();
@@ -23,7 +23,7 @@ export function Explore() {
   const p4: [string, string, string, boolean?][] = [['🧑‍⚕️', 'market', '/market', true], ['🏢', 'corp', '/corporate'], ['🐶', 'pet', '/pet'], ['💬', 'whatsapp', '/whatsapp', true]];
   if (FEATURES.purposeStore) p4.splice(2, 0, ['🛍️', 'store', '/store', true]);
   const grid = (a: typeof p3) => <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10, justifyContent: 'space-between' }}>{a.filter(([, k]) => (CLONE_ENABLED || k !== 'twin') && (DEMOS_ENABLED || !(DEMO_KEYS as readonly string[]).includes(k))).map(([i, k, h, p]) => <Tile key={k} icon={i} label={k === 'friends' ? t('t6.fTitle') : t(`x.t.${k}`)} pending={p} onPress={() => router.push(h as any)} />)}</View>;
-  return <Screen title={`✨ ${t('x.explore')}`}>{grid(p3)}<CardTitle>{t('x.more4')}</CardTitle>{grid(p4)}<Note k="x.pendingLegend" /></Screen>;
+  return <Screen title={`✨ ${t('x.explore')}`}>{grid(p3)}<CardTitle>{t('x.more4')}</CardTitle>{grid(p4)}{!hidePending ? <Note k="x.pendingLegend" /> : null}</Screen>;
 }
 
 // ---------- Red social (local hasta tener servidor) ----------

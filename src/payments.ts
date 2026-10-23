@@ -3,6 +3,8 @@
 // Hoy NADA cobra: todos los proveedores están «Pendiente de conexión» (sin claves). No hay dinero real.
 // Las tiendas obligan a usar su sistema para contenido digital dentro de la app: nunca mostrar Stripe en Android/iOS.
 import { Platform } from 'react-native';
+import { IAP_NATIVE_READY, IAP_PRODUCTS, purchaseIap, restoreIap } from './iap';
+export { IAP_PRODUCTS };
 // Decisión de José 2026-10-22: UN solo precio mundial: 2,49 USD/mes o 24,99 USD/año. Sin precio regional.
 export type PlanId = 'monthly' | 'yearly';
 export const PLANS: Record<PlanId, { usd: number; period: 'month' | 'year'; productId: string }> = {
@@ -19,7 +21,8 @@ export const STRIPE_LINKS: Record<PlanId, string> = { monthly: '', yearly: '' };
 export const PAY_MODE: 'off' | 'test' | 'live' = ((process.env.EXPO_PUBLIC_PAY_MODE as any) === 'test' || (process.env.EXPO_PUBLIC_PAY_MODE as any) === 'live') ? (process.env.EXPO_PUBLIC_PAY_MODE as any) : 'off';
 export function providerFor(os: string = Platform.OS): Provider {
   if (os === 'android') return { id: 'play', name: 'Google Play', connected: false, manageUrl: 'https://play.google.com/store/account/subscriptions', canRestore: true };
-  if (os === 'ios') return { id: 'apple', name: 'App Store', connected: false, manageUrl: 'https://apps.apple.com/account/subscriptions', canRestore: true };
+  // connected = StoreKit nativo listo (IAP_NATIVE_READY). Sin cuenta Developer sigue false → UI «pendiente» amable.
+  if (os === 'ios') return { id: 'apple', name: 'App Store', connected: IAP_NATIVE_READY, manageUrl: 'https://apps.apple.com/account/subscriptions', canRestore: true };
   return { id: 'stripe', name: 'Stripe', connected: PAY_MODE !== 'off' || Object.values(STRIPE_LINKS).some(Boolean), manageUrl: '', canRestore: false };
 }
 export type PurchaseResult = { ok: true; url?: string } | { ok: false; reason: 'pending_connection' | 'cancelled' };
@@ -28,9 +31,22 @@ export async function purchase(plan: PlanId, os: string = Platform.OS): Promise<
   const p = providerFor(os);
   if (p.id === 'stripe' && PAY_MODE !== 'off') { try { const r = await payPost('/pay/checkout', { uid: payUid(), plan, back: payBack('paywall') }); return r.url ? { ok: true, url: r.url } : { ok: false, reason: 'pending_connection' }; } catch { return { ok: false, reason: 'pending_connection' }; } }
   if (p.id === 'stripe') { const url = STRIPE_LINKS[plan]; return url ? { ok: true, url } : { ok: false, reason: 'pending_connection' }; }
-  return { ok: false, reason: 'pending_connection' }; // Play Billing / StoreKit se conectan en la versión nativa
+  if (p.id === 'apple') {
+    const r = await purchaseIap(plan);
+    if (r.ok) return { ok: true };
+    return { ok: false, reason: r.reason === 'cancelled' ? 'cancelled' : 'pending_connection' };
+  }
+  return { ok: false, reason: 'pending_connection' }; // Play Billing se conecta en la versión nativa
 }
-export async function restore(os: string = Platform.OS): Promise<{ ok: boolean; reason?: string }> { return providerFor(os).canRestore ? { ok: false, reason: 'pending_connection' } : { ok: false, reason: 'not_supported' }; }
+export async function restore(os: string = Platform.OS): Promise<{ ok: boolean; reason?: string; plan?: PlanId }> {
+  const p = providerFor(os);
+  if (p.id === 'apple') {
+    const r = await restoreIap();
+    if (r.ok) return { ok: true, plan: r.plan };
+    return { ok: false, reason: r.reason === 'cancelled' ? 'cancelled' : 'pending_connection' };
+  }
+  return p.canRestore ? { ok: false, reason: 'pending_connection' } : { ok: false, reason: 'not_supported' };
+}
 
 // ---- Stripe web (Checkout + Portal + estado). El Worker guarda la suscripción por un ID anónimo del dispositivo (sin correo en la app).
 import { APP_AI } from './ai-config';

@@ -1,3 +1,4 @@
+import { EulaGate } from './eula-ui';
 import { useState } from 'react';
 import { View, Text, TextInput } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -22,11 +23,11 @@ export function ContributeCard({ code, onLogged }: { code: string; onLogged: (x:
   const send = async () => { const x = { code, ...v }; if (!validContribution(x)) { setMsg(t('rv.cBad')); return; }
     setBusy(true); try { await contribute({ ...x, lang: curLang() }); setMsg(t('rv.cThanks')); } catch { setMsg(t('rv.cSaved')); } finally { setBusy(false); }
     onLogged({ name: v.name.trim(), kcal: Math.round(+v.k.replace(',', '.')), p: +v.p.replace(',', '.'), c: +v.c.replace(',', '.'), f: +v.f.replace(',', '.') }); };
-  return <IconCard testID="contribute" icon="🤝" title={t('rv.cTitle')} sub={t('rv.cSub')}>
+  return <EulaGate testID="eula-contribute"><IconCard testID="contribute" icon="🤝" title={t('rv.cTitle')} sub={t('rv.cSub')}>
     {fld('name', t('rv.cName'), false)}{fld('brand', t('rv.cBrand'), false)}
     <View style={[s.row, { flexWrap: 'wrap', gap: 6 }]}>{fld('k', t('rv.cK'))}{fld('p', t('rv.cP'))}{fld('c', t('rv.cC'))}{fld('f', t('rv.cF'))}</View>
     <Btn testID="ct-send" label={busy ? '⏳' : `✓ ${t('rv.cSend')}`} onPress={send} />
-    {msg ? <Text testID="ct-msg" style={{ color: C.primary, fontWeight: '800' }}>{msg}</Text> : null}</IconCard>;
+    {msg ? <Text testID="ct-msg" style={{ color: C.primary, fontWeight: '800' }}>{msg}</Text> : null}</IconCard></EulaGate>;
 }
 
 /** Panel del Fundador: cola de moderación (reportes de amigos, alimentos e IA; productos aportados). */

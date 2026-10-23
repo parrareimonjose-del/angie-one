@@ -8,7 +8,7 @@ import i18n, { curLang } from './i18n';
 import { Card, Btn, Chip, T, s, CardTitle, Pill, IconTile } from './ui';
 import { C } from './theme';
 import { useStore, uid } from './store';
-import { useExt, Pending, Note } from './ext';
+import { useExt, Pending, Note, hidePending } from './ext';
 import { makePdf } from './datos-ui';
 import { Auth, loadAuth, saveAuth, isUnlocked, markUnlocked, needsUnlock, checkSecret, createAuth, validSecret, bioAvailable, bioRegister, bioUnlock } from './auth';
 import { Charge, SAMPLE_CHARGES, decideCharge, totals, toCsv, receiptLines, accountantLines, split3, net, money } from './ledger';
@@ -124,7 +124,7 @@ export function SecurityScreenBody() {
         : auth.passkeyId ? <><T style={{ color: C.success, fontWeight: '800' }}>✓ {t('fx.bioOn')}</T><Btn kind="ghost" label={t('fx.bioOff')} onPress={() => setAuth({ ...auth, passkeyId: undefined })} /></>
         : <Btn kind="secondary" label={`👆 ${t('fx.bioAdd')}`} onPress={addBio} />}
       <Note k="fx.bioNote" /></Card>
-    <Card><CardTitle>☁️ {t('fx.cloud')}</CardTitle><Pending /><T>{t('fx.cloudNote')}</T></Card>
+    {!hidePending ? <Card><CardTitle>☁️ {t('fx.cloud')}</CardTitle><Pending /><T>{t('fx.cloudNote')}</T></Card> : null}
     <Btn testID="go-delete" kind="danger" label={`🗑️ ${t('fx.delTitle')}`} onPress={() => router.push('/delete-account')} />
     {!auth ? <Btn testID="sec-skip" kind="ghost" label={t('fx.skip')} onPress={skip} /> : null}
     <Note k="fx.localNote" /></>;
@@ -164,7 +164,7 @@ export function PanelMaestroCard() {
     <Btn kind="secondary" label={`⬇️ ${t('fx.pmDl')}`} onPress={() => download('angie-one-panel-maestro.json', 'application/json', json)} />
     <Btn kind="ghost" label={shown ? t('fx.hide') : t('fx.pmSee')} onPress={() => setShown(!shown)} />
     {shown ? <Text testID="pm-json" selectable style={{ fontFamily: Platform.OS === 'web' ? 'monospace' : undefined, fontSize: 13, color: C.text }}>{json}</Text> : null}
-    <Pending /><Note k="fx.pmNote" /></Card>;
+    {!hidePending ? <Pending /> : null}{!hidePending ? <Note k="fx.pmNote" /> : null}</Card>;
 }
 
 // ---------- IA Administrativa + IA Programadora (funcionales, sin poderes peligrosos) ----------

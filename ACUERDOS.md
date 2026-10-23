@@ -2,6 +2,11 @@
 Última actualización: 2026-10-15 11:37 ET
 Leer al empezar cada conversación. Actualizar tras cada respuesta de José.
 
+
+## 2026-10-23 ~00:10 ET — Apple: StoreKit/IAP + EULA + edad + fuentes
+- José eligió **preparar StoreKit/IAP** (no v1 gratis-only): productos `angieone_premium_monthly` 2,49 USD y `angieone_premium_yearly` 24,99 USD; Restore Purchases; Stripe **solo web**.
+- Código: `src/iap.ts` (`IAP_NATIVE_READY=false` hasta Developer), wire en `payments.ts` + Restore en `honest-ui`; `EulaGate` antes de Amigos/aportes; `age.ts` <13 / teen; Pending oculto en iOS; fuentes OMS/DGA/ACSM/ISSN en Ajustes; términos UGC tolerancia cero (13 idiomas).
+- **No publicar** hasta QA completo verde tras estos cambios.
 ## Reglas de trabajo (orden José vía Grok Bot, 2026-10-15)
 1. Guardar ideas, decisiones y avances en este archivo tras cada respuesta de José.
 2. Responder rápido y corto en español, con botones (widgets).
@@ -189,3 +194,4 @@ DECISIÓN JOSÉ 2026-10-15 12:38 ET: en la sección de datos solo entran recibos
 - clon 72/72, stripe-ui 21/21, web 79/5 (IA calcular/voz/menú), iphone 34/6 (voz, saludo IA). Causa: Gemini free tier lento/503.
 - Regla: no publicar con fallas. Rama feat-stripe-test sin merge; master cca100a sin push; worker no desplegado.
 - 2026-10-22 12:40 PM: feat-stripe-test 6acff59: Stripe prueba OK (API 32/32, UI 21/21), login (autocompletar, recuperación, Face ID stub), guard KV, auditoría Apple en /workspace/calorias/cumplimiento-apple.pdf. NO publicado: qa-web/qa-iphone fallan por Gemini gratis lento/503. Reintentar más tarde. KV: culpable Carta al Futuro (avisado). Cuenta Stripe prueba compartida "chisme"; Angie One tendrá cuenta propia en real. Recomendado rotar sk_test y whsec (fragmento en log local).
+- 2026-10-22/23: José pidió arreglar Apple YA (EULA, pendientes, puerta de edad, fuentes, privacidad) y preparar StoreKit/IAP 2,49/mes + 24,99/año + Restaurar compras, antes/junto a publicar la web.

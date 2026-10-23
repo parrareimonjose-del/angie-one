@@ -30,7 +30,9 @@
     "go": "시작하기!",
     "invalid": "입력 정보를 확인해 주세요: 체중 30~300 kg, 키 100~250 cm, 나이 13~100세.",
     "legalNote": "계속 진행하면 이용약관 및 개인정보처리방침에 동의하는 것으로 간주됩니다.",
-    "notMedical": "Angie One은 의료 기기가 아닙니다."
+    "notMedical": "Angie One은 의료 기기가 아닙니다.",
+    "under13": "You must be at least 13 to create an account or use chat. Ask a parent or guardian.",
+    "teenSafe": "Ages 13–17: weight-loss goals and aggressive deficits are not available. We keep a healthy maintain or gain plan."
   },
   "home": {
     "hello": "안녕하세요! 오늘도 아주 잘하고 있어요",
@@ -155,7 +157,14 @@
     "reset": "내 데이터 삭제",
     "resetQ": "정말 삭제하시겠습니까? 이 기기에 저장된 모든 데이터가 삭제됩니다.",
     "privacy": "식단 일기는 이 기기에만 저장됩니다. 당사는 회원님의 건강 데이터를 절대 판매하지 않습니다.",
-    "version": "MVP 버전"
+    "version": "MVP 버전",
+    "sources": "Scientific sources",
+    "srcOms": "WHO — healthy diet & physical activity",
+    "srcDga": "Dietary Guidelines for Americans (USDA/HHS)",
+    "srcAcsm": "ACSM — exercise & weight management",
+    "srcIssn": "ISSN — sports nutrition",
+    "sourcesNote": "Targets are educational estimates, not medical advice.",
+    "privacyGemini": "AI chat may use Google Gemini as processor. See Privacy for details. The app is free to download."
   },
   "pay": {
     "title": "Angie One Premium",
@@ -323,7 +332,7 @@
     },
     "terms": {
       "title": "이용약관",
-      "updated": "최종 업데이트: 2026년 10월 15일",
+      "updated": "Last updated: October 23, 2026",
       "sections": [
         [
           "동의",
@@ -352,6 +361,10 @@
         [
           "문의",
           "angieoneapp.support@gmail.com으로 이메일을 보내주세요."
+        ],
+        [
+          "User-generated content (zero tolerance)",
+          "Friends, food contributions and other user content have zero tolerance for hate, harassment, pornography, violence or illegal content. You can report. We review within 24 hours, remove content and may ban. Using Friends or contributions means you accept these Terms."
         ]
       ]
     },
@@ -1846,7 +1859,8 @@
         "Angie One → '구독 취소'를 고르세요.",
         "결제한 기간이 끝날 때까지 Premium을 써요."
       ]
-    }
+    },
+    "restoreNone": "No previous purchase found on this Apple ID."
   },
   "vf": {
     "banana": "바나나",
@@ -2368,5 +2382,13 @@
       "2": "가슴 통증, 실신, 붓기가 있으면 멈추고 병원에 가세요."
     },
     "referNote": "상황에 맞게 의사나 보건 전문가와도 꼭 상담하세요."
+  },
+  "eula": {
+    "title": "Community Terms",
+    "body": "Before Friends or food contributions, accept our Terms. Zero tolerance for objectionable content.",
+    "zero": "Zero tolerance: hate, harassment, porn, violence, or illegal content. Reports lead to removal and bans.",
+    "read": "Read Terms",
+    "accept": "I accept the Terms",
+    "mod": "You can report content; we remove and may ban within 24 hours."
   }
 }

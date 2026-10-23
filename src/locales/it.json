@@ -30,7 +30,9 @@
     "go": "Andiamo!",
     "invalid": "Controlla i dati: peso 30–300 kg, altezza 100–250 cm, età 13–100.",
     "legalNote": "Continuando accetti i Termini e l'Informativa sulla privacy.",
-    "notMedical": "Angie One non è un dispositivo medico."
+    "notMedical": "Angie One non è un dispositivo medico.",
+    "under13": "Serve almeno 13 anni per creare un account o usare la chat.",
+    "teenSafe": "13–17: niente obiettivi di dimagrimento né deficit aggressivi. Solo mantenere o aumentare in salute."
   },
   "home": {
     "hello": "Ciao! Stai andando alla grande oggi",
@@ -155,7 +157,14 @@
     "reset": "Elimina i miei dati",
     "resetQ": "Sei sicuro? Questo eliminerà tutto su questo dispositivo.",
     "privacy": "Il tuo diario è memorizzato solo su questo dispositivo. Non vendiamo mai i tuoi dati sulla salute.",
-    "version": "Versione MVP"
+    "version": "Versione MVP",
+    "sources": "Fonti scientifiche",
+    "srcOms": "OMS — alimentazione e attività fisica",
+    "srcDga": "Dietary Guidelines for Americans (USDA/HHS)",
+    "srcAcsm": "ACSM — esercizio e peso",
+    "srcIssn": "ISSN — nutrizione sportiva",
+    "sourcesNote": "Obiettivi = stime educative, non consiglio medico.",
+    "privacyGemini": "La chat IA può usare Google Gemini come responsabile del trattamento. Vedi Privacy. App gratuita."
   },
   "pay": {
     "title": "Angie One Premium",
@@ -323,7 +332,7 @@
     },
     "terms": {
       "title": "Termini di Utilizzo",
-      "updated": "Ultimo aggiornamento: 15 ottobre 2026",
+      "updated": "Last updated: October 23, 2026",
       "sections": [
         [
           "Accettazione",
@@ -352,6 +361,10 @@
         [
           "Contatti",
           "Scrivici a angieoneapp.support@gmail.com."
+        ],
+        [
+          "User-generated content (zero tolerance)",
+          "Friends, food contributions and other user content have zero tolerance for hate, harassment, pornography, violence or illegal content. You can report. We review within 24 hours, remove content and may ban. Using Friends or contributions means you accept these Terms."
         ]
       ]
     },
@@ -1846,7 +1859,8 @@
         "Scegli Angie One → «Annulla abbonamento».",
         "Premium resta attivo fino alla fine del periodo pagato."
       ]
-    }
+    },
+    "restoreNone": "Nessun acquisto precedente su questo Apple ID."
   },
   "vf": {
     "banana": "Banana",
@@ -2368,5 +2382,13 @@
       "2": "Con dolore al petto, svenimento o gonfiore, fermati e vai dal medico."
     },
     "referNote": "Nel tuo caso, consulta anche il tuo medico o un professionista della salute."
+  },
+  "eula": {
+    "title": "Termini della community",
+    "body": "Prima di Amici o contributi, accetta i Termini. Tolleranza zero per contenuti inaccettabili.",
+    "zero": "Tolleranza zero: odio, molestie, porno, violenza o illegale. Segnalazioni → rimozione e ban.",
+    "read": "Leggi i Termini",
+    "accept": "Accetto i Termini",
+    "mod": "Puoi segnalare; rimozione e ban entro 24 h."
   }
 }

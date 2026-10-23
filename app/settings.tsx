@@ -44,7 +44,14 @@ export default function Settings() {
       <Btn kind="ghost" label={`🧠  ${t('p2.t.memory')}`} onPress={() => router.push('/memory')} />
       <Btn kind="ghost" label={`🔔  ${t('p2.t.rem')}`} onPress={() => router.push('/reminders')} />
       <FeedbackBox />
-      <Card><T>🔒 {t('set.privacy')}</T><CardTitle>📄 {t('legal.section')}</CardTitle><LegalLinks /></Card>
+      <Card testID="set-sources"><CardTitle>📚 {t('set.sources')}</CardTitle>
+        <T>• {t('set.srcOms')}</T>
+        <T>• {t('set.srcDga')}</T>
+        <T>• {t('set.srcAcsm')}</T>
+        <T>• {t('set.srcIssn')}</T>
+        <T style={{ marginTop: 6 }}>{t('set.sourcesNote')}</T>
+      </Card>
+      <Card><T>🔒 {t('set.privacy')}</T><T>{t('set.privacyGemini')}</T><CardTitle>📄 {t('legal.section')}</CardTitle><LegalLinks /></Card>
       <Btn kind="ghost" label={t('set.profile')} onPress={() => router.push('/onboarding')} />
       <Btn kind="danger" label={t('set.reset')} onPress={doReset} />
       <Text style={[s.muted, { textAlign: 'center' }]}>Angie One · {t('set.version')} 0.5.0 · Parra Apps</Text>

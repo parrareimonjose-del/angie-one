@@ -30,7 +30,9 @@
     "go": "冲吧！",
     "invalid": "请检查你的信息：体重 30–300 kg，身高 100–250 cm，年龄 13–100 岁。",
     "legalNote": "继续即表示你接受服务条款和隐私政策。",
-    "notMedical": "Angie One 不是医疗器械。"
+    "notMedical": "Angie One 不是医疗器械。",
+    "under13": "You must be at least 13 to create an account or use chat. Ask a parent or guardian.",
+    "teenSafe": "Ages 13–17: weight-loss goals and aggressive deficits are not available. We keep a healthy maintain or gain plan."
   },
   "home": {
     "hello": "嗨！你今天的状态真棒",
@@ -155,7 +157,14 @@
     "reset": "删除我的数据",
     "resetQ": "确定吗？这会删除此设备上的所有内容。",
     "privacy": "你的日记只保存在此设备上。我们绝不出售你的健康数据。",
-    "version": "MVP version"
+    "version": "MVP version",
+    "sources": "Scientific sources",
+    "srcOms": "WHO — healthy diet & physical activity",
+    "srcDga": "Dietary Guidelines for Americans (USDA/HHS)",
+    "srcAcsm": "ACSM — exercise & weight management",
+    "srcIssn": "ISSN — sports nutrition",
+    "sourcesNote": "Targets are educational estimates, not medical advice.",
+    "privacyGemini": "AI chat may use Google Gemini as processor. See Privacy for details. The app is free to download."
   },
   "pay": {
     "title": "Angie One 高级版",
@@ -323,7 +332,7 @@
     },
     "terms": {
       "title": "使用条款",
-      "updated": "最后更新时间：2026年10月15日",
+      "updated": "Last updated: October 23, 2026",
       "sections": [
         [
           "接受条款",
@@ -352,6 +361,10 @@
         [
           "联系我们",
           "请发送电子邮件至 angieoneapp.support@gmail.com 与我们联系。"
+        ],
+        [
+          "User-generated content (zero tolerance)",
+          "Friends, food contributions and other user content have zero tolerance for hate, harassment, pornography, violence or illegal content. You can report. We review within 24 hours, remove content and may ban. Using Friends or contributions means you accept these Terms."
         ]
       ]
     },
@@ -1846,7 +1859,8 @@
         "选择 Angie One →「取消订阅」。",
         "Premium 保留到已付期限结束。"
       ]
-    }
+    },
+    "restoreNone": "No previous purchase found on this Apple ID."
   },
   "vf": {
     "banana": "香蕉",
@@ -2368,5 +2382,13 @@
       "2": "出现胸痛、昏厥或肿胀时，停止并就医。"
     },
     "referNote": "针对你的情况，也请咨询你的医生或专业医护人员。"
+  },
+  "eula": {
+    "title": "Community Terms",
+    "body": "Before Friends or food contributions, accept our Terms. Zero tolerance for objectionable content.",
+    "zero": "Zero tolerance: hate, harassment, porn, violence, or illegal content. Reports lead to removal and bans.",
+    "read": "Read Terms",
+    "accept": "I accept the Terms",
+    "mod": "You can report content; we remove and may ban within 24 hours."
   }
 }

@@ -30,7 +30,9 @@
     "go": "Поехали!",
     "invalid": "Проверьте данные: вес 30–300 кг, рост 100–250 см, возраст 13–100 лет.",
     "legalNote": "Продолжая, вы принимаете Условия использования и Политику конфиденциальности.",
-    "notMedical": "Angie One не является медицинским прибором."
+    "notMedical": "Angie One не является медицинским прибором.",
+    "under13": "You must be at least 13 to create an account or use chat. Ask a parent or guardian.",
+    "teenSafe": "Ages 13–17: weight-loss goals and aggressive deficits are not available. We keep a healthy maintain or gain plan."
   },
   "home": {
     "hello": "Привет! Сегодня вы отлично справляетесь",
@@ -155,7 +157,14 @@
     "reset": "Удалить мои данные",
     "resetQ": "Уверены? Это удалит все данные на этом устройстве.",
     "privacy": "Ваш дневник хранится только на этом устройстве. Мы никогда не продаем ваши данные о здоровье.",
-    "version": "Версия MVP"
+    "version": "Версия MVP",
+    "sources": "Scientific sources",
+    "srcOms": "WHO — healthy diet & physical activity",
+    "srcDga": "Dietary Guidelines for Americans (USDA/HHS)",
+    "srcAcsm": "ACSM — exercise & weight management",
+    "srcIssn": "ISSN — sports nutrition",
+    "sourcesNote": "Targets are educational estimates, not medical advice.",
+    "privacyGemini": "AI chat may use Google Gemini as processor. See Privacy for details. The app is free to download."
   },
   "pay": {
     "title": "Angie One Premium",
@@ -323,7 +332,7 @@
     },
     "terms": {
       "title": "Условия использования",
-      "updated": "Последнее обновление: 15 октября 2026 г.",
+      "updated": "Last updated: October 23, 2026",
       "sections": [
         [
           "Принятие условий",
@@ -352,6 +361,10 @@
         [
           "Контакты",
           "Напишите нам на angieoneapp.support@gmail.com."
+        ],
+        [
+          "User-generated content (zero tolerance)",
+          "Friends, food contributions and other user content have zero tolerance for hate, harassment, pornography, violence or illegal content. You can report. We review within 24 hours, remove content and may ban. Using Friends or contributions means you accept these Terms."
         ]
       ]
     },
@@ -1846,7 +1859,8 @@
         "Выберите Angie One → «Отменить подписку».",
         "Premium остаётся до конца оплаченного периода."
       ]
-    }
+    },
+    "restoreNone": "No previous purchase found on this Apple ID."
   },
   "vf": {
     "banana": "Банан",
@@ -2368,5 +2382,13 @@
       "2": "При боли в груди, обмороке или отёке прекратите и обратитесь к врачу."
     },
     "referNote": "В вашем случае также посоветуйтесь с врачом или медицинским специалистом."
+  },
+  "eula": {
+    "title": "Community Terms",
+    "body": "Before Friends or food contributions, accept our Terms. Zero tolerance for objectionable content.",
+    "zero": "Zero tolerance: hate, harassment, porn, violence, or illegal content. Reports lead to removal and bans.",
+    "read": "Read Terms",
+    "accept": "I accept the Terms",
+    "mod": "You can report content; we remove and may ban within 24 hours."
   }
 }

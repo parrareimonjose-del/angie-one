@@ -30,7 +30,9 @@
     "go": "Let's go!",
     "invalid": "Check your info: weight 30–300 kg, height 100–250 cm, age 13–100.",
     "legalNote": "By continuing you accept the Terms and Privacy Policy.",
-    "notMedical": "Angie One is not a medical device."
+    "notMedical": "Angie One is not a medical device.",
+    "under13": "You must be at least 13 to create an account or use chat. Ask a parent or guardian.",
+    "teenSafe": "Ages 13–17: weight-loss goals and aggressive deficits are not available. We keep a healthy maintain or gain plan."
   },
   "home": {
     "hello": "Hi! You're doing great today",
@@ -155,7 +157,14 @@
     "reset": "Delete my data",
     "resetQ": "Sure? This deletes everything on this device.",
     "privacy": "Your diary is stored only on this device. We never sell your health data.",
-    "version": "MVP version"
+    "version": "MVP version",
+    "sources": "Scientific sources",
+    "srcOms": "WHO — healthy diet & physical activity",
+    "srcDga": "Dietary Guidelines for Americans (USDA/HHS)",
+    "srcAcsm": "ACSM — exercise & weight management",
+    "srcIssn": "ISSN — sports nutrition",
+    "sourcesNote": "Targets are educational estimates, not medical advice.",
+    "privacyGemini": "AI chat may use Google Gemini as processor. See Privacy for details. The app is free to download."
   },
   "pay": {
     "title": "Angie One Premium",
@@ -285,7 +294,7 @@
     },
     "terms": {
       "title": "Terms of Use",
-      "updated": "Last updated: October 15, 2026",
+      "updated": "Last updated: October 23, 2026",
       "sections": [
         [
           "Acceptance",
@@ -314,6 +323,10 @@
         [
           "Contact",
           "Email us at angieoneapp.support@gmail.com."
+        ],
+        [
+          "User-generated content (zero tolerance)",
+          "Friends, food contributions and other user content have zero tolerance for hate, harassment, pornography, violence or illegal content. You can report. We review within 24 hours, remove content and may ban. Using Friends or contributions means you accept these Terms."
         ]
       ]
     },
@@ -1846,7 +1859,8 @@
         "Choose Angie One → «Cancel Subscription».",
         "You keep Premium until the end of the paid period."
       ]
-    }
+    },
+    "restoreNone": "No previous purchase found on this Apple ID."
   },
   "vf": {
     "banana": "Banana",
@@ -2368,5 +2382,13 @@
       "2": "With chest pain, fainting or swelling, stop and see a doctor."
     },
     "referNote": "For your situation, please also check with your doctor or a health professional."
+  },
+  "eula": {
+    "title": "Community Terms",
+    "body": "Before Friends or food contributions, accept our Terms. Zero tolerance for objectionable content.",
+    "zero": "Zero tolerance: hate, harassment, porn, violence, or illegal content. Reports lead to removal and bans.",
+    "read": "Read Terms",
+    "accept": "I accept the Terms",
+    "mod": "You can report content; we remove and may ban within 24 hours."
   }
 }

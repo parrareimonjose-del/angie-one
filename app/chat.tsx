@@ -6,6 +6,8 @@ import { Screen, Card, Btn, Chip, T, s, InfoNote } from '../src/ui';
 import { C } from '../src/theme';
 import { curLang } from '../src/i18n';
 import { today } from '../src/store';
+import { router } from 'expo-router';
+import { canUseChat } from '../src/age';
 import { useCoach, CoachLocked, Row, speak } from '../src/coach-ui';
 import { useExt } from '../src/ext';
 import { Mem, MEM0, learnFact, memContext } from '../src/p2';
@@ -37,7 +39,8 @@ export default function Chat() {
   const last = [...c.chat].reverse().find((m) => m.role === 'coach');
   return (
     <Screen title={`💬 ${t('coach.chat')}`}>
-      <InfoNote warn text={t('chat.disclaimer')} />
+      {!canUseChat(st.profile?.age) ? <Card testID="chat-age-block"><T>{t('ob.under13')}</T><Btn label={t('back')} onPress={() => router.back()} /></Card> : (<>
+<InfoNote warn text={t('chat.disclaimer')} />
       {!c.chat.length && <Card><T>👋 {t('chat.hello')}</T></Card>}
       {c.chat.map((m, i) => (
         <View key={i} testID={m.role === 'coach' ? 'chat-reply' : undefined} style={{ alignSelf: m.role === 'user' ? 'flex-end' : 'flex-start', maxWidth: '88%', backgroundColor: m.role === 'user' ? C.secondary : C.card, borderRadius: 20, padding: 14 }}>
@@ -54,6 +57,6 @@ export default function Chat() {
         <Btn style={{ flex: 2 }} label={`➤ ${t('chat.send')}`} onPress={() => send(q)} />
         {last && <Btn style={{ flex: 1 }} kind="ghost" label="🔊" a11y={t('home.readAloud')} onPress={() => speak(plain(last.text))} />}
       </View>
-    </Screen>
+    </>)}</Screen>
   );
 }

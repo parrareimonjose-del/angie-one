@@ -11,6 +11,7 @@ import { useStore, today } from './store';
 import { fmtNum, fmtDate } from './i18n';
 import { coachTarget } from './coach';
 import { Row, speak } from './coach-ui';
+import { EulaGate } from './eula-ui';
 import { useExt } from './ext';
 import { useWeights, type Sleep } from './p2';
 import { DV, VITS, MINS, dayMicro } from './yazio5';
@@ -129,6 +130,7 @@ export function FriendsScreen() {
   const unblock = () => setFr((v) => ({ ...v, blocked: [] }));
   const invite = (c: string) => { const url = whatsappLink(c, t('t6.fInviteText')); Platform.OS === 'web' ? window.open(url, '_blank') : Linking.openURL(url); };
   return <Screen title={`🤝 ${t('t6.fTitle')}`}>
+    <EulaGate>
     <StatRow items={[{ icon: '🏆', value: pts, label: t('t6.fMyPts') }, { icon: '👥', value: gs.length, label: t('t6.fGroups') }]} />
     <IconCard icon="🙂" title={t('t6.fYou')} sub={t('t6.fPrivacy')}>
       <TextInput testID="f-nick" accessibilityLabel={t('t6.fNickL')} placeholder={t('t6.fNickL')} maxLength={20} value={nick} onChangeText={setNick} style={s.input} />
@@ -142,7 +144,8 @@ export function FriendsScreen() {
       <Row><Btn small label={`💬 ${t('t6.fInvite')}`} onPress={() => invite(g.code)} style={{ flex: 1 }} /><Btn small kind="ghost" label={t('t6.fLeave')} onPress={() => leave(g.code)} style={{ flex: 1 }} /></Row>
       <Text style={[s.muted, { fontSize: 12 }]} selectable>{inviteLink(g.code)}</Text></Card>)}
     {(fr.blocked || []).length ? <Btn small kind="ghost" testID="f-unblock" label={t('rv.fUnblock', { n: fr.blocked!.length })} onPress={unblock} /> : null}
-    <InfoNote text={t('rv.fRules')} /></Screen>;
+    <InfoNote text={t('rv.fRules')} />
+    </EulaGate></Screen>;
 }
 
 // ---------- 7) Metas por nutriente ----------

@@ -7,6 +7,8 @@ export type Profile = { goal: 'lose' | 'keep' | 'gain'; weight: number; height: 
 export type Entry = { id: string; date: string; time: number; name: string; kcal: number; p: number; c: number; f: number; source: 'photo' | 'barcode' | 'manual' | 'quick'; fiber?: number; meal?: number; micro?: import('./yazio5').Micro; planned?: boolean };
 export type State = {
   profile?: Profile; trialStart?: number; langOverride?: Lang | null; aiEnabled: boolean;
+  /** Aceptación EULA/Términos (tolerancia cero UGC) antes de Amigos o aportes. */
+  eula?: { v: number; at: number };
   entries: Entry[]; water: Record<string, number>; challengeDays: string[]; aiPhotos: Record<string, number>;
   founder: Record<string, 'approved' | 'rejected'>;
   coach?: Coach;
@@ -26,7 +28,9 @@ export function dailyTarget(p?: Profile) {
   if (!p) return { kcal: 2000, p: 100, c: 250, f: 67 };
   const bmr = 10 * p.weight + 6.25 * p.height - 5 * p.age + (p.sex === 'male' ? 5 : -161);
   const tdee = bmr * [1.2, 1.375, 1.55, 1.725][p.activity - 1];
-  let kcal = tdee + (p.goal === 'lose' ? -450 : p.goal === 'gain' ? 300 : 0);
+  // App Store: 13–17 sin déficit agresivo (meta pérdida → mantener)
+  const goal = (p.age >= 13 && p.age < 18 && p.goal === 'lose') ? 'keep' : p.goal;
+  let kcal = tdee + (goal === 'lose' ? -450 : goal === 'gain' ? 300 : 0);
   kcal = Math.round(Math.max(kcal, p.sex === 'male' ? 1500 : 1200) / 10) * 10; // nunca por debajo del mínimo seguro
   const prot = Math.round(p.weight * (p.goal === 'gain' ? 2 : 1.6));
   const fat = Math.round((kcal * 0.28) / 9);

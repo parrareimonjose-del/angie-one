@@ -30,7 +30,9 @@
     "go": "C'est parti !",
     "invalid": "Vérifiez vos informations : poids 30–300 kg, taille 100–250 cm, âge 13–100 ans.",
     "legalNote": "En continuant, vous acceptez les Conditions d'utilisation et la Politique de confidentialité.",
-    "notMedical": "Angie One n'est pas un dispositif médical."
+    "notMedical": "Angie One n'est pas un dispositif médical.",
+    "under13": "Il faut avoir au moins 13 ans pour créer un compte ou utiliser le chat.",
+    "teenSafe": "13–17 ans : pas d’objectif de perte de poids ni déficit agressif. Maintien ou prise sains."
   },
   "home": {
     "hello": "Bonjour ! Vous assurez aujourd'hui",
@@ -155,7 +157,14 @@
     "reset": "Supprimer mes données",
     "resetQ": "Êtes-vous sûr(e) ? Cela supprimera toutes les données sur cet appareil.",
     "privacy": "Votre journal est stocké uniquement sur cet appareil. Nous ne vendons jamais vos données de santé.",
-    "version": "Version MVP"
+    "version": "Version MVP",
+    "sources": "Sources scientifiques",
+    "srcOms": "OMS — alimentation et activité physique",
+    "srcDga": "Dietary Guidelines for Americans (USDA/HHS)",
+    "srcAcsm": "ACSM — exercice et poids",
+    "srcIssn": "ISSN — nutrition sportive",
+    "sourcesNote": "Objectifs = estimations éducatives, pas un avis médical.",
+    "privacyGemini": "Le chat IA peut utiliser Google Gemini comme sous-traitant. Voir Confidentialité. App gratuite."
   },
   "pay": {
     "title": "Angie One Premium",
@@ -285,7 +294,7 @@
     },
     "terms": {
       "title": "Conditions d'utilisation",
-      "updated": "Dernière mise à jour : 15 octobre 2026",
+      "updated": "Last updated: October 23, 2026",
       "sections": [
         [
           "Acceptation",
@@ -314,6 +323,10 @@
         [
           "Contact",
           "Contactez-nous par e-mail à angieoneapp.support@gmail.com."
+        ],
+        [
+          "User-generated content (zero tolerance)",
+          "Friends, food contributions and other user content have zero tolerance for hate, harassment, pornography, violence or illegal content. You can report. We review within 24 hours, remove content and may ban. Using Friends or contributions means you accept these Terms."
         ]
       ]
     },
@@ -1846,7 +1859,8 @@
         "Choisissez Angie One → « Annuler l'abonnement ».",
         "Premium reste actif jusqu'à la fin de la période payée."
       ]
-    }
+    },
+    "restoreNone": "Aucun achat précédent sur cet Apple ID."
   },
   "vf": {
     "banana": "Banane",
@@ -2368,5 +2382,13 @@
       "2": "En cas de douleur thoracique, malaise ou gonflement, arrêtez et consultez."
     },
     "referNote": "Dans votre cas, consultez aussi votre médecin ou un professionnel de santé."
+  },
+  "eula": {
+    "title": "Conditions de la communauté",
+    "body": "Avant Amis ou contributions, acceptez les Conditions. Tolérance zéro pour le contenu répréhensible.",
+    "zero": "Tolérance zéro : haine, harcèlement, pornographie, violence ou illégal. Signalements → suppression et bans.",
+    "read": "Lire les Conditions",
+    "accept": "J’accepte les Conditions",
+    "mod": "Vous pouvez signaler ; retrait et bans possibles sous 24 h."
   }
 }

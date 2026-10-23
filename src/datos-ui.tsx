@@ -11,7 +11,7 @@ import { C } from './theme';
 import { useStore, uid } from './store';
 import { fmtNum, curLang } from './i18n';
 import { isPremium } from './coach';
-import { useExt, Pending, Example, Note } from './ext';
+import { useExt, Pending, Example, Note, hidePending } from './ext';
 import { AI_URL } from './ai';
 import { shrinkForUpload } from './img';
 import { DatosTabs } from './taxes-ui';
@@ -62,7 +62,7 @@ export function Datos() {
     inp.onchange = () => { const f = inp.files?.[0]; if (!f) return; if (f.size > 2.8e6) { setMsg(t('dt.err.big')); return; } const fr = new FileReader(); fr.onload = () => read(String(fr.result).split(',')[1], 'application/pdf'); fr.readAsDataURL(f); }; inp.click(); };
   const done = new Set(Object.values(d.master).map((m) => m.survey?.id));
   return <Screen title={`🧾 ${t('dt.title')}`}>
-    <DatosTabs /><Example /><Pending what={t('dt.server')} /><Health />
+    <DatosTabs /><Example />{!hidePending ? <Pending what={t('dt.server')} /> : null}<Health />
     <Card testID="consent"><CardTitle>✋ {t('dt.consentT')}</CardTitle>
       {d.consent ? <><T testID="consent-on">✓ {t('dt.consentOn')}</T>
         <Btn kind="danger" label={t('dt.revoke')} onPress={() => { setD((x) => revoke(x)); setMsg(t('dt.revoked')); }} />
@@ -119,7 +119,7 @@ function ReportScreen({ kind }: { kind: 'month' | 'year' }) {
         <CardTitle>🧑‍💼 {t('dt.accQ')}</CardTitle>
         {ACCOUNTANT_QS.map((q) => <View key={q} style={{ gap: 4 }}><T>{t('dt.acc.' + q)}</T><TextInput value={ans[q] || ''} onChangeText={(v) => setAns((a) => ({ ...a, [q]: v.slice(0, 120) }))} style={[s.input, { minHeight: 48 }]} /></View>)}
         <Btn label={`📄 ${t('dt.pdfDl')}`} onPress={() => downloadPdf(period, sum, ded, ans)} />
-        <Btn kind="ghost" label={`✉️ ${t('dt.toAcc')}`} onPress={() => {}} /><Pending what={t('dt.toAccP')} />
+        {!hidePending ? <><Btn kind="ghost" label={`✉️ ${t('dt.toAcc')}`} onPress={() => {}} /><Pending what={t('dt.toAccP')} /></> : null}
       </> : null}
       <Text testID="disclaimer" style={[s.muted, { fontWeight: '800' }]}>⚠️ {t('dt.disclaimer')}</Text></Card> : null}
     <Note k="dt.localNote" /></Screen>;
@@ -163,7 +163,7 @@ export function FounderData() {
   const infos = LISTS.map((l) => listInfo(l, SAMPLE_USERS[l] + (mine(l) ? 1 : 0), SAMPLE_USERS[l] * 9 + mine(l), Math.round(SAMPLE_USERS[l] / 8)));
   const ready = infos.filter((i) => i.ready && dec[i.id]?.v !== 'approved');
   const pointers = LISTS.reduce((n, l) => n + mine(l), 0);
-  return <Card testID="founder-data"><CardTitle>🗂️ {t('dt.foT')}</CardTitle><Example /><Pending what={t('dt.server')} />
+  return <Card testID="founder-data"><CardTitle>🗂️ {t('dt.foT')}</CardTitle><Example />{!hidePending ? <Pending what={t('dt.server')} /> : null}
     <T>{t('dt.foMaster', { n: Object.keys(d.master).length, p: pointers, bad: danglingPointers(d).length })}</T>
     <T>{t('dt.foConsent', { g: d.log.filter((x) => x.action === 'grant').length, r: d.log.filter((x) => x.action !== 'grant').length })}</T>
     {ready.length ? <View testID="ready-notice" style={{ backgroundColor: C.warnBg, borderRadius: 12, padding: 10, gap: 4 }}><Text style={[s.h2, { color: C.warning }]}>🔔 {t('dt.readyN', { n: ready.length })}</Text></View> : null}
