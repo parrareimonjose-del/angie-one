@@ -30,7 +30,7 @@ ok(split3(100).founder === 55 && split3(100).family === 5 && split3(100).app ===
 let L = decideCharge(SAMPLE_CHARGES, 'ej-1', 'approved', new Date('2026-10-15')); ok(L[0].receipt === 'AO-2026-0001', 'recibo numerado');
 L = decideCharge(L, 'ej-1', 'rejected'); ok(L[0].status === 'approved', 'no se puede cambiar un cargo ya decidido');
 const tt = totals(L); ok(tt.count === 1 && tt.pending === 3 && tt.net === net(SAMPLE_CHARGES[0]), 'totales');
-const csv = toCsv(L); ok(csv.split('\n')[0].includes('founder_60') && csv.includes('AO-2026-0001') && csv.includes(',YES'), 'CSV contador con marca de ejemplo');
+const csv = toCsv(L); ok(csv.split('\n')[0].includes('founder_55') && csv.split('\n')[0].includes('angie_family_5') && csv.includes('AO-2026-0001') && csv.includes(',YES'), 'CSV contador con marca de ejemplo');
 ok(receiptLines(L[0], (k) => k).some((x) => x.includes('sample')), 'recibo marca datos de ejemplo');
 ok(!SAMPLE_CHARGES.some((c) => /prop[oó]sito|don/i.test(c.desc)), 'sin cargos de donación/tienda');
 
