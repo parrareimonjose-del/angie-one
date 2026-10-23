@@ -10,7 +10,11 @@ async function guard(ctx) {
     const r = route.request();
     if (r.method() === 'GET' && /\/foods\/(search|barcode|meta)/.test(r.url()) && process.env.KV_FOODS_LOCAL !== '1') return route.fallback(); // lecturas baratas (100k/día) de la base real, con Cache API delante
     const url = r.url().replace(PROD, LOCAL);
-    try { const res = await route.fetch({ url, headers: { ...r.headers(), origin: 'http://localhost:8801' } }); stats.forwarded++; await route.fulfill({ response: res }); }
+    try {
+      // Conserva el Origin de la página (8801 público / 8803 paytest); si no, 8801.
+      const origin = r.headers()['origin'] || r.headers()['Origin'] || 'http://localhost:8801';
+      const res = await route.fetch({ url, headers: { ...r.headers(), origin } }); stats.forwarded++; await route.fulfill({ response: res });
+    }
     catch { await route.fulfill({ status: 503, contentType: 'application/json', body: '{"error":"local_worker_down"}' }); }
   });
 }
