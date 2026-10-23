@@ -15,7 +15,7 @@ for (const [bn, B, dev] of runs) {
       profile: { goal: 'lose', weight: 80, height: 170, age: 50, sex: 'male', activity: 2 }, entries, health: { steps: { [d0]: 6000 }, weights: [], workouts: [] },
       ext: { sleep: [{ date: d0, h: 7.5, stress: 2 }], weights: [{ date: iso(w0), kg: 81 }, { date: d0, kg: 80 }] } };
     const ctx = await b.newContext({ ...dev, locale: L ? 'es-ES' : 'en-US', colorScheme: L ? 'light' : 'dark' });
-    await ctx.addInitScript((s) => { sessionStorage.setItem('angie:splash', '1'); if (!localStorage.getItem('angieone:v1')) localStorage.setItem('angieone:v1', JSON.stringify(s)); }, state);
+    await ctx.addInitScript((s) => { sessionStorage.setItem('angie:splash', '1'); s.eula = s.eula || { v: 1, at: Date.now() }; if (!localStorage.getItem('angieone:v1')) localStorage.setItem('angieone:v1', JSON.stringify(s)); }, state);
     const G = { code: 'AB12CD', name: 'Ana', members: [{ id: 'other123', pid: 'aaaaaaaaaaaa', nick: 'Luis', pts: 30 }] }; const PUB = (id) => ({ code: G.code, name: G.name, me: id ? 'p' + id.slice(0, 11) : undefined, members: G.members.map((m) => ({ pid: m.pid, nick: m.nick, pts: m.pts })) }); const calls = []; const bodies = [];
     await ctx.route('**/friends/**', async (r) => { const path = new URL(r.request().url()).pathname.split('/').pop(); const body = JSON.parse(r.request().postData() || '{}'); calls.push(path); bodies.push(Object.keys(body).sort().join(','));
       if (body.id && !G.members.some((m) => m.id === body.id) && ['create', 'join'].includes(path)) G.members.push({ id: body.id, pid: 'p' + body.id.slice(0, 11), nick: body.nick, pts: 0 });

@@ -10,7 +10,7 @@ for (const [bn, B, dev] of runs) {
     const state = { aiEnabled: true, water: {}, challengeDays: [], aiPhotos: {}, founder: {}, langOverride: null, trialStart: Date.now() - 3600e3,
       profile: { goal: 'lose', weight: 80, height: 170, age: 40, sex: 'male', activity: 2 }, entries: [], ext: { friends: { id: 'meid000001', nick: 'Pepe', groups: ['AB12CD'] } } };
     const ctx = await b.newContext({ ...dev, locale: L ? 'es-ES' : 'en-US' });
-    await ctx.addInitScript((s) => { sessionStorage.setItem('angie:splash', '1'); if (!localStorage.getItem('angieone:v1')) localStorage.setItem('angieone:v1', JSON.stringify(s)); }, state);
+    await ctx.addInitScript((s) => { sessionStorage.setItem('angie:splash', '1'); s.eula = s.eula || { v: 1, at: Date.now() }; if (!localStorage.getItem('angieone:v1')) localStorage.setItem('angieone:v1', JSON.stringify(s)); }, state);
     const calls = []; const H = { 'access-control-allow-origin': '*' };
     const ful = (r, st, o) => r.fulfill({ status: st, contentType: 'application/json', headers: H, body: JSON.stringify(o) });
     await ctx.route('**/foods/barcode**', (r) => ful(r, 404, { error: 'not_found' }));
