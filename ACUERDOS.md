@@ -218,3 +218,10 @@ DECISIÓN JOSÉ 2026-10-15 12:38 ET: en la sección de datos solo entran recibos
 - **k-anonymity:** ≥ 50 usuarios por lista antes de «lista lista».
 - **Docs:** `/workspace/activo-base-de-datos/parra-data-hub.md` (cómo conectar otras apps).
 - **Pendiente José:** (1) crear proyecto Supabase free y pasar URL+keys al Worker cuando quiera migrar de KV; (2) OK para publicar la web de Angie One con los cambios de UI del hub (Worker ya está desplegado); (3) registrar otras apps (Févora, Carta, etc.) con claves propias.
+
+## 2026-10-23 ~3:40 PM ET: Soft-launch TEST web (orden José t174u)
+- Diff plan vs web + módulo Fundador «Conocimiento de la IA por usuario» (`AiLearnCard`, `src/ailearn.ts`, legal device-only, sin venta de salud).
+- `npm test` + i18n + tsc OK. Publicada web con `EXPO_PUBLIC_PAY_MODE=test` → https://parrareimonjose-del.github.io/angie-one/ (`pay-mode.txt=test`). Worker `/pay/mode` = test.
+- Commits: código `bdc5938` (feat-stripe-test), Pages `98ccc7e` (gh-pages).
+- Guía amiga: `/workspace/calorias/guia-prueba-amiga-angie-one.md` (+ PDF). Informe: `/workspace/calorias/revision-prelanzamiento-web-20261023.md`.
+- Dominio y Stripe live: NO. Clon sigue oculto. Apple Developer: NO.
