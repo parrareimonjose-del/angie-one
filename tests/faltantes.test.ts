@@ -37,7 +37,7 @@ ok(!SAMPLE_CHARGES.some((c) => /prop[oó]sito|don/i.test(c.desc)), 'sin cargos d
 // 3) Panel Maestro
 const sum = buildSummary({ users: 1, activeDays7: 2, entries: 5 }, L, '0.6.0', new Date('2026-10-15T12:00:00Z'));
 ok(validSummary(sum).length === 0, 'resumen válido: ' + validSummary(sum).join());
-ok(sum.revenueSplit.buckets.map((b) => b.key).join() === 'jose,growth,reserve' && sum.privacy.healthDataIncluded === false, 'claves del Panel Maestro y sin salud');
+ok(sum.revenueSplit.buckets.map((b) => b.key).join() === 'jose,family,growth,reserve' && sum.privacy.healthDataIncluded === false, 'claves del Panel Maestro y sin salud');
 ok(!/weight|kcal|sleep|memory/i.test(JSON.stringify(sum.metrics)), 'sin métricas de salud en el resumen');
 ok(validSummary({ ...sum, privacy: { healthDataIncluded: true } }).includes('privacy.healthDataIncluded'), 'rechaza salud');
 
