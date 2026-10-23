@@ -1,4 +1,4 @@
-// npm run test:faltantes — entrada local, reparto 60/25/15, Panel Maestro, IA admin/programadora, pagos y banderas.
+// npm run test:faltantes — entrada local, reparto 55/5/25/15, Panel Maestro, IA admin/programadora, pagos y banderas.
 import assert from 'node:assert/strict';
 import { webcrypto } from 'node:crypto';
 if (!(globalThis as any).crypto) (globalThis as any).crypto = webcrypto;
@@ -24,9 +24,9 @@ ok(!(await checkSecret(r.auth, '2580', 2000)).ok, 'bloqueado aunque sea correcto
 ok((await checkSecret(r.auth, '2580', 1000 + 31000)).ok, 'tras la espera entra');
 ok(needsUnlock(a, false) && !needsUnlock({ ...a, remember: true }, false) && !needsUnlock(a, true) && !needsUnlock(null, false), 'recordar dispositivo y saltar');
 
-// 2) Reparto 60/25/15 exacto en centavos
+// 2) Reparto 55/5/25/15 exacto en centavos
 for (const v of [1.63, 14.26, 0.66, 0.01, 999.99]) { const s = split3(v); ok(Math.round((s.founder + s.app + s.taxes) * 100) === Math.round(v * 100), 'cuadra ' + v); }
-ok(split3(100).founder === 60 && split3(100).app === 25 && split3(100).taxes === 15, '60/25/15');
+ok(split3(100).founder === 55 && split3(100).family === 5 && split3(100).app === 25 && split3(100).taxes === 15, '55/5/25/15');
 let L = decideCharge(SAMPLE_CHARGES, 'ej-1', 'approved', new Date('2026-10-15')); ok(L[0].receipt === 'AO-2026-0001', 'recibo numerado');
 L = decideCharge(L, 'ej-1', 'rejected'); ok(L[0].status === 'approved', 'no se puede cambiar un cargo ya decidido');
 const tt = totals(L); ok(tt.count === 1 && tt.pending === 3 && tt.net === net(SAMPLE_CHARGES[0]), 'totales');

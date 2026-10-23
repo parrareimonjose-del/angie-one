@@ -2,7 +2,7 @@
 
 - José escribe el correo o ID de usuario, una nota opcional y la caducidad (sin caducidad, 30, 90 o 365 días). La app genera un código `ABCDE-FGHJK`.
 - Revocable con un toque. Al revocar o caducar, el usuario pierde Premium en ≤ 24 h (la app revalida cada día; sin red lo respeta 7 días como máximo).
-- No mueve dinero: es acceso gratis, por eso no pasa por la aprobación 60/25/15.
+- No mueve dinero: es acceso gratis, por eso no pasa por la aprobación 55/5/25/15.
 
 ## Cómo cumple las tiendas
 | Plataforma | Mecanismo | Por qué |

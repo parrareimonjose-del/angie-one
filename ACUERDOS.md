@@ -37,7 +37,7 @@ Leer al empezar cada conversación. Actualizar tras cada respuesta de José.
 - Paleta Energía Coral: primary #E11D48, secondary #7C3AED, accent #F59E0B.
 - Logo oficial: opción 2 (A con hoja en anillo) en /workspace/calorias/logo/logo-oficial-angie-one.jpg
 - Precio: 1.99 $/mes o 14.99 $/año; LatAm 0.99 $. Prueba 7 días + oferta 48 h.
-- Panel fundador: 60% fundador / 25% crecimiento / 15% impuestos (editable).
+- Panel fundador: 55% fundador / 5% Angie y familia (juntos) / 25% crecimiento / 15% impuestos (editable; antes 60/25/15).
 - Regla de oro: datos de salud nunca se venden ni se usan en ads; sin SDKs/píxeles de ads en pantallas de salud.
 - 13 idiomas (sigue el del teléfono): es, en, pt, fr, de, it, zh, ja, ko, hi, ar (RTL), ru, tr.
 - Correo soporte: angieoneapp.support@gmail.com (monitoreo IA solo tras lanzamiento oficial).
@@ -225,3 +225,10 @@ DECISIÓN JOSÉ 2026-10-15 12:38 ET: en la sección de datos solo entran recibos
 - Commits: código `bdc5938` (feat-stripe-test), Pages `98ccc7e` (gh-pages).
 - Guía amiga: `/workspace/calorias/guia-prueba-amiga-angie-one.md` (+ PDF). Informe: `/workspace/calorias/revision-prelanzamiento-web-20261023.md`.
 - Dominio y Stripe live: NO. Clon sigue oculto. Apple Developer: NO.
+
+- 2026-10-23 4:05 PM: José eligió UNA sola cuenta Stripe Parra Apps (un producto / lookup_key por app). No una cuenta por app. Motivo: trabajar solo desde celular y PC.
+- 2026-10-23 4:08 PM: José: Angie = rostro de la IA; su hermano = rostro del coach. Ambos dieron sí. Angie probará la app cuando esté lista. Foto en assets/rostros/.
+- 2026-10-23 4:26 PM: José APROBÓ texto Acerca de / Historia (docs/historia-angie-one.md). Sin detalles materiales.
+- 2026-10-23 4:27 PM: José: reparto Angie One — fundador 50% / Angie+hermano juntos 5% / app 25% / impuestos 20% (o confirmar 55/5/25/15). El 5% familiar sale de la parte del fundador; no 5% cada uno.
+- 2026-10-23 4:28 PM: José FIJÓ reparto Panel Fundador Angie One: 55% fundador / 5% Angie+hermano juntos / 25% app / 15% impuestos.
+- 2026-10-23: CONFIRMADO por José: reparto Angie One 55% fundador / 5% «Angie y familia» (Angie + hermano JUNTOS, no 5% cada uno) / 25% app / 15% impuestos = 100%. Reemplaza 60/25/15 y la opción 50/5/25/20.

@@ -12,7 +12,7 @@ import { GrantsCard, useFounderMode, FounderUnlock } from '../src/grants-ui';
 import { ModerationCard } from '../src/review-ui';
 import { StripeLedgerCard } from '../src/pay-ui';
 import { LedgerCard, PanelMaestroCard, AdminAICard, AiLearnCard } from '../src/faltantes-ui';
-export const split = (net: number) => ({ ops: Math.round(net * 60) / 100, growth: Math.round(net * 25) / 100, social: Math.round(net * 15) / 100 });
+export const split = (net: number) => ({ ops: Math.round(net * 55) / 100, family: Math.round(net * 5) / 100, growth: Math.round(net * 25) / 100, social: Math.round(net * 15) / 100 });
 
 // Panel del Fundador v1 (placeholder): la IA Administrativa propone, Jose aprueba. Nunca mueve dinero.
 const CARD_IDS = ['c1', 'c2', 'c3'];
@@ -33,7 +33,7 @@ export default function Founder() {
         </View>
       </Card>
       <Card testID="split"><CardTitle>{t('x.splitTitle')}</CardTitle>
-        {(() => { const sp = split(1000); return <><T>60% · {t('fx.sFounder')}: ${fmtNum(sp.ops)}</T><T>25% · {t('fx.sApp')}: ${fmtNum(sp.growth)}</T><T>15% · {t('fx.sTaxes')}: ${fmtNum(sp.social)}</T></>; })()}
+        {(() => { const sp = split(1000); return <><T>55% · {t('fx.sFounder')}: ${fmtNum(sp.ops)}</T><T>5% · Angie y familia: ${fmtNum(sp.family)}</T><T>25% · {t('fx.sApp')}: ${fmtNum(sp.growth)}</T><T>15% · {t('fx.sTaxes')}: ${fmtNum(sp.social)}</T></>; })()}
         <Text style={s.muted}>{t('x.splitNote')}</Text></Card>
       <Card><CardTitle>{t('x.adsTitle')}</CardTitle>{ADS.map((a) => <T key={a.id}>✓ {a.brand}</T>)}<Text style={s.muted}>{t('x.adWhy')}</Text></Card>
       <LedgerCard />

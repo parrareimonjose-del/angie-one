@@ -138,16 +138,16 @@ export function SecurityNudge() {
     <View style={s.row}><Btn small label={t('fx.setup')} onPress={() => router.push('/security')} style={{ flex: 1 }} /><Btn small kind="ghost" label={t('fx.notNow')} onPress={() => setAsked(() => true)} style={{ flex: 1 }} /></View></Card>;
 }
 
-// ---------- Panel del fundador: registro de cargos 60/25/15 + recibos PDF + exportación contador ----------
+// ---------- Panel del fundador: registro de cargos 55/5/25/15 + recibos PDF + exportación contador ----------
 export function useLedger() { return useExt<Charge[]>('ledger', SAMPLE_CHARGES); }
 export function LedgerCard() {
   const { t } = useTranslation(); const [list, setList] = useLedger(); const tot = totals(list); const L = pdfT();
   return <Card testID="ledger"><CardTitle>🧾 {t('fx.ledTitle')}</CardTitle>
     {list.some((c) => c.sample) ? <View style={{ backgroundColor: C.accent, borderRadius: 10, padding: 8 }}><Text style={{ color: C.onAccent, fontWeight: '800' }}>{t('fx.sample')}</Text></View> : null}
-    <T testID="led-tot">{t('fx.ledTot', { n: tot.count, net: money(tot.net), f: money(tot.founder), a: money(tot.app), x: money(tot.taxes) })}</T>
+    <T testID="led-tot">{t('fx.ledTot', { n: tot.count, net: money(tot.net), f: money(tot.founder), fam: money(tot.family), a: money(tot.app), x: money(tot.taxes) })}</T>
     {list.map((c) => { const sp = split3(net(c)); return <View key={c.id} testID="charge" style={{ gap: 6, borderTopWidth: 1, borderColor: C.border, paddingTop: 8 }}>
       <Text style={[s.t, { fontWeight: '800' }]}>{c.date} · {c.desc} · {money(c.gross)}</Text>
-      <Text style={s.muted}>{t('fx.ledLine', { net: money(net(c)), f: money(sp.founder), a: money(sp.app), x: money(sp.taxes) })}</Text>
+      <Text style={s.muted}>{t('fx.ledLine', { net: money(net(c)), f: money(sp.founder), fam: money(sp.family), a: money(sp.app), x: money(sp.taxes) })}</Text>
       {c.status === 'pending' ? <View style={s.row}><Btn small label={t('fx.approveSplit')} onPress={() => setList((v) => decideCharge(v, c.id, 'approved'))} style={{ flex: 1, backgroundColor: C.success }} /><Btn small kind="danger" label={t('fo.reject')} onPress={() => setList((v) => decideCharge(v, c.id, 'rejected'))} style={{ flex: 1 }} /></View>
         : c.status === 'approved' ? <View style={s.row}><Text testID="charge-ok" style={{ flex: 1, fontWeight: '900', color: C.success }}>✓ 🧾 {c.receipt}</Text><Btn small kind="ghost" label={`📄 ${t('fx.pdfR')}`} onPress={() => download(`recibo-${c.receipt}.pdf`, 'application/pdf', makePdf(wrap(receiptLines(c, L))))} /></View>
         : <Text style={{ fontWeight: '900', color: C.primary }}>✕ {t('fo.rejected')}</Text>}</View>; })}

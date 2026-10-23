@@ -16,11 +16,11 @@ Código: `src/panelmaestro.ts` (`buildSummary`, `validSummary`). En el panel del
 | `metrics` | objeto plano | `s.metrics` (sin salud: solo uso) |
 | `revenue.note` | texto | 💵 Dinero |
 | `socialFund.rule` | texto | 🤝 regla (hoy: sin donaciones) |
-| `revenueSplit` | `{rule, buckets:[{key:'jose'|'growth'|'reserve', name, pct, balanceUsd}], pendingApprovals}` | 💰 reparto 60/25/15 |
+| `revenueSplit` | `{rule, buckets:[{key:'jose'|'family'|'growth'|'reserve', name, pct, balanceUsd}], pendingApprovals}` | 💰 reparto 55/5/25/15 |
 | `approvals` | `{pending, kinds[]}` | extra |
 | `privacy` | `{healthDataIncluded:false, personalData:false}` | garantía; `validSummary` rechaza `true` |
 
-Las claves de `buckets` coinciden con `window.PARRA_SPLIT_VIEW` (jose/growth/reserve = 60/25/15).
+Las claves de `buckets` coinciden con `window.PARRA_SPLIT_VIEW` (jose/family/growth/reserve = 55/5/25/15).
 
 ## Ejemplo
 ```json
@@ -29,9 +29,9 @@ Las claves de `buckets` coinciden con `window.PARRA_SPLIT_VIEW` (jose/growth/res
   "generatedAt": "2026-10-15T17:00:00.000Z", "sampleData": true,
   "cards": [["Usuarios", 1], ["Días activos (7)", 2], ["Registros", 5], ["Cargos aprobados", 1]],
   "revenue": { "note": "DATOS DE EJEMPLO: aún no hay cobros reales.", "currency": "USD" },
-  "socialFund": { "rule": "Sin donaciones ni fondos de impacto. Solo reparto 60/25/15." },
-  "revenueSplit": { "rule": "60% fundador / 25% app (crecimiento) / 15% impuestos",
-    "buckets": [{ "key": "jose", "name": "Para José", "pct": 60, "balanceUsd": 0.98 }, { "key": "growth", "name": "Crecimiento", "pct": 25, "balanceUsd": 0.4 }, { "key": "reserve", "name": "Impuestos", "pct": 15, "balanceUsd": 0.25 }],
+  "socialFund": { "rule": "Sin donaciones ni fondos de impacto. Solo reparto 55/5/25/15." },
+  "revenueSplit": { "rule": "55% fundador / 5% Angie y familia (juntos) / 25% app (crecimiento) / 15% impuestos",
+    "buckets": [{ "key": "jose", "name": "Para José", "pct": 55, "balanceUsd": 0.9 }, { "key": "family", "name": "Angie y familia", "pct": 5, "balanceUsd": 0.08 }, { "key": "growth", "name": "Crecimiento", "pct": 25, "balanceUsd": 0.4 }, { "key": "reserve", "name": "Impuestos", "pct": 15, "balanceUsd": 0.25 }],
     "pendingApprovals": 3 },
   "privacy": { "healthDataIncluded": false, "personalData": false } }
 ```

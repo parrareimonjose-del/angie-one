@@ -975,7 +975,7 @@
       "activity": "Fiziksel aktivite"
     },
     "impactNote": "İsimler gizlenir ve yalnızca onayla gösterilir. Her ödeme kurucu tarafından onaylanır ve makbuzu vardır.",
-    "splitTitle": "Kâr paylaşımı 60/25/15",
+    "splitTitle": "Kâr paylaşımı 55/5/25/15",
     "sOps": "Operasyonlar",
     "sGrowth": "Büyüme",
     "sSocial": "Sosyal yardım",
@@ -1445,8 +1445,8 @@
     "setup": "Ayarla",
     "notNow": "Şimdi değil",
     "sample": "ÖRNEK VERİ: henüz gerçek ödeme yok.",
-    "ledTitle": "Ödeme kaydı 60/25/15",
-    "ledTot": "Onaylanan: {{n}} · net {{net}} → Kurucu {{f}} · Uygulama {{a}} · Vergi {{x}}",
+    "ledTitle": "Ödeme kaydı 55/5/25/15",
+    "ledTot": "Onaylanan: {{n}} · net {{net}} → Kurucu {{f}} · Angie y familia {{fam}} · Uygulama {{a}} · Vergi {{x}}",
     "ledLine": "Net {{net}} → %60 {{f}} · %25 {{a}} · %15 {{x}}",
     "approveSplit": "Paylaşımı onayla",
     "pdfR": "PDF makbuz",
@@ -1560,7 +1560,7 @@
       "taxes": "Vergiler",
       "sample": "ORNEK VERI - gercek odeme degil",
       "never": "Sadece kayit: para hareket etmedi.",
-      "accTitle": "Muhasebeci ozeti - 60/25/15 paylasimi",
+      "accTitle": "Muhasebeci ozeti - 55/5/25/15 paylasimi",
       "approved": "Onaylanan",
       "pending": "Bekleyen"
     },

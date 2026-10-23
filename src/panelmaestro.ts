@@ -5,7 +5,7 @@ export type PmSummary = {
   schema: string; app: { id: string; name: string; emoji: string; color: string; version: string; founderPanelUrl: string };
   generatedAt: string; sampleData: boolean; cards: [string, number | string][]; metrics: Record<string, number | string | boolean>;
   revenue: { note: string; currency: 'USD' }; socialFund: { rule: string };
-  revenueSplit: { rule: string; buckets: { key: 'jose' | 'growth' | 'reserve'; name: string; pct: number; balanceUsd: number | null }[]; pendingApprovals: number };
+  revenueSplit: { rule: string; buckets: { key: 'jose' | 'family' | 'growth' | 'reserve'; name: string; pct: number; balanceUsd: number | null }[]; pendingApprovals: number };
   approvals: { pending: number; kinds: string[] }; privacy: { healthDataIncluded: false; personalData: false };
 };
 export function buildSummary(m: Record<string, number | string | boolean>, ledger: Charge[], version: string, now = new Date()): PmSummary {
@@ -17,9 +17,9 @@ export function buildSummary(m: Record<string, number | string | boolean>, ledge
     cards: [['Usuarios', Number(m.users) || 0], ['Días activos (7)', Number(m.activeDays7) || 0], ['Registros', Number(m.entries) || 0], ['Cargos aprobados', t.count]],
     metrics: m,
     revenue: { note: sample ? 'DATOS DE EJEMPLO: aún no hay cobros reales (pagos pendientes de conexión).' : `Neto aprobado ${t.net.toFixed(2)} USD`, currency: 'USD' },
-    socialFund: { rule: 'Sin donaciones ni fondos de impacto (decisión de José 2026-10-15). Solo reparto de ingresos 60/25/15, cada uno con su toque.' },
-    revenueSplit: { rule: `${SPLIT.founder}% fundador / ${SPLIT.app}% app (crecimiento) / ${SPLIT.taxes}% impuestos`,
-      buckets: [{ key: 'jose', name: 'Para José', pct: SPLIT.founder, balanceUsd: t.founder }, { key: 'growth', name: 'Crecimiento', pct: SPLIT.app, balanceUsd: t.app }, { key: 'reserve', name: 'Impuestos', pct: SPLIT.taxes, balanceUsd: t.taxes }],
+    socialFund: { rule: 'Sin donaciones ni fondos de impacto (decisión de José 2026-10-15). Solo reparto de ingresos 55/5/25/15, cada uno con su toque.' },
+    revenueSplit: { rule: `${SPLIT.founder}% fundador / ${SPLIT.family}% Angie y familia (juntos) / ${SPLIT.app}% app (crecimiento) / ${SPLIT.taxes}% impuestos`,
+      buckets: [{ key: 'jose', name: 'Para José', pct: SPLIT.founder, balanceUsd: t.founder }, { key: 'family', name: 'Angie y familia', pct: SPLIT.family, balanceUsd: t.family }, { key: 'growth', name: 'Crecimiento', pct: SPLIT.app, balanceUsd: t.app }, { key: 'reserve', name: 'Impuestos', pct: SPLIT.taxes, balanceUsd: t.taxes }],
       pendingApprovals: t.pending },
     approvals: { pending: t.pending, kinds: ['reparto', 'lista de datos', 'propuesta IA'] },
     privacy: { healthDataIncluded: false, personalData: false },
