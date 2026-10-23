@@ -4,6 +4,11 @@ Leer al empezar cada conversación. Actualizar tras cada respuesta de José.
 
 
 
+
+## 2026-10-23 ~00:50 ET — Publicado (QA verde)
+- Merge feat-stripe-test → master + push. Worker wrangler deploy OK (angie-one-ai).
+- Web gh-pages force push. Smoke: Pages 200, estimate live ~0.7s, PAY_MODE=off (sin compra pública).
+- IAP preparado (mensual/anual + Restore); nativo pendiente de Apple Developer. Stripe solo web/test.
 ## 2026-10-23 ~00:45 ET — Apple listo + QA verde → publicar
 - Suites QA: todas 0 falla (clon…stripe-ui). Unit tests OK. IA estimate ~0.9s.
 - StoreKit/IAP preparado; Stripe web-only; EULA/edad/Pending/fuentes hechos.
