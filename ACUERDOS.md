@@ -232,3 +232,12 @@ DECISIÓN JOSÉ 2026-10-15 12:38 ET: en la sección de datos solo entran recibos
 - 2026-10-23 4:27 PM: José: reparto Angie One — fundador 50% / Angie+hermano juntos 5% / app 25% / impuestos 20% (o confirmar 55/5/25/15). El 5% familiar sale de la parte del fundador; no 5% cada uno.
 - 2026-10-23 4:28 PM: José FIJÓ reparto Panel Fundador Angie One: 55% fundador / 5% Angie+hermano juntos / 25% app / 15% impuestos.
 - 2026-10-23: CONFIRMADO por José: reparto Angie One 55% fundador / 5% «Angie y familia» (Angie + hermano JUNTOS, no 5% cada uno) / 25% app / 15% impuestos = 100%. Reemplaza 60/25/15 y la opción 50/5/25/20.
+
+## 2026-10-23 ~4:35 PM ET — Rostros cableados (ambas UIs) + Historia
+- José APROBÓ cablear **ambas** UIs de rostros (widget cablear-ambas): (1) tarjetas idea 2 (05–07) (2) chats clásicos con caras **rectas** (08–09).
+- Angie = rostro de la IA; hermano = rostro del Coach (etiqueta «Coach» hasta que dé su nombre). Consentimiento de ambos.
+- Texto Acerca de / Historia aprobado en `docs/historia-angie-one.md` → pantalla `/historia` + Ajustes/Más.
+- Assets: `assets/rostros/angie-ia*.png`, `hermano-coach*.png` (upright). Código: `src/rostros.ts`, `src/rostros-ui.tsx`; chat con toggle Angie IA|Coach; tarjeta Coach en hub.
+- **CLONE sigue oculto** (`CLONE_ENABLED=false`).
+- Reparto 50/5/25/20: propuesto, **NO confirmado este turno** → no se cambia el ledger.
+- **NO publicar** GitHub Pages en este paso; commit en `feat-stripe-test` para revisión de José.

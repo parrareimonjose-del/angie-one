@@ -7,6 +7,7 @@ import { today } from '../src/store';
 import { fmtNum } from '../src/i18n';
 import { useCoach, CoachLocked, useNames, Disclaimer } from '../src/coach-ui';
 import { RecipeSuggest } from '../src/coachkb-ui';
+import { FaceProfileCard } from '../src/rostros-ui';
 import { coachTarget, weekday, burnedOn, workoutStreak, weekWorkouts, nextCheckInDays, planBurn } from '../src/coach';
 
 export default function CoachHub() {
@@ -16,6 +17,7 @@ export default function CoachHub() {
   if (!premium) return <CoachLocked />;
   if (!c.plan) return (
     <Screen title={`💪 ${t('coach.title')}`}>
+      <FaceProfileCard who="coach" onPress={() => router.push({ pathname: '/chat', params: { who: 'coach' } } as any)} tip={t('faces.tipCoach')} />
       <IconCard icon="✨" title={t('coach.introTitle')} sub={t('coach.introBody')}>
         <View style={{ flexDirection: 'row', gap: 10, marginTop: 4 }}>{[['🍽️', t('coach.diet')], ['🏋️', t('coach.workout')], ['⚖️', t('coach.checkin')]].map(([i, l]) => <View key={i} style={{ flex: 1, alignItems: 'center', gap: 6, padding: 10, borderRadius: 16, backgroundColor: C.tint }}><IconTile icon={i} size={44} /><Text style={{ fontWeight: '700', color: C.text, fontSize: 13, textAlign: 'center' }}>{l}</Text></View>)}</View>
       </IconCard>
@@ -29,6 +31,7 @@ export default function CoachHub() {
   const done = c.workouts.some((w) => w.date === today()); const due = nextCheckInDays(c) === 0;
   return (
     <Screen title={`💪 ${t('coach.title')}`}>
+      <FaceProfileCard who="coach" onPress={() => router.push({ pathname: '/chat', params: { who: 'coach' } } as any)} tip={t('faces.tipCoach')} />
       <Card style={{ flexDirection: 'row', alignItems: 'center', gap: 16 }}>
         <Ring value={ww.done} max={Math.max(1, ww.planned)} size={120} stroke={13}><Text style={{ fontSize: 26, fontWeight: '900', color: C.text }}>{ww.done}/{ww.planned}</Text><Text style={[s.muted, { fontSize: 12 }]}>{t('coach.week')}</Text></Ring>
         <View style={{ flex: 1, gap: 4 }}><Text style={[s.h2, { color: C.primary }]}>{t('coach.target', { kcal: fmtNum(tg.kcal) })}</Text><Text style={s.muted}>{t('coach.source.' + c.plan.source)}</Text></View>

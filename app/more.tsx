@@ -38,6 +38,7 @@ export default function More() {
       <TaxesCard />
       <Card style={{ gap: 2 }}>
         <ListRow icon="🧾" label={t('dt.title')} onPress={go('/datos')} />
+        <ListRow testID="more-historia" icon="💖" label={t('faces.historiaTitle')} onPress={go('/historia')} />
         <ListRow icon="⚙️" label={t('more.settings')} onPress={go('/settings')} />
         {fm ? <ListRow icon="👑" label={t('more.founder')} onPress={go('/founder')} /> : null}
       </Card>

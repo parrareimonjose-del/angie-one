@@ -44,6 +44,7 @@ export default function Settings() {
       <Btn kind="ghost" label={`🧠  ${t('p2.t.memory')}`} onPress={() => router.push('/memory')} />
       <Btn kind="ghost" label={`🔔  ${t('p2.t.rem')}`} onPress={() => router.push('/reminders')} />
       <FeedbackBox />
+      <Btn kind="ghost" testID="go-historia" label={`💖  ${t('faces.historiaTitle')}`} onPress={() => router.push('/historia')} />
       <Card testID="set-sources"><CardTitle>📚 {t('set.sources')}</CardTitle>
         <T>• {t('set.srcOms')}</T>
         <T>• {t('set.srcDga')}</T>
