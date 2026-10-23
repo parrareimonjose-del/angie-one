@@ -73,7 +73,7 @@ async function payPost(path: string, body: object, key?: string) {
   const j = await r.json().catch(() => ({})); if (!r.ok) throw new Error(j.error || 'pay'); return j;
 }
 export type PayStatus = { active: boolean; plan?: PlanId; renewAt?: number; cancelAt?: number; test?: boolean };
-export async function payStatus(): Promise<PayStatus | null> { if (PAY_MODE === 'off') return null; try { return await payPost('/pay/status', { uid: payUid() }); } catch { return null; } }
+export async function payStatus(): Promise<PayStatus | null> { if (!payModeOn()) return null; try { return await payPost('/pay/status', { uid: payUid() }); } catch { return null; } }
 export async function payPortal(): Promise<string> { const r = await payPost('/pay/portal', { uid: payUid(), back: payBack('subscription') }); return r.url || ''; }
 export type PayLedgerItem = { kind: 'charge' | 'refund' | 'failed'; id: string; ts: number; amount: number; currency: string; test: boolean; sub?: string };
 export const payLedger = async (key: string): Promise<PayLedgerItem[]> => (await payPost('/pay/ledger', {}, key)).items || [];
