@@ -7,7 +7,7 @@ import { Screen, Card, Btn, T, s, CardTitle } from '../src/ui';
 import { C } from '../src/theme';
 import { useStore, trialPhase, fmtCountdown } from '../src/store';
 import { LegalLinks } from '../src/legal-links';
-import { providerFor, purchase, PLANS, PAY_MODE } from '../src/payments';
+import { providerFor, purchase, PLANS, PAY_MODE, effectivePayMode, payModeOn } from '../src/payments';
 import { Pending } from '../src/ext';
 import { RedeemCard } from '../src/grants-ui';
 
@@ -18,7 +18,7 @@ export default function Paywall() {
   useEffect(() => { const i = setInterval(() => setNow(Date.now()), 30000); return () => clearInterval(i); }, []);
   const tp = trialPhase(st.trialStart, now); const prov = providerFor();
   const paid = usePaySync();
-  const buy = async () => { const r = await purchase(plan === 'y' ? 'yearly' : 'monthly'); if (r.ok && r.url && typeof window !== 'undefined') { if (PAY_MODE !== 'off') window.location.assign(r.url); else window.open(r.url, '_blank'); } else setNote(true); };
+  const buy = async () => { const r = await purchase(plan === 'y' ? 'yearly' : 'monthly'); if (r.ok && r.url && typeof window !== 'undefined') { if (payModeOn()) window.location.assign(r.url); else window.open(r.url, '_blank'); } else setNote(true); };
   const opt = (k: 'y' | 'm', label: string, extra?: string) => (
     <Pressable accessibilityRole="radio" accessibilityState={{ checked: plan === k }} onPress={() => setPlan(k)}
       style={{ minHeight: 72, borderRadius: 20, borderWidth: 3, borderColor: plan === k ? C.primary : C.border, backgroundColor: C.card, padding: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -43,7 +43,7 @@ export default function Paywall() {
         <T>{t('fx.terms', { price: plan === 'y' ? '$' + PLANS.yearly.usd : '$' + PLANS.monthly.usd, period: t(plan === 'y' ? 'fx.perYear' : 'fx.perMonth'), store: prov.name })}</T>
         <Text style={[s.muted, { fontSize: 15 }]}>{t('pay.renew')}</Text><Text style={[s.muted, { fontSize: 15 }]}>⚕️ {t('fx.healthDisc')}</Text></Card>
       <Text testID="pay-provider" style={[s.muted, { textAlign: 'center' }]}>🔒 {t('fx.payVia', { store: prov.name })}</Text>
-      {prov.connected ? <Btn testID="pay-buy" label={(PAY_MODE === 'test' ? '🧪 TEST · ' : '') + t('pay.cta')} onPress={buy} /> : <Card testID="pay-soon"><Pending /><T style={{ color: C.warning, fontWeight: '700' }}>{t('pay.soon')}</T></Card>}
+      {prov.connected ? <Btn testID="pay-buy" label={(effectivePayMode() === 'test' ? '🧪 TEST · ' : '') + t('pay.cta')} onPress={buy} /> : <Card testID="pay-soon"><Pending /><T style={{ color: C.warning, fontWeight: '700' }}>{t('pay.soon')}</T></Card>}
       {note && <Card><Pending /><T style={{ color: C.warning, fontWeight: '700' }}>{t('pay.soon')}</T></Card>}
       <RedeemCard />
       <Btn testID="pay-restore" kind="secondary" label={`↺ ${t('hb.restore')}`} onPress={() => router.push('/subscription')} />

@@ -19,17 +19,30 @@ export const STRIPE_LINKS: Record<PlanId, string> = { monthly: '', yearly: '' };
 /** Modo de cobro web (variable de compilación). 'off' = sitio público (sin botón de compra) · 'test' = Stripe modo prueba
  *  (solo build local, con aviso PRUEBA) · 'live' = cuando José conecte Stripe en vivo. Nunca en Android/iOS. */
 export const PAY_MODE: 'off' | 'test' | 'live' = ((process.env.EXPO_PUBLIC_PAY_MODE as any) === 'test' || (process.env.EXPO_PUBLIC_PAY_MODE as any) === 'live') ? (process.env.EXPO_PUBLIC_PAY_MODE as any) : 'off';
+/**
+ * Modo efectivo en runtime. Metro pliega PAY_MODE en builds `off`, así que el dist de prueba
+ * (8803) puede forzar test con `globalThis.__ANGIE_PAY_MODE__='test'` (lo inyecta angie-serve)
+ * sin recompilar. Público (8801) no inyecta nada → sigue off.
+ */
+export function effectivePayMode(): 'off' | 'test' | 'live' {
+  try {
+    const g = (globalThis as any).__ANGIE_PAY_MODE__;
+    if (g === 'test' || g === 'live' || g === 'off') return g;
+  } catch { /* ignore */ }
+  return PAY_MODE;
+}
+export function payModeOn(): boolean { const m = effectivePayMode(); return m === 'test' || m === 'live'; }
 export function providerFor(os: string = Platform.OS): Provider {
   if (os === 'android') return { id: 'play', name: 'Google Play', connected: false, manageUrl: 'https://play.google.com/store/account/subscriptions', canRestore: true };
   // connected = StoreKit nativo listo (IAP_NATIVE_READY). Sin cuenta Developer sigue false → UI «pendiente» amable.
   if (os === 'ios') return { id: 'apple', name: 'App Store', connected: IAP_NATIVE_READY, manageUrl: 'https://apps.apple.com/account/subscriptions', canRestore: true };
-  return { id: 'stripe', name: 'Stripe', connected: PAY_MODE !== 'off' || Object.values(STRIPE_LINKS).some(Boolean), manageUrl: '', canRestore: false };
+  return { id: 'stripe', name: 'Stripe', connected: payModeOn() || Object.values(STRIPE_LINKS).some(Boolean), manageUrl: '', canRestore: false };
 }
 export type PurchaseResult = { ok: true; url?: string } | { ok: false; reason: 'pending_connection' | 'cancelled' };
 /** Inicia la compra. Mientras no haya conexión devuelve pending_connection (nunca simula un cobro). */
 export async function purchase(plan: PlanId, os: string = Platform.OS): Promise<PurchaseResult> {
   const p = providerFor(os);
-  if (p.id === 'stripe' && PAY_MODE !== 'off') { try { const r = await payPost('/pay/checkout', { uid: payUid(), plan, back: payBack('paywall') }); return r.url ? { ok: true, url: r.url } : { ok: false, reason: 'pending_connection' }; } catch { return { ok: false, reason: 'pending_connection' }; } }
+  if (p.id === 'stripe' && payModeOn()) { try { const r = await payPost('/pay/checkout', { uid: payUid(), plan, back: payBack('paywall') }); return r.url ? { ok: true, url: r.url } : { ok: false, reason: 'pending_connection' }; } catch { return { ok: false, reason: 'pending_connection' }; } }
   if (p.id === 'stripe') { const url = STRIPE_LINKS[plan]; return url ? { ok: true, url } : { ok: false, reason: 'pending_connection' }; }
   if (p.id === 'apple') {
     const r = await purchaseIap(plan);

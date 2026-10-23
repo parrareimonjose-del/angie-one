@@ -1,5 +1,5 @@
 import { usePaySync, openPortal, TestBadge } from './pay-ui';
-import { PAY_MODE } from './payments';
+import { PAY_MODE, payModeOn } from './payments';
 /** Cobro honesto + lista verificada (UI). */
 import { useEffect, useState } from 'react';
 import { View, Text, Pressable, Platform, Linking } from 'react-native';
@@ -50,7 +50,7 @@ export function SubscriptionScreen() {
     {steps ? <Card testID="cancel-steps"><CardTitle>{t('hb.howTo', { store })}</CardTitle>
       {(t(`hb.steps.${prov}`) as unknown as string[]).map((x, i) => <T key={i}>{i + 1}. {x}</T>)}
       {CANCEL_URL[prov] ? <Btn testID="cancel-2" label={`↗ ${t('hb.openStore', { store })}`} onPress={() => Linking.openURL(CANCEL_URL[prov])} />
-        : PAY_MODE !== 'off' ? <Btn testID="cancel-2" label={`↗ ${t('hb.openStore', { store })}`} onPress={() => openPortal(() => setRmsg(t('hb.portalSoon')))} /> : <><Btn testID="cancel-2" label={`↗ ${t('hb.openStore', { store })}`} onPress={() => setRmsg(t('hb.portalSoon'))} /><Pending what="Stripe" /></>}
+        : payModeOn() ? <Btn testID="cancel-2" label={`↗ ${t('hb.openStore', { store })}`} onPress={() => openPortal(() => setRmsg(t('hb.portalSoon')))} /> : <><Btn testID="cancel-2" label={`↗ ${t('hb.openStore', { store })}`} onPress={() => setRmsg(t('hb.portalSoon'))} /><Pending what="Stripe" /></>}
       {!st.sub?.active ? <Text testID="cancel-trial" style={[s.muted, { fontWeight: '700' }]}>{t('hb.trialNoCard')}</Text> : null}</Card> : null}
     <Btn testID="restore" kind="secondary" label={`↺ ${t('hb.restore')}`} onPress={async () => {
       const r = await restore();

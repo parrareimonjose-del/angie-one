@@ -6,17 +6,17 @@ import { useTranslation } from 'react-i18next';
 import { Card, CardTitle, Btn, T, s } from './ui';
 import { C } from './theme';
 import { useStore } from './store';
-import { PAY_MODE, payStatus, payPortal, payLedger, payRefund, PayLedgerItem } from './payments';
+import { PAY_MODE, effectivePayMode, payModeOn, payStatus, payPortal, payLedger, payRefund, PayLedgerItem } from './payments';
 import { founderKey } from './review';
 
 export function TestBadge() {
-  const { t } = useTranslation(); if (PAY_MODE !== 'test') return null;
+  const { t } = useTranslation(); if (effectivePayMode() !== 'test') return null;
   return <View testID="pay-test" style={{ backgroundColor: C.warning, borderRadius: 10, padding: 8 }}><Text style={{ color: C.white, fontWeight: '900', textAlign: 'center' }}>🧪 {t('pay.testBadge')}</Text></View>;
 }
 /** Pide al Worker el estado real (lo fija el webhook firmado de Stripe). Nunca se da Premium desde la URL de vuelta. */
 export function usePaySync() {
   const { s: st, set } = useStore(); const [msg, setMsg] = useState('');
-  useEffect(() => { if (PAY_MODE === 'off') return; let n = 0, stop = false;
+  useEffect(() => { if (!payModeOn()) return; let n = 0, stop = false;
     const back = typeof location !== 'undefined' && /[?&]pay=ok/.test(location.search);
     const tick = async () => { const r = await payStatus(); if (stop) return;
       if (r && (r.active || st.sub?.provider === 'stripe')) set((v) => ({ ...v, sub: { active: !!r.active, plan: r.plan || 'monthly', renewAt: r.renewAt || 0, provider: 'stripe' } }));
@@ -29,7 +29,7 @@ export async function openPortal(onErr: () => void) { try { const u = await payP
 const money = (c: number, cur: string) => (c / 100).toFixed(2) + ' ' + cur.toUpperCase();
 export function StripeLedgerCard() {
   const { t } = useTranslation(); const [items, setItems] = useState<PayLedgerItem[] | null>(null); const [err, setErr] = useState('');
-  if (PAY_MODE === 'off') return null;
+  if (!payModeOn()) return null;
   const load = async () => { setErr(''); const k = await founderKey(); if (!k) { setErr(t('rv.modNeedKey')); return; } try { setItems(await payLedger(k)); } catch { setErr(t('fo.payErr')); } };
   const gross = (items || []).filter((i) => i.kind === 'charge').reduce((a, i) => a + i.amount, 0), ref = (items || []).filter((i) => i.kind === 'refund').reduce((a, i) => a + i.amount, 0);
   const refund = async (i: PayLedgerItem) => { if (typeof confirm !== 'undefined' && !confirm(t('fo.refundAsk', { amt: money(i.amount, i.currency) }))) return; const k = await founderKey(); try { await payRefund(k, i.id); setTimeout(load, 4000); } catch { setErr(t('fo.payErr')); } };
