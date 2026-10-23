@@ -25,7 +25,7 @@ ok((await checkSecret(r.auth, '2580', 1000 + 31000)).ok, 'tras la espera entra')
 ok(needsUnlock(a, false) && !needsUnlock({ ...a, remember: true }, false) && !needsUnlock(a, true) && !needsUnlock(null, false), 'recordar dispositivo y saltar');
 
 // 2) Reparto 55/5/25/15 exacto en centavos
-for (const v of [1.63, 14.26, 0.66, 0.01, 999.99]) { const s = split3(v); ok(Math.round((s.founder + s.app + s.taxes) * 100) === Math.round(v * 100), 'cuadra ' + v); }
+for (const v of [1.63, 14.26, 0.66, 0.01, 999.99]) { const s = split3(v); ok(Math.round((s.founder + s.family + s.app + s.taxes) * 100) === Math.round(v * 100), 'cuadra ' + v); }
 ok(split3(100).founder === 55 && split3(100).family === 5 && split3(100).app === 25 && split3(100).taxes === 15, '55/5/25/15');
 let L = decideCharge(SAMPLE_CHARGES, 'ej-1', 'approved', new Date('2026-10-15')); ok(L[0].receipt === 'AO-2026-0001', 'recibo numerado');
 L = decideCharge(L, 'ej-1', 'rejected'); ok(L[0].status === 'approved', 'no se puede cambiar un cargo ya decidido');
