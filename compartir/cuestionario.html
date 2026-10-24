@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Cuestionario de prueba — Angie One</title>
+<style>
+  :root {
+    --coral: #e85d4c;
+    --coral-dark: #c94a3b;
+    --bg: #fff8f5;
+    --card: #ffffff;
+    --ink: #1f1a17;
+    --muted: #6b5e57;
+    --line: #f0e2dc;
+    --ok: #2a9d6a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.45;
+    padding: 16px;
+    padding-bottom: 120px;
+  }
+  header {
+    background: linear-gradient(135deg, var(--coral), #f08a5a);
+    color: #fff;
+    border-radius: 16px;
+    padding: 20px 18px;
+    margin-bottom: 16px;
+    box-shadow: 0 8px 24px rgba(232,93,76,.25);
+  }
+  header h1 { margin: 0 0 6px; font-size: 1.35rem; }
+  header p { margin: 0; opacity: .95; font-size: .95rem; }
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,.22);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: .8rem;
+    margin-top: 10px;
+  }
+  .meta, .section {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 14px;
+    margin-bottom: 14px;
+  }
+  .meta label, .item label.q {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .meta input[type=text], .meta select,
+  .item textarea, .item input[type=text] {
+    width: 100%;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font: inherit;
+    background: #fff;
+  }
+  .meta .row { display: grid; gap: 10px; grid-template-columns: 1fr; }
+  @media (min-width: 520px) {
+    .meta .row { grid-template-columns: 1fr 1fr; }
+  }
+  h2 {
+    font-size: 1.05rem;
+    margin: 22px 4px 10px;
+    color: var(--coral-dark);
+  }
+  .legend {
+    font-size: .88rem;
+    color: var(--muted);
+    margin: 0 4px 14px;
+  }
+  .item { margin-bottom: 12px; }
+  .item .hint { font-size: .85rem; color: var(--muted); font-weight: 400; }
+  .scores {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 8px 0 10px;
+  }
+  .scores label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    border: 2px solid var(--line);
+    background: #fff;
+    cursor: pointer;
+    font-weight: 700;
+    user-select: none;
+  }
+  .scores input { position: absolute; opacity: 0; pointer-events: none; }
+  .scores input:checked + span,
+  .scores label:has(input:checked) {
+    background: var(--coral);
+    border-color: var(--coral);
+    color: #fff;
+  }
+  .scores label span { pointer-events: none; }
+  .why-label {
+    display: block;
+    font-size: .9rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .why-label .req { color: var(--coral); }
+  textarea { min-height: 72px; resize: vertical; }
+  .free textarea { min-height: 88px; }
+  .actions {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    background: rgba(255,248,245,.96);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid var(--line);
+    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    z-index: 20;
+  }
+  button, .btn {
+    flex: 1;
+    min-width: 140px;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 12px;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .primary { background: var(--coral); color: #fff; }
+  .primary:active { background: var(--coral-dark); }
+  .secondary { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+  .status {
+    display: none;
+    margin: 12px 0;
+    padding: 12px;
+    border-radius: 12px;
+    background: #e8f7ef;
+    color: #145c3a;
+    font-size: .95rem;
+  }
+  .status.show { display: block; }
+  .status.err { background: #fdecea; color: #8a1c12; }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: .8rem;
+    margin-top: 8px;
+  }
+  @media print {
+    body { background: #fff; padding: 0; }
+    .actions { display: none; }
+    header { box-shadow: none; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .item { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Cuestionario — Angie One</h1>
+  <p>Para Angie · modo prueba 🧪 · no cobra dinero real</p>
+  <div class="badge">Notas 1–5 + «¿Por qué?» obligatorio</div>
+</header>
+
+<p class="legend">
+  <strong>1</strong> muy mal · <strong>2</strong> mal · <strong>3</strong> regular · <strong>4</strong> bien · <strong>5</strong> excelente.<br>
+  App: <a href="https://parrareimonjose-del.github.io/angie-one/">parrareimonjose-del.github.io/angie-one</a>
+</p>
+
+<div class="meta">
+  <div class="row">
+    <div>
+      <label for="fecha">Fecha de la prueba</label>
+      <input type="text" id="fecha" placeholder="ej. 23 oct 2026" />
+    </div>
+    <div>
+      <label for="dispositivo">Dispositivo</label>
+      <select id="dispositivo">
+        <option value="">Elige…</option>
+        <option>iPhone</option>
+        <option>Android</option>
+        <option>Otro</option>
+      </select>
+    </div>
+  </div>
+  <div style="margin-top:10px">
+    <label for="navegador">Navegador / cómo abriste (Safari, Chrome, icono de inicio…)</label>
+    <input type="text" id="navegador" placeholder="ej. Safari + pantalla de inicio" />
+  </div>
+</div>
+
+<div id="form-root"></div>
+
+<div class="section free">
+  <h2 style="margin-top:0">J. Libre (opcional pero muy útil)</h2>
+  <label for="gusto">Lo que más te gustó</label>
+  <textarea id="gusto" placeholder="Escribe aquí…"></textarea>
+  <label for="molesto" style="margin-top:10px;display:block">Lo que más te molestó o falló</label>
+  <textarea id="molesto" placeholder="Escribe aquí…"></textarea>
+  <label for="cambiar" style="margin-top:10px;display:block">Una cosa que cambiarías ya</label>
+  <textarea id="cambiar" placeholder="Escribe aquí…"></textarea>
+  <label for="pagar" style="margin-top:10px;display:block">¿Algo que falte para que la gente pague sin miedo?</label>
+  <textarea id="pagar" placeholder="Escribe aquí…"></textarea>
+</div>
+
+<div id="status" class="status" role="status"></div>
+
+<footer>Parra Apps · Angie One · Tus respuestas se guardan solo en tu teléfono al exportar el archivo. No se envían solas.</footer>
+
+<div class="actions">
+  <button type="button" class="secondary" id="btnPrint">Imprimir / PDF</button>
+  <button type="button" class="secondary" id="btnTxt">Guardar texto</button>
+  <button type="button" class="primary" id="btnJson">Guardar mis respuestas</button>
+</div>
+
+<script>
+const ITEMS = [
+  { section: "A. Primera impresión y «como app»", id: "A1", q: "Abrir el enlace y carga de la web" },
+  { section: "A. Primera impresión y «como app»", id: "A2", q: "Añadir a pantalla de inicio (se siente como app)" },
+  { section: "A. Primera impresión y «como app»", id: "A3", q: "Primera impresión visual (colores, tipografía, limpieza)" },
+  { section: "B. Onboarding y meta", id: "B1", q: "Claridad del onboarding / edad / términos" },
+  { section: "B. Onboarding y meta", id: "B2", q: "Elegir meta (bajar / mantener / subir) y que quede clara" },
+  { section: "C. Diario: agua y comida", id: "C1", q: "Registrar agua" },
+  { section: "C. Diario: agua y comida", id: "C2", q: "Añadir alimento manual o de lista" },
+  { section: "C. Diario: agua y comida", id: "C3", q: "Código de barras (si no lo probaste, elige N/A)", na: true },
+  { section: "C. Diario: agua y comida", id: "C4", q: "Foto del plato / estimación IA (si falló u ocupada, cuéntalo abajo)", na: true },
+  { section: "C. Diario: agua y comida", id: "C5", q: "Ajustar porción / aceite / guardar en el diario" },
+  { section: "D. Chat — Angie IA (tu rostro)", id: "D1", q: "Se ve tu cara derecha y clara en el chat de la IA" },
+  { section: "D. Chat — Angie IA (tu rostro)", id: "D2", q: "Cómo habla / responde la IA (útil, cercana, clara)" },
+  { section: "D. Chat — Angie IA (tu rostro)", id: "D3", q: "¿Te sentiste cómoda viéndote como la IA de la app?" },
+  { section: "E. Coach (rostro de mi hermano)", id: "E1", q: "Se ve la cara del coach derecha y clara" },
+  { section: "E. Coach (rostro de mi hermano)", id: "E2", q: "Utilidad / tono del coach" },
+  { section: "E. Coach (rostro de mi hermano)", id: "E3", q: "¿Te parece bien que él sea el rostro del coach?" },
+  { section: "F. Historia de Angie One", id: "F1", q: "Pantalla Más → La historia de Angie One (texto y fotos)" },
+  { section: "F. Historia de Angie One", id: "F2", q: "El texto: ¿suena verdadero y respetuoso?" },
+  { section: "G. Memoria y aprendizaje", id: "G1", q: "Añadir / ver hechos en Memoria" },
+  { section: "G. Memoria y aprendizaje", id: "G2", q: "¿Se entiende que la IA aprende en tu teléfono y la salud no se vende?" },
+  { section: "H. Premium y pago de prueba (Stripe TEST)", id: "H1", q: "Claridad de qué incluye Premium y el precio" },
+  { section: "H. Premium y pago de prueba (Stripe TEST)", id: "H2", q: "Flujo de pago con tarjeta 4242… (sin cobro real)" },
+  { section: "H. Premium y pago de prueba (Stripe TEST)", id: "H3", q: "Después del pago: ¿se nota Premium activo?" },
+  { section: "I. Ajustes, confianza y «¿pagaría?»", id: "I1", q: "Ajustes / privacidad / sensación de control" },
+  { section: "I. Ajustes, confianza y «¿pagaría?»", id: "I2", q: "Facilidad general (¿una persona normal lo usa sin ayuda?)" },
+  { section: "I. Ajustes, confianza y «¿pagaría?»", id: "I3", q: "Si fuera de pago real (2,49/mes o 24,99/año), ¿la recomendarías?" },
+  { section: "I. Ajustes, confianza y «¿pagaría?»", id: "I4", q: "Nota global de la app hoy" },
+];
+
+const root = document.getElementById("form-root");
+let lastSection = "";
+ITEMS.forEach((it) => {
+  if (it.section !== lastSection) {
+    const h = document.createElement("h2");
+    h.textContent = it.section;
+    root.appendChild(h);
+    lastSection = it.section;
+  }
+  const div = document.createElement("div");
+  div.className = "item section";
+  div.dataset.id = it.id;
+  const scores = [1,2,3,4,5].map(n =>
+    `<label><input type="radio" name="score_${it.id}" value="${n}" /><span>${n}</span></label>`
+  ).join("") + (it.na ? `<label><input type="radio" name="score_${it.id}" value="N/A" /><span style="font-size:.7rem">N/A</span></label>` : "");
+  div.innerHTML = `
+    <label class="q">${it.id}. ${it.q}</label>
+    <div class="scores" role="radiogroup" aria-label="Nota ${it.id}">${scores}</div>
+    <span class="why-label">¿Por qué esa nota? <span class="req">*</span></span>
+    <textarea id="why_${it.id}" placeholder="Obligatorio: una frase basta…" required></textarea>
+  `;
+  root.appendChild(div);
+});
+
+function collect() {
+  const answers = {};
+  const missing = [];
+  ITEMS.forEach((it) => {
+    const sel = document.querySelector(`input[name="score_${it.id}"]:checked`);
+    const why = (document.getElementById(`why_${it.id}`).value || "").trim();
+    const score = sel ? sel.value : null;
+    answers[it.id] = { question: it.q, section: it.section, score, why };
+    if (!score) missing.push(`${it.id} (nota)`);
+    else if (!why) missing.push(`${it.id} (¿por qué?)`);
+  });
+  const nums = Object.values(answers)
+    .map(a => a.score)
+    .filter(s => s && s !== "N/A")
+    .map(Number);
+  const avg = nums.length ? (nums.reduce((a,b)=>a+b,0) / nums.length) : null;
+  return {
+    app: "Angie One",
+    mode: "TEST",
+    url: "https://parrareimonjose-del.github.io/angie-one/",
+    tester: "Angie",
+    fecha: document.getElementById("fecha").value.trim(),
+    dispositivo: document.getElementById("dispositivo").value,
+    navegador: document.getElementById("navegador").value.trim(),
+    answers,
+    libre: {
+      gusto: document.getElementById("gusto").value.trim(),
+      molesto: document.getElementById("molesto").value.trim(),
+      cambiar: document.getElementById("cambiar").value.trim(),
+      paraPagar: document.getElementById("pagar").value.trim(),
+    },
+    summary: {
+      itemsScored: nums.length,
+      average: avg ? Math.round(avg * 100) / 100 : null,
+    },
+    exportedAt: new Date().toISOString(),
+    missing,
+  };
+}
+
+function showStatus(msg, err) {
+  const el = document.getElementById("status");
+  el.textContent = msg;
+  el.className = "status show" + (err ? " err" : "");
+}
+
+function download(filename, text, mime) {
+  const blob = new Blob([text], { type: mime || "text/plain;charset=utf-8" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+}
+
+function toText(data) {
+  let t = `Cuestionario Angie One (TEST)\nFecha: ${data.fecha || "—"}\nDispositivo: ${data.dispositivo || "—"}\nNavegador: ${data.navegador || "—"}\nPromedio: ${data.summary.average ?? "—"} (${data.summary.itemsScored} notas)\n\n`;
+  let sec = "";
+  for (const [id, a] of Object.entries(data.answers)) {
+    if (a.section !== sec) { sec = a.section; t += `\n## ${sec}\n`; }
+    t += `${id}. ${a.question}\nNota: ${a.score ?? "—"}\n¿Por qué?: ${a.why || "—"}\n\n`;
+  }
+  t += `\n## Libre\nGustó: ${data.libre.gusto || "—"}\nMolestó: ${data.libre.molesto || "—"}\nCambiaría: ${data.libre.cambiar || "—"}\nPara pagar: ${data.libre.paraPagar || "—"}\n`;
+  return t;
+}
+
+document.getElementById("btnJson").addEventListener("click", () => {
+  const data = collect();
+  if (data.missing.length) {
+    showStatus("Faltan " + data.missing.length + " campos: " + data.missing.slice(0, 8).join(", ") + (data.missing.length > 8 ? "…" : "") + ". Completa nota + por qué en cada una.", true);
+    return;
+  }
+  const stamp = new Date().toISOString().slice(0,10);
+  download(`angie-one-prueba-angie-${stamp}.json`, JSON.stringify(data, null, 2), "application/json");
+  download(`angie-one-prueba-angie-${stamp}.txt`, toText(data), "text/plain;charset=utf-8");
+  showStatus("Listo. Se descargaron JSON y texto. Envíaselos a José por WhatsApp (como documento). Promedio: " + data.summary.average + " / 5.");
+});
+
+document.getElementById("btnTxt").addEventListener("click", () => {
+  const data = collect();
+  const stamp = new Date().toISOString().slice(0,10);
+  download(`angie-one-prueba-angie-${stamp}.txt`, toText(data), "text/plain;charset=utf-8");
+  showStatus(data.missing.length
+    ? "Texto guardado (aún faltan " + data.missing.length + " campos). Puedes completarlo después."
+    : "Texto guardado. Mándaselo a José.");
+});
+
+document.getElementById("btnPrint").addEventListener("click", () => {
+  window.print();
+});
+</script>
+</body>
+</html>
