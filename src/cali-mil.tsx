@@ -30,7 +30,8 @@ const FAM: Record<string, string[]> = {
 const FAM_OF: Record<string, string> = Object.fromEntries(Object.entries(FAM).flatMap(([k, ids]) => ids.map((i) => [i, k])));
 /** Fotogramas (inicio/final) del ejercicio para el sexo pedido; si no hay de ese sexo usa el otro; null → atleta SVG. */
 export function photos(id: string, sex: 'm' | 'f'): any[] | null {
-  const k = FAM_OF[id]; if (!k) return null;
+  const k = FAM_OF[id]; if (!k) { const cat = EX[id]?.cat; if (!cat) return null; // sin foto propia: portada real de su categoría (nunca un muñeco)
+    const cv = { push: 'cover-push', pull: 'cover-back', legs: sex === 'f' ? 'cover-w-legs' : 'cover-legs', core: sex === 'f' ? 'cover-w-core' : 'cover-core', skill: 'cover-skill' }[cat]; return cv && IMG[cv] ? [IMG[cv]] : null; }
   for (const sx of [sex, sex === 'm' ? 'f' : 'm']) { const a = IMG[`${sx}-${k}-a`], b = IMG[`${sx}-${k}-b`], one = IMG[`${sx}-${k}`]; if (a) return b ? [a, b] : [a]; if (one) return [one]; }
   return null;
 }

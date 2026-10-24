@@ -6,7 +6,8 @@ import { View, Text, TextInput, Image, Platform, Animated, Easing } from 'react-
 import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import Svg, { Circle, Rect, Ellipse, Path } from 'react-native-svg';
+import { photos } from './cali-mil';
+import { FACES } from './rostros';
 import { Screen, Card, Btn, Chip, T, Bar, s, StatRow, IconCard, EmptyState, Pill, Ring, InfoNote, CardTitle, IconTile, FOOD } from './ui';
 import { C, R, shadow } from './theme';
 import { useStore, today, uid, DAY, trialPhase } from './store';
@@ -74,15 +75,10 @@ export function Recipes() {
 // ---------- Gimnasio con animaciones propias (SVG, sin licencias de terceros) ----------
 const MOVES = ['squat', 'pushup', 'jack', 'plank'] as const;
 function MoveAnim({ m }: { m: typeof MOVES[number] }) {
-  const v = useRef(new Animated.Value(0)).current;
-  useEffect(() => { const a = Animated.loop(Animated.sequence([Animated.timing(v, { toValue: 1, duration: 900, easing: Easing.inOut(Easing.quad), useNativeDriver: false }), Animated.timing(v, { toValue: 0, duration: 900, useNativeDriver: false })])); a.start(); return () => a.stop(); }, []);
-  const ty = v.interpolate({ inputRange: [0, 1], outputRange: [0, m === 'squat' ? 28 : m === 'pushup' ? 14 : m === 'jack' ? -16 : 2] });
-  const sc = v.interpolate({ inputRange: [0, 1], outputRange: [1, m === 'jack' ? 1.25 : 1] });
-  return <View accessibilityLabel="animation" style={{ height: 150, alignItems: 'center', justifyContent: 'center', backgroundColor: C.primarySoft, borderRadius: 20 }}>
-    <Animated.View style={{ transform: [{ translateY: ty }, { scaleX: sc }, { rotate: m === 'pushup' || m === 'plank' ? '90deg' : '0deg' }] }}>
-      <Svg width={80} height={120}><Circle cx={40} cy={16} r={13} fill={C.primary} /><Rect x={30} y={32} width={20} height={44} rx={8} fill={C.secondary} />
-        <Rect x={8} y={36} width={22} height={9} rx={4} fill={C.secondary} /><Rect x={50} y={36} width={22} height={9} rx={4} fill={C.secondary} />
-        <Rect x={30} y={76} width={9} height={40} rx={4} fill={C.text} /><Rect x={41} y={76} width={9} height={40} rx={4} fill={C.text} /></Svg></Animated.View></View>;
+  const ph = photos({ squat: 'squat', pushup: 'pushup', jack: 'jump_squat', plank: 'plank' }[m], 'f') ?? []; const [f, setF] = useState(0);
+  useEffect(() => { if (ph.length < 2) return; const iv = setInterval(() => setF((x) => 1 - x), 1000); return () => clearInterval(iv); }, [m, ph.length]);
+  return <View accessibilityLabel="animation" style={{ height: 240, borderRadius: 20, overflow: 'hidden', backgroundColor: C.primarySoft }}>
+    {ph.length ? <Image testID="move-photo" source={ph[Math.min(f, ph.length - 1)]} style={{ width: '100%', height: 240 }} resizeMode="cover" accessibilityIgnoresInvertColors /> : null}</View>;
 }
 export function Gym() {
   const { t } = useTranslation(); const [m, setM] = useState<typeof MOVES[number]>('squat');
@@ -138,10 +134,7 @@ export function Twin() {
   return <Screen title={`🧍 ${t('x.t.twin')}`}>
     <View style={{ alignSelf: 'flex-start', backgroundColor: C.secondary, borderRadius: 12, paddingHorizontal: 10, paddingVertical: 6 }}><Text style={{ color: C.white, fontWeight: '800' }}>Premium Plus · {t('x.preview')}</Text></View>
     <Card style={{ alignItems: 'center', backgroundColor: C.tint }}>
-      <Animated.View testID="twin" style={{ transform: [{ translateY: ty }] }}><Svg width={140} height={200}>
-        <Ellipse cx={70} cy={192} rx={44} ry={7} fill="#0002" /><Circle cx={70} cy={36} r={26} fill="#F2C7A5" />
-        <Circle cx={61} cy={33} r={3} fill={C.text} /><Circle cx={79} cy={33} r={3} fill={C.text} /><Path d={act === 'talk' || act === 'eat' ? 'M60 46 Q70 56 80 46' : 'M62 47 L78 47'} stroke={C.primary} strokeWidth={3} fill="none" />
-        <Rect x={70 - 24 * w} y={64} width={48 * w} height={70} rx={20} fill={C.primary} /><Rect x={70 - 22} y={132} width={18} height={56} rx={8} fill={C.secondary} /><Rect x={74} y={132} width={18} height={56} rx={8} fill={C.secondary} /></Svg></Animated.View>
+      <Animated.View testID="twin" style={{ transform: [{ translateY: ty }], width: '100%' }}><Image source={FACES[act === 'train' ? 'coach' : 'angie'].photo} style={{ width: '100%', height: 300, borderRadius: 16 }} resizeMode="cover" accessibilityIgnoresInvertColors /></Animated.View>
       <Text style={{ fontSize: 40 }}>{props[act]}</Text><T style={{ textAlign: 'center' }}>{t(`x.tw.${act}`, { kcal: fmtNum(coachTarget(st).kcal) })}</T></Card>
     <Row>{(['talk', 'eat', 'cook', 'train'] as const).map((k) => <Chip key={k} label={t(`x.twa.${k}`)} active={act === k} onPress={() => go(k)} />)}</Row>
     {CLONE_ENABLED ? <Btn label={`🧬  ${t('cl.fromTwin')}`} onPress={() => router.push('/clon' as any)} /> : null}

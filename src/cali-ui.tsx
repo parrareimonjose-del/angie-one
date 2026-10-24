@@ -66,7 +66,7 @@ const muscles = (t: any, e: ExT) => e.m.map((m) => t(`cali.m.${m}`)).join(' · '
 function ExRow({ e, lang }: { e: ExT; lang: string }) {
   const { t } = useTranslation(); const [c] = useCali(); const done = c.done.includes(e.id), fav = c.fav.includes(e.id);
   return <Pressable onPress={() => router.push({ pathname: '/cali-ex', params: { id: e.id } })} accessibilityRole="button" style={{ flexDirection: 'row', alignItems: 'center', gap: 10, paddingVertical: 6 }} testID={`ex-${e.id}`}>
-    <Athlete id={e.id} sex={c.sex} tone={c.tone} size={84} still={false} paused />
+    {(() => { const ph = photos(e.id, c.sex); return ph ? <Image source={ph[0]} style={{ width: 84, height: 64, borderRadius: 8 }} accessibilityIgnoresInvertColors /> : <View style={{ width: 84, height: 64, borderRadius: 8, backgroundColor: C.tint }} />; })()}
     <View style={{ flex: 1 }}><Text style={[s.t, { fontWeight: '800' }]}>{fav ? '★ ' : ''}{txt(e, lang).n}{done ? ' ✓' : ''}</Text>
       <Text style={s.muted}>{LV(t, e.lvl)} · {t(`cali.eq.${e.eq}`)}</Text><Text style={[s.muted, { fontSize: 13 }]}>{muscles(t, e)}</Text></View>
   </Pressable>;
