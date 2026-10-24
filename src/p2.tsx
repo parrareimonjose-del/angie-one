@@ -1,5 +1,5 @@
 import { FACES, FaceId } from './rostros';
-import { FaceToggle } from './rostros-ui';
+import { FaceToggle, FaceAvatar } from './rostros-ui';
 import { ChefSteps } from './chef-steps';
 import { CLONE_ENABLED } from './flags';
 /** Fase 2 (web): coach adaptativo, memoria, importar MyFitnessPal, voz, peso, recetas y planes, nevera/chef,
@@ -387,7 +387,7 @@ export function Avatar() {
   return <Screen title={`🙂 ${t('p2.t.avatar')}`}>
     <FaceToggle value={who} onChange={(w) => setAv((v) => ({ ...v, who: w }))} />
     <Card testID="avatar-photo" style={{ padding: 0, overflow: 'hidden' }}>
-      <Image source={f.photo} style={{ width: '100%', height: 340, backgroundColor: C.tint }} resizeMode="cover" accessibilityIgnoresInvertColors accessibilityLabel={t(f.nameKey)} />
+      <View style={{ alignItems: 'center', paddingTop: 24, backgroundColor: who === 'angie' ? C.primarySoft : C.tint }}><View style={{ marginBottom: -2 }}><FaceAvatar who={who} size={220} /></View><View style={{ height: 20 }} /></View>
       {badge ? <View style={{ position: 'absolute', top: 12, right: 12, backgroundColor: C.card, borderRadius: 999, paddingHorizontal: 12, paddingVertical: 6 }}><Text style={{ fontWeight: '800', color: C.text }}>{badge.icon} {t('p2.rw.' + badge.k)}</Text></View> : null}
       <View style={{ padding: 16, gap: 6 }}>
         <Text style={{ fontSize: 22, fontWeight: '900', color: C.text }}>{t(f.nameKey)}</Text>
