@@ -294,7 +294,7 @@
         ],
         [
           "Lebensmitteldatenbank und Barcodes",
-          "Barcodenummern und Suchanfragen werden in unserer Lebensmittelliste (Open Food Facts und USDA) überprüft. Wenn du ein fehlendes Produkt hinzufügst, speichern wir nur den Barcode, den Namen, die Marke und die Nährwerte ohne persönliche Daten, damit andere es nutzen können."
+          "Barcodenummern und Suchanfragen werden in unserer Lebensmittelliste (Open Food Facts und USDA) überprüft. Wenn du ein fehlendes Produkt hinzufügst, speichern wir nur den Barcode, den Namen, die Marke und die Nährwerte ohne persönliche Daten, damit andere es nutzen können. Wenn du eine Speisekarte fotografierst, speichern wir anonym nur die erkannten Gerichte (Name, geschätzte kcal und Makros, Sprache, ggf. Stadt oder Restaurant) zur Verbesserung der Datenbank; nie das Foto, dein Profil oder Gesundheitsdaten."
         ],
         [
           "Health-Apps",
@@ -1195,8 +1195,8 @@
     "avSayGood": "Großartige Arbeit heute! Ich bin stolz auf dich.",
     "avSayStart": "Hi! Starten wir den Tag mit einem Glas Wasser.",
     "avTwin": "3D-Zwilling ansehen (Vorschau)",
-    "avNote": "Das ist dein erster Klon. Der vollständige 3D-Zwilling kommt in Premium Plus.",
-    "avLocked": "Passe deinen Avatar an und schalte Belohnungen frei.",
+    "avNote": "Wähle, wer dich jeden Tag begleitet: Angie (KI) oder der Coach. Echte Menschen aus dem Angie-One-Team.",
+    "avLocked": "Schalte mit deinen Punkten Abzeichen frei und zeige sie bei deinem Begleiter.",
     "rpeQ": "Wie war es?",
     "rpeL": {
       "easy": "😎 Leicht",
@@ -1235,7 +1235,9 @@
       "retT": "Tägliche Erinnerung",
       "retW": "Wenige aktive Tage diese Woche.",
       "retC": "Zeige zur Mittagszeit eine freundliche Erinnerung."
-    }
+    },
+    "mnSaved": "Danke: Die Gerichte dieser Karte (nur Name und Kalorien, nie dein Foto) erweitern die Lebensmitteldatenbank.",
+    "avChat": "Mit meinem Begleiter sprechen"
   },
   "dt": {
     "title": "Meine Belege und Daten",
@@ -2126,7 +2128,13 @@
     "mfGood": "kcal an guten Tagen",
     "mfLow": "kcal an schlechten Tagen",
     "mfWait": "Trage deine Stimmung noch ein paar Tage ein, um den Zusammenhang mit deinem Essen zu sehen.",
-    "mfNote": "Nur ein Wellness-Hinweis, kein medizinischer Rat."
+    "mfNote": "Nur ein Wellness-Hinweis, kein medizinischer Rat.",
+    "prep": "Vorbereitung (Mise en place)",
+    "qty": "Zutaten mit Mengen",
+    "tip": "Profi-Tipp",
+    "oops": "Häufiger Fehler",
+    "doneHow": "Woran du erkennst, dass es fertig ist",
+    "plate": "Anrichten"
   },
   "gr": {
     "title": "Kostenloses Premium für Personen",

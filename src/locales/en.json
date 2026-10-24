@@ -256,7 +256,7 @@
         ],
         [
           "Food database and barcodes",
-          "Barcode numbers and searches are checked in our food list (Open Food Facts and USDA). If you add a missing product, we store only the barcode, name, brand and label values, with no personal data, so other people can use it."
+          "Barcode numbers and searches are checked in our food list (Open Food Facts and USDA). If you add a missing product, we store only the barcode, name, brand and label values, with no personal data, so other people can use it. When you photograph a restaurant menu, we anonymously keep only the detected dishes (name, estimated kcal and macros, language, and city or restaurant if shown) to improve the food database; never the photo, your profile or health data."
         ],
         [
           "Health apps",
@@ -1195,8 +1195,8 @@
     "avSayGood": "Great job today! I'm with you.",
     "avSayStart": "Hi! Let's start the day with a glass of water.",
     "avTwin": "See the 3D twin (preview)",
-    "avNote": "This is your first clone. The full 3D twin comes in Premium Plus.",
-    "avLocked": "Customize your avatar and unlock rewards.",
+    "avNote": "Choose who keeps you company every day: Angie (AI) or the Coach. They are real people from the Angie One team.",
+    "avLocked": "Unlock badges with your points and show them on your companion.",
     "rpeQ": "How was it?",
     "rpeL": {
       "easy": "😎 Easy",
@@ -1235,7 +1235,9 @@
       "retT": "Daily reminder",
       "retW": "Few active days this week.",
       "retC": "Show a friendly reminder at lunch time."
-    }
+    },
+    "mnSaved": "Thanks: this menu’s dishes (name and calories only, never your photo) help grow the food database.",
+    "avChat": "Talk to my companion"
   },
   "dt": {
     "title": "My receipts & data",
@@ -2126,7 +2128,13 @@
     "mfGood": "kcal on good days",
     "mfLow": "kcal on low days",
     "mfWait": "Log your mood a few more days to see how it relates to what you eat.",
-    "mfNote": "Just a wellness hint, not medical advice."
+    "mfNote": "Just a wellness hint, not medical advice.",
+    "prep": "Before you start (mise en place)",
+    "qty": "Ingredients with amounts",
+    "tip": "Chef tip",
+    "oops": "Common mistake",
+    "doneHow": "How to know it’s done",
+    "plate": "Plating"
   },
   "gr": {
     "title": "Free Premium for people",

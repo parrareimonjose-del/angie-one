@@ -128,6 +128,7 @@ export async function handleFoods(path, req, env, json, h) {
   if (path === '/foods/search') {
     const q = (u.searchParams.get('q') || '').slice(0, 80).trim(); if (q.length < 2) return json({ items: [] }, 200, h);
     let items = await searchKV(env, q, lang, cc); let live = false;
+    try { const seenN = new Set(items.map(nameKey)); for (const d of await searchDishes(env, q, lang)) if (!seenN.has(nameKey(d))) items.push(d); } catch { /* sin platos aportados */ }
     if (items.length < 6) { live = true; const seen = new Set(items.map((r) => r.bc || r.i)); const keys = new Set(items.map(nameKey));
       for (const r of await liveSearch(env, q, lang)) { if (seen.has(r.bc || r.i) || keys.has(nameKey(r))) continue; seen.add(r.bc || r.i); keys.add(nameKey(r)); items.push(r); } }
     return json({ items: items.slice(0, 25), live, attribution: 'Open Food Facts (ODbL) · USDA FoodData Central' }, 200, { ...h, 'Cache-Control': 'public, max-age=3600' });
@@ -164,6 +165,7 @@ export function checkContribution(b) {
 const chits = new Map();
 /** POST /foods/contribute: el producto queda disponible al momento para todos (marcado «de usuarios», sin sello) y en la cola del fundador. */
 export async function foodContribute(b, req, env, json, h) {
+  if (b && b.kind === 'dishes') return dishContribute(b, req, env, json, h);
   const ip = req.headers.get('CF-Connecting-IP') || 'x'; const day = new Date().toISOString().slice(0, 10); const key = ip + day; const n = chits.get(key) || 0;
   if (n >= 10) return json({ error: 'rate' }, 429, h); chits.set(key, n + 1); if (chits.size > 5000) chits.clear();
   const { rec, err } = checkContribution(b); if (err) return json({ error: err }, 400, h);
@@ -181,4 +183,58 @@ export async function foodQueue(path, b, req, env, json, h) {
   }
   if (path === '/foods/queue/delete') { const k = String(b.key || ''); if (!/^(r|ub):/.test(k)) return json({ error: 'bad' }, 400, h); await env.FOODS.delete(k); return json({ ok: true }, 200, h); }
   return json({ error: 'not found' }, 404, h);
+}
+
+// ---- Platos de menús de restaurante aportados (anónimos) ----
+// Solo datos del plato: nombre, kcal/macros estimados, idioma, restaurante/ciudad si salen impresos. Nunca foto, id de usuario ni datos de salud.
+export const dishKey = (name) => toks(name).sort().join(' ').slice(0, 80);
+export const dKey = (w, n = 200) => 'ud:' + (fnv(w.slice(0, 4)) % n);
+export function checkDishes(b) {
+  const clean = (v, n) => String(v || '').replace(/[<>]/g, '').replace(/(https?:\/\/|www\.)\S+/gi, '').replace(/\S+@\S+/g, '').replace(/\+?\d[\d\s().-]{6,}\d/g, '').trim().slice(0, n);
+  const lang = /^[a-z]{2}$/.test(b.lang) ? b.lang : 'es';
+  const rest = clean(b.restaurant, 60), city = clean(b.city, 40);
+  const out = [];
+  for (const d of (Array.isArray(b.dishes) ? b.dishes : []).slice(0, 8)) {
+    const name = clean(d && d.name, 70); const key = dishKey(name); if (name.length < 3 || !key) continue;
+    const n = (v, max) => { const x = Math.round(+v); return x >= 0 && x <= max ? x : NaN; };
+    const lo = n(d.kcalMin, 3000), hi = n(d.kcalMax, 3000); const k = isNaN(+d.k) ? Math.round(((lo || 0) + (hi || lo || 0)) / 2) : n(d.k, 3000);
+    if (!(k >= 30 && k <= 3000)) continue;
+    const p = n(d.p, 300), c = n(d.c, 400), f = n(d.f, 200);
+    out.push({ key, name, k, p: isNaN(p) ? undefined : p, c: isNaN(c) ? undefined : c, f: isNaN(f) ? undefined : f });
+  }
+  return { lang, rest, city, dishes: out };
+}
+const dhits = new Map();
+export async function dishContribute(b, req, env, json, h) {
+  const ip = req.headers.get('CF-Connecting-IP') || 'x'; const day = new Date().toISOString().slice(0, 10); const rk = ip + day; const used = dhits.get(rk) || 0;
+  if (used >= 20) return json({ error: 'rate' }, 429, h); dhits.set(rk, used + 1); if (dhits.size > 5000) dhits.clear();
+  const { lang, rest, city, dishes } = checkDishes(b); if (!dishes.length) return json({ error: 'nums' }, 400, h);
+  if (!env.FOODS) return json({ error: 'busy' }, 503, h);
+  const byBucket = new Map(); for (const d of dishes) for (const bk of new Set(d.key.split(' ').slice(0, 4).map((w) => dKey(w)))) (byBucket.get(bk) || byBucket.set(bk, []).get(bk)).push(d);
+  const now = new Date().toISOString(); let added = 0, merged = 0;
+  for (const [bk, list] of byBucket) {
+    let map = {}; try { map = JSON.parse((await env.FOODS.get(bk)) || '{}'); } catch { map = {}; }
+    for (const d of list) {
+      const o = map[d.key];
+      if (o) { const w = o.cnt || 1; const avg = (a, x) => (x == null ? a : a == null ? x : Math.round((a * w + x) / (w + 1)));
+        o.k = avg(o.k, d.k); o.p = avg(o.p, d.p); o.c = avg(o.c, d.c); o.f = avg(o.f, d.f); o.cnt = w + 1; o.last = now; if (!o.n[lang]) o.n[lang] = d.name;
+        if (rest && !(o.r || []).includes(rest) && (o.r || []).length < 5) o.r = [...(o.r || []), rest]; if (city && !(o.ct || []).includes(city) && (o.ct || []).length < 5) o.ct = [...(o.ct || []), city]; merged++; }
+      else { map[d.key] = { n: { [lang]: d.name }, k: d.k, p: d.p, c: d.c, f: d.f, cnt: 1, first: now, last: now, r: rest ? [rest] : undefined, ct: city ? [city] : undefined }; added++; }
+    }
+    const keys = Object.keys(map); if (keys.length > 1500) for (const k of keys.sort((a, b) => (map[a].cnt || 0) - (map[b].cnt || 0)).slice(0, keys.length - 1500)) delete map[k];
+    try { await env.FOODS.put(bk, JSON.stringify(map)); } catch { return json({ error: 'busy' }, 503, h); }
+  }
+  return json({ ok: true, dishes: dishes.length }, 200, h);
+}
+/** Búsqueda en platos aportados: por porción (no por 100 g); marcados s:'menu'. */
+export async function searchDishes(env, q, lang = 'es') {
+  const words = toks(q).slice(0, 5); if (!words.length || !env.FOODS) return [];
+  const out = [];
+  for (const w of [...new Set(words)].slice(0, 2)) {
+    let map = {}; try { map = JSON.parse((await env.FOODS.get(dKey(w), { cacheTtl: 600 })) || '{}'); } catch { continue; }
+    for (const [k, o] of Object.entries(map)) { const kt = k.split(' '); if (!words.every((x) => kt.some((t) => t.startsWith(x)))) continue;
+      const id = 'menu:' + k.replace(/ /g, '-'); if (out.some((r) => r.i === id)) continue;
+      out.push({ i: id, n: o.n, k: o.k, p: o.p ?? 0, c: o.c ?? 0, f: o.f ?? 0, sv: ['1 plato', 100], s: 'menu', v: 0, q: Math.min(45, 20 + (o.cnt || 1) * 3), cnt: o.cnt, b: (o.r || [])[0], perServing: 1 }); }
+  }
+  return out.sort((a, b) => (b.cnt || 0) - (a.cnt || 0)).slice(0, 8);
 }

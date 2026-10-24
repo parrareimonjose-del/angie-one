@@ -256,7 +256,7 @@
         ],
         [
           "Base de alimentos y códigos de barras",
-          "Los códigos de barras y las búsquedas se consultan en nuestra lista de alimentos (Open Food Facts y USDA). Si añades un producto que falta, guardamos solo el código, el nombre, la marca y los datos de la etiqueta, sin datos personales, para que otras personas lo usen."
+          "Los códigos de barras y las búsquedas se consultan en nuestra lista de alimentos (Open Food Facts y USDA). Si añades un producto que falta, guardamos solo el código, el nombre, la marca y los datos de la etiqueta, sin datos personales, para que otras personas lo usen. Cuando fotografías el menú de un restaurante, guardamos de forma anónima solo los platos detectados (nombre, kcal y macros estimados, idioma y ciudad o restaurante si aparecen) para mejorar la base de alimentos; nunca la foto, ni tu perfil, ni datos de salud."
         ],
         [
           "Apps de salud",
@@ -1195,8 +1195,8 @@
     "avSayGood": "¡Muy bien hoy! Estoy contigo.",
     "avSayStart": "¡Hola! Empecemos el día con un vaso de agua.",
     "avTwin": "Ver el gemelo 3D (vista previa)",
-    "avNote": "Este es tu primer clon. El gemelo 3D completo llega en Premium Plus.",
-    "avLocked": "Personaliza tu avatar y desbloquea premios.",
+    "avNote": "Elige quién te acompaña cada día: Angie (IA) o el Coach. Son personas reales del equipo Angie One.",
+    "avLocked": "Desbloquea insignias con tus puntos y lúcelas en tu acompañante.",
     "rpeQ": "¿Cómo te fue?",
     "rpeL": {
       "easy": "😎 Fácil",
@@ -1235,7 +1235,9 @@
       "retT": "Aviso diario",
       "retW": "Pocos días activos esta semana.",
       "retC": "Mostrar un aviso amable a la hora del almuerzo."
-    }
+    },
+    "mnSaved": "Gracias: los platos de este menú (solo nombre y calorías, sin tu foto) ayudan a crecer la base de alimentos.",
+    "avChat": "Hablar con mi acompañante"
   },
   "dt": {
     "title": "Mis recibos y datos",
@@ -2126,7 +2128,13 @@
     "mfGood": "kcal en días buenos",
     "mfLow": "kcal en días bajos",
     "mfWait": "Registra tu ánimo unos días más y verás cómo se relaciona con lo que comes.",
-    "mfNote": "Solo una pista de bienestar, no un consejo médico."
+    "mfNote": "Solo una pista de bienestar, no un consejo médico.",
+    "prep": "Antes de empezar (mise en place)",
+    "qty": "Ingredientes con cantidades",
+    "tip": "Truco de chef",
+    "oops": "Error común",
+    "doneHow": "Cómo saber que está listo",
+    "plate": "Emplatado"
   },
   "gr": {
     "title": "Premium gratis para personas",

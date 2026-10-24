@@ -1,3 +1,6 @@
+import { FACES, FaceId } from './rostros';
+import { FaceToggle } from './rostros-ui';
+import { ChefSteps } from './chef-steps';
 import { CLONE_ENABLED } from './flags';
 /** Fase 2 (web): coach adaptativo, memoria, importar MyFitnessPal, voz, peso, recetas y planes, nevera/chef,
  *  antojos, sueño y estrés, avisos, menú, puntos, resumen semanal en voz, avatar 2D e IA Programadora. Todo local. */
@@ -210,7 +213,7 @@ export function Plans() {
 }
 
 // ---------- Escáner de nevera/despensa/sazones + chef IA ----------
-type Rec = { name: string; kcal: number; min: number; uses: string[]; steps: string[] };
+type Rec = { name: string; kcal: number; p?: number; c?: number; f?: number; min: number; uses: string[]; ing?: string[]; prep?: string[]; steps: string[]; tip?: string; oops?: string; done?: string; plate?: string };
 async function pickPhoto(cam: boolean) {
   const opt = { base64: true, quality: 0.7, mediaTypes: ['images'] as any };
   const r = cam && Platform.OS !== 'web' ? await ImagePicker.launchCameraAsync(opt) : await ImagePicker.launchImageLibraryAsync(opt);
@@ -224,7 +227,7 @@ export function Chef() {
   const run = async (body: object) => { setBusy(true); setErr(''); setRecs([]); try { const o = await post('/vision', { mode: 'chef', lang: curLang(), kcal: Math.round(coachTarget(st).kcal / 3.5), dislike: dislike.slice(0, 150), ...body });
     setItems(o.items || []); setRecs(o.recipes || []); if (!(o.recipes || []).length) setErr(t('p2.chNone')); } catch { setErr(t('p2.err')); } finally { setBusy(false); } };
   const photo = async () => { const p = await pickPhoto(true); if (!p) return; setUri(p.uri); run({ image: p.b64, mime: p.mime }); };
-  const log = (r: Rec, i: number) => { set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: r.name, kcal: r.kcal, p: 0, c: 0, f: 0, source: 'manual' }] })); setAdded(i); };
+  const log = (r: Rec, i: number) => { set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: r.name, kcal: r.kcal, p: r.p || 0, c: r.c || 0, f: r.f || 0, source: 'manual' }] })); setAdded(i); };
   if (!prem) return <Screen title={`🧊 ${t('p2.t.fridge')}`}><Locked k="p2.chLocked" /></Screen>;
   return <Screen title={`🧊 ${t('p2.t.fridge')}`}>
     <Card><Image source={uri ? { uri } : require('../assets/sections/chef.jpg')} style={{ width: '100%', height: 160, borderRadius: 16 }} resizeMode="cover" accessibilityIgnoresInvertColors />
@@ -235,18 +238,20 @@ export function Chef() {
     {busy ? <T>⏳ {t('p2.thinking')}</T> : null}{err ? <Text style={{ color: C.primary, fontWeight: '800' }}>{err}</Text> : null}
     {items.length ? <Card><CardTitle icon="🥕">{t('p2.chFound')}</CardTitle><View style={[s.row, { flexWrap: 'wrap' }]}>{items.map((x) => <Pill key={x} label={x} />)}</View></Card> : null}
     {recs.map((r, i) => <Card key={i} testID="recipe"><CardTitle>{r.name}</CardTitle><Text style={s.muted}>{fmtNum(r.kcal)} {t('u.kcal')} · {r.min} min</Text>
-      {open === i ? r.steps.map((x, j) => <T key={j}>{j + 1}. {x}</T>) : null}
-      <Row><Btn small kind="ghost" label={open === i ? t('x.close') : t('x.see')} onPress={() => setOpen(open === i ? -1 : i)} /><Btn small kind="ghost" label="🔊" a11y={t('home.readAloud')} onPress={() => speak(r.name + '. ' + r.steps.join('. '))} />
+      {open === i ? <ChefSteps ing={r.ing} prep={r.prep} steps={r.steps} tip={r.tip} oops={r.oops} done={r.done} plate={r.plate} /> : null}
+      <Row><Btn small kind="ghost" label={open === i ? t('x.close') : t('x.see')} onPress={() => setOpen(open === i ? -1 : i)} /><Btn small kind="ghost" label="🔊" a11y={t('home.readAloud')} onPress={() => speak(r.name + '. ' + [...(r.ing || []), ...(r.prep || []), ...r.steps].join('. '))} />
         {added === i ? <Text style={{ color: C.success, fontWeight: '800' }}>✓ {t('p2.vSaved')}</Text> : <Btn small label={`＋ ${t('p2.toDiary')}`} onPress={() => log(r, i)} />}</Row></Card>)}
     <Disclaimer /></Screen>;
 }
 
 // ---------- Escáner de menú de restaurante ----------
-type Dish = { name: string; kcalMin: number; kcalMax: number; pick: 'best' | 'ok' | 'treat'; tip: string };
+type Dish = { name: string; kcalMin: number; kcalMax: number; p?: number; c?: number; f?: number; pick: 'best' | 'ok' | 'treat'; tip: string };
 export function Menu() {
-  const { t } = useTranslation(); const { s: st, set } = useStore(); const prem = isPremium(st); const [q, setQ] = useState(''); const [busy, setBusy] = useState(false); const [err, setErr] = useState(''); const [ds, setDs] = useState<Dish[]>([]); const [added, setAdded] = useState('');
+  const { t } = useTranslation(); const { s: st, set } = useStore(); const prem = isPremium(st); const [q, setQ] = useState(''); const [busy, setBusy] = useState(false); const [err, setErr] = useState(''); const [ds, setDs] = useState<Dish[]>([]); const [added, setAdded] = useState(''); const [shared, setShared] = useState(false);
   const eaten = st.entries.filter((e) => e.date === today()).reduce((a, e) => a + e.kcal, 0); const left = Math.max(0, coachTarget(st).kcal + burnedOn(coachOf(st), today()) - eaten);
-  const run = async (body: object) => { setBusy(true); setErr(''); setDs([]); try { const o = await post('/vision', { mode: 'menu', lang: curLang(), left, ...body }); setDs(o.dishes || []); if (!(o.dishes || []).length) setErr(t('p2.mnNone')); } catch { setErr(t('p2.err')); } finally { setBusy(false); } };
+  const run = async (body: object) => { setBusy(true); setErr(''); setDs([]); try { const o = await post('/vision', { mode: 'menu', lang: curLang(), left, ...body }); setDs(o.dishes || []); if (!(o.dishes || []).length) setErr(t('p2.mnNone'));
+    else { // Aporte anónimo a la base de alimentos: solo datos del plato (sin foto, sin id, sin perfil ni salud).
+      post('/foods/contribute', { kind: 'dishes', lang: o.menuLang || curLang(), restaurant: o.restaurant || '', city: o.city || '', dishes: (o.dishes || []).map((d: Dish) => ({ name: d.name, kcalMin: d.kcalMin, kcalMax: d.kcalMax, p: d.p, c: d.c, f: d.f })) }).then(() => setShared(true)).catch(() => {}); } } catch { setErr(t('p2.err')); } finally { setBusy(false); } };
   const photo = async () => { const p = await pickPhoto(true); if (p) run({ image: p.b64, mime: p.mime }); };
   const col = { best: C.success, ok: C.secondary, treat: C.warning };
   if (!prem) return <Screen title={`📋 ${t('p2.t.menu')}`}><Locked k="p2.mnLocked" /></Screen>;
@@ -259,7 +264,8 @@ export function Menu() {
     {busy ? <T>⏳ {t('p2.thinking')}</T> : null}{err ? <Text style={{ color: C.primary, fontWeight: '800' }}>{err}</Text> : null}
     {[...ds].sort((a, b) => ['best', 'ok', 'treat'].indexOf(a.pick) - ['best', 'ok', 'treat'].indexOf(b.pick)).map((d) => <Card key={d.name} testID="dish" style={{ borderLeftWidth: 8, borderLeftColor: col[d.pick] }}>
       <Text style={[s.muted, { fontWeight: '900', color: col[d.pick] }]}>{t('p2.pick.' + d.pick)}</Text><CardTitle>{d.name}</CardTitle><T>{fmtNum(d.kcalMin)}–{fmtNum(d.kcalMax)} {t('u.kcal')}</T><Text style={s.muted}>💡 {d.tip}</Text>
-      {added === d.name ? <Text style={{ color: C.success, fontWeight: '800' }}>✓ {t('p2.vSaved')}</Text> : <Btn small kind="ghost" label={`＋ ${t('p2.toDiary')}`} onPress={() => { set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: d.name, kcal: Math.round((d.kcalMin + d.kcalMax) / 2), p: 0, c: 0, f: 0, source: 'manual' }] })); setAdded(d.name); }} />}</Card>)}
+      {added === d.name ? <Text style={{ color: C.success, fontWeight: '800' }}>✓ {t('p2.vSaved')}</Text> : <Btn small kind="ghost" label={`＋ ${t('p2.toDiary')}`} onPress={() => { set((x) => ({ ...x, entries: [...x.entries, { id: uid(), date: today(), time: Date.now(), name: d.name, kcal: Math.round((d.kcalMin + d.kcalMax) / 2), p: d.p || 0, c: d.c || 0, f: d.f || 0, source: 'manual' }] })); setAdded(d.name); }} />}</Card>)}
+    {shared && ds.length ? <Text testID="menu-shared" style={[s.muted, { fontSize: 13 }]}>🤝 {t('p2.mnSaved')}</Text> : null}
     <Disclaimer /></Screen>;
 }
 
@@ -370,37 +376,29 @@ export function Weekly() {
   </Screen>;
 }
 
-// ---------- Avatar 2D (clon inicial) ----------
-export type Av = { skin: number; hair: number; shirt: number; acc: string };
-const SKIN = ['#F7D7C4', '#E9B48A', '#C68642', '#8D5524'], HAIR = ['#1A1423', '#6B3E26', '#B45309', '#9CA3AF'], SHIRT = [C.primary, C.secondary, C.accent, C.success];
-export function AvatarSvg({ av, size = 180, happy = true }: { av: Av; size?: number; happy?: boolean }) {
-  return <Svg width={size} height={size * 1.25} viewBox="0 0 160 200" testID="avatar">
-    <Ellipse cx={80} cy={194} rx={46} ry={6} fill="#0002" />
-    <Rect x={38} y={102} width={84} height={86} rx={30} fill={SHIRT[av.shirt]} />
-    <Circle cx={80} cy={62} r={38} fill={SKIN[av.skin]} />
-    <Path d="M42 58 Q46 18 80 20 Q114 18 118 58 Q104 38 80 38 Q56 38 42 58Z" fill={HAIR[av.hair]} />
-    <Circle cx={66} cy={64} r={4.5} fill="#1A1423" /><Circle cx={94} cy={64} r={4.5} fill="#1A1423" />
-    <Path d={happy ? 'M64 80 Q80 94 96 80' : 'M66 84 L94 84'} stroke="#1A1423" strokeWidth={4} fill="none" strokeLinecap="round" />
-    {av.acc === 'cap' ? <Path d="M40 44 Q80 4 120 44 L130 46 L40 46Z" fill={C.primary} /> : null}
-    {av.acc === 'glasses' ? <><Circle cx={66} cy={64} r={11} stroke="#1A1423" strokeWidth={3} fill="none" /><Circle cx={94} cy={64} r={11} stroke="#1A1423" strokeWidth={3} fill="none" /><Line x1={77} y1={64} x2={83} y2={64} stroke="#1A1423" strokeWidth={3} /></> : null}
-    {av.acc === 'medal' ? <><Path d="M72 104 L80 124 L88 104" stroke={C.secondary} strokeWidth={4} fill="none" /><Circle cx={80} cy={130} r={9} fill={C.accent} /></> : null}
-    {av.acc === 'crown' ? <Path d="M52 30 L62 8 L72 24 L80 4 L88 24 L98 8 L108 30Z" fill={C.accent} /> : null}
-  </Svg>;
-}
-export const AV0: Av = { skin: 1, hair: 0, shirt: 0, acc: '' };
+// ---------- Mi acompañante (antes avatar 2D; ahora rostros reales aprobados: Angie IA / Coach) ----------
+export type Av = { skin: number; hair: number; shirt: number; acc: string; who?: FaceId };
+export const AV0: Av = { skin: 1, hair: 0, shirt: 0, acc: '', who: 'angie' };
 export function Avatar() {
   const { t } = useTranslation(); const { s: st } = useStore(); const prem = isPremium(st); const [av, setAv] = useExt<Av>('avatar', AV0); const pts = usePoints();
+  const who: FaceId = av.who === 'coach' ? 'coach' : 'angie'; const f = FACES[who];
   const d = today(); const eaten = st.entries.some((e) => e.date === d) || (st.water[d] || 0) > 0;
-  const say = () => speak(eaten ? t('p2.avSayGood') : t('p2.avSayStart'));
+  const msg = eaten ? t('p2.avSayGood') : t('p2.avSayStart'); const badge = REWARDS.find((r) => r.k === av.acc);
   return <Screen title={`🙂 ${t('p2.t.avatar')}`}>
-    <Card style={{ alignItems: 'center', backgroundColor: C.tint }}><AvatarSvg av={av} /><T style={{ textAlign: 'center' }}>{eaten ? t('p2.avSayGood') : t('p2.avSayStart')}</T>
-      <Btn small kind="ghost" label="🔊" a11y={t('home.readAloud')} onPress={say} style={{ width: 64 }} /></Card>
-    {!prem ? <Locked k="p2.avLocked" /> : <>
-      <Card><CardTitle>{t('p2.avSkin')}</CardTitle><Row>{SKIN.map((c, i) => <Pressable key={c} accessibilityRole="button" accessibilityLabel={`${t('p2.avSkin')} ${i + 1}`} onPress={() => setAv((v) => ({ ...v, skin: i }))} style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: c, borderWidth: av.skin === i ? 4 : 0, borderColor: C.secondary }} />)}</Row>
-        <CardTitle>{t('p2.avHair')}</CardTitle><Row>{HAIR.map((c, i) => <Pressable key={c} accessibilityRole="button" accessibilityLabel={`${t('p2.avHair')} ${i + 1}`} onPress={() => setAv((v) => ({ ...v, hair: i }))} style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: c, borderWidth: av.hair === i ? 4 : 0, borderColor: C.primary }} />)}</Row>
-        <CardTitle>{t('p2.avShirt')}</CardTitle><Row>{SHIRT.map((c, i) => <Pressable key={i} accessibilityRole="button" accessibilityLabel={`${t('p2.avShirt')} ${i + 1}`} onPress={() => setAv((v) => ({ ...v, shirt: i }))} style={{ width: 56, height: 56, borderRadius: 28, backgroundColor: c, borderWidth: av.shirt === i ? 4 : 0, borderColor: C.text }} />)}</Row></Card>
-      <Card><CardTitle>🎁 {t('p2.ptRewards')}</CardTitle><Row><Chip label={t('p2.avNone')} active={!av.acc} onPress={() => setAv((v) => ({ ...v, acc: '' }))} />
-        {REWARDS.map((r) => <Chip key={r.k} label={`${pts >= r.at ? r.icon : '🔒'} ${t('p2.rw.' + r.k)}`} active={av.acc === r.k} onPress={() => pts >= r.at && setAv((v) => ({ ...v, acc: r.k }))} />)}</Row></Card></>}
+    <FaceToggle value={who} onChange={(w) => setAv((v) => ({ ...v, who: w }))} />
+    <Card testID="avatar-photo" style={{ padding: 0, overflow: 'hidden' }}>
+      <Image source={f.photo} style={{ width: '100%', height: 340, backgroundColor: C.tint }} resizeMode="cover" accessibilityIgnoresInvertColors accessibilityLabel={t(f.nameKey)} />
+      {badge ? <View style={{ position: 'absolute', top: 12, right: 12, backgroundColor: C.card, borderRadius: 999, paddingHorizontal: 12, paddingVertical: 6 }}><Text style={{ fontWeight: '800', color: C.text }}>{badge.icon} {t('p2.rw.' + badge.k)}</Text></View> : null}
+      <View style={{ padding: 16, gap: 6 }}>
+        <Text style={{ fontSize: 22, fontWeight: '900', color: C.text }}>{t(f.nameKey)}</Text>
+        <Text style={{ fontWeight: '700', color: who === 'angie' ? C.primary : C.secondary }}>{t(f.roleKey)}</Text>
+        <View style={{ flexDirection: 'row', gap: 10, alignItems: 'center', marginTop: 6 }}>
+          <View style={{ flex: 1, backgroundColor: C.bg2, borderRadius: 16, padding: 12 }}><T>{msg}</T></View>
+          <Btn small kind="ghost" label="🔊" a11y={t('home.readAloud')} onPress={() => speak(msg)} style={{ width: 64 }} /></View>
+        <Btn label={`💬 ${t('p2.avChat')}`} onPress={() => router.push({ pathname: '/chat', params: { who } })} />
+      </View></Card>
+    {!prem ? <Locked k="p2.avLocked" /> : <Card><CardTitle>🎁 {t('p2.ptRewards')}</CardTitle><Row><Chip label={t('p2.avNone')} active={!av.acc} onPress={() => setAv((v) => ({ ...v, acc: '' }))} />
+        {REWARDS.map((r) => <Chip key={r.k} label={`${pts >= r.at ? r.icon : '🔒'} ${t('p2.rw.' + r.k)}`} active={av.acc === r.k} onPress={() => pts >= r.at && setAv((v) => ({ ...v, acc: r.k }))} />)}</Row></Card>}
     {CLONE_ENABLED ? <Btn kind="secondary" label={`🧍 ${t('p2.avTwin')}`} onPress={() => router.push('/twin')} /> : null}
     <Note k="p2.avNote" /></Screen>;
 }

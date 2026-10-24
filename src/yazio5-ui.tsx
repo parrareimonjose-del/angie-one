@@ -1,3 +1,4 @@
+import { ChefSteps } from './chef-steps';
 /** Pantallas de las 5 funciones tipo Yazio (ver src/yazio5.ts). Estilo A claro / B oscuro, una mano, 13 idiomas. */
 import { useEffect, useRef, useState } from 'react';
 import { View, Text, TextInput, Pressable } from 'react-native';
@@ -143,7 +144,7 @@ export function CookScreen() {
   if (mode) return <Screen title={`👩‍🍳 ${rText(r.n, lang)}`}>
     <Text testID="cook-step-n" style={[s.muted, { fontWeight: '800', fontSize: 16 }]}>{t('y5.step', { i: i + 1, n })}</Text>
     <Bar value={i + 1} max={n} color={C.primary} />
-    <Card testID="cook-step" style={{ minHeight: 200, justifyContent: 'center' }}><Text style={{ fontSize: 26, fontWeight: '800', color: C.text, lineHeight: 36 }}>{rText(r.s[i], lang)}</Text></Card>
+    <Card testID="cook-step" style={{ minHeight: 200, justifyContent: 'center' }}><Text style={{ fontSize: 22, fontWeight: '800', color: C.text, lineHeight: 32 }}>{rText(r.s[i], lang)}</Text></Card>
     {st.t ? <Btn kind="accent" testID="cook-timer" label={left ? `⏱️ ${mmss(left)}` : `⏱️ ${t('y5.timer', { m: Math.round(st.t / 60) })}`} onPress={() => { if (left) { clearInterval(tm.current); setLeft(0); } else startT(st.t!); }} /> : null}
     <Btn small kind="ghost" label={`🔊 ${t('home.readAloud')}`} onPress={() => speak(rText(r.s[i], lang))} />
     <View style={[s.row, { gap: 10 }]}><Btn kind="secondary" testID="cook-prev" label={`◀ ${t('y5.prev')}`} style={{ flex: 1 }} onPress={() => setI(stepPrev(i))} />
@@ -151,8 +152,9 @@ export function CookScreen() {
   </Screen>;
   return <Screen title={`${r.emoji} ${rText(r.n, lang)}`}>
     <StatRow items={[{ icon: '⏱️', value: `${r.min}′`, label: t('y5.time') }, { icon: '🔥', value: fmtNum(r.kcal), label: t('u.kcal') }, { icon: '💪', value: `${r.p} g`, label: t('home.protein') }]} />
-    <Card><CardTitle>🛒 {t('y5.ing')}</CardTitle>{r.ing.map((g) => <T key={g}>• {t(`cing.${g}`)}</T>)}</Card>
-    <Card><CardTitle>📋 {t('y5.steps')}</CardTitle>{r.s.map((x, j) => <T key={j}>{j + 1}. {rText(x, lang)}</T>)}</Card>
+    {r.chef ? <Card testID="cook-chef"><ChefSteps ing={r.chef.qty.map((x) => rText(x, lang))} prep={r.chef.prep.map((x) => rText(x, lang))} steps={r.s.map((x) => rText(x, lang))} tip={r.chef.tips.map((x) => rText(x, lang)).join(' ')} oops={r.chef.oops.map((x) => rText(x, lang)).join(' ')} done={rText(r.chef.done, lang)} plate={rText(r.chef.plate, lang)} /></Card>
+      : <><Card><CardTitle>🛒 {t('y5.ing')}</CardTitle>{r.ing.map((g) => <T key={g}>• {t(`cing.${g}`)}</T>)}</Card>
+    <Card><CardTitle>📋 {t('y5.steps')}</CardTitle>{r.s.map((x, j) => <T key={j}>{j + 1}. {rText(x, lang)}</T>)}</Card></>}
     <Btn testID="cook-start" label={`👩‍🍳 ${t('y5.cookMode')}`} onPress={() => { setI(0); setMode(true); }} />
     <Row><Btn small kind="secondary" testID="cook-add" label={`＋ ${t('y5.addToday')}`} onPress={() => add(false)} /><Btn small kind="ghost" testID="cook-plan" label={`🗓️ ${t('y5.planTomorrow')}`} onPress={() => add(true)} /></Row>
     {msg ? <Text testID="cook-msg" style={{ color: C.success, fontWeight: '800', fontSize: 17 }}>✓ {msg}</Text> : null}

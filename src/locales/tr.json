@@ -294,7 +294,7 @@
         ],
         [
           "Yemek veritabanı ve barkodlar",
-          "Barkod numaraları ve aramalar yemek listemizde (Open Food Facts ve USDA) kontrol edilir. Eksik bir ürün eklerseniz, diğer kişilerin kullanabilmesi için kişisel veri olmaksızın yalnızca barkodu, adı, markayı ve etiket değerlerini saklarız."
+          "Barkod numaraları ve aramalar yemek listemizde (Open Food Facts ve USDA) kontrol edilir. Eksik bir ürün eklerseniz, diğer kişilerin kullanabilmesi için kişisel veri olmaksızın yalnızca barkodu, adı, markayı ve etiket değerlerini saklarız. Bir restoran menüsünü fotoğrafladığında, yalnızca tespit edilen yemekleri (ad, tahmini kalori ve makrolar, dil, görünüyorsa şehir veya restoran) anonim olarak saklarız; fotoğrafı, profilini veya sağlık verilerini asla."
         ],
         [
           "Sağlık uygulamaları",
@@ -1195,8 +1195,8 @@
     "avSayGood": "Bugün harika iş çıkardın! Yanındayım.",
     "avSayStart": "Merhaba! Güne bir bardak suyla başlayalım.",
     "avTwin": "3D ikizini gör (önizleme)",
-    "avNote": "Bu senin ilk klonun. Tam 3D ikiz Premium Plus ile geliyor.",
-    "avLocked": "Avatarını kişiselleştir ve ödüllerin kilidini aç.",
+    "avNote": "Her gün sana kimin eşlik edeceğini seç: Angie (YZ) ya da Koç. Angie One ekibinden gerçek kişiler.",
+    "avLocked": "Puanlarınla rozet aç ve arkadaşında göster.",
     "rpeQ": "Nasıl geçti?",
     "rpeL": {
       "easy": "😎 Kolay",
@@ -1235,7 +1235,9 @@
       "retT": "Günlük hatırlatıcı",
       "retW": "Bu hafta aktif gün sayısı az.",
       "retC": "Öğle yemeği saatinde samimi bir hatırlatıcı göster."
-    }
+    },
+    "mnSaved": "Teşekkürler: bu menünün yemekleri (yalnızca ad ve kalori, fotoğrafın değil) besin veritabanını büyütür.",
+    "avChat": "Arkadaşımla konuş"
   },
   "dt": {
     "title": "Fişlerim ve verilerim",
@@ -2126,7 +2128,13 @@
     "mfGood": "iyi günlerde kcal",
     "mfLow": "düşük günlerde kcal",
     "mfWait": "Yediklerinle ilişkisini görmek için ruh halini birkaç gün daha kaydet.",
-    "mfNote": "Sadece bir sağlıklı yaşam ipucu, tıbbi tavsiye değil."
+    "mfNote": "Sadece bir sağlıklı yaşam ipucu, tıbbi tavsiye değil.",
+    "prep": "Başlamadan önce hazırlık",
+    "qty": "Ölçülü malzemeler",
+    "tip": "Şef ipucu",
+    "oops": "Sık yapılan hata",
+    "doneHow": "Hazır olduğunu nasıl anlarsın",
+    "plate": "Sunum"
   },
   "gr": {
     "title": "Kişilere ücretsiz Premium",

@@ -256,7 +256,7 @@
         ],
         [
           "Base de données alimentaires et codes-barres",
-          "Les numéros de codes-barres et les recherches sont vérifiés dans notre liste d'aliments (Open Food Facts et USDA). Si vous ajoutez un produit manquant, nous stockons uniquement le code-barres, le nom, la marque et les valeurs nutritionnelles, sans données personnelles, afin que d'autres puissent l'utiliser."
+          "Les numéros de codes-barres et les recherches sont vérifiés dans notre liste d'aliments (Open Food Facts et USDA). Si vous ajoutez un produit manquant, nous stockons uniquement le code-barres, le nom, la marque et les valeurs nutritionnelles, sans données personnelles, afin que d'autres puissent l'utiliser. Quand tu photographies un menu, nous gardons anonymement seulement les plats détectés (nom, kcal et macros estimés, langue, ville ou restaurant s’ils figurent) pour améliorer la base ; jamais la photo, ton profil ni tes données de santé."
         ],
         [
           "Applications de santé",
@@ -1195,8 +1195,8 @@
     "avSayGood": "Beau travail aujourd'hui ! Je suis avec vous.",
     "avSayStart": "Bonjour ! Commençons la journée avec un verre d'eau.",
     "avTwin": "Voir le jumeau 3D (aperçu)",
-    "avNote": "Voici votre premier clone. Le jumeau 3D complet arrive dans Premium Plus.",
-    "avLocked": "Personnalisez votre avatar et débloquez des récompenses.",
+    "avNote": "Choisis qui t'accompagne chaque jour : Angie (IA) ou le Coach. Ce sont de vraies personnes de l'équipe Angie One.",
+    "avLocked": "Débloque des badges avec tes points et affiche-les sur ton accompagnant.",
     "rpeQ": "Comment c'était ?",
     "rpeL": {
       "easy": "😎 Facile",
@@ -1235,7 +1235,9 @@
       "retT": "Rappel quotidien",
       "retW": "Peu de jours actifs cette semaine.",
       "retC": "Afficher un rappel amical à l'heure du déjeuner."
-    }
+    },
+    "mnSaved": "Merci : les plats de ce menu (nom et calories seulement, jamais ta photo) enrichissent la base d’aliments.",
+    "avChat": "Parler à mon accompagnant"
   },
   "dt": {
     "title": "Mes reçus et données",
@@ -2126,7 +2128,13 @@
     "mfGood": "kcal les bons jours",
     "mfLow": "kcal les jours bas",
     "mfWait": "Notez votre humeur quelques jours de plus pour voir le lien avec ce que vous mangez.",
-    "mfNote": "Simple indice bien-être, pas un avis médical."
+    "mfNote": "Simple indice bien-être, pas un avis médical.",
+    "prep": "Avant de commencer (mise en place)",
+    "qty": "Ingrédients et quantités",
+    "tip": "Astuce du chef",
+    "oops": "Erreur fréquente",
+    "doneHow": "Comment savoir que c’est prêt",
+    "plate": "Dressage"
   },
   "gr": {
     "title": "Premium gratuit pour des personnes",

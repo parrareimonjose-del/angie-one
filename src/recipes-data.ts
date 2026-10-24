@@ -1,11 +1,12 @@
 /** Recetario de Angie One: recetas ORIGINALES escritas por Angie One (CC BY 4.0, «Angie One»), sin copiar de terceros.
  *  Nutrientes estimados con USDA FoodData Central (dominio público). Texto en es/en/pt; los otros idiomas usan inglés. */
 import type { Recipe } from './yazio5';
+import { CHEF } from './recipes-chef';
 type L = { es: string; en: string; pt: string };
 export type RecipeText = { n: L; s: L[] };
 export const RECIPE_CREDIT = 'Recetas originales Angie One (CC BY 4.0) · Nutrientes: USDA FoodData Central';
 const S = (es: string, en: string, pt: string): L => ({ es, en, pt });
-export const RECIPES: (Recipe & RecipeText)[] = [
+const BASE: (Recipe & RecipeText)[] = [
   { id: 'arepa', emoji: '🫓', meal: 'breakfast', tags: ['latino', 'veggie'], min: 20, kcal: 380, p: 16, c: 48, f: 13, ing: ['cornflour', 'beans', 'cheese', 'avocado'],
     n: S('Arepa de caraotas y queso', 'Black bean and cheese arepa', 'Arepa de feijão preto e queijo'),
     s: [S('Mezcla 1/2 taza de harina de maíz con agua tibia y sal hasta que no se pegue.', 'Mix 1/2 cup corn flour with warm water and salt until it no longer sticks.', 'Misture 1/2 xícara de farinha de milho com água morna e sal até não grudar.'),
@@ -54,4 +55,6 @@ export const RECIPES: (Recipe & RecipeText)[] = [
     n: S('Tostones al horno', 'Baked tostones', 'Tostones de banana assados'),
     s: [S('Corta el plátano verde en rodajas gruesas.', 'Cut the green plantain into thick slices.', 'Corte a banana-da-terra em rodelas grossas.'), S('Hornea 8 minutos, aplástalas y hornea 8 minutos más.', 'Bake 8 minutes, flatten them, then bake 8 more.', 'Asse 8 minutos, amasse e asse mais 8.')], steps: [{}, { t: 960 }] },
 ];
+/** Pasos detallados de chef (cantidades, fuego, señales, trucos) sustituyen a los pasos cortos. */
+export const RECIPES = BASE.map((r) => { const c = CHEF[r.id]; return c ? { ...r, s: c.s, steps: c.t.map((t) => (t ? { t } : {})), chef: c } : { ...r, chef: undefined }; });
 export const rText = (l: L, lang: string) => (l as any)[lang] || l.en;
