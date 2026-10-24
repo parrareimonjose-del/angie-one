@@ -40,9 +40,6 @@ export default function Scan() {
   };
   return (
     <Screen title={t('scan.title')}>
-      <View style={{ alignSelf: 'flex-start', backgroundColor: C.success, borderRadius: 12, paddingHorizontal: 12, paddingVertical: 6 }}>
-        <Text style={{ color: C.white, fontWeight: '800' }}>{t('scan.live')}</Text>
-      </View>
       {!st.aiEnabled ? <Card><T>{t('scan.aiOff')}</T><Btn kind="ghost" label={t('more.manual')} onPress={() => router.push('/manual')} /></Card>
         : blocked && !est ? <Card><T>{t('scan.limit')}</T><Btn kind="accent" label={t('more.premium')} onPress={() => router.push('/paywall')} /><Btn kind="ghost" label={t('more.manual')} onPress={() => router.push('/manual')} /></Card>
         : <>
