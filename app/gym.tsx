@@ -1,1 +1,1 @@
-export { Gym as default } from '../src/p3';
+export { CaliHome as default } from '../src/cali-ui';

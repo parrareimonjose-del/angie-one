@@ -2449,5 +2449,93 @@
     "historiaTitle": "The story of Angie One",
     "historiaSub": "About · Parra Apps",
     "start": "Start with Angie One"
+  },
+  "cali": {
+    "title": "Calisthenics",
+    "pick": "Choose your demonstrator",
+    "man": "Man",
+    "woman": "Woman",
+    "tone": "Skin tone",
+    "mastered": "mastered",
+    "week": "this week",
+    "library": "Exercise library",
+    "empty": "Nothing here yet. Tap ☆ on an exercise to save it.",
+    "start": "Start",
+    "day": "Day {{n}}",
+    "wod": "Workout of the day",
+    "cues": "Form cues",
+    "mistakes": "Common mistakes",
+    "fav": "Favorite",
+    "iMaster": "I've got it",
+    "progression": "Progression",
+    "goal": "Goal: {{n}} clean",
+    "locked": "locked — master the previous step",
+    "safety": "Warm up 5–10 min. Stop if you feel sharp pain. If you have an injury, pain or a medical condition, check with your physiotherapist or doctor before trying new exercises.",
+    "lv1": "Beginner",
+    "lv2": "Intermediate",
+    "lv3": "Advanced",
+    "tab": {
+      "lib": "📚 Library",
+      "tree": "🌳 Progressions",
+      "prog": "🗓️ Programs",
+      "wod": "📅 Today"
+    },
+    "cat": {
+      "all": "All",
+      "fav": "★ Favorites",
+      "push": "Push",
+      "pull": "Pull",
+      "legs": "Legs",
+      "core": "Core",
+      "skill": "Skills"
+    },
+    "eq": {
+      "none": "No equipment",
+      "bar": "Pull-up bar",
+      "pbars": "Parallel bars",
+      "box": "Bench/box",
+      "wall": "Wall",
+      "low": "Low bar"
+    },
+    "m": {
+      "chest": "Chest",
+      "triceps": "Triceps",
+      "shoulders": "Shoulders",
+      "back": "Back",
+      "biceps": "Biceps",
+      "forearms": "Forearms",
+      "core": "Core",
+      "glutes": "Glutes",
+      "quads": "Quads",
+      "hams": "Hamstrings",
+      "calves": "Calves",
+      "lowback": "Lower back",
+      "full": "Full body"
+    },
+    "tree": {
+      "push": "Push-ups",
+      "pull": "Pull-ups",
+      "dips": "Dips",
+      "legs": "Legs to pistol",
+      "core": "Core to L-sit",
+      "handstand": "Handstand",
+      "planche": "Planche",
+      "lever": "Levers"
+    },
+    "prog": {
+      "start": "First steps",
+      "strength": "Bodyweight strength",
+      "skills": "Skills"
+    },
+    "progd": {
+      "start": "3 days a week, 4 weeks. Build the base: push, pull, legs and core.",
+      "strength": "3 days a week. Push, pull and legs with real pull-ups and dips.",
+      "skills": "For advanced athletes: handstand, planche, levers and muscle-up."
+    },
+    "mode": {
+      "sets": "Sets & rest",
+      "emom": "EMOM (every minute)",
+      "tabata": "Tabata 20/10 ×8"
+    }
   }
 }

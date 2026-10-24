@@ -2449,5 +2449,93 @@
     "historiaTitle": "La historia de Angie One",
     "historiaSub": "Acerca de · Parra Apps",
     "start": "Empezar con Angie One"
+  },
+  "cali": {
+    "title": "Calistenia",
+    "pick": "Elige tu demostrador",
+    "man": "Hombre",
+    "woman": "Mujer",
+    "tone": "Tono de piel",
+    "mastered": "dominado",
+    "week": "esta semana",
+    "library": "Biblioteca de ejercicios",
+    "empty": "Aún no hay nada. Toca ☆ en un ejercicio para guardarlo.",
+    "start": "Empezar",
+    "day": "Día {{n}}",
+    "wod": "Entreno del día",
+    "cues": "Claves de técnica",
+    "mistakes": "Errores comunes",
+    "fav": "Favorito",
+    "iMaster": "Ya lo domino",
+    "progression": "Progresión",
+    "goal": "Meta: {{n}} limpias",
+    "locked": "bloqueado — domina el paso anterior",
+    "safety": "Calienta 5–10 min. Para si notas dolor agudo. Si tienes una lesión, dolor o una condición médica, consulta con tu fisioterapeuta o médico antes de probar ejercicios nuevos.",
+    "lv1": "Principiante",
+    "lv2": "Intermedio",
+    "lv3": "Avanzado",
+    "tab": {
+      "lib": "📚 Biblioteca",
+      "tree": "🌳 Progresiones",
+      "prog": "🗓️ Programas",
+      "wod": "📅 Hoy"
+    },
+    "cat": {
+      "all": "Todo",
+      "fav": "★ Favoritos",
+      "push": "Empuje",
+      "pull": "Tirón",
+      "legs": "Piernas",
+      "core": "Core",
+      "skill": "Habilidades"
+    },
+    "eq": {
+      "none": "Sin equipo",
+      "bar": "Barra de dominadas",
+      "pbars": "Paralelas",
+      "box": "Banco/caja",
+      "wall": "Pared",
+      "low": "Barra baja"
+    },
+    "m": {
+      "chest": "Pecho",
+      "triceps": "Tríceps",
+      "shoulders": "Hombros",
+      "back": "Espalda",
+      "biceps": "Bíceps",
+      "forearms": "Antebrazos",
+      "core": "Abdomen",
+      "glutes": "Glúteos",
+      "quads": "Cuádriceps",
+      "hams": "Isquios",
+      "calves": "Gemelos",
+      "lowback": "Lumbar",
+      "full": "Cuerpo completo"
+    },
+    "tree": {
+      "push": "Flexiones",
+      "pull": "Dominadas",
+      "dips": "Fondos",
+      "legs": "Piernas hasta pistol",
+      "core": "Core hasta L-sit",
+      "handstand": "Pino",
+      "planche": "Planche",
+      "lever": "Palancas (levers)"
+    },
+    "prog": {
+      "start": "Primeros pasos",
+      "strength": "Fuerza con tu cuerpo",
+      "skills": "Habilidades"
+    },
+    "progd": {
+      "start": "3 días por semana, 4 semanas. Crea la base: empuje, tirón, piernas y core.",
+      "strength": "3 días por semana. Empuje, tirón y piernas con dominadas y fondos de verdad.",
+      "skills": "Para avanzados: pino, planche, palancas y muscle-up."
+    },
+    "mode": {
+      "sets": "Series y descanso",
+      "emom": "EMOM (cada minuto)",
+      "tabata": "Tabata 20/10 ×8"
+    }
   }
 }

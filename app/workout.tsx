@@ -31,6 +31,7 @@ export default function Workout() {
         ))}
         <Btn label={`▶️ ${t('coach.start')}`} onPress={() => router.push({ pathname: '/player', params: { day: String(d) } })} />
       </>}
+      <Btn kind="ghost" label={`🤸 ${t('cali.title')}`} onPress={() => router.push('/gym')} />
       <Card style={{ backgroundColor: C.warnBg }}><T>⚠️ {c.plan.workout.safety || t('coach.safety')}</T></Card>
       <Disclaimer />
     </Screen>
