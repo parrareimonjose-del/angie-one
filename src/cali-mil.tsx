@@ -110,7 +110,7 @@ export function GoldBtn({ label, onPress, ghost, testID }: { label: string; onPr
 }
 export function PhotoCard({ src, h = 170, children, onPress, testID }: { src: any; h?: number; children: ReactNode; onPress?: () => void; testID?: string }) {
   return <Pressable accessibilityRole="button" onPress={onPress} testID={testID} style={{ borderRadius: 14, overflow: 'hidden', borderWidth: 1, borderColor: M.line }}>
-    <ImageBackground source={src} style={{ height: h, justifyContent: 'flex-end' }} imageStyle={{ resizeMode: 'cover' }}>
+    <ImageBackground source={src} style={{ height: h, justifyContent: 'flex-end' }} imageStyle={{ resizeMode: 'cover', width: '100%', height: '100%' }}>
       <View style={{ padding: 12, gap: 6, backgroundColor: 'rgba(13,8,16,0.55)' }}>{children}</View>
     </ImageBackground></Pressable>;
 }

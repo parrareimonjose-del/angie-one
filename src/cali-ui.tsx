@@ -118,13 +118,13 @@ function Today() {
   const missions = done.length + c.log.length - done.length; const minsTot = c.log.reduce((a, x) => a + x.min, 0); const rk = rankOf(done.length);
   const ph = opPhase(next);
   return <View style={{ gap: 14 }} testID="cali-today">
-    <PhotoCard src={img(c.sex === 'f' ? 'hero-w' : 'hero-op')} h={260} onPress={() => router.push({ pathname: '/cali-work', params: { op: String(next) } })} testID="op-hero">
+    <PhotoCard src={img(c.sex === 'f' ? 'hero-w' : 'hero-op')} h={300} onPress={() => router.push({ pathname: '/cali-work', params: { op: String(next) } })} testID="op-hero">
       <Text style={H(12, M.gold)}>{t('mil.campaign')} · {t('mil.days28')}</Text>
       <Text style={H(32)}>{t('mil.opName')}</Text>
       <Text style={H(18, M.gold2)}>{t('mil.slogan')}</Text>
     </PhotoCard>
     <View style={{ flexDirection: 'row', gap: 8 }}>
-      {[[t('mil.rank'), t(`mil.rk${rk}`)], [t('mil.missions'), String(missions)], [t('mil.minutes'), String(minsTot)], [t('mil.progress'), `${Math.round((done.length / OP_DAYS) * 100)}%`]].map(([a, b]) => <MCard key={a} style={{ flex: 1, padding: 10, gap: 2, alignItems: 'center' }}><Text style={H(17, M.gold)} numberOfLines={1}>{b}</Text><Text style={[MU, { fontSize: 11 }]}>{a}</Text></MCard>)}
+      {[[t('mil.rank'), t(`mil.rk${rk}`)], [t('mil.missions'), String(missions)], [t('mil.minutes'), String(minsTot)], [t('mil.progress'), `${Math.round((done.length / OP_DAYS) * 100)}%`]].map(([a, b]) => <MCard key={a} style={{ flex: 1, paddingHorizontal: 4, paddingVertical: 10, gap: 2, alignItems: 'center' }}><Text style={H(b.length > 6 ? 13 : 17, M.gold)} numberOfLines={1} adjustsFontSizeToFit>{b}</Text><Text style={[MU, { fontSize: 11 }]}>{a}</Text></MCard>)}
     </View>
     <ProgressBar v={done.length} max={OP_DAYS} />
     <MCard><Text style={H(13, M.gold)}>{t('mil.briefing')} · {t(`mil.ph${ph}`)}</Text><Text style={P}>{t(`mil.brief${ph}`)}</Text></MCard>
@@ -185,7 +185,7 @@ function Plan30() {
   const next = Array.from({ length: PLAN_DAYS }, (_, i) => i + 1).find((d) => !done.includes(d) && !planRest(d)) || PLAN_DAYS;
   return <View style={{ gap: 14 }} testID="cali-plan">
     <View style={{ flexDirection: 'row', gap: 8 }}>{(['f', 'm'] as const).map((k) => <Pressable key={k} testID={`plan-${k}`} onPress={() => setSx(k)} style={{ flex: 1, padding: 10, borderRadius: 10, alignItems: 'center', backgroundColor: sx === k ? M.gold : M.card, borderWidth: 1, borderColor: M.line }}><Text style={H(14, sx === k ? '#FFFFFF' : M.txt)}>{t(k === 'f' ? 'mil.women' : 'mil.men')}</Text></Pressable>)}</View>
-    <PhotoCard src={img(sx === 'f' ? 'hero-w' : 'cover-push')} h={210} onPress={() => router.push({ pathname: '/cali-work', params: { plan: sx, day: String(next) } })}>
+    <PhotoCard src={img(sx === 'f' ? 'hero-w' : 'cover-push')} h={300} onPress={() => router.push({ pathname: '/cali-work', params: { plan: sx, day: String(next) } })}>
       <Text style={H(12, M.gold)}>{t('mil.homePlan')}</Text><Text style={H(28)}>{t(sx === 'f' ? 'mil.planW' : 'mil.planM')}</Text>
       <Text style={P}>{t('mil.dayOf', { a: Math.min(done.length + 1, PLAN_DAYS), b: PLAN_DAYS })} · {Math.round((done.length / PLAN_DAYS) * 100)}%</Text></PhotoCard>
     {[0, 1, 2, 3, 4].map((wk) => <MCard key={wk}><Text style={H(15, M.gold)}>{t('mil.week', { n: wk + 1 })}</Text>
@@ -228,7 +228,7 @@ export function CaliWork() {
   const { t, i18n } = useTranslation(); const p = useLocalSearchParams<WP>(); const [c] = useCali(); const lang = i18n.language;
   const r = resolveWork(p, c, t, lang); const mn = mins(r.items, r.mode); const done = r.kind === 'op' ? opDone(c).includes(r.d!) : r.kind === 'plan' ? planDone(c, r.sx!).includes(r.d!) : false;
   return <MilShell testID="cali-work">
-    <PhotoCard src={r.cover || img('cover-push')} h={240}>
+    <PhotoCard src={r.cover || img('cover-push')} h={280}>
       <View style={{ flexDirection: 'row', gap: 6 }}><Tag label={lvTag(t, r.lvl)} gold /><Tag label={`${mn} MIN`} />{r.need.includes('none') || r.need.length <= 1 ? <Tag label={t('mil.noEquip')} /> : null}{done ? <Tag label="✓" gold /> : null}</View>
       <Text style={H(28)} testID="work-title">{r.title}</Text>
       {r.kind === 'op' && <Text style={H(14, M.gold2)}>{t(`mil.ph${opPhase(r.d!)}`)}</Text>}
