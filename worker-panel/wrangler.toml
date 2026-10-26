@@ -1,0 +1,8 @@
+name = "angie-one-panel"
+main = "index.js"
+compatibility_date = "2026-01-01"
+workers_dev = true
+# Solo LECTURA del KV de Angie One (mismo FOODS). No toca angie-one-ai.
+[[kv_namespaces]]
+binding = "FOODS"
+id = "8b701be74f274c4eb68a1b17b0cea224"

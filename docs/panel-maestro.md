@@ -46,3 +46,8 @@ Hoy la web es 100 % local (sin servidor), así que el resumen se **descarga** co
   summaryUrl: 'https://angie-one-ai.angieoneapp-support.workers.dev/api/v1/panel-maestro/summary',
   founderPanelUrl: 'https://parrareimonjose-del.github.io/angie-one/founder' },
 ```
+
+## ✅ Conexión en vivo (aprobada por José el 26-oct-2026, 11:50 AM ET)
+Worker aparte `angie-one-panel` (no toca `angie-one-ai`): `https://angie-one-panel.angieoneapp-support.workers.dev/api/v1/panel-maestro/summary`.
+Solo lee el KV FOODS y devuelve agregados (copias, suscripciones, cobros reales, premium regalados). Sin salud ni datos personales.
+Protegido con código `pm_<64 hex>`; en Cloudflare solo está su hash (secreto `PM_TOKEN_SHA256`). Código fuente: `worker-panel/`.
