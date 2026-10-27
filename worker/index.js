@@ -230,6 +230,7 @@ async function panelAdmin(req, env, inner) {
   const sha = async (x) => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(x)))].map((b) => b.toString(16).padStart(2, '0')).join('');
   const t = (req.headers.get('Authorization') || '').replace(/^Bearer\s+/i, '');
   if (!env.PANEL_ADMIN_SHA256 || !env.FOUNDER_KEY || t.length < 32 || (await sha(t)) !== env.PANEL_ADMIN_SHA256) return json({ error: 'auth' }, 401);
+  if (req.method === 'POST' && inner === '/ai/chat') return panelAI(req, env);
   if (req.method !== 'POST' || !PA_ALLOWED.includes(inner)) return json({ error: 'not found' }, 404);
   const body = await req.text();
   const audit = (ok, extra) => env.FOODS.put('audit:' + Date.now() + ':' + Math.random().toString(36).slice(2, 6), JSON.stringify({ via: 'Panel Maestro', path: inner, ok, at: new Date().toISOString(), ...(extra || {}) }), { expirationTtl: 86400 * 400 }).catch(() => null);
@@ -244,6 +245,33 @@ async function panelAdmin(req, env, inner) {
   let detail = {}; try { const b = JSON.parse(body || '{}'); detail = { code: b.code, key: b.key, invoice: b.invoice }; } catch {}
   if (inner !== '/pay/ledger' && inner !== '/foods/queue' && inner !== '/friends/reports') await audit(res.ok, detail);
   return new Response(out, { status: res.status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } });
+}
+
+// IA administradora del Panel Maestro: lee datos (solo lectura, sin datos de salud) y PROPONE acciones; nunca ejecuta.
+// Toda acción la ejecuta el panel solo tras «✅ Confirmar» de José, por las rutas ya auditadas.
+async function panelAI(req, env) {
+  const b = await req.json().catch(() => ({}));
+  const msgs = (Array.isArray(b.messages) ? b.messages : []).slice(-8).map((m) => ({ r: m.r === 'yo' ? 'José' : 'IA', t: str(m.t, 600) }));
+  const call = async (p) => { const r = await worker.fetch(new Request(new URL(p, req.url), { method: 'POST', headers: { 'Content-Type': 'application/json', Origin: 'https://parrareimonjose-del.github.io', 'x-founder-key': env.FOUNDER_KEY, 'CF-Connecting-IP': 'panel-maestro' }, body: '{}' }), env); return r.json().catch(() => ({})); };
+  const [led, fq, fr] = await Promise.all([call('/pay/ledger'), call('/foods/queue'), call('/friends/reports')]);
+  const gl = await env.FOODS.list({ prefix: 'grant:', limit: 200 }); const grants = [];
+  for (const k of gl.keys.slice(0, 60)) { const v = await env.FOODS.get(k.name, 'json'); if (v) grants.push({ code: k.name.slice(6), who: str(v.who, 60), expiresAt: v.expiresAt || null, revoked: !!v.revokedAt }); }
+  const pays = (led.items || []).slice(0, 40).map((i) => ({ id: i.id, kind: i.kind, amount: i.amount, currency: i.currency, ts: i.ts, sub: i.sub, customer: String(i.customer || '').slice(-6) }));
+  const snap = { stripe_mode: led.mode || 'unknown', pagos: pays, premium_regalado: grants, cola_alimentos: { reportes: (fq.reports || []).length, aportes: (fq.contributions || []).length }, reportes_amigos: (fr.items || []).length, hoy: new Date().toISOString().slice(0, 10) };
+  const sys = `Eres la IA administradora de Angie One (app de nutrición). Ayudas a José, el fundador, a dirigir la app. Responde SIEMPRE en español sencillo, corto y claro (José usa un brazo y lee en pantalla grande).
+Solo puedes LEER los datos de abajo y PROPONER acciones; nunca las ejecutas tú. José las aprueba con «Confirmar». Nunca inventes datos. No pidas ni uses datos de salud de usuarios.
+Acciones que puedes proponer (en "acciones"), solo con ids que existan en los datos:
+- {"tipo":"devolver","invoice":"<id de pago kind=charge que empiece por in_>","sub":"<sub>","motivo":"..."}  (dinero: solo modo prueba)
+- {"tipo":"regalar","who":"<email o id>","dias":30|365|0,"motivo":"..."}  (0 = siempre)
+- {"tipo":"quitar_regalo","code":"<code>","motivo":"..."}
+Devuelve SOLO JSON: {"respuesta":"texto","acciones":[...]} (acciones puede ser []).
+DATOS: ${JSON.stringify(snap)}`;
+  const conv = msgs.map((m) => `${m.r}: ${m.t}`).join('\n');
+  const out = parseJson(await gemini(env, [{ text: sys + '\n\nCONVERSACIÓN:\n' + conv + '\nIA:' }], 700, 20000, true));
+  if (!out) return json({ respuesta: 'No pude pensar ahora. Prueba otra vez en un minuto.', acciones: [] }, 200);
+  const ids = new Set(pays.filter((p) => p.kind === 'charge' && /^in_/.test(p.id)).map((p) => p.id)); const codes = new Set(grants.map((g) => g.code));
+  const acts = (Array.isArray(out.acciones) ? out.acciones : []).slice(0, 4).filter((a) => (a.tipo === 'devolver' && ids.has(a.invoice)) || (a.tipo === 'regalar' && a.who && [0, 30, 365].includes(+a.dias)) || (a.tipo === 'quitar_regalo' && codes.has(a.code)));
+  return json({ respuesta: str(out.respuesta, 2000), acciones: acts, modo: snap.stripe_mode }, 200);
 }
 const worker = {
   async fetch(req, env) {
