@@ -2,7 +2,7 @@ import { handleGrants } from './grants.js';
 import { handleFriends } from './friends.js';
 import { handleFoods, foodReport, foodContribute, foodQueue } from './foods.js';
 import { handleSync } from './sync.js';
-import { handlePay } from './pay.js';
+import { handlePay, payMode } from './pay.js';
 import { handleDatahub } from './datahub.js';
 // Angie One AI proxy: keeps GEMINI_API_KEY server-side (Worker secret).
 const MODEL = 'gemini-flash-lite-latest';
@@ -225,9 +225,31 @@ async function clone(b, env, h) {
   return json({ skin: hex(o.skin, '#E0AC8A'), hair: hex(o.hair, '#3B2A20'), hairLen: ['short', 'medium', 'long'].includes(o.hairLen) ? o.hairLen : 'medium', shoulders: num(o.shoulders), hips: num(o.hips) }, 200, h);
 }
 
-export default {
+const PA_ALLOWED = ['/pay/ledger', '/pay/refund', '/grants/add', '/grants/revoke', '/foods/queue', '/foods/queue/delete', '/friends/reports', '/friends/dismiss', '/friends/remove', '/grants/list', '/audit/list'];
+async function panelAdmin(req, env, inner) {
+  const sha = async (x) => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(x)))].map((b) => b.toString(16).padStart(2, '0')).join('');
+  const t = (req.headers.get('Authorization') || '').replace(/^Bearer\s+/i, '');
+  if (!env.PANEL_ADMIN_SHA256 || !env.FOUNDER_KEY || t.length < 32 || (await sha(t)) !== env.PANEL_ADMIN_SHA256) return json({ error: 'auth' }, 401);
+  if (req.method !== 'POST' || !PA_ALLOWED.includes(inner)) return json({ error: 'not found' }, 404);
+  const body = await req.text();
+  const audit = (ok, extra) => env.FOODS.put('audit:' + Date.now() + ':' + Math.random().toString(36).slice(2, 6), JSON.stringify({ via: 'Panel Maestro', path: inner, ok, at: new Date().toISOString(), ...(extra || {}) }), { expirationTtl: 86400 * 400 }).catch(() => null);
+  if (inner === '/grants/list') { const l = await env.FOODS.list({ prefix: 'grant:', limit: 200 }); const items = [];
+    for (const k of l.keys) { const v = await env.FOODS.get(k.name, 'json'); if (v) items.push({ code: k.name.slice(6), ...v }); } return json({ items: items.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)) }, 200); }
+  if (inner === '/audit/list') { const l = await env.FOODS.list({ prefix: 'audit:', limit: 1000 }); const items = [];
+    for (const k of l.keys.slice(-40)) { const v = await env.FOODS.get(k.name, 'json'); if (v) items.push(v); } return json({ items: items.reverse() }, 200); }
+  // Dinero: desde el panel SOLO en modo prueba de Stripe (nunca live), y siempre tras «Confirmar» en el panel.
+  if (inner === '/pay/refund' && payMode(env) !== 'test') { await audit(false, { blocked: 'not_test_mode' }); return json({ error: 'solo_modo_prueba' }, 403); }
+  const r2 = new Request(new URL(inner, req.url), { method: 'POST', headers: { 'Content-Type': 'application/json', Origin: 'https://parrareimonjose-del.github.io', 'x-founder-key': env.FOUNDER_KEY, 'CF-Connecting-IP': 'panel-maestro' }, body });
+  const res = await worker.fetch(r2, env); const out = await res.text();
+  let detail = {}; try { const b = JSON.parse(body || '{}'); detail = { code: b.code, key: b.key, invoice: b.invoice }; } catch {}
+  if (inner !== '/pay/ledger' && inner !== '/foods/queue' && inner !== '/friends/reports') await audit(res.ok, detail);
+  return new Response(out, { status: res.status, headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' } });
+}
+const worker = {
   async fetch(req, env) {
     const path0 = new URL(req.url).pathname;
+    // ---- Panel Maestro (servidor detrás del PIN de José). Bearer cuyo SHA-256 = PANEL_ADMIN_SHA256. La FOUNDER_KEY nunca sale del Worker.
+    if (path0.startsWith('/panel-admin/')) return panelAdmin(req, env, path0.slice(12));
     if (path0 === '/pay/webhook' && req.method === 'POST') return handlePay(path0, req, env, json, {}); // Stripe no envía Origin; se valida la firma
     const h = cors(req.headers.get('Origin'));
     if (!h) return json({ error: 'origin' }, 403);
@@ -311,3 +333,4 @@ export default {
     return json({ name: String(o.name || '?').slice(0, 80), kcalMin: lo, kcalMax: hi, p: n(o.p), c: n(o.c), f: n(o.f), fib: n(o.fib), confidence: ['high','medium','low'].includes(o.confidence) ? o.confidence : 'medium' }, 200, h);
   },
 };
+export default worker;
