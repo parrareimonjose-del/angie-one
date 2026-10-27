@@ -231,6 +231,7 @@ async function panelAdmin(req, env, inner) {
   const t = (req.headers.get('Authorization') || '').replace(/^Bearer\s+/i, '');
   if (!env.PANEL_ADMIN_SHA256 || !env.FOUNDER_KEY || t.length < 32 || (await sha(t)) !== env.PANEL_ADMIN_SHA256) return json({ error: 'auth' }, 401);
   if (req.method === 'POST' && inner === '/ai/chat') return panelAI(req, env);
+  if (req.method === 'POST' && inner === '/ai/recs') return panelRecs(req, env);
   if (req.method !== 'POST' || !PA_ALLOWED.includes(inner)) return json({ error: 'not found' }, 404);
   const body = await req.text();
   const audit = (ok, extra) => env.FOODS.put('audit:' + Date.now() + ':' + Math.random().toString(36).slice(2, 6), JSON.stringify({ via: 'Panel Maestro', path: inner, ok, at: new Date().toISOString(), ...(extra || {}) }), { expirationTtl: 86400 * 400 }).catch(() => null);
@@ -272,6 +273,25 @@ DATOS: ${JSON.stringify(snap)}`;
   const ids = new Set(pays.filter((p) => p.kind === 'charge' && /^in_/.test(p.id)).map((p) => p.id)); const codes = new Set(grants.map((g) => g.code));
   const acts = (Array.isArray(out.acciones) ? out.acciones : []).slice(0, 4).filter((a) => (a.tipo === 'devolver' && ids.has(a.invoice)) || (a.tipo === 'regalar' && a.who && [0, 30, 365].includes(+a.dias)) || (a.tipo === 'quitar_regalo' && codes.has(a.code)));
   return json({ respuesta: str(out.respuesta, 2000), acciones: acts, modo: snap.stripe_mode }, 200);
+}
+
+// Recomendaciones para el Panel Maestro (cualquier app de José). Recibe SOLO números agregados; nunca datos personales ni de salud.
+async function panelRecs(req, env) {
+  const b = await req.json().catch(() => ({}));
+  const rows = (a) => (Array.isArray(a) ? a : []).slice(0, 24).map((r) => [str(r?.[0], 60), str(r?.[1], 40)]);
+  const data = { app: str(b.name || b.app, 40), descripcion: str(b.about, 300), numeros: rows(b.cards), dinero: rows(b.money), estado: str(b.state, 300), hoy: new Date().toISOString().slice(0, 10) };
+  const sys = `Eres el asesor de producto de "${data.app}". José es fundador en solitario: trabaja solo con su teléfono, su computadora y asistentes de IA (sin equipo). Usa un brazo: todo debe ser simple.
+Revisa SOLO los números agregados de abajo y da entre 3 y 7 recomendaciones CONCRETAS y HACIBLES por una persona sola en 1 día o menos cada una (o con ayuda de una IA).
+Reglas: español sencillo; NUNCA inventes números ni datos que no estén abajo (si falta un dato, recomienda medirlo); nada de vender datos; nada que mueva dinero sin aprobación; ordena de más a menos importante. Las apps son nuevas y con pocos usuarios: tener 0 cobros o 0 activos hoy NO es urgente por sí solo; "urgente" es solo para algo roto o un riesgo real. Usa como mucho 2 "urgente".
+prioridad: "urgente" (algo roto, riesgo o dinero en juego), "importante", "idea". tipo: "mejora", "actualizacion", "arreglo", "crecimiento" o "dinero" (todo lo que toque pagos, precios, Stripe, cobros o reembolsos es "dinero").
+Devuelve SOLO JSON: {"recs":[{"titulo":"máx 70 letras","razon":"1-2 líneas citando el número real","tipo":"...","prioridad":"..."}]}
+DATOS: ${JSON.stringify(data)}`;
+  const out = parseJson(await gemini(env, [{ text: sys }], 900, 20000, true));
+  const T = ['mejora', 'actualizacion', 'arreglo', 'crecimiento', 'dinero'], P = ['urgente', 'importante', 'idea'];
+  const norm = (x) => String(x || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const recs = (out?.recs || []).filter((r) => r && r.titulo).slice(0, 7).map((r) => ({ titulo: str(r.titulo, 90), razon: str(r.razon, 280), tipo: T.includes(norm(r.tipo)) ? norm(r.tipo) : 'mejora', prioridad: P.includes(norm(r.prioridad)) ? norm(r.prioridad) : 'idea' }))
+    .sort((a, b) => P.indexOf(a.prioridad) - P.indexOf(b.prioridad));
+  return json({ recs }, recs.length ? 200 : 502);
 }
 const worker = {
   async fetch(req, env) {
