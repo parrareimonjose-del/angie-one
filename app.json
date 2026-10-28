@@ -2,7 +2,7 @@
   "expo": {
     "name": "Angie One",
     "slug": "angie-one",
-    "version": "0.3.0",
+    "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -28,7 +28,8 @@
           "ar",
           "ru",
           "tr"
-        ]
+        ],
+        "ExpoLocalization_supportsRTL": true
       },
       "buildNumber": "1",
       "config": {
@@ -164,7 +165,12 @@
     },
     "description": "Angie One: AI calorie & nutrition coach. Snap your meal, know your calories.",
     "extra": {
-      "supportsRTL": true
-    }
+      "supportsRTL": true,
+      "router": {},
+      "eas": {
+        "projectId": "2a2451a3-147b-4cfd-be28-f61c1ca511b1"
+      }
+    },
+    "owner": "parraapps"
   }
 }

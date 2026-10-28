@@ -1,7 +1,7 @@
 {
   "cli": {
     "version": ">= 16.0.0",
-    "appVersionSource": "local"
+    "appVersionSource": "remote"
   },
   "build": {
     "development": {
@@ -15,16 +15,23 @@
       }
     },
     "production": {
-      "autoIncrement": false,
+      "autoIncrement": true,
       "ios": {
         "resourceClass": "default"
+      },
+      "env": {
+        "EXPO_PUBLIC_RC_IOS_KEY": "appl_IUiGQFAdFdYcRcmQLsnTewxtAqP"
       }
     }
   },
   "submit": {
     "production": {
       "ios": {
-        "ascAppId": "SET_AFTER_CREATING_THE_APP_IN_APP_STORE_CONNECT"
+        "ascAppId": "6828137645",
+        "appleTeamId": "URPGG76CHF",
+        "ascApiKeyPath": "/workspace/apple/keys/AuthKey_48F5DST98W.p8",
+        "ascApiKeyIssuerId": "23aaab70-4ff6-4a1f-8d08-4e3def83c006",
+        "ascApiKeyId": "48F5DST98W"
       }
     }
   }
