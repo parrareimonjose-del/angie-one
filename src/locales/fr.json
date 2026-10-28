@@ -232,7 +232,6 @@
     "privacy": "Politique de confidentialité",
     "terms": "Conditions d'utilisation",
     "medical": "Pas un avis médical",
-    "draft": "BROUILLON — en attente de révision par un avocat.",
     "section": "Mentions légales"
   },
   "u": {
@@ -1258,7 +1257,7 @@
     "consentBody": "Si vous acceptez, vos reçus et réponses sont utilisés sans votre nom, en groupes de 50+ personnes, pour des études de marché. Vos données personnelles restent à vous.",
     "consentBox": "J'accepte de partager mes reçus et sondages de façon anonyme",
     "accept": "Accepter",
-    "consentLegal": "Facultatif. Vous pouvez la retirer à tout moment d'un geste ; nous supprimons alors vos données de toutes les listes. Annexe brouillon v1, en attente de revue juridique.",
+    "consentLegal": "Facultatif. Vous pouvez la retirer à tout moment d'un geste ; nous supprimons alors vos données de toutes les listes.",
     "consentOn": "Autorisation active",
     "revoke": "Retirer l'autorisation et supprimer mes données",
     "deleteAll": "Supprimer les données de mon compte",

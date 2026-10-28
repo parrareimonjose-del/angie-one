@@ -232,7 +232,6 @@
     "privacy": "Informativa sulla privacy",
     "terms": "Termini d'uso",
     "medical": "Non è un consiglio medico",
-    "draft": "BOZZA — in attesa di revisione da parte di un legale.",
     "section": "Note legali"
   },
   "u": {
@@ -1258,7 +1257,7 @@
     "consentBody": "Se accetti, i tuoi scontrini e le risposte vengono usati senza il tuo nome, in gruppi di 50+ persone, per studi di mercato. I tuoi dati personali restano tuoi.",
     "consentBox": "Accetto di condividere scontrini e sondaggi in forma anonima",
     "accept": "Accetta",
-    "consentLegal": "Facoltativo. Puoi ritirarlo quando vuoi con un tocco e cancelliamo i tuoi dati da tutte le liste. Allegato bozza v1, in attesa di revisione legale.",
+    "consentLegal": "Facoltativo. Puoi ritirarlo quando vuoi con un tocco e cancelliamo i tuoi dati da tutte le liste.",
     "consentOn": "Permesso attivo",
     "revoke": "Ritira il permesso e cancella i miei dati",
     "deleteAll": "Cancella i dati del mio account",

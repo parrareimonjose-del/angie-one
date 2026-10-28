@@ -5,7 +5,7 @@
 - Soporte: https://parrareimonjose-del.github.io/angie-one/manual  (correo: angieoneapp.support@gmail.com)
 - Borrar cuenta (web): https://parrareimonjose-del.github.io/angie-one/delete-account
 - Hoy esas rutas cargan pero GitHub Pages responde 404 (SPA). El próximo deploy web (scripts-deploy-web.sh) crea copias para que respondan 200.
-- La política está marcada «BORRADOR — pendiente de revisión por un abogado»: quitar esa marca antes de enviar a Apple.
+- Marca «BORRADOR» retirada de los textos legales (28-oct-2026).
 
 ## Icono
 assets/icon.png: 1024×1024, RGB sin transparencia → válido.

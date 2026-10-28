@@ -232,7 +232,6 @@
     "privacy": "Privacy Policy",
     "terms": "Terms of Use",
     "medical": "Not medical advice",
-    "draft": "DRAFT — pending review by a lawyer.",
     "section": "Legal"
   },
   "u": {
@@ -1258,7 +1257,7 @@
     "consentBody": "If you agree, your receipts and survey answers are used without your name, grouped with 50+ people, for market studies. Your personal data stays yours.",
     "consentBox": "I agree to share my receipts and surveys anonymously",
     "accept": "Accept",
-    "consentLegal": "Optional. You can withdraw it any time with one tap; we then delete your data from all lists. Draft annex v1, pending legal review.",
+    "consentLegal": "Optional. You can withdraw it any time with one tap; we then delete your data from all lists.",
     "consentOn": "Permission active",
     "revoke": "Withdraw permission and delete my data",
     "deleteAll": "Delete my account data",

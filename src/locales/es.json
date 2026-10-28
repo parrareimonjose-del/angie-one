@@ -232,7 +232,6 @@
     "privacy": "Política de privacidad",
     "terms": "Términos de uso",
     "medical": "No es consejo médico",
-    "draft": "BORRADOR — pendiente de revisión por un abogado.",
     "section": "Legal"
   },
   "u": {
@@ -1258,7 +1257,7 @@
     "consentBody": "Si aceptas, tus recibos y respuestas se usan sin tu nombre, en grupos de 50 o más personas, para estudios de mercado. Tus datos personales siguen siendo tuyos.",
     "consentBox": "Acepto compartir mis recibos y encuestas de forma anónima",
     "accept": "Aceptar",
-    "consentLegal": "Opcional. Lo puedes retirar cuando quieras con un toque y borramos tus datos de todas las listas. Anexo borrador v1, pendiente de revisión legal.",
+    "consentLegal": "Opcional. Lo puedes retirar cuando quieras con un toque y borramos tus datos de todas las listas.",
     "consentOn": "Permiso activo",
     "revoke": "Retirar permiso y borrar mis datos",
     "deleteAll": "Borrar los datos de mi cuenta",

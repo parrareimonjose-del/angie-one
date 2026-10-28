@@ -13,7 +13,6 @@ export default function Legal() {
   const d = t(`docs.${key}`, { returnObjects: true }) as unknown as { title: string; updated: string; sections: [string, string][] };
   return (
     <Screen title={d.title}>
-      <View style={{ backgroundColor: C.accent, borderRadius: 12, padding: 10 }}><Text style={{ color: C.onAccent, fontWeight: '800' }}>{t('legal.draft')}</Text></View>
       <Pill label={`📅 ${d.updated}`} />
       {d.sections.map(([h, b], i) => <Card key={h}><CardTitle icon={['🏢', '📊', '📸', '🤖', '🔒', '☁️', '🧒', '🗑️', '⚖️', '🔄', '✉️', '🌎'][i % 12]}>{h}</CardTitle><T>{b}</T></Card>)}
       <Text style={[s.t, { color: C.secondary, fontWeight: '800', textAlign: 'center' }]} onPress={() => Linking.openURL(`mailto:${CONTACT}`)}>✉️ {CONTACT}</Text>

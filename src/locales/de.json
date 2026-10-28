@@ -232,7 +232,6 @@
     "privacy": "Datenschutzerklärung",
     "terms": "Nutzungsbedingungen",
     "medical": "Keine medizinische Beratung",
-    "draft": "ENTWURF — wartet auf die Prüfung durch einen Anwalt.",
     "section": "Rechtliches"
   },
   "u": {
@@ -1258,7 +1257,7 @@
     "consentBody": "Wenn du zustimmst, werden deine Belege und Antworten ohne Namen, in Gruppen ab 50 Personen, für Marktstudien genutzt. Deine persönlichen Daten bleiben deine.",
     "consentBox": "Ich stimme zu, meine Belege und Umfragen anonym zu teilen",
     "accept": "Zustimmen",
-    "consentLegal": "Freiwillig. Du kannst sie jederzeit mit einem Tipp widerrufen; dann löschen wir deine Daten aus allen Listen. Entwurf Anhang v1, rechtliche Prüfung ausstehend.",
+    "consentLegal": "Freiwillig. Du kannst sie jederzeit mit einem Tipp widerrufen; dann löschen wir deine Daten aus allen Listen.",
     "consentOn": "Erlaubnis aktiv",
     "revoke": "Erlaubnis widerrufen und meine Daten löschen",
     "deleteAll": "Daten meines Kontos löschen",

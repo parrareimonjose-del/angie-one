@@ -232,7 +232,6 @@
     "privacy": "Gizlilik Politikası",
     "terms": "Kullanım Şartları",
     "medical": "Tıbbi tavsiye değildir",
-    "draft": "TASLAK — bir avukat tarafından incelenmesi bekleniyor.",
     "section": "Yasal"
   },
   "u": {
@@ -1258,7 +1257,7 @@
     "consentBody": "Kabul ederseniz fişleriniz ve yanıtlarınız adınız olmadan, 50+ kişilik gruplarda pazar araştırması için kullanılır. Kişisel verileriniz sizin kalır.",
     "consentBox": "Fişlerimi ve anketlerimi anonim olarak paylaşmayı kabul ediyorum",
     "accept": "Kabul et",
-    "consentLegal": "İsteğe bağlı. İstediğiniz an tek dokunuşla geri alabilirsiniz; verilerinizi tüm listelerden sileriz. Taslak ek v1, hukuki inceleme bekliyor.",
+    "consentLegal": "İsteğe bağlı. İstediğiniz an tek dokunuşla geri alabilirsiniz; verilerinizi tüm listelerden sileriz.",
     "consentOn": "İzin etkin",
     "revoke": "İzni geri al ve verilerimi sil",
     "deleteAll": "Hesap verilerimi sil",

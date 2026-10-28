@@ -232,7 +232,6 @@
     "privacy": "Política de privacidade",
     "terms": "Termos de uso",
     "medical": "Não é conselho médico",
-    "draft": "RASCUNHO — pendente de revisão por um advogado.",
     "section": "Legal"
   },
   "u": {
@@ -1258,7 +1257,7 @@
     "consentBody": "Se você aceitar, seus recibos e respostas são usados sem seu nome, em grupos de 50+ pessoas, para estudos de mercado. Seus dados pessoais continuam seus.",
     "consentBox": "Aceito compartilhar meus recibos e pesquisas de forma anônima",
     "accept": "Aceitar",
-    "consentLegal": "Opcional. Você pode retirar a qualquer momento com um toque e apagamos seus dados de todas as listas. Anexo rascunho v1, pendente de revisão jurídica.",
+    "consentLegal": "Opcional. Você pode retirar a qualquer momento com um toque e apagamos seus dados de todas as listas.",
     "consentOn": "Permissão ativa",
     "revoke": "Retirar permissão e apagar meus dados",
     "deleteAll": "Apagar os dados da minha conta",
