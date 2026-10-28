@@ -6,7 +6,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { router, useLocalSearchParams } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import i18n from 'i18next';
-import { Screen, Card, Btn, T, Bar, s, InfoNote, CardTitle, Ring } from './ui';
+import { Screen, Card, Btn, T, Bar, s, InfoNote, CardTitle, Ring, shareText } from './ui';
 import { C } from './theme';
 import { useStore, uid } from './store';
 import { fmtNum, curLang } from './i18n';
@@ -154,7 +154,7 @@ function downloadPdf(period: string, sum: ReturnType<typeof summarize>, ded: Rec
     ...(Object.keys(ded).length ? Object.entries(ded).map(([k, v]) => `- ${t('dt.ded.' + k)}: ${money(v)}`) : [t('dt.dedNone')]), '', t('dt.accQ'),
     ...ACCOUNTANT_QS.flatMap((q) => [`- ${t('dt.acc.' + q)}`, `  > ${ans[q] || '...'}`]), '', `!! ${t('dt.disclaimer')}`];
   const wrapped = L.flatMap((l) => l.match(/.{1,90}(\s|$)|.{1,90}/g) || ['']);
-  if (Platform.OS !== 'web') return;
+  if (Platform.OS !== 'web') { shareText(`angie-one-informe-${period}.txt`, L.join('\n')); return; }
   const url = URL.createObjectURL(new Blob([makePdf(wrapped) as unknown as BlobPart], { type: 'application/pdf' }));
   const a = document.createElement('a'); a.href = url; a.download = `angie-one-informe-${period}.pdf`; document.body.appendChild(a); a.click(); a.remove();
 }

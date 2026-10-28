@@ -5,6 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTranslation } from 'react-i18next';
 import { Card, Btn, Chip, T, s, IconCard, Pill, InfoNote } from './ui';
 import { C } from './theme';
+import { APP_AI } from './ai-config';
 import { useStore } from './store';
 import { fmtDate } from './i18n';
 import { Row } from './coach-ui';
@@ -63,9 +64,23 @@ export function useFounderMode(): [boolean, (v: boolean) => void] {
   useEffect(() => { AsyncStorage.getItem(FOUNDER_FLAG).then((v) => setOn(v === '1')).catch(() => {}); }, []);
   return [on, (v: boolean) => { setOn(v); if (v) AsyncStorage.setItem(FOUNDER_FLAG, '1'); else AsyncStorage.removeItem(FOUNDER_FLAG); }];
 }
+/** Comprueba la clave con el Worker antes de guardarla (antes aceptaba cualquier texto). */
+export async function checkFounderKey(k: string): Promise<'ok' | 'bad' | 'offline'> {
+  try {
+    const r = await fetch(APP_AI.workerBase + '/foods/queue', { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-founder-key': k }, body: '{}' });
+    return r.ok ? 'ok' : r.status === 401 || r.status === 403 ? 'bad' : 'offline';
+  } catch { return 'offline'; }
+}
 export function FounderUnlock({ onDone }: { onDone: () => void }) {
-  const { t } = useTranslation(); const [k, setK] = useState('');
+  const { t } = useTranslation(); const [k, setK] = useState(''); const [msg, setMsg] = useState(''); const [busy, setBusy] = useState(false);
+  const go = async () => {
+    const v = k.trim(); if (v.length < 8) return setMsg(t('gr.keyBad'));
+    setBusy(true); setMsg(''); const r = await checkFounderKey(v); setBusy(false);
+    if (r !== 'ok') return setMsg(t(r === 'bad' ? 'gr.keyBad' : 'aiErr.offline'));
+    await AsyncStorage.setItem(FKEY, v); await AsyncStorage.setItem(FOUNDER_FLAG, '1'); setK(''); onDone();
+  };
   return <Card testID="founder-unlock"><T>🔒 {t('gr.founderOnly')}</T>
-    <TextInput testID="fu-key" secureTextEntry accessibilityLabel={t('gr.key')} placeholder={t('gr.key')} value={k} onChangeText={setK} style={s.input} />
-    <Btn small testID="fu-go" label={t('gr.unlock')} onPress={async () => { if (k.trim().length < 8) return; await AsyncStorage.setItem(FKEY, k.trim()); await AsyncStorage.setItem(FOUNDER_FLAG, '1'); onDone(); }} /></Card>;
+    <TextInput testID="fu-key" secureTextEntry autoCapitalize="none" autoCorrect={false} accessibilityLabel={t('gr.key')} placeholder={t('gr.key')} value={k} onChangeText={setK} onSubmitEditing={go} style={s.input} />
+    <Btn small testID="fu-go" label={busy ? '…' : t('gr.unlock')} onPress={go} />
+    {msg ? <Text testID="fu-msg" style={{ color: C.primary, fontWeight: '800' }}>{msg}</Text> : null}</Card>;
 }

@@ -265,7 +265,7 @@
         ],
         [
           "Health apps",
-          "If you connect Apple Health or Health Connect, Angie One only reads steps, weight and workouts to adjust your daily goal. That data stays on your phone, is never sent to the AI or to third parties, and is never used for ads."
+          "If you import a file exported from your phone’s health app, Angie One only reads steps, weight and workouts to adjust your daily goal. That data stays on your device, is never sent to the AI or to third parties, and is never used for ads. The iPhone app does not connect to Apple Health (HealthKit)."
         ],
         [
           "Encrypted cloud backup (optional)",
@@ -1000,7 +1000,8 @@
     "waHow": "Write like on WhatsApp, for example: 'I had 2 arepas'.",
     "waPh": "Message",
     "waTry": "Try it",
-    "tipsNote": "Tips go 100% to the creator, minus payment fees."
+    "tipsNote": "Tips go 100% to the creator, minus payment fees.",
+    "webOnly": "This is only available in the web version of Angie One (on your computer)."
   },
   "p2": {
     "hub": "Healthy tools",
@@ -2178,7 +2179,8 @@
       "server": "The server did not answer. Try later."
     },
     "founderOnly": "This panel is for the founder only. Enter your founder key.",
-    "unlock": "Unlock"
+    "unlock": "Unlock",
+    "keyBad": "Wrong founder key."
   },
   "t6": {
     "hTitle": "Habit score",

@@ -1,3 +1,4 @@
+import './cryptoshim';
 // Entrada fácil para mayores. TODO queda en este dispositivo: el PIN/contraseña se guarda como hash PBKDF2 con sal,
 // nunca en texto. Huella/Face ID usa la llave de acceso (WebAuthn) del propio teléfono. Cuentas en la nube: pendiente de conexión.
 import AsyncStorage from '@react-native-async-storage/async-storage';

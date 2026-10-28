@@ -1,3 +1,4 @@
+import './cryptoshim';
 /** Copia en la nube cifrada de extremo a extremo (gratis, Cloudflare).
  *  - El teléfono crea un código de recuperación (se muestra una sola vez). De ese código salen, en el teléfono:
  *    el id del usuario, el token de acceso y la clave AES-256-GCM (PBKDF2). El servidor solo recibe bytes cifrados.

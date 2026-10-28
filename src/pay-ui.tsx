@@ -3,7 +3,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { useTranslation } from 'react-i18next';
-import { Card, CardTitle, Btn, T, s } from './ui';
+import { Card, CardTitle, Btn, T, s, ask } from './ui';
+import { Platform, Linking } from 'react-native';
 import { C } from './theme';
 import { useStore } from './store';
 import { PAY_MODE, effectivePayMode, payModeOn, payStatus, payPortal, payLedger, payRefund, PayLedgerItem } from './payments';
@@ -24,7 +25,7 @@ export function usePaySync() {
     tick(); return () => { stop = true; }; }, []);
   return msg;
 }
-export async function openPortal(onErr: () => void) { try { const u = await payPortal(); if (u) location.assign(u); else onErr(); } catch { onErr(); } }
+export async function openPortal(onErr: () => void) { try { const u = await payPortal(); if (!u) onErr(); else if (Platform.OS === 'web') location.assign(u); else await Linking.openURL(u); } catch { onErr(); } }
 
 const money = (c: number, cur: string) => (c / 100).toFixed(2) + ' ' + cur.toUpperCase();
 export function StripeLedgerCard() {
@@ -32,7 +33,7 @@ export function StripeLedgerCard() {
   if (!payModeOn()) return null;
   const load = async () => { setErr(''); const k = await founderKey(); if (!k) { setErr(t('rv.modNeedKey')); return; } try { setItems(await payLedger(k)); } catch { setErr(t('fo.payErr')); } };
   const gross = (items || []).filter((i) => i.kind === 'charge').reduce((a, i) => a + i.amount, 0), ref = (items || []).filter((i) => i.kind === 'refund').reduce((a, i) => a + i.amount, 0);
-  const refund = async (i: PayLedgerItem) => { if (typeof confirm !== 'undefined' && !confirm(t('fo.refundAsk', { amt: money(i.amount, i.currency) }))) return; const k = await founderKey(); try { await payRefund(k, i.id); setTimeout(load, 4000); } catch { setErr(t('fo.payErr')); } };
+  const refund = async (i: PayLedgerItem) => { if (!(await ask(t('fo.refundAsk', { amt: money(i.amount, i.currency) }), t('fo.refund'), t('cancel')))) return; const k = await founderKey(); try { await payRefund(k, i.id); setTimeout(load, 4000); } catch { setErr(t('fo.payErr')); } };
   return <Card testID="stripe-ledger"><CardTitle>💳 {t('fo.stripeT')}</CardTitle><TestBadge />
     <Btn testID="stripe-load" small kind="secondary" label={`↻ ${t('fo.payLoad')}`} onPress={load} />
     {err ? <Text style={{ color: C.primary, fontWeight: '700' }}>{err}</Text> : null}

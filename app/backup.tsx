@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { View, Text, TextInput, Platform } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Screen, Card, Btn, T, s, CardTitle, IconCard, IconTile, Pill } from '../src/ui';
+import { Screen, Card, Btn, T, s, CardTitle, IconCard, IconTile, Pill, ask } from '../src/ui';
 import { C } from '../src/theme';
 import { useStore } from '../src/store';
 import { fmtLocale } from '../src/i18n';
@@ -19,7 +19,7 @@ export default function Backup() {
     try { const at = await uploadBackup(st, code); set((x) => ({ ...x, sync: { on: true, code, last: at } })); setCode(''); setMsg(t('bk.done')); } catch (e) { fail(e); } finally { setBusy(false); } };
   const now = async () => { if (!sy) return; setBusy(true); setErr(''); setMsg('');
     try { const at = await uploadBackup(st, sy.code); set((x) => ({ ...x, sync: { ...x.sync!, last: at, err: undefined } })); setMsg(t('bk.done')); } catch (e) { fail(e); } finally { setBusy(false); } };
-  const wipe = async () => { if (!sy) return; if (Platform.OS === 'web' && !window.confirm(t('bk.delQ'))) return; setBusy(true); setErr('');
+  const wipe = async () => { if (!sy) return; if (!(await ask(t('bk.delQ'), '🗑️', t('cancel')))) return; setBusy(true); setErr('');
     try { await deleteBackup(sy.code); set((x) => { const { sync, ...r } = x; return r as any; }); setMsg(t('bk.deleted')); } catch (e) { fail(e); } finally { setBusy(false); } };
   const restore = async () => { setErr(''); setMsg(''); if (!validCode(rc)) { setErr(t('bk.err.badcode')); return; } setBusy(true);
     try { const b = await downloadBackup(rc); const code = rc.toUpperCase().trim(); set(() => ({ ...b.state, sync: { on: true, code, last: b.at } })); setRestored(true); setMsg(t('bk.restored')); } catch (e) { fail(e); } finally { setBusy(false); } };

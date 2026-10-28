@@ -8,7 +8,7 @@ import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { photos } from './cali-mil';
 import { FACES } from './rostros';
-import { Screen, Card, Btn, Chip, T, Bar, s, StatRow, IconCard, EmptyState, Pill, Ring, InfoNote, CardTitle, IconTile, FOOD } from './ui';
+import { Screen, Card, Btn, Chip, T, Bar, s, StatRow, IconCard, EmptyState, Pill, Ring, InfoNote, CardTitle, IconTile, FOOD, notice } from './ui';
 import { C, R, shadow } from './theme';
 import { useStore, today, uid, DAY, trialPhase } from './store';
 import { fmtNum, fmtDate } from './i18n';
@@ -204,7 +204,7 @@ export function Report() {
   const { t } = useTranslation(); const { s: st } = useStore(); const c = coachOf(st); const [rawModes] = useExt<string[]>('modes', []); const modes = cleanModes(rawModes);
   const days = [...Array(14)].map((_, k) => today(new Date(Date.now() - k * DAY)));
   const rows = days.map((d) => ({ d, k: st.entries.filter((e) => e.date === d).reduce((a, e) => a + e.kcal, 0), w: st.water[d] || 0, b: burnedOn(c, d) })).filter((r) => r.k || r.w || r.b);
-  const pdf = () => { if (Platform.OS === 'web') window.print(); };
+  const pdf = () => { if (Platform.OS === 'web') window.print(); else notice(t('x.webOnly')); };
   return <Screen title={`📄 ${t('x.t.report')}`}>
     <StatRow items={[{ icon: '📅', value: rows.length, label: '14 d' }, { icon: '🍽️', value: rows.length ? fmtNum(Math.round(rows.reduce((a, r) => a + r.k, 0) / rows.length)) : '—', label: t('u.kcal') }, { icon: '💧', value: rows.reduce((a, r) => a + r.w, 0), label: '💧' }]} />
     <Card><View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 4, height: 100 }}>{[...days].reverse().map((d) => { const r = rows.find((x) => x.d === d); return <View key={d} style={{ flex: 1, height: Math.max(4, ((r?.k || 0) / 2500) * 96), borderRadius: 4, backgroundColor: r?.k ? C.secondary : C.border }} />; })}</View></Card>

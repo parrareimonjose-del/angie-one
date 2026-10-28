@@ -1,3 +1,4 @@
+import './cryptoshim';
 // Capa de pagos según la plataforma (decisión de José 2026-10-15):
 //  web → Stripe (Checkout / Payment Links) · Android → Google Play Billing · iPhone → Apple In-App Purchase.
 // Hoy NADA cobra: todos los proveedores están «Pendiente de conexión» (sin claves). No hay dinero real.

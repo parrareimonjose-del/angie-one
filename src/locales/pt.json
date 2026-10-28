@@ -265,7 +265,7 @@
         ],
         [
           "Aplicativos de saúde",
-          "Se você conectar o Apple Health ou o Health Connect, o Angie One apenas lê passos, peso e treinos para ajustar sua meta diária. Esses dados ficam no seu celular, nunca são enviados para a IA ou para terceiros, e nunca são usados para anúncios."
+          "Se você importar um arquivo exportado do app de saúde do seu telefone, o Angie One lê apenas passos, peso e treinos para ajustar sua meta diária. Esses dados ficam no seu dispositivo, nunca são enviados à IA nem a terceiros e nunca são usados para anúncios. O app do iPhone não se conecta ao Apple Saúde (HealthKit)."
         ],
         [
           "Backup em nuvem criptografado (opcional)",
@@ -1000,7 +1000,8 @@
     "waHow": "Escreva como no WhatsApp, por exemplo: 'Comi 2 arepas'.",
     "waPh": "Mensagem",
     "waTry": "Experimente",
-    "tipsNote": "As gorjetas vão 100% para o criador, descontadas as taxas de pagamento."
+    "tipsNote": "As gorjetas vão 100% para o criador, descontadas as taxas de pagamento.",
+    "webOnly": "Isso só está disponível na versão web do Angie One (no seu computador)."
   },
   "p2": {
     "hub": "Ferramentas saudáveis",
@@ -2178,7 +2179,8 @@
       "server": "O servidor não respondeu. Tente depois."
     },
     "founderOnly": "Este painel é só do fundador. Digite sua chave.",
-    "unlock": "Entrar"
+    "unlock": "Entrar",
+    "keyBad": "Chave de fundador incorreta."
   },
   "t6": {
     "hTitle": "Pontuação de hábitos",

@@ -1,6 +1,6 @@
 // Componentes base del rediseño (A Vibrante claro · B Elegante oscuro). Todas las pantallas usan esto.
 import React, { createContext, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { View, Text, Pressable, ScrollView, ViewStyle, TextStyle, Animated, Easing, AccessibilityInfo, Platform, useColorScheme, Image, ImageSourcePropType } from 'react-native';
+import { Alert, Share, View, Text, Pressable, ScrollView, ViewStyle, TextStyle, Animated, Easing, AccessibilityInfo, Platform, useColorScheme, Image, ImageSourcePropType } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router, usePathname } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
@@ -462,3 +462,14 @@ export function CardTitle({ children, icon, style }: { children: React.ReactNode
     <Text style={[s.h2, { flex: 1 }, style as any]} accessibilityRole="header">{rest}</Text>
   </View>;
 }
+
+/** Confirmación que funciona en web (window.confirm) y en iPhone/Android (Alert nativo). Antes, en nativo, las acciones
+ *  destructivas se ejecutaban sin preguntar. */
+export function ask(msg: string, okLabel = 'OK', cancelLabel = '✕', title = 'Angie One'): Promise<boolean> {
+  if (Platform.OS === 'web') { try { return Promise.resolve(typeof window !== 'undefined' && window.confirm(msg)); } catch { return Promise.resolve(false); } }
+  return new Promise((res) => Alert.alert(title, msg, [{ text: cancelLabel, style: 'cancel', onPress: () => res(false) }, { text: okLabel, style: 'destructive', onPress: () => res(true) }], { cancelable: true, onDismiss: () => res(false) }));
+}
+/** Aviso simple en nativo (en web usa alert). */
+export function notice(msg: string, title = 'Angie One') { if (Platform.OS === 'web') { try { window.alert(msg); } catch {} } else Alert.alert(title, msg); }
+/** Compartir texto en nativo (hoja de compartir de iOS) — sustituye la descarga de archivos de la web. */
+export async function shareText(name: string, text: string) { try { await Share.share({ title: name, message: text }); return true; } catch { return false; } }

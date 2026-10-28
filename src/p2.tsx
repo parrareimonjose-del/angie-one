@@ -10,7 +10,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import Svg, { Circle, Rect, Ellipse, Path, Polyline, Line, Text as SvgText } from 'react-native-svg';
-import { Screen, Card, Btn, Chip, T, Bar, s, IconCard, EmptyState, Pill, InfoNote, CardTitle, Ring, FOOD, IconTile, StatRow } from './ui';
+import { Screen, Card, Btn, Chip, T, Bar, s, IconCard, EmptyState, Pill, InfoNote, CardTitle, Ring, FOOD, IconTile, StatRow, ask, notice } from './ui';
 import { C } from './theme';
 import { useStore, today, uid, DAY, State, Entry, dailyTarget } from './store';
 import { fmtNum, fmtDate, fmtLocale, curLang } from './i18n';
@@ -130,7 +130,7 @@ export function Memory() {
         <Btn small kind="danger" label="🗑️" a11y={t('p2.memDel')} onPress={() => setM((x) => ({ ...x, facts: x.facts.filter((y) => y.id !== f.id) }))} style={{ width: 56 }} /></View>) : <EmptyState icon="💭" title={t('p2.memEmpty')} />}
       <TextInput style={s.input} value={q} onChangeText={setQ} placeholder={t('p2.memPh')} onSubmitEditing={add} accessibilityLabel={t('p2.memPh')} />
       <Btn small label={`＋ ${t('add')}`} onPress={add} /></IconCard>
-    <Btn kind="danger" label={`🗑️ ${t('p2.memDelAll')}`} onPress={() => { if (Platform.OS !== 'web' || window.confirm(t('p2.memDelQ'))) setM(() => ({ ...MEM0, on: m.on })); }} />
+    <Btn kind="danger" label={`🗑️ ${t('p2.memDelAll')}`} onPress={async () => { if (await ask(t('p2.memDelQ'), t('p2.memDelAll'), t('cancel'))) setM(() => ({ ...MEM0, on: m.on })); }} />
   </Screen>;
 }
 
@@ -161,7 +161,7 @@ export function Import() {
   const run = (raw: string) => { const es = mfpEntries(raw); if (!es.length) { setMsg(t('p2.impBad')); return; }
     set((x) => { const ids = new Set(es.map((e) => e.id)); return { ...x, entries: [...x.entries.filter((e) => !ids.has(e.id)), ...es] }; });
     setMsg(t('p2.impOk', { n: es.length, d: new Set(es.map((e) => e.date)).size })); };
-  const pick = () => { if (Platform.OS !== 'web') return; const inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.csv,text/csv';
+  const pick = () => { if (Platform.OS !== 'web') return notice(t('x.webOnly')); const inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.csv,text/csv';
     inp.onchange = () => { const f = inp.files?.[0]; if (f) f.text().then(run); }; inp.click(); };
   return <Screen title={`📥 ${t('p2.t.import')}`}>
     <Card><T>{t('p2.impHow')}</T><Btn label={`📂 ${t('p2.impPick')}`} onPress={pick} /></Card>

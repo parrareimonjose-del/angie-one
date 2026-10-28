@@ -1,3 +1,4 @@
+import './cryptoshim';
 /** Cliente del Parra Data Hub vía proxy del Worker Angie One (la clave de app nunca va en el cliente).
  *  Si el hub cae, la app sigue con copia local (fallback). */
 import { aiUrl } from './ai-config';

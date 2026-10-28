@@ -4,7 +4,7 @@ import { View, Text, TextInput, Platform, Pressable, Share } from 'react-native'
 import { router, useLocalSearchParams } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import Svg, { Circle } from 'react-native-svg';
-import { Screen, Card, Btn, Chip, T, s, Ring, IconCard, IconTile, StatRow, EmptyState, H2, CardTitle } from './ui';
+import { Screen, Card, Btn, Chip, T, s, Ring, IconCard, IconTile, StatRow, EmptyState, H2, CardTitle, notice } from './ui';
 import { C } from './theme';
 import { useStore, today, uid, type Entry } from './store';
 import { fmtNum, fmtDate } from './i18n';
@@ -226,7 +226,7 @@ export function HealthSyncScreen() {
     set((x) => ({ ...x, health: mergeHealth(x.health || EMPTY_HEALTH, r) }));
     if (r.weights.length) setW((w) => { const m = new Map(w.map((x) => [x.date, x.kg])); r.weights.forEach((x) => m.set(x.date, x.kg)); return [...m].map(([date, kg]) => ({ date, kg })); });
     setErr(false); setMsg(t('mf.hOk', { s: Object.keys(r.steps).length, w: r.weights.length, x: r.workouts.length })); };
-  const pick = () => { if (Platform.OS !== 'web') return; const inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.xml,.csv,text/xml,text/csv,application/xml';
+  const pick = () => { if (Platform.OS !== 'web') return notice(t('x.webOnly')); const inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.xml,.csv,text/xml,text/csv,application/xml';
     inp.onchange = () => { const f = inp.files?.[0]; if (f) f.text().then((x) => run(f.name, x)); }; inp.click(); };
   const last = Object.entries(h.steps).sort((a, b) => b[0].localeCompare(a[0])).slice(0, 7);
   return <Screen title={`❤️ ${t('mf.health')}`}>

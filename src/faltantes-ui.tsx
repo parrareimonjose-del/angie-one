@@ -5,7 +5,7 @@ import { View, Text, TextInput, Pressable, Platform, ScrollView } from 'react-na
 import { useTranslation } from 'react-i18next';
 import { router } from 'expo-router';
 import i18n, { curLang } from './i18n';
-import { Card, Btn, Chip, T, s, CardTitle, Pill, IconTile } from './ui';
+import { Card, Btn, Chip, T, s, CardTitle, Pill, IconTile, ask, notice, shareText } from './ui';
 import { C } from './theme';
 import { useStore, uid } from './store';
 import { useExt, Pending, Note, hidePending } from './ext';
@@ -19,7 +19,7 @@ import { LEARN0, LearnLog, founderLearnView, LearnKind } from './ailearn';
 
 // ---------- descarga de archivos (web) ----------
 export function download(name: string, mime: string, data: string | Uint8Array) {
-  if (Platform.OS !== 'web') return;
+  if (Platform.OS !== 'web') { if (typeof data === 'string') shareText(name, data.replace(/^\uFEFF/, '')); else notice(i18n.t('x.webOnly')); return; }
   const url = URL.createObjectURL(new Blob([data as unknown as BlobPart], { type: mime }));
   const a = document.createElement('a'); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 2000);
 }
@@ -72,7 +72,7 @@ function Unlock({ auth, onAuth, onOpen, onReset }: { auth: Auth; onAuth: (a: Aut
     {msg ? <Text testID="unlock-msg" style={{ color: C.primary, fontWeight: '800', fontSize: 18, textAlign: 'center' }}>{msg}</Text> : null}
     <Btn kind="ghost" label={t('fx.forgot')} onPress={() => setForgot(!forgot)} />
     {forgot ? <RecoverCard auth={auth} onDone={(a) => { onAuth(a); onOpen(); }} /> : null}
-    {forgot ? <Card><T>{t('fx.forgotInfo')}</T><Btn kind="danger" label={t('fx.resetAll')} onPress={() => { if (Platform.OS !== 'web' || window.confirm(t('fx.resetQ'))) { reset(); onReset(); router.replace('/onboarding'); } }} /></Card> : null}
+    {forgot ? <Card><T>{t('fx.forgotInfo')}</T><Btn kind="danger" label={t('fx.resetAll')} onPress={async () => { if (await ask(t('fx.resetQ'), t('fx.resetAll'), t('cancel'))) { reset(); onReset(); router.replace('/onboarding'); } }} /></Card> : null}
     <Note k="fx.localNote" /></ScrollView>;
 }
 

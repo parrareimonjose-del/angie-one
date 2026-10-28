@@ -4,6 +4,8 @@
   "main": "expo-router/entry",
   "dependencies": {
     "@expo/metro-runtime": "~57.0.17",
+    "@noble/ciphers": "^1.3.0",
+    "@noble/hashes": "^1.8.0",
     "@react-native-async-storage/async-storage": "2.2.0",
     "@zxing/browser": "^0.2.1",
     "@zxing/library": "^0.23.0",
@@ -43,7 +45,7 @@
     "check:i18n": "node scripts/check-i18n.js",
     "test:safety": "node tests/run.mjs tests/safety.test.ts",
     "test:datos": "node tests/run.mjs tests/datos.test.ts",
-    "test": "npm run -s test:safety && npm run -s test:datos && npm run -s test:faltantes && npm run -s test:clone && npm run -s test:mfp5 && npm run -s test:fooddb && npm run -s test:taxes && npm run -s test:yazio5 && npm run -s test:grants && npm run -s test:top6 && npm run -s test:review && npm run -s test:coachkb && npm run -s test:authrec && npm run -s test:datahub && npm run -s test:ailearn && npm run -s test:iap",
+    "test": "node tests/run.mjs tests/cryptoshim.test.ts && npm run -s test:safety && npm run -s test:datos && npm run -s test:faltantes && npm run -s test:clone && npm run -s test:mfp5 && npm run -s test:fooddb && npm run -s test:taxes && npm run -s test:yazio5 && npm run -s test:grants && npm run -s test:top6 && npm run -s test:review && npm run -s test:coachkb && npm run -s test:authrec && npm run -s test:datahub && npm run -s test:ailearn && npm run -s test:iap",
     "test:mfp5": "node tests/run.mjs tests/mfp5.test.ts",
     "test:faltantes": "node tests/run.mjs tests/faltantes.test.ts",
     "test:clone": "node tests/run.mjs tests/clone.test.ts",

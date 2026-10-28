@@ -303,7 +303,7 @@
         ],
         [
           "Health-Apps",
-          "Wenn du Apple Health oder Health Connect verbindest, liest Angie One nur Schritte, Gewicht und Trainingseinheiten aus, um dein Tagesziel anzupassen. Diese Daten verbleiben auf deinem Telefon, werden niemals an die KI oder Dritte gesendet und niemals für Werbung verwendet."
+          "Wenn du eine aus der Gesundheits-App deines Telefons exportierte Datei importierst, liest Angie One nur Schritte, Gewicht und Trainings, um dein Tagesziel anzupassen. Diese Daten bleiben auf deinem Gerät, werden nie an die KI oder Dritte gesendet und nie für Werbung genutzt. Die iPhone-App verbindet sich nicht mit Apple Health (HealthKit)."
         ],
         [
           "Verschlüsseltes Cloud-Backup (optional)",
@@ -1000,7 +1000,8 @@
     "waHow": "Schreibe wie auf WhatsApp, zum Beispiel: 'Ich hatte 2 Arepas'.",
     "waPh": "Nachricht",
     "waTry": "Ausprobieren",
-    "tipsNote": "Tipps gehen zu 100 % an den Creator, abzüglich der Zahlungsgebühren."
+    "tipsNote": "Tipps gehen zu 100 % an den Creator, abzüglich der Zahlungsgebühren.",
+    "webOnly": "Nur in der Web-Version von Angie One verfügbar (auf deinem Computer)."
   },
   "p2": {
     "hub": "Gesunde Tools",
@@ -2178,7 +2179,8 @@
       "server": "Server antwortet nicht."
     },
     "founderOnly": "Nur für den Gründer. Schlüssel eingeben.",
-    "unlock": "Entsperren"
+    "unlock": "Entsperren",
+    "keyBad": "Falscher Gründer-Schlüssel."
   },
   "t6": {
     "hTitle": "Gewohnheits-Score",

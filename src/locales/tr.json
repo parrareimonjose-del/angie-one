@@ -303,7 +303,7 @@
         ],
         [
           "Sağlık uygulamaları",
-          "Apple Health veya Health Connect'i bağlarsanız, Angie One günlük hedefinizi ayarlamak için yalnızca adımları, kiloyu ve antrenmanları okur. Bu veriler telefonunuzda kalır, yapay zekaya veya üçüncü taraflara asla gönderilmez ve reklamlar için asla kullanılmaz."
+          "Telefonunun sağlık uygulamasından dışa aktarılan bir dosyayı içe aktarırsan, Angie One günlük hedefini ayarlamak için yalnızca adımları, kiloyu ve antrenmanları okur. Bu veriler cihazında kalır, asla yapay zekâya veya üçüncü taraflara gönderilmez ve asla reklam için kullanılmaz. iPhone uygulaması Apple Sağlık’a (HealthKit) bağlanmaz."
         ],
         [
           "Şifrelenmiş bulut yedeklemesi (isteğe bağlı)",
@@ -1000,7 +1000,8 @@
     "waHow": "WhatsApp'ta yazar gibi yaz, örneğin: '2 arepa yedim'.",
     "waPh": "Mesaj",
     "waTry": "Dene",
-    "tipsNote": "İpuçları, ödeme kesintileri hariç %100 içerik üreticisine gider."
+    "tipsNote": "İpuçları, ödeme kesintileri hariç %100 içerik üreticisine gider.",
+    "webOnly": "Bu yalnızca Angie One web sürümünde (bilgisayarında) kullanılabilir."
   },
   "p2": {
     "hub": "Sağlıklı araçlar",
@@ -2178,7 +2179,8 @@
       "server": "Sunucu yanıt vermedi."
     },
     "founderOnly": "Yalnızca kurucu için. Anahtarını gir.",
-    "unlock": "Aç"
+    "unlock": "Aç",
+    "keyBad": "Kurucu anahtarı yanlış."
   },
   "t6": {
     "hTitle": "Alışkanlık puanı",

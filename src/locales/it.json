@@ -303,7 +303,7 @@
         ],
         [
           "App per la salute",
-          "Se colleghi Apple Health o Health Connect, Angie One legge solo passi, peso e allenamenti per regolare il tuo obiettivo giornaliero. Questi dati rimangono sul tuo telefono, non vengono mai inviati all'IA o a terze parti e non vengono mai utilizzati per scopi pubblicitari."
+          "Se importi un file esportato dall’app salute del tuo telefono, Angie One legge solo passi, peso e allenamenti per regolare il tuo obiettivo giornaliero. Questi dati restano sul tuo dispositivo, non vengono mai inviati all’IA o a terzi e non sono mai usati per pubblicità. L’app per iPhone non si collega ad Apple Salute (HealthKit)."
         ],
         [
           "Backup cloud crittografato (facoltativo)",
@@ -1000,7 +1000,8 @@
     "waHow": "Scrivi come su WhatsApp, ad esempio: 'Ho mangiato 2 arepas'.",
     "waPh": "Messaggio",
     "waTry": "Provalo",
-    "tipsNote": "Le mance vanno al 100% al creator, al netto delle commissioni di pagamento."
+    "tipsNote": "Le mance vanno al 100% al creator, al netto delle commissioni di pagamento.",
+    "webOnly": "Disponibile solo nella versione web di Angie One (sul tuo computer)."
   },
   "p2": {
     "hub": "Strumenti salutari",
@@ -2178,7 +2179,8 @@
       "server": "Il server non risponde."
     },
     "founderOnly": "Solo per il fondatore. Inserisci la chiave.",
-    "unlock": "Sblocca"
+    "unlock": "Sblocca",
+    "keyBad": "Chiave fondatore errata."
   },
   "t6": {
     "hTitle": "Punteggio abitudini",

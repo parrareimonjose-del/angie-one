@@ -1,3 +1,4 @@
+import './cryptoshim';
 /** Pantallas de las 6 funciones gratis (ver src/top6.ts). Estilo A claro / B oscuro, una mano, 13 idiomas, bienestar (no médico). */
 import { useEffect, useState } from 'react';
 import { View, Text, TextInput, Pressable, Image, Platform, Linking } from 'react-native';

@@ -1,0 +1,22 @@
+import { makeCrypto, nativeRandom } from '../src/cryptoshim';
+import { webcrypto as W, randomUUID } from 'node:crypto';
+const C = makeCrypto(() => randomUUID()); let n = 0;
+const ok = (c: boolean, m: string) => { if (!c) { console.error('✗ ' + m); process.exit(1); } console.log('✓ ' + m); n++; };
+const hex = (b: ArrayBuffer) => Buffer.from(b).toString('hex'); const e = new TextEncoder();
+(async () => {
+  ok(hex(await C.subtle.digest('SHA-256', e.encode('abc'))) === hex(await W.subtle.digest('SHA-256', e.encode('abc'))), 'sha256 = webcrypto');
+  const salt = e.encode('salt1234');
+  const k1 = await C.subtle.importKey('raw', e.encode('1234'), 'PBKDF2', false, ['deriveBits']); const k2 = await W.subtle.importKey('raw', e.encode('1234'), 'PBKDF2', false, ['deriveBits']);
+  ok(hex(await C.subtle.deriveBits({ name: 'PBKDF2', salt, iterations: 1200, hash: 'SHA-256' } as any, k1, 256)) === hex(await W.subtle.deriveBits({ name: 'PBKDF2', salt, iterations: 1200, hash: 'SHA-256' }, k2, 256)), 'pbkdf2 = webcrypto');
+  const p = { name: 'PBKDF2', salt, iterations: 1000, hash: 'SHA-256' } as any;
+  const ka = await C.subtle.deriveKey(p, await C.subtle.importKey('raw', e.encode('CODE'), 'PBKDF2'), { name: 'AES-GCM', length: 256 });
+  const kb = await W.subtle.deriveKey(p, await W.subtle.importKey('raw', e.encode('CODE'), 'PBKDF2', false, ['deriveKey']), { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
+  const iv = C.getRandomValues(new Uint8Array(12)); const msg = e.encode('hola ñ 😀 '.repeat(50));
+  const ct = await C.subtle.encrypt({ name: 'AES-GCM', iv }, ka, msg);
+  ok(Buffer.from(await W.subtle.decrypt({ name: 'AES-GCM', iv }, kb, ct)).equals(Buffer.from(msg)), 'iPhone cifra → web descifra');
+  const ct2 = await W.subtle.encrypt({ name: 'AES-GCM', iv }, kb, msg);
+  ok(Buffer.from(await C.subtle.decrypt({ name: 'AES-GCM', iv }, ka, ct2)).equals(Buffer.from(msg)), 'web cifra → iPhone descifra');
+  const r = nativeRandom(4000, () => randomUUID()); const ones = r.reduce((a, b) => a + b.toString(2).split('1').length - 1, 0) / (4000 * 8);
+  ok(ones > 0.47 && ones < 0.53 && new Set(r).size > 250, 'aleatorio sin sesgo de versión/variante');
+  console.log(n + ' pruebas cryptoshim OK');
+})();
