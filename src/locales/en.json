@@ -186,7 +186,12 @@
     "yearly": "$24.99 / year",
     "yearlySave": "Save 16%",
     "testBadge": "TEST MODE · Stripe test cards, no real money",
-    "ok": "✅ Payment received! You're Premium now."
+    "ok": "✅ Payment received! You're Premium now.",
+    "webPay": "💳 Pay on the web",
+    "webPayNote": "Available for US App Store accounts. Opens your browser; your Premium turns on in the app too.",
+    "restoreIap": "Restore purchases",
+    "manageApple": "Manage Apple subscription",
+    "delApple": "If you paid with Apple, also cancel the subscription in Settings › your name › Subscriptions (Apple does not let apps cancel it)."
   },
   "fo": {
     "title": "Founder Panel v1",
@@ -277,6 +282,10 @@
         [
           "We never sell your health data",
           "We don't sell, rent or share your health or food data with advertisers or third parties, and we don't use it for ads. There are no ad trackers."
+        ],
+        [
+          "Payments and subscription",
+          "On iPhone you pay with Apple (In-App Purchase); Apple shares only the subscription status with us through RevenueCat, never your card. On the web you pay with Stripe. To turn on Premium we store an anonymous payment ID, the plan, dates and status (no name or email). Deleting your account deletes these records; anonymous accounting receipts are kept as long as tax law requires."
         ],
         [
           "Your rights and deleting your account",

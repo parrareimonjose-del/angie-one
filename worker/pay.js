@@ -1,7 +1,9 @@
 // Pagos web con Stripe (Checkout de suscripción + Portal del cliente + webhook firmado). Precio único mundial:
 // angieone_premium_monthly = 2,49 USD/mes · angieone_premium_yearly = 24,99 USD/año (lookup_key, sin IDs fijos).
 // Secretos solo en el Worker: STRIPE_SK (sk_test_ hoy; sk_live_ solo con PAY_LIVE=1) y STRIPE_WHSEC. Nunca en la app.
+// Flip live: docs/pasar-a-stripe-live.md — NO poner PAY_LIVE=1 sin OK explícito de José.
 // KV (FOODS): pay:uid:<uid> → {customer, sub, plan, status, renewAt, test} · pay:cus:<customer> → uid · pay:led:<ts>:<id> → movimiento.
+import { entitlement } from './iap.js';
 const API = 'https://api.stripe.com/v1/';
 const okUid = (u) => /^[a-z0-9]{16,40}$/.test(String(u || ''));
 const okKey = (req, env) => !!env.FOUNDER_KEY && req.headers.get('x-founder-key') === env.FOUNDER_KEY;
@@ -63,12 +65,12 @@ export async function handlePay(path, req, env, json, h) {
     if (!pr.data?.[0]) return json({ error: 'no_price' }, 500, h);
     const cur = await get(env, 'pay:uid:' + b.uid);
     const s = await stripe(env, 'POST', 'checkout/sessions', { mode: 'subscription', client_reference_id: b.uid, line_items: { 0: { price: pr.data[0].id, quantity: 1 } },
-      ...(cur?.customer ? { customer: cur.customer } : {}), subscription_data: { metadata: { uid: b.uid, app: 'angie-one' } }, metadata: { uid: b.uid, app: 'angie-one' },
+      ...(cur?.customer ? { customer: cur.customer } : {}), subscription_data: { metadata: { uid: b.uid, app: 'angieone' } }, metadata: { uid: b.uid, app: 'angieone' },
       success_url: back + '?pay=ok', cancel_url: back + '?pay=cancel', locale: 'auto' });
     return json({ url: s.url, mode }, 200, h);
   }
-  if (path === '/pay/status') { if (!okUid(b.uid)) return json({ error: 'bad' }, 400, h); const r = await get(env, 'pay:uid:' + b.uid);
-    return json(r ? { active: r.active && r.renewAt > Date.now(), plan: r.plan, renewAt: r.renewAt, cancelAt: r.cancelAt || 0, test: r.test, mode } : { active: false, mode }, 200, h); }
+  if (path === '/pay/status') { if (!okUid(b.uid)) return json({ error: 'bad' }, 400, h); // mismo interruptor Premium que Apple (iap.js)
+    return json({ ...(await entitlement(env, b.uid)), mode }, 200, h); }
   if (path === '/pay/portal') { if (!okUid(b.uid)) return json({ error: 'bad' }, 400, h); const r = await get(env, 'pay:uid:' + b.uid); if (!r?.customer) return json({ error: 'no_customer' }, 404, h);
     const back = /^https:\/\/parrareimonjose-del\.github\.io\/angie-one\/|^http:\/\/localhost(:\d+)?\//.test(String(b.back || '')) ? String(b.back).split('?')[0] : 'https://parrareimonjose-del.github.io/angie-one/subscription';
     const p = await stripe(env, 'POST', 'billing_portal/sessions', { customer: r.customer, return_url: back }); return json({ url: p.url }, 200, h); }

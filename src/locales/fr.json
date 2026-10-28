@@ -186,7 +186,12 @@
     "yearly": "24,99 US$ / an",
     "yearlySave": "Économisez 16 %",
     "testBadge": "MODE TEST · cartes de test Stripe, pas d'argent réel",
-    "ok": "✅ Paiement reçu ! Vous êtes Premium."
+    "ok": "✅ Paiement reçu ! Vous êtes Premium.",
+    "webPay": "💳 Payer sur le web",
+    "webPayNote": "Disponible pour les comptes App Store des États-Unis. Ouvre le navigateur ; votre Premium s'active aussi dans l'app.",
+    "restoreIap": "Restaurer les achats",
+    "manageApple": "Gérer l'abonnement Apple",
+    "delApple": "Si vous avez payé avec Apple, annulez aussi l'abonnement dans Réglages › votre nom › Abonnements (Apple ne permet pas aux apps de l'annuler)."
   },
   "fo": {
     "title": "Tableau de bord du fondateur v1",
@@ -277,6 +282,10 @@
         [
           "Nous ne vendons jamais vos données de santé",
           "Nous ne vendons, ne louons et ne partageons pas vos données de santé ou alimentaires avec des annonceurs ou des tiers, et nous ne les utilisons pas pour la publicité. Il n'y a aucun traqueur publicitaire."
+        ],
+        [
+          "Paiements et abonnement",
+          "Sur iPhone, vous payez avec Apple (achat intégré) ; Apple ne nous transmet que l'état de l'abonnement via RevenueCat, jamais votre carte. Sur le web, vous payez avec Stripe. Pour activer Premium, nous conservons un identifiant de paiement anonyme, le forfait, les dates et l'état (sans nom ni e-mail). La suppression de votre compte efface ces données ; les reçus comptables anonymes sont conservés le temps exigé par la loi fiscale."
         ],
         [
           "Vos droits et suppression de votre compte",

@@ -186,7 +186,12 @@
     "yearly": "24,99 US$ / Jahr",
     "yearlySave": "16% sparen",
     "testBadge": "TESTMODUS · Stripe-Testkarten, kein echtes Geld",
-    "ok": "✅ Zahlung erhalten! Du bist jetzt Premium."
+    "ok": "✅ Zahlung erhalten! Du bist jetzt Premium.",
+    "webPay": "💳 Im Web bezahlen",
+    "webPayNote": "Für App-Store-Konten in den USA. Öffnet den Browser; dein Premium wird auch in der App aktiviert.",
+    "restoreIap": "Käufe wiederherstellen",
+    "manageApple": "Apple-Abo verwalten",
+    "delApple": "Wenn du über Apple bezahlt hast, kündige das Abo auch unter Einstellungen › dein Name › Abonnements (Apps können es nicht kündigen)."
   },
   "fo": {
     "title": "Gründer-Panel v1",
@@ -315,6 +320,10 @@
         [
           "Wir verkaufen deine Gesundheitsdaten niemals",
           "Wir verkaufen, vermieten oder teilen deine Gesundheits- oder Ernährungsdaten weder mit Werbetreibenden noch mit Dritten und wir verwenden sie nicht für Werbung. Es gibt keine Werbe-Tracker."
+        ],
+        [
+          "Zahlungen und Abo",
+          "Auf dem iPhone zahlst du über Apple (In-App-Kauf); Apple teilt uns über RevenueCat nur den Abo-Status mit, nie deine Karte. Im Web zahlst du mit Stripe. Für Premium speichern wir eine anonyme Zahlungs-ID, den Tarif, Daten und Status (ohne Name oder E-Mail). Beim Löschen deines Kontos werden diese Daten gelöscht; anonyme Buchungsbelege bleiben so lange, wie das Steuerrecht es verlangt."
         ],
         [
           "Deine Rechte und das Löschen deines Kontos",

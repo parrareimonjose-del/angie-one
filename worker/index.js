@@ -2,7 +2,8 @@ import { handleGrants } from './grants.js';
 import { handleFriends } from './friends.js';
 import { handleFoods, foodReport, foodContribute, foodQueue } from './foods.js';
 import { handleSync } from './sync.js';
-import { handlePay, payMode } from './pay.js';
+import { handlePay, payMode, stripe } from './pay.js';
+import { handleIap } from './iap.js';
 import { handleDatahub } from './datahub.js';
 // Angie One AI proxy: keeps GEMINI_API_KEY server-side (Worker secret).
 const MODEL = 'gemini-flash-lite-latest';
@@ -17,7 +18,7 @@ If there is no food or drink in the photo/description, answer {"isFood": false}.
 
 function cors(origin) {
   const ok = origin && ORIGINS.some((r) => r.test(origin));
-  return ok ? { 'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Authorization, x-founder-key', 'Vary': 'Origin' } : null;
+  return ok ? { 'Access-Control-Allow-Origin': origin, 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Authorization, x-founder-key, x-angie-app', 'Vary': 'Origin' } : null;
 }
 const json = (o, s, h) => new Response(JSON.stringify(o), { status: s, headers: { 'Content-Type': 'application/json', ...(h || {}) } });
 
@@ -298,8 +299,10 @@ const worker = {
     const path0 = new URL(req.url).pathname;
     // ---- Panel Maestro (servidor detrás del PIN de José). Bearer cuyo SHA-256 = PANEL_ADMIN_SHA256. La FOUNDER_KEY nunca sale del Worker.
     if (path0.startsWith('/panel-admin/')) return panelAdmin(req, env, path0.slice(12));
+    if (path0 === '/iap/revenuecat-webhook') return handleIap(path0, req, env, json, {}); // RevenueCat no envía Origin; se valida la cabecera
     if (path0 === '/pay/webhook' && req.method === 'POST') return handlePay(path0, req, env, json, {}); // Stripe no envía Origin; se valida la firma
-    const h = cors(req.headers.get('Origin'));
+    // App nativa (iPhone/Android): sin Origin, marcada con x-angie-app → sin cabeceras CORS. Mismos límites de uso.
+    const h = cors(req.headers.get('Origin')) || (!req.headers.get('Origin') && req.headers.get('x-angie-app') === 'native' ? {} : null);
     if (!h) return json({ error: 'origin' }, 403);
     if (req.method === 'OPTIONS') return new Response(null, { status: 204, headers: h });
     const path = new URL(req.url).pathname;
@@ -312,6 +315,7 @@ const worker = {
     if (path.startsWith('/sync/')) return handleSync(path, req, env, json, h, hits);
     if (path.startsWith('/grants/')) return handleGrants(path, req, env, json, h);
     if (path.startsWith('/friends/')) return handleFriends(path, req, env, json, h);
+    if (path.startsWith('/iap/')) { try { return await handleIap(path, req, env, json, h, { cancelStripe: payMode(env) === 'off' ? null : (sub) => stripe(env, 'DELETE', 'subscriptions/' + sub) }); } catch (e) { return json({ error: 'iap' }, 502, h); } }
     if (path.startsWith('/pay/')) { try { return await handlePay(path, req, env, json, h); } catch (e) { return json({ error: 'pay', code: String(e.message || e).slice(0, 60) }, 502, h); } }
     if (path.startsWith('/datahub')) { try { return await handleDatahub(path, req, env, json, h); } catch (e) { return json({ error: 'datahub', code: String(e.message || e).slice(0, 60) }, 502, h); } }
     if (req.method !== 'POST' || !['/estimate', '/plan', '/chat', '/vision', '/dev', '/voice', '/clone', '/foods/report', '/foods/contribute', '/foods/queue', '/foods/queue/delete'].includes(path)) return json({ error: 'not found' }, 404, h);

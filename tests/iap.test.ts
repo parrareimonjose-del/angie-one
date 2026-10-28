@@ -1,0 +1,56 @@
+// Apple IAP (RevenueCat) + Stripe: un solo interruptor Premium, webhook autenticado, libro neto, borrado de cuenta.
+import assert from 'node:assert/strict';
+import { handleIap, applyRc, entitlement, deleteUid, isOurs } from '../worker/iap.js';
+import { showWebPayButton, IAP_PRODUCTS, webPayUrl } from '../src/iap';
+import { PLANS } from '../src/payments';
+const kv = () => { const m = new Map(); return { m, get: async (k) => m.get(k) ?? null, put: async (k, v) => { m.set(k, v); }, delete: async (k) => { m.delete(k); }, list: async ({ prefix }) => ({ keys: [...m.keys()].filter((k) => k.startsWith(prefix)).map((name) => ({ name })) }) }; };
+const json = (o, s) => ({ status: s, body: o });
+const req = (body, auth) => ({ method: 'POST', headers: { get: (k) => (k === 'authorization' ? auth : null) }, json: async () => body });
+const UID = 'abcdefghij0123456789';
+const NOW = Date.now(); const DAY = 86400e3;
+const ev = (o) => ({ id: 'e' + Math.random(), app_user_id: UID, product_id: 'angieone_premium_monthly', environment: 'PRODUCTION', price: 2.49, currency: 'USD', expiration_at_ms: NOW + 30 * DAY, original_transaction_id: 'otx1', subscriber_attributes: { app: { value: 'angieone' } }, ...o });
+let n = 0; const t = async (name, f) => { await f(); n++; console.log('✓', name); };
+
+await t('productos = precios web', () => { assert.equal(IAP_PRODUCTS.monthly, PLANS.monthly.productId); assert.equal(IAP_PRODUCTS.yearly, PLANS.yearly.productId); assert.equal(PLANS.monthly.usd, 2.49); assert.equal(PLANS.yearly.usd, 24.99); });
+await t('botón web solo storefront USA en iPhone', () => {
+  assert.equal(showWebPayButton('ios', 'USA'), true); assert.equal(showWebPayButton('ios', 'MEX'), false); assert.equal(showWebPayButton('ios', null), false);
+  assert.equal(showWebPayButton('android', 'USA'), false); assert.equal(showWebPayButton('web', null), true);
+  assert.match(webPayUrl(UID), /paywall\?uid=abcdefghij0123456789$/); });
+await t('webhook sin auth → 401', async () => { const env = { FOODS: kv(), REVENUECAT_WEBHOOK_AUTH: 'sek' };
+  assert.equal((await handleIap('/iap/revenuecat-webhook', req({ event: ev({}) }, 'bad'), env, json, {})).status, 401);
+  assert.equal((await handleIap('/iap/revenuecat-webhook', req({ event: ev({}) }, 'x'), { FOODS: kv() }, json, {})).status, 401); });
+await t('otra app se ignora', async () => { const env = { FOODS: kv(), REVENUECAT_WEBHOOK_AUTH: 'sek' };
+  const r = await handleIap('/iap/revenuecat-webhook', req({ event: ev({ product_id: 'com.cuidajuntos.app.premium.monthly', subscriber_attributes: { app: { value: 'cuidajuntos' } } }) }, 'Bearer sek'), env, json, {});
+  assert.equal(r.body.skipped, 'other_app'); assert.equal(env.FOODS.m.size, 0); assert.equal(isOurs({ product_id: 'angieone_premium_yearly' }), true); });
+await t('compra Apple → Premium + libro neto 85%', async () => { const env = { FOODS: kv(), REVENUECAT_WEBHOOK_AUTH: 'sek' };
+  const r = await handleIap('/iap/revenuecat-webhook', req({ event: ev({ type: 'INITIAL_PURCHASE' }) }, 'sek'), env, json, {});
+  assert.equal(r.body.did, 'active'); const e = await entitlement(env, UID); assert.equal(e.active, true); assert.equal(e.provider, 'apple');
+  const led = [...env.FOODS.m].filter(([k]) => k.startsWith('pay:led:')).map(([, v]) => JSON.parse(v));
+  assert.equal(led.length, 1); assert.equal(led[0].gross, 249); assert.equal(led[0].amount, 212); assert.equal(led[0].fee, 37); assert.equal(led[0].source, 'app_store'); });
+await t('evento duplicado no cuenta dos veces', async () => { const env = { FOODS: kv() }; const e = ev({ type: 'RENEWAL' });
+  await applyRc(env, e); assert.equal(await applyRc(env, e), 'dup'); assert.equal([...env.FOODS.m.keys()].filter((k) => k.startsWith('pay:led:')).length, 1); });
+await t('sandbox ignorado salvo REVENUECAT_ALLOW_SANDBOX=1, y nunca al libro', async () => {
+  const env = { FOODS: kv() }; assert.equal(await applyRc(env, ev({ type: 'INITIAL_PURCHASE', environment: 'SANDBOX' })), 'sandbox_ignored');
+  const env2 = { FOODS: kv(), REVENUECAT_ALLOW_SANDBOX: '1' }; assert.equal(await applyRc(env2, ev({ type: 'INITIAL_PURCHASE', environment: 'SANDBOX' })), 'active');
+  assert.equal([...env2.FOODS.m.keys()].filter((k) => k.startsWith('pay:led:')).length, 0); });
+await t('expiración apaga; Stripe activo mantiene Premium', async () => { const env = { FOODS: kv() };
+  await applyRc(env, ev({ type: 'INITIAL_PURCHASE' })); await applyRc(env, ev({ type: 'EXPIRATION', expiration_at_ms: NOW - 1000, price: 0 }));
+  assert.equal((await entitlement(env, UID)).active, false);
+  await env.FOODS.put('pay:uid:' + UID, JSON.stringify({ active: true, renewAt: NOW + DAY, plan: 'yearly', customer: 'cus_1', sub: 'sub_1' }));
+  const e = await entitlement(env, UID); assert.equal(e.active, true); assert.equal(e.provider, 'stripe'); });
+await t('reembolso apaga, no se reactiva, va al libro como reembolso', async () => { const env = { FOODS: kv() };
+  await applyRc(env, ev({ type: 'INITIAL_PURCHASE' })); assert.equal(await applyRc(env, ev({ type: 'CANCELLATION', cancel_reason: 'CUSTOMER_SUPPORT', price: -2.49 })), 'refunded');
+  await applyRc(env, ev({ type: 'RENEWAL' })); assert.equal((await entitlement(env, UID)).active, false);
+  assert.ok([...env.FOODS.m.values()].some((v) => String(v).includes('"kind":"refund"'))); });
+await t('problema de cobro: 7 días de gracia', async () => { const env = { FOODS: kv() };
+  await applyRc(env, ev({ type: 'BILLING_ISSUE', expiration_at_ms: NOW - 1000, price: 0 }), NOW); const e = await entitlement(env, UID, NOW + 6 * DAY); assert.equal(e.active, true); });
+await t('borrar cuenta elimina Apple + Stripe y cancela la web', async () => { const env = { FOODS: kv() }; let cancelled = '';
+  await applyRc(env, ev({ type: 'INITIAL_PURCHASE' })); await env.FOODS.put('pay:uid:' + UID, JSON.stringify({ active: true, renewAt: NOW + DAY, customer: 'cus_1', sub: 'sub_1' })); await env.FOODS.put('pay:cus:cus_1', UID);
+  const r = await deleteUid(env, UID, async (s) => { cancelled = s; });
+  assert.equal(r.cancelled, true); assert.equal(cancelled, 'sub_1');
+  for (const k of ['pay:uid:' + UID, 'iap:uid:' + UID, 'pay:cus:cus_1']) assert.equal(env.FOODS.m.has(k), false);
+  assert.equal((await entitlement(env, UID)).active, false); });
+await t('status/delete validan uid', async () => { const env = { FOODS: kv() };
+  assert.equal((await handleIap('/iap/status', req({ uid: 'x' }), env, json, {})).status, 400);
+  assert.equal((await handleIap('/iap/status', req({ uid: UID }), env, json, {})).body.active, false); });
+console.log(`\n${n} pruebas IAP OK`);

@@ -54,8 +54,8 @@ export function SubscriptionScreen() {
       {!st.sub?.active ? <Text testID="cancel-trial" style={[s.muted, { fontWeight: '700' }]}>{t('hb.trialNoCard')}</Text> : null}</Card> : null}
     <Btn testID="restore" kind="secondary" label={`↺ ${t('hb.restore')}`} onPress={async () => {
       const r = await restore();
-      if (r.ok) { set((x) => ({ ...x, sub: { active: true, plan: r.plan || 'monthly', renewAt: 0, provider: prov === 'apple' ? 'apple' : prov === 'play' ? 'play' : 'stripe' } })); setRmsg(t('hb.restored')); }
-      else setRmsg(t(prov === 'stripe' ? 'hb.restoreWeb' : r.reason === 'cancelled' ? 'hb.restoreNone' : 'hb.restorePending'));
+      if (r.ok) { set((x) => ({ ...x, sub: { active: true, plan: r.plan || 'monthly', renewAt: r.renewAt || 0, provider: prov === 'apple' ? 'apple' : prov === 'play' ? 'play' : 'stripe' } })); setRmsg(t('hb.restored')); }
+      else setRmsg(t(prov === 'stripe' ? 'hb.restoreWeb' : r.reason === 'cancelled' || r.reason === 'none' ? 'hb.restoreNone' : 'hb.restorePending'));
     }} />
     {rmsg ? <Card><Text testID="restore-msg" style={{ fontWeight: '800', fontSize: 16 }}>{rmsg}</Text></Card> : null}
     <InfoNote icon="🤝" text={t('hb.promise')} />

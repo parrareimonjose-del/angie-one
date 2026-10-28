@@ -186,7 +186,12 @@
     "yearly": "US$ 24,99 / ano",
     "yearlySave": "Economize 16%",
     "testBadge": "MODO DE TESTE · cartões de teste da Stripe, sem dinheiro real",
-    "ok": "✅ Pagamento recebido! Agora você é Premium."
+    "ok": "✅ Pagamento recebido! Agora você é Premium.",
+    "webPay": "💳 Pagar na web",
+    "webPayNote": "Disponível para contas da App Store dos EUA. Abre o navegador; seu Premium também é ativado no app.",
+    "restoreIap": "Restaurar compras",
+    "manageApple": "Gerenciar assinatura da Apple",
+    "delApple": "Se você pagou com a Apple, cancele também a assinatura em Ajustes › seu nome › Assinaturas (a Apple não permite cancelar pelo app)."
   },
   "fo": {
     "title": "Painel do Fundador v1",
@@ -277,6 +282,10 @@
         [
           "Nós nunca vendemos seus dados de saúde",
           "Não vendemos, alugamos ou compartilhamos seus dados de saúde ou de alimentação com anunciantes ou terceiros, e não os usamos para anúncios. Não há rastreadores de anúncios."
+        ],
+        [
+          "Pagamentos e assinatura",
+          "No iPhone você paga com a Apple (compra no app); a Apple compartilha conosco apenas o status da assinatura via RevenueCat, nunca seu cartão. Na web você paga com Stripe. Para ativar o Premium guardamos um identificador anônimo de pagamento, o plano, as datas e o status (sem nome ou e-mail). Ao excluir sua conta, esses registros são apagados; recibos contábeis anônimos são mantidos pelo tempo que a lei fiscal exigir."
         ],
         [
           "Seus direitos e exclusão da conta",

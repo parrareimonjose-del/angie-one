@@ -186,7 +186,12 @@
     "yearly": "24,99 US$ / anno",
     "yearlySave": "Risparmia 16%",
     "testBadge": "MODALITÀ TEST · carte di prova Stripe, niente soldi veri",
-    "ok": "✅ Pagamento ricevuto! Ora sei Premium."
+    "ok": "✅ Pagamento ricevuto! Ora sei Premium.",
+    "webPay": "💳 Paga sul web",
+    "webPayNote": "Disponibile per account App Store degli Stati Uniti. Apre il browser; il tuo Premium si attiva anche nell'app.",
+    "restoreIap": "Ripristina acquisti",
+    "manageApple": "Gestisci abbonamento Apple",
+    "delApple": "Se hai pagato con Apple, annulla anche l'abbonamento in Impostazioni › il tuo nome › Abbonamenti (Apple non consente alle app di annullarlo)."
   },
   "fo": {
     "title": "Pannello Fondatore v1",
@@ -315,6 +320,10 @@
         [
           "Non vendiamo mai i tuoi dati sulla salute",
           "Non vendiamo, prendiamo a noleggio o condividiamo i tuoi dati sulla salute o alimentari con inserzionisti o terze parti, e non li usiamo per annunci pubblicitari. Non sono presenti tracker pubblicitari."
+        ],
+        [
+          "Pagamenti e abbonamento",
+          "Su iPhone paghi con Apple (acquisto in-app); Apple ci comunica solo lo stato dell'abbonamento tramite RevenueCat, mai la tua carta. Sul web paghi con Stripe. Per attivare Premium conserviamo un identificativo di pagamento anonimo, il piano, le date e lo stato (senza nome né e-mail). Eliminando l'account questi dati vengono cancellati; le ricevute contabili anonime restano per il tempo richiesto dalla legge fiscale."
         ],
         [
           "I tuoi diritti e l'eliminazione del tuo account",

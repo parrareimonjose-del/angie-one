@@ -25,3 +25,19 @@ export const aiUrl = (k: keyof AiAppConfig['endpoints'], c: AiAppConfig = APP_AI
 export const makeAiConfig = (over: Partial<AiAppConfig> & { appId: string; appName: string; workerBase: string }): AiAppConfig => ({ ...APP_AI, ...over, endpoints: { ...APP_AI.endpoints, ...(over.endpoints || {}) } });
 /** Ninguna IA de la app puede hacer estas acciones: siempre devuelve false. */
 export const aiMayDo = (action: string) => !APP_AI.neverActions.includes(action) && !/publish|deploy|money|bank|pay|transfer|sell|send/i.test(action);
+
+/** iPhone/Android nativos no envían cabecera Origin, y el Worker rechaza peticiones sin Origin conocido.
+ *  En nativo marcamos las llamadas al Worker con `x-angie-app` para que las acepte (sin CORS). En web no hace nada. */
+export function installNativeWorkerHeader(base = APP_AI.workerBase, g: any = globalThis) {
+  const isNative = typeof navigator !== 'undefined' && (navigator as any).product === 'ReactNative';
+  if (!isNative || !g.fetch || g.fetch.__angie) return false;
+  const orig = g.fetch.bind(g);
+  const f = (input: any, init: any = {}) => {
+    const url = typeof input === 'string' ? input : input?.url || '';
+    if (!url.startsWith(base)) return orig(input, init);
+    const headers = { ...(init.headers || {}), 'x-angie-app': 'native' };
+    return orig(input, { ...init, headers });
+  };
+  f.__angie = true; g.fetch = f; return true;
+}
+installNativeWorkerHeader();

@@ -186,7 +186,12 @@
     "yearly": "24,99 US$ / yıl",
     "yearlySave": "%16 tasarruf et",
     "testBadge": "TEST MODU · Stripe test kartları, gerçek para yok",
-    "ok": "✅ Ödeme alındı! Artık Premium'sun."
+    "ok": "✅ Ödeme alındı! Artık Premium'sun.",
+    "webPay": "💳 Web'de öde",
+    "webPayNote": "ABD App Store hesapları için. Tarayıcı açılır; Premium uygulamada da etkinleşir.",
+    "restoreIap": "Satın alımları geri yükle",
+    "manageApple": "Apple aboneliğini yönet",
+    "delApple": "Apple ile ödediysen aboneliği Ayarlar › adın › Abonelikler bölümünden de iptal et (uygulamalar iptal edemez)."
   },
   "fo": {
     "title": "Kurucu Paneli v1",
@@ -315,6 +320,10 @@
         [
           "Sağlık verilerinizi asla satmayız",
           "Sağlık veya yemek verilerinizi reklam verenlerle veya üçüncü taraflarla satmaz, kiralamaz veya paylaşmaz ve bunları reklamlar için kullanmayiz. Reklam takipçileri yoktur."
+        ],
+        [
+          "Ödemeler ve abonelik",
+          "iPhone'da Apple (uygulama içi satın alma) ile ödersin; Apple RevenueCat aracılığıyla bizimle yalnızca abonelik durumunu paylaşır, kartını asla. Web'de Stripe ile ödersin. Premium'u açmak için anonim bir ödeme kimliği, plan, tarihler ve durumu (ad veya e-posta olmadan) saklarız. Hesabını silince bu kayıtlar silinir; anonim muhasebe makbuzları vergi yasasının gerektirdiği süre saklanır."
         ],
         [
           "Haklarınız ve hesabınızı silme",

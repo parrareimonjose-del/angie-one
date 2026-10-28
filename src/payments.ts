@@ -38,7 +38,7 @@ export function providerFor(os: string = Platform.OS): Provider {
   if (os === 'ios') return { id: 'apple', name: 'App Store', connected: IAP_NATIVE_READY, manageUrl: 'https://apps.apple.com/account/subscriptions', canRestore: true };
   return { id: 'stripe', name: 'Stripe', connected: payModeOn() || Object.values(STRIPE_LINKS).some(Boolean), manageUrl: '', canRestore: false };
 }
-export type PurchaseResult = { ok: true; url?: string } | { ok: false; reason: 'pending_connection' | 'cancelled' };
+export type PurchaseResult = { ok: true; url?: string; renewAt?: number } | { ok: false; reason: 'pending_connection' | 'cancelled' };
 /** Inicia la compra. Mientras no haya conexión devuelve pending_connection (nunca simula un cobro). */
 export async function purchase(plan: PlanId, os: string = Platform.OS): Promise<PurchaseResult> {
   const p = providerFor(os);
@@ -46,17 +46,17 @@ export async function purchase(plan: PlanId, os: string = Platform.OS): Promise<
   if (p.id === 'stripe') { const url = STRIPE_LINKS[plan]; return url ? { ok: true, url } : { ok: false, reason: 'pending_connection' }; }
   if (p.id === 'apple') {
     const r = await purchaseIap(plan);
-    if (r.ok) return { ok: true };
+    if (r.ok) return { ok: true, renewAt: r.renewAt };
     return { ok: false, reason: r.reason === 'cancelled' ? 'cancelled' : 'pending_connection' };
   }
   return { ok: false, reason: 'pending_connection' }; // Play Billing se conecta en la versión nativa
 }
-export async function restore(os: string = Platform.OS): Promise<{ ok: boolean; reason?: string; plan?: PlanId }> {
+export async function restore(os: string = Platform.OS): Promise<{ ok: boolean; reason?: string; plan?: PlanId; renewAt?: number }> {
   const p = providerFor(os);
   if (p.id === 'apple') {
     const r = await restoreIap();
-    if (r.ok) return { ok: true, plan: r.plan };
-    return { ok: false, reason: r.reason === 'cancelled' ? 'cancelled' : 'pending_connection' };
+    if (r.ok) return { ok: true, plan: r.plan, renewAt: r.renewAt };
+    return { ok: false, reason: r.reason };
   }
   return p.canRestore ? { ok: false, reason: 'pending_connection' } : { ok: false, reason: 'not_supported' };
 }
@@ -64,8 +64,37 @@ export async function restore(os: string = Platform.OS): Promise<{ ok: boolean; 
 // ---- Stripe web (Checkout + Portal + estado). El Worker guarda la suscripción por un ID anónimo del dispositivo (sin correo en la app).
 import { APP_AI } from './ai-config';
 const UKEY = 'angie:payuid';
+const NKEY = 'angieone:payuid'; // nativo (AsyncStorage). Prefijo angieone → se borra con «Borrar cuenta».
+const okId = (u: string | null | undefined): u is string => !!u && /^[a-z0-9]{16,40}$/.test(u);
+const newId = () => (Array.from(crypto.getRandomValues(new Uint8Array(16)), (b) => (b % 36).toString(36)).join('') + Date.now().toString(36)).slice(0, 32);
+let nativeUid = '';
+/** ID anónimo de pagos (sin correo). Web: localStorage; si llega ?uid= desde el iPhone (botón «Pagar en la web»), se adopta
+ *  para que Stripe y Apple compartan el mismo interruptor Premium. Nativo: ver ensurePayUid(). */
 export function payUid(): string {
-  try { let u = localStorage.getItem(UKEY); if (!u || !/^[a-z0-9]{16,40}$/.test(u)) { u = (Array.from(crypto.getRandomValues(new Uint8Array(16)), (b) => (b % 36).toString(36)).join('') + Date.now().toString(36)).slice(0, 32); localStorage.setItem(UKEY, u); } return u; } catch { return ''; }
+  if (Platform.OS !== 'web') return nativeUid;
+  try {
+    const q = typeof location !== 'undefined' ? new URLSearchParams(location.search).get('uid') : null;
+    if (okId(q)) localStorage.setItem(UKEY, q);
+    let u = localStorage.getItem(UKEY); if (!okId(u)) { u = newId(); localStorage.setItem(UKEY, u); } return u;
+  } catch { return ''; }
+}
+export async function ensurePayUid(): Promise<string> {
+  if (Platform.OS === 'web') return payUid();
+  if (nativeUid) return nativeUid;
+  const AS = require('@react-native-async-storage/async-storage').default;
+  let u: string | null = null; try { u = await AS.getItem(NKEY); } catch {}
+  if (!okId(u)) { u = newId(); try { await AS.setItem(NKEY, u); } catch {} }
+  nativeUid = u; return u;
+}
+/** Estado Premium combinado (Apple + Stripe) desde el Worker. Funciona aunque Stripe esté apagado. */
+export async function entitlementStatus(): Promise<PayStatus & { provider?: 'apple' | 'stripe' | null } | null> {
+  const uid = await ensurePayUid(); if (!uid) return null;
+  try { return await payPost('/iap/status', { uid }); } catch { return null; }
+}
+/** Borrar cuenta: borra en el Worker el estado de pago web (Stripe) y Apple de este ID. */
+export async function deletePayRecords(): Promise<boolean> {
+  const uid = await ensurePayUid(); if (!uid) return false;
+  try { await payPost('/iap/delete', { uid }); return true; } catch { return false; }
 }
 const payBack = (route: string) => { try { return location.origin + location.pathname.replace(/[^/]*$/, '') + route; } catch { return ''; } };
 async function payPost(path: string, body: object, key?: string) {

@@ -1,70 +1,71 @@
-/** StoreKit / IAP (decisión José 23-oct-2026): productos 2,49/mes y 24,99/año.
- *  Listo para conectar cuando exista la cuenta Apple Developer. Sin el módulo nativo
- *  purchase/restore responden «pendiente» (nunca simulan un cobro). Stripe solo en web. */
+/** Apple In-App Purchase vía RevenueCat (decisión José 28-oct-2026): IAP en todos los países;
+ *  botón «Pagar en la web» (Stripe) solo si la cuenta App Store es de EE. UU. (storefront de StoreKit, nunca el idioma).
+ *  Productos = precios web: angieone_premium_monthly 2,49 USD/mes · angieone_premium_yearly 24,99 USD/año.
+ *  Clave pública EXPO_PUBLIC_RC_IOS_KEY (appl_…). Sin clave, todo responde «pendiente» (nunca simula un cobro). */
 import { Platform } from 'react-native';
 export type IapPlan = 'monthly' | 'yearly';
 export const IAP_PRODUCTS: Record<IapPlan, string> = {
   monthly: 'angieone_premium_monthly',
   yearly: 'angieone_premium_yearly',
 };
+export const RC_ENTITLEMENT = 'premium';
+export const RC_IOS_KEY = process.env.EXPO_PUBLIC_RC_IOS_KEY || '';
+/** true solo en iPhone con clave de RevenueCat compilada. */
+export const IAP_NATIVE_READY = Platform.OS === 'ios' && /^appl_/.test(RC_IOS_KEY);
+export const WEB_PAYWALL = 'https://parrareimonjose-del.github.io/angie-one/paywall';
 
-/** false hasta instalar/conectar el módulo nativo (p. ej. react-native-iap / StoreKit 2). */
-export const IAP_NATIVE_READY = false;
+/** Botón web: web siempre; iPhone solo con storefront USA; Android nunca. */
+export function showWebPayButton(os: string, storefront: string | null): boolean {
+  if (os === 'web') return true;
+  if (os === 'ios') { const c = (storefront || '').toUpperCase(); return c === 'USA' || c === 'US'; }
+  return false;
+}
+export const webPayUrl = (uid: string) => WEB_PAYWALL + (uid ? '?uid=' + encodeURIComponent(uid) : '');
 
-type NativeIap = {
-  initConnection?: () => Promise<boolean>;
-  getSubscriptions?: (ids: string[]) => Promise<unknown[]>;
-  requestSubscription?: (sku: string) => Promise<{ productId?: string } | null>;
-  getAvailablePurchases?: () => Promise<{ productId: string }[]>;
-  finishTransaction?: (p: { productId: string }) => Promise<void>;
-};
-
-async function native(): Promise<NativeIap | null> {
-  if (!IAP_NATIVE_READY || Platform.OS !== 'ios') return null;
+function rc(): any | null {
+  if (!IAP_NATIVE_READY) return null;
+  try { return require('react-native-purchases').default; } catch { return null; }
+}
+let configured = false;
+/** Configura RevenueCat con el mismo ID anónimo que usa Stripe → un solo interruptor Premium en el Worker. */
+export async function configureIap(uid: string): Promise<boolean> {
+  const P = rc(); if (!P || !uid) return false;
   try {
-    // Nombre opaco para que Metro no falle el bundle web si el paquete no está.
-    const req = (globalThis as any).require as undefined | ((m: string) => any);
-    if (!req) return null;
-    return req('react-native-iap') as NativeIap;
-  } catch { return null; }
+    if (!configured) { P.configure({ apiKey: RC_IOS_KEY, appUserID: uid }); configured = true; }
+    await P.setAttributes({ app: 'angieone' });
+    return true;
+  } catch { return false; }
 }
-
-export async function iapConnected(): Promise<boolean> {
-  const L = await native();
-  if (!L) return false;
-  try { return !!(await L.initConnection?.()); } catch { return false; }
+export async function storefrontCountry(): Promise<string | null> {
+  const P = rc(); if (!P) return null;
+  try { return (await P.getStorefront())?.countryCode ?? null; } catch { return null; }
 }
+const activeFrom = (info: any): { active: boolean; plan: IapPlan; renewAt: number } => {
+  const e = info?.entitlements?.active?.[RC_ENTITLEMENT];
+  return { active: !!e, plan: /yearly/.test(e?.productIdentifier || '') ? 'yearly' : 'monthly', renewAt: e?.expirationDate ? Date.parse(e.expirationDate) : 0 };
+};
+export async function iapConnected(): Promise<boolean> { return !!rc() && configured; }
 
 export type IapResult =
-  | { ok: true; plan: IapPlan }
-  | { ok: false; reason: 'pending_connection' | 'cancelled' | 'not_ios' };
+  | { ok: true; plan: IapPlan; renewAt?: number }
+  | { ok: false; reason: 'pending_connection' | 'cancelled' | 'not_ios' | 'none' };
 
 export async function purchaseIap(plan: IapPlan): Promise<IapResult> {
   if (Platform.OS !== 'ios') return { ok: false, reason: 'not_ios' };
-  const L = await native();
-  if (!L?.requestSubscription) return { ok: false, reason: 'pending_connection' };
+  const P = rc(); if (!P || !configured) return { ok: false, reason: 'pending_connection' };
   try {
-    const sku = IAP_PRODUCTS[plan];
-    await L.initConnection?.();
-    await L.getSubscriptions?.(Object.values(IAP_PRODUCTS));
-    const r = await L.requestSubscription(sku);
-    if (!r) return { ok: false, reason: 'cancelled' };
-    await L.finishTransaction?.({ productId: sku });
-    return { ok: true, plan };
+    const off = await P.getOfferings();
+    const pkg = (off?.current?.availablePackages || []).find((p: any) => p.product?.identifier === IAP_PRODUCTS[plan]);
+    if (!pkg) return { ok: false, reason: 'pending_connection' };
+    const r = await P.purchasePackage(pkg); const a = activeFrom(r?.customerInfo);
+    return a.active ? { ok: true, plan: a.plan, renewAt: a.renewAt } : { ok: false, reason: 'cancelled' };
   } catch { return { ok: false, reason: 'cancelled' }; }
 }
 
 export async function restoreIap(): Promise<IapResult> {
   if (Platform.OS !== 'ios') return { ok: false, reason: 'not_ios' };
-  const L = await native();
-  if (!L?.getAvailablePurchases) return { ok: false, reason: 'pending_connection' };
-  try {
-    await L.initConnection?.();
-    const list = await L.getAvailablePurchases();
-    const ids = new Set(Object.values(IAP_PRODUCTS));
-    const hit = (list || []).find((p) => ids.has(p.productId));
-    if (!hit) return { ok: false, reason: 'cancelled' };
-    const plan = (Object.entries(IAP_PRODUCTS).find(([, id]) => id === hit.productId)?.[0] || 'monthly') as IapPlan;
-    return { ok: true, plan };
-  } catch { return { ok: false, reason: 'pending_connection' }; }
+  const P = rc(); if (!P || !configured) return { ok: false, reason: 'pending_connection' };
+  try { const a = activeFrom(await P.restorePurchases()); return a.active ? { ok: true, plan: a.plan, renewAt: a.renewAt } : { ok: false, reason: 'none' }; }
+  catch { return { ok: false, reason: 'pending_connection' }; }
 }
+export async function iapManage(): Promise<void> { const P = rc(); try { await P?.showManageSubscriptions(); } catch { /* el enlace de Apple queda en la pantalla */ } }
