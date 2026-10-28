@@ -241,3 +241,6 @@ DECISIÓN JOSÉ 2026-10-15 12:38 ET: en la sección de datos solo entran recibos
 - **CLONE sigue oculto** (`CLONE_ENABLED=false`).
 - Reparto 50/5/25/20: propuesto, **NO confirmado este turno** → no se cambia el ledger.
 - **NO publicar** GitHub Pages en este paso; commit en `feat-stripe-test` para revisión de José.
+- 2026-10-23 4:58 PM: José OK carta consentimiento 5% regalías Angie One (Parra Apps LLC marca; no dice regalo). Archivo: /workspace/calorias/carta-consentimiento-5pct-angie-one.pdf
+- 2026-10-23 4:59 PM: José: carta consentimiento para Angie/familia solo menciona su 5%; NO mostrar tabla 55/5/25/15.
+- 2026-10-23 5:03 PM: José OK PDF consentimiento 3 páginas (incluye felicitación Opción B). Solo 5% visible; HTML con firmar/guardar.

@@ -98,6 +98,9 @@
             ]
           }
         ]
+      },
+      "entitlements": {
+        "aps-environment": "production"
       }
     },
     "android": {
