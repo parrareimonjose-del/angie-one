@@ -62,6 +62,16 @@ export async function purchaseIap(plan: IapPlan): Promise<IapResult> {
   } catch { return { ok: false, reason: 'cancelled' }; }
 }
 
+/** Precios localizados de StoreKit (Apple 3.1.2: el precio mostrado debe ser el del storefront del usuario). */
+export async function iapPrices(): Promise<Partial<Record<IapPlan, string>>> {
+  const P = rc(); if (!P || !configured) return {};
+  try {
+    const off = await P.getOfferings(); const out: Partial<Record<IapPlan, string>> = {};
+    for (const p of off?.current?.availablePackages || []) for (const k of ['monthly', 'yearly'] as IapPlan[]) if (p.product?.identifier === IAP_PRODUCTS[k] && p.product?.priceString) out[k] = p.product.priceString;
+    return out;
+  } catch { return {}; }
+}
+
 export async function restoreIap(): Promise<IapResult> {
   if (Platform.OS !== 'ios') return { ok: false, reason: 'not_ios' };
   const P = rc(); if (!P || !configured) return { ok: false, reason: 'pending_connection' };
