@@ -1,6 +1,7 @@
 import '../src/cryptoshim';
 import '../src/ai-config';
 import '../src/i18n';
+import '../src/audio-session';
 import { Stack } from 'expo-router';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { StoreProvider } from '../src/store';

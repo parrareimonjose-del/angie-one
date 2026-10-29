@@ -1,3 +1,4 @@
+import { setupAudioSession } from './audio-session';
 import React from 'react';
 import { View, Text } from 'react-native';
 import { router } from 'expo-router';
@@ -14,7 +15,7 @@ export function useCoach() {
   const upd = (fn: (c: Coach) => Coach) => set((x) => ({ ...x, coach: fn(coachOf(x)) }));
   return { st, c, upd, set, ready, premium: isPremium(st) };
 }
-export const speak = (text: string) => { Speech.stop(); Speech.speak(text, { language: fmtLocale() }); };
+export const speak = (text: string) => { Speech.stop(); setupAudioSession().finally(() => Speech.speak(text, { language: fmtLocale(), useApplicationAudioSession: true } as any)); };
 export const dayName = (i: number, long = false) => new Date(2024, 0, 1 + i).toLocaleDateString(fmtLocale(), { weekday: long ? 'long' : 'short' });
 
 export function useNames() {

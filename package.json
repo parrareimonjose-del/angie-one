@@ -10,6 +10,7 @@
     "@zxing/browser": "^0.2.1",
     "@zxing/library": "^0.23.0",
     "expo": "~57.0.29",
+    "expo-audio": "~57.0.5",
     "expo-camera": "~57.0.6",
     "expo-constants": "~57.0.22",
     "expo-haptics": "~57.0.0",

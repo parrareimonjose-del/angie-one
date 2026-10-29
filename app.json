@@ -159,6 +159,14 @@
         {
           "supportsRTL": true
         }
+      ],
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Angie One usa el micrófono solo si dictas una comida por voz.",
+          "enableBackgroundRecording": false,
+          "enableBackgroundPlayback": false
+        }
       ]
     ],
     "scheme": "angieone",
