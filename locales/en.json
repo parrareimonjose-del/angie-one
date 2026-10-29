@@ -1,0 +1,7 @@
+{
+  "ios": {
+    "NSCameraUsageDescription": "Angie One uses the camera to analyze your meals, read barcodes and labels, and take your progress photos (they stay on your phone).",
+    "NSPhotoLibraryUsageDescription": "Angie One uses the photos you choose to analyze meals or labels and for your progress photos (they stay on your phone).",
+    "NSMicrophoneUsageDescription": "Angie One uses the microphone only if you dictate a meal by voice."
+  }
+}

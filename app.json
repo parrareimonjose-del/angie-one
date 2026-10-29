@@ -183,6 +183,10 @@
         "projectId": "2a2451a3-147b-4cfd-be28-f61c1ca511b1"
       }
     },
-    "owner": "parraapps"
+    "owner": "parraapps",
+    "locales": {
+      "en": "./locales/en.json",
+      "es": "./locales/es.json"
+    }
   }
 }
