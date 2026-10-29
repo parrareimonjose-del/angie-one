@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next';
 import * as Speech from 'expo-speech';
 import { Screen, Card, Btn, Ring, T, s, HeroPhoto, FOOD, celebrate, IconBtn, CardTitle } from '../src/ui';
 import { fmtLocale, fmtNum } from '../src/i18n';
-import { useStore, today, trialPhase, fmtCountdown, streak } from '../src/store';
+import { useStore, today, trialPhase, streak } from '../src/store';
 import { C } from '../src/theme';
 import { SmartTips } from '../src/p2';
 import { SecurityNudge } from '../src/faltantes-ui';
@@ -42,7 +42,7 @@ export default function Home() {
         <Text style={{ color: '#fff', fontSize: 26, fontWeight: '800' }}>{t('home.hello')} ✨</Text>
         <Text style={{ color: '#fff', fontSize: 16, fontWeight: '600' }}>{t('sp.tag')}</Text>
       </HeroPhoto>
-      <Btn kind="accent" small label={tp.phase === 'trial' ? `⭐ ${t('home.trialDays', { n: left })}` : tp.phase === 'offer' ? t('trial.offer', { time: fmtCountdown(tp.offerMsLeft) }) : t('home.trialOver')} onPress={() => router.push('/paywall')} />
+      <Btn kind="accent" small label={tp.phase === 'trial' ? `⭐ ${t('home.trialDays', { n: left })}` : t('home.trialOver')} onPress={() => router.push('/paywall')} />
       {tp.phase === 'trial' && left <= 2 ? <Card style={{ backgroundColor: C.warnBg }}><T style={{ fontWeight: '700' }}>{t(left === 2 ? 'trial.remind2' : 'trial.remind1')}</T></Card> : null}
       <Card style={{ alignItems: 'center' }}>
         <Ring value={sum.kcal} max={target.kcal + burned} size={220}>

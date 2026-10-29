@@ -5,7 +5,7 @@ import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Screen, Card, Btn, T, s, CardTitle } from '../src/ui';
 import { C } from '../src/theme';
-import { useStore, trialPhase, fmtCountdown } from '../src/store';
+import { useStore, trialPhase } from '../src/store';
 import { LegalLinks } from '../src/legal-links';
 import { providerFor, purchase, restore, PLANS, PAY_MODE, effectivePayMode, payModeOn, ensurePayUid } from '../src/payments';
 import { configureIap, storefrontCountry, showWebPayButton, webPayUrl, iapManage, IAP_NATIVE_READY, iapPrices } from '../src/iap';
@@ -43,8 +43,6 @@ export default function Paywall() {
       <Card>{(['f1', 'f2', 'f3', 'f4', 'f5'] as const).map((f) => <T key={f}>✅ {t(`pay.${f}`)}</T>)}</Card>
       {opt('y', ios && pr.yearly ? `${pr.yearly} ${t('fx.perYear')}` : t('pay.yearly'), t('pay.yearlySave'))}
       {opt('m', ios && pr.monthly ? `${pr.monthly} ${t('fx.perMonth')}` : t('pay.monthly'))}
-      <Card style={{ backgroundColor: C.warnBg }}><T>⏳ {t('pay.offer')}</T>
-        <T style={{ fontWeight: '800', color: tp.phase === 'offer' ? C.primary : C.text }}>{tp.phase === 'offer' ? t('pay.offerLive', { time: fmtCountdown(tp.offerMsLeft) }) : tp.phase === 'free' ? t('pay.offerGone') : t('pay.offerAfter')}</T></Card>
       <Card testID="sub-terms"><CardTitle>📋 {t('fx.termsT')}</CardTitle>
         <T>{t('fx.terms', { price: plan === 'y' ? (ios && pr.yearly) || '$' + PLANS.yearly.usd : (ios && pr.monthly) || '$' + PLANS.monthly.usd, period: t(plan === 'y' ? 'fx.perYear' : 'fx.perMonth'), store: prov.name })}</T>
         <Text style={[s.muted, { fontSize: 15 }]}>{t('pay.renew')}</Text><Text style={[s.muted, { fontSize: 15 }]}>⚕️ {t('fx.healthDisc')}</Text></Card>
