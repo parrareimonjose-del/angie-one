@@ -22,7 +22,7 @@ La IA real pasa por el Worker de `worker/` (desplegar con `npx wrangler@3 deploy
 - **Registro manual** + **base de 22 comidas latinas** + dictado por voz (navegadores con Web Speech).
 - **Diario** por día (anterior/siguiente, quitar).
 - **Ajustes**: idioma automático según el teléfono (ES/EN/PT, inglés si es otro) o manual; IA encendida/apagada; borrar datos.
-- **Premium**: 1,99 $/mes · 14,99 $/año · LatAm 0,99 $/mes, oferta 48 h de precio congelado, renovación y cancelación explicadas.
+- **Premium**: 2,49 $/mes · 24,99 $/año, oferta 48 h de precio congelado, renovación y cancelación explicadas.
 - **Panel del Fundador v1**: tarjetas de aprobar/rechazar (datos de ejemplo).
 - Uso con una mano: botones de 64 px, barra inferior grande, etiquetas de accesibilidad.
 - Datos guardados **solo en el dispositivo** (AsyncStorage).
