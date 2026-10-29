@@ -167,7 +167,8 @@
           "enableBackgroundRecording": false,
           "enableBackgroundPlayback": false
         }
-      ]
+      ],
+      "expo-asset"
     ],
     "scheme": "angieone",
     "experiments": {
