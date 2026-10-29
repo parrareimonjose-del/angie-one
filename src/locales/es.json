@@ -1544,7 +1544,7 @@
     "spDl": "Descargar tarea",
     "spNever": "Solo borradores. Nunca publica, despliega ni aplica código sin tu toque.",
     "termsT": "Condiciones de la suscripción",
-    "terms": "Premium: {{price}} {{period}} con {{store}}. Prueba gratis de 7 días; luego se renueva sola salvo que canceles al menos 24 h antes. Cancela cuando quieras en tus suscripciones de {{store}}.",
+    "terms": "Premium: {{price}} {{period}} con {{store}}, se cobra al confirmar. Se renueva sola al mismo precio salvo que canceles al menos 24 h antes de que termine el período actual. Cancela cuando quieras en tus suscripciones de {{store}}.",
     "perMonth": "al mes",
     "perYear": "al año",
     "payVia": "Pago seguro con {{store}} (pendiente de conexión)",

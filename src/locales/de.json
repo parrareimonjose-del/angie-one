@@ -1544,7 +1544,7 @@
     "spDl": "Aufgabe herunterladen",
     "spNever": "Nur Entwürfe. Veröffentlicht, deployt oder wendet nie Code ohne deinen Tipp an.",
     "termsT": "Abo-Bedingungen",
-    "terms": "Premium: {{price}} {{period}} über {{store}}. 7 Tage gratis testen; danach automatische Verlängerung, außer du kündigst mindestens 24 h vorher. Jederzeit in deinen {{store}}-Abos kündbar.",
+    "terms": "Premium: {{price}} {{period}} über {{store}}, Abbuchung bei Bestätigung. Automatische Verlängerung zum gleichen Preis, außer du kündigst mindestens 24 h vor Ende des aktuellen Zeitraums. Jederzeit in deinen {{store}}-Abos kündbar.",
     "perMonth": "pro Monat",
     "perYear": "pro Jahr",
     "payVia": "Sichere Zahlung mit {{store}} (Verbindung ausstehend)",

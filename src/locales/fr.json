@@ -1544,7 +1544,7 @@
     "spDl": "Télécharger la tâche",
     "spNever": "Brouillons seulement. Ne publie, ne déploie ni n'applique jamais de code sans votre accord.",
     "termsT": "Conditions de l'abonnement",
-    "terms": "Premium : {{price}} {{period}} via {{store}}. Essai gratuit de 7 jours ; ensuite renouvellement automatique sauf annulation au moins 24 h avant. Annulez quand vous voulez dans vos abonnements {{store}}.",
+    "terms": "Premium : {{price}} {{period}} via {{store}}, débité à la confirmation. Renouvellement automatique au même prix sauf annulation au moins 24 h avant la fin de la période en cours. Annulez quand vous voulez dans vos abonnements {{store}}.",
     "perMonth": "par mois",
     "perYear": "par an",
     "payVia": "Paiement sécurisé avec {{store}} (connexion en attente)",

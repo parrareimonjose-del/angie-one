@@ -1544,7 +1544,7 @@
     "spDl": "下载任务",
     "spNever": "只是草稿。没有你的确认，绝不发布、部署或应用代码。",
     "termsT": "订阅条款",
-    "terms": "Premium：通过 {{store}} {{period}} {{price}}。7 天免费试用；之后自动续订，除非至少提前 24 小时取消。可随时在 {{store}} 订阅中取消。",
+    "terms": "Premium：通过 {{store}} {{period}} {{price}}，确认时扣款。除非在当前周期结束前至少 24 小时取消，否则将以相同价格自动续订。可随时在 {{store}} 订阅中取消。",
     "perMonth": "每月",
     "perYear": "每年",
     "payVia": "通过 {{store}} 安全支付（待连接）",

@@ -1544,7 +1544,7 @@
     "spDl": "Görevi indir",
     "spNever": "Sadece taslak. Senin dokunuşun olmadan asla yayınlamaz, dağıtmaz, kod uygulamaz.",
     "termsT": "Abonelik koşulları",
-    "terms": "Premium: {{store}} üzerinden {{period}} {{price}}. 7 gün ücretsiz deneme; ardından en az 24 saat önce iptal etmezsen otomatik yenilenir. {{store}} aboneliklerinden istediğin zaman iptal et.",
+    "terms": "Premium: {{store}} üzerinden {{period}} {{price}}, onayladığında ücretlendirilir. Mevcut dönem bitmeden en az 24 saat önce iptal etmezsen aynı fiyattan otomatik yenilenir. {{store}} aboneliklerinden istediğin zaman iptal et.",
     "perMonth": "aylık",
     "perYear": "yıllık",
     "payVia": "{{store}} ile güvenli ödeme (bağlantı bekleniyor)",

@@ -1544,7 +1544,7 @@
     "spDl": "Scarica attività",
     "spNever": "Solo bozze. Non pubblica, non distribuisce e non applica codice senza il tuo tocco.",
     "termsT": "Condizioni dell'abbonamento",
-    "terms": "Premium: {{price}} {{period}} tramite {{store}}. Prova gratuita di 7 giorni; poi si rinnova automaticamente salvo disdetta almeno 24 h prima. Disdici quando vuoi negli abbonamenti di {{store}}.",
+    "terms": "Premium: {{price}} {{period}} tramite {{store}}, addebitato alla conferma. Si rinnova automaticamente allo stesso prezzo salvo disdetta almeno 24 h prima della fine del periodo in corso. Disdici quando vuoi negli abbonamenti di {{store}}.",
     "perMonth": "al mese",
     "perYear": "all'anno",
     "payVia": "Pagamento sicuro con {{store}} (connessione in attesa)",

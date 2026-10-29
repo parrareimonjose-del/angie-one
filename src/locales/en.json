@@ -1544,7 +1544,7 @@
     "spDl": "Download spec",
     "spNever": "Draft only. It never publishes, deploys or applies code without your tap.",
     "termsT": "Subscription terms",
-    "terms": "Premium: {{price}} {{period}} via {{store}}. 7-day free trial; then it renews automatically unless you cancel at least 24 h before. Cancel anytime in your {{store}} subscriptions.",
+    "terms": "Premium: {{price}} {{period}} via {{store}}, charged when you confirm. It renews automatically at the same price unless you cancel at least 24 h before the current period ends. Cancel anytime in your {{store}} subscriptions.",
     "perMonth": "per month",
     "perYear": "per year",
     "payVia": "Secure payment with {{store}} (pending connection)",

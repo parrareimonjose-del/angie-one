@@ -1544,7 +1544,7 @@
     "spDl": "Baixar tarefa",
     "spNever": "Só rascunhos. Nunca publica, implanta nem aplica código sem seu toque.",
     "termsT": "Condições da assinatura",
-    "terms": "Premium: {{price}} {{period}} via {{store}}. Teste grátis de 7 dias; depois renova automaticamente, a menos que cancele pelo menos 24 h antes. Cancele quando quiser nas assinaturas de {{store}}.",
+    "terms": "Premium: {{price}} {{period}} via {{store}}, cobrado ao confirmar. Renova automaticamente pelo mesmo preço, a menos que cancele pelo menos 24 h antes do fim do período atual. Cancele quando quiser nas assinaturas de {{store}}.",
     "perMonth": "por mês",
     "perYear": "por ano",
     "payVia": "Pagamento seguro com {{store}} (conexão pendente)",
