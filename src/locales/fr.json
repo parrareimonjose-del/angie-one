@@ -164,7 +164,9 @@
     "srcAcsm": "ACSM — exercice et poids",
     "srcIssn": "ISSN — nutrition sportive",
     "sourcesNote": "Objectifs = estimations éducatives, pas un avis médical.",
-    "privacyGemini": "Le chat IA peut utiliser Google Gemini comme sous-traitant. Voir Confidentialité. App gratuite."
+    "privacyGemini": "Le chat IA peut utiliser Google Gemini comme sous-traitant. Voir Confidentialité. App gratuite.",
+    "signOut": "Se déconnecter",
+    "signOutQ": "Cela efface les données de cet appareil et revient au début. Continuer ?"
   },
   "pay": {
     "title": "Angie One Premium",

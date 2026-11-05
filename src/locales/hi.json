@@ -164,7 +164,9 @@
     "srcAcsm": "ACSM — exercise & weight management",
     "srcIssn": "ISSN — sports nutrition",
     "sourcesNote": "Targets are educational estimates, not medical advice.",
-    "privacyGemini": "AI chat may use Google Gemini as processor. See Privacy for details. The app is free to download."
+    "privacyGemini": "AI chat may use Google Gemini as processor. See Privacy for details. The app is free to download.",
+    "signOut": "साइन आउट",
+    "signOutQ": "इससे इस डिवाइस का डेटा मिट जाएगा और आप शुरुआत पर लौट जाएंगे। जारी रखें?"
   },
   "pay": {
     "title": "Angie One Premium",

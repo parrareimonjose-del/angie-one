@@ -164,7 +164,9 @@
     "srcAcsm": "ACSM — esercizio e peso",
     "srcIssn": "ISSN — nutrizione sportiva",
     "sourcesNote": "Obiettivi = stime educative, non consiglio medico.",
-    "privacyGemini": "La chat IA può usare Google Gemini come responsabile del trattamento. Vedi Privacy. App gratuita."
+    "privacyGemini": "La chat IA può usare Google Gemini come responsabile del trattamento. Vedi Privacy. App gratuita.",
+    "signOut": "Esci",
+    "signOutQ": "Questo cancella i dati su questo dispositivo e torna all’inizio. Continuare?"
   },
   "pay": {
     "title": "Angie One Premium",

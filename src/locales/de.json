@@ -164,7 +164,9 @@
     "srcAcsm": "ACSM — Training & Gewicht",
     "srcIssn": "ISSN — Sporternährung",
     "sourcesNote": "Ziele sind Bildungs­schätzungen, keine medizinische Beratung.",
-    "privacyGemini": "KI-Chat kann Google Gemini als Auftragsverarbeiter nutzen. Siehe Datenschutz. App kostenlos."
+    "privacyGemini": "KI-Chat kann Google Gemini als Auftragsverarbeiter nutzen. Siehe Datenschutz. App kostenlos.",
+    "signOut": "Abmelden",
+    "signOutQ": "Dadurch werden die Daten auf diesem Gerät gelöscht und du kehrst zum Start zurück. Fortfahren?"
   },
   "pay": {
     "title": "Angie One Premium",
