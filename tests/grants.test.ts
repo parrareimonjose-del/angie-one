@@ -13,6 +13,7 @@ const e = addGrant([], 'bob@mail.com', 1, '', now)!; ok('caduca', grantState(e[0
 ok('canje válido y caduca', grantValid({ code: 'x', who: 'a', until: now + 1000, checkedAt: now }, now) && !grantValid({ code: 'x', who: 'a', until: now - 1, checkedAt: now }, now));
 ok('sin revalidar 7 días deja de valer', !grantValid({ code: 'x', who: 'a', checkedAt: now }, now + 8 * 864e5));
 ok('Premium por regalo', isPremium({ entries: [], trialStart: now - 40 * 864e5, myGrant: { code: 'x', who: 'a', checkedAt: now } } as any, now) && !isPremium({ entries: [], trialStart: now - 40 * 864e5 } as any, now));
+ok('iOS no Premium por código propio', !isPremium({ entries: [], trialStart: now - 40 * 864e5, myGrant: { code: 'x', who: 'a', checkedAt: now } } as any, now, 'ios'));
 ok('tienda por plataforma', redeemStore('ios') === 'apple' && redeemStore('android') === 'play' && redeemStore('web') === 'server');
 ok('códigos distintos', newCode() !== newCode());
 console.log(res.join('\n')); const np = res.filter((r) => r.startsWith('PASS')).length; console.log(`grants ${np}/${res.length}`); if (np !== res.length) process.exitCode = 1;

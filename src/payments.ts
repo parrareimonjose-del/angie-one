@@ -4,6 +4,7 @@ import './cryptoshim';
 // Hoy NADA cobra: todos los proveedores están «Pendiente de conexión» (sin claves). No hay dinero real.
 // Las tiendas obligan a usar su sistema para contenido digital dentro de la app: nunca mostrar Stripe en Android/iOS.
 import { Platform } from 'react-native';
+import { appOs } from './platform';
 import { IAP_NATIVE_READY, IAP_PRODUCTS, purchaseIap, restoreIap } from './iap';
 export { IAP_PRODUCTS };
 // Decisión de José 2026-10-22: UN solo precio mundial: 2,49 USD/mes o 24,99 USD/año. Sin precio regional.
@@ -33,15 +34,15 @@ export function effectivePayMode(): 'off' | 'test' | 'live' {
   return PAY_MODE;
 }
 export function payModeOn(): boolean { const m = effectivePayMode(); return m === 'test' || m === 'live'; }
-export function providerFor(os: string = Platform.OS): Provider {
+export function providerFor(os: string = appOs()): Provider {
   if (os === 'android') return { id: 'play', name: 'Google Play', connected: false, manageUrl: 'https://play.google.com/store/account/subscriptions', canRestore: true };
   // connected = StoreKit nativo listo (IAP_NATIVE_READY). Sin cuenta Developer sigue false → UI «pendiente» amable.
-  if (os === 'ios') return { id: 'apple', name: 'App Store', connected: IAP_NATIVE_READY, manageUrl: 'https://apps.apple.com/account/subscriptions', canRestore: true };
+  if (os === 'ios') return { id: 'apple', name: 'App Store', connected: IAP_NATIVE_READY || process.env.EXPO_PUBLIC_SHOT_OS === 'ios', manageUrl: 'https://apps.apple.com/account/subscriptions', canRestore: true };
   return { id: 'stripe', name: 'Stripe', connected: payModeOn() || Object.values(STRIPE_LINKS).some(Boolean), manageUrl: '', canRestore: false };
 }
 export type PurchaseResult = { ok: true; url?: string; renewAt?: number } | { ok: false; reason: 'pending_connection' | 'cancelled' };
 /** Inicia la compra. Mientras no haya conexión devuelve pending_connection (nunca simula un cobro). */
-export async function purchase(plan: PlanId, os: string = Platform.OS): Promise<PurchaseResult> {
+export async function purchase(plan: PlanId, os: string = appOs()): Promise<PurchaseResult> {
   const p = providerFor(os);
   if (p.id === 'stripe' && payModeOn()) { try { const r = await payPost('/pay/checkout', { uid: payUid(), plan, back: payBack('paywall') }); return r.url ? { ok: true, url: r.url } : { ok: false, reason: 'pending_connection' }; } catch { return { ok: false, reason: 'pending_connection' }; } }
   if (p.id === 'stripe') { const url = STRIPE_LINKS[plan]; return url ? { ok: true, url } : { ok: false, reason: 'pending_connection' }; }
@@ -52,7 +53,7 @@ export async function purchase(plan: PlanId, os: string = Platform.OS): Promise<
   }
   return { ok: false, reason: 'pending_connection' }; // Play Billing se conecta en la versión nativa
 }
-export async function restore(os: string = Platform.OS): Promise<{ ok: boolean; reason?: string; plan?: PlanId; renewAt?: number }> {
+export async function restore(os: string = appOs()): Promise<{ ok: boolean; reason?: string; plan?: PlanId; renewAt?: number }> {
   const p = providerFor(os);
   if (p.id === 'apple') {
     const r = await restoreIap();

@@ -10,6 +10,7 @@ import { useStore } from './store';
 import { fmtDate } from './i18n';
 import { Row } from './coach-ui';
 import { addGrant, revokeGrant, grantState, pushGrant, redeem, redeemStore, STORE_REDEEM, grantValid, validWho } from './grants';
+import { isIos } from './platform';
 const FKEY = 'angieone:fkey';
 export function GrantsCard() {
   const { t } = useTranslation(); const { s: st, set } = useStore(); const list = st.grants || [];
@@ -37,6 +38,7 @@ export function GrantsCard() {
 }
 export function RedeemCard() {
   const { t } = useTranslation(); const { s: st, set } = useStore(); const [code, setCode] = useState(''); const [who, setWho] = useState(''); const [msg, setMsg] = useState(''); const [busy, setBusy] = useState(false);
+  if (isIos()) return null;
   const store = redeemStore(Platform.OS);
   if (grantValid(st.myGrant)) return <Card testID="redeem-ok"><Text style={{ color: C.success, fontWeight: '800', fontSize: 17 }}>🎁 {st.myGrant!.until ? t('gr.youUntil', { d: fmtDate(new Date(st.myGrant!.until)) }) : t('gr.youForever')}</Text></Card>;
   if (store !== 'server') return <Card testID="redeem-store"><T>🎁 {t('gr.storeCode')}</T><Btn small kind="secondary" label={t('gr.redeem')} onPress={() => Linking.openURL(STORE_REDEEM[store])} /></Card>;
@@ -51,7 +53,7 @@ export function RedeemCard() {
 /** Revalida el canje cada 24 h (si se revocó en el servidor, se quita). */
 export function AutoGrant() {
   const { s: st, set } = useStore();
-  useEffect(() => { const m = st.myGrant; if (!m || Date.now() - m.checkedAt < 864e5) return;
+  useEffect(() => { if (isIos()) return; const m = st.myGrant; if (!m || Date.now() - m.checkedAt < 864e5) return;
     redeem(m.code, m.who).then((r) => { if (r.err === 'offline' || r.err === 'server') return; set((x) => ({ ...x, myGrant: r.ok ? { ...m, until: r.until, checkedAt: Date.now() } : undefined })); }); }, [st.myGrant?.checkedAt]);
   return null;
 }

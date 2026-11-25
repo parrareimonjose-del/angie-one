@@ -193,7 +193,9 @@
     "webPayNote": "Für App-Store-Konten in den USA. Öffnet den Browser; dein Premium wird auch in der App aktiviert.",
     "restoreIap": "Käufe wiederherstellen",
     "manageApple": "Apple-Abo verwalten",
-    "delApple": "Wenn du über Apple bezahlt hast, kündige das Abo auch unter Einstellungen › dein Name › Abonnements (Apps können es nicht kündigen)."
+    "delApple": "Wenn du über Apple bezahlt hast, kündige das Abo auch unter Einstellungen › dein Name › Abonnements (Apps können es nicht kündigen).",
+    "iapFail": "Der Kauf konnte nicht abgeschlossen werden. Versuche es erneut oder tippe auf Käufe wiederherstellen, wenn du schon bezahlt hast.",
+    "restoreFail": "Wiederherstellen hat gerade nicht geklappt. Prüfe die Verbindung und versuche es erneut."
   },
   "fo": {
     "title": "Gründer-Panel v1",
@@ -2431,7 +2433,9 @@
       "2": "Bei Brustschmerz, Ohnmacht oder Schwellung: aufhören und zum Arzt.",
       "t": "Sportmedizin"
     },
-    "referNote": "In deinem Fall sprich bitte auch mit deiner Ärztin, deinem Arzt oder einer Fachperson."
+    "referNote": "In deinem Fall sprich bitte auch mit deiner Ärztin, deinem Arzt oder einer Fachperson.",
+    "sources": "Quellen",
+    "sourcesSub": "Öffentliche Empfehlungen, auf denen der Coach beruht. Tippe auf einen Link, um die Quelle zu öffnen. Das ersetzt keine medizinische Beratung."
   },
   "eula": {
     "title": "Community-Bedingungen",

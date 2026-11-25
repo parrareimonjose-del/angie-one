@@ -193,7 +193,9 @@
     "webPayNote": "Disponible pour les comptes App Store des États-Unis. Ouvre le navigateur ; votre Premium s'active aussi dans l'app.",
     "restoreIap": "Restaurer les achats",
     "manageApple": "Gérer l'abonnement Apple",
-    "delApple": "Si vous avez payé avec Apple, annulez aussi l'abonnement dans Réglages › votre nom › Abonnements (Apple ne permet pas aux apps de l'annuler)."
+    "delApple": "Si vous avez payé avec Apple, annulez aussi l'abonnement dans Réglages › votre nom › Abonnements (Apple ne permet pas aux apps de l'annuler).",
+    "iapFail": "L'achat n'a pas pu être effectué. Réessayez ou, si vous avez déjà payé, touchez Restaurer les achats.",
+    "restoreFail": "La restauration n'a pas fonctionné pour le moment. Vérifiez la connexion et réessayez."
   },
   "fo": {
     "title": "Tableau de bord du fondateur v1",
@@ -2431,7 +2433,9 @@
       "2": "En cas de douleur thoracique, malaise ou gonflement, arrêtez et consultez.",
       "t": "Médecine du sport"
     },
-    "referNote": "Dans votre cas, consultez aussi votre médecin ou un professionnel de santé."
+    "referNote": "Dans votre cas, consultez aussi votre médecin ou un professionnel de santé.",
+    "sources": "Sources",
+    "sourcesSub": "Recommandations publiques sur lesquelles s'appuie le Coach. Touchez un lien pour ouvrir la source. Cela ne remplace pas un avis médical."
   },
   "eula": {
     "title": "Conditions de la communauté",

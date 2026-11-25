@@ -193,7 +193,9 @@
     "webPayNote": "Available for US App Store accounts. Opens your browser; your Premium turns on in the app too.",
     "restoreIap": "Restore purchases",
     "manageApple": "Manage Apple subscription",
-    "delApple": "If you paid with Apple, also cancel the subscription in Settings › your name › Subscriptions (Apple does not let apps cancel it)."
+    "delApple": "If you paid with Apple, also cancel the subscription in Settings › your name › Subscriptions (Apple does not let apps cancel it).",
+    "iapFail": "The purchase couldn't be completed. Try again, or if you already paid, tap Restore Purchases.",
+    "restoreFail": "Couldn't restore right now. Check your connection and try again."
   },
   "fo": {
     "title": "Founder Panel v1",
@@ -2431,7 +2433,9 @@
       "1": "Increase volume by at most 10% per week and respect rest days.",
       "2": "With chest pain, fainting or swelling, stop and see a doctor."
     },
-    "referNote": "For your situation, please also check with your doctor or a health professional."
+    "referNote": "For your situation, please also check with your doctor or a health professional.",
+    "sources": "Sources",
+    "sourcesSub": "Public recommendations the Coach is based on. Tap a link to open the source. This is not a substitute for medical advice."
   },
   "eula": {
     "title": "Community Terms",

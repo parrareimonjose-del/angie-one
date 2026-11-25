@@ -14,11 +14,9 @@ export const RC_IOS_KEY = process.env.EXPO_PUBLIC_RC_IOS_KEY || '';
 export const IAP_NATIVE_READY = Platform.OS === 'ios' && /^appl_/.test(RC_IOS_KEY);
 export const WEB_PAYWALL = 'https://parrareimonjose-del.github.io/angie-one/paywall';
 
-/** Botón web: web siempre; iPhone solo con storefront USA; Android nunca. */
-export function showWebPayButton(os: string, storefront: string | null): boolean {
-  if (os === 'web') return true;
-  if (os === 'ios') { const c = (storefront || '').toUpperCase(); return c === 'USA' || c === 'US'; }
-  return false;
+/** Botón «Pagar en la web»: solo en la web. Nunca en iPhone (3.1.1) ni en Android. */
+export function showWebPayButton(os: string, _storefront: string | null): boolean {
+  return os === 'web';
 }
 export const webPayUrl = (uid: string) => WEB_PAYWALL + (uid ? '?uid=' + encodeURIComponent(uid) : '');
 

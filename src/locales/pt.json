@@ -193,7 +193,9 @@
     "webPayNote": "Disponível para contas da App Store dos EUA. Abre o navegador; seu Premium também é ativado no app.",
     "restoreIap": "Restaurar compras",
     "manageApple": "Gerenciar assinatura da Apple",
-    "delApple": "Se você pagou com a Apple, cancele também a assinatura em Ajustes › seu nome › Assinaturas (a Apple não permite cancelar pelo app)."
+    "delApple": "Se você pagou com a Apple, cancele também a assinatura em Ajustes › seu nome › Assinaturas (a Apple não permite cancelar pelo app).",
+    "iapFail": "Não foi possível concluir a compra. Tente de novo ou, se já pagou, toque em Restaurar compras.",
+    "restoreFail": "Não foi possível restaurar agora. Verifique a conexão e tente de novo."
   },
   "fo": {
     "title": "Painel do Fundador v1",
@@ -2431,7 +2433,9 @@
       "2": "Com dor no peito, desmaio ou inchaço, pare e procure um médico.",
       "t": "Medicina esportiva"
     },
-    "referNote": "No seu caso, consulte também seu médico ou um profissional de saúde."
+    "referNote": "No seu caso, consulte também seu médico ou um profissional de saúde.",
+    "sources": "Fontes",
+    "sourcesSub": "Recomendações públicas em que o Coach se baseia. Toque num link para abrir a fonte. Não substituem aconselhamento médico."
   },
   "eula": {
     "title": "Termos da comunidade",

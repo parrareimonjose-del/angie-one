@@ -9,7 +9,7 @@
 |---|---|---|
 | Web (Stripe) | Derecho en el servidor: Worker `/grants/add`, `/grants/revoke`, `/grants/redeem` (KV `FOODS`, prefijo `grant:`) | La web no está sujeta a las reglas de pago de las tiendas. |
 | Android (Google Play) | Códigos promocionales de Google Play para la suscripción (Play Console → Monetizar → Promociones). El derecho del servidor también es aceptable porque no hay pago fuera de Play. | Política de pagos de Play: el contenido gratis no requiere Play Billing; lo de pago sí. |
-| iPhone (App Store) | **Offer Codes de Apple** (App Store Connect → Suscripciones → Códigos de oferta). En iOS la app no muestra el canje propio: abre `apps.apple.com/redeem`. | Guía 3.1.1: no se pueden desbloquear funciones con códigos o licencias propios. |
+| iPhone (App Store) | **Offer Codes de Apple** (App Store Connect → Suscripciones → Códigos de oferta), canjeados en la App Store / Ajustes, no en la app. En iOS no hay pantalla de canje ni «Pagar en la web». | Guía 3.1.1 (nov 2026): no se pueden desbloquear funciones con códigos propios ni pagar Premium fuera de IAP. |
 
 ## Para activarlo en el servidor (necesita el OK de José; es gratis)
 1. `cd worker && npx wrangler@3 secret put FOUNDER_KEY` (una clave larga que solo tiene José; nunca en el chat).

@@ -1,5 +1,5 @@
 // Coach profesional (21-oct-2026): recetas según el plan, base de conocimiento, señales de alarma.
-import { withReferral, safeReply, specialFor, SPECIAL, suggestRecipes, kcalLeft, kbContext, areasFor, redFlag, toggleCheck, programWeek, allSuggestible, BRIEF, AREAS } from '../src/coachkb';
+import { withReferral, safeReply, specialFor, SPECIAL, suggestRecipes, kcalLeft, kbContext, areasFor, redFlag, toggleCheck, programWeek, allSuggestible, BRIEF, AREAS, HEALTH_SOURCES } from '../src/coachkb';
 const res: string[] = []; const ok = (n: string, c: boolean) => res.push(`${c ? 'PASS' : 'FAIL'} ${n}`);
 const E = (kcal: number, date = '2026-10-21', planned?: boolean) => ({ id: String(Math.random()), date, time: 0, name: 'x', kcal, p: 0, c: 0, f: 0, source: 'manual' as const, planned });
 ok('kcal restantes ignoran lo planificado y otros días', kcalLeft(2000, [E(500), E(300, '2026-10-20'), E(400, '2026-10-21', true)], '2026-10-21') === 1500);
@@ -14,6 +14,7 @@ const veg = suggestRecipes(1000, 'keep', ['veg']).map((x) => x.name.es).join(' '
 const nf = suggestRecipes(1000, 'lose', ['fish', 'dairy', 'eggs']).map((x) => x.name.es + x.name.en).join(' '); ok('sin pescado, lácteos ni huevo', !/(pescado|fish|queso|cheese|huevo|egg|leche|milk|yogur)/i.test(nf));
 ok('sin hueco → al menos snacks pequeños', suggestRecipes(0, 'lose').every((x) => x.kcal <= 160));
 ok('8 áreas profesionales con brief', AREAS.length === 8 && AREAS.every((a) => BRIEF[a].length > 60));
+ok('fuentes públicas con enlace oficial', HEALTH_SOURCES.length >= 10 && ['dga', 'who-diet', 'who-pa', 'acsm', 'ada', 'aha'].every((id) => HEALTH_SOURCES.some((s) => s.id === id && /^https:\/\//.test(s.url))) && HEALTH_SOURCES.every((s) => /^https:\/\//.test(s.url)));
 ok('detecta el área de la pregunta', areasFor('me duele la rodilla al hacer sentadillas').includes('physio') && areasFor('how much protein').includes('nutrition') && areasFor('no puedo dormir').includes('sleep'));
 ok('contexto ≤ 1400 y con seguridad', (() => { const c = kbContext('rutina de fuerza y dieta keto', 'gain', 'goal gain'.repeat(20)); return c.length <= 1400 && /Safety/.test(c) || c.length === 1400; })());
 ok('alarma: pecho, desmayo, embarazo, medicamento, TCA', ['tengo dolor en el pecho', 'I fainted at the gym', 'estoy embarazada', 'qué medicamento tomo', 'me provoco el vómito', 'gravidez grávida', 'göğüs ağrısı var'].every(redFlag));

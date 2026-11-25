@@ -12,8 +12,8 @@ const ev = (o) => ({ id: 'e' + Math.random(), app_user_id: UID, product_id: 'ang
 let n = 0; const t = async (name, f) => { await f(); n++; console.log('✓', name); };
 
 await t('productos = precios web', () => { assert.equal(IAP_PRODUCTS.monthly, PLANS.monthly.productId); assert.equal(IAP_PRODUCTS.yearly, PLANS.yearly.productId); assert.equal(PLANS.monthly.usd, 2.49); assert.equal(PLANS.yearly.usd, 24.99); });
-await t('botón web solo storefront USA en iPhone', () => {
-  assert.equal(showWebPayButton('ios', 'USA'), true); assert.equal(showWebPayButton('ios', 'MEX'), false); assert.equal(showWebPayButton('ios', null), false);
+await t('botón web solo en la web, nunca en iPhone', () => {
+  assert.equal(showWebPayButton('ios', 'USA'), false); assert.equal(showWebPayButton('ios', 'MEX'), false); assert.equal(showWebPayButton('ios', null), false);
   assert.equal(showWebPayButton('android', 'USA'), false); assert.equal(showWebPayButton('web', null), true);
   assert.match(webPayUrl(UID), /paywall\?uid=abcdefghij0123456789$/); });
 await t('webhook sin auth → 401', async () => { const env = { FOODS: kv(), REVENUECAT_WEBHOOK_AUTH: 'sek' };

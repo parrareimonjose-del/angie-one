@@ -193,7 +193,9 @@
     "webPayNote": "Disponible para cuentas de App Store de EE. UU. Se abre el navegador; tu Premium se activa igual en la app.",
     "restoreIap": "Restaurar compras",
     "manageApple": "Administrar suscripción de Apple",
-    "delApple": "Si pagaste con Apple, cancela también la suscripción en Ajustes › tu nombre › Suscripciones (Apple no permite cancelarla desde la app)."
+    "delApple": "Si pagaste con Apple, cancela también la suscripción en Ajustes › tu nombre › Suscripciones (Apple no permite cancelarla desde la app).",
+    "iapFail": "No se pudo completar la compra. Inténtalo de nuevo o, si ya pagaste, toca Restaurar compras.",
+    "restoreFail": "No se pudo restaurar ahora. Revisa la conexión e inténtalo de nuevo."
   },
   "fo": {
     "title": "Panel del Fundador v1",
@@ -2431,7 +2433,9 @@
       "1": "Sube el volumen máximo un 10 % por semana y respeta los días de descanso.",
       "2": "Ante dolor en el pecho, desmayo o hinchazón, para y ve al médico."
     },
-    "referNote": "Para tu caso, consulta también con tu médico o un profesional de la salud."
+    "referNote": "Para tu caso, consulta también con tu médico o un profesional de la salud.",
+    "sources": "Fuentes",
+    "sourcesSub": "Recomendaciones públicas en las que se basa el Coach. Toca un enlace para abrir la fuente. No sustituyen un consejo médico."
   },
   "eula": {
     "title": "Términos de la comunidad",

@@ -193,7 +193,9 @@
     "webPayNote": "ABD App Store hesapları için. Tarayıcı açılır; Premium uygulamada da etkinleşir.",
     "restoreIap": "Satın alımları geri yükle",
     "manageApple": "Apple aboneliğini yönet",
-    "delApple": "Apple ile ödediysen aboneliği Ayarlar › adın › Abonelikler bölümünden de iptal et (uygulamalar iptal edemez)."
+    "delApple": "Apple ile ödediysen aboneliği Ayarlar › adın › Abonelikler bölümünden de iptal et (uygulamalar iptal edemez).",
+    "iapFail": "Satın alma tamamlanamadı. Yeniden dene veya zaten ödeme yaptıysan Satın Alımları Geri Yükle’ye dokun.",
+    "restoreFail": "Şu anda geri yüklenemedi. Bağlantını kontrol et ve yeniden dene."
   },
   "fo": {
     "title": "Kurucu Paneli v1",
@@ -2431,7 +2433,9 @@
       "2": "Göğüs ağrısı, bayılma veya şişlikte dur ve doktora git.",
       "t": "Spor hekimliği"
     },
-    "referNote": "Senin durumunda doktoruna veya bir sağlık uzmanına da danış."
+    "referNote": "Senin durumunda doktoruna veya bir sağlık uzmanına da danış.",
+    "sources": "Kaynaklar",
+    "sourcesSub": "Koçun dayandığı kamuya açık öneriler. Kaynağı açmak için bir bağlantıya dokun. Bu, tıbbi tavsiyenin yerine geçmez."
   },
   "eula": {
     "title": "Community Terms",

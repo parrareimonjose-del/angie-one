@@ -193,7 +193,9 @@
     "webPayNote": "Disponibile per account App Store degli Stati Uniti. Apre il browser; il tuo Premium si attiva anche nell'app.",
     "restoreIap": "Ripristina acquisti",
     "manageApple": "Gestisci abbonamento Apple",
-    "delApple": "Se hai pagato con Apple, annulla anche l'abbonamento in Impostazioni › il tuo nome › Abbonamenti (Apple non consente alle app di annullarlo)."
+    "delApple": "Se hai pagato con Apple, annulla anche l'abbonamento in Impostazioni › il tuo nome › Abbonamenti (Apple non consente alle app di annullarlo).",
+    "iapFail": "L'acquisto non è andato a buon fine. Riprova o, se hai già pagato, tocca Ripristina acquisti.",
+    "restoreFail": "Impossibile ripristinare in questo momento. Controlla la connessione e riprova."
   },
   "fo": {
     "title": "Pannello Fondatore v1",
@@ -2431,7 +2433,9 @@
       "2": "Con dolore al petto, svenimento o gonfiore, fermati e vai dal medico.",
       "t": "Medicina dello sport"
     },
-    "referNote": "Nel tuo caso, consulta anche il tuo medico o un professionista della salute."
+    "referNote": "Nel tuo caso, consulta anche il tuo medico o un professionista della salute.",
+    "sources": "Fonti",
+    "sourcesSub": "Raccomandazioni pubbliche su cui si basa il Coach. Tocca un collegamento per aprire la fonte. Non sostituiscono un parere medico."
   },
   "eula": {
     "title": "Termini della community",

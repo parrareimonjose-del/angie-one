@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, Pressable } from 'react-native';
+import { View, Text, Pressable, Linking } from 'react-native';
 import { router } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Screen, Card, Btn, T, s, IconCard, InfoNote } from './ui';
@@ -9,7 +9,7 @@ import { today, uid } from './store';
 import { useExt } from './ext';
 import { useCoach, CoachLocked } from './coach-ui';
 import { coachTarget } from './coach';
-import { suggestRecipes, kcalLeft, AREAS, AREA_ICON, WEEKS, CHECK, toggleCheck, programWeek, Sugg } from './coachkb';
+import { suggestRecipes, kcalLeft, AREAS, AREA_ICON, WEEKS, CHECK, toggleCheck, programWeek, Sugg, HEALTH_SOURCES } from './coachkb';
 
 const nm = (x: Sugg, l: string) => (x.name as any)[l] || x.name.en;
 /** Tarjeta del coach: 2-3 recetas que caben en lo que queda hoy, según meta y gustos. */
@@ -30,6 +30,19 @@ export function RecipeSuggest() {
 }
 export function RedFlagNote() { const { t } = useTranslation(); return <View testID="ck-red"><InfoNote warn icon="⚠️" text={`${t('ck.redT')}. ${t('ck.redB')}`} /></View>; }
 
+
+/** Bloque visible de fuentes con enlaces (guía 1.4.1). */
+export function HealthSources() {
+  const { t } = useTranslation();
+  return <IconCard testID="ck-sources" icon="📚" title={t('ck.sources')} sub={t('ck.sourcesSub')}>
+    {HEALTH_SOURCES.map((s) => (
+      <Pressable key={s.id} testID={`ck-src-${s.id}`} accessibilityRole="link" accessibilityLabel={s.name} onPress={() => Linking.openURL(s.url)} style={{ paddingVertical: 8 }}>
+        <Text style={{ color: C.primary, fontWeight: '700', fontSize: 16, textDecorationLine: 'underline' }}>{s.name}</Text>
+      </Pressable>
+    ))}
+  </IconCard>;
+}
+
 /** Pantalla «Guía profesional»: equipo de profesionales, semana del programa por meta y lista diaria. */
 export function CoachGuide() {
   const { t } = useTranslation(); const { st, c, premium } = useCoach(); const [chk, setChk] = useExt<Record<string, string[]>>('ckCheck', {}); const [open, setOpen] = useState<string | null>(null);
@@ -37,6 +50,7 @@ export function CoachGuide() {
   const goal = st.profile?.goal || 'keep'; const wk = programWeek(c.plan?.created); const d = today(); const done = chk[d] || [];
   return <Screen title={t('ck.guide')}>
     <IconCard icon="🧑‍⚕️" title={t('ck.title')} sub={t('ck.sub')} />
+    <HealthSources />
     <IconCard testID="ck-week" icon="📅" title={t('ck.weekT', { n: wk })} sub={t('ck.guideSub')}>
       {WEEKS.map((w, i) => <T key={w} style={i + 1 === wk ? { fontWeight: '900', color: C.primary } : undefined}>{i + 1 === wk ? '▶ ' : '• '}{t(`ck.${goal}.${w}`)}</T>)}
     </IconCard>

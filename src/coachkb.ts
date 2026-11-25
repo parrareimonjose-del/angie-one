@@ -50,6 +50,24 @@ export function suggestRecipes(left: number, goal: Goal, ban: Dislike[] = [], n 
 export const AREAS = ['nutrition', 'diets', 'training', 'physio', 'habits', 'sleep', 'hydration', 'sportsmed'] as const;
 export type Area = (typeof AREAS)[number];
 export const AREA_ICON: Record<Area, string> = { nutrition: '🥗', diets: '📋', training: '🏋️', physio: '🧘', habits: '🧠', sleep: '😴', hydration: '💧', sportsmed: '🩺' };
+/** Fuentes públicas (oficiales) que el Coach cita en pantalla. Enlaces para abrir en el navegador. */
+export const HEALTH_SOURCES: { id: string; name: string; url: string }[] = [
+  { id: 'dga', name: 'Dietary Guidelines for Americans (USDA/HHS)', url: 'https://www.dietaryguidelines.gov/' },
+  { id: 'who-diet', name: 'World Health Organization — Healthy diet', url: 'https://www.who.int/news-room/fact-sheets/detail/healthy-diet' },
+  { id: 'who-pa', name: 'World Health Organization — Physical activity', url: 'https://www.who.int/news-room/fact-sheets/detail/physical-activity' },
+  { id: 'acsm', name: 'ACSM — American College of Sports Medicine', url: 'https://www.acsm.org/' },
+  { id: 'ada', name: 'ADA — Standards of Care in Diabetes', url: 'https://professional.diabetes.org/standards-of-care' },
+  { id: 'aha', name: 'American Heart Association', url: 'https://www.heart.org/' },
+  { id: 'issn', name: 'ISSN — Protein and Exercise Position Stand', url: 'https://jissn.biomedcentral.com/articles/10.1186/s12970-017-0177-8' },
+  { id: 'and', name: 'Academy of Nutrition and Dietetics', url: 'https://www.eatright.org/' },
+  { id: 'nice', name: 'NICE NG59 — Low back pain and sciatica', url: 'https://www.nice.org.uk/guidance/ng59' },
+  { id: 'efsa', name: 'EFSA — Dietary reference values for water (2010)', url: 'https://www.efsa.europa.eu/en/efsajournal/pub/1459' },
+  { id: 'acog', name: 'ACOG — Exercise during pregnancy', url: 'https://www.acog.org/womens-health/faqs/exercise-during-pregnancy' },
+  { id: 'aap', name: 'American Academy of Pediatrics', url: 'https://www.aap.org/' },
+  { id: 'neda', name: 'NEDA — National Eating Disorders Association', url: 'https://www.nationaleatingdisorders.org/' },
+  { id: 'aasm', name: 'AASM — American Academy of Sleep Medicine', url: 'https://aasm.org/' },
+  { id: 'ioc', name: 'IOC consensus statement on dietary supplements (2018)', url: 'https://bjsm.bmj.com/content/52/7/439' },
+];
 /** Resumen profesional (inglés) que se envía a la IA como contexto. Fuentes públicas por área:
  *  nutrition: Dietary Guidelines for Americans 2020-2025; OMS (azúcares libres <10 %, sal <5 g/día); ISSN Position Stand Protein & Exercise (2017).
  *  diets: DGA 2020-2025; PREDIMED / OMS (mediterránea); revisiones Cochrane de ayuno intermitente; AND (dietas vegetarianas, 2016).
