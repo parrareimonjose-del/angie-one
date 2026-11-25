@@ -1610,7 +1610,8 @@
       "dish": "料理",
       "correction": "修正",
       "chat_fact": "チャット事実"
-    }
+    },
+    "payViaOn": "{{store}}で安全に支払う"
   },
   "voice": {
     "stop": "タップして終了",

@@ -1610,7 +1610,8 @@
       "dish": "Gericht",
       "correction": "Korrektur",
       "chat_fact": "Chat-Fakt"
-    }
+    },
+    "payViaOn": "Sichere Zahlung über {{store}}"
   },
   "voice": {
     "stop": "Tippen zum Beenden",

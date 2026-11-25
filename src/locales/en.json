@@ -1610,7 +1610,8 @@
       "dish": "Dish",
       "correction": "Correction",
       "chat_fact": "Chat fact"
-    }
+    },
+    "payViaOn": "Secure payment with {{store}}"
   },
   "voice": {
     "stop": "Tap to finish",

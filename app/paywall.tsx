@@ -47,7 +47,7 @@ export default function Paywall() {
       <Card testID="sub-terms"><CardTitle>📋 {t('fx.termsT')}</CardTitle>
         <T>{t('fx.terms', { price: plan === 'y' ? (ios && pr.yearly) || '$' + PLANS.yearly.usd : (ios && pr.monthly) || '$' + PLANS.monthly.usd, period: t(plan === 'y' ? 'fx.perYear' : 'fx.perMonth'), store: prov.name })}</T>
         <Text style={[s.muted, { fontSize: 15 }]}>{t('pay.renew')}</Text><Text style={[s.muted, { fontSize: 15 }]}>⚕️ {t('fx.healthDisc')}</Text></Card>
-      <Text testID="pay-provider" style={[s.muted, { textAlign: 'center' }]}>🔒 {t('fx.payVia', { store: prov.name })}</Text>
+      <Text testID="pay-provider" style={[s.muted, { textAlign: 'center' }]}>🔒 {t(ios ? 'fx.payViaOn' : 'fx.payVia', { store: prov.name })}</Text>
       {prov.connected ? <Btn testID="pay-buy" label={(effectivePayMode() === 'test' ? '🧪 TEST · ' : '') + t('pay.cta')} onPress={buy} /> : ios ? iapFail : <Card testID="pay-soon"><Pending /><T style={{ color: C.warning, fontWeight: '700' }}>{t('pay.soon')}</T></Card>}
       {note ? (ios ? iapFail : <Card><Pending /><T style={{ color: C.warning, fontWeight: '700' }}>{t('pay.soon')}</T></Card>) : null}
       {ios ? null : <RedeemCard />}

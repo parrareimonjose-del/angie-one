@@ -1610,7 +1610,8 @@
       "dish": "菜肴",
       "correction": "纠正",
       "chat_fact": "聊天事实"
-    }
+    },
+    "payViaOn": "通过{{store}}安全付款"
   },
   "voice": {
     "stop": "点击结束",

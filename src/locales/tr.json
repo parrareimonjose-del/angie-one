@@ -1610,7 +1610,8 @@
       "dish": "Yemek",
       "correction": "Düzeltme",
       "chat_fact": "Sohbet gerçeği"
-    }
+    },
+    "payViaOn": "{{store}} ile güvenli ödeme"
   },
   "voice": {
     "stop": "Bitirmek için dokunun",

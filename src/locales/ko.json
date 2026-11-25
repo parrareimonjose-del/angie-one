@@ -1610,7 +1610,8 @@
       "dish": "요리",
       "correction": "수정",
       "chat_fact": "채팅 사실"
-    }
+    },
+    "payViaOn": "{{store}}로 안전하게 결제"
   },
   "voice": {
     "stop": "탭하여 끝내기",

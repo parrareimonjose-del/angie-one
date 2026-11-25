@@ -1610,7 +1610,8 @@
       "dish": "Plato",
       "correction": "Corrección",
       "chat_fact": "Hecho del chat"
-    }
+    },
+    "payViaOn": "Pago seguro con {{store}}"
   },
   "voice": {
     "stop": "Toca para terminar",
